@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>일상의도움 — Daily Helper | 안드로이드 앱 모음</title>
+  <meta name="description" content="일상 속 불편함을 해소하는 안드로이드 앱과 유용한 도구를 한자리에서. 무료 앱 큐레이션 포털." />
+  <meta name="keywords" content="안드로이드 앱, 유틸리티, 생산성, 일상 앱, Daily Helper, 앱 추천" />
+  <meta property="og:title" content="일상의도움 — Daily Helper" />
+  <meta property="og:description" content="당신의 삶을 풍요롭게 하는 안드로이드 앱 모음 포털" />
+  <meta property="og:type" content="website" />
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#6366f1', accent: '#06b6d4' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css" />
+
+  <!-- Google AdSense (replace with your Publisher ID) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Logo + Brand -->
+    <button onclick="showPage('main'); showPage('main')" class="header-logo-btn" style="background:none;border:none;cursor:pointer;padding:0;">
+      <div class="w-9 h-9 rounded-xl flex items-center justify-center text-xl"
+           style="background:linear-gradient(135deg,#6366f1,#06b6d4);">🏠</div>
+      <div class="hidden sm:block">
+        <div class="logo-text" data-i18n="brand">일상의도움</div>
+        <div class="slogan-text" data-i18n="slogan">당신의 삶을 풍요롭게 합니다</div>
+      </div>
+    </button>
+
+    <!-- Category Quick Menu (desktop center) -->
+    <nav class="header-cat-nav" id="header-cat-nav">
+      <button class="header-cat-btn active-cat" onclick="scrollToCategory('all')" data-i18n="categories.all">전체</button>
+      <button class="header-cat-btn" onclick="scrollToCategory('tools')" data-i18n="categories.tools">도구/업무</button>
+      <button class="header-cat-btn" onclick="scrollToCategory('utility')" data-i18n="categories.utility">유틸리티</button>
+      <button class="header-cat-btn" onclick="scrollToCategory('daily')" data-i18n="categories.daily">일상/일정</button>
+      <button class="header-cat-btn" onclick="scrollToCategory('kids')" data-i18n="categories.kids">키즈/퀴즈</button>
+    </nav>
+
+    <!-- Controls -->
+    <div class="flex items-center gap-2 shrink-0">
+      <!-- Lang Toggle -->
+      <div class="flex items-center rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <button id="lang-ko" class="lang-btn rounded-none border-none" onclick="setLang('ko')">KO</button>
+        <span class="text-slate-300 dark:text-slate-600 text-xs">|</span>
+        <button id="lang-en" class="lang-btn rounded-none border-none" onclick="setLang('en')">EN</button>
+      </div>
+      <!-- Dark Toggle -->
+      <button id="dark-toggle" onclick="toggleDark()" aria-label="Toggle dark mode"></button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     PAGE: MAIN
+════════════════════════════════════════════ -->
+<div id="page-main">
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="relative z-10 text-center max-w-2xl mx-auto">
+      <h1 class="hero-title">
+        <span data-i18n="hero.titlePrefix">일상을 더</span>
+        <span class="hero-title-badge" data-i18n="hero.titleHighlight">스마트하게</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.subtitle">검증된 안드로이드 앱과 유용한 도구로 당신의 하루를 업그레이드하세요.</p>
+      <!-- Search -->
+      <div class="search-wrap">
+        <svg class="search-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
+        </svg>
+        <input id="search-input" type="search" class="search-input"
+               data-i18n-placeholder="hero.searchPlaceholder"
+               placeholder="앱 이름 또는 기능으로 검색..." />
+      </div>
+      <p class="text-white/70 text-sm mt-3">
+        <span id="hero-count"></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ Social Proof Bar ═══ -->
+  <div class="proof-bar" id="proof-bar">
+    <div class="proof-bar-inner">
+      <div class="proof-item">
+        <span class="proof-item-icon">📱</span>
+        <span class="proof-item-text" data-i18n="proof.apps">10+ 유용한 스마트폰 앱</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-item-icon">🛡️</span>
+        <span class="proof-item-text" data-i18n="proof.free">100% 무료 &amp; 안전한 도구</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-item-icon">🔄</span>
+        <span class="proof-item-text" data-i18n="proof.update">주기적인 신규 앱 업데이트</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Filters — 광고 제거, Hero와 직접 연결 -->
+  <div class="container pt-2 pb-0" id="category-section">
+    <div id="category-filters"></div>
+  </div>
+
+  <!-- App Grid -->
+  <main class="container pt-2 pb-10">
+    <div id="app-grid"></div>
+  </main>
+
+  <!-- Ad: 하단 단일 통합 광고 (max-height: 90px) -->
+  <div class="container pb-4">
+    <div class="ad-placeholder-bottom">
+      <span class="ad-label" data-i18n="ad.label">광고</span>
+      <!-- AdSense 728x90 단일 통합 자리 -->
+    </div>
+  </div>
+
+</div><!-- /page-main -->
+
+<!-- ══════════════════════════════════════════
+     PAGE: ABOUT
+════════════════════════════════════════════ -->
+<div id="page-about" class="hidden">
+  <div class="static-page">
+    <h2 class="text-slate-900 dark:text-white" data-i18n="about.title">서비스 소개</h2>
+    <p class="page-sub" data-i18n="about.subtitle">일상의도움 포털에 오신 것을 환영합니다</p>
+    <div class="static-page-body" data-i18n-html="about.body"></div>
+    <button onclick="showPage('main')" class="mt-8 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+      ← 홈으로
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: PRIVACY
+════════════════════════════════════════════ -->
+<div id="page-privacy" class="hidden">
+  <div class="static-page">
+    <h2 class="text-slate-900 dark:text-white" data-i18n="privacy.title">개인정보처리방침</h2>
+    <p class="page-sub" data-i18n="privacy.subtitle">귀하의 개인정보는 소중히 보호됩니다</p>
+    <div class="static-page-body" data-i18n-html="privacy.body"></div>
+    <button onclick="showPage('main')" class="mt-8 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+      ← 홈으로
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: TERMS
+════════════════════════════════════════════ -->
+<div id="page-terms" class="hidden">
+  <div class="static-page">
+    <h2 class="text-slate-900 dark:text-white" data-i18n="terms.title">이용약관</h2>
+    <p class="page-sub" data-i18n="terms.subtitle">서비스 이용에 관한 약관</p>
+    <div class="static-page-body" data-i18n-html="terms.body"></div>
+    <button onclick="showPage('main')" class="mt-8 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+      ← 홈으로
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE: CONTACT
+════════════════════════════════════════════ -->
+<div id="page-contact" class="hidden">
+  <div class="static-page">
+    <h2 class="text-slate-900 dark:text-white" data-i18n="contact.title">문의하기</h2>
+    <p class="page-sub" data-i18n="contact.subtitle">궁금한 점이 있으시면 언제든지 연락해 주세요</p>
+    <p class="text-sm opacity-60 mb-4" data-i18n="contact.lastUpdated">최종 수정일: 2026년 8월 11일</p>
+
+    <div class="contact-card">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-xl">✉️</div>
+        <h3 class="font-semibold text-slate-800 dark:text-slate-100" data-i18n="contact.emailLabel">이메일 문의</h3>
+      </div>
+      <p class="text-slate-600 dark:text-slate-300 text-sm mb-4" data-i18n="contact.emailDesc">앱 관련 문의, 버그 제보, 협업 제안 등 모든 문의를 환영합니다.</p>
+      <a href="mailto:theoneco1@gmail.com?subject=%5B%EC%9D%BC%EC%83%81%EC%9D%98%EB%8F%84%EC%9B%80%5D%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B0%8F%20%EC%95%B1%20%EB%AC%B8%EC%9D%98" class="email-btn">
+        ✉️ <span data-i18n="contact.emailBtn">이메일 보내기</span>
+      </a>
+      <p class="text-xs text-slate-400 mt-3" data-i18n="contact.responseTime">영업일 기준 1~2일 내 답변 드립니다.</p>
+    </div>
+
+    <div class="contact-card">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-xl">📱</div>
+        <h3 class="font-semibold text-slate-800 dark:text-slate-100" data-i18n="contact.appRequest">앱 추가 요청</h3>
+      </div>
+      <p class="text-slate-600 dark:text-slate-300 text-sm mb-4" data-i18n="contact.appRequestDesc">유용한 앱을 알고 계신가요? 소개하고 싶은 앱이 있으시면 알려주세요!</p>
+      <a href="mailto:theoneco1@gmail.com?subject=%5B%EC%9D%BC%EC%83%81%EC%9D%98%EB%8F%84%EC%9B%80%5D%20%EC%8B%A0%EA%B7%9C%20%EC%95%B1%20%EC%B6%94%EA%B0%80%20%EB%B0%8F%20%EC%B6%94%EC%B2%9C%20%EC%9A%94%EC%B2%AD" class="email-btn">
+        📱 <span data-i18n="contact.appRequest">앱 추가 요청</span>
+      </a>
+    </div>
+
+    <button onclick="showPage('main')" class="mt-4 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+      ← 홈으로
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     APP DETAIL MODAL
+════════════════════════════════════════════ -->
+<div id="app-modal" class="hidden" role="dialog" aria-modal="true" aria-label="App detail">
+  <div class="modal-panel relative" id="modal-content">
+    <!-- Dynamically injected by main.js -->
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <!-- Brand -->
+      <div>
+        <div class="logo-text text-white text-lg mb-2" data-i18n="brand">일상의도움</div>
+        <p class="text-sm text-slate-400" data-i18n="footer.tagline">당신의 일상을 더 풍요롭게</p>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.links">빠른 링크</h4>
+        <ul class="space-y-1">
+          <li><button class="footer-nav-btn" onclick="showPage('main')" data-i18n="nav.home">홈</button></li>
+          <li><button class="footer-nav-btn" onclick="showPage('about')" data-i18n="nav.about">소개</button></li>
+          <li><button class="footer-nav-btn" onclick="showPage('contact')" data-i18n="nav.contact">문의하기</button></li>
+        </ul>
+      </div>
+      <!-- Legal -->
+      <div>
+        <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.legal">법적 고지</h4>
+        <ul class="space-y-1">
+          <li><button class="footer-nav-btn" onclick="showPage('privacy')" data-i18n="nav.privacy">개인정보처리방침</button></li>
+          <li><button class="footer-nav-btn" onclick="showPage('terms')" data-i18n="nav.terms">이용약관</button></li>
+          <li class="pt-2 text-xs text-slate-400">
+            <span data-i18n="footer.emailLabel">문의 이메일:</span>
+            <a href="mailto:theoneco1@gmail.com" class="text-indigo-400 hover:underline">theoneco1@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Copyright -->
+    <div class="border-t border-slate-800 pt-6 text-center">
+      <p class="text-sm text-slate-500" data-i18n="footer.copyright">© 2026 일상의도움 (Daily Helper). All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════ -->
+<script src="js/i18n.js"></script>
+<script src="js/apps.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+# Local server & batch files
+run_server.bat
+*.bat
+*.sh
+
+# Node & Build Outputs
+node_modules/
+.vercel/
+.env
+.env.local
+.env.production
+
+# System & OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & Temporary Files
+*.log
+tmp/
+.temp/
