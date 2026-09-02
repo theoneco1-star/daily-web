@@ -242,16 +242,26 @@ function openModal(appId) {
     : `<div class="modal-hero-icon">${app.icon || fallbackEmoji}</div>`;
 
   const screenshotsHtml = (app.screenshots && app.screenshots.length)
-    ? `<div class="gallery-container">
-        <div class="gallery-track" id="gallery-track">
-          ${app.screenshots.map(s => `<img src="${s}" class="gallery-img" alt="screenshot" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'p-8 text-center text-slate-400 dark:text-slate-500\\'>🖼️ 스크린샷 이미지 준비 중입니다.</div>';"/>`).join("")}
+    ? `<div class="modal-screenshot-showcase">
+        <div class="phone-device-frame">
+          <div class="phone-device-speaker"></div>
+          <div class="phone-device-camera"></div>
+          <div class="phone-device-screen">
+            ${app.screenshots.length === 1
+              ? `<img src="${app.screenshots[0]}" class="phone-screenshot-img" alt="${name} screenshot" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'p-8 text-center text-slate-400 dark:text-slate-500\\'>🖼️ 스크린샷 이미지 준비 중입니다.</div>';"/>`
+              : `<div class="gallery-track" id="gallery-track">
+                  ${app.screenshots.map(s => `<img src="${s}" class="phone-screenshot-img flex-shrink-0 w-full" alt="screenshot"/>`).join("")}
+                </div>`
+            }
+          </div>
+          <div class="phone-device-home"></div>
+          ${app.screenshots.length > 1 ? `
+          <button class="gallery-btn gallery-btn-prev" onclick="moveGallery(-1)">&#8249;</button>
+          <button class="gallery-btn gallery-btn-next" onclick="moveGallery(1)">&#8250;</button>
+          <div class="gallery-dots" id="gallery-dots">
+            ${app.screenshots.map((_, i) => `<button class="dot ${i === 0 ? 'dot-active' : ''}" onclick="goGallery(${i})"></button>`).join("")}
+          </div>` : ""}
         </div>
-        ${app.screenshots.length > 1 ? `
-        <button class="gallery-btn gallery-btn-prev" onclick="moveGallery(-1)">&#8249;</button>
-        <button class="gallery-btn gallery-btn-next" onclick="moveGallery(1)">&#8250;</button>
-        <div class="gallery-dots" id="gallery-dots">
-          ${app.screenshots.map((_, i) => `<button class="dot ${i === 0 ? 'dot-active' : ''}" onclick="goGallery(${i})"></button>`).join("")}
-        </div>` : ""}
       </div>`
     : `<div class="no-screenshots">
         <div class="phone-mockup">

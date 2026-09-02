@@ -39,7 +39,9 @@
       ],
       "guideKo": "매일 아침 오늘의 핵심 목표와 일정을 등록하고, 집중 타이머를 통해 몰입 시간을 관리해보세요. 일간/주간 통계를 확인하며 점진적으로 시간 관리 습관을 완성할 수 있습니다.",
       "guideEn": "Register your key daily goals and schedules each morning, and manage your focus sessions with the timer. Track your progress with daily and weekly statistics to build lasting habits.",
-      "screenshots": [],
+      "screenshots": [
+        "images/timekeeper-screenshot.jpg"
+      ],
       "developer": "WG Apps",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.timekeeper",
       "version": "1.0.0",

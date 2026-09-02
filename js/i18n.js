@@ -157,6 +157,9 @@ function setLang(lang) {
   applyTranslations();
   if (typeof renderApps === "function") renderApps();
   if (typeof updateLangToggle === "function") updateLangToggle();
+  if (typeof currentModalApp !== "undefined" && currentModalApp && typeof openModal === "function") {
+    openModal(currentModalApp.id);
+  }
 }
 
 function applyTranslations() {
