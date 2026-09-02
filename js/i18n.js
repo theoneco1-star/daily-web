@@ -17,7 +17,7 @@ const translations = {
       resultsFound: "개 검색됨",
     },
     categories: { all: "전체", tools: "도구/업무", utility: "유틸리티", daily: "일상/일정", kids: "키즈/퀴즈" },
-    card: { detailBtn: "상세보기 & 다운로드", freeTag: "무료", newTag: "신규" },
+    card: { detailBtn: "상세보기 & 다운로드", freeTag: "무료", newTag: "신규", featuredTag: "추천" },
     modal: {
       close: "닫기", downloadBtn: "Google Play에서 다운로드",
       features: "주요 기능", guide: "사용 가이드 & 꿀팁", versionInfo: "버전 정보",
@@ -79,7 +79,7 @@ const translations = {
       resultsFound: "results found",
     },
     categories: { all: "All", tools: "Tools & Work", utility: "Utility", daily: "Daily & Routine", kids: "Kids & Quiz" },
-    card: { detailBtn: "Details & Download", freeTag: "Free", newTag: "New" },
+    card: { detailBtn: "Details & Download", freeTag: "Free", newTag: "New", featuredTag: "Featured" },
     modal: {
       close: "Close", downloadBtn: "Get it on Google Play",
       features: "Key Features", guide: "Usage Guide & Tips", versionInfo: "Version Info",

@@ -6,5 +6,46 @@
     { "id": "daily", "nameKo": "일상/일정", "nameEn": "Daily & Routine" },
     { "id": "kids", "nameKo": "키즈/퀴즈", "nameEn": "Kids & Quiz" }
   ],
-  "apps": []
+  "apps": [
+    {
+      "id": "timekeeper",
+      "nameKo": "TimeKeeper",
+      "nameEn": "TimeKeeper",
+      "category": "daily",
+      "color": "from-indigo-600 via-indigo-500 to-cyan-500",
+      "icon": "images/timekeeper-icon.svg",
+      "iconEmoji": "⏱️",
+      "isFree": true,
+      "isNew": true,
+      "isFeatured": true,
+      "tags": ["유틸리티", "일정 관리", "추천"],
+      "tagsKo": ["유틸리티", "일정 관리", "추천"],
+      "tagsEn": ["Utility", "Schedule", "Featured"],
+      "descKo": "일상 생활과 시간 관리를 위한 스마트하고 직관적인 습관 및 일정 관리 도구",
+      "descEn": "Smart and intuitive habit & schedule management tool for daily life and time tracking.",
+      "featuresKo": [
+        "직관적인 타이머 및 스톱워치 기능으로 시간 관리 최적화",
+        "매일 반복되는 루틴과 습관 형성을 위한 맞춤형 일정 관리",
+        "한눈에 파악하는 일일 및 주간 시간 활용 통계 및 분석",
+        "집중력을 높여주는 심플하고 모던한 미니멀 디자인",
+        "스마트한 알림 기능으로 중요한 일정을 놓치지 않도록 지원"
+      ],
+      "featuresEn": [
+        "Optimize time management with intuitive timer & stopwatch",
+        "Custom schedule management for building daily routines and habits",
+        "Clear visual statistics and analytics for daily/weekly time use",
+        "Clean, minimalist modern design to boost your focus",
+        "Smart reminder alerts so you never miss an important schedule"
+      ],
+      "guideKo": "매일 아침 오늘의 핵심 목표와 일정을 등록하고, 집중 타이머를 통해 몰입 시간을 관리해보세요. 일간/주간 통계를 확인하며 점진적으로 시간 관리 습관을 완성할 수 있습니다.",
+      "guideEn": "Register your key daily goals and schedules each morning, and manage your focus sessions with the timer. Track your progress with daily and weekly statistics to build lasting habits.",
+      "screenshots": [],
+      "developer": "WG Apps",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.timekeeper",
+      "version": "1.0.0",
+      "updated": "2026. 09",
+      "size": "12 MB",
+      "requires": "Android 8.0 이상 (Android 8.0+)"
+    }
+  ]
 }

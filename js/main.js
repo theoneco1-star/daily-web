@@ -119,7 +119,9 @@ function getFilteredApps() {
     const matchCat = activeCategory === "all" || app.category === activeCategory;
     const name = (currentLang === "ko" ? app.nameKo : app.nameEn).toLowerCase();
     const desc = (currentLang === "ko" ? app.descKo : app.descEn).toLowerCase();
-    const matchSearch = !searchQuery || name.includes(searchQuery) || desc.includes(searchQuery);
+    const tagsArr = (currentLang === "ko" ? app.tagsKo || app.tags : app.tagsEn || app.tags) || [];
+    const tagsStr = Array.isArray(tagsArr) ? tagsArr.join(" ").toLowerCase() : "";
+    const matchSearch = !searchQuery || name.includes(searchQuery) || desc.includes(searchQuery) || tagsStr.includes(searchQuery);
     return matchCat && matchSearch;
   });
 }
@@ -168,7 +170,15 @@ function buildAppCard(app) {
   const badges = [
     app.isFree ? `<span class="badge badge-free">${t("card.freeTag")}</span>` : "",
     app.isNew ? `<span class="badge badge-new">${t("card.newTag")}</span>` : "",
+    app.isFeatured ? `<span class="badge badge-featured">${t("card.featuredTag")}</span>` : "",
   ].join("");
+
+  const tagsList = (currentLang === "ko" ? app.tagsKo || app.tags : app.tagsEn || app.tags) || [];
+  const tagsHtml = Array.isArray(tagsList) && tagsList.length > 0
+    ? `<div class="app-tags-wrap">
+        ${tagsList.map(tag => `<span class="app-tag">#${tag}</span>`).join("")}
+      </div>`
+    : "";
 
   const fallbackEmoji = app.iconEmoji || "📱";
   const isImageIcon = app.icon && (app.icon.includes("/") || app.icon.includes("."));
@@ -184,7 +194,7 @@ function buildAppCard(app) {
             ${iconMarkup}
           </div>
           <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 flex-wrap">
+            <div class="flex items-center gap-1.5 flex-wrap">
               <h3 class="app-card-title">${name}</h3>
               ${badges}
             </div>
@@ -192,6 +202,7 @@ function buildAppCard(app) {
           </div>
         </div>
         <p class="app-card-desc">${desc}</p>
+        ${tagsHtml}
         <button class="detail-btn mt-auto">
           ${t("card.detailBtn")}
           <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
@@ -213,7 +224,13 @@ function openModal(appId) {
   const guide = currentLang === "ko" ? app.guideKo : app.guideEn;
   const fallbackEmoji = app.iconEmoji || "📱";
 
-  const featuresList = features.map(f => `
+  const badges = [
+    app.isFree ? `<span class="badge badge-free">${t("card.freeTag")}</span>` : "",
+    app.isNew ? `<span class="badge badge-new">${t("card.newTag")}</span>` : "",
+    app.isFeatured ? `<span class="badge badge-featured">${t("card.featuredTag")}</span>` : "",
+  ].join("");
+
+  const featuresList = (features || []).map(f => `
     <li class="flex items-start gap-2">
       <svg class="w-5 h-5 text-indigo-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
       <span>${f}</span>
@@ -253,8 +270,11 @@ function openModal(appId) {
     <div class="modal-hero bg-gradient-to-br ${app.color}">
       ${heroIconMarkup}
       <div>
-        <h2 class="text-2xl font-bold text-white">${name}</h2>
-        <p class="text-white/80 text-sm mt-1">${app.developer}</p>
+        <div class="flex items-center gap-2 flex-wrap mb-1">
+          <h2 class="text-2xl font-bold text-white">${name}</h2>
+          ${badges}
+        </div>
+        <p class="text-white/80 text-sm">${app.developer}</p>
       </div>
     </div>
 
