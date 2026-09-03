@@ -228,8 +228,8 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
 /* ① 다크모드 히어로 배너 대비 및 시인성 개선 */
 html.dark .hero-section,
 .dark .hero-section {
-  background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 html.dark .hero-section::before,
 .dark .hero-section::before {
@@ -253,8 +253,8 @@ html.dark .hero-section::before,
 /* ② 다크모드 정보 띠 배너: 단정하게 정돈된 캡슐 바(Bar) 스타일 */
 html.dark .proof-bar,
 .dark .proof-bar {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 9999px;
   width: fit-content;
   max-width: calc(100% - 2rem);
@@ -285,7 +285,7 @@ html.dark .proof-bar-inner,
 .proof-item-icon { font-size: 0.95rem; line-height: 1; }
 .proof-item-text { color: #64748b; }
 html.dark .proof-item-text,
-.dark .proof-item-text { color: #cbd5e1 !important; /* text-slate-300 */ }
+.dark .proof-item-text { color: #e2e8f0 !important; /* text-slate-200 */ }
 @media (max-width: 640px) {
   .proof-bar-inner { gap: 20px; }
   html.dark .proof-bar,
