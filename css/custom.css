@@ -255,7 +255,7 @@ html:not(.dark) .hero-section::after,
 html:not(.dark) .hero-title,
 .light .hero-title {
   color: #0f172a !important; /* 선명한 다크 네이비 */
-  font-weight: 800 !important;
+  font-weight: 900 !important;
   text-shadow: none !important;
 }
 html:not(.dark) .hero-title-badge,
@@ -265,12 +265,13 @@ html:not(.dark) .hero-title-badge,
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   color: transparent !important;
-  font-weight: 800 !important;
+  font-weight: inherit !important;
   border: none !important;
   box-shadow: none !important;
   padding: 0 !important;
   border-radius: 0 !important;
   margin-left: 0.25em;
+  filter: none !important;
 }
 html:not(.dark) .hero-sub,
 .light .hero-sub {
@@ -399,31 +400,47 @@ html:not(.dark) .proof-item-text,
 }
 
 .hero-title {
-  font-size: clamp(1.4rem, 4.2vw, 2.1rem);
-  font-weight: 800; color: white;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  text-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  font-size: 1.875rem; /* 30px (모바일: 28px ~ 32px / text-3xl) */
+  font-weight: 900;    /* font-black (가장 굵은 웨이트 적용) */
+  color: #ffffff;
+  letter-spacing: -0.03em; /* tracking-tight로 단단하고 정갈하게 조임 */
+  line-height: 1.25;
+  margin: 0 auto 16px; /* 서브 설명문과의 여백 16px 균형 */
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  word-break: keep-all;
 }
 
-/* ★ Hero Title Highlight Badge — 세련된 소프트 블루 뱃지 스타일 */
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 2.875rem; /* 46px (PC 데스크톱: 44px ~ 48px / text-5xl) */
+    line-height: 1.18;
+    margin-bottom: 16px;
+  }
+}
+
+/* ★ Hero Title Highlight Badge — 다크모드 발광 시안~블루 네온 그라데이션 */
 .hero-title-badge {
   display: inline-block;
-  background: rgba(59, 130, 246, 0.15);
-  color: #38bdf8;
-  border: 1px solid rgba(59, 130, 246, 0.4);
-  border-radius: 0.5rem;
-  padding: 0.04em 0.38em 0.08em;
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
   margin-left: 0.25em;
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  font-style: normal;
-  letter-spacing: -0.01em;
+  filter: drop-shadow(0 2px 14px rgba(56, 189, 248, 0.4));
 }
 .hero-sub {
-  color: rgba(255,255,255,0.78);
-  font-size: 0.86rem;
-  margin-top: 0.25rem;
-  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.92rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.5;
 }
 
 .search-wrap {

@@ -70,8 +70,8 @@ const translations = {
     slogan: "Enriching Your Daily Life",
     nav: { home: "Home", about: "About", privacy: "Privacy Policy", terms: "Terms of Service", contact: "Contact", backToHome: "← Back to Home" },
     hero: {
-      title: "Make Every Day Smarter",
-      titlePrefix: "Make Every Day",
+      title: "Make Daily Life Smarter",
+      titlePrefix: "Make Daily Life",
       titleHighlight: "Smarter",
       subtitle: "Upgrade your daily routine with handpicked Android apps and essential tools.",
       searchPlaceholder: "Search by app name or feature...",
