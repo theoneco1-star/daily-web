@@ -229,36 +229,40 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
 /* ── Social Proof Bar ──────────────────────────────────────── */
 .proof-bar {
   background: var(--surface);
+  border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 0.4rem 0;                  /* 상하 padding 최소화 */
+  margin-top: 20px;
+  margin-bottom: 24px;
+  padding: 10px 0;
   overflow-x: auto;
   scrollbar-width: none;
 }
 .proof-bar::-webkit-scrollbar { display: none; }
 html.dark .proof-bar {
   background: rgba(15,23,42,0.6);
-  border-bottom-color: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.06);
 }
 .proof-bar-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 0 var(--container-px); /* ① max-width 통일 */
   display: flex; align-items: center; justify-content: center;
-  gap: 0; flex-wrap: nowrap; white-space: nowrap;
+  gap: 28px; flex-wrap: nowrap; white-space: nowrap;
 }
 .proof-item {
-  display: flex; align-items: center; gap: 0.4rem;
-  padding: 0.2rem 1.1rem;
-  font-size: 0.78rem; font-weight: 500;
-  color: var(--text-secondary);
+  display: flex; align-items: center; gap: 0.45rem;
+  padding: 0;
+  font-size: 13.5px; font-weight: 500;
+  color: #64748b;
   letter-spacing: 0.01em;
 }
-.proof-item:not(:last-child) {
-  border-right: 1px solid var(--border);
-}
-.proof-item-icon { font-size: 0.9rem; }
-.proof-item-text { color: #475569; }
+.proof-item-icon { font-size: 0.95rem; line-height: 1; }
+.proof-item-text { color: #64748b; }
 html.dark .proof-item-text { color: #94a3b8; }
+@media (max-width: 640px) {
+  .proof-bar-inner { gap: 20px; }
+}
 @media (max-width: 480px) {
-  .proof-item { padding: 0.2rem 0.65rem; font-size: 0.73rem; }
+  .proof-bar-inner { gap: 16px; justify-content: flex-start; }
+  .proof-item { font-size: 12.5px; }
 }
 
 .hero-title {
