@@ -225,6 +225,18 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
   display: none;
   margin: 0;
 }
+/* ① 다크모드 히어로 배너 대비 및 시인성 개선 */
+html.dark .hero-section,
+.dark .hero-section {
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+html.dark .hero-section::before,
+.dark .hero-section::before {
+  background-image:
+    radial-gradient(ellipse 65% 55% at 50% 45%, rgba(99, 102, 241, 0.18) 0%, rgba(59, 130, 246, 0.08) 45%, transparent 75%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' fill-opacity='0.035'/%3E%3C/g%3E%3C/svg%3E");
+}
 
 /* ── Social Proof Bar ──────────────────────────────────────── */
 .proof-bar {
@@ -238,14 +250,30 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
   scrollbar-width: none;
 }
 .proof-bar::-webkit-scrollbar { display: none; }
-html.dark .proof-bar {
-  background: rgba(15,23,42,0.6);
-  border-color: rgba(255,255,255,0.06);
+/* ② 다크모드 정보 띠 배너: 단정하게 정돈된 캡슐 바(Bar) 스타일 */
+html.dark .proof-bar,
+.dark .proof-bar {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 9999px;
+  width: fit-content;
+  max-width: calc(100% - 2rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem 1.5rem !important; /* py-2 px-6 */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .proof-bar-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 0 var(--container-px); /* ① max-width 통일 */
   display: flex; align-items: center; justify-content: center;
   gap: 28px; flex-wrap: nowrap; white-space: nowrap;
+}
+html.dark .proof-bar-inner,
+.dark .proof-bar-inner {
+  padding: 0 !important;
+  max-width: 100%;
 }
 .proof-item {
   display: flex; align-items: center; gap: 0.45rem;
@@ -256,9 +284,15 @@ html.dark .proof-bar {
 }
 .proof-item-icon { font-size: 0.95rem; line-height: 1; }
 .proof-item-text { color: #64748b; }
-html.dark .proof-item-text { color: #94a3b8; }
+html.dark .proof-item-text,
+.dark .proof-item-text { color: #cbd5e1 !important; /* text-slate-300 */ }
 @media (max-width: 640px) {
   .proof-bar-inner { gap: 20px; }
+  html.dark .proof-bar,
+  .dark .proof-bar {
+    border-radius: 12px;
+    padding: 0.5rem 1rem !important;
+  }
 }
 @media (max-width: 480px) {
   .proof-bar-inner { gap: 16px; justify-content: flex-start; }
