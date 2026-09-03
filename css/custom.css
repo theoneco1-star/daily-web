@@ -241,29 +241,36 @@ html.dark .hero-section::before,
 /* ── 라이트모드 히어로 배너 배경 및 텍스트 톤 개선 ────────── */
 html:not(.dark) .hero-section,
 .light .hero-section {
-  background: linear-gradient(180deg, #f0f7ff 0%, #e0f2fe 100%) !important;
-  border-bottom: 1px solid #bae6fd !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
 }
 html:not(.dark) .hero-section::before,
 .light .hero-section::before {
-  background-image:
-    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(186, 230, 253, 0.35) 0%, transparent 70%);
+  display: none !important;
 }
 html:not(.dark) .hero-section::after,
 .light .hero-section::after {
-  display: none;
+  display: none !important;
 }
 html:not(.dark) .hero-title,
 .light .hero-title {
-  color: #0f172a !important; /* text-slate-900 */
+  color: #0f172a !important; /* 선명한 다크 네이비 */
+  font-weight: 800 !important;
   text-shadow: none !important;
 }
 html:not(.dark) .hero-title-badge,
 .light .hero-title-badge {
-  background: rgba(37, 99, 235, 0.08) !important;
-  color: #0284c7 !important;
-  border: 1px solid #bae6fd !important;
-  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.08) !important;
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  font-weight: 800 !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  margin-left: 0.25em;
 }
 html:not(.dark) .hero-sub,
 .light .hero-sub {
@@ -274,7 +281,7 @@ html:not(.dark) .search-input,
   background: #ffffff !important;
   border: 1px solid #cbd5e1 !important;
   color: #1e293b !important; /* text-slate-800 */
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 html:not(.dark) .search-input::placeholder,
 .light .search-input::placeholder {
@@ -283,8 +290,8 @@ html:not(.dark) .search-input::placeholder,
 html:not(.dark) .search-input:focus,
 .light .search-input:focus {
   background: #ffffff !important;
-  border-color: #38bdf8 !important;
-  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.15), 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.12), 0 0 0 3px rgba(59, 130, 246, 0.18) !important;
 }
 html:not(.dark) .search-icon,
 .light .search-icon {
@@ -370,6 +377,7 @@ html:not(.dark) .proof-bar,
   margin-right: auto;
   padding: 8px 24px !important;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  color: #475569 !important;
 }
 html:not(.dark) .proof-bar-inner,
 .light .proof-bar-inner {
@@ -380,7 +388,7 @@ html:not(.dark) .proof-item,
 .light .proof-item,
 html:not(.dark) .proof-item-text,
 .light .proof-item-text {
-  color: #334155 !important; /* text-slate-700 */
+  color: #475569 !important; /* text-slate-600 */
 }
 @media (max-width: 640px) {
   html:not(.dark) .proof-bar,
