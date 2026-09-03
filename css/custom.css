@@ -201,7 +201,7 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
   background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
   position: relative;
   overflow: hidden;
-  padding: 26px 20px 22px;            /* 세로 간격 슬림화 (기존 약 2/3 수준으로 축소) */
+  padding: 17px 20px 14px;            /* 상하 패딩 대폭 축소 (전체 높이 컴팩트화) */
 }
 /* Subtle Noise texture overlay */
 .hero-section::before {
