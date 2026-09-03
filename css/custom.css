@@ -238,6 +238,65 @@ html.dark .hero-section::before,
     url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' fill-opacity='0.035'/%3E%3C/g%3E%3C/svg%3E");
 }
 
+/* ── 라이트모드 히어로 배너 배경 및 텍스트 톤 개선 ────────── */
+html:not(.dark) .hero-section,
+.light .hero-section {
+  background: linear-gradient(180deg, #f0f7ff 0%, #e0f2fe 100%) !important;
+  border-bottom: 1px solid #bae6fd !important;
+}
+html:not(.dark) .hero-section::before,
+.light .hero-section::before {
+  background-image:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(186, 230, 253, 0.35) 0%, transparent 70%);
+}
+html:not(.dark) .hero-section::after,
+.light .hero-section::after {
+  display: none;
+}
+html:not(.dark) .hero-title,
+.light .hero-title {
+  color: #0f172a !important; /* text-slate-900 */
+  text-shadow: none !important;
+}
+html:not(.dark) .hero-title-badge,
+.light .hero-title-badge {
+  background: rgba(37, 99, 235, 0.08) !important;
+  color: #0284c7 !important;
+  border: 1px solid #bae6fd !important;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.08) !important;
+}
+html:not(.dark) .hero-sub,
+.light .hero-sub {
+  color: #475569 !important; /* text-slate-600 */
+}
+html:not(.dark) .search-input,
+.light .search-input {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #1e293b !important; /* text-slate-800 */
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06) !important;
+}
+html:not(.dark) .search-input::placeholder,
+.light .search-input::placeholder {
+  color: #94a3b8 !important; /* text-slate-400 */
+}
+html:not(.dark) .search-input:focus,
+.light .search-input:focus {
+  background: #ffffff !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.15), 0 0 0 3px rgba(56, 189, 248, 0.25) !important;
+}
+html:not(.dark) .search-icon,
+.light .search-icon {
+  color: #64748b !important; /* text-slate-500 */
+}
+html:not(.dark) .hero-section p:has(#hero-count),
+.light .hero-section p:has(#hero-count),
+html:not(.dark) #hero-count,
+.light #hero-count {
+  color: #64748b !important;
+}
+
 /* ── Social Proof Bar ──────────────────────────────────────── */
 .proof-bar {
   background: var(--surface);
@@ -297,6 +356,38 @@ html.dark .proof-item-text,
 @media (max-width: 480px) {
   .proof-bar-inner { gap: 16px; justify-content: flex-start; }
   .proof-item { font-size: 12.5px; }
+}
+
+/* ── 라이트모드 정보 띠 배너: 둥근 라운드 캡슐 박스 디자인 통일 ── */
+html:not(.dark) .proof-bar,
+.light .proof-bar {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 9999px !important;
+  width: fit-content;
+  max-width: calc(100% - 2rem);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 24px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+html:not(.dark) .proof-bar-inner,
+.light .proof-bar-inner {
+  padding: 0 !important;
+  max-width: 100%;
+}
+html:not(.dark) .proof-item,
+.light .proof-item,
+html:not(.dark) .proof-item-text,
+.light .proof-item-text {
+  color: #334155 !important; /* text-slate-700 */
+}
+@media (max-width: 640px) {
+  html:not(.dark) .proof-bar,
+  .light .proof-bar {
+    border-radius: 12px !important;
+    padding: 8px 16px !important;
+  }
 }
 
 .hero-title {
