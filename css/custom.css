@@ -116,14 +116,13 @@ html.dark .header-cat-btn { color: var(--text-secondary); }
 html.dark .header-cat-btn:hover { color: var(--primary-light); background: rgba(129,140,248,0.07); }
 html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: rgba(129,140,248,0.1); }
 
-/* Header inner: 3-column grid (logo | cat-menu | controls) */
+/* Header inner: flex (logo | controls) */
 .header-inner {
   max-width: var(--max-w); margin: 0 auto; padding: 0 var(--container-px);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 64px;
-  gap: 0.5rem;
 }
 .header-logo-btn {
   display: flex; align-items: center; gap: 0.75rem;
@@ -182,32 +181,32 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
   border-color: rgba(79,70,229,0.2);
 }
 
-/* ── Hero — Compact ──────────────────────────────────────── */
+/* ── Hero — Tone-down & Compact ─────────────────────────── */
 .hero-section {
-  background: linear-gradient(140deg, #312e81 0%, #4f46e5 45%, #0891b2 100%);
+  background: linear-gradient(135deg, #1a2035 0%, #24304f 50%, #1c2738 100%);
   position: relative; overflow: hidden;
-  padding: 1.35rem 1rem 0;             /* 상하 padding 슬림화 */
+  padding: 1.15rem 1rem 0;             /* 컴팩트 패딩으로 아래 카드 시야 확보 */
 }
-/* ④ Noise texture overlay */
+/* ④ Subtle Noise texture overlay */
 .hero-section::before {
   content: '';
   position: absolute; inset: 0; pointer-events: none;
   background-image:
-    radial-gradient(ellipse 80% 60% at 60% 120%, rgba(6,182,212,0.18) 0%, transparent 70%),
-    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' fill-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
+    radial-gradient(ellipse 80% 60% at 60% 120%, rgba(99,102,241,0.08) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' fill-opacity='0.04'/%3E%3C/g%3E%3C/svg%3E");
 }
-/* ④ Hero 하단 Glow Effect 라인 — 허전함 제거 */
+/* ④ Hero 하단 Glow Effect 라인 — 은은하고 컴팩트하게 */
 .hero-section::after {
   content: '';
   display: block;
   position: relative;
   width: 100%;
-  height: 44px;
-  margin-top: 1.1rem;
+  height: 18px;
+  margin-top: 0.65rem;
   background:
-    radial-gradient(ellipse 70% 100% at 50% 100%,
-      rgba(99, 102, 241, 0.55) 0%,
-      rgba(6, 182, 212, 0.22) 45%,
+    radial-gradient(ellipse 65% 100% at 50% 100%,
+      rgba(99, 102, 241, 0.25) 0%,
+      rgba(6, 182, 212, 0.08) 45%,
       transparent 75%);
   pointer-events: none;
 }
@@ -269,14 +268,14 @@ html.dark .proof-item-text { color: #94a3b8; }
   letter-spacing: -0.01em;
 }
 .hero-sub {
-  color: rgba(255,255,255,0.8);
-  font-size: 0.9rem;
-  margin-top: 0.4rem;
-  line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.88rem;
+  margin-top: 0.3rem;
+  line-height: 1.5;
 }
 
 .search-wrap {
-  position: relative; max-width: 480px; margin: 1rem auto 0;
+  position: relative; max-width: 480px; margin: 0.75rem auto 0;
 }
 .search-input {
   width: 100%; padding: 0.75rem 1rem 0.75rem 2.75rem;
@@ -482,23 +481,38 @@ html.dark .app-tag {
   transform: translateY(0);
 }
 
-/* ── Ad Placeholder — 하단 단일 통합 Slim ─────────────────── */
-/* 하단 통합 광고 (max-height:90px 제한) */
+/* ── Ad Placeholder — 하단 단일 통합 규격 단정화 ───────────── */
 .ad-placeholder-bottom {
   background: var(--surface);
-  border: 1.5px dashed rgba(100,116,139,0.18);
-  border-radius: var(--radius-sm);
-  max-height: 90px;
-  min-height: 56px;
-  padding: 0.35rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  width: 100%;
+  max-width: 728px;
+  min-height: 90px;
+  margin: 40px auto;
+  padding: 0.5rem 1rem;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-fast);
 }
-html.dark .ad-placeholder-bottom { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.07); }
+html.dark .ad-placeholder-bottom {
+  background: rgba(255,255,255,0.025);
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: var(--shadow-card);
+}
 .ad-label {
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: #cbd5e1;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-secondary);
+  opacity: 0.7;
+}
+@media (max-width: 768px) {
+  .ad-placeholder-bottom {
+    max-width: 100%;
+    min-height: 60px;
+    margin: 28px auto;
+  }
 }
 /* legacy .ad-placeholder (카드 grid inline 대비) */
 .ad-placeholder {
@@ -850,11 +864,28 @@ html.dark .contact-card { background: rgba(255,255,255,0.04); }
 .site-footer {
   background: #080d18;
   color: #94a3b8;
-  padding: 2rem 1rem 1rem;            /* ③ Footer 상하 여백도 약간 축소 */
+  padding: 2.5rem 1.5rem 1.5rem;
   margin-top: 2.5rem;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
 html.dark .site-footer { background: #030712; }
+.footer-container {
+  max-width: 1040px;
+  margin: 0 auto;
+  width: 100%;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1.3fr 1fr 1.2fr;
+    gap: 3.5rem;
+  }
+}
 .footer-nav-btn {
   background: none; border: none; color: #64748b;
   font-size: 0.82rem; cursor: pointer; padding: 0.2rem 0;
