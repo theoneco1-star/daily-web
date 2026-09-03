@@ -47,7 +47,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css?v=2.1" />
+  <link rel="stylesheet" href="css/custom.css?v=2.2" />
+
+  <!-- High Visibility Card Styles (Guaranteed Override) -->
+  <style>
+    .app-card,
+    .app-card-coming-soon {
+      border: 1px solid #cbd5e1 !important;
+      background-color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    }
+    html.dark .app-card,
+    .dark .app-card,
+    html.dark .app-card-coming-soon,
+    .dark .app-card-coming-soon {
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
+      background-color: #1a2234 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    }
+  </style>
 
   <!-- Google AdSense (replace with your Publisher ID) -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->

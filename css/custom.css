@@ -377,10 +377,10 @@ html.dark .filter-btn:hover { color: var(--primary-light); }
 
 /* ── App Card — Contrast-enhanced ───────────────────────── */
 .app-card {
-  background: #ffffff;
+  background-color: #ffffff !important;
   border-radius: var(--radius-card);
-  border: 1px solid #cbd5e1;
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.06);
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
   cursor: pointer;
   transition:
     transform 0.2s ease,
@@ -390,24 +390,25 @@ html.dark .filter-btn:hover { color: var(--primary-light); }
   animation: fadeInUp 0.35s ease both;
 }
 
-/* ② Dark mode: 입체감 강화 */
-html.dark .app-card {
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+/* ② Dark mode: 입체감 및 시인성 강화 */
+html.dark .app-card,
+.dark .app-card {
+  background-color: #1a2234 !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* ★ Hover: lift + refined shadow */
 .app-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: rgba(79,70,229,0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  border-color: #94a3b8 !important;
 }
-html.dark .app-card:hover {
-  border-color: rgba(129,140,248,0.35);
-  background: rgba(30, 41, 59, 0.85);
+html.dark .app-card:hover,
+.dark .app-card:hover {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  background-color: #202b42 !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6) !important;
 }
 
 .app-card-inner { padding: 1.1rem 1.15rem 1.1rem; display: flex; flex-direction: column; height: 100%; }
@@ -485,24 +486,29 @@ html.dark .badge-coming-soon {
 
 /* Coming Soon Card Style */
 .app-card-coming-soon {
-  opacity: 0.85;
-  border: 1.5px dashed rgba(148, 163, 184, 0.4) !important;
+  opacity: 0.92;
+  border: 1px solid #cbd5e1 !important;
   cursor: default;
   position: relative;
-  background: rgba(255, 255, 255, 0.9);
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 .app-card-coming-soon:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border-color: rgba(148, 163, 184, 0.6) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1) !important;
+  border-color: #94a3b8 !important;
 }
-html.dark .app-card-coming-soon {
-  background: rgba(21, 29, 42, 0.75);
-  border: 1.5px dashed rgba(255, 255, 255, 0.16) !important;
+html.dark .app-card-coming-soon,
+.dark .app-card-coming-soon {
+  background-color: #1a2234 !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
 }
-html.dark .app-card-coming-soon:hover {
-  border-color: rgba(255, 255, 255, 0.28) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+html.dark .app-card-coming-soon:hover,
+.dark .app-card-coming-soon:hover {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  background-color: #202b42 !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55) !important;
 }
 
 /* App Tags */
