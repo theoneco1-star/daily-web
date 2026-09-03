@@ -116,17 +116,32 @@ html.dark .header-cat-btn { color: var(--text-secondary); }
 html.dark .header-cat-btn:hover { color: var(--primary-light); background: rgba(129,140,248,0.07); }
 html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: rgba(129,140,248,0.1); }
 
-/* Header inner: flex (logo | controls) */
+/* Header inner: flex (logo left | controls right) */
 .header-inner {
-  max-width: var(--max-w); margin: 0 auto; padding: 0 var(--container-px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--container-px);
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
   height: 64px;
 }
 .header-logo-btn {
-  display: flex; align-items: center; gap: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   flex-shrink: 0;
+  text-align: left;
+}
+.brand-text-group {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 640px) {
+  .brand-text-group {
+    display: none;
+  }
 }
 /* 카테고리 퀵 메뉴: 중앙 정렬 */
 .header-cat-nav {
@@ -181,33 +196,29 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
   border-color: rgba(79,70,229,0.2);
 }
 
-/* ── Hero — Tone-down & Compact ─────────────────────────── */
+/* ── Hero — Compact & Deep Indigo SaaS Gradient ──────────── */
 .hero-section {
-  background: linear-gradient(135deg, #1a2035 0%, #24304f 50%, #1c2738 100%);
-  position: relative; overflow: hidden;
-  padding: 1.15rem 1rem 0;             /* 컴팩트 패딩으로 아래 카드 시야 확보 */
+  background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 36px 20px;                 /* 슬림화: 36px 20px 적용 */
 }
-/* ④ Subtle Noise texture overlay */
+/* Subtle Noise texture overlay */
 .hero-section::before {
   content: '';
   position: absolute; inset: 0; pointer-events: none;
   background-image:
-    radial-gradient(ellipse 80% 60% at 60% 120%, rgba(99,102,241,0.08) 0%, transparent 70%),
-    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' fill-opacity='0.04'/%3E%3C/g%3E%3C/svg%3E");
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(99,102,241,0.12) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' fill-opacity='0.035'/%3E%3C/g%3E%3C/svg%3E");
 }
-/* ④ Hero 하단 Glow Effect 라인 — 은은하고 컴팩트하게 */
+/* Hero 하단 은은한 보더 라인 */
 .hero-section::after {
   content: '';
   display: block;
-  position: relative;
-  width: 100%;
-  height: 18px;
-  margin-top: 0.65rem;
-  background:
-    radial-gradient(ellipse 65% 100% at 50% 100%,
-      rgba(99, 102, 241, 0.25) 0%,
-      rgba(6, 182, 212, 0.08) 45%,
-      transparent 75%);
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.3) 50%, transparent);
   pointer-events: none;
 }
 
@@ -275,23 +286,42 @@ html.dark .proof-item-text { color: #94a3b8; }
 }
 
 .search-wrap {
-  position: relative; max-width: 480px; margin: 0.75rem auto 0;
+  position: relative;
+  max-width: 480px;
+  margin: 0.85rem auto 0;
 }
 .search-input {
-  width: 100%; padding: 0.75rem 1rem 0.75rem 2.75rem;
-  border-radius: 0.75rem; border: none;
-  font-size: 0.9rem; font-family: inherit; outline: none;
-  background: rgba(255,255,255,0.96); color: #0f172a;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18), 0 0 0 0 rgba(79,70,229,0);
-  transition: box-shadow 0.2s;
+  width: 100%;
+  padding: 0.72rem 1rem 0.72rem 2.85rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08); /* 은은한 반투명 다크 글래스모피즘 */
+  color: #ffffff;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
 }
-.search-input::placeholder { color: #94a3b8; }
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
 .search-input:focus {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 0 3px rgba(129,140,248,0.45);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(129, 140, 248, 0.65);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(99, 102, 241, 0.35);
 }
 .search-icon {
-  position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%);
-  color: #94a3b8; pointer-events: none; width: 1.1rem; height: 1.1rem;
+  position: absolute;
+  left: 0.95rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 /* ── Category Tabs — Minimal Text Style ─────────────────── */
@@ -481,37 +511,44 @@ html.dark .app-tag {
   transform: translateY(0);
 }
 
-/* ── Ad Placeholder — 하단 단일 통합 규격 단정화 ───────────── */
+/* ── Ad Placeholder — 728x90 고정 규격 광고 컨테이너 ────────── */
 .ad-placeholder-bottom {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  width: 100%;
   max-width: 728px;
-  min-height: 90px;
-  margin: 40px auto;
-  padding: 0.5rem 1rem;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  width: 100%;
+  height: 90px;
+  margin: 48px auto;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: all var(--transition-fast);
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+html:not(.dark) .ad-placeholder-bottom {
+  border: 1px dashed rgba(15, 23, 42, 0.15);
+  background: rgba(15, 23, 42, 0.02);
 }
 html.dark .ad-placeholder-bottom {
-  background: rgba(255,255,255,0.025);
-  border-color: rgba(255,255,255,0.08);
-  box-shadow: var(--shadow-card);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.02);
 }
 .ad-label {
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--text-secondary);
-  opacity: 0.7;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.65;
 }
 @media (max-width: 768px) {
   .ad-placeholder-bottom {
-    max-width: 100%;
-    min-height: 60px;
-    margin: 28px auto;
+    max-width: 320px;
+    height: 50px;
+    margin: 32px auto;
   }
 }
 /* legacy .ad-placeholder (카드 grid inline 대비) */
