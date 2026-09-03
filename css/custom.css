@@ -201,7 +201,7 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
   background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
   position: relative;
   overflow: hidden;
-  padding: 36px 20px;                 /* 슬림화: 36px 20px 적용 */
+  padding: 26px 20px 22px;            /* 세로 간격 슬림화 (기존 약 2/3 수준으로 축소) */
 }
 /* Subtle Noise texture overlay */
 .hero-section::before {
@@ -220,6 +220,10 @@ html.dark .header-cat-btn.active-cat { color: var(--primary-light); background: 
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(99,102,241,0.3) 50%, transparent);
   pointer-events: none;
+}
+.hero-section p:has(#hero-count:empty) {
+  display: none;
+  margin: 0;
 }
 
 /* ── Social Proof Bar ──────────────────────────────────────── */
@@ -258,41 +262,41 @@ html.dark .proof-item-text { color: #94a3b8; }
 }
 
 .hero-title {
-  font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+  font-size: clamp(1.4rem, 4.2vw, 2.1rem);
   font-weight: 800; color: white;
   letter-spacing: -0.02em;
   line-height: 1.2;
   text-shadow: 0 2px 16px rgba(0,0,0,0.18);
 }
 
-/* ★ Hero Title Highlight Badge */
+/* ★ Hero Title Highlight Badge — 세련된 소프트 블루 뱃지 스타일 */
 .hero-title-badge {
   display: inline-block;
-  background: linear-gradient(135deg, rgba(251,191,36,0.3), rgba(245,158,11,0.15));
-  color: #fde68a;
-  border: 1.5px solid rgba(251,191,36,0.45);
+  background: rgba(59, 130, 246, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(59, 130, 246, 0.4);
   border-radius: 0.5rem;
-  padding: 0.04em 0.38em 0.06em;
-  margin-left: 0.22em;
-  box-shadow: 0 0 22px rgba(251,191,36,0.22), inset 0 1px 0 rgba(255,255,255,0.1);
-  font-style: italic;
+  padding: 0.04em 0.38em 0.08em;
+  margin-left: 0.25em;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-style: normal;
   letter-spacing: -0.01em;
 }
 .hero-sub {
   color: rgba(255,255,255,0.78);
-  font-size: 0.88rem;
-  margin-top: 0.3rem;
-  line-height: 1.5;
+  font-size: 0.86rem;
+  margin-top: 0.25rem;
+  line-height: 1.45;
 }
 
 .search-wrap {
   position: relative;
   max-width: 480px;
-  margin: 0.85rem auto 0;
+  margin: 0.68rem auto 0;              /* 간격 20% 압축 (0.85rem -> 0.68rem) */
 }
 .search-input {
   width: 100%;
-  padding: 0.72rem 1rem 0.72rem 2.85rem;
+  padding: 0.62rem 1rem 0.62rem 2.85rem; /* 높이 컴팩트화 (0.72rem -> 0.62rem) */
   border-radius: 0.875rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 0.88rem;
