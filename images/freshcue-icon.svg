@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="fcBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Leaf 1 Gradient -->
+    <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ecfdf5"/>
+      <stop offset="100%" stop-color="#a7f3d0"/>
+    </linearGradient>
+
+    <!-- Leaf 2 Gradient -->
+    <linearGradient id="leafGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+
+    <!-- Bell/Cue Gradient -->
+    <linearGradient id="bellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="fcGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Drop Shadow -->
+    <filter id="fcShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#064e3b" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#fcBgGrad)" filter="url(#fcShadow)"/>
+
+  <!-- Top Highlight Flare -->
+  <path d="M16 26 C16 16, 24 8, 36 8 L92 8 C104 8, 112 16, 112 26 C112 28, 16 52, 16 26 Z" fill="#ffffff" fill-opacity="0.15"/>
+
+  <!-- Circular Glow Halo behind Leaf -->
+  <circle cx="64" cy="66" r="36" fill="#ffffff" fill-opacity="0.12"/>
+
+  <!-- Main Organic Fresh Leaf -->
+  <path d="M64 28 C86 28, 96 52, 94 76 C94 92, 78 98, 64 98 C50 98, 34 92, 34 76 C32 52, 42 28, 64 28 Z" fill="url(#leafGrad1)" filter="url(#fcShadow)"/>
+
+  <!-- Leaf Center Spine & Ribs -->
+  <path d="M64 34 Q64 68 64 94" stroke="#059669" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M64 50 Q75 44 82 48" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+  <path d="M64 62 Q53 56 46 60" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+  <path d="M64 74 Q75 68 80 72" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Front Accent Sprout / Small Leaf -->
+  <path d="M44 86 C34 86, 28 72, 38 66 C46 60, 56 70, 52 82 C50 86, 46 86, 44 86 Z" fill="url(#leafGrad2)" opacity="0.9"/>
+
+  <!-- Reminder Bell / Cue Badge at Bottom Right -->
+  <circle cx="84" cy="84" r="15" fill="#f59e0b" filter="url(#fcGlow)"/>
+  <!-- Bell Icon in Badge -->
+  <path d="M84 76 C81.5 76 79.5 78 79.5 80.5 C79.5 84 77.5 86 76.5 87 L91.5 87 C90.5 86 88.5 84 88.5 80.5 C88.5 78 86.5 76 84 76 Z" fill="#ffffff"/>
+  <circle cx="84" cy="74.5" r="1.5" fill="#ffffff"/>
+  <circle cx="84" cy="89" r="1.5" fill="#ffffff"/>
+
+  <!-- Dew / Freshness Droplet -->
+  <circle cx="58" cy="46" r="3" fill="#ffffff" fill-opacity="0.85"/>
+  <circle cx="59.5" cy="45" r="1" fill="#ffffff"/>
+</svg>

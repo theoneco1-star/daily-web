@@ -167,11 +167,13 @@ function buildAppCard(app) {
   const name = currentLang === "ko" ? app.nameKo : app.nameEn;
   const desc = currentLang === "ko" ? app.descKo : app.descEn;
   const catLabel = getCategoryLabel(app.category);
-  const badges = [
-    app.isFree ? `<span class="badge badge-free">${t("card.freeTag")}</span>` : "",
-    app.isNew ? `<span class="badge badge-new">${t("card.newTag")}</span>` : "",
-    app.isFeatured ? `<span class="badge badge-featured">${t("card.featuredTag")}</span>` : "",
-  ].join("");
+  const badges = app.isComingSoon
+    ? `<span class="badge badge-coming-soon">${t("card.comingSoonBadge")}</span>`
+    : [
+        app.isFree ? `<span class="badge badge-free">${t("card.freeTag")}</span>` : "",
+        app.isNew ? `<span class="badge badge-new">${t("card.newTag")}</span>` : "",
+        app.isFeatured ? `<span class="badge badge-featured">${t("card.featuredTag")}</span>` : "",
+      ].join("");
 
   const tagsList = (currentLang === "ko" ? app.tagsKo || app.tags : app.tagsEn || app.tags) || [];
   const tagsHtml = Array.isArray(tagsList) && tagsList.length > 0
@@ -186,8 +188,20 @@ function buildAppCard(app) {
     ? `<img src="${app.icon}" alt="${name}" class="w-8 h-8 object-contain rounded-lg" onerror="this.onerror=null; this.outerHTML='<span class=\\'text-2xl\\'>${fallbackEmoji}</span>';"/>`
     : `<span class="text-2xl">${app.icon || fallbackEmoji}</span>`;
 
+  const cardClass = app.isComingSoon ? "app-card app-card-coming-soon" : "app-card";
+  const clickHandler = app.isComingSoon ? "" : ` onclick="openModal('${app.id}')"`;
+  const actionButton = app.isComingSoon
+    ? `<button class="detail-btn detail-btn-coming-soon mt-auto" disabled aria-disabled="true">
+        ${t("card.comingSoonBtn")}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </button>`
+    : `<button class="detail-btn mt-auto">
+        ${t("card.detailBtn")}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </button>`;
+
   return `
-    <div class="app-card" onclick="openModal('${app.id}')">
+    <div class="${cardClass}"${clickHandler}>
       <div class="app-card-inner">
         <div class="flex items-start gap-3 mb-3">
           <div class="app-icon-wrap bg-gradient-to-br ${app.color}">
@@ -203,10 +217,7 @@ function buildAppCard(app) {
         </div>
         <p class="app-card-desc">${desc}</p>
         ${tagsHtml}
-        <button class="detail-btn mt-auto">
-          ${t("card.detailBtn")}
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-        </button>
+        ${actionButton}
       </div>
     </div>`;
 }

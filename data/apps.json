@@ -48,6 +48,108 @@
       "updated": "2026. 09",
       "size": "12 MB",
       "requires": "Android 8.0 이상 (Android 8.0+)"
+    },
+    {
+      "id": "daycount",
+      "nameKo": "DayCount",
+      "nameEn": "DayCount",
+      "category": "daily",
+      "color": "from-amber-500 via-orange-500 to-rose-500",
+      "icon": "images/daycount-icon.svg",
+      "iconEmoji": "📅",
+      "isComingSoon": true,
+      "tags": ["D-Day", "일정관리", "날짜계산"],
+      "tagsKo": ["D-Day", "일정관리", "날짜계산"],
+      "tagsEn": ["D-Day", "Schedule", "Countdown"],
+      "descKo": "소중한 기념일과 목표를 직관적으로 관리하는 D-Day 계산 및 카운트다운 도구",
+      "descEn": "Intuitive D-Day calculator and countdown tool to track your precious days and goals.",
+      "featuresKo": [
+        "디데이 및 기념일 자동 계산과 실시간 카운트다운",
+        "목표 달성을 위한 맞춤형 알림 및 홈 화면 위젯 지원",
+        "직관적인 타임라인 뷰로 중요한 일정 한눈에 관리"
+      ],
+      "featuresEn": [
+        "Automatic D-Day calculation and real-time countdowns",
+        "Custom milestone reminders and home screen widgets",
+        "Intuitive timeline view to track upcoming events easily"
+      ],
+      "guideKo": "소중한 기념일, 시험, 여행 일정을 등록해두고 실시간 카운트다운과 디데이 알림으로 편리하게 일정을 챙겨보세요.",
+      "guideEn": "Add your anniversaries, exams, and travel dates to track the remaining days with real-time countdown alerts.",
+      "screenshots": [],
+      "developer": "WG Apps",
+      "playStoreUrl": "#",
+      "version": "Coming Soon",
+      "updated": "2026",
+      "size": "-",
+      "requires": "Android 8.0+"
+    },
+    {
+      "id": "clipflow",
+      "nameKo": "ClipFlow",
+      "nameEn": "ClipFlow",
+      "category": "tools",
+      "color": "from-blue-600 via-indigo-500 to-cyan-500",
+      "icon": "images/clipflow-icon.svg",
+      "iconEmoji": "📋",
+      "isComingSoon": true,
+      "tags": ["클립보드", "업무효율", "텍스트저장"],
+      "tagsKo": ["클립보드", "업무효율", "텍스트저장"],
+      "tagsEn": ["Clipboard", "Productivity", "QuickSave"],
+      "descKo": "자주 쓰는 텍스트와 다양한 정보를 스마트하게 저장하고 빠르게 활용하는 클립보드 도구",
+      "descEn": "Smart clipboard tool to save frequently used text and data for quick access.",
+      "featuresKo": [
+        "자주 사용하는 문구와 양식 템플릿의 원터치 빠른 복사",
+        "카테고리별 클립보드 히스토리 분류 및 실시간 검색 지원",
+        "보안이 필요한 민감 텍스트 보호 및 안전한 로컬 저장"
+      ],
+      "featuresEn": [
+        "One-tap quick copying for frequently used text & templates",
+        "Categorized clipboard history with instant real-time search",
+        "Secure local storage protection for sensitive data"
+      ],
+      "guideKo": "자주 쓰는 업무 문구나 이메일, 계좌번호 등을 등록해 두고 어디서든 알림창이나 플로팅 버튼을 통해 즉시 복사하세요.",
+      "guideEn": "Register frequently typed texts, emails, or templates and copy them on the fly from anywhere.",
+      "screenshots": [],
+      "developer": "WG Apps",
+      "playStoreUrl": "#",
+      "version": "Coming Soon",
+      "updated": "2026",
+      "size": "-",
+      "requires": "Android 8.0+"
+    },
+    {
+      "id": "freshcue",
+      "nameKo": "FreshCue",
+      "nameEn": "FreshCue",
+      "category": "utility",
+      "color": "from-emerald-500 via-teal-500 to-green-600",
+      "icon": "images/freshcue-icon.svg",
+      "iconEmoji": "🥬",
+      "isComingSoon": true,
+      "tags": ["유통기한", "식품관리", "알림도우미"],
+      "tagsKo": ["유통기한", "식품관리", "알림도우미"],
+      "tagsEn": ["Freshness", "Inventory", "Tracker"],
+      "descKo": "냉장고 속 식품 및 다양한 소모품의 유통기한과 신선도를 똑똑하게 챙겨주는 알림 도우미",
+      "descEn": "Smart expiration and freshness tracker for your groceries and daily essentials.",
+      "featuresKo": [
+        "식품 및 소모품의 유통기한 스마트 D-Day 알림",
+        "카테고리별 보관 위치(냉장/냉동/실온) 맞춤 관리",
+        "소비 패턴 분석을 통한 음식물 쓰레기 및 낭비 방지"
+      ],
+      "featuresEn": [
+        "Smart D-Day expiration alerts for groceries and essentials",
+        "Storage location tracker (Fridge, Freezer, Pantry)",
+        "Consumption insights to eliminate waste and save money"
+      ],
+      "guideKo": "장보기 후 식자재의 소비기한을 등록하면 임박한 식품부터 알림을 보내주어 낭비 없이 신선하게 소비할 수 있습니다.",
+      "guideEn": "Log grocery items with expiration dates to receive timely alerts before items spoil.",
+      "screenshots": [],
+      "developer": "WG Apps",
+      "playStoreUrl": "#",
+      "version": "Coming Soon",
+      "updated": "2026",
+      "size": "-",
+      "requires": "Android 8.0+"
     }
   ]
 }

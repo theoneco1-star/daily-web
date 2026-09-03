@@ -10,7 +10,7 @@ let categoriesData = [];
  */
 async function loadAppsData() {
   try {
-    const response = await fetch("data/apps.json");
+    const response = await fetch("data/apps.json?v=" + Date.now(), { cache: "no-cache" });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

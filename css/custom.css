@@ -465,6 +465,40 @@ html.dark .badge-free     { background: rgba(16,185,129,0.12); color: #34d399; b
 html.dark .badge-new      { background: rgba(245,158,11,0.12);  color: #fbbf24; border-color: rgba(251,191,36,0.2); }
 html.dark .badge-featured { background: rgba(99,102,241,0.18);  color: #a5b4fc; border-color: rgba(165,180,252,0.3); }
 
+/* Coming Soon Badge */
+.badge-coming-soon {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+html.dark .badge-coming-soon {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.25);
+}
+
+/* Coming Soon Card Style */
+.app-card-coming-soon {
+  opacity: 0.85;
+  border: 1.5px dashed rgba(148, 163, 184, 0.4) !important;
+  cursor: default;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+}
+.app-card-coming-soon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-color: rgba(148, 163, 184, 0.6) !important;
+}
+html.dark .app-card-coming-soon {
+  background: rgba(21, 29, 42, 0.75);
+  border: 1.5px dashed rgba(255, 255, 255, 0.16) !important;
+}
+html.dark .app-card-coming-soon:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
 /* App Tags */
 .app-tags-wrap {
   display: flex;
@@ -509,6 +543,31 @@ html.dark .app-tag {
 }
 .detail-btn:active {
   transform: translateY(0);
+}
+
+/* Disabled Coming Soon Button */
+.detail-btn-coming-soon {
+  background: #e2e8f0 !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  border: 1px solid #cbd5e1 !important;
+  opacity: 0.9;
+}
+.detail-btn-coming-soon:hover,
+.detail-btn-coming-soon:active {
+  background: #e2e8f0 !important;
+  transform: none !important;
+}
+html.dark .detail-btn-coming-soon {
+  background: rgba(30, 41, 59, 0.7) !important;
+  color: #94a3b8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+html.dark .detail-btn-coming-soon:hover,
+html.dark .detail-btn-coming-soon:active {
+  background: rgba(30, 41, 59, 0.7) !important;
+  transform: none !important;
 }
 
 /* ── Ad Placeholder — 728x90 고정 규격 광고 컨테이너 ────────── */
