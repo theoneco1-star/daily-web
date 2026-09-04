@@ -1242,3 +1242,259 @@ html.dark .guide-feature-list li:hover,
 html.dark .guide-steps-list li:hover {
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
 }
+
+/* ── Guide Subtabs Bar ───────────────────────────────────── */
+.guide-tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 4px 2px 10px 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+.guide-tabs-container::-webkit-scrollbar {
+  height: 4px;
+}
+.guide-tabs-container::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.25);
+  border-radius: 4px;
+}
+
+.guide-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  background: rgba(248, 250, 252, 0.9);
+  color: #475569;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+.guide-tab-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+.guide-tab-btn:active {
+  transform: translateY(0);
+}
+
+.guide-tab-btn.guide-tab-active {
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  color: #ffffff !important;
+  border-color: #4338ca;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.32);
+}
+.guide-tab-btn.guide-tab-active .guide-tab-name {
+  color: #ffffff !important;
+}
+
+.guide-tab-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.guide-tab-name {
+  line-height: 1;
+}
+
+.guide-tab-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  line-height: 1.3;
+}
+.guide-tab-active .guide-tab-badge {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Dark mode for Guide Subtabs */
+html.dark .guide-tab-btn,
+.dark .guide-tab-btn {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(51, 65, 85, 0.8);
+  color: #94a3b8;
+}
+html.dark .guide-tab-btn:hover,
+.dark .guide-tab-btn:hover {
+  background: rgba(51, 65, 85, 0.9);
+  color: #f8fafc;
+  border-color: #64748b;
+}
+html.dark .guide-tab-btn.guide-tab-active,
+.dark .guide-tab-btn.guide-tab-active {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #ffffff !important;
+  border-color: #6366f1;
+  box-shadow: 0 4px 18px rgba(99, 102, 241, 0.45);
+}
+html.dark .guide-tab-badge,
+.dark .guide-tab-badge {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+html.dark .guide-tab-active .guide-tab-badge,
+.dark .guide-tab-active .guide-tab-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Guide Coming Soon Card ──────────────────────────────── */
+.guide-coming-soon-card {
+  padding: 3rem 1.5rem;
+  border-radius: 1.25rem;
+  text-align: center;
+  border: 1.5px dashed #cbd5e1;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(241, 245, 249, 0.65));
+  backdrop-filter: blur(8px);
+  margin-top: 1rem;
+}
+.guide-cs-icon-wrap {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem;
+  border-radius: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(6, 182, 212, 0.12));
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08);
+}
+.guide-cs-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.guide-cs-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.15);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  margin-bottom: 1.25rem;
+}
+.guide-cs-notice {
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  font-size: 0.975rem;
+  line-height: 1.65;
+  color: #64748b;
+}
+.guide-cs-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.guide-cs-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28);
+  transition: all 0.2s ease;
+}
+.guide-cs-btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+  transform: translateY(-1px);
+}
+.guide-cs-btn-primary:active {
+  transform: translateY(0);
+}
+.guide-cs-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.4rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.guide-cs-btn-secondary:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+.guide-cs-btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Dark mode for Coming Soon Card */
+html.dark .guide-coming-soon-card,
+.dark .guide-coming-soon-card {
+  border-color: rgba(71, 85, 105, 0.6);
+  background: linear-gradient(180deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.65));
+}
+html.dark .guide-cs-icon-wrap,
+.dark .guide-cs-icon-wrap {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.15));
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+html.dark .guide-cs-badge,
+.dark .guide-cs-badge {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+html.dark .guide-cs-notice,
+.dark .guide-cs-notice {
+  color: #94a3b8;
+}
+html.dark .guide-cs-btn-secondary,
+.dark .guide-cs-btn-secondary {
+  color: #cbd5e1;
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #475569;
+}
+html.dark .guide-cs-btn-secondary:hover,
+.dark .guide-cs-btn-secondary:hover {
+  background: #334155;
+  color: #ffffff;
+  border-color: #64748b;
+}
+
+/* Smooth fade-in */
+.animate-fadeIn {
+  animation: fadeInQuick 0.25s ease forwards;
+}
+@keyframes fadeInQuick {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

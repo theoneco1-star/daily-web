@@ -393,7 +393,145 @@ function showPage(name) {
     if (!el) return;
     el.classList.toggle("hidden", key !== name);
   });
+  if (name === "guide") {
+    renderGuideSubtabs();
+    renderGuideContent();
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ── App Guide Subtabs Configuration & Management ───────────
+const guideAppsConfig = [
+  {
+    id: "timekeeper",
+    nameKo: "TimeKeeper",
+    nameEn: "TimeKeeper",
+    iconEmoji: "⏱️",
+    isReady: true,
+  },
+  {
+    id: "daycount",
+    nameKo: "DayCount",
+    nameEn: "DayCount",
+    iconEmoji: "📅",
+    isReady: false,
+  },
+  {
+    id: "clipflow",
+    nameKo: "ClipFlow",
+    nameEn: "ClipFlow",
+    iconEmoji: "📋",
+    isReady: false,
+  },
+  {
+    id: "freshcue",
+    nameKo: "FreshCue",
+    nameEn: "FreshCue",
+    iconEmoji: "🥬",
+    isReady: false,
+  }
+];
+
+let currentGuideTab = "timekeeper";
+
+function setGuideTab(appId) {
+  currentGuideTab = appId;
+  renderGuideSubtabs();
+  renderGuideContent();
+}
+
+function renderGuideSubtabs() {
+  const container = document.getElementById("guide-subtabs");
+  if (!container) return;
+
+  const comingSoonText = t("guide.tabComingSoon");
+
+  container.innerHTML = guideAppsConfig.map(app => {
+    const isActive = app.id === currentGuideTab;
+    const isReady = !!app.isReady;
+    const name = currentLang === "ko" ? app.nameKo : app.nameEn;
+    const badgeHtml = !isReady
+      ? `<span class="guide-tab-badge">${comingSoonText}</span>`
+      : "";
+
+    return `
+      <button type="button" 
+              class="guide-tab-btn ${isActive ? 'guide-tab-active' : ''}" 
+              onclick="setGuideTab('${app.id}')"
+              role="tab"
+              aria-selected="${isActive}">
+        <span class="guide-tab-icon">${app.iconEmoji}</span>
+        <span class="guide-tab-name">${name}</span>
+        ${badgeHtml}
+      </button>
+    `;
+  }).join("");
+}
+
+function renderGuideContent() {
+  const container = document.getElementById("guide-content-area");
+  if (!container) return;
+
+  const appConfig = guideAppsConfig.find(a => a.id === currentGuideTab) || guideAppsConfig[0];
+  const appName = currentLang === "ko" ? appConfig.nameKo : appConfig.nameEn;
+  const appEmoji = appConfig.iconEmoji;
+
+  if (appConfig.isReady) {
+    const guideKey = `guide.${appConfig.id}`;
+    const title = t(`${guideKey}.title`) || `${appName} - ${t("badge.guide")}`;
+    const bodyHtml = t(`${guideKey}.body`);
+    const backBtnText = t("nav.backToHome");
+    const detailBtnText = t(`${guideKey}.openDetailBtn`) || `${appName} ${t("card.detailBtn")}`;
+
+    container.innerHTML = `
+      <div class="guide-active-content animate-fadeIn">
+        <h3 class="guide-app-title text-slate-900 dark:text-white font-bold text-xl md:text-2xl mb-6 flex items-center gap-2.5">
+          <span class="text-2xl">${appEmoji}</span>
+          <span>${title}</span>
+        </h3>
+        <div class="static-page-body">
+          ${bodyHtml}
+        </div>
+        <div class="flex items-center gap-3 mt-8 flex-wrap">
+          <button onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+            ${backBtnText}
+          </button>
+          <button onclick="openModal('${appConfig.id}')" class="detail-btn" style="max-width:240px; background: linear-gradient(135deg, #4f46e5, #06b6d4); color: white; border: none;">
+            ${appEmoji} <span>${detailBtnText}</span>
+          </button>
+        </div>
+      </div>
+    `;
+  } else {
+    // 준비 중인 다른 앱 안내 카드 노출
+    const noticeText = t("guide.comingSoonNotice");
+    const comingSoonText = t("guide.tabComingSoon");
+    const backBtnText = t("nav.backToHome");
+    const timekeeperBtnText = currentLang === "ko" ? "TimeKeeper 가이드 보기" : "View TimeKeeper Guide";
+
+    container.innerHTML = `
+      <div class="guide-coming-soon-card animate-fadeIn">
+        <div class="guide-cs-icon-wrap">
+          <span class="text-4xl">${appEmoji}</span>
+        </div>
+        <h3 class="guide-cs-title text-slate-900 dark:text-white">${appName}</h3>
+        <div>
+          <span class="guide-cs-badge">${comingSoonText}</span>
+        </div>
+        <p class="guide-cs-notice">
+          ${noticeText}
+        </p>
+        <div class="guide-cs-actions">
+          <button type="button" onclick="setGuideTab('timekeeper')" class="guide-cs-btn-primary">
+            ⏱️ <span>${timekeeperBtnText}</span>
+          </button>
+          <button type="button" onclick="showPage('main')" class="guide-cs-btn-secondary">
+            ${backBtnText}
+          </button>
+        </div>
+      </div>
+    `;
+  }
 }
 
 // ── Search ────────────────────────────────────────────────
@@ -460,6 +598,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   buildFilters();
   applyTranslations();
   renderApps();
+  renderGuideSubtabs();
+  renderGuideContent();
   initSearch();
   initScrollHeader();
 });
