@@ -17,6 +17,7 @@ const pageAbout = document.getElementById("page-about");
 const pagePrivacy = document.getElementById("page-privacy");
 const pageTerms = document.getElementById("page-terms");
 const pageContact = document.getElementById("page-contact");
+const pageGuide = document.getElementById("page-guide");
 
 // ── State ─────────────────────────────────────────────────
 let activeCategory = "all"; // Default: 전체
@@ -384,9 +385,10 @@ function goGallery(idx) {
 }
 
 // ── Page Navigation ───────────────────────────────────────
-const pages = { main: pageMain, about: pageAbout, privacy: pagePrivacy, terms: pageTerms, contact: pageContact };
+const pages = { main: pageMain, about: pageAbout, privacy: pagePrivacy, terms: pageTerms, contact: pageContact, guide: pageGuide };
 
 function showPage(name) {
+  if (typeof closeModal === "function") closeModal();
   Object.entries(pages).forEach(([key, el]) => {
     if (!el) return;
     el.classList.toggle("hidden", key !== name);
