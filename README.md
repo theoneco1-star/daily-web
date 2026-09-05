@@ -1,7 +1,7 @@
 # Daily Helper
 
 > Official web portal for verified native Android apps and essential everyday utilities.  
-> 🌐 **Web Portal:** https://daily-web-peach.vercel.app
+> 🌐 **Web Portal:** https://www.dailyhelperhub.com
 
 ---
 
@@ -32,10 +32,10 @@
 ### Daily Helper (일상의도움)
 - **개요:** 복잡한 회원가입 없이 오프라인에서 즉시 사용할 수 있는 안드로이드 일상 유틸리티 모음 웹 허브입니다.
 - **주요 라인업:** TimeKeeper (루틴/습관 관리), DayCount (D-Day 계산), ClipFlow (클립보드 관리), FreshCue (유통기한 알림)
-- **공식 사이트:** https://daily-web-peach.vercel.app
+- **공식 사이트:** https://www.dailyhelperhub.com
 
 ---
 
 ## 🌐 Links
 - **Developer / Publisher:** WG Apps Studio
-- **Official Hub:** [Daily Helper Portal](https://daily-web-peach.vercel.app)
+- **Official Hub:** [Daily Helper Portal](https://www.dailyhelperhub.com)
