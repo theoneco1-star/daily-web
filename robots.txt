@@ -15,4 +15,4 @@ User-agent: ClaudeBot
 Allow: /
 
 # Sitemap
-Sitemap: https://daily-web-peach.vercel.app/sitemap.xml
+Sitemap: https://www.dailyhelperhub.com/sitemap.xml
