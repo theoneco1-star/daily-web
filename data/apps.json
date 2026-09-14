@@ -4,7 +4,7 @@
     { "id": "tools", "nameKo": "도구/업무", "nameEn": "Tools & Work" },
     { "id": "utility", "nameKo": "유틸리티", "nameEn": "Utility" },
     { "id": "daily", "nameKo": "일상/일정", "nameEn": "Daily & Routine" },
-    { "id": "kids", "nameKo": "키즈/퀴즈", "nameEn": "Kids & Quiz" }
+    { "id": "games", "nameKo": "게임", "nameEn": "Games" }
   ],
   "apps": [
     {

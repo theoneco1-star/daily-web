@@ -79,7 +79,7 @@ function buildHeaderCatNav() {
   if (!headerNav) return;
   const cats = (typeof categoriesData !== "undefined" && categoriesData.length > 0)
     ? categoriesData.map(c => c.id)
-    : ["all", "tools", "utility", "daily", "kids"];
+    : ["all", "tools", "utility", "daily", "games"];
 
   headerNav.innerHTML = cats.map(cat => `
     <button
@@ -94,7 +94,7 @@ function buildFilters() {
   if (!filterContainer) return;
   const cats = (typeof categoriesData !== "undefined" && categoriesData.length > 0)
     ? categoriesData.map(c => c.id)
-    : ["all", "tools", "utility", "daily", "kids"];
+    : ["all", "tools", "utility", "daily", "games"];
 
   filterContainer.innerHTML = cats.map(cat => `
     <button
@@ -117,7 +117,10 @@ function setCategory(cat) {
 function getFilteredApps() {
   if (typeof appsData === "undefined") return [];
   return appsData.filter(app => {
-    const matchCat = activeCategory === "all" || app.category === activeCategory;
+    const matchCat = activeCategory === "all"
+      || app.category === activeCategory
+      || (activeCategory === "games" && app.category === "game")
+      || (activeCategory === "game" && app.category === "games");
     const name = (currentLang === "ko" ? app.nameKo : app.nameEn).toLowerCase();
     const desc = (currentLang === "ko" ? app.descKo : app.descEn).toLowerCase();
     const tagsArr = (currentLang === "ko" ? app.tagsKo || app.tags : app.tagsEn || app.tags) || [];

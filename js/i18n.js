@@ -16,7 +16,7 @@ const translations = {
       totalApps: "개의 앱",
       resultsFound: "개 검색됨",
     },
-    categories: { all: "전체", tools: "도구/업무", utility: "유틸리티", daily: "일상/일정", kids: "키즈/퀴즈" },
+    categories: { all: "전체", tools: "도구/업무", utility: "유틸리티", daily: "일상/일정", games: "게임", game: "게임" },
     card: { detailBtn: "상세보기 & 다운로드", freeTag: "무료", newTag: "신규", featuredTag: "추천", comingSoonBadge: "준비중", comingSoonBtn: "출시 예정" },
     modal: {
       close: "닫기", downloadBtn: "Google Play에서 다운로드",
@@ -124,7 +124,7 @@ const translations = {
       totalApps: "apps available",
       resultsFound: "results found",
     },
-    categories: { all: "All", tools: "Tools & Work", utility: "Utility", daily: "Daily & Routine", kids: "Kids & Quiz" },
+    categories: { all: "All", tools: "Tools & Work", utility: "Utility", daily: "Daily & Routine", games: "Games", game: "Games" },
     card: { detailBtn: "Details & Download", freeTag: "Free", newTag: "New", featuredTag: "Featured", comingSoonBadge: "Coming Soon", comingSoonBtn: "Coming Soon" },
     modal: {
       close: "Close", downloadBtn: "Get it on Google Play",
