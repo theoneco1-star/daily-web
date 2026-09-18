@@ -26,7 +26,7 @@ const translations = {
     },
     ad: { label: "광고" },
     badge: {
-      guide: "📖 앱 가이드",
+      guide: "📖 앱 가이드 →",
     },
     guide: {
       mainTitle: "앱 사용 가이드",
@@ -134,7 +134,7 @@ const translations = {
     },
     ad: { label: "Advertisement" },
     badge: {
-      guide: "📖 App Guide",
+      guide: "📖 App Guide →",
     },
     guide: {
       mainTitle: "App Guides",
