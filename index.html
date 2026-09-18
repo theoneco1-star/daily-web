@@ -47,7 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css?v=2.9" />
+  <link rel="stylesheet" href="css/custom.css?v=3.0" />
 
   <!-- High Visibility Card Styles (Guaranteed Override) -->
   <style>
@@ -177,8 +177,9 @@
         <span class="proof-item-icon">🔄</span>
         <span class="proof-item-text" data-i18n="proof.update">주기적인 신규 앱 업데이트</span>
       </div>
-      <button type="button" id="btn-app-guide" class="proof-item proof-guide-btn" onclick="showPage('guide')">
-        <span class="proof-item-text" data-i18n="badge.guide">📖 앱 가이드 →</span>
+      <button type="button" id="btn-app-guide" onclick="showPage('guide')" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 shadow-sm dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-700/50 dark:hover:bg-blue-900/50">
+        <span data-i18n="appGuideText">📖 앱 가이드</span>
+        <span class="text-[11px] font-bold">→</span>
       </button>
     </div>
   </div>
@@ -363,9 +364,9 @@
 <!-- ══════════════════════════════════════════
      SCRIPTS
 ════════════════════════════════════════════ -->
-<script src="js/i18n.js?v=2.3"></script>
-<script src="js/apps.js?v=2.3"></script>
-<script src="js/main.js?v=2.3"></script>
+<script src="js/i18n.js?v=2.4"></script>
+<script src="js/apps.js?v=2.4"></script>
+<script src="js/main.js?v=2.4"></script>
 
 <!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>

@@ -25,6 +25,7 @@ const translations = {
       requires: "최소 요구 사양", developer: "개발사", screenshots: "스크린샷", noScreenshots: "스크린샷 준비 중입니다.",
     },
     ad: { label: "광고" },
+    appGuideText: "📖 앱 가이드",
     badge: {
       guide: "📖 앱 가이드 →",
     },
@@ -133,6 +134,7 @@ const translations = {
       requires: "Requires Android", developer: "Developer", screenshots: "Screenshots", noScreenshots: "Screenshots coming soon.",
     },
     ad: { label: "Advertisement" },
+    appGuideText: "📖 App Guide",
     badge: {
       guide: "📖 App Guide →",
     },

@@ -400,6 +400,7 @@ html:not(.dark) .proof-item-text,
 }
 
 /* ── Clickable App Guide Badge in Social Proof Bar ── */
+#btn-app-guide,
 .proof-guide-btn {
   background: #eff6ff !important;
   border: 1px solid #bfdbfe !important;
@@ -412,11 +413,14 @@ html:not(.dark) .proof-item-text,
   align-items: center;
   gap: 0.35rem;
 }
+#btn-app-guide,
+#btn-app-guide span,
 .proof-guide-btn .proof-item-text,
 html:not(.dark) .proof-guide-btn .proof-item-text {
   color: #1d4ed8 !important;
   font-weight: 600 !important;
 }
+#btn-app-guide:hover,
 .proof-guide-btn:hover,
 html:not(.dark) .proof-guide-btn:hover {
   background: #dbeafe !important;
@@ -424,30 +428,45 @@ html:not(.dark) .proof-guide-btn:hover {
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
   transform: translateY(-1px);
 }
+#btn-app-guide:hover,
+#btn-app-guide:hover span,
 .proof-guide-btn:hover .proof-item-text,
 html:not(.dark) .proof-guide-btn:hover .proof-item-text {
   color: #1d4ed8 !important;
 }
+#btn-app-guide:active,
 .proof-guide-btn:active {
   transform: translateY(0);
 }
 
+html.dark #btn-app-guide,
+.dark #btn-app-guide,
 html.dark .proof-guide-btn,
 .dark .proof-guide-btn {
   background: rgba(59, 130, 246, 0.15) !important;
   border: 1px solid rgba(59, 130, 246, 0.4) !important;
 }
+html.dark #btn-app-guide,
+html.dark #btn-app-guide span,
+.dark #btn-app-guide,
+.dark #btn-app-guide span,
 html.dark .proof-guide-btn .proof-item-text,
 .dark .proof-guide-btn .proof-item-text {
   color: #60a5fa !important;
   font-weight: 600 !important;
 }
+html.dark #btn-app-guide:hover,
+.dark #btn-app-guide:hover,
 html.dark .proof-guide-btn:hover,
 .dark .proof-guide-btn:hover {
   background: rgba(59, 130, 246, 0.25) !important;
   border-color: rgba(96, 165, 250, 0.6) !important;
   box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
 }
+html.dark #btn-app-guide:hover,
+html.dark #btn-app-guide:hover span,
+.dark #btn-app-guide:hover,
+.dark #btn-app-guide:hover span,
 html.dark .proof-guide-btn:hover .proof-item-text,
 .dark .proof-guide-btn:hover .proof-item-text {
   color: #93c5fd !important;
