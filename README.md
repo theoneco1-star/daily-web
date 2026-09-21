@@ -68,9 +68,16 @@
   - 일일/주간 시간 활용 통계 시각화 및 루틴 달성 스트릭
 - **플랫폼:** Android Native App ([Google Play Store](https://play.google.com/store/apps/details?id=com.wgapps.timekeeper))
 
-### 2. DayCount `[Coming Soon]`
+### 2. DayCount
 - **분류:** 일상/일정 (`daily`)
-- **개요:** 소중한 기념일, 시험, 여행 등의 D-Day를 실시간 카운트다운으로 관리하는 디데이 도구
+- **개요:** 시험, 기념일, 생일, 여행 등의 D-Day 및 기념일을 카드 뷰와 스마트 정렬로 관리하는 디데이 카운터
+- **주요 기능:**
+  - 직관적인 카드 뷰 기반 D-Day 및 기념일 실시간 카운터
+  - 목적별(시험, 기념일, 생일, 여행) 맞춤 카테고리 분류
+  - 남은 날짜순 / 최신 생성순 스마트 정렬
+  - 다크 모드 지원 및 슬림 반응형 모바일 레이아웃
+  - 외부 유출 없는 안전한 기기 내 로컬 데이터 보관
+- **플랫폼:** Android Native App ([Google Play Store](https://play.google.com/store/apps/details?id=com.wgapps.daycount))
 
 ### 3. ClipFlow `[Coming Soon]`
 - **분류:** 도구/업무 (`tools`)

@@ -57,31 +57,39 @@
       "color": "from-amber-500 via-orange-500 to-rose-500",
       "icon": "images/daycount-icon.svg",
       "iconEmoji": "📅",
-      "isComingSoon": true,
-      "tags": ["D-Day", "일정관리", "날짜계산"],
-      "tagsKo": ["D-Day", "일정관리", "날짜계산"],
-      "tagsEn": ["D-Day", "Schedule", "Countdown"],
-      "descKo": "소중한 기념일과 목표를 직관적으로 관리하는 D-Day 계산 및 카운트다운 도구",
-      "descEn": "Intuitive D-Day calculator and countdown tool to track your precious days and goals.",
+      "isFree": true,
+      "isNew": true,
+      "isFeatured": true,
+      "tags": ["D-Day", "기념일", "일정관리", "추천"],
+      "tagsKo": ["D-Day", "기념일", "일정관리", "추천"],
+      "tagsEn": ["D-Day", "Anniversary", "Schedule", "Featured"],
+      "descKo": "소중한 기념일과 목표를 직관적인 카드 뷰와 스마트 정렬로 관리하는 스마트 D-Day 카운터",
+      "descEn": "Intuitive card-view based D-Day and anniversary countdown tracker with smart sorting.",
       "featuresKo": [
-        "디데이 및 기념일 자동 계산과 실시간 카운트다운",
-        "목표 달성을 위한 맞춤형 알림 및 홈 화면 위젯 지원",
-        "직관적인 타임라인 뷰로 중요한 일정 한눈에 관리"
+        "직관적인 카드 뷰 기반 D-Day 및 기념일 카운터",
+        "목적별(시험, 기념일, 생일, 여행) 맞춤 카테고리 분류",
+        "남은 날짜순 / 최신 생성순 스마트 정렬",
+        "다크 모드 지원 및 슬림 반응형 모바일 레이아웃",
+        "외부 유출 없는 안전한 기기 내 로컬 데이터 보관"
       ],
       "featuresEn": [
-        "Automatic D-Day calculation and real-time countdowns",
-        "Custom milestone reminders and home screen widgets",
-        "Intuitive timeline view to track upcoming events easily"
+        "Intuitive card-view based D-Day and anniversary countdown tracker",
+        "Custom categories tailored by purpose (Exam, Anniversary, Birthday, Trip)",
+        "Smart sorting by days remaining or recently created order",
+        "Dark mode support and slim responsive mobile layout",
+        "Secure local-only device data storage with zero external leaks"
       ],
-      "guideKo": "소중한 기념일, 시험, 여행 일정을 등록해두고 실시간 카운트다운과 디데이 알림으로 편리하게 일정을 챙겨보세요.",
-      "guideEn": "Add your anniversaries, exams, and travel dates to track the remaining days with real-time countdown alerts.",
-      "screenshots": [],
+      "guideKo": "시험일, 디데이, 연인과의 기념일을 등록하고 목적별 카테고리로 묶어보세요. 가까운 일정순 정렬을 활용하면 놓치기 쉬운 일정을 한눈에 파악할 수 있습니다.",
+      "guideEn": "Register exam dates, D-Days, and anniversaries with custom purpose categories. Use nearest-date sorting to keep track of upcoming events at a single glance.",
+      "screenshots": [
+        "images/daycount-screenshot.jpg"
+      ],
       "developer": "WG Apps",
-      "playStoreUrl": "#",
-      "version": "Coming Soon",
-      "updated": "2026",
-      "size": "-",
-      "requires": "Android 8.0+"
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.daycount",
+      "version": "1.0.3",
+      "updated": "2026. 09",
+      "size": "15 MB",
+      "requires": "Android 8.0 이상 (Android 8.0+)"
     },
     {
       "id": "clipflow",

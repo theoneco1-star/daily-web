@@ -417,7 +417,7 @@ const guideAppsConfig = [
     nameKo: "DayCount",
     nameEn: "DayCount",
     iconEmoji: "📅",
-    isReady: false,
+    isReady: true,
   },
   {
     id: "clipflow",
