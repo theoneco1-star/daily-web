@@ -119,6 +119,7 @@ function getFilteredApps() {
   return appsData.filter(app => {
     const matchCat = activeCategory === "all"
       || app.category === activeCategory
+      || (Array.isArray(app.categories) && app.categories.includes(activeCategory))
       || (activeCategory === "games" && app.category === "game")
       || (activeCategory === "game" && app.category === "games");
     const name = (currentLang === "ko" ? app.nameKo : app.nameEn).toLowerCase();
@@ -312,13 +313,22 @@ function openModal(appId) {
 
       <!-- Download -->
       <div class="play-store-btn">
-        <a href="${app.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="play-store-link">
-          <span class="play-store-link-icon">▶</span>
-          <span class="play-store-link-text">
-            <span class="play-store-link-sub">GET IT ON</span>
-            <span class="play-store-link-main">Google Play</span>
-          </span>
-        </a>
+        ${(app.playStoreUrl && app.playStoreUrl !== '#' && app.playStoreUrl.startsWith('http'))
+          ? `<a href="${app.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="play-store-link">
+              <span class="play-store-link-icon">▶</span>
+              <span class="play-store-link-text">
+                <span class="play-store-link-sub">GET IT ON</span>
+                <span class="play-store-link-main">Google Play</span>
+              </span>
+            </a>`
+          : `<a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="play-store-link opacity-95">
+              <span class="play-store-link-icon">⏳</span>
+              <span class="play-store-link-text">
+                <span class="play-store-link-sub">COMING SOON TO</span>
+                <span class="play-store-link-main">Google Play</span>
+              </span>
+            </a>`
+        }
       </div>
 
       <!-- Features -->
@@ -420,6 +430,13 @@ const guideAppsConfig = [
     isReady: true,
   },
   {
+    id: "bookspot",
+    nameKo: "BookSpot",
+    nameEn: "BookSpot",
+    iconEmoji: "📚",
+    isReady: true,
+  },
+  {
     id: "clipflow",
     nameKo: "ClipFlow",
     nameEn: "ClipFlow",
@@ -486,7 +503,7 @@ function renderGuideContent() {
     const backBtnText = t("nav.backToHome");
     const detailBtnText = t(`${guideKey}.openDetailBtn`) || `${appName} ${t("card.detailBtn")}`;
 
-    if (appConfig.id === "daycount") {
+    if (appConfig.id === "daycount" || appConfig.id === "bookspot") {
       container.innerHTML = `
         <div class="guide-active-content animate-fadeIn">
           ${bodyHtml}

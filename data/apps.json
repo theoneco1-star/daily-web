@@ -92,6 +92,47 @@
       "requires": "Android 8.0 이상 (Android 8.0+)"
     },
     {
+      "id": "bookspot",
+      "nameKo": "BookSpot (책 쏙쏙)",
+      "nameEn": "BookSpot",
+      "category": "tools",
+      "categories": ["tools", "daily"],
+      "color": "from-teal-600 via-emerald-500 to-green-600",
+      "icon": "images/bookspot-icon.svg",
+      "iconEmoji": "📚",
+      "isFree": true,
+      "isNew": true,
+      "isFeatured": true,
+      "tags": ["도서관리", "음성인식", "책장정리", "온디바이스"],
+      "tagsKo": ["도서관리", "음성인식", "책장정리", "온디바이스"],
+      "tagsEn": ["Bookshelf", "VoiceInput", "BookOrganizer", "OnDevice"],
+      "descKo": "우리 집 책장 구역별 도서 보관부터 음성 인식 초고속 등록까지, 스마트한 온디바이스 도서 정리 도구",
+      "descEn": "Smart on-device book organizer: Manage bookshelf zones and register books instantly via voice recognition.",
+      "featuresKo": [
+        "우리 집 책 보관 구역 맞춤 설정 (거실 책장 1·2단, 서재 등 자유로운 구역 추가)",
+        "구글 음성 인식(STT) 지원으로 말하듯 빠르고 편리한 연속 도서 등록",
+        "초성 및 제목 검색으로 꽂혀 있는 책의 위치를 즉시 탐색",
+        "서버 전송 없는 100% 기기 내 로컬(On-Device) 보관으로 완벽한 개인정보 보호"
+      ],
+      "featuresEn": [
+        "Custom bookshelf zone management (living room shelf, study, drawer, etc.)",
+        "Fast and convenient Google voice recognition (STT) for continuous hands-free book registration",
+        "Instant location discovery via initial consonant and title keyword search",
+        "100% On-Device local storage with zero server transmission for complete privacy"
+      ],
+      "guideKo": "책이 많을 때는 마이크 음성 인식을 켜두고 책 제목을 연속해서 말씀해 보세요. 몇 분 만에 수십 권의 도서를 원하는 책장 구역에 쏙쏙 정리할 수 있습니다.",
+      "guideEn": "When organizing multiple books, turn on voice recognition and speak book titles in sequence to catalog dozens of books into your custom bookshelf zones within minutes.",
+      "screenshots": [
+        "images/bookspot-screenshot.jpg"
+      ],
+      "developer": "WG Apps Studio",
+      "playStoreUrl": "#",
+      "version": "1.0.0 (On-Device Local)",
+      "updated": "2026. 09",
+      "size": "약 15 MB",
+      "requires": "Android 8.0 이상 (Android 8.0+)"
+    },
+    {
       "id": "clipflow",
       "nameKo": "ClipFlow",
       "nameEn": "ClipFlow",

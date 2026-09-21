@@ -209,6 +209,156 @@ const translations = {
   </button>
 </div>`
       },
+      bookspot: {
+        title: "BookSpot (책 쏙쏙)",
+        appName: "BookSpot (책 쏙쏙)",
+        subtitle: "말하듯 쉽게 등록하고 한눈에 찾는 우리 집 스마트 서재 관리 도구",
+        overview: "우리 집 책장 구역별 도서 보관부터 음성 인식 초고속 등록까지, 스마트한 온디바이스 도서 정리 도구",
+        featuresTitle: "주요 핵심 기능",
+        features: [
+          { title: "구역별 맞춤 보관함", desc: "거실 책장, 아이 방, 서재 등 구역을 자유롭게 생성하고 책 권수 한눈에 확인" },
+          { title: "음성 인식 & 초고속 입력", desc: "마이크를 켜고 책 제목을 말하기만 하면 타이핑 없이 즉시 리스트업" },
+          { title: "초성/키워드 고속 검색", desc: "\"ㄱㅅ\"만 쳐도 관련 도서와 보관된 책장 단수를 1초 만에 확인" }
+        ],
+        quickGuideTitle: "3단계 간편 사용법",
+        quickGuide: [
+          "STEP 1. 보관 구역 추가: '+' 버튼으로 도서를 보관할 책장이나 서랍 구역을 생성합니다.",
+          "STEP 2. 음성으로 책 등록: 등록할 구역을 선택하고 마이크 음성이나 키보드로 책 제목을 빠르게 추가합니다.",
+          "STEP 3. 위치 검색 & 완독 관리: 찾고 싶은 책을 제목이나 초성으로 검색해 어느 책장에 꽂혀 있는지 즉시 확인합니다."
+        ],
+        tipTitle: "활용 팁",
+        tipContent: "도서 정리 시 '거실 책장 1단', '2단'처럼 층별로 구역명을 세분화해 두면 나중에 책을 꺼낼 때 헤매지 않고 바로 찾을 수 있습니다.",
+        openDetailBtn: "BookSpot 상세정보",
+        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-teal-500/10 via-emerald-500/10 to-green-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-green-950/30 border border-teal-200/80 dark:border-teal-700/50 shadow-sm">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="flex items-start md:items-center gap-4">
+      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-teal-600 via-emerald-500 to-green-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-teal-500/25 shrink-0 border border-white/20">
+        📚
+      </div>
+      <div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">BookSpot (책 쏙쏙)</h2>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 border border-teal-200 dark:border-teal-700/60">
+            v1.0.0 온디바이스 지원
+          </span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
+          말하듯 쉽게 등록하고 한눈에 찾는 우리 집 스마트 서재 관리 도구
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
+      <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <span class="text-base">⏳</span>
+        <span>Google Play 출시 예정</span>
+      </a>
+      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
+        <span>← 홈으로</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
+  <span>주요 핵심 기능</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-3">
+        🗄️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">구역별 맞춤 보관함</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        거실 책장, 아이 방, 서재 등 구역을 자유롭게 생성하고 책 권수 한눈에 확인
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-3">
+        🎙️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">음성 인식 &amp; 초고속 입력</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        마이크를 켜고 책 제목을 말하기만 하면 타이핑 없이 즉시 리스트업
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-950/80 text-green-600 dark:text-green-400 flex items-center justify-center text-xl mb-3">
+        🔍
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">초성/키워드 고속 검색</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        "ㄱㅅ"만 쳐도 관련 도서와 보관된 책장 단수를 1초 만에 확인
+      </p>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
+  <span>3단계 간편 사용법</span>
+</h3>
+<ol class="guide-steps-list space-y-3.5 mb-8">
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 1
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">보관 구역 추가:</strong>
+      <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-teal-600 dark:text-teal-400 font-mono text-xs font-bold">+</code> 버튼으로 도서를 보관할 책장이나 서랍 구역을 생성합니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 2
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">음성으로 책 등록:</strong>
+      등록할 구역을 선택하고 마이크 음성이나 키보드로 책 제목을 빠르게 추가합니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 3
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">위치 검색 &amp; 완독 관리:</strong>
+      찾고 싶은 책을 제목이나 초성으로 검색해 어느 책장에 꽂혀 있는지 즉시 확인합니다.
+    </div>
+  </li>
+</ol>
+
+<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/20 border-l-4 border-teal-500 border-t border-r border-b border-teal-200/80 dark:border-teal-700/50 shadow-sm mb-8">
+  <div class="flex items-start gap-3">
+    <span class="text-2xl shrink-0 mt-0.5">💡</span>
+    <div>
+      <h4 class="text-sm font-bold text-teal-900 dark:text-teal-300 uppercase tracking-wide mb-1">
+        활용 팁 (Tip)
+      </h4>
+      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
+        "도서 정리 시 <strong>'거실 책장 1단'</strong>, <strong>'2단'</strong>처럼 층별로 구역명을 세분화해 두면 나중에 책을 꺼낼 때 헤매지 않고 바로 찾을 수 있습니다."
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
+  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+    ← 홈으로
+  </button>
+  <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>Google Play 출시 예정</span> ⏳
+  </a>
+  <button type="button" onclick="openModal('bookspot')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
+    📚 <span>BookSpot 상세정보</span>
+  </button>
+</div>`
+      },
       clipflow: {
         title: "ClipFlow (클립플로우) - 스마트 클립보드 매니저",
         appName: "ClipFlow",
@@ -464,6 +614,156 @@ const translations = {
   </button>
 </div>`
       },
+      bookspot: {
+        title: "BookSpot Guide",
+        appName: "BookSpot",
+        subtitle: "Smart on-device book organizer: Register books hands-free with voice recognition and locate any book at a glance.",
+        overview: "Smart on-device book organizer: Manage bookshelf zones and register books instantly via voice recognition.",
+        featuresTitle: "Key Features",
+        features: [
+          { title: "Custom Bookshelf Zones", desc: "Freely create custom zones (Living Room Shelf, Kids Room, Study) and check total book counts at a glance." },
+          { title: "Voice Input & Fast Add", desc: "Simply turn on the microphone and speak the title to catalog books without typing." },
+          { title: "Fast Search", desc: "Type initial consonants (e.g., \"ㄱㅅ\") or title keywords to discover the exact shelf location in 1 second." }
+        ],
+        quickGuideTitle: "3-Step Simple Guide",
+        quickGuide: [
+          "STEP 1. Add Storage Zones: Tap '+' to create custom bookshelf tiers, drawers, or rooms for storing books.",
+          "STEP 2. Register via Voice: Select a zone and quickly add books using voice recognition or keyboard.",
+          "STEP 3. Locate & Track: Search by title or consonants to find exactly which shelf and tier your book is placed in."
+        ],
+        tipTitle: "Usage Tip",
+        tipContent: "When organizing books, name zones specifically like 'Living Room Shelf - Tier 1' or 'Tier 2' so you can locate and pull out books without hesitation.",
+        openDetailBtn: "View BookSpot Details",
+        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-teal-500/10 via-emerald-500/10 to-green-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-green-950/30 border border-teal-200/80 dark:border-teal-700/50 shadow-sm">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="flex items-start md:items-center gap-4">
+      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-teal-600 via-emerald-500 to-green-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-teal-500/25 shrink-0 border border-white/20">
+        📚
+      </div>
+      <div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">BookSpot Guide</h2>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 border border-teal-200 dark:border-teal-700/60">
+            v1.0.0 On-Device Local
+          </span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
+          Smart on-device book organizer: Register books hands-free with voice recognition and locate any book at a glance.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
+      <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <span class="text-base">⏳</span>
+        <span>Coming Soon on Google Play</span>
+      </a>
+      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
+        <span>← Back to Home</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
+  <span>Key Features</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-3">
+        🗄️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Custom Bookshelf Zones</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Freely create custom zones (Living Room Shelf, Kids Room, Study) and check total book counts at a glance.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-3">
+        🎙️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Voice Input &amp; Fast Add</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Simply turn on the microphone and speak the title to catalog books without typing.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-950/80 text-green-600 dark:text-green-400 flex items-center justify-center text-xl mb-3">
+        🔍
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Fast Search</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Type initial consonants (e.g., "ㄱㅅ") or title keywords to discover the exact shelf location in 1 second.
+      </p>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
+  <span>3-Step Simple Guide</span>
+</h3>
+<ol class="guide-steps-list space-y-3.5 mb-8">
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 1
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Add Storage Zones:</strong>
+      Tap <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-teal-600 dark:text-teal-400 font-mono text-xs font-bold">+</code> to create custom bookshelf tiers, drawers, or rooms for storing books.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 2
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Register via Voice:</strong>
+      Select a zone and quickly add books using voice recognition or keyboard.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 3
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Locate &amp; Track:</strong>
+      Search by title or consonants to find exactly which shelf and tier your book is placed in.
+    </div>
+  </li>
+</ol>
+
+<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/20 border-l-4 border-teal-500 border-t border-r border-b border-teal-200/80 dark:border-teal-700/50 shadow-sm mb-8">
+  <div class="flex items-start gap-3">
+    <span class="text-2xl shrink-0 mt-0.5">💡</span>
+    <div>
+      <h4 class="text-sm font-bold text-teal-900 dark:text-teal-300 uppercase tracking-wide mb-1">
+        Usage Tip (Tip)
+      </h4>
+      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
+        "When organizing books, name zones specifically like <strong>'Living Room Shelf - Tier 1'</strong> or <strong>'Tier 2'</strong> so you can locate and pull out books without hesitation."
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
+  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+    ← Back to Home
+  </button>
+  <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>Coming Soon on Google Play</span> ⏳
+  </a>
+  <button type="button" onclick="openModal('bookspot')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
+    📚 <span>View BookSpot Details</span>
+  </button>
+</div>`
+      },
       clipflow: {
         title: "ClipFlow - Smart Clipboard Manager",
         appName: "ClipFlow",
@@ -510,7 +810,7 @@ const translations = {
       noAppsTitle: "No apps available yet.",
       noAppsSubtitle: "New apps are coming soon!",
     },
-    proof: { apps: "10+ Useful Smartphone Apps", free: "100% Free & Safe Tools", update: "Regular New App Updates" },
+    proof: { apps: "10+ Useful Smartphone Apps", free: "100% Free & Safe Tools", update: "Regular New App Updates", guide: "📖 App Guide" },
   },
 };
 
