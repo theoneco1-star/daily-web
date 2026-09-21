@@ -248,9 +248,9 @@ const translations = {
       </div>
     </div>
     <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <span class="text-base">⏳</span>
-        <span>Google Play 출시 예정</span>
+      <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <span class="text-base">▶</span>
+        <span>구글 플레이에서 다운로드</span>
       </a>
       <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
         <span>← 홈으로</span>
@@ -351,8 +351,8 @@ const translations = {
   <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
     ← 홈으로
   </button>
-  <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>Google Play 출시 예정</span> ⏳
+  <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>구글 플레이 다운로드</span> ↗
   </a>
   <button type="button" onclick="openModal('bookspot')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
     📚 <span>BookSpot 상세정보</span>
@@ -653,9 +653,9 @@ const translations = {
       </div>
     </div>
     <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <span class="text-base">⏳</span>
-        <span>Coming Soon on Google Play</span>
+      <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <span class="text-base">▶</span>
+        <span>Download on Google Play</span>
       </a>
       <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
         <span>← Back to Home</span>
@@ -756,8 +756,8 @@ const translations = {
   <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
     ← Back to Home
   </button>
-  <a href="javascript:void(0)" onclick="alert(currentLang === 'ko' ? '현재 구글 플레이 스토어 심사 및 출시 준비 중입니다. 곧 다운로드가 제공될 예정입니다!' : 'Google Play release is currently in preparation. Coming soon!');" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>Coming Soon on Google Play</span> ⏳
+  <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>Download on Google Play</span> ↗
   </a>
   <button type="button" onclick="openModal('bookspot')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
     📚 <span>View BookSpot Details</span>

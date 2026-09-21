@@ -22,7 +22,11 @@
 
 ## 🌟 최근 UI/UX 개선 내역 (Latest Updates)
 
-- **BookSpot (책 쏙쏙) 온디바이스 도서 정리 앱 신규 런칭 및 가이드 추가 (Latest)**
+- **BookSpot (책 쏙쏙) 구글 플레이 스토어 정식 다운로드 링크 연결 완료 (Latest)**
+  - 구글 플레이 공식 스토어 URL([Google Play Store](https://play.google.com/store/apps/details?id=com.wgapps.bookspot)) 정식 오픈에 따른 즉시 연결
+  - 상세 정보 모달 내 'COMING SOON' 뱃지 제거 및 공식 'GET IT ON Google Play' 다운로드 버튼 활성화
+  - 앱 사용 가이드 내 'Google Play 출시 예정' 안내 및 임시 알림(alert)을 제거하고 공식 [구글 플레이에서 다운로드] 다이렉트 CTA 버튼으로 전환
+- **BookSpot (책 쏙쏙) 온디바이스 도서 정리 앱 신규 런칭 및 가이드 추가**
   - 메인 카드: BookSpot (책 쏙쏙) 등록, 멀티 카테고리('도구/업무', '일상/일정') 필터링 지원, '무료' & '신규' 뱃지, 커스텀 SVG 아이콘 및 태그(#도서관리, #음성인식, #책장정리, #온디바이스) 완비
   - 상세 정보 모달: Android 8.0+, 약 15 MB, WG Apps Studio 온디바이스 로컬 스펙, 4대 핵심 기능 및 플레이스토어 심사 준비 안내 연동
   - 앱 사용 가이드 탭: [📚 BookSpot] 정식 활성 탭 신설, 헤더 히어로 배너, 3열 핵심 기능 카드(맞춤 보관함, 음성 인식, 초성 검색), 3단계 간편 사용법(Step-by-Step), 실전 활용 팁(Tip Box) 탑재
@@ -100,7 +104,7 @@
   - 초성 및 제목 검색으로 꽂혀 있는 책의 위치를 즉시 탐색
   - 서버 전송 없는 100% 기기 내 로컬(On-Device) 보관으로 완벽한 개인정보 보호
 - **앱 가이드:** 정식 지원 (기능 소개, 3단계 사용법, 팁 및 다국어 지원)
-- **플랫폼:** Android Native App (Google Play 출시 준비 중)
+- **플랫폼:** Android Native App ([Google Play Store](https://play.google.com/store/apps/details?id=com.wgapps.bookspot))
 
 ### 4. ClipFlow `[Coming Soon]`
 - **분류:** 도구/업무 (`tools`)
