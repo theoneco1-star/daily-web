@@ -486,25 +486,33 @@ function renderGuideContent() {
     const backBtnText = t("nav.backToHome");
     const detailBtnText = t(`${guideKey}.openDetailBtn`) || `${appName} ${t("card.detailBtn")}`;
 
-    container.innerHTML = `
-      <div class="guide-active-content animate-fadeIn">
-        <h3 class="guide-app-title text-slate-900 dark:text-white font-bold text-xl md:text-2xl mb-6 flex items-center gap-2.5">
-          <span class="text-2xl">${appEmoji}</span>
-          <span>${title}</span>
-        </h3>
-        <div class="static-page-body">
+    if (appConfig.id === "daycount") {
+      container.innerHTML = `
+        <div class="guide-active-content animate-fadeIn">
           ${bodyHtml}
         </div>
-        <div class="flex items-center gap-3 mt-8 flex-wrap">
-          <button onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
-            ${backBtnText}
-          </button>
-          <button onclick="openModal('${appConfig.id}')" class="detail-btn" style="max-width:240px; background: linear-gradient(135deg, #4f46e5, #06b6d4); color: white; border: none;">
-            ${appEmoji} <span>${detailBtnText}</span>
-          </button>
+      `;
+    } else {
+      container.innerHTML = `
+        <div class="guide-active-content animate-fadeIn">
+          <h3 class="guide-app-title text-slate-900 dark:text-white font-bold text-xl md:text-2xl mb-6 flex items-center gap-2.5">
+            <span class="text-2xl">${appEmoji}</span>
+            <span>${title}</span>
+          </h3>
+          <div class="static-page-body">
+            ${bodyHtml}
+          </div>
+          <div class="flex items-center gap-3 mt-8 flex-wrap">
+            <button onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+              ${backBtnText}
+            </button>
+            <button onclick="openModal('${appConfig.id}')" class="detail-btn" style="max-width:240px; background: linear-gradient(135deg, #4f46e5, #06b6d4); color: white; border: none;">
+              ${appEmoji} <span>${detailBtnText}</span>
+            </button>
+          </div>
         </div>
-      </div>
-    `;
+      `;
+    }
   } else {
     // 준비 중인 다른 앱 안내 카드 노출
     const noticeText = t("guide.comingSoonNotice");

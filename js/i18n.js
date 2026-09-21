@@ -60,27 +60,154 @@ const translations = {
         body: `<div class="guide-lead-box p-4 rounded-xl mb-6 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60"><h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2" style="margin-top:0;">앱 개요</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-0">TimeKeeper는 본인만의 맞춤형 루틴을 등록하고 원하는 시간과 주기에 맞춰 정확한 알림을 받아볼 수 있는 안드로이드 시간·습관 관리 도구입니다. 복잡한 가입 없이 오프라인에서도 완벽하게 동작하며, 하루의 달성률을 한눈에 시각화해 줍니다.</p></div><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>핵심 기능</h3><ul class="guide-feature-list space-y-3 mb-8"><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">1. 맞춤형 루틴 및 정밀 주기 설정:</strong><span class="text-slate-600 dark:text-slate-300">매일, 평일, 주말 또는 월~일 특정 요일을 자유롭게 선택하여 AM/PM 원하는 시각에 루틴 알림을 세팅할 수 있습니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">2. 직관적인 아이콘 &amp; 루틴 관리:</strong><span class="text-slate-600 dark:text-slate-300">약 먹기, 물 마시기, 산책, 독서, 명상 등 다양한 감성 이모지 아이콘으로 루틴을 직관적으로 분류하고 생성합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">3. 연속 달성 스트릭(Streak) &amp; 대시보드:</strong><span class="text-slate-600 dark:text-slate-300">당일 달성률(%) 프로그레스 바와 함께 '연속 달성 스트릭(불꽃 카운트)'을 제공하여 매일 습관을 이어가는 동기를 부여합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">4. 인앱 타이머 &amp; 스톱워치 탑재:</strong><span class="text-slate-600 dark:text-slate-300">루틴 카드마다 스톱워치 기능이 연동되어 있어 독서, 운동 등 집중 시간이 필요한 루틴을 실시간으로 측정할 수 있습니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">5. 라이프스타일 맞춤 리셋 시각 설정:</strong><span class="text-slate-600 dark:text-slate-300">기본 새벽 04:00 등 하루가 리셋되는 기준 시각을 사용자가 직접 변경할 수 있어 밤샘 작업자나 교대근무자도 끊김 없이 관리할 수 있습니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">6. 철저한 개인정보 보호 및 데이터 관리:</strong><span class="text-slate-600 dark:text-slate-300">외부 서버로 데이터를 전송하지 않고 기기 내 로컬(Local)에만 안전하게 저장되며, JSON 백업 및 복원을 간편하게 지원합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">7. 다크 모드 &amp; 다국어 완벽 지원:</strong><span class="text-slate-600 dark:text-slate-300">눈이 편안한 다크 모드/라이트 모드 테마와 한국어/영어 인터페이스를 기본 제공합니다.</span></li></ul><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>간단 사용 가이드</h3><ol class="guide-steps-list space-y-3 mb-8"><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span class="text-slate-700 dark:text-slate-200">메인 화면의 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">+ 루틴 추가</code> 버튼을 누릅니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span class="text-slate-700 dark:text-slate-200">이모지 아이콘을 고르고 루틴 이름(예: 아침 약 먹기)을 입력합니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span class="text-slate-700 dark:text-slate-200">알림을 받을 시각(AM/PM)과 반복 주기(매일/특정 요일)를 선택한 후 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">저장</code>을 누릅니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span><span class="text-slate-700 dark:text-slate-200">알림 시간에 맞춰 활동을 진행하고, 스톱워치가 필요하다면 시계 아이콘을 눌러 집중 시간을 측정합니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span><span class="text-slate-700 dark:text-slate-200">실천 완료 후 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Check</code>를 누르면 상단 대시보드의 달성률(%)과 연속 달성 스트릭이 갱신됩니다.</span></li></ol>`
       },
       daycount: {
-        title: "DayCount (데이카운트) - 직관적인 D-Day & 기념일 카운터",
-        appName: "DayCount (데이카운트) - 직관적인 D-Day & 기념일 카운터",
-        overview: "DayCount는 시험, 여행, 연인과의 기념일, 목표 등을 직관적인 카드 뷰로 관리하고 남은 날짜(D-)와 지난 날짜(D+)를 한눈에 파악할 수 있는 스마트 디데이 도구입니다. 외부 서버 전송 없이 기기 내 로컬(Local)에만 안전하게 저장되어 안심하고 사용할 수 있습니다.",
-        featuresTitle: "핵심 기능",
+        title: "DayCount",
+        appName: "DayCount",
+        subtitle: "소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터",
+        overview: "소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터",
+        featuresTitle: "주요 핵심 기능",
         features: [
-          { title: "직관적인 카드 뷰 기반 D-Day & 기념일 카운터", desc: "남은 날짜(D-)와 지난 날짜(D+)를 한눈에 확인할 수 있는 미려한 카드 뷰 UI를 제공합니다." },
-          { title: "목적별 맞춤 카테고리 분류", desc: "시험, 기념일, 생일, 여행 등 상황에 맞춘 테마 카테고리로 일정을 깔끔하게 분류하고 관리합니다." },
-          { title: "남은 날짜순 / 최신 생성순 스마트 정렬", desc: "가장 임박한 일정순 또는 최근에 등록한 순서대로 실시간 정렬하여 중요한 일정을 놓치지 않습니다." },
-          { title: "다크 모드 지원 및 슬림 모바일 레이아웃", desc: "눈이 편안한 다크 모드와 한 손 조작에 최적화된 모던하고 세련된 반응형 디자인을 제공합니다." },
-          { title: "외부 유출 없는 안전한 로컬 보관", desc: "개인 일정 및 메모가 외부 클라우드나 서버로 유출되지 않고 오직 사용자 기기 내에만 안전하게 보관됩니다." }
+          { title: "직관적인 카드 뷰", desc: "시험, 생일, 기념일 등 다가오는 일정을 깔끔한 카드 형태로 한눈에 확인" },
+          { title: "맞춤 카테고리 분류", desc: "시험 / 기념일 / 생일 / 여행 등 목적별로 자유롭게 그룹화하여 체계적 관리" },
+          { title: "스마트 정렬 & 로컬 보안", desc: "남은 날짜순 및 생성순 정렬 지원, 외부 유출 없이 기기 내 안전한 데이터 보관" }
         ],
-        quickGuideTitle: "간단 사용 가이드 & 꿀팁",
+        quickGuideTitle: "3단계 간편 사용법",
         quickGuide: [
-          "메인 상단의 `+ D-Day 추가` 버튼을 눌러 새 일정을 생성합니다.",
-          "일정 제목과 목표 일시(날짜 및 시간)를 입력합니다.",
-          "목적에 맞는 카테고리(시험, 기념일, 생일, 여행)를 지정하고 저장합니다.",
-          "상단 정렬 필터에서 `남은 날짜순 (가까운 순)`을 선택하면 임박한 일정을 우선적으로 챙길 수 있습니다.",
-          "지나간 기념일도 D+ 카운터로 소중하게 기록을 이어갈 수 있습니다."
+          "STEP 1. 일정 등록: 우측 하단 '+' 버튼을 눌러 목표일과 타이틀을 입력합니다.",
+          "STEP 2. 카테고리 지정: 목적에 맞는 카테고리 태그를 선택하여 목록을 정리합니다.",
+          "STEP 3. D-Day 확인 & 관리: 남은 날짜순으로 자동 정렬된 카드를 통해 디데이를 편리하게 확인합니다."
         ],
-        openDetailBtn: "DayCount 앱 상세 정보",
-        body: `<div class="guide-lead-box p-4 rounded-xl mb-6 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60"><h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2" style="margin-top:0;">앱 개요</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-0">DayCount는 시험, 여행, 연인과의 기념일, 목표 등을 직관적인 카드 뷰로 관리하고 남은 날짜(D-)와 지난 날짜(D+)를 한눈에 파악할 수 있는 스마트 디데이 도구입니다. 외부 서버 전송 없이 기기 내 로컬(Local)에만 안전하게 저장되어 안심하고 사용할 수 있습니다.</p></div><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>핵심 기능</h3><ul class="guide-feature-list space-y-3 mb-8"><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">1. 직관적인 카드 뷰 기반 D-Day &amp; 기념일 카운터:</strong><span class="text-slate-600 dark:text-slate-300">남은 날짜(D-)와 지난 날짜(D+)를 한눈에 확인할 수 있는 미려한 카드 뷰 UI를 제공합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">2. 목적별 맞춤 카테고리 분류:</strong><span class="text-slate-600 dark:text-slate-300">시험, 기념일, 생일, 여행 등 상황에 맞춘 테마 카테고리로 일정을 깔끔하게 분류하고 관리합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">3. 남은 날짜순 / 최신 생성순 스마트 정렬:</strong><span class="text-slate-600 dark:text-slate-300">가장 임박한 일정순 또는 최근에 등록한 순서대로 실시간 정렬하여 중요한 일정을 놓치지 않습니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">4. 다크 모드 지원 및 슬림 모바일 레이아웃:</strong><span class="text-slate-600 dark:text-slate-300">눈이 편안한 다크 모드와 한 손 조작에 최적화된 모던하고 세련된 반응형 디자인을 제공합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">5. 외부 유출 없는 안전한 로컬 보관:</strong><span class="text-slate-600 dark:text-slate-300">개인 일정 및 메모가 외부 클라우드나 서버로 유출되지 않고 오직 사용자 기기 내에만 안전하게 보관됩니다.</span></li></ul><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>간단 사용 가이드 &amp; 꿀팁</h3><ol class="guide-steps-list space-y-3 mb-8"><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span class="text-slate-700 dark:text-slate-200">메인 상단의 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">+ D-Day 추가</code> 버튼을 눌러 새 일정을 생성합니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span class="text-slate-700 dark:text-slate-200">일정 제목과 목표 일시(날짜 및 시간)를 입력합니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span class="text-slate-700 dark:text-slate-200">목적에 맞는 카테고리(시험, 기념일, 생일, 여행)를 지정하고 저장합니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span><span class="text-slate-700 dark:text-slate-200">상단 정렬 필터에서 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">남은 날짜순 (가까운 순)</code>을 선택하면 임박한 일정을 우선적으로 챙길 수 있습니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span><span class="text-slate-700 dark:text-slate-200">지나간 기념일도 D+ 카운터로 소중하게 기록을 이어갈 수 있습니다.</span></li></ol>`
+        tipTitle: "활용 팁",
+        tipContent: "시험일이나 기념일이 여러 개일 때는 '가까운 일정순' 정렬을 활용해 보세요. 놓치기 쉬운 주요 일정을 우선순위로 빠르게 파악할 수 있습니다.",
+        openDetailBtn: "DayCount 상세정보",
+        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="flex items-start md:items-center gap-4">
+      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-orange-500/25 shrink-0 border border-white/20">
+        📅
+      </div>
+      <div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">DayCount</h2>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
+            v1.0.3 정식 지원
+          </span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
+          소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
+      <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.424V3.238c0-.555.228-1.056.609-1.424zM15.207 13.414l2.76-2.76-13.358-7.712 10.598 10.472zm2.76-4.068l2.973 1.716c.866.5.866 1.317 0 1.818l-2.973 1.716-2.227-2.227 2.227-3.023zm-2.76 5.482L4.609 25.302l13.358-7.712-2.76-2.76z" transform="scale(0.85) translate(2, 2)"/></svg>
+        <span>구글 플레이에서 다운로드</span>
+      </a>
+      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
+        <span>← 홈으로</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>주요 핵심 기능</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
+        📌
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">직관적인 카드 뷰</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        시험, 생일, 기념일 등 다가오는 일정을 깔끔한 카드 형태로 한눈에 확인
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
+        🏷️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">맞춤 카테고리 분류</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        시험 / 기념일 / 생일 / 여행 등 목적별로 자유롭게 그룹화하여 체계적 관리
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
+        ⏱️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">스마트 정렬 &amp; 로컬 보안</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        남은 날짜순 및 생성순 정렬 지원, 외부 유출 없이 기기 내 안전한 데이터 보관
+      </p>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>3단계 간편 사용법</span>
+</h3>
+<ol class="guide-steps-list space-y-3.5 mb-8">
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 1
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">일정 등록:</strong>
+      우측 하단 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-orange-600 dark:text-orange-400 font-mono text-xs font-bold">+</code> 버튼을 눌러 목표일과 타이틀을 입력합니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 2
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">카테고리 지정:</strong>
+      목적에 맞는 카테고리 태그를 선택하여 목록을 정리합니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 3
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">D-Day 확인 &amp; 관리:</strong>
+      남은 날짜순으로 자동 정렬된 카드를 통해 디데이를 편리하게 확인합니다.
+    </div>
+  </li>
+</ol>
+
+<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
+  <div class="flex items-start gap-3">
+    <span class="text-2xl shrink-0 mt-0.5">💡</span>
+    <div>
+      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
+        활용 팁 (Tip)
+      </h4>
+      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
+        "시험일이나 기념일이 여러 개일 때는 <strong>'가까운 일정순'</strong> 정렬을 활용해 보세요. 놓치기 쉬운 주요 일정을 우선순위로 빠르게 파악할 수 있습니다."
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
+  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+    ← 홈으로
+  </button>
+  <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>구글 플레이에서 다운로드</span> ↗
+  </a>
+  <button type="button" onclick="openModal('daycount')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
+    📅 <span>DayCount 상세정보</span>
+  </button>
+</div>`
       },
       clipflow: {
         title: "ClipFlow (클립플로우) - 스마트 클립보드 매니저",
@@ -188,27 +315,154 @@ const translations = {
         body: `<div class="guide-lead-box p-4 rounded-xl mb-6 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60"><h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2" style="margin-top:0;">App Overview</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-0">TimeKeeper is a dedicated Android habit and routine tracker that lets you create custom routines and receive timely notifications exactly when you need them. It operates completely offline with zero sign-up required, providing a visual overview of your daily progress.</p></div><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>Key Features</h3><ul class="guide-feature-list space-y-3 mb-8"><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">1. Custom Schedules &amp; Flexible Frequency:</strong><span class="text-slate-600 dark:text-slate-300">Easily schedule routines for Daily, Weekdays, Weekends, or specific days of the week at your chosen AM/PM time.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">2. Intuitive Emoji Icons:</strong><span class="text-slate-600 dark:text-slate-300">Personalize routines with visual icons for medication, hydration, workouts, reading, mindfulness, and more.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">3. Streak Tracking &amp; Progress Dashboard:</strong><span class="text-slate-600 dark:text-slate-300">Track daily completion rate (%) and keep your motivation high with continuous streak counters (flame badges).</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">4. Integrated Timer &amp; Stopwatch:</strong><span class="text-slate-600 dark:text-slate-300">Built-in stopwatch directly inside each routine card to measure focus time for studying or exercising.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">5. Customizable Day-Reset Time:</strong><span class="text-slate-600 dark:text-slate-300">Set your own daily reset time (default AM 04:00), making it ideal for night owls and shift workers.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">6. Privacy-First &amp; Easy Data Backup:</strong><span class="text-slate-600 dark:text-slate-300">All data is safely stored locally on your device without server tracking. Supports one-click JSON backup and restore.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">7. Dark Theme &amp; Multilingual Support:</strong><span class="text-slate-600 dark:text-slate-300">Comfortable Dark/Light themes and full Korean/English language toggling.</span></li></ul><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>Quick Guide</h3><ol class="guide-steps-list space-y-3 mb-8"><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span class="text-slate-700 dark:text-slate-200">Tap the <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">+ Add Routine</code> button on the main screen.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span class="text-slate-700 dark:text-slate-200">Select an emoji icon and enter your routine title (e.g., Take Morning Medicine).</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span class="text-slate-700 dark:text-slate-200">Set the target time (AM/PM) and repetition days, then tap <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Save</code>.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span><span class="text-slate-700 dark:text-slate-200">When notified, begin your routine and tap the stopwatch icon if you need to track focus time.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span><span class="text-slate-700 dark:text-slate-200">Tap <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Check</code> upon completion to instantly update your daily progress (%) and streak.</span></li></ol>`
       },
       daycount: {
-        title: "DayCount - Intuitive D-Day & Anniversary Tracker",
-        appName: "DayCount - Intuitive D-Day & Anniversary Tracker",
-        overview: "DayCount is an intuitive Android countdown tracker designed to help you manage exams, trips, anniversaries, and personal milestones in clean card views with real-time D-Day (D-) and elapsed day (D+) indicators. All data is safely stored locally on your device with no external server transmission.",
+        title: "DayCount Guide",
+        appName: "DayCount",
+        subtitle: "Smart D-Day countdown tool for managing anniversaries and goals.",
+        overview: "Smart D-Day countdown tool for managing anniversaries and goals.",
         featuresTitle: "Key Features",
         features: [
-          { title: "Intuitive Card View D-Day & Anniversary Counter", desc: "Clean and visually appealing cards showing remaining days (D-) and elapsed days (D+) at a glance." },
-          { title: "Tailored Purpose Categories", desc: "Easily organize events with categorized tags such as Exam, Anniversary, Birthday, and Trip." },
-          { title: "Smart Sorting (Remaining Days / Recently Added)", desc: "Sort by closest upcoming dates or recently added items to prioritize what matters most." },
-          { title: "Dark Mode Support & Slim Mobile Layout", desc: "Eye-comforting dark theme paired with a sleek, one-hand friendly responsive layout." },
-          { title: "Privacy-First Local Storage", desc: "Zero external cloud or server leaks. Your schedules and records remain exclusively on your device." }
+          { title: "Intuitive Card View", desc: "Check upcoming events like exams, birthdays, and anniversaries at a glance in clean card layouts." },
+          { title: "Custom Categories", desc: "Systematically group and manage schedules by purpose (Exam / Anniversary / Birthday / Trip)." },
+          { title: "Smart Sorting & Local Security", desc: "Support sorting by remaining days or date created, with all data kept safely on device without leaks." }
         ],
-        quickGuideTitle: "Quick Guide & Tips",
+        quickGuideTitle: "3-Step Simple Guide",
         quickGuide: [
-          "Tap the `+ Add D-Day` button at the top of the main screen.",
-          "Enter your event title and target date/time.",
-          "Choose an appropriate category (Exam, Anniversary, Birthday, Trip) and tap `Save`.",
-          "Select `Remaining Days (Nearest First)` in the sort dropdown to see upcoming milestones first.",
-          "Keep track of past anniversaries and cherished memories with continuous D+ counters."
+          "STEP 1. Add Event: Tap the '+' button at the bottom right to enter your target date and title.",
+          "STEP 2. Assign Category: Select an appropriate category tag to organize your milestone list.",
+          "STEP 3. Track D-Day: Conveniently view your countdown with cards automatically sorted by days remaining."
         ],
+        tipTitle: "Usage Tip",
+        tipContent: "Use 'Nearest Date' sorting when managing multiple exams or events to easily keep track of upcoming priorities.",
         openDetailBtn: "View DayCount Details",
-        body: `<div class="guide-lead-box p-4 rounded-xl mb-6 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60"><h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2" style="margin-top:0;">App Overview</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-0">DayCount is an intuitive Android countdown tracker designed to help you manage exams, trips, anniversaries, and personal milestones in clean card views with real-time D-Day (D-) and elapsed day (D+) indicators. All data is safely stored locally on your device with no external server transmission.</p></div><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>Key Features</h3><ul class="guide-feature-list space-y-3 mb-8"><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">1. Intuitive Card View D-Day &amp; Anniversary Counter:</strong><span class="text-slate-600 dark:text-slate-300">Clean and visually appealing cards showing remaining days (D-) and elapsed days (D+) at a glance.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">2. Tailored Purpose Categories:</strong><span class="text-slate-600 dark:text-slate-300">Easily organize events with categorized tags such as Exam, Anniversary, Birthday, and Trip.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">3. Smart Sorting (Remaining Days / Recently Added):</strong><span class="text-slate-600 dark:text-slate-300">Sort by closest upcoming dates or recently added items to prioritize what matters most.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">4. Dark Mode Support &amp; Slim Mobile Layout:</strong><span class="text-slate-600 dark:text-slate-300">Eye-comforting dark theme paired with a sleek, one-hand friendly responsive layout.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">5. Privacy-First Local Storage:</strong><span class="text-slate-600 dark:text-slate-300">Zero external cloud or server leaks. Your schedules and records remain exclusively on your device.</span></li></ul><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>Quick Guide &amp; Tips</h3><ol class="guide-steps-list space-y-3 mb-8"><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span class="text-slate-700 dark:text-slate-200">Tap the <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">+ Add D-Day</code> button at the top of the main screen.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span class="text-slate-700 dark:text-slate-200">Enter your event title and target date/time.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span class="text-slate-700 dark:text-slate-200">Choose an appropriate category (Exam, Anniversary, Birthday, Trip) and tap <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Save</code>.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span><span class="text-slate-700 dark:text-slate-200">Select <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Remaining Days (Nearest First)</code> in the sort dropdown to see upcoming milestones first.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span><span class="text-slate-700 dark:text-slate-200">Keep track of past anniversaries and cherished memories with continuous D+ counters.</span></li></ol>`
+        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="flex items-start md:items-center gap-4">
+      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-orange-500/25 shrink-0 border border-white/20">
+        📅
+      </div>
+      <div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">DayCount Guide</h2>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
+            v1.0.3 Official
+          </span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
+          Smart D-Day countdown tool for managing anniversaries and goals.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
+      <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.424V3.238c0-.555.228-1.056.609-1.424zM15.207 13.414l2.76-2.76-13.358-7.712 10.598 10.472zm2.76-4.068l2.973 1.716c.866.5.866 1.317 0 1.818l-2.973 1.716-2.227-2.227 2.227-3.023zm-2.76 5.482L4.609 25.302l13.358-7.712-2.76-2.76z" transform="scale(0.85) translate(2, 2)"/></svg>
+        <span>Get it on Google Play</span>
+      </a>
+      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
+        <span>← Back to Home</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>Key Features</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
+        📌
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Intuitive Card View</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Check upcoming events like exams, birthdays, and anniversaries at a glance in clean card layouts.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
+        🏷️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Custom Categories</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Systematically group and manage schedules by purpose (Exam / Anniversary / Birthday / Trip).
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
+        ⏱️
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Smart Sorting &amp; Local Security</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Support sorting by remaining days or date created, with all data kept safely on device without leaks.
+      </p>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>3-Step Simple Guide</span>
+</h3>
+<ol class="guide-steps-list space-y-3.5 mb-8">
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 1
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Add Event:</strong>
+      Tap the <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-orange-600 dark:text-orange-400 font-mono text-xs font-bold">+</code> button at the bottom right to enter your target date and title.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 2
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Assign Category:</strong>
+      Select an appropriate category tag to organize your milestone list.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 3
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Track D-Day:</strong>
+      Conveniently view your countdown with cards automatically sorted by days remaining.
+    </div>
+  </li>
+</ol>
+
+<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
+  <div class="flex items-start gap-3">
+    <span class="text-2xl shrink-0 mt-0.5">💡</span>
+    <div>
+      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
+        Usage Tip (Tip)
+      </h4>
+      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
+        "Use <strong>'Nearest Date'</strong> sorting when managing multiple exams or events to easily keep track of upcoming priorities."
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
+  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+    ← Back to Home
+  </button>
+  <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>Get it on Google Play</span> ↗
+  </a>
+  <button type="button" onclick="openModal('daycount')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
+    📅 <span>View DayCount Details</span>
+  </button>
+</div>`
       },
       clipflow: {
         title: "ClipFlow - Smart Clipboard Manager",

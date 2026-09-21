@@ -1538,3 +1538,19 @@ html.dark .guide-cs-btn-secondary:hover,
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Guide Header & CTA Enhancements ─────────────────────── */
+.guide-cta-download-btn {
+  text-decoration: none !important;
+  color: #ffffff !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.guide-cta-download-btn:hover {
+  text-decoration: none !important;
+  color: #ffffff !important;
+}
+.guide-cta-download-btn svg {
+  flex-shrink: 0;
+}
