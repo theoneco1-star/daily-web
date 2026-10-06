@@ -7,6 +7,40 @@ const translations = {
     brand: "일상의도움",
     slogan: "당신의 삶을 풍요롭게 합니다",
     nav: { home: "홈", about: "소개", privacy: "개인정보처리방침", terms: "이용약관", contact: "문의하기", backToHome: "← 홈으로", guide: "앱 가이드" },
+    tabs: {
+      mobileApps: "모바일 앱",
+      webTools: "웹 도구"
+    },
+    webTools: {
+      heroCount: "개의 웹 도구",
+      resultsFound: "개 웹 도구 검색됨",
+      badgeHot: "HOT",
+      badgeFree: "무료 도구",
+      useToolBtn: "바로 사용하기",
+      emptyTitle: "검색된 웹 도구가 없습니다",
+      emptySubtitle: "다른 키워드로 검색해 보세요.",
+      wageCalc: {
+        title: "실수령액 & 주휴수당 계산기",
+        subtitle: "2026년 최저시급(10,030원) 기준 알바 및 근로소득 자동 계산",
+        desc: "시급과 근무시간만 입력하면 주휴수당과 4대보험/3.3% 공제액을 1초 만에 자동 계산합니다.",
+        hourlyWageLabel: "시급 (원)",
+        weeklyHoursLabel: "1주 총 근무시간 (시간)",
+        workDaysLabel: "1주 근무일수 (일)",
+        deductionLabel: "공제 방식 선택",
+        deductionNone: "미적용 (0%)",
+        deductionFreelance: "3.3% (프리랜서/알바)",
+        deductionFourInsurances: "4대보험 (~9.4%)",
+        basePay: "월 기본급",
+        holidayPay: "월 주휴수당",
+        grossPay: "세전 총 급여",
+        deductionAmount: "예상 공제액",
+        netPay: "최종 예상 실수령액",
+        minWageBtn: "2026 최저시급 (10,030원)",
+        copyBtn: "📋 결과 복사",
+        copySuccess: "복사 완료!",
+        tip: "※ 실제 지급액은 회사 규정, 연장/야간 수당, 주휴일 결근 여부에 따라 다소 차이가 있을 수 있습니다."
+      }
+    },
     hero: {
       title: "일상을 더 스마트하게",
       titlePrefix: "일상을 더",
@@ -412,6 +446,40 @@ const translations = {
     brand: "Daily Helper",
     slogan: "Enriching Your Daily Life",
     nav: { home: "Home", about: "About", privacy: "Privacy Policy", terms: "Terms of Service", contact: "Contact", backToHome: "← Back to Home", guide: "App Guide" },
+    tabs: {
+      mobileApps: "Mobile Apps",
+      webTools: "Web Tools"
+    },
+    webTools: {
+      heroCount: "web tools available",
+      resultsFound: "web tools found",
+      badgeHot: "HOT",
+      badgeFree: "Free Tool",
+      useToolBtn: "Use Tool Now",
+      emptyTitle: "No web tools found",
+      emptySubtitle: "Try searching with a different keyword.",
+      wageCalc: {
+        title: "Net Salary & Holiday Allowance Calculator",
+        subtitle: "Hourly wage & statutory holiday allowance calculator",
+        desc: "Calculate weekly holiday allowance and deductions automatically in seconds.",
+        hourlyWageLabel: "Hourly Wage (KRW)",
+        weeklyHoursLabel: "Weekly Work Hours (hrs)",
+        workDaysLabel: "Work Days Per Week (days)",
+        deductionLabel: "Deduction Type",
+        deductionNone: "None (0%)",
+        deductionFreelance: "3.3% (Freelance / Part-time)",
+        deductionFourInsurances: "4 Major Insurances (~9.4%)",
+        basePay: "Monthly Base Pay",
+        holidayPay: "Monthly Holiday Allowance",
+        grossPay: "Gross Salary",
+        deductionAmount: "Estimated Deduction",
+        netPay: "Estimated Net Salary",
+        minWageBtn: "2026 Min Wage (10,030 KRW)",
+        copyBtn: "📋 Copy Results",
+        copySuccess: "Copied!",
+        tip: "※ Actual pay may vary depending on overtime, night shifts, or company attendance policies."
+      }
+    },
     hero: {
       title: "Make Daily Life Smarter",
       titlePrefix: "Make Daily Life",
@@ -843,6 +911,8 @@ function setLang(lang) {
   applyTranslations();
   if (typeof renderApps === "function") renderApps();
   if (typeof updateLangToggle === "function") updateLangToggle();
+  if (typeof renderWebTools === "function") renderWebTools();
+  if (typeof calculateWage === "function") calculateWage();
   if (typeof renderGuideSubtabs === "function") renderGuideSubtabs();
   if (typeof renderGuideContent === "function") renderGuideContent();
   if (typeof currentModalApp !== "undefined" && currentModalApp && typeof openModal === "function") {

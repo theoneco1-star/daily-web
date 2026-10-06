@@ -18,8 +18,13 @@ const pagePrivacy = document.getElementById("page-privacy");
 const pageTerms = document.getElementById("page-terms");
 const pageContact = document.getElementById("page-contact");
 const pageGuide = document.getElementById("page-guide");
+const webToolsSection = document.getElementById("web-tools-section");
+const tabBtnApps = document.getElementById("tab-btn-apps");
+const tabBtnTools = document.getElementById("tab-btn-tools");
+const categorySection = document.getElementById("category-section");
 
 // ── State ─────────────────────────────────────────────────
+let currentMainTab = "apps"; // "apps" | "tools"
 let activeCategory = "all"; // Default: 전체
 let searchQuery = "";
 let isDark = localStorage.getItem("dh_dark") !== "false";
@@ -131,18 +136,79 @@ function getFilteredApps() {
   });
 }
 
+function updateHeroCount() {
+  if (!heroCount) return;
+  if (currentMainTab === "apps") {
+    const filtered = getFilteredApps();
+    const totalCount = typeof appsData !== "undefined" ? appsData.length : 0;
+    heroCount.textContent = searchQuery
+      ? `${filtered.length} ${t("hero.resultsFound")}`
+      : `${totalCount} ${t("hero.totalApps")}`;
+  } else {
+    const filteredTools = typeof getFilteredWebTools === "function" ? getFilteredWebTools() : [];
+    const totalTools = typeof webToolsData !== "undefined" ? webToolsData.length : 0;
+    const countLabel = t("webTools.heroCount") || (currentLang === "ko" ? "개의 웹 도구" : "web tools");
+    const foundLabel = t("webTools.resultsFound") || (currentLang === "ko" ? "개 검색됨" : "results found");
+    heroCount.textContent = searchQuery
+      ? `${filteredTools.length} ${foundLabel}`
+      : `${totalTools} ${countLabel}`;
+  }
+}
+
+// ── Major Tab Switching (모바일 앱 ↔ 웹 도구) ─────────────
+function switchMainTab(tab) {
+  currentMainTab = tab;
+  const btnApps = document.getElementById("tab-btn-apps");
+  const btnTools = document.getElementById("tab-btn-tools");
+  const catSec = document.getElementById("category-section");
+  const appGridEl = document.getElementById("app-grid");
+  const toolsSec = document.getElementById("web-tools-section");
+
+  if (tab === "apps") {
+    if (btnApps) {
+      btnApps.classList.add("active");
+      btnApps.setAttribute("aria-selected", "true");
+    }
+    if (btnTools) {
+      btnTools.classList.remove("active");
+      btnTools.setAttribute("aria-selected", "false");
+    }
+    if (catSec) catSec.classList.remove("hidden");
+    if (appGridEl) appGridEl.classList.remove("hidden");
+    if (toolsSec) toolsSec.classList.add("hidden");
+    renderApps();
+  } else {
+    if (btnApps) {
+      btnApps.classList.remove("active");
+      btnApps.setAttribute("aria-selected", "false");
+    }
+    if (btnTools) {
+      btnTools.classList.add("active");
+      btnTools.setAttribute("aria-selected", "true");
+    }
+    if (catSec) catSec.classList.add("hidden");
+    if (appGridEl) appGridEl.classList.add("hidden");
+    if (toolsSec) toolsSec.classList.remove("hidden");
+    if (typeof renderWebTools === "function") renderWebTools();
+  }
+  updateHeroCount();
+}
+
 function renderApps() {
   if (!appGrid) return;
   buildFilters();
   applyTranslations();
   const filtered = getFilteredApps();
 
-  // Update hero count
-  if (heroCount) {
-    const totalCount = typeof appsData !== "undefined" ? appsData.length : 0;
-    heroCount.textContent = searchQuery
-      ? `${filtered.length} ${t("hero.resultsFound")}`
-      : `${totalCount} ${t("hero.totalApps")}`;
+  // Update hero count & badge counts
+  updateHeroCount();
+  const badgeApps = document.getElementById("badge-apps-count");
+  if (badgeApps && typeof appsData !== "undefined") {
+    badgeApps.textContent = `${appsData.length}+`;
+  }
+  const badgeTools = document.getElementById("badge-tools-count");
+  if (badgeTools && typeof webToolsData !== "undefined") {
+    badgeTools.textContent = `${webToolsData.length}`;
   }
 
   if (filtered.length === 0) {
@@ -567,7 +633,11 @@ function initSearch() {
   if (!searchInput) return;
   searchInput.addEventListener("input", (e) => {
     searchQuery = e.target.value.toLowerCase().trim();
-    renderApps();
+    if (currentMainTab === "apps") {
+      renderApps();
+    } else {
+      if (typeof renderWebTools === "function") renderWebTools();
+    }
   });
 }
 
@@ -590,9 +660,13 @@ if (modal) {
 function scrollToCategory(cat) {
   // 1. 메인 페이지로 이동
   showPage('main');
-  // 2. 카테고리 필터 적용 (active-cat 동기화 포함)
+  // 2. 모바일 앱 탭으로 전환
+  if (currentMainTab !== 'apps') {
+    switchMainTab('apps');
+  }
+  // 3. 카테고리 필터 적용 (active-cat 동기화 포함)
   setCategory(cat);
-  // 3. 카테고리 탭 섹션으로 스무스 스크롤
+  // 4. 카테고리 탭 섹션으로 스무스 스크롤
   setTimeout(() => {
     const section = document.getElementById('category-section');
     if (section) {
@@ -619,6 +693,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   initDarkMode();
   updateLangToggle();
   await loadAppsData();
+  if (typeof loadWebToolsData === "function") {
+    await loadWebToolsData();
+  }
   if (categoriesData.length > 0 && !categoriesData.some(c => c.id === activeCategory)) {
     activeCategory = categoriesData[0].id;
   }
@@ -626,6 +703,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   buildFilters();
   applyTranslations();
   renderApps();
+  if (typeof renderWebTools === "function") {
+    renderWebTools();
+  }
   renderGuideSubtabs();
   renderGuideContent();
   initSearch();

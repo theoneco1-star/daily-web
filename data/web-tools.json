@@ -1,0 +1,29 @@
+{
+  "categories": [
+    { "id": "all", "nameKo": "전체", "nameEn": "All" },
+    { "id": "salary", "nameKo": "급여/세무", "nameEn": "Salary & Tax" },
+    { "id": "utility", "nameKo": "생활/계산", "nameEn": "Living & Calc" }
+  ],
+  "tools": [
+    {
+      "id": "wage-calc",
+      "nameKo": "실수령액 & 주휴수당 계산기",
+      "nameEn": "Net Salary & Holiday Allowance Calculator",
+      "category": "salary",
+      "color": "from-blue-600 via-indigo-600 to-violet-600",
+      "iconEmoji": "🧮",
+      "isHot": true,
+      "isFree": true,
+      "isNew": true,
+      "badges": ["HOT", "무료 도구"],
+      "descKo": "시급과 근무시간만 입력하면 주휴수당과 4대보험/3.3% 공제액을 1초 만에 자동 계산합니다.",
+      "descEn": "Automatically calculate weekly holiday allowances and 4 major insurances/3.3% deductions in seconds just by entering hourly wage and working hours.",
+      "tagsKo": ["알바계산기", "주휴수당", "실수령액", "급여계산"],
+      "tagsEn": ["PartTimeCalc", "HolidayPay", "NetSalary", "WageCalc"],
+      "ctaTextKo": "바로 사용하기",
+      "ctaTextEn": "Use Tool Now",
+      "actionType": "modal",
+      "targetModal": "wage-calc"
+    }
+  ]
+}

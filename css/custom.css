@@ -1554,3 +1554,444 @@ html.dark .guide-cs-btn-secondary:hover,
 .guide-cta-download-btn svg {
   flex-shrink: 0;
 }
+
+/* ═════════════════════════════════════════════════════════════
+   대분류 세그먼트 탭 (Major Section Segment Control)
+   모바일 앱 ↔ 웹 도구
+═════════════════════════════════════════════════════════════ */
+#main-tabs-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-segment-control-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 0.25rem auto 0.75rem;
+  max-width: 440px;
+  width: 100%;
+}
+
+.main-segment-tabs {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  gap: 6px;
+  position: relative;
+  user-select: none;
+}
+
+html.dark .main-segment-tabs {
+  background: #131b2c;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.main-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  color: #64748b;
+  background: transparent;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.main-tab-btn:hover:not(.active) {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+html.dark .main-tab-btn {
+  color: #94a3b8;
+}
+
+html.dark .main-tab-btn:hover:not(.active) {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Active tab style */
+.main-tab-btn.active {
+  background: #ffffff;
+  color: #4f46e5;
+  font-weight: 700;
+  border-color: rgba(79, 70, 229, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(79, 70, 229, 0.12);
+}
+
+html.dark .main-tab-btn.active {
+  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+  color: #ffffff;
+  font-weight: 700;
+  border-color: rgba(165, 180, 252, 0.35);
+  box-shadow: 0 4px 18px rgba(79, 70, 229, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.main-tab-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.main-tab-text {
+  letter-spacing: -0.01em;
+}
+
+.main-tab-pill-count {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.12rem 0.5rem;
+  border-radius: 9999px;
+  background: rgba(100, 116, 139, 0.12);
+  color: #64748b;
+  letter-spacing: 0.02em;
+}
+
+.main-tab-btn.active .main-tab-pill-count {
+  background: rgba(79, 70, 229, 0.12);
+  color: #4f46e5;
+}
+
+html.dark .main-tab-btn.active .main-tab-pill-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.main-tab-pill-count.new-pill {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+html.dark .main-tab-pill-count.new-pill {
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+html.dark .main-tab-btn.active .main-tab-pill-count.new-pill {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.45);
+}
+
+@media (max-width: 640px) {
+  .main-segment-control-wrap {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  .main-tab-btn {
+    padding: 0.55rem 0.85rem;
+    font-size: 0.86rem;
+    gap: 0.35rem;
+  }
+  .main-tab-pill-count {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.4rem;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   웹 도구 그리드 & 카드 (Web Tools Grid & Cards)
+═════════════════════════════════════════════════════════════ */
+#web-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  #web-tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.web-tool-card {
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.web-tool-card:hover {
+  transform: translateY(-4px);
+}
+
+.web-tool-cat-badge {
+  background: rgba(99, 102, 241, 0.1) !important;
+  color: #4f46e5 !important;
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+}
+
+html.dark .web-tool-cat-badge {
+  background: rgba(99, 102, 241, 0.18) !important;
+  color: #a5b4fc !important;
+  border-color: rgba(165, 180, 252, 0.3) !important;
+}
+
+/* Badges for Web Tools */
+.badge-hot {
+  background: rgba(244, 63, 94, 0.12);
+  color: #e11d48;
+  border: 1px solid rgba(244, 63, 94, 0.28);
+}
+
+html.dark .badge-hot {
+  background: rgba(244, 63, 94, 0.2);
+  color: #fb7185;
+  border-color: rgba(244, 63, 94, 0.4);
+}
+
+.badge-tool-free {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+}
+
+html.dark .badge-tool-free {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.web-tool-cta-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.28) !important;
+}
+
+.web-tool-cta-btn:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #0891b2 100%) !important;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.web-tool-cta-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.web-tool-card:hover .web-tool-cta-btn svg {
+  transform: translateX(3px);
+}
+
+/* ═════════════════════════════════════════════════════════════
+   실수령액 & 주휴수당 계산기 모달 (Wage Calculator Modal)
+═════════════════════════════════════════════════════════════ */
+#tool-wage-calc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.wage-modal-container {
+  max-width: 620px;
+  width: 100%;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  animation: modalScaleUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html.dark .wage-modal-container {
+  background: #151d2a;
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.75);
+}
+
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.wage-modal-header {
+  padding: 1.25rem 1.5rem 1.1rem;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: #ffffff;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wage-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.wage-field-group {
+  margin-bottom: 1.35rem;
+}
+
+.wage-field-label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.45rem;
+}
+
+html.dark .wage-field-label {
+  color: #e2e8f0;
+}
+
+.wage-input {
+  width: 100%;
+  padding: 0.7rem 0.95rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 0.98rem;
+  font-weight: 600;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.wage-input:focus {
+  background: #ffffff;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+html.dark .wage-input {
+  background: #0f172a;
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+}
+
+html.dark .wage-input:focus {
+  background: #172133;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+}
+
+.wage-chip-btn {
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid #cbd5e1;
+  background: #f1f5f9;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.wage-chip-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+  border-color: #94a3b8;
+}
+
+html.dark .wage-chip-btn {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+}
+
+html.dark .wage-chip-btn:hover {
+  background: #334155;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Radio Cards */
+.wage-radio-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+@media (max-width: 540px) {
+  .wage-radio-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wage-radio-label {
+  display: flex;
+  flex-direction: column;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.wage-radio-label:has(input:checked) {
+  border-color: #4f46e5;
+  background: rgba(79, 70, 229, 0.06);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+html.dark .wage-radio-label {
+  background: #0f172a;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html.dark .wage-radio-label:has(input:checked) {
+  border-color: #818cf8;
+  background: rgba(99, 102, 241, 0.16);
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.25);
+}
+
+/* Calculation Result Box */
+.wage-result-card {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  border: 1.5px solid #c7d2fe;
+}
+
+html.dark .wage-result-card {
+  background: linear-gradient(135deg, #131b2e 0%, #1e1b4b 100%);
+  border-color: rgba(129, 140, 248, 0.35);
+}
+
+.wage-highlight-value {
+  font-size: 1.85rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+html.dark .wage-highlight-value {
+  background: linear-gradient(135deg, #818cf8 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
