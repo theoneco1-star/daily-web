@@ -136,59 +136,98 @@ function getFilteredApps() {
   });
 }
 
+function updateTabBadges() {
+  const badgeAppsList = document.querySelectorAll(".badge-apps-count, #badge-apps-count");
+  badgeAppsList.forEach(b => {
+    if (typeof appsData !== "undefined") {
+      b.textContent = `${appsData.length}+`;
+    }
+  });
+
+  const availableTools = typeof getAvailableWebTools === "function"
+    ? getAvailableWebTools()
+    : [];
+  const visibleToolsCount = availableTools.length;
+
+  const badgeToolsList = document.querySelectorAll(".badge-tools-count, #badge-tools-count");
+  badgeToolsList.forEach(b => {
+    b.textContent = String(visibleToolsCount);
+    if (visibleToolsCount > 0) {
+      b.classList.add("new-badge");
+    } else {
+      b.classList.remove("new-badge");
+    }
+  });
+}
+
 function updateHeroCount() {
-  if (!heroCount) return;
-  if (currentMainTab === "apps") {
-    const filtered = getFilteredApps();
-    const totalCount = typeof appsData !== "undefined" ? appsData.length : 0;
-    heroCount.textContent = searchQuery
-      ? `${filtered.length} ${t("hero.resultsFound")}`
-      : `${totalCount} ${t("hero.totalApps")}`;
-  } else {
-    const filteredTools = typeof getFilteredWebTools === "function" ? getFilteredWebTools() : [];
-    const totalTools = typeof webToolsData !== "undefined" ? webToolsData.length : 0;
-    const countLabel = t("webTools.heroCount") || (currentLang === "ko" ? "개의 웹 도구" : "web tools");
-    const foundLabel = t("webTools.resultsFound") || (currentLang === "ko" ? "개 검색됨" : "results found");
-    heroCount.textContent = searchQuery
-      ? `${filteredTools.length} ${foundLabel}`
-      : `${totalTools} ${countLabel}`;
+  const filteredApps = getFilteredApps();
+  const totalApps = typeof appsData !== "undefined" ? appsData.length : 0;
+  const filteredTools = typeof getFilteredWebTools === "function" ? getFilteredWebTools() : [];
+  const availableTools = typeof getAvailableWebTools === "function" ? getAvailableWebTools() : [];
+  const totalTools = availableTools.length;
+
+  const appCountText = searchQuery
+    ? `${filteredApps.length} ${t("hero.resultsFound")}`
+    : `${totalApps} ${t("hero.totalApps")}`;
+
+  const toolCountLabel = t("webTools.heroCount") || (currentLang === "ko" ? "개의 웹 도구" : "web tools");
+  const toolFoundLabel = t("webTools.resultsFound") || (currentLang === "ko" ? "개 검색됨" : "results found");
+  const toolCountText = searchQuery
+    ? `${filteredTools.length} ${toolFoundLabel}`
+    : `${totalTools} ${toolCountLabel}`;
+
+  const appsCountBadge = document.getElementById("apps-count-badge");
+  if (appsCountBadge) {
+    appsCountBadge.textContent = appCountText;
   }
+  const toolsCountBadge = document.getElementById("tools-count-badge");
+  if (toolsCountBadge) {
+    toolsCountBadge.textContent = toolCountText;
+  }
+  if (heroCount) {
+    heroCount.textContent = currentMainTab === "apps" ? appCountText : toolCountText;
+  }
+  updateTabBadges();
 }
 
 // ── Major Tab Switching (모바일 앱 ↔ 웹 도구) ─────────────
 function switchMainTab(tab) {
+  // If user is viewing a sub-page (guide, about, etc.), return to main page
+  if (typeof pageMain !== "undefined" && pageMain && pageMain.classList.contains("hidden")) {
+    showPage("main");
+  }
+
   currentMainTab = tab;
-  const btnApps = document.getElementById("tab-btn-apps");
-  const btnTools = document.getElementById("tab-btn-tools");
+  const isApps = (tab === "apps");
+
+  const appBtns = document.querySelectorAll(".tab-btn-apps, #tab-btn-apps");
+  const toolBtns = document.querySelectorAll(".tab-btn-tools, #tab-btn-tools");
+  const appsContainer = document.getElementById("apps-container");
   const catSec = document.getElementById("category-section");
   const appGridEl = document.getElementById("app-grid");
+  const proofBar = document.getElementById("proof-bar");
   const toolsSec = document.getElementById("web-tools-section");
 
-  if (tab === "apps") {
-    if (btnApps) {
-      btnApps.classList.add("active");
-      btnApps.setAttribute("aria-selected", "true");
-    }
-    if (btnTools) {
-      btnTools.classList.remove("active");
-      btnTools.setAttribute("aria-selected", "false");
-    }
-    if (catSec) catSec.classList.remove("hidden");
-    if (appGridEl) appGridEl.classList.remove("hidden");
-    if (toolsSec) toolsSec.classList.add("hidden");
+  appBtns.forEach(btn => {
+    btn.classList.toggle("active", isApps);
+    btn.setAttribute("aria-selected", isApps ? "true" : "false");
+  });
+
+  toolBtns.forEach(btn => {
+    btn.classList.toggle("active", !isApps);
+    btn.setAttribute("aria-selected", !isApps ? "true" : "false");
+  });
+
+  if (appsContainer) appsContainer.classList.toggle("hidden", !isApps);
+  if (catSec) catSec.classList.toggle("hidden", !isApps);
+  if (appGridEl) appGridEl.classList.toggle("hidden", !isApps);
+  if (proofBar) proofBar.classList.toggle("hidden", !isApps);
+  if (toolsSec) toolsSec.classList.toggle("hidden", isApps);
+
+  if (isApps) {
     renderApps();
   } else {
-    if (btnApps) {
-      btnApps.classList.remove("active");
-      btnApps.setAttribute("aria-selected", "false");
-    }
-    if (btnTools) {
-      btnTools.classList.add("active");
-      btnTools.setAttribute("aria-selected", "true");
-    }
-    if (catSec) catSec.classList.add("hidden");
-    if (appGridEl) appGridEl.classList.add("hidden");
-    if (toolsSec) toolsSec.classList.remove("hidden");
     if (typeof renderWebTools === "function") renderWebTools();
   }
   updateHeroCount();
@@ -200,16 +239,9 @@ function renderApps() {
   applyTranslations();
   const filtered = getFilteredApps();
 
-  // Update hero count & badge counts
+  // Update hero count & badge counts across desktop and mobile
   updateHeroCount();
-  const badgeApps = document.getElementById("badge-apps-count");
-  if (badgeApps && typeof appsData !== "undefined") {
-    badgeApps.textContent = `${appsData.length}+`;
-  }
-  const badgeTools = document.getElementById("badge-tools-count");
-  if (badgeTools && typeof webToolsData !== "undefined") {
-    badgeTools.textContent = `${webToolsData.length}`;
-  }
+  updateTabBadges();
 
   if (filtered.length === 0) {
     const isNoApps = typeof appsData === "undefined" || appsData.length === 0;

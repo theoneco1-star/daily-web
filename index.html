@@ -47,7 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css?v=3.2" />
+  <link rel="stylesheet" href="css/custom.css?v=3.4" />
 
   <!-- High Visibility Card Styles (Guaranteed Override) -->
   <style>
@@ -102,25 +102,53 @@
 ════════════════════════════════════════════ -->
 <header class="site-header">
   <div class="header-inner">
-    <!-- Logo + Brand -->
-    <button onclick="showPage('main'); showPage('main')" class="header-logo-btn" style="background:none;border:none;cursor:pointer;padding:0;">
-      <div class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
-           style="background: linear-gradient(135deg, #312e81 0%, #4338ca 50%, #4f46e5 100%); box-shadow: 0 2px 6px -1px rgba(67, 56, 202, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.12);">
-        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-          <path d="M5 3v4"/>
-          <path d="M19 17v4"/>
-          <path d="M3 5h4"/>
-          <path d="M17 19h4"/>
-        </svg>
-      </div>
-      <div class="brand-text-group">
-        <div class="logo-text" data-i18n="brand">일상의도움</div>
-        <div class="slogan-text" data-i18n="slogan">당신의 삶을 풍요롭게 합니다</div>
-      </div>
-    </button>
+    <!-- Left: Logo + Brand & Desktop GNB Navigation -->
+    <div class="header-left-group">
+      <button onclick="showPage('main')" class="header-logo-btn" style="background:none;border:none;cursor:pointer;padding:0;">
+        <div class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
+             style="background: linear-gradient(135deg, #312e81 0%, #4338ca 50%, #4f46e5 100%); box-shadow: 0 2px 6px -1px rgba(67, 56, 202, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.12);">
+          <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+            <path d="M5 3v4"/>
+            <path d="M19 17v4"/>
+            <path d="M3 5h4"/>
+            <path d="M17 19h4"/>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <div class="logo-text" data-i18n="brand">일상의도움</div>
+          <div class="slogan-text" data-i18n="slogan">당신의 삶을 풍요롭게 합니다</div>
+        </div>
+      </button>
 
-    <!-- Controls -->
+      <!-- Desktop GNB Navigation (PC: 로고 바로 우측에 깔끔한 탭 메뉴 배치) -->
+      <nav class="desktop-gnb-nav" aria-label="주요 서비스 탐색" role="tablist">
+        <button type="button"
+                id="tab-btn-apps"
+                class="gnb-tab-btn tab-btn-apps active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="apps-container"
+                onclick="switchMainTab('apps')">
+          <span class="gnb-tab-icon">📱</span>
+          <span class="gnb-tab-text" data-i18n="tabs.mobileApps">모바일 앱</span>
+          <span class="gnb-tab-badge badge-apps-count" id="badge-apps-count">10+</span>
+        </button>
+        <button type="button"
+                id="tab-btn-tools"
+                class="gnb-tab-btn tab-btn-tools"
+                role="tab"
+                aria-selected="false"
+                aria-controls="web-tools-section"
+                onclick="switchMainTab('tools')">
+          <span class="gnb-tab-icon">⚡</span>
+          <span class="gnb-tab-text" data-i18n="tabs.webTools">웹 도구</span>
+          <span class="gnb-tab-badge new-badge badge-tools-count" id="badge-tools-count">1</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Right: Controls -->
     <div class="flex items-center gap-2 shrink-0">
       <!-- Lang Toggle -->
       <div class="flex items-center rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
@@ -132,6 +160,32 @@
       <button id="dark-toggle" onclick="toggleDark()" aria-label="Toggle dark mode"></button>
     </div>
   </div>
+
+  <!-- Mobile Sub-nav bar (모바일: 상단 헤더 바로 아래 얇은 고정 탭 바로 한 손 즉각 전환) -->
+  <nav class="mobile-subnav-bar" aria-label="모바일 주요 서비스 탐색" role="tablist">
+    <div class="mobile-subnav-inner">
+      <button type="button"
+              class="mobile-subnav-btn tab-btn-apps active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="apps-container"
+              onclick="switchMainTab('apps')">
+        <span class="subnav-icon">📱</span>
+        <span class="subnav-text" data-i18n="tabs.mobileApps">모바일 앱</span>
+        <span class="subnav-badge badge-apps-count">10+</span>
+      </button>
+      <button type="button"
+              class="mobile-subnav-btn tab-btn-tools"
+              role="tab"
+              aria-selected="false"
+              aria-controls="web-tools-section"
+              onclick="switchMainTab('tools')">
+        <span class="subnav-icon">⚡</span>
+        <span class="subnav-text" data-i18n="tabs.webTools">웹 도구</span>
+        <span class="subnav-badge new-badge badge-tools-count">1</span>
+      </button>
+    </div>
+  </nav>
 </header>
 
 <!-- ══════════════════════════════════════════
@@ -139,9 +193,9 @@
 ════════════════════════════════════════════ -->
 <div id="page-main">
 
-  <!-- Hero Section -->
+  <!-- Hero Section (슬림 & 컴팩트 다이어트) -->
   <section class="hero-section">
-    <div class="relative z-10 text-center max-w-2xl mx-auto">
+    <div class="relative z-10 text-center max-w-xl mx-auto">
       <h1 class="hero-title">
         <span data-i18n="hero.titlePrefix">일상을 더</span>
         <span class="hero-title-badge" data-i18n="hero.titleHighlight">스마트하게</span>
@@ -149,83 +203,69 @@
       <p class="hero-sub" data-i18n="hero.subtitle">검증된 안드로이드 앱과 유용한 도구로 당신의 하루를 업그레이드하세요.</p>
       <!-- Search -->
       <div class="search-wrap">
-        <svg class="search-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="search-icon w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
         </svg>
         <input id="search-input" type="search" class="search-input"
                data-i18n-placeholder="hero.searchPlaceholder"
-               placeholder="앱 이름 또는 기능으로 검색..." />
-      </div>
-      <p class="text-white/70 text-sm mt-1.5">
-        <span id="hero-count"></span>
-      </p>
-    </div>
-  </section>
-
-  <!-- ═══ Social Proof Bar ═══ -->
-  <div class="proof-bar overflow-x-visible sm:overflow-x-auto" id="proof-bar">
-    <div class="proof-bar-inner flex flex-wrap sm:flex-nowrap justify-center items-center gap-2 sm:gap-7">
-      <div class="proof-item whitespace-nowrap">
-        <span class="proof-item-icon">📱</span>
-        <span class="proof-item-text" data-i18n="proof.apps">10+ 유용한 스마트폰 앱</span>
-      </div>
-      <div class="proof-item whitespace-nowrap">
-        <span class="proof-item-icon">🛡️</span>
-        <span class="proof-item-text" data-i18n="proof.free">100% 무료 &amp; 안전한 도구</span>
-      </div>
-      <div class="proof-item whitespace-nowrap">
-        <span class="proof-item-icon">🔄</span>
-        <span class="proof-item-text" data-i18n="proof.update">주기적인 신규 앱 업데이트</span>
-      </div>
-      <button type="button" id="btn-app-guide" onclick="showPage('guide')" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 shadow-sm dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-700/50 dark:hover:bg-blue-900/50 whitespace-nowrap">
-        <span data-i18n="appGuideText">📖 앱 가이드</span>
-        <span class="text-[11px] font-bold">→</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- ═══ Major Section Segment Tabs (모바일 앱 / 웹 도구 대분류 탭) ═══ -->
-  <section class="container pt-3 pb-1" id="main-tabs-section" aria-label="Main Section Selector">
-    <div class="main-segment-control-wrap">
-      <div class="main-segment-tabs" role="tablist" aria-label="Section Tabs">
-        <button type="button"
-                id="tab-btn-apps"
-                class="main-tab-btn active"
-                role="tab"
-                aria-selected="true"
-                aria-controls="app-grid"
-                onclick="switchMainTab('apps')">
-          <span class="main-tab-icon">📱</span>
-          <span class="main-tab-text" data-i18n="tabs.mobileApps">모바일 앱</span>
-          <span class="main-tab-pill-count" id="badge-apps-count">10+</span>
-        </button>
-        <button type="button"
-                id="tab-btn-tools"
-                class="main-tab-btn"
-                role="tab"
-                aria-selected="false"
-                aria-controls="web-tools-section"
-                onclick="switchMainTab('tools')">
-          <span class="main-tab-icon">⚡</span>
-          <span class="main-tab-text" data-i18n="tabs.webTools">웹 도구</span>
-          <span class="main-tab-pill-count new-pill" id="badge-tools-count">NEW</span>
-        </button>
+               placeholder="앱 또는 도구 이름 검색..." />
       </div>
     </div>
   </section>
-
-  <!-- Category Filters — 광고 제거, Hero와 직접 연결 (모바일 앱 전용) -->
-  <div class="container pt-2 pb-0" id="category-section">
-    <div id="category-filters"></div>
-  </div>
 
   <!-- App Grid & Web Tools Grid Container -->
-  <main class="container pt-2 pb-10">
-    <!-- 1) Mobile Apps Grid -->
-    <div id="app-grid"></div>
+  <main class="container pt-2.5 pb-10">
 
-    <!-- 2) Web Tools Grid (웹 도구 섹션) -->
+    <!-- 1) Mobile Apps Section Area (모바일 앱 탭 전용) -->
+    <div id="apps-container">
+      <!-- Category Filter & List Count Bar -->
+      <div class="category-header-wrap" id="category-section">
+        <div id="category-filters"></div>
+        <div class="list-meta-count shrink-0">
+          <span id="apps-count-badge" class="list-count-badge"></span>
+        </div>
+      </div>
+
+      <!-- Slim Social Proof Bar (모바일 앱 활성화 시에만 카드 목록 상단에 자연스럽게 노출) -->
+      <div class="proof-bar" id="proof-bar">
+        <div class="proof-bar-inner">
+          <div class="proof-item">
+            <span class="proof-item-icon">📱</span>
+            <span class="proof-item-text" data-i18n="proof.apps">10+ 유용한 스마트폰 앱</span>
+          </div>
+          <span class="proof-divider">·</span>
+          <div class="proof-item">
+            <span class="proof-item-icon">🛡️</span>
+            <span class="proof-item-text" data-i18n="proof.free">100% 무료 &amp; 안전한 도구</span>
+          </div>
+          <span class="proof-divider hidden sm:inline">·</span>
+          <div class="proof-item hidden sm:inline-flex">
+            <span class="proof-item-icon">🔄</span>
+            <span class="proof-item-text" data-i18n="proof.update">주기적인 신규 앱 업데이트</span>
+          </div>
+          <span class="proof-divider">·</span>
+          <button type="button" id="btn-app-guide" onclick="showPage('guide')" class="proof-guide-pill">
+            <span data-i18n="appGuideText">📖 앱 가이드</span>
+            <span class="text-[11px] font-bold">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Apps Grid -->
+      <div id="app-grid"></div>
+    </div>
+
+    <!-- 2) Web Tools Grid (웹 도구 섹션 - 대분류 웹 도구 선택 시 표시) -->
     <section id="web-tools-section" class="hidden" aria-label="Web Tools Section">
+      <div class="web-tools-header-wrap mb-3 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
+        <div class="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+          <span>⚡</span>
+          <span data-i18n="webTools.sectionTitle">설치 없이 브라우저에서 바로 사용하는 실용 웹 도구</span>
+        </div>
+        <div class="list-meta-count shrink-0">
+          <span id="tools-count-badge" class="list-count-badge"></span>
+        </div>
+      </div>
       <div id="web-tools-grid"></div>
     </section>
   </main>
@@ -517,10 +557,10 @@
 <!-- ══════════════════════════════════════════
      SCRIPTS
 ════════════════════════════════════════════ -->
-<script src="js/i18n.js?v=2.7"></script>
-<script src="js/apps.js?v=2.7"></script>
-<script src="js/web-tools.js?v=2.7"></script>
-<script src="js/main.js?v=2.7"></script>
+<script src="js/i18n.js?v=2.8"></script>
+<script src="js/apps.js?v=2.8"></script>
+<script src="js/web-tools.js?v=2.8"></script>
+<script src="js/main.js?v=2.8"></script>
 
 <!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>

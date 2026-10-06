@@ -12,6 +12,7 @@ const translations = {
       webTools: "웹 도구"
     },
     webTools: {
+      sectionTitle: "설치 없이 브라우저에서 바로 사용하는 실용 웹 도구",
       heroCount: "개의 웹 도구",
       resultsFound: "개 웹 도구 검색됨",
       badgeHot: "HOT",
@@ -19,6 +20,8 @@ const translations = {
       useToolBtn: "바로 사용하기",
       emptyTitle: "검색된 웹 도구가 없습니다",
       emptySubtitle: "다른 키워드로 검색해 보세요.",
+      globalComingSoonTitle: "New Global Web Tools Coming Soon!",
+      globalComingSoonSubtitle: "전 세계 사용자를 위한 유용한 온라인 도구를 준비하고 있습니다.",
       wageCalc: {
         title: "실수령액 & 주휴수당 계산기",
         subtitle: "2026년 최저시급(10,030원) 기준 알바 및 근로소득 자동 계산",
@@ -46,9 +49,14 @@ const translations = {
       titlePrefix: "일상을 더",
       titleHighlight: "스마트하게",
       subtitle: "검증된 안드로이드 앱과 유용한 도구로 당신의 하루를 업그레이드하세요.",
-      searchPlaceholder: "앱 이름 또는 기능으로 검색...",
+      searchPlaceholder: "앱 또는 도구 이름 검색...",
       totalApps: "개의 앱",
       resultsFound: "개 검색됨",
+    },
+    proof: {
+      apps: "10+ 유용한 스마트폰 앱",
+      free: "100% 무료 & 안전한 도구",
+      update: "주기적인 신규 앱 업데이트"
     },
     categories: { all: "전체", tools: "도구/업무", utility: "유틸리티", daily: "일상/일정", games: "게임", game: "게임" },
     card: { detailBtn: "상세보기 & 다운로드", freeTag: "무료", newTag: "신규", featuredTag: "추천", comingSoonBadge: "준비중", comingSoonBtn: "출시 예정" },
@@ -451,6 +459,7 @@ const translations = {
       webTools: "Web Tools"
     },
     webTools: {
+      sectionTitle: "Practical web tools ready in your browser",
       heroCount: "web tools available",
       resultsFound: "web tools found",
       badgeHot: "HOT",
@@ -458,6 +467,8 @@ const translations = {
       useToolBtn: "Use Tool Now",
       emptyTitle: "No web tools found",
       emptySubtitle: "Try searching with a different keyword.",
+      globalComingSoonTitle: "New Global Web Tools Coming Soon!",
+      globalComingSoonSubtitle: "We are currently preparing useful online tools for global users.",
       wageCalc: {
         title: "Net Salary & Holiday Allowance Calculator",
         subtitle: "Hourly wage & statutory holiday allowance calculator",
@@ -485,9 +496,14 @@ const translations = {
       titlePrefix: "Make Daily Life",
       titleHighlight: "Smarter",
       subtitle: "Upgrade your daily routine with handpicked Android apps and essential tools.",
-      searchPlaceholder: "Search by app name or feature...",
+      searchPlaceholder: "Search apps or tools...",
       totalApps: "apps available",
       resultsFound: "results found",
+    },
+    proof: {
+      apps: "10+ Useful Android Apps",
+      free: "100% Free & Secure Tools",
+      update: "Regular App Updates"
     },
     categories: { all: "All", tools: "Tools & Work", utility: "Utility", daily: "Daily & Routine", games: "Games", game: "Games" },
     card: { detailBtn: "Details & Download", freeTag: "Free", newTag: "New", featuredTag: "Featured", comingSoonBadge: "Coming Soon", comingSoonBtn: "Coming Soon" },
@@ -912,6 +928,8 @@ function setLang(lang) {
   if (typeof renderApps === "function") renderApps();
   if (typeof updateLangToggle === "function") updateLangToggle();
   if (typeof renderWebTools === "function") renderWebTools();
+  if (typeof updateHeroCount === "function") updateHeroCount();
+  if (typeof updateTabBadges === "function") updateTabBadges();
   if (typeof calculateWage === "function") calculateWage();
   if (typeof renderGuideSubtabs === "function") renderGuideSubtabs();
   if (typeof renderGuideContent === "function") renderGuideContent();

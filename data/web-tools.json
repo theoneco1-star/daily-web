@@ -9,6 +9,8 @@
       "id": "wage-calc",
       "nameKo": "실수령액 & 주휴수당 계산기",
       "nameEn": "Net Salary & Holiday Allowance Calculator",
+      "targetLang": "KO",
+      "isKrOnly": true,
       "category": "salary",
       "color": "from-blue-600 via-indigo-600 to-violet-600",
       "iconEmoji": "🧮",

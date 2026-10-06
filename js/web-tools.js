@@ -9,6 +9,8 @@ let webToolsData = [
     id: "wage-calc",
     nameKo: "실수령액 & 주휴수당 계산기",
     nameEn: "Net Salary & Holiday Allowance Calculator",
+    targetLang: "KO",
+    isKrOnly: true,
     category: "salary",
     color: "from-blue-600 via-indigo-600 to-violet-600",
     iconEmoji: "🧮",
@@ -51,17 +53,59 @@ async function loadWebToolsData() {
   } catch (err) {
     console.warn("Using default webToolsData fallback:", err);
   }
+  if (typeof updateTabBadges === "function") {
+    updateTabBadges();
+  }
+  if (typeof updateHeroCount === "function") {
+    updateHeroCount();
+  }
   return webToolsData;
 }
 
 /**
- * Filter web tools by search query
+ * Check if a web tool is available for the given language ('ko' or 'en')
+ * - KO mode: Shows tools with targetLang 'KO', 'ALL', isKrOnly: true, or default
+ * - EN mode: Hides tools with targetLang 'KO' or isKrOnly: true. Shows 'ALL' or 'EN'
+ */
+function isToolAvailableForLang(tool, lang) {
+  if (!tool) return false;
+  const currentLanguage = lang || (typeof currentLang !== "undefined" ? currentLang : "ko");
+  const target = (tool.targetLang || "").toUpperCase();
+  const isKrOnly = tool.isKrOnly === true || target === "KO" || target === "KR";
+
+  if (currentLanguage === "en") {
+    // EN mode: Filter out Korean-specific tools
+    if (isKrOnly || target === "KO" || target === "KR") {
+      return false;
+    }
+    return target === "ALL" || target === "EN" || (!target && !tool.isKrOnly);
+  }
+
+  // KO mode: Hide EN-only tools if any, otherwise visible
+  if (target === "EN") {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Get all web tools available for the active language
+ */
+function getAvailableWebTools(lang) {
+  if (!Array.isArray(webToolsData)) return [];
+  const currentLanguage = lang || (typeof currentLang !== "undefined" ? currentLang : "ko");
+  return webToolsData.filter((tool) => isToolAvailableForLang(tool, currentLanguage));
+}
+
+/**
+ * Filter available web tools by search query
  */
 function getFilteredWebTools() {
+  const available = getAvailableWebTools();
   const query = typeof searchQuery !== "undefined" ? searchQuery.toLowerCase().trim() : "";
-  if (!query) return webToolsData;
+  if (!query) return available;
 
-  return webToolsData.filter((tool) => {
+  return available.filter((tool) => {
     const name = (currentLang === "ko" ? tool.nameKo : tool.nameEn).toLowerCase();
     const desc = (currentLang === "ko" ? tool.descKo : tool.descEn).toLowerCase();
     const tagsArr = (currentLang === "ko" ? tool.tagsKo : tool.tagsEn) || [];
@@ -77,34 +121,69 @@ function renderWebTools() {
   const toolsGrid = document.getElementById("web-tools-grid");
   if (!toolsGrid) return;
 
+  const available = getAvailableWebTools();
   const filtered = getFilteredWebTools();
 
-  // Update hero count when in tools tab
-  if (typeof currentMainTab !== "undefined" && currentMainTab === "tools") {
-    const heroCountEl = document.getElementById("hero-count");
-    if (heroCountEl) {
-      const totalCount = webToolsData.length;
-      const countLabel = t("webTools.heroCount") || (currentLang === "ko" ? "개의 웹 도구" : "web tools");
-      const foundLabel = t("webTools.resultsFound") || (currentLang === "ko" ? "개 검색됨" : "results found");
-      heroCountEl.textContent = searchQuery
-        ? `${filtered.length} ${foundLabel}`
-        : `${totalCount} ${countLabel}`;
-    }
+  // Update count badges across header and hero
+  if (typeof updateTabBadges === "function") {
+    updateTabBadges();
+  }
+  if (typeof updateHeroCount === "function") {
+    updateHeroCount();
   }
 
+  // Case 1: When 0 tools are available for current language (e.g. EN mode)
+  if (available.length === 0) {
+    const isEn = (typeof currentLang !== "undefined" ? currentLang : "ko") === "en";
+    const comingSoonTitle = isEn
+      ? "New Global Web Tools Coming Soon!"
+      : (t("webTools.globalComingSoonTitle") || "새로운 글로벌 웹 도구가 곧 출시됩니다!");
+    const comingSoonSubtitle = isEn
+      ? "We are currently preparing useful online tools for global users."
+      : (t("webTools.globalComingSoonSubtitle") || "전 세계 사용자를 위한 유용한 온라인 도구를 준비하고 있습니다.");
+
+    toolsGrid.innerHTML = `
+      <div class="col-span-full">
+        <div class="web-tools-coming-soon-card">
+          <div class="coming-soon-badge-wrap">
+            <span class="coming-soon-pill">
+              <span class="coming-soon-pulse-dot"></span>
+              <span>GLOBAL WEB TOOLS</span>
+            </span>
+          </div>
+          <div class="coming-soon-icon-wrap">
+            <div class="coming-soon-icon-glow"></div>
+            <span class="coming-soon-icon">🌐</span>
+          </div>
+          <h3 class="coming-soon-title">${comingSoonTitle}</h3>
+          <p class="coming-soon-sub">${comingSoonSubtitle}</p>
+          <div class="coming-soon-preview-label">Upcoming Utilities</div>
+          <div class="coming-soon-tags">
+            <span class="coming-soon-tag"><span>🕒</span> World Time & Timezone</span>
+            <span class="coming-soon-tag"><span>💱</span> Currency & Exchange Rate</span>
+            <span class="coming-soon-tag"><span>📐</span> Smart Unit Converter</span>
+            <span class="coming-soon-tag"><span>📝</span> Markdown & JSON Tools</span>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  // Case 2: Tools are available, but search query yielded 0 results
   if (filtered.length === 0) {
     const emptyTitle = t("webTools.emptyTitle") || (currentLang === "ko" ? "검색된 웹 도구가 없습니다" : "No web tools found");
     const emptySub = t("webTools.emptySubtitle") || (currentLang === "ko" ? "다른 키워드로 검색해 보세요." : "Try a different search term.");
 
     toolsGrid.innerHTML = `
       <div class="col-span-full flex flex-col items-center justify-center py-20 text-center">
-        <div class="text-6xl mb-4">⚡</div>
+        <div class="text-6xl mb-4">🔍</div>
         <h3 class="text-xl font-semibold text-slate-700 dark:text-slate-200 mb-2">${emptyTitle}</h3>
         <p class="text-slate-500 dark:text-slate-400">${emptySub}</p>
       </div>`;
     return;
   }
 
+  // Case 3: Render visible tool cards
   let html = "";
   filtered.forEach((tool) => {
     html += buildWebToolCard(tool);
