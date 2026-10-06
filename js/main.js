@@ -725,7 +725,12 @@ function initScrollHeader() {
 function checkDeepLinks() {
   try {
     const rawHash = (window.location.hash || "").trim().toLowerCase();
-    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    let hash = "";
+    try {
+      hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    } catch (_) {
+      hash = rawHash.replace(/^#/, "");
+    }
     const params = new URLSearchParams(window.location.search);
     const toolParam = (params.get("tool") || params.get("calc") || "").trim().toLowerCase();
 
@@ -746,10 +751,10 @@ function checkDeepLinks() {
       if (typeof switchMainTab === "function") {
         switchMainTab("tools");
       }
-      if (typeof openWageCalcModal === "function") {
-        setTimeout(() => {
-          openWageCalcModal();
-        }, 60);
+      const openWage = (typeof openWageCalcModal === "function") ? openWageCalcModal : window.openWageCalcModal;
+      if (typeof openWage === "function") {
+        openWage();
+        setTimeout(openWage, 60);
       }
     }
 
@@ -759,10 +764,18 @@ function checkDeepLinks() {
       "byte-counter",
       "character-counter",
       "word-counter",
+      "charbytecounter",
+      "charbyte",
       "글자수세기",
       "글자수계산기",
       "바이트계산기",
-      "자소서글자수"
+      "자소서글자수",
+      "자소서글자수세기",
+      "자소서바이트",
+      "자소서-글자수",
+      "자소서",
+      "글자수",
+      "바이트"
     ];
 
     if (charByteAliases.includes(hash) || charByteAliases.includes(toolParam)) {
@@ -772,10 +785,10 @@ function checkDeepLinks() {
       if (typeof switchMainTab === "function") {
         switchMainTab("tools");
       }
-      if (typeof openCharByteModal === "function") {
-        setTimeout(() => {
-          openCharByteModal();
-        }, 60);
+      const openChar = (typeof openCharByteModal === "function") ? openCharByteModal : window.openCharByteModal;
+      if (typeof openChar === "function") {
+        openChar();
+        setTimeout(openChar, 60);
       }
     }
   } catch (err) {
@@ -786,12 +799,15 @@ function checkDeepLinks() {
 function initDeepLinks() {
   checkDeepLinks();
   window.addEventListener("hashchange", checkDeepLinks);
+  window.addEventListener("load", checkDeepLinks);
 }
 
 // ── Init ──────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
   initDarkMode();
   updateLangToggle();
+  // Immediate trigger for direct hash link entry
+  initDeepLinks();
   await loadAppsData();
   if (typeof loadWebToolsData === "function") {
     await loadWebToolsData();
@@ -810,7 +826,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderGuideContent();
   initSearch();
   initScrollHeader();
-  initDeepLinks();
+  // Re-verify after data load and render
+  checkDeepLinks();
   if (typeof updateCharByteStats === "function") {
     updateCharByteStats();
   }
