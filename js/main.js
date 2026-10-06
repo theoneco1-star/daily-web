@@ -678,12 +678,9 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeModal();
 });
 
-// Close modal on overlay click
-if (modal) {
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-}
+// 모달 외부 어두운 배경(오버레이) 클릭 시 창 닫힘 차단
+// (우측 상단 X 버튼과 하단 닫기 버튼으로만 닫히도록 overlay click 이벤트 핸들러 제거)
+
 
 // ── Scroll to Category (Header Quick Menu) ────────────────
 /**

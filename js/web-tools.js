@@ -258,6 +258,22 @@ function handleWebToolAction(toolId) {
 
 const MIN_HOURLY_WAGE_2026 = 10320; // 2026 대한민국 고용노동부 법정 최저시급 고시
 
+// Storage cache sanitation (구버전 10030/10,030 캐시 강제 무효화 및 10320 통일)
+try {
+  ["dh_wage", "wage", "hourlyWage", "min_wage", "minWage"].forEach((key) => {
+    const lVal = localStorage.getItem(key);
+    if (lVal === "10030" || lVal === "10,030") {
+      localStorage.setItem(key, "10320");
+    }
+    const sVal = sessionStorage.getItem(key);
+    if (sVal === "10030" || sVal === "10,030") {
+      sessionStorage.setItem(key, "10320");
+    }
+  });
+} catch (e) {
+  // Ignore storage errors in restricted iframe/browser modes
+}
+
 let wageCalcState = {
   hourlyWage: MIN_HOURLY_WAGE_2026,
   weeklyHours: 40,
@@ -278,7 +294,7 @@ function openWageCalcModal() {
   const inputDays = document.getElementById("wage-input-days");
 
   if (inputWage) {
-    if (!wageCalcState.hourlyWage || isNaN(wageCalcState.hourlyWage) || wageCalcState.hourlyWage <= 0) {
+    if (!wageCalcState.hourlyWage || isNaN(wageCalcState.hourlyWage) || wageCalcState.hourlyWage <= 0 || wageCalcState.hourlyWage === 10030) {
       wageCalcState.hourlyWage = MIN_HOURLY_WAGE_2026;
     }
     inputWage.value = wageCalcState.hourlyWage;
@@ -309,7 +325,7 @@ function openWageCalcModal() {
   document.body.style.overflow = "hidden";
 
   setTimeout(() => {
-    const panel = modal.querySelector(".modal-panel");
+    const panel = modal.querySelector(".wage-modal-container, .modal-panel");
     if (panel) panel.classList.add("modal-open");
   }, 10);
 }
@@ -321,7 +337,7 @@ function closeWageCalcModal() {
   const modal = document.getElementById("tool-wage-calc-modal");
   if (!modal) return;
 
-  const panel = modal.querySelector(".modal-panel");
+  const panel = modal.querySelector(".wage-modal-container, .modal-panel");
   if (panel) panel.classList.remove("modal-open");
 
   setTimeout(() => {
