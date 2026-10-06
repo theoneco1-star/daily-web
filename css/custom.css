@@ -2078,7 +2078,7 @@ html.dark .wage-accordion-content {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(15, 23, 42, 0.72);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   align-items: center;
@@ -2088,19 +2088,19 @@ html.dark .wage-accordion-content {
 }
 
 .char-modal-container {
-  max-width: 680px;
+  max-width: 56rem;
   width: 100%;
 }
 
 .char-textarea {
   width: 100%;
-  min-height: 180px;
-  padding: 0.95rem 1.1rem;
-  font-size: 0.92rem;
-  line-height: 1.68;
-  color: #1e293b;
-  background: #f8fafc;
-  border: 1.5px solid #cbd5e1;
+  min-height: 320px;
+  padding: 1rem 1.15rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #f8fafc;
+  background: #090e17;
+  border: 1.5px solid #334155;
   border-radius: 0.875rem;
   resize: vertical;
   outline: none;
@@ -2109,21 +2109,54 @@ html.dark .wage-accordion-content {
 }
 
 .char-textarea:focus {
-  background: #ffffff;
-  border-color: #059669;
-  box-shadow: 0 0 0 3.5px rgba(16, 185, 129, 0.18);
+  background: #0f172a;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3.5px rgba(16, 185, 129, 0.22);
 }
 
 html.dark .char-textarea {
-  background: #0b1120;
-  color: #f1f5f9;
-  border-color: rgba(255, 255, 255, 0.14);
+  background: #090e17;
+  color: #f8fafc;
+  border-color: #334155;
 }
 
 html.dark .char-textarea:focus {
   background: #0f172a;
   border-color: #34d399;
-  box-shadow: 0 0 0 3.5px rgba(52, 211, 153, 0.22);
+  box-shadow: 0 0 0 3.5px rgba(52, 211, 153, 0.25);
+}
+
+/* Blue Action Button */
+.char-btn-blue-action {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease;
+}
+
+.char-btn-blue-action:hover {
+  background: #1d4ed8 !important;
+  transform: translateY(-1px);
+}
+
+.char-btn-blue-action:active {
+  background: #1e40af !important;
+  transform: translateY(0);
+}
+
+/* Modal Body Accordion within Slate-900 Modal */
+.char-modal-body .wage-accordion-item {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+}
+
+.char-modal-body .wage-accordion-summary {
+  color: #f1f5f9;
+}
+
+.char-modal-body .wage-accordion-content {
+  color: #cbd5e1;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Tool chip buttons */

@@ -926,10 +926,10 @@ function copyCharByteStats() {
   navigator.clipboard.writeText(statsSummary).then(() => {
     if (btn) {
       btn.innerHTML = `<span>✓</span> <span>${currentLang === "ko" ? "통계 복사 완료!" : "Stats Copied!"}</span>`;
-      btn.classList.add("bg-indigo-600");
+      btn.classList.add("bg-blue-700");
       setTimeout(() => {
         btn.innerHTML = origHtml;
-        btn.classList.remove("bg-indigo-600");
+        btn.classList.remove("bg-blue-700");
       }, 1800);
     }
   }).catch((err) => {
