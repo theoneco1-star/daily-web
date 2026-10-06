@@ -52,6 +52,44 @@ const translations = {
           item3Title: "공제 방식 차이 (3.3% 프리랜서 vs 4대 보험)",
           item3Content: `<div class="space-y-1.5"><p>• <strong>3.3% 사업소득세 원천징수 (단기/프리랜서):</strong> 사업소득세 3% + 지방소득세 0.3%를 차감합니다. 단기 알바 또는 사업소득 계약 시 주로 적용되며, 매년 5월 종합소득세 신고 시 소득 구간에 따라 원천징수된 세금을 전액 환급받을 수 있습니다.</p><p>• <strong>4대 보험 (~9.4% 근로자 부담분):</strong> 국민연금(4.5%) + 건강보험(3.545%) + 노인장기요양보험(건보의 12.95%) + 고용보험(0.9%)으로 구성되어 약 9.4%가 급여에서 공제됩니다. (산재보험은 사업주가 100% 전액 부담)</p><p>• <strong>의무 가입 기준:</strong> 월 60시간(주 15시간) 이상 근무하고 1개월 이상 지속 근로하는 모든 근로자는 4대보험 가입이 법적 의무입니다.</p></div>`
         }
+      },
+      charByteCounter: {
+        title: "자소서/공문서 글자수 & Byte 변환기",
+        subtitle: "자소서·공문서 제출 규격 1초 실시간 검증",
+        desc: "공백 포함/제외 글자수 실시간 계산, 취업포털(2Byte) 및 시스템(UTF-8 3Byte) 바이트 분리 지원",
+        placeholder: "자기소개서, 이력서, 공문서 또는 레포트 본문을 여기에 붙여넣거나 직접 작성하세요.\n실시간으로 글자수와 바이트(Byte)가 자동 계산됩니다.",
+        pasteBtn: "📋 클립보드 붙여넣기",
+        clearBtn: "🗑️ 전체 지우기",
+        cleanSpacesBtn: "✨ 연속 공백 1칸으로 정리",
+        cleanLinesBtn: "↵ 빈 줄 정리",
+        copyTextBtn: "📄 텍스트 복사",
+        copyStatsBtn: "📊 통계 요약 복사",
+        statWithSpaces: "공백 포함 글자수",
+        statWithoutSpaces: "공백 제외 글자수",
+        statEucKr: "취업포털 (2Byte)",
+        statEucKrDesc: "사람인 · 잡코리아 · 인크루트 (EUC-KR)",
+        statUtf8: "시스템/공공 (3Byte)",
+        statUtf8Desc: "공공기관 · 대기업 전산시스템 (UTF-8)",
+        statWords: "단어 수",
+        statLines: "줄 수 (행)",
+        statSpaces: "공백 수",
+        unitChar: "자",
+        unitByte: "Byte",
+        unitWord: "단어",
+        unitLine: "줄",
+        copiedToast: "클립보드에 복사되었습니다!",
+        pasteError: "클립보드 읽기 권한이 없습니다. 직접 Ctrl+V로 붙여넣어 주세요.",
+        confirmClear: "입력된 내용을 모두 지우시겠습니까?",
+        guide: {
+          mainTitle: "💡 자소서 글자수 & 바이트 수 완벽 가이드",
+          badge: "제출 규격 완벽 검증",
+          item1Title: "취업포털별 바이트(Byte) 산정 기준 차이",
+          item1Content: `<div class="space-y-1.5"><p>• <strong>사람인 / 잡코리아 / 인크루트:</strong> 대부분 <strong>한글 2Byte (EUC-KR)</strong> 기준을 채택하고 있습니다. 한글 1자는 2Byte, 영문/숫자/공백(스페이스)/줄바꿈(엔터)은 1Byte로 계산됩니다.</p><p>• <strong>예시:</strong> 한글 500자 = 약 1,000Byte (공백 미포함 시), 공백 포함 시 공백 수만큼 Byte 추가.</p></div>`,
+          item2Title: "공공기관 · 대기업 채용 시스템 (UTF-8 3Byte) 주의점",
+          item2Content: `<div class="space-y-1.5"><p>• <strong>공공기관 / 웹시스템 규격:</strong> 전산 시스템 DB(Oracle, MySQL 등) 설정에 따라 <strong>UTF-8 (한글 3Byte)</strong>을 기준으로 삼는 곳이 있으므로 사전 확인이 필수입니다.</p><p>• <strong>주의사항:</strong> 3,000Byte 제한 공고 시 EUC-KR 기준으로는 한글 1,500자까지 들어가지만, UTF-8 기준 시스템에서는 1,000자만 입력되어 뒷부분이 잘릴 수 있으니 유의하세요.</p></div>`,
+          item3Title: "공백 포함 vs 제외 작성 원칙",
+          item3Content: `<div class="space-y-1.5"><p>• <strong>작성 원칙:</strong> 기업 채용 공고나 자소서 문항에 <strong>'공백 제외' 명시가 없다면 통상 '공백 포함'을 기준</strong>으로 작성하는 것이 인사담당자 및 채용 시스템의 기본 원칙입니다.</p><p>• <strong>분량 권장 팁:</strong> 제한 글자수의 <strong>85% ~ 95%</strong> 수준으로 꽉 채워 작성할 때 가장 성의 있고 완결성 높은 자소서로 평가받습니다.</p></div>`
+        }
       }
     },
     hero: {
@@ -509,6 +547,44 @@ const translations = {
           item3Title: "Difference in Deductions (3.3% Freelance vs 4 Insurances)",
           item3Content: `<div class="space-y-1.5"><p>• <strong>3.3% Business Income Tax (Freelance/Short-term):</strong> 3% national income tax + 0.3% local income tax withheld at source. Eligible for tax refund during May comprehensive income tax filing if income is below standard exemption thresholds.</p><p>• <strong>4 Major Insurances (~9.4% Employee Contribution):</strong> National Pension (4.5%) + Health Insurance (3.545%) + Long-Term Care (12.95% of health) + Employment Insurance (0.9%). (Workplace Injury Insurance is 100% paid by the employer).</p><p>• <strong>Mandatory Requirement:</strong> Any employee working 60+ hours per month (15+ hours/week) for 1 month or longer must be enrolled in all 4 insurances by law.</p></div>`
         }
+      },
+      charByteCounter: {
+        title: "Word & Character / Byte Counter",
+        subtitle: "Instant character, word, line and byte count validator",
+        desc: "Real-time character, word, line, and byte counter with whitespace clean-up tools.",
+        placeholder: "Paste or type your resume, document, essay, or text here.\nCharacter, word, and byte counts will be calculated instantly in real time.",
+        pasteBtn: "📋 Paste from Clipboard",
+        clearBtn: "🗑️ Clear All",
+        cleanSpacesBtn: "✨ Clean Spaces (Single Space)",
+        cleanLinesBtn: "↵ Clean Empty Lines",
+        copyTextBtn: "📄 Copy Text",
+        copyStatsBtn: "📊 Copy Stats Summary",
+        statWithSpaces: "Characters (with spaces)",
+        statWithoutSpaces: "Characters (no spaces)",
+        statEucKr: "Job Portals (2-Byte)",
+        statEucKrDesc: "Saramin · JobKorea standard (EUC-KR)",
+        statUtf8: "System / DB (3-Byte)",
+        statUtf8Desc: "Public & Enterprise DB standard (UTF-8)",
+        statWords: "Words",
+        statLines: "Lines",
+        statSpaces: "Spaces",
+        unitChar: "chars",
+        unitByte: "Bytes",
+        unitWord: "words",
+        unitLine: "lines",
+        copiedToast: "Copied to clipboard!",
+        pasteError: "Clipboard permission denied. Please press Ctrl+V directly.",
+        confirmClear: "Are you sure you want to clear the entire text?",
+        guide: {
+          mainTitle: "💡 Complete Guide to Character & Byte Counting",
+          badge: "Specification Guide",
+          item1Title: "Byte Differences Across Job Portals",
+          item1Content: `<div class="space-y-1.5"><p>• <strong>Saramin / JobKorea:</strong> Standard Korean job portals adopt <strong>EUC-KR (2-Byte)</strong> encoding where 1 Korean character equals 2 Bytes, and English letters, digits, spaces, and line breaks equal 1 Byte.</p><p>• <strong>Example:</strong> 500 Korean chars = approx. 1,000 Bytes (excluding spaces), plus 1 Byte per whitespace.</p></div>`,
+          item2Title: "Public Sector & Enterprise Systems (UTF-8 3-Byte)",
+          item2Content: `<div class="space-y-1.5"><p>• <strong>Database Standard:</strong> Depending on system DB settings (Oracle, MySQL, etc.), some public recruiting portals calculate Korean characters as <strong>UTF-8 (3-Byte)</strong>. Always verify portal notices beforehand.</p><p>• <strong>Caution:</strong> A 3,000-byte limit allows 1,500 Korean characters in 2-byte systems, but only 1,000 characters in 3-byte systems.</p></div>`,
+          item3Title: "With Spaces vs Without Spaces Rule",
+          item3Content: `<div class="space-y-1.5"><p>• <strong>General Rule:</strong> Unless explicitly noted as 'without spaces', recruiting limits standardly include whitespace characters.</p><p>• <strong>Ideal Word Length:</strong> Aim for <strong>85% to 95%</strong> of the maximum character allowance for optimal readability and completeness.</p></div>`
+        }
       }
     },
     hero: {
@@ -951,6 +1027,7 @@ function setLang(lang) {
   if (typeof updateHeroCount === "function") updateHeroCount();
   if (typeof updateTabBadges === "function") updateTabBadges();
   if (typeof calculateWage === "function") calculateWage();
+  if (typeof updateCharByteStats === "function") updateCharByteStats();
   if (typeof renderGuideSubtabs === "function") renderGuideSubtabs();
   if (typeof renderGuideContent === "function") renderGuideContent();
   if (typeof currentModalApp !== "undefined" && currentModalApp && typeof openModal === "function") {

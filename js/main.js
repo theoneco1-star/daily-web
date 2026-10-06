@@ -675,7 +675,11 @@ function initSearch() {
 
 // ── Event Listeners ───────────────────────────────────────
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
+  if (e.key === "Escape") {
+    closeModal();
+    if (typeof closeWageCalcModal === "function") closeWageCalcModal();
+    if (typeof closeCharByteModal === "function") closeCharByteModal();
+  }
 });
 
 // 모달 외부 어두운 배경(오버레이) 클릭 시 창 닫힘 차단
@@ -745,6 +749,32 @@ function checkDeepLinks() {
       if (typeof openWageCalcModal === "function") {
         setTimeout(() => {
           openWageCalcModal();
+        }, 60);
+      }
+    }
+
+    const charByteAliases = [
+      "char-byte-counter",
+      "char-counter",
+      "byte-counter",
+      "character-counter",
+      "word-counter",
+      "글자수세기",
+      "글자수계산기",
+      "바이트계산기",
+      "자소서글자수"
+    ];
+
+    if (charByteAliases.includes(hash) || charByteAliases.includes(toolParam)) {
+      if (typeof showPage === "function") {
+        showPage("main");
+      }
+      if (typeof switchMainTab === "function") {
+        switchMainTab("tools");
+      }
+      if (typeof openCharByteModal === "function") {
+        setTimeout(() => {
+          openCharByteModal();
         }, 60);
       }
     }

@@ -25,7 +25,31 @@ let webToolsData = [
     ctaTextKo: "바로 사용하기",
     ctaTextEn: "Use Tool Now",
     actionType: "modal",
-    targetModal: "wage-calc"
+    targetModal: "wage-calc",
+    deepLink: "#wage-calc"
+  },
+  {
+    id: "char-byte-counter",
+    nameKo: "자소서/공문서 글자수 & Byte 변환기",
+    nameEn: "Word & Character / Byte Counter",
+    targetLang: "ALL",
+    isKrOnly: false,
+    category: "utility",
+    color: "from-emerald-600 via-teal-600 to-cyan-600",
+    iconEmoji: "📝",
+    isHot: false,
+    isFree: true,
+    isNew: true,
+    badges: ["NEW", "무료 도구"],
+    descKo: "공백 포함/제외 글자수 실시간 계산, 취업포털(2Byte) 및 시스템(UTF-8 3Byte) 바이트 분리 지원",
+    descEn: "Real-time character, word, line, and byte counter with whitespace clean-up tools.",
+    tagsKo: ["글자수세기", "바이트변환", "자소서검사", "공문서규격"],
+    tagsEn: ["CharCounter", "ByteCounter", "ResumeHelper", "TextUtility"],
+    ctaTextKo: "바로 사용하기",
+    ctaTextEn: "Use Tool Now",
+    actionType: "modal",
+    targetModal: "char-byte-counter",
+    deepLink: "#char-byte-counter"
   }
 ];
 
@@ -201,13 +225,19 @@ function buildWebToolCard(tool) {
   const ctaText = (currentLang === "ko" ? tool.ctaTextKo : tool.ctaTextEn) || (currentLang === "ko" ? "바로 사용하기" : "Use Tool Now");
 
   // Badges
-  const hotBadgeText = t("webTools.badgeHot") || "HOT";
-  const freeBadgeText = t("webTools.badgeFree") || (currentLang === "ko" ? "무료 도구" : "Free Tool");
+  const hotBadgeText = (typeof t === "function" ? t("webTools.badgeHot") : null) || "HOT";
+  const freeBadgeText = (typeof t === "function" ? t("webTools.badgeFree") : null) || (currentLang === "ko" ? "무료 도구" : "Free Tool");
 
-  const badgesHtml = `
-    <span class="badge badge-hot">🔥 ${hotBadgeText}</span>
-    <span class="badge badge-tool-free">✨ ${freeBadgeText}</span>
-  `;
+  let badgesHtml = "";
+  if (tool.isHot) {
+    badgesHtml += `<span class="badge badge-hot">🔥 ${hotBadgeText}</span> `;
+  }
+  if (tool.isNew) {
+    badgesHtml += `<span class="badge badge-new" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-weight: 700; border: 1px solid rgba(16,185,129,0.4); text-shadow: 0 1px 2px rgba(0,0,0,0.2);">✨ NEW</span> `;
+  }
+  if (tool.isFree) {
+    badgesHtml += `<span class="badge badge-tool-free">✨ ${freeBadgeText}</span> `;
+  }
 
   // Tags
   const tagsHtml = tagsList.length > 0
@@ -249,6 +279,8 @@ function buildWebToolCard(tool) {
 function handleWebToolAction(toolId) {
   if (toolId === "wage-calc") {
     openWageCalcModal();
+  } else if (toolId === "char-byte-counter") {
+    openCharByteModal();
   }
 }
 
@@ -545,4 +577,377 @@ if (typeof window !== "undefined") {
   window.openWageCalcModal = openWageCalcModal;
   window.closeWageCalcModal = closeWageCalcModal;
   window.copyWageResult = copyWageResult;
+}
+
+// ═════════════════════════════════════════════════════════════
+// 📝 Resume & Document Character / Byte Counter Logic & Modal
+// ═════════════════════════════════════════════════════════════
+
+/**
+ * Calculate EUC-KR 2-Byte count (Saramin, JobKorea, Incruit standard)
+ * - Hangul/multi-byte: 2 Bytes
+ * - ASCII/space/numbers/symbols/newline: 1 Byte
+ */
+function calculateEucKrBytes(text) {
+  if (!text) return 0;
+  let bytes = 0;
+  for (let i = 0; i < text.length; i++) {
+    const code = text.charCodeAt(i);
+    bytes += code > 128 ? 2 : 1;
+  }
+  return bytes;
+}
+
+/**
+ * Calculate UTF-8 3-Byte count (Enterprise & Public Sector Database standard)
+ * - Hangul: 3 Bytes
+ * - ASCII: 1 Byte
+ */
+function calculateUtf8Bytes(text) {
+  if (!text) return 0;
+  try {
+    return new Blob([text]).size;
+  } catch (e) {
+    if (typeof TextEncoder !== "undefined") {
+      return new TextEncoder().encode(text).length;
+    }
+    // Fallback byte estimation
+    let bytes = 0;
+    for (let i = 0; i < text.length; i++) {
+      const code = text.charCodeAt(i);
+      if (code <= 0x7f) bytes += 1;
+      else if (code <= 0x7ff) bytes += 2;
+      else if (code <= 0xffff) bytes += 3;
+      else bytes += 4;
+    }
+    return bytes;
+  }
+}
+
+/**
+ * Open Character & Byte Counter Modal
+ */
+function openCharByteModal() {
+  const modal = document.getElementById("tool-char-byte-modal");
+  if (!modal) return;
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  document.body.style.overflow = "hidden";
+
+  const panel = modal.querySelector(".char-modal-container, .wage-modal-container");
+  if (panel) {
+    panel.classList.add("modal-open");
+  }
+
+  // Update deep link hash cleanly
+  try {
+    if (window.location.hash !== "#char-byte-counter") {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search + "#char-byte-counter");
+    }
+  } catch (e) {
+    // Ignore history error
+  }
+
+  // Real-time calculation and focus
+  updateCharByteStats();
+
+  setTimeout(() => {
+    const textarea = document.getElementById("char-byte-textarea");
+    if (textarea) textarea.focus();
+  }, 100);
+}
+
+/**
+ * Close Character & Byte Counter Modal
+ */
+function closeCharByteModal() {
+  const modal = document.getElementById("tool-char-byte-modal");
+  if (!modal) return;
+
+  const panel = modal.querySelector(".char-modal-container, .wage-modal-container");
+  if (panel) panel.classList.remove("modal-open");
+
+  // Clean URL hash if opened via char-byte-counter aliases
+  try {
+    const rawHash = (window.location.hash || "").trim().toLowerCase();
+    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    const charCounterAliases = [
+      "char-byte-counter",
+      "char-counter",
+      "byte-counter",
+      "character-counter",
+      "자소서글자수",
+      "글자수세기",
+      "글자수계산기",
+      "바이트계산기"
+    ];
+    if (charCounterAliases.includes(hash)) {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+  } catch (e) {
+    // Ignore history error
+  }
+
+  setTimeout(() => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.style.overflow = "";
+  }, 220);
+}
+
+/**
+ * Update real-time statistics for text input
+ */
+function updateCharByteStats() {
+  const textarea = document.getElementById("char-byte-textarea");
+  const text = textarea ? textarea.value : "";
+
+  // 1. 공백 포함 글자수
+  const charsWithSpaces = text.length;
+
+  // 2. 공백 제외 글자수
+  const charsWithoutSpaces = text.replace(/\s/g, "").length;
+
+  // 3. 단어 수
+  const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+
+  // 4. 줄 수
+  const lines = text === "" ? 0 : text.split("\n").length;
+
+  // 5. 공백 수
+  const spaces = (text.match(/\s/g) || []).length;
+
+  // 6. EUC-KR 2-Byte (사람인/잡코리아)
+  const eucKrBytes = calculateEucKrBytes(text);
+
+  // 7. UTF-8 3-Byte (시스템/공공기관)
+  const utf8Bytes = calculateUtf8Bytes(text);
+
+  const fmt = (num) => Number(num || 0).toLocaleString("ko-KR");
+  const isKo = typeof currentLang === "undefined" || currentLang === "ko";
+
+  // Elements update
+  const elWithSpaces = document.getElementById("stat-chars-with-spaces");
+  const elWithoutSpaces = document.getElementById("stat-chars-without-spaces");
+  const elEucKr = document.getElementById("stat-bytes-euckr");
+  const elUtf8 = document.getElementById("stat-bytes-utf8");
+  const elWords = document.getElementById("stat-words");
+  const elLines = document.getElementById("stat-lines");
+  const elSpaces = document.getElementById("stat-spaces");
+
+  const charUnit = isKo ? "자" : "chars";
+  const byteUnit = "Byte";
+  const wordUnit = isKo ? "단어" : "words";
+  const lineUnit = isKo ? "줄" : "lines";
+  const spaceUnit = isKo ? "개" : "spaces";
+
+  if (elWithSpaces) elWithSpaces.textContent = `${fmt(charsWithSpaces)} ${charUnit}`;
+  if (elWithoutSpaces) elWithoutSpaces.textContent = `${fmt(charsWithoutSpaces)} ${charUnit}`;
+  if (elEucKr) elEucKr.textContent = `${fmt(eucKrBytes)} ${byteUnit}`;
+  if (elUtf8) elUtf8.textContent = `${fmt(utf8Bytes)} ${byteUnit}`;
+  if (elWords) elWords.textContent = `${fmt(words)} ${wordUnit}`;
+  if (elLines) elLines.textContent = `${fmt(lines)} ${lineUnit}`;
+  if (elSpaces) elSpaces.textContent = `${fmt(spaces)} ${spaceUnit}`;
+}
+
+/**
+ * Paste text from system clipboard into textarea
+ */
+async function pasteCharByteFromClipboard() {
+  const textarea = document.getElementById("char-byte-textarea");
+  if (!textarea) return;
+
+  const btn = document.getElementById("btn-paste-char-text");
+  const origHtml = btn ? btn.innerHTML : "";
+
+  try {
+    const text = await navigator.clipboard.readText();
+    if (text) {
+      if (textarea.value.trim() === "") {
+        textarea.value = text;
+      } else {
+        // 커서 위치에 붙여넣기 또는 끝에 추가
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        if (typeof start === "number" && typeof end === "number") {
+          textarea.value = textarea.value.substring(0, start) + text + textarea.value.substring(end);
+          textarea.selectionStart = textarea.selectionEnd = start + text.length;
+        } else {
+          textarea.value += "\n" + text;
+        }
+      }
+      updateCharByteStats();
+      textarea.focus();
+
+      if (btn) {
+        btn.innerHTML = `<span>✓</span> <span>${currentLang === "ko" ? "붙여넣기 완료!" : "Pasted!"}</span>`;
+        btn.classList.add("btn-feedback-active");
+        setTimeout(() => {
+          btn.innerHTML = origHtml;
+          btn.classList.remove("btn-feedback-active");
+        }, 1500);
+      }
+    }
+  } catch (err) {
+    console.warn("Clipboard read error:", err);
+    alert(currentLang === "ko"
+      ? "클립보드 자동 읽기 권한이 허용되지 않았습니다. 입력창을 클릭 후 Ctrl+V (Mac: Cmd+V)로 직접 붙여넣어 주세요."
+      : "Clipboard access was denied. Please paste directly with Ctrl+V (Cmd+V).");
+    textarea.focus();
+  }
+}
+
+/**
+ * Clear textarea contents
+ */
+function clearCharByteText() {
+  const textarea = document.getElementById("char-byte-textarea");
+  if (!textarea) return;
+
+  if (textarea.value.length > 50) {
+    const isKo = typeof currentLang === "undefined" || currentLang === "ko";
+    const msg = isKo ? "작성된 본문을 모두 지우시겠습니까?" : "Are you sure you want to clear all text?";
+    if (!confirm(msg)) return;
+  }
+
+  textarea.value = "";
+  updateCharByteStats();
+  textarea.focus();
+}
+
+/**
+ * Clean redundant whitespace (Compress 2+ consecutive spaces into 1 single space)
+ */
+function cleanCharByteSpaces() {
+  const textarea = document.getElementById("char-byte-textarea");
+  if (!textarea || !textarea.value) return;
+
+  // Preserve newlines, compress consecutive spaces/tabs into single space
+  const cleaned = textarea.value.replace(/[^\S\r\n]{2,}/g, " ");
+  textarea.value = cleaned;
+  updateCharByteStats();
+
+  const btn = document.getElementById("btn-clean-spaces");
+  if (btn) {
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = `<span>✓</span> <span>${currentLang === "ko" ? "정리 완료!" : "Cleaned!"}</span>`;
+    setTimeout(() => { btn.innerHTML = origHtml; }, 1500);
+  }
+}
+
+/**
+ * Clean redundant empty lines (Compress 3+ consecutive newlines into 2)
+ */
+function cleanCharByteLines() {
+  const textarea = document.getElementById("char-byte-textarea");
+  if (!textarea || !textarea.value) return;
+
+  // Compress 3+ newlines (with optional whitespace) into 2 newlines (1 empty line)
+  const cleaned = textarea.value.replace(/(\r?\n\s*){3,}/g, "\n\n");
+  textarea.value = cleaned;
+  updateCharByteStats();
+
+  const btn = document.getElementById("btn-clean-lines");
+  if (btn) {
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = `<span>✓</span> <span>${currentLang === "ko" ? "정리 완료!" : "Cleaned!"}</span>`;
+    setTimeout(() => { btn.innerHTML = origHtml; }, 1500);
+  }
+}
+
+/**
+ * Copy clean text to clipboard
+ */
+function copyCharByteText() {
+  const textarea = document.getElementById("char-byte-textarea");
+  if (!textarea) return;
+
+  const btn = document.getElementById("btn-copy-char-text");
+  const origHtml = btn ? btn.innerHTML : "";
+
+  navigator.clipboard.writeText(textarea.value).then(() => {
+    if (btn) {
+      btn.innerHTML = `<span>✓</span> <span>${currentLang === "ko" ? "본문 복사됨!" : "Text Copied!"}</span>`;
+      btn.classList.add("bg-emerald-600");
+      setTimeout(() => {
+        btn.innerHTML = origHtml;
+        btn.classList.remove("bg-emerald-600");
+      }, 1800);
+    }
+  }).catch((err) => {
+    console.error("Copy text failed:", err);
+  });
+}
+
+/**
+ * Copy formatted calculation stats to clipboard
+ */
+function copyCharByteStats() {
+  const textarea = document.getElementById("char-byte-textarea");
+  const text = textarea ? textarea.value : "";
+
+  const fmt = (num) => Number(num || 0).toLocaleString("ko-KR");
+  const charsWithSpaces = text.length;
+  const charsWithoutSpaces = text.replace(/\s/g, "").length;
+  const eucKrBytes = calculateEucKrBytes(text);
+  const utf8Bytes = calculateUtf8Bytes(text);
+  const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+  const lines = text === "" ? 0 : text.split("\n").length;
+  const spaces = (text.match(/\s/g) || []).length;
+
+  const isKo = typeof currentLang === "undefined" || currentLang === "ko";
+
+  const statsSummary = isKo
+    ? `[Daily Helper 자소서·공문서 글자수 & 바이트 분석 결과]
+- 공백 포함 글자수: ${fmt(charsWithSpaces)} 자
+- 공백 제외 글자수: ${fmt(charsWithoutSpaces)} 자
+---------------------------------------------
+- 취업포털 규격 (EUC-KR 2Byte): ${fmt(eucKrBytes)} Byte (사람인·잡코리아·인크루트)
+- 시스템/공공 규격 (UTF-8 3Byte): ${fmt(utf8Bytes)} Byte (공공기관·전산DB)
+---------------------------------------------
+- 단어 수: ${fmt(words)} 단어 | 줄 수: ${fmt(lines)} 행 | 공백 수: ${fmt(spaces)} 개
+=============================================
+※ 실시간 글자수 & Byte 변환기: https://www.dailyhelperhub.com/#char-byte-counter`
+    : `[Daily Helper Character & Byte Analysis Result]
+- Characters (with spaces): ${fmt(charsWithSpaces)} chars
+- Characters (no spaces): ${fmt(charsWithoutSpaces)} chars
+---------------------------------------------
+- Job Portals (EUC-KR 2-Byte): ${fmt(eucKrBytes)} Bytes (Saramin/JobKorea standard)
+- Modern Systems (UTF-8 3-Byte): ${fmt(utf8Bytes)} Bytes (Database & Public Sector)
+---------------------------------------------
+- Words: ${fmt(words)} words | Lines: ${fmt(lines)} lines | Spaces: ${fmt(spaces)} spaces
+=============================================
+※ Real-time Counter Tool: https://www.dailyhelperhub.com/#char-byte-counter`;
+
+  const btn = document.getElementById("btn-copy-char-stats");
+  const origHtml = btn ? btn.innerHTML : "";
+
+  navigator.clipboard.writeText(statsSummary).then(() => {
+    if (btn) {
+      btn.innerHTML = `<span>✓</span> <span>${currentLang === "ko" ? "통계 복사 완료!" : "Stats Copied!"}</span>`;
+      btn.classList.add("bg-indigo-600");
+      setTimeout(() => {
+        btn.innerHTML = origHtml;
+        btn.classList.remove("bg-indigo-600");
+      }, 1800);
+    }
+  }).catch((err) => {
+    console.error("Copy stats failed:", err);
+  });
+}
+
+// Window global bindings for Char & Byte Counter
+if (typeof window !== "undefined") {
+  window.openCharByteModal = openCharByteModal;
+  window.closeCharByteModal = closeCharByteModal;
+  window.updateCharByteStats = updateCharByteStats;
+  window.pasteCharByteFromClipboard = pasteCharByteFromClipboard;
+  window.clearCharByteText = clearCharByteText;
+  window.cleanCharByteSpaces = cleanCharByteSpaces;
+  window.cleanCharByteLines = cleanCharByteLines;
+  window.copyCharByteText = copyCharByteText;
+  window.copyCharByteStats = copyCharByteStats;
+  window.calculateEucKrBytes = calculateEucKrBytes;
+  window.calculateUtf8Bytes = calculateUtf8Bytes;
 }
