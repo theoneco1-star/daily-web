@@ -367,18 +367,20 @@ function calculateWage() {
     // 1. 주 40시간 이상 풀타임: 노동부 법정 고시 기준 월 209시간 적용
     weeklyHolidayHours = 8;
     if (weeklyHours === 40) {
-      // 주 40시간 법정 표준 풀타임
-      // 세전 총급여 = 시급 × 209시간 (노동부 법정 고시 기준)
-      monthlyGrossPay = Math.round(hourlyWage * 209);
-      // 월 기본급 = 시급 × 174시간 (40시간 × 4.345주 환산액)
-      monthlyBasePay = Math.round(hourlyWage * 174);
-      // 월 주휴수당 = 세전 총급여 - 월 기본급 (합계가 정확히 10,320 × 209 = 2,156,880원이 되도록 보정)
-      monthlyHolidayPay = monthlyGrossPay - monthlyBasePay;
+      // 고용노동부 법정 월 소정근로시간(209시간) 기준 적용
+      const totalGross = hourlyWage * 209; // 10,320원 기준 정확히 2,156,880원
+      const baseHours = 40 * 4.345; // 약 173.8시간
+      const basePay = Math.round(baseHours * hourlyWage); // 10,320원 기준 1,793,616원
+      const holidayPay = totalGross - basePay; // 총합이 2,156,880원에 정확히 수렴 (363,264원)
+      monthlyGrossPay = totalGross;
+      monthlyBasePay = basePay;
+      monthlyHolidayPay = holidayPay;
     } else {
-      // 주 40시간 초과 시: 법정 주휴(월 35시간) 고정 + 초과 근무 시간 환산액 가산
+      // 주 40시간 초과 시: 법정 주휴수당(209시간 기준분) 고정 + 초과 근무 시간 환산액 가산
+      const baseHours = 40 * 4.345;
       const overtimeHours = (weeklyHours - 40) * WEEKS_PER_MONTH;
-      monthlyBasePay = Math.round(hourlyWage * (174 + overtimeHours));
-      monthlyHolidayPay = Math.round(hourlyWage * 35);
+      monthlyBasePay = Math.round((baseHours + overtimeHours) * hourlyWage);
+      monthlyHolidayPay = Math.round(hourlyWage * 209) - Math.round(baseHours * hourlyWage);
       monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;
     }
   } else if (weeklyHours >= 15) {
