@@ -737,12 +737,12 @@ function updateCharByteStats() {
   const elWords = document.getElementById("stat-words");
   const elLines = document.getElementById("stat-lines");
   const elSpaces = document.getElementById("stat-spaces");
+  const elSpacesPrefix = document.getElementById("stat-spaces-prefix");
 
   const charUnit = isKo ? "자" : "chars";
   const byteUnit = "Byte";
   const wordUnit = isKo ? "단어" : "words";
   const lineUnit = isKo ? "줄" : "lines";
-  const spaceUnit = isKo ? "개" : "spaces";
 
   if (elWithSpaces) elWithSpaces.textContent = isKo ? `${fmt(charsWithSpaces)}자` : `${fmt(charsWithSpaces)} chars`;
   if (elWithoutSpaces) elWithoutSpaces.textContent = isKo ? `${fmt(charsWithoutSpaces)}자` : `${fmt(charsWithoutSpaces)} chars`;
@@ -752,7 +752,15 @@ function updateCharByteStats() {
   if (elUtf8Preview) elUtf8Preview.textContent = fmt(utf8Bytes);
   if (elWords) elWords.textContent = `${fmt(words)} ${wordUnit}`;
   if (elLines) elLines.textContent = `${fmt(lines)} ${lineUnit}`;
-  if (elSpaces) elSpaces.textContent = `${fmt(spaces)} ${spaceUnit}`;
+  if (elSpaces) {
+    if (isKo) {
+      if (elSpacesPrefix) elSpacesPrefix.textContent = "공백 ";
+      elSpaces.textContent = `${fmt(spaces)}개`;
+    } else {
+      if (elSpacesPrefix) elSpacesPrefix.textContent = "";
+      elSpaces.textContent = `${fmt(spaces)} spaces`;
+    }
+  }
 }
 
 /**

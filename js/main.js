@@ -811,5 +811,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   initSearch();
   initScrollHeader();
   initDeepLinks();
+  if (typeof updateCharByteStats === "function") {
+    updateCharByteStats();
+  }
 });
 

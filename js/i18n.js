@@ -570,7 +570,7 @@ const translations = {
         statWithoutSpaces: "No Spaces",
         statBytes: "Bytes (Byte)",
         statDocStructure: "Document Volume",
-        statByteStandard: "Korean 2-Byte standard",
+        statByteStandard: "Standard Byte (ASCII / UTF-8)",
         statEucKr: "Job Portals (2-Byte)",
         statEucKrDesc: "Saramin · JobKorea standard (EUC-KR)",
         statUtf8: "System / DB (3-Byte)",
