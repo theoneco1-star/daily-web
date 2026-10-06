@@ -2094,14 +2094,15 @@ html.dark .wage-accordion-content {
 
 .char-textarea {
   width: 100%;
-  min-height: 280px;
-  padding: 1.1rem 1.25rem;
+  min-height: 220px;
+  padding: 0.85rem 1rem;
   font-size: 15px;
+  font-weight: 500;
   line-height: 1.7;
-  color: #ffffff;
-  background: #090e17;
-  border: 1.5px solid #334155;
-  border-radius: 0.875rem;
+  color: #ffffff !important;
+  background: #020617 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 0.75rem;
   resize: vertical;
   outline: none;
   transition: all 0.2s ease;
@@ -2114,15 +2115,15 @@ html.dark .wage-accordion-content {
 }
 
 .char-textarea:focus {
-  background: #0f172a;
-  border-color: #10b981;
-  box-shadow: 0 0 0 3.5px rgba(16, 185, 129, 0.22);
+  background: #020617 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
 }
 
 html.dark .char-textarea {
-  background: #090e17;
-  color: #ffffff;
-  border-color: #334155;
+  background: #020617 !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
 }
 
 html.dark .char-textarea::placeholder {
@@ -2130,9 +2131,21 @@ html.dark .char-textarea::placeholder {
 }
 
 html.dark .char-textarea:focus {
-  background: #0f172a;
-  border-color: #34d399;
-  box-shadow: 0 0 0 3.5px rgba(52, 211, 153, 0.25);
+  background: #020617 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+.char-stat-card-modern {
+  background: rgba(2, 6, 23, 0.65);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.char-stat-card-modern:hover {
+  border-color: rgba(71, 85, 105, 1);
 }
 
 /* Blue Action Button */
@@ -2242,13 +2255,15 @@ html.dark .char-tool-chip-btn.char-chip-danger:hover {
   color: #0f172a;
 }
 
-html.dark .char-action-pill-btn {
+html.dark .char-action-pill-btn,
+.char-modal-body .char-action-pill-btn {
   background: #1e293b;
   color: #cbd5e1;
   border-color: rgba(255, 255, 255, 0.12);
 }
 
-html.dark .char-action-pill-btn:hover {
+html.dark .char-action-pill-btn:hover,
+.char-modal-body .char-action-pill-btn:hover {
   background: #334155;
   color: #f8fafc;
   border-color: rgba(255, 255, 255, 0.22);

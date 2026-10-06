@@ -744,8 +744,8 @@ function updateCharByteStats() {
   const lineUnit = isKo ? "줄" : "lines";
   const spaceUnit = isKo ? "개" : "spaces";
 
-  if (elWithSpaces) elWithSpaces.textContent = `${fmt(charsWithSpaces)} ${charUnit}`;
-  if (elWithoutSpaces) elWithoutSpaces.textContent = `${fmt(charsWithoutSpaces)} ${charUnit}`;
+  if (elWithSpaces) elWithSpaces.textContent = isKo ? `${fmt(charsWithSpaces)}자` : `${fmt(charsWithSpaces)} chars`;
+  if (elWithoutSpaces) elWithoutSpaces.textContent = isKo ? `${fmt(charsWithoutSpaces)}자` : `${fmt(charsWithoutSpaces)} chars`;
   if (elEucKr) elEucKr.textContent = `${fmt(eucKrBytes)} ${byteUnit}`;
   if (elUtf8) elUtf8.textContent = `${fmt(utf8Bytes)} ${byteUnit}`;
   if (elEucKrPreview) elEucKrPreview.textContent = fmt(eucKrBytes);

@@ -63,12 +63,13 @@ const translations = {
         clearBtn: "🗑️ 전체 지우기",
         cleanSpacesBtn: "✨ 공백 1칸 정리",
         cleanLinesBtn: "↵ 빈 줄 정리",
-        copyTextBtn: "📋 복사하기",
-        copyStatsBtn: "📊 통계 요약 복사",
-        statWithSpaces: "공백 포함",
-        statWithoutSpaces: "공백 제외",
-        statBytes: "바이트 (EUC-KR / UTF-8)",
-        statDocStructure: "문서 구성",
+        copyTextBtn: "📋 본문 복사",
+        copyStatsBtn: "📊 통계 복사",
+        statWithSpaces: "공백 포함 글자수",
+        statWithoutSpaces: "공백 제외 글자수",
+        statBytes: "바이트 (Byte)",
+        statDocStructure: "문서 분량",
+        statByteStandard: "한글 2Byte 기준",
         statEucKr: "취업포털 (2Byte)",
         statEucKrDesc: "사람인 · 잡코리아 · 인크루트 (EUC-KR)",
         statUtf8: "시스템/공공 (3Byte)",
@@ -87,7 +88,7 @@ const translations = {
           mainTitle: "💡 글자수 및 바이트 계산 기준 안내",
           singleTitle: "💡 글자수 및 바이트 계산 기준 안내",
           badge: "제출 규격 완벽 검증",
-          singleContent: `<div class="space-y-1.5"><p>• <strong>공백 포함 vs 제외:</strong> 별도 안내가 없는 채용 공고나 시스템은 <strong>'공백 포함'</strong> 기준 작성이 기본 원칙입니다.</p><p>• <strong>바이트(Byte) 기준:</strong> 일반 채용 포털(사람인·잡코리아 등)은 <strong>EUC-KR(한글 2Byte)</strong>, 공공기관 및 대기업 전산시스템은 <strong>UTF-8(한글 3Byte)</strong>을 적용합니다. (영문/숫자/공백/줄바꿈은 1Byte 동일)</p><p>• <strong>작성 분량 팁:</strong> 제한 글자수의 <strong>85% ~ 95%</strong> 수준을 채워 작성할 때 가장 성의 있고 완성도 높은 문서로 평가받습니다.</p></div>`,
+          singleContent: `<p>• <strong>공백 포함/제외:</strong> 기업 서류 접수 시 별도 공지가 없다면 통상 '공백 포함' 기준입니다.</p><p>• <strong>바이트(Byte):</strong> 일반 취업포털(사람인, 잡코리아 등)은 한글을 2Byte(영문/기호/공백 1Byte)로 환산합니다.</p>`,
           item1Title: "취업포털별 바이트(Byte) 산정 기준 차이",
           item1Content: `<div class="space-y-1.5"><p>• <strong>사람인 / 잡코리아 / 인크루트:</strong> 대부분 <strong>한글 2Byte (EUC-KR)</strong> 기준을 채택하고 있습니다. 한글 1자는 2Byte, 영문/숫자/공백(스페이스)/줄바꿈(엔터)은 1Byte로 계산됩니다.</p><p>• <strong>예시:</strong> 한글 500자 = 약 1,000Byte (공백 미포함 시), 공백 포함 시 공백 수만큼 Byte 추가.</p></div>`,
           item2Title: "공공기관 · 대기업 채용 시스템 (UTF-8 3Byte) 주의점",
@@ -564,11 +565,12 @@ const translations = {
         cleanSpacesBtn: "✨ Clean Spaces",
         cleanLinesBtn: "↵ Clean Empty Lines",
         copyTextBtn: "📋 Copy Text",
-        copyStatsBtn: "📊 Copy Stats Summary",
+        copyStatsBtn: "📊 Copy Stats",
         statWithSpaces: "With Spaces",
         statWithoutSpaces: "No Spaces",
-        statBytes: "Bytes (EUC-KR / UTF-8)",
-        statDocStructure: "Document Stats",
+        statBytes: "Bytes (Byte)",
+        statDocStructure: "Document Volume",
+        statByteStandard: "Korean 2-Byte standard",
         statEucKr: "Job Portals (2-Byte)",
         statEucKrDesc: "Saramin · JobKorea standard (EUC-KR)",
         statUtf8: "System / DB (3-Byte)",
@@ -587,7 +589,7 @@ const translations = {
           mainTitle: "💡 Character & Byte Counting Guide",
           singleTitle: "💡 Character & Byte Counting Guide",
           badge: "Specification Guide",
-          singleContent: `<div class="space-y-1.5"><p>• <strong>With vs Without Spaces:</strong> Unless explicitly specified, job application systems count characters with whitespace included.</p><p>• <strong>Byte Standards:</strong> General recruitment portals use <strong>EUC-KR (2 Bytes per Korean char)</strong>, while public databases often use <strong>UTF-8 (3 Bytes)</strong>. (English, digits, spaces and line breaks are always 1 Byte).</p><p>• <strong>Recommended Length:</strong> Aiming for <strong>85% to 95%</strong> of the character limit demonstrates high effort and thorough preparation.</p></div>`,
+          singleContent: `<p>• <strong>With/Without Spaces:</strong> Unless explicitly specified, job application systems count characters with whitespace included.</p><p>• <strong>Byte (Byte):</strong> Standard Korean job portals (Saramin, JobKorea, etc.) calculate Korean characters as 2 Bytes (English, symbols, spaces as 1 Byte).</p>`,
           item1Title: "Byte Differences Across Job Portals",
           item1Content: `<div class="space-y-1.5"><p>• <strong>Saramin / JobKorea:</strong> Standard Korean job portals adopt <strong>EUC-KR (2-Byte)</strong> encoding where 1 Korean character equals 2 Bytes, and English letters, digits, spaces, and line breaks equal 1 Byte.</p><p>• <strong>Example:</strong> 500 Korean chars = approx. 1,000 Bytes (excluding spaces), plus 1 Byte per whitespace.</p></div>`,
           item2Title: "Public Sector & Enterprise Systems (UTF-8 3-Byte)",
@@ -1061,7 +1063,11 @@ function applyTranslations() {
     }
   });
   document.querySelectorAll("[data-i18n-html]").forEach((el) => {
-    el.innerHTML = t(el.getAttribute("data-i18n-html"));
+    const key = el.getAttribute("data-i18n-html");
+    const val = t(key);
+    if (val && val !== key) {
+      el.innerHTML = val;
+    }
   });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
