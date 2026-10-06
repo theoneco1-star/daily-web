@@ -50,6 +50,29 @@ let webToolsData = [
     actionType: "modal",
     targetModal: "char-byte-counter",
     deepLink: "#char-byte-counter"
+  },
+  {
+    id: "excel-delimiter-converter",
+    nameKo: "엑셀 줄바꿈 ↔ 구분자 변환기",
+    nameEn: "Excel Line Break ↔ Delimiter Converter",
+    targetLang: "ALL",
+    isKrOnly: false,
+    category: "utility",
+    color: "from-emerald-600 via-green-600 to-teal-700",
+    iconEmoji: "📊",
+    isHot: true,
+    isFree: true,
+    isNew: true,
+    badges: ["HOT", "NEW"],
+    descKo: "엑셀 줄바꿈 데이터를 쉼표(,), SQL IN 조건절('A', 'B'), 큰따옴표 등으로 1초 만에 상호 변환합니다.",
+    descEn: "Instantly convert Excel line breaks into commas, SQL IN clauses ('A', 'B'), quotes, or vice versa.",
+    tagsKo: ["엑셀변환기", "줄바꿈쉼표", "SQL IN", "구분자변환"],
+    tagsEn: ["ExcelConverter", "LineBreakToComma", "SqlInClause", "Delimiter"],
+    ctaTextKo: "바로 사용하기",
+    ctaTextEn: "Use Tool Now",
+    actionType: "modal",
+    targetModal: "excel-delimiter-converter",
+    deepLink: "#excel-delimiter-converter"
   }
 ];
 
@@ -281,6 +304,8 @@ function handleWebToolAction(toolId) {
     openWageCalcModal();
   } else if (toolId === "char-byte-counter") {
     openCharByteModal();
+  } else if (toolId === "excel-delimiter-converter") {
+    openExcelDelimiterModal();
   }
 }
 
@@ -962,4 +987,637 @@ if (typeof window !== "undefined") {
   window.copyCharByteStats = copyCharByteStats;
   window.calculateEucKrBytes = calculateEucKrBytes;
   window.calculateUtf8Bytes = calculateUtf8Bytes;
+}
+
+// ═════════════════════════════════════════════════════════════
+// 📊 Excel Line Break ↔ Delimiter Converter Engine & Modal
+// ═════════════════════════════════════════════════════════════
+
+/**
+ * i18n Translation Dictionary for Excel Delimiter Converter
+ * Supports Korean (ko) and English (en)
+ */
+const excelDelimiterI18n = {
+  ko: {
+    title: "엑셀 줄바꿈 ↔ 구분자 변환기",
+    subtitle: "엑셀 행/열 데이터를 쉼표(,), SQL IN, 따옴표로 1초 만에 상호 변환",
+    securityBadge: "100% 브라우저 로컬 처리 (보안 안심)",
+    securityBadgeTitle: "서버로 데이터를 전송하지 않으며 클라이언트에서 즉시 처리됩니다.",
+    langToggle: "EN",
+    modeLabel: "변환 모드",
+    modeLineToDelim: "줄바꿈 → 구분자",
+    modeDelimToLine: "구분자 → 줄바꿈",
+    inputTitle: "입력 데이터 (Input)",
+    inputStats: "{lines} 줄 · {chars}자",
+    inputPlaceholderLine: "엑셀에서 복사한 여러 줄의 데이터를 여기에 붙여넣으세요.\n예시:\n홍길동\n이순신\n강감찬\n유관순",
+    inputPlaceholderDelim: "쉼표나 공백 등으로 구분된 데이터를 여기에 붙여넣으세요.\n예시:\n'홍길동', '이순신', '강감찬', '유관순'\n또는 IN ('홍길동', '이순신')",
+    pasteBtn: "📋 붙여넣기",
+    clearBtn: "🗑️ 비우기",
+    sampleBtn: "💡 샘플 넣기",
+    optionsTitle: "변환 옵션 및 구분자 설정",
+    presetLabel: "구분자 프리셋",
+    presetComma: "쉼표 (, )",
+    presetSqlSingle: "SQL 작은따옴표 ('A', 'B')",
+    presetDoubleQuote: "큰따옴표 (\"A\", \"B\")",
+    presetSpace: "공백 (Space)",
+    presetTab: "탭 (Tab)",
+    presetCustom: "직접 입력",
+    customDelimPlaceholder: "구분자 입력 (예: | or ;)",
+    optTrim: "빈 줄 및 양쪽 공백 제거",
+    optDedupe: "중복 항목 제거",
+    optSqlIn: "SQL IN (...) 괄호 감싸기",
+    outputTitle: "변환 결과 (Output)",
+    outputPlaceholder: "변환된 결과가 여기에 실시간으로 표시됩니다.",
+    countBadge: "총 {count}개 항목 변환 완료",
+    copyBtn: "📋 결과 복사하기",
+    copySuccess: "✓ 복사 완료!",
+    swapBtn: "🔄 결과를 입력으로",
+    toastCopied: "클립보드에 복사되었습니다!",
+    toastCleared: "입력창이 초기화되었습니다.",
+    toastSampleLoaded: "샘플 데이터가 로드되었습니다.",
+    toastPasted: "클립보드 내용을 붙여넣었습니다.",
+    toastSwapped: "변환 결과가 입력창으로 이동되었습니다.",
+    toastNoResult: "복사할 변환 결과가 없습니다.",
+    toastPasteError: "클립보드 읽기 권한이 없습니다. Ctrl+V로 붙여넣어 주세요.",
+    closeBtn: "닫기"
+  },
+  en: {
+    title: "Excel Line Break ↔ Delimiter Converter",
+    subtitle: "Convert Excel rows/columns into commas, SQL IN clauses, or quotes in 1 second",
+    securityBadge: "100% Client-Side Only (Zero Data Leak)",
+    securityBadgeTitle: "Processed 100% locally in your browser. No data is sent to any server.",
+    langToggle: "KO",
+    modeLabel: "Conversion Mode",
+    modeLineToDelim: "Line Break → Delimiter",
+    modeDelimToLine: "Delimiter → Line Break",
+    inputTitle: "Input Data",
+    inputStats: "{lines} lines · {chars} chars",
+    inputPlaceholderLine: "Paste multiple lines of data copied from Excel here.\nExample:\nItemA\nItemB\nItemC\nItemD",
+    inputPlaceholderDelim: "Paste delimited data (commas, quotes, etc.) here.\nExample:\n'ItemA', 'ItemB', 'ItemC'\nor IN ('ItemA', 'ItemB')",
+    pasteBtn: "📋 Paste",
+    clearBtn: "🗑️ Clear",
+    sampleBtn: "💡 Sample",
+    optionsTitle: "Options & Delimiter Presets",
+    presetLabel: "Delimiter Preset",
+    presetComma: "Comma (, )",
+    presetSqlSingle: "SQL Single Quotes ('A', 'B')",
+    presetDoubleQuote: "Double Quotes (\"A\", \"B\")",
+    presetSpace: "Space",
+    presetTab: "Tab",
+    presetCustom: "Custom",
+    customDelimPlaceholder: "Enter delimiter (e.g. | or ;)",
+    optTrim: "Trim & Remove Empty Lines",
+    optDedupe: "Remove Duplicates",
+    optSqlIn: "Wrap with SQL IN (...)",
+    outputTitle: "Output Result",
+    outputPlaceholder: "Converted results will appear here in real time.",
+    countBadge: "{count} items converted",
+    copyBtn: "📋 Copy Result",
+    copySuccess: "✓ Copied!",
+    swapBtn: "🔄 Send Result to Input",
+    toastCopied: "Copied to clipboard!",
+    toastCleared: "Input cleared.",
+    toastSampleLoaded: "Sample data loaded.",
+    toastPasted: "Pasted from clipboard.",
+    toastSwapped: "Result moved to input.",
+    toastNoResult: "No result to copy.",
+    toastPasteError: "Clipboard permission denied. Please press Ctrl+V directly.",
+    closeBtn: "Close"
+  }
+};
+
+let currentEdMode = "line-to-delim";
+let currentEdPreset = "comma";
+let edDebounceTimer = null;
+let edToastTimer = null;
+let edCurrentLang = (typeof currentLang !== "undefined") ? currentLang : "ko";
+
+const ED_SAMPLE_DATA = {
+  ko: [
+    "홍길동",
+    "이순신",
+    "강감찬",
+    "유관순",
+    "안중근",
+    "세종대왕",
+    "신사임당",
+    "홍길동"
+  ].join("\n"),
+  en: [
+    "Customer_01",
+    "Customer_02",
+    "Customer_03",
+    "Customer_04",
+    "Customer_05",
+    "Customer_06",
+    "Customer_07",
+    "Customer_01"
+  ].join("\n")
+};
+
+/**
+ * Open Excel Delimiter Converter Modal
+ */
+function openExcelDelimiterModal() {
+  const modal = document.getElementById("tool-excel-delimiter-modal");
+  if (!modal) return;
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  document.body.style.overflow = "hidden";
+
+  const panel = modal.querySelector(".ed-modal-container");
+  if (panel) {
+    panel.classList.add("modal-open");
+  }
+
+  try {
+    if (window.location.hash !== "#excel-delimiter-converter") {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search + "#excel-delimiter-converter");
+    }
+  } catch (e) {
+    // Ignore history error
+  }
+
+  // Sync active language
+  if (typeof currentLang !== "undefined") {
+    setExcelDelimiterLang(currentLang);
+  } else {
+    setExcelDelimiterLang("ko");
+  }
+
+  runExcelConversion();
+
+  setTimeout(() => {
+    const input = document.getElementById("excel-delimiter-input");
+    if (input) input.focus();
+  }, 100);
+}
+
+/**
+ * Close Excel Delimiter Converter Modal
+ */
+function closeExcelDelimiterModal() {
+  const modal = document.getElementById("tool-excel-delimiter-modal");
+  if (!modal) return;
+
+  const panel = modal.querySelector(".ed-modal-container");
+  if (panel) panel.classList.remove("modal-open");
+
+  try {
+    const rawHash = (window.location.hash || "").trim().toLowerCase();
+    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    const excelAliases = [
+      "excel-delimiter-converter",
+      "excel-delimiter",
+      "excel-converter",
+      "excel-to-comma",
+      "line-to-delimiter",
+      "엑셀줄바꿈변환기",
+      "엑셀변환기",
+      "엑셀구분자",
+      "줄바꿈변환기",
+      "엑셀쉼표"
+    ];
+    if (excelAliases.includes(hash)) {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+  } catch (e) {
+    // Ignore history error
+  }
+
+  setTimeout(() => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.style.overflow = "";
+  }, 220);
+}
+
+/**
+ * Switch Conversion Mode: 'line-to-delim' | 'delim-to-line'
+ */
+function setExcelConverterMode(mode) {
+  currentEdMode = mode;
+  const btnLine = document.getElementById("ed-mode-btn-line-to-delim");
+  const btnDelim = document.getElementById("ed-mode-btn-delim-to-line");
+  const sqlInWrap = document.getElementById("ed-opt-sql-in-wrapper");
+
+  if (mode === "line-to-delim") {
+    if (btnLine) {
+      btnLine.classList.add("active");
+      btnLine.setAttribute("aria-selected", "true");
+    }
+    if (btnDelim) {
+      btnDelim.classList.remove("active");
+      btnDelim.setAttribute("aria-selected", "false");
+    }
+    if (sqlInWrap) sqlInWrap.classList.remove("opacity-40", "pointer-events-none");
+  } else {
+    if (btnLine) {
+      btnLine.classList.remove("active");
+      btnLine.setAttribute("aria-selected", "false");
+    }
+    if (btnDelim) {
+      btnDelim.classList.add("active");
+      btnDelim.setAttribute("aria-selected", "true");
+    }
+    if (sqlInWrap) sqlInWrap.classList.add("opacity-40", "pointer-events-none");
+  }
+
+  // Update input placeholder based on mode
+  const inputEl = document.getElementById("excel-delimiter-input");
+  if (inputEl) {
+    const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+    inputEl.placeholder = mode === "line-to-delim" ? dict.inputPlaceholderLine : dict.inputPlaceholderDelim;
+  }
+
+  runExcelConversion();
+}
+
+/**
+ * Set Delimiter Preset Chip
+ */
+function setExcelDelimiterPreset(preset) {
+  currentEdPreset = preset;
+  const container = document.getElementById("ed-presets-container");
+  if (container) {
+    container.querySelectorAll(".ed-preset-chip").forEach((chip) => {
+      if (chip.getAttribute("data-preset") === preset) {
+        chip.classList.add("active");
+      } else {
+        chip.classList.remove("active");
+      }
+    });
+  }
+
+  const customWrap = document.getElementById("ed-custom-delim-wrapper");
+  if (customWrap) {
+    if (preset === "custom") {
+      customWrap.classList.remove("hidden");
+      customWrap.classList.add("flex");
+      const customInput = document.getElementById("ed-custom-delim-input");
+      if (customInput) customInput.focus();
+    } else {
+      customWrap.classList.add("hidden");
+      customWrap.classList.remove("flex");
+    }
+  }
+
+  runExcelConversion();
+}
+
+/**
+ * Real-time 150ms debounced input handler
+ */
+function handleExcelInputChanged() {
+  clearTimeout(edDebounceTimer);
+  edDebounceTimer = setTimeout(() => {
+    runExcelConversion();
+  }, 150);
+}
+
+/**
+ * Robust Delimited String Tokenizer
+ */
+function parseDelimitedText(text, preset, customDelim) {
+  if (!text) return [];
+  let cleaned = text.trim();
+
+  // Strip SQL IN (...) wrapper if present
+  const inMatch = cleaned.match(/^\s*IN\s*\(\s*([\s\S]*)\s*\)\s*$/i);
+  if (inMatch) {
+    cleaned = inMatch[1].trim();
+  }
+
+  let delimiter = ",";
+  if (preset === "space") delimiter = " ";
+  else if (preset === "tab") delimiter = "\t";
+  else if (preset === "custom" && customDelim) delimiter = customDelim;
+
+  // If text contains single or double quotes, parse with tokenizer
+  if (cleaned.includes("'") || cleaned.includes('"')) {
+    const tokens = [];
+    const tokenRegex = /'((?:''|[^'])*)'|"((?:""|[^"])*)"|([^,\t\r\n|;]+)/g;
+    let match;
+    while ((match = tokenRegex.exec(cleaned)) !== null) {
+      if (match[1] !== undefined) {
+        tokens.push(match[1].replace(/''/g, "'"));
+      } else if (match[2] !== undefined) {
+        tokens.push(match[2].replace(/""/g, '"'));
+      } else if (match[3] !== undefined) {
+        const val = match[3].trim();
+        if (val) tokens.push(val);
+      }
+    }
+    if (tokens.length > 0) return tokens;
+  }
+
+  // Standard delimiter split
+  const escapedDelim = delimiter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const items = cleaned.split(new RegExp(escapedDelim + "|\\r?\\n"));
+  return items;
+}
+
+/**
+ * Run Core Excel Delimiter Conversion
+ */
+function runExcelConversion() {
+  const inputEl = document.getElementById("excel-delimiter-input");
+  const outputEl = document.getElementById("excel-delimiter-output");
+  const statsBadge = document.getElementById("ed-output-items-badge");
+  const inputStatsEl = document.getElementById("ed-input-stats");
+  const optTrim = document.getElementById("ed-opt-trim")?.checked ?? true;
+  const optDedupe = document.getElementById("ed-opt-dedupe")?.checked ?? false;
+  const optSqlIn = document.getElementById("ed-opt-sql-in")?.checked ?? false;
+  const customDelimInput = document.getElementById("ed-custom-delim-input");
+  const customDelim = customDelimInput && customDelimInput.value ? customDelimInput.value : ",";
+
+  if (!inputEl || !outputEl) return;
+
+  const rawInput = inputEl.value;
+
+  // Update input stats (lines & characters)
+  const inputLines = rawInput ? rawInput.split(/\r\n|\r|\n/).length : 0;
+  const inputChars = rawInput.length;
+  if (inputStatsEl) {
+    const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+    const statTpl = dict.inputStats || "{lines} 줄 · {chars}자";
+    inputStatsEl.textContent = statTpl.replace("{lines}", inputLines.toLocaleString()).replace("{chars}", inputChars.toLocaleString());
+  }
+
+  if (!rawInput.trim()) {
+    outputEl.value = "";
+    if (statsBadge) {
+      const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+      const badgeTpl = dict.countBadge || "총 {count}개 항목 변환 완료";
+      statsBadge.textContent = badgeTpl.replace("{count}", "0");
+    }
+    return;
+  }
+
+  let items = [];
+
+  if (currentEdMode === "line-to-delim") {
+    // Mode 1: Line Break → Delimiter
+    items = rawInput.split(/\r\n|\r|\n/);
+    if (optTrim) {
+      items = items.map((s) => s.trim()).filter((s) => s.length > 0);
+    }
+    if (optDedupe) {
+      items = Array.from(new Set(items));
+    }
+
+    let result = "";
+    if (currentEdPreset === "comma") {
+      result = items.join(", ");
+    } else if (currentEdPreset === "sql-single") {
+      result = items.map((s) => "'" + s.replace(/'/g, "''") + "'").join(", ");
+    } else if (currentEdPreset === "double-quote") {
+      result = items.map((s) => '"' + s.replace(/"/g, '""') + '"').join(", ");
+    } else if (currentEdPreset === "space") {
+      result = items.join(" ");
+    } else if (currentEdPreset === "tab") {
+      result = items.join("\t");
+    } else if (currentEdPreset === "custom") {
+      result = items.join(customDelim);
+    }
+
+    if (optSqlIn && result.length > 0) {
+      result = `IN (${result})`;
+    }
+
+    outputEl.value = result;
+  } else {
+    // Mode 2: Delimiter → Line Break
+    items = parseDelimitedText(rawInput, currentEdPreset, customDelim);
+    if (optTrim) {
+      items = items.map((s) => s.trim()).filter((s) => s.length > 0);
+    }
+    if (optDedupe) {
+      items = Array.from(new Set(items));
+    }
+
+    outputEl.value = items.join("\n");
+  }
+
+  // Update output count badge
+  if (statsBadge) {
+    const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+    const badgeTpl = dict.countBadge || "총 {count}개 항목 변환 완료";
+    statsBadge.textContent = badgeTpl.replace("{count}", items.length.toLocaleString());
+  }
+}
+
+/**
+ * Paste from Clipboard to Input
+ */
+async function pasteExcelFromClipboard() {
+  const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+  try {
+    const text = await navigator.clipboard.readText();
+    if (text) {
+      const input = document.getElementById("excel-delimiter-input");
+      if (input) {
+        input.value = text;
+        runExcelConversion();
+        showExcelToast(dict.toastPasted);
+        input.focus();
+      }
+    }
+  } catch (err) {
+    showExcelToast(dict.toastPasteError);
+  }
+}
+
+/**
+ * Clear Input & Output
+ */
+function clearExcelInput() {
+  const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+  const input = document.getElementById("excel-delimiter-input");
+  const output = document.getElementById("excel-delimiter-output");
+  if (input) input.value = "";
+  if (output) output.value = "";
+  runExcelConversion();
+  showExcelToast(dict.toastCleared);
+}
+
+/**
+ * Load Sample Excel Data
+ */
+function loadExcelSampleData() {
+  const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+  const input = document.getElementById("excel-delimiter-input");
+  if (input) {
+    const sample = edCurrentLang === "en" ? ED_SAMPLE_DATA.en : ED_SAMPLE_DATA.ko;
+    input.value = sample;
+    runExcelConversion();
+    showExcelToast(dict.toastSampleLoaded);
+    input.focus();
+  }
+}
+
+/**
+ * Swap Output to Input & Toggle Mode
+ */
+function swapExcelInputOutput() {
+  const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+  const input = document.getElementById("excel-delimiter-input");
+  const output = document.getElementById("excel-delimiter-output");
+  if (!output || !output.value.trim()) {
+    showExcelToast(dict.toastNoResult);
+    return;
+  }
+
+  const resultVal = output.value;
+  input.value = resultVal;
+
+  // Toggle Mode
+  const newMode = currentEdMode === "line-to-delim" ? "delim-to-line" : "line-to-delim";
+  setExcelConverterMode(newMode);
+  showExcelToast(dict.toastSwapped);
+}
+
+/**
+ * Copy Converted Output to Clipboard
+ */
+function copyExcelOutput() {
+  const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+  const output = document.getElementById("excel-delimiter-output");
+  if (!output || !output.value.trim()) {
+    showExcelToast(dict.toastNoResult);
+    return;
+  }
+
+  navigator.clipboard.writeText(output.value).then(() => {
+    showExcelToast(dict.toastCopied);
+    const btn = document.getElementById("ed-btn-copy");
+    if (btn) {
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = `<span>✓</span> <span>${dict.copySuccess}</span>`;
+      btn.classList.add("bg-emerald-600");
+      setTimeout(() => {
+        btn.innerHTML = origHtml;
+        btn.classList.remove("bg-emerald-600");
+      }, 1800);
+    }
+  }).catch((err) => {
+    console.error("Copy failed:", err);
+  });
+}
+
+/**
+ * Display Floating Toast Feedback
+ */
+function showExcelToast(message) {
+  const toast = document.getElementById("excel-delimiter-toast");
+  const msgEl = document.getElementById("excel-delimiter-toast-msg");
+  if (!toast) return;
+
+  if (msgEl && message) {
+    msgEl.textContent = message;
+  }
+  toast.classList.add("show");
+
+  clearTimeout(edToastTimer);
+  edToastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2300);
+}
+
+/**
+ * Set Language for Excel Delimiter Converter (ko | en)
+ * User requirement: setLanguage('ko') / setLanguage('en')
+ */
+function setExcelDelimiterLang(lang) {
+  edCurrentLang = lang === "en" ? "en" : "ko";
+  const dict = excelDelimiterI18n[edCurrentLang] || excelDelimiterI18n.ko;
+
+  // Mini toggle button label shows the NEXT language
+  const toggleLabel = document.getElementById("ed-lang-toggle-label");
+  if (toggleLabel) {
+    toggleLabel.textContent = dict.langToggle;
+  }
+
+  // Update input placeholder based on current mode
+  const inputEl = document.getElementById("excel-delimiter-input");
+  if (inputEl) {
+    inputEl.placeholder = currentEdMode === "line-to-delim" ? dict.inputPlaceholderLine : dict.inputPlaceholderDelim;
+  }
+
+  const outputEl = document.getElementById("excel-delimiter-output");
+  if (outputEl) {
+    outputEl.placeholder = dict.outputPlaceholder;
+  }
+
+  // Update elements with data-i18n
+  const modal = document.getElementById("tool-excel-delimiter-modal");
+  if (modal) {
+    modal.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (key && key.startsWith("webTools.excelDelimiterConverter.")) {
+        const subKey = key.replace("webTools.excelDelimiterConverter.", "");
+        if (dict[subKey]) {
+          el.textContent = dict[subKey];
+        }
+      }
+    });
+
+    modal.querySelectorAll("[data-i18n-title]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-title");
+      if (key && key.startsWith("webTools.excelDelimiterConverter.")) {
+        const subKey = key.replace("webTools.excelDelimiterConverter.", "");
+        if (dict[subKey]) {
+          el.setAttribute("title", dict[subKey]);
+        }
+      }
+    });
+  }
+
+  // Re-run conversion to refresh badges with new locale
+  runExcelConversion();
+}
+
+// Alias for requirement specification: setLanguage('ko') / setLanguage('en')
+function setLanguage(lang) {
+  setExcelDelimiterLang(lang);
+  if (typeof setLang === "function") {
+    setLang(lang);
+  }
+}
+
+/**
+ * Toggle between KO and EN for Excel Delimiter Converter
+ */
+function toggleExcelDelimiterLang() {
+  const nextLang = edCurrentLang === "ko" ? "en" : "ko";
+  setExcelDelimiterLang(nextLang);
+  if (typeof setLang === "function") {
+    setLang(nextLang);
+  }
+}
+
+function updateExcelDelimiterStats() {
+  runExcelConversion();
+}
+
+// Window global bindings for Excel Delimiter Converter
+if (typeof window !== "undefined") {
+  window.openExcelDelimiterModal = openExcelDelimiterModal;
+  window.closeExcelDelimiterModal = closeExcelDelimiterModal;
+  window.setExcelConverterMode = setExcelConverterMode;
+  window.setExcelDelimiterPreset = setExcelDelimiterPreset;
+  window.handleExcelInputChanged = handleExcelInputChanged;
+  window.runExcelConversion = runExcelConversion;
+  window.pasteExcelFromClipboard = pasteExcelFromClipboard;
+  window.clearExcelInput = clearExcelInput;
+  window.loadExcelSampleData = loadExcelSampleData;
+  window.swapExcelInputOutput = swapExcelInputOutput;
+  window.copyExcelOutput = copyExcelOutput;
+  window.showExcelToast = showExcelToast;
+  window.setExcelDelimiterLang = setExcelDelimiterLang;
+  window.setLanguage = setLanguage;
+  window.toggleExcelDelimiterLang = toggleExcelDelimiterLang;
+  window.updateExcelDelimiterStats = updateExcelDelimiterStats;
+  window.excelDelimiterI18n = excelDelimiterI18n;
 }

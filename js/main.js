@@ -791,6 +791,37 @@ function checkDeepLinks() {
         setTimeout(openChar, 60);
       }
     }
+
+    const excelDelimiterAliases = [
+      "excel-delimiter-converter",
+      "excel-delimiter",
+      "excel-converter",
+      "excel-to-comma",
+      "line-to-delimiter",
+      "excel-line-break",
+      "엑셀줄바꿈변환기",
+      "엑셀변환기",
+      "엑셀구분자",
+      "줄바꿈변환기",
+      "엑셀쉼표",
+      "줄바꿈쉼표",
+      "sqlin",
+      "sql-in"
+    ];
+
+    if (excelDelimiterAliases.includes(hash) || excelDelimiterAliases.includes(toolParam)) {
+      if (typeof showPage === "function") {
+        showPage("main");
+      }
+      if (typeof switchMainTab === "function") {
+        switchMainTab("tools");
+      }
+      const openExcel = (typeof openExcelDelimiterModal === "function") ? openExcelDelimiterModal : window.openExcelDelimiterModal;
+      if (typeof openExcel === "function") {
+        openExcel();
+        setTimeout(openExcel, 60);
+      }
+    }
   } catch (err) {
     console.warn("Deep link handling error:", err);
   }

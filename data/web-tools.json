@@ -50,6 +50,29 @@
       "actionType": "modal",
       "targetModal": "char-byte-counter",
       "deepLink": "#char-byte-counter"
+    },
+    {
+      "id": "excel-delimiter-converter",
+      "nameKo": "엑셀 줄바꿈 ↔ 구분자 변환기",
+      "nameEn": "Excel Line Break ↔ Delimiter Converter",
+      "targetLang": "ALL",
+      "isKrOnly": false,
+      "category": "utility",
+      "color": "from-emerald-600 via-green-600 to-teal-700",
+      "iconEmoji": "📊",
+      "isHot": true,
+      "isFree": true,
+      "isNew": true,
+      "badges": ["HOT", "NEW"],
+      "descKo": "엑셀 줄바꿈 데이터를 쉼표(,), SQL IN 조건절('A', 'B'), 큰따옴표 등으로 1초 만에 상호 변환합니다.",
+      "descEn": "Instantly convert Excel line breaks into commas, SQL IN clauses ('A', 'B'), quotes, or vice versa.",
+      "tagsKo": ["엑셀변환기", "줄바꿈쉼표", "SQL IN", "구분자변환"],
+      "tagsEn": ["ExcelConverter", "LineBreakToComma", "SqlInClause", "Delimiter"],
+      "ctaTextKo": "바로 사용하기",
+      "ctaTextEn": "Use Tool Now",
+      "actionType": "modal",
+      "targetModal": "excel-delimiter-converter",
+      "deepLink": "#excel-delimiter-converter"
     }
   ]
 }

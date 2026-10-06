@@ -106,6 +106,24 @@
   }
   </script>
 
+  <!-- Structured Data (JSON-LD) for Excel Line Break ↔ Delimiter Converter WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "엑셀 줄바꿈 ↔ 구분자 변환기 (Excel Delimiter Converter)",
+    "url": "https://www.dailyhelperhub.com/#excel-delimiter-converter",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "description": "엑셀 행/열 줄바꿈 데이터를 쉼표(,), SQL IN 구문, 큰따옴표 등으로 즉시 변환하거나 상호 복원하는 100% 브라우저 로컬 안전 무료 웹 도구",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    }
+  }
+  </script>
+
   <!-- Structured Data (JSON-LD) for AI Search / GEO -->
   <script type="application/ld+json">
   {
@@ -746,6 +764,214 @@
         </button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     WEB TOOL: EXCEL LINE BREAK ↔ DELIMITER CONVERTER MODAL
+════════════════════════════════════════════ -->
+<div id="tool-excel-delimiter-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="excel-delimiter-title">
+  <div class="ed-modal-container wage-modal-container w-full max-w-5xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto flex flex-col">
+    <!-- Modal Header -->
+    <div class="ed-modal-header wage-modal-header flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5" style="background: linear-gradient(135deg, #047857 0%, #059669 50%, #0d9488 100%);">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-2xl shrink-0 border border-white/20 shadow-sm">📊</div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h2 id="excel-delimiter-title" class="text-base sm:text-lg font-bold tracking-tight text-white" data-i18n="webTools.excelDelimiterConverter.title">엑셀 줄바꿈 ↔ 구분자 변환기</h2>
+            <span class="ed-security-badge inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-950/70 text-emerald-200 border border-emerald-400/40" title="100% 브라우저 로컬 처리 (보안 안심)" data-i18n-title="webTools.excelDelimiterConverter.securityBadgeTitle">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-emerald-300" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd" />
+              </svg>
+              <span data-i18n="webTools.excelDelimiterConverter.securityBadge">100% 브라우저 로컬 처리 (보안 안심)</span>
+            </span>
+          </div>
+          <p class="text-xs text-emerald-100 truncate mt-0.5" data-i18n="webTools.excelDelimiterConverter.subtitle">엑셀 행/열 데이터를 쉼표(,), SQL IN, 따옴표로 1초 만에 상호 변환</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <!-- Mini Language Toggle Button -->
+        <button type="button" id="ed-lang-toggle-btn" onclick="toggleExcelDelimiterLang()" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/25 text-white font-semibold text-xs border border-white/20 transition-all cursor-pointer flex items-center gap-1" title="Language Switch (KO / EN)">
+          <span class="text-xs">🌐</span>
+          <span id="ed-lang-toggle-label">EN</span>
+        </button>
+        <!-- Modal Close Button -->
+        <button type="button" onclick="closeExcelDelimiterModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/25 text-white flex items-center justify-center text-sm transition-colors cursor-pointer" aria-label="Close modal">✕</button>
+      </div>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="ed-modal-body p-4 sm:p-6 bg-slate-900 text-slate-100 overflow-y-auto space-y-4">
+
+      <!-- 1. 변환 모드 세그먼트 컨트롤 & 옵션 바 -->
+      <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3 sm:p-4 space-y-3.5">
+        <!-- 모드 선택 -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div class="flex items-center gap-2">
+            <span class="text-xs sm:text-sm font-bold text-slate-300" data-i18n="webTools.excelDelimiterConverter.modeLabel">변환 모드</span>
+          </div>
+          <div class="ed-mode-switch inline-flex p-1 bg-slate-900 border border-slate-700 rounded-xl self-start sm:self-auto" role="tablist">
+            <button type="button" id="ed-mode-btn-line-to-delim" onclick="setExcelConverterMode('line-to-delim')" class="ed-mode-tab-btn active px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5" role="tab" aria-selected="true">
+              <span>⬇️</span>
+              <span data-i18n="webTools.excelDelimiterConverter.modeLineToDelim">줄바꿈 → 구분자</span>
+            </button>
+            <button type="button" id="ed-mode-btn-delim-to-line" onclick="setExcelConverterMode('delim-to-line')" class="ed-mode-tab-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-400 hover:text-slate-200 transition-all cursor-pointer flex items-center gap-1.5" role="tab" aria-selected="false">
+              <span>⬆️</span>
+              <span data-i18n="webTools.excelDelimiterConverter.modeDelimToLine">구분자 → 줄바꿈</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 구분자 프리셋 칩 그룹 -->
+        <div class="space-y-1.5 pt-2 border-t border-slate-800/80">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <span class="text-xs font-semibold text-slate-400" data-i18n="webTools.excelDelimiterConverter.presetLabel">구분자 프리셋</span>
+            <div id="ed-custom-delim-wrapper" class="hidden items-center gap-1.5">
+              <input type="text" id="ed-custom-delim-input" class="w-28 sm:w-36 px-2.5 py-1 bg-slate-900 border border-emerald-500/60 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-400" placeholder="예: | 또는 ;" oninput="handleExcelInputChanged()" autocomplete="off" />
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap" id="ed-presets-container">
+            <button type="button" onclick="setExcelDelimiterPreset('comma')" class="ed-preset-chip active" data-preset="comma" data-i18n="webTools.excelDelimiterConverter.presetComma">
+              쉼표 (, )
+            </button>
+            <button type="button" onclick="setExcelDelimiterPreset('sql-single')" class="ed-preset-chip" data-preset="sql-single" data-i18n="webTools.excelDelimiterConverter.presetSqlSingle">
+              SQL 작은따옴표 ('A', 'B')
+            </button>
+            <button type="button" onclick="setExcelDelimiterPreset('double-quote')" class="ed-preset-chip" data-preset="double-quote" data-i18n="webTools.excelDelimiterConverter.presetDoubleQuote">
+              큰따옴표 ("A", "B")
+            </button>
+            <button type="button" onclick="setExcelDelimiterPreset('space')" class="ed-preset-chip" data-preset="space" data-i18n="webTools.excelDelimiterConverter.presetSpace">
+              공백 (Space)
+            </button>
+            <button type="button" onclick="setExcelDelimiterPreset('tab')" class="ed-preset-chip" data-preset="tab" data-i18n="webTools.excelDelimiterConverter.presetTab">
+              탭 (Tab)
+            </button>
+            <button type="button" onclick="setExcelDelimiterPreset('custom')" class="ed-preset-chip" data-preset="custom" data-i18n="webTools.excelDelimiterConverter.presetCustom">
+              직접 입력
+            </button>
+          </div>
+        </div>
+
+        <!-- 부가 옵션 체크박스 그룹 -->
+        <div class="pt-2 border-t border-slate-800/80 flex items-center gap-4 sm:gap-6 flex-wrap">
+          <label class="ed-checkbox-label flex items-center gap-2 cursor-pointer text-xs sm:text-sm text-slate-300 hover:text-white select-none">
+            <input type="checkbox" id="ed-opt-trim" class="ed-checkbox rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500" checked onchange="handleExcelInputChanged()" />
+            <span data-i18n="webTools.excelDelimiterConverter.optTrim">빈 줄 및 양쪽 공백 제거</span>
+          </label>
+          <label class="ed-checkbox-label flex items-center gap-2 cursor-pointer text-xs sm:text-sm text-slate-300 hover:text-white select-none">
+            <input type="checkbox" id="ed-opt-dedupe" class="ed-checkbox rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500" onchange="handleExcelInputChanged()" />
+            <span data-i18n="webTools.excelDelimiterConverter.optDedupe">중복 항목 제거</span>
+          </label>
+          <label class="ed-checkbox-label flex items-center gap-2 cursor-pointer text-xs sm:text-sm text-slate-300 hover:text-white select-none" id="ed-opt-sql-in-wrapper">
+            <input type="checkbox" id="ed-opt-sql-in" class="ed-checkbox rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500" onchange="handleExcelInputChanged()" />
+            <span data-i18n="webTools.excelDelimiterConverter.optSqlIn">SQL IN (...) 괄호 감싸기</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 2. 입력 및 결과 출력 2열 반응형 그리드 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <!-- [좌측] 입력 영역 (Input Area) -->
+        <div class="ed-card bg-slate-950/70 border border-slate-800 rounded-xl p-3.5 sm:p-4 flex flex-col">
+          <!-- 입력 헤더 & 액션 버튼 -->
+          <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+            <div class="flex items-center gap-2">
+              <span class="text-xs sm:text-sm font-bold text-slate-200" data-i18n="webTools.excelDelimiterConverter.inputTitle">입력 데이터 (Input)</span>
+              <span id="ed-input-stats" class="text-[11px] font-medium text-slate-400 bg-slate-900 px-2 py-0.5 rounded-full border border-slate-800">0 줄 · 0자</span>
+            </div>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <button type="button" id="ed-btn-paste" onclick="pasteExcelFromClipboard()" class="char-tool-chip-btn text-xs" data-i18n="webTools.excelDelimiterConverter.pasteBtn">
+                📋 붙여넣기
+              </button>
+              <button type="button" id="ed-btn-sample" onclick="loadExcelSampleData()" class="char-tool-chip-btn text-xs text-emerald-300 border-emerald-500/40 hover:bg-emerald-500/10" data-i18n="webTools.excelDelimiterConverter.sampleBtn">
+                💡 샘플 넣기
+              </button>
+              <button type="button" id="ed-btn-clear" onclick="clearExcelInput()" class="char-tool-chip-btn char-chip-danger text-xs" data-i18n="webTools.excelDelimiterConverter.clearBtn">
+                🗑️ 비우기
+              </button>
+            </div>
+          </div>
+
+          <!-- 입력 텍스트 영역 -->
+          <div class="flex-1 min-h-[220px] sm:min-h-[260px] flex flex-col">
+            <textarea
+              id="excel-delimiter-input"
+              class="w-full h-full min-h-[220px] sm:min-h-[260px] bg-slate-900/90 text-white font-mono text-xs sm:text-sm border border-slate-700/80 focus:border-emerald-500 rounded-xl p-3 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors leading-relaxed resize-y"
+              placeholder="엑셀에서 복사한 여러 줄의 데이터를 여기에 붙여넣으세요.&#10;예시:&#10;홍길동&#10;이순신&#10;강감찬&#10;유관순"
+              data-i18n-placeholder="webTools.excelDelimiterConverter.inputPlaceholderLine"
+              oninput="handleExcelInputChanged()"
+              autocomplete="off"
+              spellcheck="false"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- [우측] 결과 출력 영역 (Output Area) -->
+        <div class="ed-card bg-slate-950/70 border border-slate-800 rounded-xl p-3.5 sm:p-4 flex flex-col">
+          <!-- 출력 헤더 & 복사/스왑 액션 버튼 -->
+          <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+            <div class="flex items-center gap-2">
+              <span class="text-xs sm:text-sm font-bold text-slate-200" data-i18n="webTools.excelDelimiterConverter.outputTitle">변환 결과 (Output)</span>
+              <span id="ed-output-items-badge" class="text-[11px] font-bold text-emerald-400 bg-emerald-950/70 border border-emerald-500/40 px-2 py-0.5 rounded-full">총 0개 항목 변환 완료</span>
+            </div>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <button type="button" id="ed-btn-swap" onclick="swapExcelInputOutput()" class="char-tool-chip-btn text-xs text-sky-300 border-sky-500/40 hover:bg-sky-500/10" title="변환된 결과를 다시 입력창으로 이동" data-i18n="webTools.excelDelimiterConverter.swapBtn">
+                🔄 결과를 입력으로
+              </button>
+              <button type="button" id="ed-btn-copy" onclick="copyExcelOutput()" class="char-action-pill-btn char-btn-primary text-xs py-1 px-3 shadow-md" data-i18n="webTools.excelDelimiterConverter.copyBtn">
+                📋 결과 복사하기
+              </button>
+            </div>
+          </div>
+
+          <!-- 결과 출력 텍스트 영역 -->
+          <div class="flex-1 min-h-[220px] sm:min-h-[260px] flex flex-col">
+            <textarea
+              id="excel-delimiter-output"
+              readonly
+              class="w-full h-full min-h-[220px] sm:min-h-[260px] bg-slate-900/90 text-emerald-300 font-mono text-xs sm:text-sm border border-slate-700/80 focus:border-emerald-500 rounded-xl p-3 placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors leading-relaxed resize-y select-all"
+              placeholder="변환된 결과가 여기에 실시간으로 표시됩니다."
+              data-i18n-placeholder="webTools.excelDelimiterConverter.outputPlaceholder"
+              spellcheck="false"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 사용 가이드 아코디언 -->
+      <div class="pt-2 border-t border-slate-800/80">
+        <details class="wage-accordion-item">
+          <summary class="wage-accordion-summary cursor-pointer">
+            <div class="flex items-center gap-2">
+              <span class="text-sm">💡</span>
+              <span class="font-bold text-xs md:text-sm text-slate-200" data-i18n="webTools.excelDelimiterConverter.guide.mainTitle">엑셀 줄바꿈 &amp; 구분자 변환기 200% 활용 팁</span>
+            </div>
+            <span class="wage-accordion-chevron text-xs text-slate-400">▼</span>
+          </summary>
+          <div class="wage-accordion-content p-3.5 text-xs text-slate-300 space-y-2 leading-relaxed">
+            <p>• <strong data-i18n="webTools.excelDelimiterConverter.guide.tip1Title">엑셀(Excel) 열 데이터 한 번에 복사하기:</strong> <span data-i18n="webTools.excelDelimiterConverter.guide.tip1Content">엑셀에서 원하는 데이터 열을 드래그하거나 Ctrl+Shift+↓로 선택한 뒤 복사(Ctrl+C)하여 입력창에 붙여넣으면 줄바꿈으로 자동 입력됩니다.</span></p>
+            <p>• <strong data-i18n="webTools.excelDelimiterConverter.guide.tip2Title">DB 쿼리 WHERE column IN (...) 작성 팁:</strong> <span data-i18n="webTools.excelDelimiterConverter.guide.tip2Content">엑셀의 사번, ID, 고객번호 목록을 복사한 후 'SQL 작은따옴표' 프리셋과 'SQL IN 괄호 감싸기'를 체크하면 즉시 실행 가능한 SQL IN 구문이 완성됩니다.</span></p>
+            <p>• <strong data-i18n="webTools.excelDelimiterConverter.guide.tip3Title">개인정보 및 보안 안내:</strong> <span data-i18n="webTools.excelDelimiterConverter.guide.tip3Content">본 도구는 100% 사용자의 웹 브라우저 메모리 안에서만 동작합니다. 어떤 데이터도 외부 서버나 네트워크로 전송되지 않으므로 사내 보안 데이터나 개인정보도 안심하고 변환할 수 있습니다.</span></p>
+          </div>
+        </details>
+      </div>
+
+      <!-- 4. 하단 닫기 버튼 액션 바 -->
+      <div class="flex items-center justify-end pt-2 border-t border-slate-800/60">
+        <button type="button" onclick="closeExcelDelimiterModal()" class="detail-btn py-2 px-5 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white border border-slate-700 rounded-xl font-medium transition-colors cursor-pointer text-sm" data-i18n="modal.close">
+          닫기
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Floating Toast Notification Component -->
+<div id="excel-delimiter-toast" class="ed-floating-toast pointer-events-none" role="status" aria-live="polite">
+  <div class="ed-toast-content flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900/95 text-white border border-emerald-500/50 shadow-2xl backdrop-blur-md">
+    <span class="ed-toast-icon text-emerald-400 text-base">✓</span>
+    <span id="excel-delimiter-toast-msg" class="text-xs sm:text-sm font-medium">클립보드에 복사되었습니다!</span>
   </div>
 </div>
 

@@ -96,6 +96,55 @@ const translations = {
           item3Title: "공백 포함 vs 제외 작성 원칙",
           item3Content: `<div class="space-y-1.5"><p>• <strong>작성 원칙:</strong> 기업 채용 공고나 자소서 문항에 <strong>'공백 제외' 명시가 없다면 통상 '공백 포함'을 기준</strong>으로 작성하는 것이 인사담당자 및 채용 시스템의 기본 원칙입니다.</p><p>• <strong>분량 권장 팁:</strong> 제한 글자수의 <strong>85% ~ 95%</strong> 수준으로 꽉 채워 작성할 때 가장 성의 있고 완결성 높은 자소서로 평가받습니다.</p></div>`
         }
+      },
+      excelDelimiterConverter: {
+        title: "엑셀 줄바꿈 ↔ 구분자 변환기",
+        subtitle: "엑셀 행/열 데이터를 쉼표(,), SQL IN, 따옴표로 1초 만에 상호 변환",
+        securityBadge: "100% 브라우저 로컬 처리 (보안 안심)",
+        securityBadgeTitle: "서버로 데이터를 전송하지 않으며 클라이언트에서 즉시 처리됩니다.",
+        langToggle: "EN",
+        modeLabel: "변환 모드",
+        modeLineToDelim: "줄바꿈 → 구분자",
+        modeDelimToLine: "구분자 → 줄바꿈",
+        inputTitle: "입력 데이터 (Input)",
+        inputPlaceholderLine: "엑셀에서 복사한 여러 줄의 데이터를 여기에 붙여넣으세요.\n예시:\n홍길동\n이순신\n강감찬\n유관순",
+        inputPlaceholderDelim: "쉼표나 공백 등으로 구분된 데이터를 여기에 붙여넣으세요.\n예시:\n'홍길동', '이순신', '강감찬', '유관순'\n또는 IN ('홍길동', '이순신')",
+        pasteBtn: "📋 붙여넣기",
+        clearBtn: "🗑️ 비우기",
+        sampleBtn: "💡 샘플 넣기",
+        optionsTitle: "변환 옵션 및 구분자 설정",
+        presetLabel: "구분자 프리셋",
+        presetComma: "쉼표 (, )",
+        presetSqlSingle: "SQL 작은따옴표 ('A', 'B')",
+        presetDoubleQuote: "큰따옴표 (\"A\", \"B\")",
+        presetSpace: "공백 (Space)",
+        presetTab: "탭 (Tab)",
+        presetCustom: "직접 입력",
+        customDelimPlaceholder: "구분자 입력 (예: | or ;)",
+        optTrim: "빈 줄 및 양쪽 공백 제거",
+        optDedupe: "중복 항목 제거",
+        optSqlIn: "SQL IN (...) 괄호 감싸기",
+        outputTitle: "변환 결과 (Output)",
+        outputPlaceholder: "변환된 결과가 여기에 실시간으로 표시됩니다.",
+        countBadge: "총 {count}개 항목 변환 완료",
+        copyBtn: "📋 결과 복사하기",
+        swapBtn: "🔄 결과를 입력으로 이동",
+        toastCopied: "클립보드에 복사되었습니다!",
+        toastCleared: "입력창이 초기화되었습니다.",
+        toastSampleLoaded: "샘플 데이터가 로드되었습니다.",
+        toastPasted: "클립보드 내용을 붙여넣었습니다.",
+        toastSwapped: "변환 결과가 입력창으로 이동되었습니다.",
+        toastNoResult: "복사할 변환 결과가 없습니다.",
+        toastPasteError: "클립보드 읽기 권한이 없습니다. Ctrl+V로 붙여넣어 주세요.",
+        guide: {
+          mainTitle: "💡 엑셀 줄바꿈 & 구분자 변환기 200% 활용 팁",
+          tip1Title: "엑셀(Excel) 열 데이터 한 번에 복사하기",
+          tip1Content: "엑셀에서 원하는 데이터 열을 드래그하거나 Ctrl+Shift+↓로 선택한 뒤 복사(Ctrl+C)하여 입력창에 붙여넣으면 줄바꿈으로 자동 입력됩니다.",
+          tip2Title: "DB 쿼리 WHERE column IN (...) 작성 팁",
+          tip2Content: "엑셀의 사번, ID, 고객번호 목록을 복사한 후 'SQL 작은따옴표' 프리셋과 'SQL IN 괄호 감싸기'를 체크하면 즉시 실행 가능한 SQL IN 구문이 완성됩니다.",
+          tip3Title: "개인정보 및 보안 안내",
+          tip3Content: "본 도구는 100% 사용자의 웹 브라우저 메모리 안에서만 동작합니다. 어떤 데이터도 외부 서버나 네트워크로 전송되지 않으므로 사내 보안 데이터나 개인정보도 안심하고 변환할 수 있습니다."
+        }
       }
     },
     hero: {
@@ -597,6 +646,55 @@ const translations = {
           item3Title: "With Spaces vs Without Spaces Rule",
           item3Content: `<div class="space-y-1.5"><p>• <strong>General Rule:</strong> Unless explicitly noted as 'without spaces', recruiting limits standardly include whitespace characters.</p><p>• <strong>Ideal Word Length:</strong> Aim for <strong>85% to 95%</strong> of the maximum character allowance for optimal readability and completeness.</p></div>`
         }
+      },
+      excelDelimiterConverter: {
+        title: "Excel Line Break ↔ Delimiter Converter",
+        subtitle: "Convert Excel rows/columns into commas, SQL IN clauses, or quotes in 1 second",
+        securityBadge: "100% Client-Side Only (Zero Data Leak)",
+        securityBadgeTitle: "Processed 100% locally in your browser. No data is sent to any server.",
+        langToggle: "KO",
+        modeLabel: "Conversion Mode",
+        modeLineToDelim: "Line Break → Delimiter",
+        modeDelimToLine: "Delimiter → Line Break",
+        inputTitle: "Input Data",
+        inputPlaceholderLine: "Paste multiple lines of data copied from Excel here.\nExample:\nItemA\nItemB\nItemC\nItemD",
+        inputPlaceholderDelim: "Paste delimited data (commas, quotes, etc.) here.\nExample:\n'ItemA', 'ItemB', 'ItemC'\nor IN ('ItemA', 'ItemB')",
+        pasteBtn: "📋 Paste",
+        clearBtn: "🗑️ Clear",
+        sampleBtn: "💡 Sample",
+        optionsTitle: "Options & Delimiter Presets",
+        presetLabel: "Delimiter Preset",
+        presetComma: "Comma (, )",
+        presetSqlSingle: "SQL Single Quotes ('A', 'B')",
+        presetDoubleQuote: "Double Quotes (\"A\", \"B\")",
+        presetSpace: "Space",
+        presetTab: "Tab",
+        presetCustom: "Custom",
+        customDelimPlaceholder: "Enter delimiter (e.g. | or ;)",
+        optTrim: "Trim & Remove Empty Lines",
+        optDedupe: "Remove Duplicates",
+        optSqlIn: "Wrap with SQL IN (...)",
+        outputTitle: "Output Result",
+        outputPlaceholder: "Converted results will appear here in real time.",
+        countBadge: "{count} items converted",
+        copyBtn: "📋 Copy Result",
+        swapBtn: "🔄 Send Result to Input",
+        toastCopied: "Copied to clipboard!",
+        toastCleared: "Input cleared.",
+        toastSampleLoaded: "Sample data loaded.",
+        toastPasted: "Pasted from clipboard.",
+        toastSwapped: "Result moved to input.",
+        toastNoResult: "No result to copy.",
+        toastPasteError: "Clipboard permission denied. Please press Ctrl+V directly.",
+        guide: {
+          mainTitle: "💡 Excel Line Break & Delimiter Tips",
+          tip1Title: "Quickly copying columns from Excel / Google Sheets",
+          tip1Content: "Select any column in Excel or Google Sheets (Ctrl+Shift+Down) and copy (Ctrl+C). Paste here to convert instantly.",
+          tip2Title: "Generate DB Query WHERE col IN (...)",
+          tip2Content: "Select 'SQL Single Quotes' and check 'Wrap with SQL IN (...)' to generate ready-to-run SQL IN clauses in seconds.",
+          tip3Title: "100% Client-Side Privacy & Security",
+          tip3Content: "All processing runs completely in your local browser runtime. Zero data is transmitted to external servers, making it safe for confidential and corporate data."
+        }
       }
     },
     hero: {
@@ -1040,6 +1138,8 @@ function setLang(lang) {
   if (typeof updateTabBadges === "function") updateTabBadges();
   if (typeof calculateWage === "function") calculateWage();
   if (typeof updateCharByteStats === "function") updateCharByteStats();
+  if (typeof updateExcelDelimiterStats === "function") updateExcelDelimiterStats();
+  if (typeof setExcelDelimiterLang === "function") setExcelDelimiterLang(lang);
   if (typeof renderGuideSubtabs === "function") renderGuideSubtabs();
   if (typeof renderGuideContent === "function") renderGuideContent();
   if (typeof currentModalApp !== "undefined" && currentModalApp && typeof openModal === "function") {
@@ -1071,5 +1171,9 @@ function applyTranslations() {
   });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    const val = t(el.getAttribute("data-i18n-title"));
+    if (val) el.setAttribute("title", val);
   });
 }
