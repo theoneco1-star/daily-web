@@ -717,6 +717,47 @@ function initScrollHeader() {
   onScroll(); // initial check
 }
 
+// ── Deep Link Handling (Direct URL Routing for Tools & Modals) ─────
+function checkDeepLinks() {
+  try {
+    const rawHash = (window.location.hash || "").trim().toLowerCase();
+    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    const params = new URLSearchParams(window.location.search);
+    const toolParam = (params.get("tool") || params.get("calc") || "").trim().toLowerCase();
+
+    const wageCalcAliases = [
+      "part-time-calculator",
+      "parttime-calculator",
+      "wage-calc",
+      "wage-calculator",
+      "part-time-calc",
+      "알바계산기",
+      "주휴수당계산기"
+    ];
+
+    if (wageCalcAliases.includes(hash) || wageCalcAliases.includes(toolParam)) {
+      if (typeof showPage === "function") {
+        showPage("main");
+      }
+      if (typeof switchMainTab === "function") {
+        switchMainTab("tools");
+      }
+      if (typeof openWageCalcModal === "function") {
+        setTimeout(() => {
+          openWageCalcModal();
+        }, 60);
+      }
+    }
+  } catch (err) {
+    console.warn("Deep link handling error:", err);
+  }
+}
+
+function initDeepLinks() {
+  checkDeepLinks();
+  window.addEventListener("hashchange", checkDeepLinks);
+}
+
 // ── Init ──────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
   initDarkMode();
@@ -739,4 +780,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderGuideContent();
   initSearch();
   initScrollHeader();
+  initDeepLinks();
 });
+

@@ -340,6 +340,26 @@ function closeWageCalcModal() {
   const panel = modal.querySelector(".wage-modal-container, .modal-panel");
   if (panel) panel.classList.remove("modal-open");
 
+  // If opened via deep link hash, cleanly reset URL hash on modal close
+  try {
+    const rawHash = (window.location.hash || "").trim().toLowerCase();
+    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    const wageCalcAliases = [
+      "part-time-calculator",
+      "parttime-calculator",
+      "wage-calc",
+      "wage-calculator",
+      "part-time-calc",
+      "알바계산기",
+      "주휴수당계산기"
+    ];
+    if (wageCalcAliases.includes(hash)) {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+  } catch (e) {
+    // Ignore history state errors in restricted environments
+  }
+
   setTimeout(() => {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
@@ -502,7 +522,7 @@ function copyWageResult() {
 ★ 최종 예상 실수령액: ${elNetPay}
 
 ※ 2026년 고용노동부 최저임금 고시 및 근로기준법 제55조 기준
-(출처: https://www.dailyhelperhub.com/)`;
+(계산기 바로가기: https://www.dailyhelperhub.com/#part-time-calculator)`;
 
   navigator.clipboard.writeText(textToCopy).then(() => {
     const copyBtn = document.getElementById("btn-copy-wage-res");
@@ -520,6 +540,9 @@ function copyWageResult() {
   });
 }
 
-// Wage Calc Modal: 배경(Backdrop) 클릭 시 창 닫힘 차단
-// 오직 우측 상단 [X] 닫기 버튼과 하단 [닫기] 버튼을 통해서만 모달이 닫히도록 관리합니다.
-// (사용자가 계산 중 바깥 공백을 클릭하여 모달이 예기치 않게 닫히는 현상 완벽 방지)
+// Window global bindings for external deep links & events
+if (typeof window !== "undefined") {
+  window.openWageCalcModal = openWageCalcModal;
+  window.closeWageCalcModal = closeWageCalcModal;
+  window.copyWageResult = copyWageResult;
+}
