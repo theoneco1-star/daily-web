@@ -732,6 +732,8 @@ function updateCharByteStats() {
   const elWithoutSpaces = document.getElementById("stat-chars-without-spaces");
   const elEucKr = document.getElementById("stat-bytes-euckr");
   const elUtf8 = document.getElementById("stat-bytes-utf8");
+  const elEucKrPreview = document.getElementById("stat-bytes-2b-preview");
+  const elUtf8Preview = document.getElementById("stat-bytes-utf8-preview");
   const elWords = document.getElementById("stat-words");
   const elLines = document.getElementById("stat-lines");
   const elSpaces = document.getElementById("stat-spaces");
@@ -746,6 +748,8 @@ function updateCharByteStats() {
   if (elWithoutSpaces) elWithoutSpaces.textContent = `${fmt(charsWithoutSpaces)} ${charUnit}`;
   if (elEucKr) elEucKr.textContent = `${fmt(eucKrBytes)} ${byteUnit}`;
   if (elUtf8) elUtf8.textContent = `${fmt(utf8Bytes)} ${byteUnit}`;
+  if (elEucKrPreview) elEucKrPreview.textContent = fmt(eucKrBytes);
+  if (elUtf8Preview) elUtf8Preview.textContent = fmt(utf8Bytes);
   if (elWords) elWords.textContent = `${fmt(words)} ${wordUnit}`;
   if (elLines) elLines.textContent = `${fmt(lines)} ${lineUnit}`;
   if (elSpaces) elSpaces.textContent = `${fmt(spaces)} ${spaceUnit}`;

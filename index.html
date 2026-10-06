@@ -620,191 +620,123 @@
     </div>
 
     <!-- Modal Body -->
-    <div class="char-modal-body wage-modal-body p-4 sm:p-6 bg-slate-900 text-slate-100 overflow-y-auto">
-      <!-- 2-Column Responsive Split Layout (Desktop: 2 Columns / Mobile: 1 Column) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-        
-        <!-- [좌측 영역 (약 60% 폭)]: 본문 입력 & 빠른 정리 도구 -->
-        <div class="lg:col-span-7 flex flex-col">
-          <!-- 상단 툴바 -->
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <span class="text-xs font-semibold text-slate-300">본문 입력 및 실시간 검증</span>
-            <div class="flex items-center gap-1.5">
-              <button type="button" id="btn-paste-char-text" onclick="pasteCharByteFromClipboard()" class="char-tool-chip-btn" data-i18n="webTools.charByteCounter.pasteBtn">
-                📋 클립보드 붙여넣기
-              </button>
-              <button type="button" id="btn-clear-char-text" onclick="clearCharByteText()" class="char-tool-chip-btn char-chip-danger" data-i18n="webTools.charByteCounter.clearBtn">
-                🗑️ 전체 지우기
-              </button>
-            </div>
-          </div>
-
-          <!-- 텍스트 입력창 (최소 높이 320px 이상, 넉넉하고 읽기 편한 폰트와 패딩) -->
-          <div class="char-input-wrap flex-1 flex flex-col">
-            <textarea
-              id="char-byte-textarea"
-              class="char-textarea w-full flex-1"
-              style="min-height: 320px;"
-              placeholder="자기소개서, 이력서, 공문서 또는 레포트 본문을 여기에 붙여넣거나 직접 작성하세요. 실시간으로 글자수와 바이트(Byte)가 자동 계산됩니다."
-              data-i18n-placeholder="webTools.charByteCounter.placeholder"
-              oninput="updateCharByteStats()"
-              autocomplete="off"
-              spellcheck="false"
-            ></textarea>
-          </div>
-
-          <!-- 하단 빠른 정리 버튼 그룹: [연속 공백 정리], [빈 줄 정리], [텍스트 복사] 가로 정렬 -->
-          <div class="flex items-center justify-between gap-1.5 mt-2.5 flex-wrap">
-            <div class="flex items-center gap-1.5 flex-wrap">
-              <button type="button" id="btn-clean-spaces" onclick="cleanCharByteSpaces()" class="char-action-pill-btn" title="연속된 2칸 이상의 공백을 1칸으로 정리" data-i18n="webTools.charByteCounter.cleanSpacesBtn">
-                ✨ 연속 공백 정리
-              </button>
-              <button type="button" id="btn-clean-lines" onclick="cleanCharByteLines()" class="char-action-pill-btn" title="3개 이상의 불필요한 연속 줄바꿈을 1개 빈줄로 정리" data-i18n="webTools.charByteCounter.cleanLinesBtn">
-                ↵ 빈 줄 정리
-              </button>
-            </div>
-            <button type="button" id="btn-copy-char-text" onclick="copyCharByteText()" class="char-action-pill-btn char-btn-primary" data-i18n="webTools.charByteCounter.copyTextBtn">
-              📄 텍스트 복사
+    <div class="char-modal-body p-4 sm:p-6 bg-slate-900 text-slate-100 overflow-y-auto">
+      <!-- 1. 본문 입력 섹션 (Full-width 와이드 배치) -->
+      <div class="flex flex-col">
+        <!-- 상단 툴바: 좌측 "본문 입력", 우측 [클립보드 붙여넣기] [전체 지우기] -->
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <span class="text-sm font-bold text-slate-200" data-i18n="webTools.charByteCounter.inputTitle">본문 입력</span>
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <button type="button" id="btn-paste-char-text" onclick="pasteCharByteFromClipboard()" class="char-tool-chip-btn" data-i18n="webTools.charByteCounter.pasteBtn">
+              📋 클립보드 붙여넣기
+            </button>
+            <button type="button" id="btn-clear-char-text" onclick="clearCharByteText()" class="char-tool-chip-btn char-chip-danger" data-i18n="webTools.charByteCounter.clearBtn">
+              🗑️ 전체 지우기
             </button>
           </div>
         </div>
 
-        <!-- [우측 영역 (약 40% 폭)]: 실시간 통계 보드 & 액션 -->
-        <div class="lg:col-span-5 flex flex-col justify-between space-y-3">
-          <!-- 통계 보드 카드 그리드 (2열 미니 카드 형태) -->
-          <div class="grid grid-cols-2 gap-2.5">
-            <!-- 1) 공백 포함 글자수 (하이라이트 박스) -->
-            <div class="char-stat-card char-stat-highlight-blue">
-              <div class="char-stat-header">
-                <span class="char-stat-label" data-i18n="webTools.charByteCounter.statWithSpaces">공백 포함 글자수</span>
-                <span class="char-stat-badge">표준 공고</span>
-              </div>
-              <div class="char-stat-val" id="stat-chars-with-spaces">0 자</div>
-            </div>
+        <!-- 텍스트 입력창 (Full-width, 높이 280px, 진한 다크 배경, 선명한 흰색 폰트 15px) -->
+        <div class="char-input-wrap w-full">
+          <textarea
+            id="char-byte-textarea"
+            class="char-textarea w-full"
+            placeholder="자기소개서, 이력서, 공문서 또는 레포트 본문을 여기에 붙여넣거나 직접 작성하세요. 실시간으로 글자수와 바이트(Byte)가 자동 계산됩니다."
+            data-i18n-placeholder="webTools.charByteCounter.placeholder"
+            oninput="updateCharByteStats()"
+            autocomplete="off"
+            spellcheck="false"
+          ></textarea>
+        </div>
+      </div>
 
-            <!-- 2) 공백 제외 글자수 (하이라이트 박스) -->
-            <div class="char-stat-card char-stat-highlight-emerald">
-              <div class="char-stat-header">
-                <span class="char-stat-label" data-i18n="webTools.charByteCounter.statWithoutSpaces">공백 제외 글자수</span>
-                <span class="char-stat-badge">순수 본문</span>
-              </div>
-              <div class="char-stat-val" id="stat-chars-without-spaces">0 자</div>
-            </div>
-
-            <!-- 3) 취업포털(2Byte, EUC-KR) 바이트 수 -->
-            <div class="char-stat-card char-stat-highlight-violet">
-              <div class="char-stat-header">
-                <span class="char-stat-label" data-i18n="webTools.charByteCounter.statEucKr">취업포털 (2Byte)</span>
-                <span class="char-stat-badge">한글 2B</span>
-              </div>
-              <div class="char-stat-val" id="stat-bytes-euckr">0 Byte</div>
-              <div class="char-stat-sub" data-i18n="webTools.charByteCounter.statEucKrDesc">사람인 · 잡코리아 · 인크루트</div>
-            </div>
-
-            <!-- 4) 공공/시스템(3Byte, UTF-8) 바이트 수 -->
-            <div class="char-stat-card char-stat-highlight-amber">
-              <div class="char-stat-header">
-                <span class="char-stat-label" data-i18n="webTools.charByteCounter.statUtf8">시스템/공공 (3Byte)</span>
-                <span class="char-stat-badge">한글 3B</span>
-              </div>
-              <div class="char-stat-val" id="stat-bytes-utf8">0 Byte</div>
-              <div class="char-stat-sub" data-i18n="webTools.charByteCounter.statUtf8Desc">공공기관 · 대기업 시스템</div>
-            </div>
+      <!-- 2. 핵심 통계 카드 가로 배치 (4개 카드: 데스크톱 4열 / 모바일 2열) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3.5">
+        <!-- 1) 공백 포함: [ 대형 숫자 ] 자 -->
+        <div class="char-stat-card char-stat-highlight-blue">
+          <div class="char-stat-header">
+            <span class="char-stat-label" data-i18n="webTools.charByteCounter.statWithSpaces">공백 포함</span>
           </div>
+          <div class="char-stat-val" id="stat-chars-with-spaces">0 자</div>
+        </div>
 
-          <!-- 5) 하단 단어 수 / 줄 수 / 공백 수 요약 바 -->
-          <div class="char-meta-stats-bar">
-            <div class="char-meta-stat-item">
-              <span class="char-meta-label" data-i18n="webTools.charByteCounter.statWords">단어 수</span>
-              <span class="char-meta-value" id="stat-words">0 단어</span>
-            </div>
-            <div class="char-meta-divider"></div>
-            <div class="char-meta-stat-item">
-              <span class="char-meta-label" data-i18n="webTools.charByteCounter.statLines">줄 수 (행)</span>
-              <span class="char-meta-value" id="stat-lines">0 줄</span>
-            </div>
-            <div class="char-meta-divider"></div>
-            <div class="char-meta-stat-item">
-              <span class="char-meta-label" data-i18n="webTools.charByteCounter.statSpaces">공백 수</span>
-              <span class="char-meta-value" id="stat-spaces">0 개</span>
-            </div>
+        <!-- 2) 공백 제외: [ 대형 숫자 ] 자 -->
+        <div class="char-stat-card char-stat-highlight-emerald">
+          <div class="char-stat-header">
+            <span class="char-stat-label" data-i18n="webTools.charByteCounter.statWithoutSpaces">공백 제외</span>
           </div>
+          <div class="char-stat-val" id="stat-chars-without-spaces">0 자</div>
+        </div>
 
-          <!-- 하단 액션: [📊 통계 요약 복사] 파란색 버튼 -->
-          <button type="button" id="btn-copy-char-stats" onclick="copyCharByteStats()" class="char-btn-blue-action w-full py-3 px-4 rounded-xl font-bold text-sm text-white bg-blue-600 hover:bg-blue-500 active:bg-blue-700 shadow-lg shadow-blue-600/30 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer mt-auto" data-i18n="webTools.charByteCounter.copyStatsBtn">
-            <span>📊 통계 요약 복사</span>
+        <!-- 3) 바이트 (EUC-KR / UTF-8): [ 대형 숫자 ] Byte (서브텍스트로 2B / 3B 작게 표기) -->
+        <div class="char-stat-card char-stat-highlight-violet">
+          <div class="char-stat-header">
+            <span class="char-stat-label" data-i18n="webTools.charByteCounter.statBytes">바이트 (EUC-KR / UTF-8)</span>
+          </div>
+          <div class="char-stat-val" id="stat-bytes-euckr">0 Byte</div>
+          <div class="char-stat-sub text-slate-400">
+            2B: <span id="stat-bytes-2b-preview" class="text-slate-200">0</span>B · 3B: <span id="stat-bytes-utf8-preview" class="text-slate-200">0</span>B
+            <span id="stat-bytes-utf8" class="hidden">0 Byte</span>
+          </div>
+        </div>
+
+        <!-- 4) 문서 구성: [ OO 단어 · OO 줄 ] -->
+        <div class="char-stat-card char-stat-highlight-amber">
+          <div class="char-stat-header">
+            <span class="char-stat-label" data-i18n="webTools.charByteCounter.statDocStructure">문서 구성</span>
+          </div>
+          <div class="char-stat-val flex items-center gap-1.5 flex-wrap" style="font-size: 1.25rem;">
+            <span id="stat-words">0 단어</span>
+            <span class="text-slate-500 font-normal">·</span>
+            <span id="stat-lines">0 줄</span>
+          </div>
+          <div class="char-stat-sub text-slate-400">
+            공백 <span id="stat-spaces" class="text-slate-200 font-medium">0 개</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 하단 편의 버튼 간소화: [공백 1칸 정리] [빈 줄 정리] [복사하기] -->
+      <div class="flex items-center justify-between gap-2 mt-3.5 pt-3 border-t border-slate-800/80 flex-wrap">
+        <div class="flex items-center gap-2 flex-wrap">
+          <button type="button" id="btn-clean-spaces" onclick="cleanCharByteSpaces()" class="char-action-pill-btn" title="연속된 공백을 1칸으로 정리" data-i18n="webTools.charByteCounter.cleanSpacesBtn">
+            ✨ 공백 1칸 정리
+          </button>
+          <button type="button" id="btn-clean-lines" onclick="cleanCharByteLines()" class="char-action-pill-btn" title="불필요한 빈 줄 정리" data-i18n="webTools.charByteCounter.cleanLinesBtn">
+            ↵ 빈 줄 정리
+          </button>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <button type="button" id="btn-copy-char-text" onclick="copyCharByteText()" class="char-action-pill-btn char-btn-primary" data-i18n="webTools.charByteCounter.copyTextBtn">
+            📋 복사하기
+          </button>
+          <button type="button" id="btn-copy-char-stats" onclick="copyCharByteStats()" class="char-action-pill-btn char-btn-blue-action" data-i18n="webTools.charByteCounter.copyStatsBtn">
+            📊 통계 요약 복사
           </button>
         </div>
       </div>
 
-      <!-- ══════════════════════════════════════════
-           모달 하단 가이드 아코디언 배치 (깔끔하게 접힌 상태)
-      ════════════════════════════════════════════ -->
-      <div class="wage-guide-section mt-5 pt-4 border-t border-slate-700/60">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-xs md:text-sm font-bold text-slate-200 flex items-center gap-1.5" data-i18n="webTools.charByteCounter.guide.mainTitle">
-            <span>💡</span> <span>자소서 글자수 &amp; 바이트 수 완벽 가이드</span>
-          </h3>
-          <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-emerald-950/70 text-emerald-400 border border-emerald-800/60 shrink-0" data-i18n="webTools.charByteCounter.guide.badge">제출 규격 완벽 검증</span>
-        </div>
-
-        <div class="space-y-2.5">
-          <!-- Guide 1: 취업포털별 바이트 산정 차이 (깔끔하게 접힌 상태) -->
-          <details class="wage-accordion-item">
-            <summary class="wage-accordion-summary">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 rounded-md bg-emerald-900/60 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0">1</span>
-                <span data-i18n="webTools.charByteCounter.guide.item1Title">취업포털별 바이트(Byte) 산정 기준 차이</span>
-              </div>
-              <span class="wage-accordion-chevron">▼</span>
-            </summary>
-            <div class="wage-accordion-content" data-i18n-html="webTools.charByteCounter.guide.item1Content">
-              <div class="space-y-1.5">
-                <p>• <strong>사람인 / 잡코리아 / 인크루트:</strong> 대부분 <strong>한글 2Byte (EUC-KR)</strong> 기준을 채택하고 있습니다. 한글 1자는 2Byte, 영문/숫자/공백(스페이스)/줄바꿈(엔터)은 1Byte로 계산됩니다.</p>
-                <p>• <strong>예시:</strong> 한글 500자 = 약 1,000Byte (공백 미포함 시), 공백 포함 시 공백 수만큼 Byte 추가.</p>
-              </div>
+      <!-- 4. 하단 가이드 아코디언 간소화 (심플한 단일 아코디언) -->
+      <div class="mt-3.5 pt-3 border-t border-slate-800/80">
+        <details class="wage-accordion-item">
+          <summary class="wage-accordion-summary cursor-pointer">
+            <div class="flex items-center gap-2">
+              <span class="text-sm">💡</span>
+              <span class="font-bold text-xs md:text-sm text-slate-200" data-i18n="webTools.charByteCounter.guide.singleTitle">글자수 및 바이트 계산 기준 안내</span>
             </div>
-          </details>
-
-          <!-- Guide 2: 공공기관/대기업 채용 시스템 UTF-8 3Byte (깔끔하게 접힌 상태) -->
-          <details class="wage-accordion-item">
-            <summary class="wage-accordion-summary">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 rounded-md bg-blue-900/60 text-blue-400 flex items-center justify-center text-xs font-bold shrink-0">2</span>
-                <span data-i18n="webTools.charByteCounter.guide.item2Title">공공기관 · 대기업 채용 시스템 (UTF-8 3Byte) 주의점</span>
-              </div>
-              <span class="wage-accordion-chevron">▼</span>
-            </summary>
-            <div class="wage-accordion-content" data-i18n-html="webTools.charByteCounter.guide.item2Content">
-              <div class="space-y-1.5">
-                <p>• <strong>공공기관 / 웹시스템 규격:</strong> 전산 시스템 DB(Oracle, MySQL 등) 설정에 따라 <strong>UTF-8 (한글 3Byte)</strong>을 기준으로 삼는 곳이 있으므로 사전 확인이 필수입니다.</p>
-                <p>• <strong>주의사항:</strong> 3,000Byte 제한 공고 시 EUC-KR 기준으로는 한글 1,500자까지 들어가지만, UTF-8 기준 시스템에서는 1,000자만 입력되어 뒷부분이 잘릴 수 있으니 유의하세요.</p>
-              </div>
-            </div>
-          </details>
-
-          <!-- Guide 3: 공백 포함 vs 공백 제외 작성 원칙 (깔끔하게 접힌 상태) -->
-          <details class="wage-accordion-item">
-            <summary class="wage-accordion-summary">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 rounded-md bg-amber-900/60 text-amber-400 flex items-center justify-center text-xs font-bold shrink-0">3</span>
-                <span data-i18n="webTools.charByteCounter.guide.item3Title">공백 포함 vs 제외 작성 원칙</span>
-              </div>
-              <span class="wage-accordion-chevron">▼</span>
-            </summary>
-            <div class="wage-accordion-content" data-i18n-html="webTools.charByteCounter.guide.item3Content">
-              <div class="space-y-1.5">
-                <p>• <strong>작성 원칙:</strong> 기업 채용 공고나 자소서 문항에 <strong>'공백 제외' 명시가 없다면 통상 '공백 포함'을 기준</strong>으로 작성하는 것이 인사담당자 및 채용 시스템의 기본 원칙입니다.</p>
-                <p>• <strong>분량 권장 팁:</strong> 제한 글자수의 <strong>85% ~ 95%</strong> 수준으로 꽉 채워 작성할 때 가장 성의 있고 완결성 높은 자소서로 평가받습니다.</p>
-              </div>
-            </div>
-          </details>
-        </div>
+            <span class="wage-accordion-chevron text-xs text-slate-400">▼</span>
+          </summary>
+          <div class="wage-accordion-content p-3.5 text-xs text-slate-300 space-y-1.5 leading-relaxed" data-i18n-html="webTools.charByteCounter.guide.singleContent">
+            <p>• <strong>공백 포함 vs 제외:</strong> 별도 안내가 없는 채용 공고나 시스템은 <strong>'공백 포함'</strong> 기준 작성이 기본 원칙입니다.</p>
+            <p>• <strong>바이트(Byte) 기준:</strong> 일반 채용 포털은 <strong>EUC-KR(한글 2Byte)</strong>, 공공기관 및 대기업 전산시스템은 <strong>UTF-8(한글 3Byte)</strong>을 적용합니다. (영문/숫자/공백/줄바꿈은 1Byte 동일)</p>
+            <p>• <strong>작성 분량 팁:</strong> 제한 글자수의 <strong>85% ~ 95%</strong>를 채워 작성할 때 가장 성의 있고 완성도 높은 문서로 평가받습니다.</p>
+          </div>
+        </details>
       </div>
 
       <!-- 하단 닫기 버튼 액션 바 -->
-      <div class="flex items-center justify-end mt-4 pt-3 border-t border-slate-700/50">
-        <button type="button" onclick="closeCharByteModal()" class="detail-btn py-2.5 px-6 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white border border-slate-700 rounded-xl font-medium transition-colors cursor-pointer" data-i18n="modal.close">
+      <div class="flex items-center justify-end mt-3.5 pt-2.5 border-t border-slate-800/60">
+        <button type="button" onclick="closeCharByteModal()" class="detail-btn py-2 px-5 bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white border border-slate-700 rounded-xl font-medium transition-colors cursor-pointer text-sm" data-i18n="modal.close">
           닫기
         </button>
       </div>
