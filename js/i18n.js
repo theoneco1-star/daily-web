@@ -41,7 +41,17 @@ const translations = {
         minWageBtn: "2026 최저시급 (10,320원)",
         copyBtn: "📋 결과 복사",
         copySuccess: "복사 완료!",
-        tip: "※ 실제 지급액은 회사 규정, 연장/야간 수당, 주휴일 결근 여부에 따라 다소 차이가 있을 수 있습니다."
+        tip: "※ 실제 지급액은 회사 규정, 연장/야간 수당, 주휴일 결근 여부에 따라 다소 차이가 있을 수 있습니다.",
+        guide: {
+          mainTitle: "2026 알바 급여 & 주휴수당 완벽 가이드",
+          badge: "노동법 핵심 요약",
+          item1Title: "2026년 법정 최저임금 안내",
+          item1Content: `<div class="space-y-1.5"><p>• <strong>시간급:</strong> <span class="text-indigo-600 dark:text-indigo-400 font-bold">10,320원</span> (전년 대비 290원 인상)</p><p>• <strong>주 40시간 근무 시 월 환산액:</strong> <span class="font-bold text-slate-900 dark:text-white">2,156,880원</span> (주휴시간 8시간 포함 월 209시간 기준, 10,320원 × 209시간)</p><p>• <strong>기본급 &amp; 주휴수당 구성:</strong> 월 기본급 1,795,680원 (174시간) + 월 주휴수당 361,200원 (35시간) = 합계 2,156,880원</p><p>• <strong>적용 대상:</strong> 1인 이상 모든 사업장에 적용되며 아르바이트, 파트타임, 일용직, 계약직 등 근로 형태와 무관하게 전면 적용됩니다.</p></div>`,
+          item2Title: "주휴수당 발생 3대 핵심 조건",
+          item2Content: `<div class="space-y-1.5"><p>근로기준법 제55조에 따라 아래 3대 조건을 모두 충족하면 1주 평균 1회 이상의 유급휴일(주휴수당)이 보장됩니다:</p><p>• <strong>① 주 소정근로시간 15시간 이상:</strong> 4주간 평균 1주일간 정해진 소정근로시간이 15시간 이상이어야 합니다. (15시간 미만 초단기 근로자는 제외)</p><p>• <strong>② 약속한 소정근로일 개근:</strong> 근로계약서상 일하기로 정한 소정근로일에 결근 없이 모두 출근해야 합니다. (지각이나 조퇴는 결근이 아니므로 주휴수당이 전액 정상 발생합니다)</p><p>• <strong>③ 다음 주 근로 예정 여부:</strong> 계속적인 근로 관계가 예정되어 있어야 합니다. (통상적 계속 근무 시 보장)</p><p>• <strong>단시간 근로자 계산식:</strong> (주 근무시간 ÷ 40시간) × 8시간 × 시급</p></div>`,
+          item3Title: "공제 방식 차이 (3.3% 프리랜서 vs 4대 보험)",
+          item3Content: `<div class="space-y-1.5"><p>• <strong>3.3% 사업소득세 원천징수 (단기/프리랜서):</strong> 사업소득세 3% + 지방소득세 0.3%를 차감합니다. 단기 알바 또는 사업소득 계약 시 주로 적용되며, 매년 5월 종합소득세 신고 시 소득 구간에 따라 원천징수된 세금을 전액 환급받을 수 있습니다.</p><p>• <strong>4대 보험 (~9.4% 근로자 부담분):</strong> 국민연금(4.5%) + 건강보험(3.545%) + 노인장기요양보험(건보의 12.95%) + 고용보험(0.9%)으로 구성되어 약 9.4%가 급여에서 공제됩니다. (산재보험은 사업주가 100% 전액 부담)</p><p>• <strong>의무 가입 기준:</strong> 월 60시간(주 15시간) 이상 근무하고 1개월 이상 지속 근로하는 모든 근로자는 4대보험 가입이 법적 의무입니다.</p></div>`
+        }
       }
     },
     hero: {
@@ -488,7 +498,17 @@ const translations = {
         minWageBtn: "2026 Min Wage (10,320 KRW)",
         copyBtn: "📋 Copy Results",
         copySuccess: "Copied!",
-        tip: "※ Actual pay may vary depending on overtime, night shifts, or company attendance policies."
+        tip: "※ Actual pay may vary depending on overtime, night shifts, or company attendance policies.",
+        guide: {
+          mainTitle: "2026 Salary & Holiday Allowance Complete Guide",
+          badge: "Labor Law Summary",
+          item1Title: "2026 Statutory Minimum Wage Information",
+          item1Content: `<div class="space-y-1.5"><p>• <strong>Hourly Wage:</strong> <span class="text-indigo-600 dark:text-indigo-400 font-bold">10,320 KRW</span> (Increased from previous year)</p><p>• <strong>Monthly Pay (40 hrs/wk):</strong> <span class="font-bold text-slate-900 dark:text-white">2,156,880 KRW</span> (Based on statutory 209 monthly hours including 8h/wk paid holiday, 10,320 × 209 hrs)</p><p>• <strong>Breakdown:</strong> Monthly Base Pay 1,795,680 KRW (174h) + Holiday Allowance 361,200 KRW (35h) = Total 2,156,880 KRW</p><p>• <strong>Coverage:</strong> Mandatory for all workplaces with 1+ employees, including part-time, temporary, and contractual workers.</p></div>`,
+          item2Title: "3 Key Conditions for Weekly Holiday Allowance",
+          item2Content: `<div class="space-y-1.5"><p>Under Article 55 of the Labor Standards Act, workers are legally entitled to weekly paid holiday allowance when fulfilling all 3 criteria:</p><p>• <strong>1. 15+ Contractual Hours per Week:</strong> Average work hours over a 4-week span must reach 15 hours or more per week.</p><p>• <strong>2. Perfect Attendance on Scheduled Days:</strong> Must fulfill all contractual work days without unexcused absences (tardiness/early leave does not forfeit the allowance).</p><p>• <strong>3. Continued Employment Scheduled:</strong> A continued work relationship scheduled for the following week.</p><p>• <strong>Part-Time Formula:</strong> (Weekly Hours ÷ 40) × 8 hrs × Hourly Wage</p></div>`,
+          item3Title: "Difference in Deductions (3.3% Freelance vs 4 Insurances)",
+          item3Content: `<div class="space-y-1.5"><p>• <strong>3.3% Business Income Tax (Freelance/Short-term):</strong> 3% national income tax + 0.3% local income tax withheld at source. Eligible for tax refund during May comprehensive income tax filing if income is below standard exemption thresholds.</p><p>• <strong>4 Major Insurances (~9.4% Employee Contribution):</strong> National Pension (4.5%) + Health Insurance (3.545%) + Long-Term Care (12.95% of health) + Employment Insurance (0.9%). (Workplace Injury Insurance is 100% paid by the employer).</p><p>• <strong>Mandatory Requirement:</strong> Any employee working 60+ hours per month (15+ hours/week) for 1 month or longer must be enrolled in all 4 insurances by law.</p></div>`
+        }
       }
     },
     hero: {

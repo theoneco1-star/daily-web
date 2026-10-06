@@ -359,36 +359,43 @@ function calculateWage() {
 
   let monthlyBasePay = 0;
   let monthlyHolidayPay = 0;
+  let monthlyGrossPay = 0;
   let weeklyHolidayHours = 0;
   const isHolidayPayEligible = weeklyHours >= 15;
 
-  if (weeklyHours === 40) {
-    // 주 40시간 풀타임 (고용노동부 공식 기준: 월 209시간 = 소정근로 174시간 + 유급주휴 35시간)
-    monthlyBasePay = Math.round(hourlyWage * 174);
+  if (weeklyHours >= 40) {
+    // 1. 주 40시간 이상 풀타임: 노동부 법정 고시 기준 월 209시간 적용
     weeklyHolidayHours = 8;
-    monthlyHolidayPay = Math.round(hourlyWage * 35);
-  } else {
-    // 1. 기본급 (월) - 통상 한달 평균 주수 (4.345주) 환산
-    monthlyBasePay = Math.round(hourlyWage * weeklyHours * WEEKS_PER_MONTH);
-
-    // 2. 주휴수당 (1주 15시간 이상 근무 시 발생)
-    if (isHolidayPayEligible) {
-      if (weeklyHours > 40) {
-        weeklyHolidayHours = 8;
-      } else {
-        // 주 15시간 이상 40시간 미만 비례 계산: (주간근무시간 / 40) * 8
-        weeklyHolidayHours = (weeklyHours / 40) * 8;
-      }
-      const weeklyHolidayPay = Math.round(weeklyHolidayHours * hourlyWage);
-      monthlyHolidayPay = Math.round(weeklyHolidayPay * WEEKS_PER_MONTH);
+    if (weeklyHours === 40) {
+      // 주 40시간 법정 표준 풀타임
+      // 세전 총급여 = 시급 × 209시간 (노동부 법정 고시 기준)
+      monthlyGrossPay = Math.round(hourlyWage * 209);
+      // 월 기본급 = 시급 × 174시간 (40시간 × 4.345주 환산액)
+      monthlyBasePay = Math.round(hourlyWage * 174);
+      // 월 주휴수당 = 세전 총급여 - 월 기본급 (합계가 정확히 10,320 × 209 = 2,156,880원이 되도록 보정)
+      monthlyHolidayPay = monthlyGrossPay - monthlyBasePay;
     } else {
-      weeklyHolidayHours = 0;
-      monthlyHolidayPay = 0;
+      // 주 40시간 초과 시: 법정 주휴(월 35시간) 고정 + 초과 근무 시간 환산액 가산
+      const overtimeHours = (weeklyHours - 40) * WEEKS_PER_MONTH;
+      monthlyBasePay = Math.round(hourlyWage * (174 + overtimeHours));
+      monthlyHolidayPay = Math.round(hourlyWage * 35);
+      monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;
     }
+  } else if (weeklyHours >= 15) {
+    // 2. 주 15시간 이상 ~ 40시간 미만 단시간 근로자: 비례 공식 유지
+    // 주휴시간 = (주근무시간 / 40) * 8, 월 환산주수 4.345 적용
+    weeklyHolidayHours = (weeklyHours / 40) * 8;
+    monthlyBasePay = Math.round(hourlyWage * weeklyHours * WEEKS_PER_MONTH);
+    const weeklyHolidayPay = weeklyHolidayHours * hourlyWage;
+    monthlyHolidayPay = Math.round(weeklyHolidayPay * WEEKS_PER_MONTH);
+    monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;
+  } else {
+    // 3. 주 15시간 미만: 주휴수당 0원 유지
+    weeklyHolidayHours = 0;
+    monthlyHolidayPay = 0;
+    monthlyBasePay = Math.round(hourlyWage * weeklyHours * WEEKS_PER_MONTH);
+    monthlyGrossPay = monthlyBasePay;
   }
-
-  // 3. 세전 총 급여 (월)
-  const monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;
 
   // 4. 공제액 계산
   let deductionRate = 0;
@@ -429,7 +436,10 @@ function calculateWage() {
   if (elBadgeNotice) {
     if (isHolidayPayEligible) {
       elBadgeNotice.className = "inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700/60";
-      elBadgeNotice.innerHTML = `<span>✅</span> <span>${currentLang === "ko" ? `주 ${weeklyHours}시간 근무 : 주휴수당 발생 대상 (주당 +${weeklyHolidayHours.toFixed(1)}시간분)` : `15+ hrs/week: Holiday Allowance Applied (+${weeklyHolidayHours.toFixed(1)}h/wk)`}</span>`;
+      const allowanceInfo = weeklyHours >= 40
+        ? (currentLang === "ko" ? "노동부 법정 209시간 기준 적용" : "209 Statutory Hours Standard")
+        : (currentLang === "ko" ? `주당 +${weeklyHolidayHours.toFixed(1)}시간분` : `+${weeklyHolidayHours.toFixed(1)}h/wk`);
+      elBadgeNotice.innerHTML = `<span>✅</span> <span>${currentLang === "ko" ? `주 ${weeklyHours}시간 근무 : 주휴수당 발생 대상 (${allowanceInfo})` : `15+ hrs/week: Holiday Allowance Applied (${allowanceInfo})`}</span>`;
     } else {
       elBadgeNotice.className = "inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-300 border border-amber-300 dark:border-amber-700/60";
       elBadgeNotice.innerHTML = `<span>⚠️</span> <span>${currentLang === "ko" ? "주 15시간 미만 근무 : 주휴수당 미적용 대상" : "Under 15 hrs/week: Ineligible for Holiday Allowance"}</span>`;
@@ -447,19 +457,25 @@ function copyWageResult() {
   const elNetPay = document.getElementById("res-net-pay")?.textContent || "";
   const elBasePay = document.getElementById("res-base-pay")?.textContent || "";
   const elHolidayPay = document.getElementById("res-holiday-pay")?.textContent || "";
+  const elGrossPay = document.getElementById("res-gross-pay")?.textContent || "";
   const elDeduction = document.getElementById("res-deduction")?.textContent || "";
 
-  const deductionLabel = deductionType === "freelance" ? "3.3% 프리랜서" : deductionType === "four" ? "4대보험" : "미적용";
+  const deductionLabel = deductionType === "freelance" ? "3.3% 프리랜서" : deductionType === "four" ? "4대보험 (~9.4%)" : "미적용";
+  const standardLabel = weeklyHours >= 40 ? "노동부 법정 월 209시간 (풀타임 고시 기준)" : "실제 근무시간 비례 환산 (주 4.345주)";
 
-  const textToCopy = `[Daily Helper 실수령액 & 주휴수당 계산 결과]
-- 시급: ${fmt(hourlyWage)}원
-- 1주 근무시간: ${weeklyHours}시간
+  const textToCopy = `[Daily Helper 2026 실수령액 & 주휴수당 계산 결과]
+- 시급: ${fmt(hourlyWage)}원 (2026년 법정 최저시급 10,320원)
+- 주 근무시간: ${weeklyHours}시간 (${standardLabel})
 - 공제 기준: ${deductionLabel}
 -----------------------------
 - 월 기본급: ${elBasePay}
 - 월 주휴수당: ${elHolidayPay}
+- 세전 총 급여: ${elGrossPay}
 - 예상 공제액: ${elDeduction}
+=============================
 ★ 최종 예상 실수령액: ${elNetPay}
+
+※ 2026년 고용노동부 최저임금 고시 및 근로기준법 제55조 기준
 (출처: https://www.dailyhelperhub.com/)`;
 
   navigator.clipboard.writeText(textToCopy).then(() => {
