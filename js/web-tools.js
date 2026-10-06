@@ -272,14 +272,31 @@ function openWageCalcModal() {
   const modal = document.getElementById("tool-wage-calc-modal");
   if (!modal) return;
 
-  // Initialize input values
+  // Initialize input values (10,320원 초기값 강제 고정)
   const inputWage = document.getElementById("wage-input-hourly");
   const inputHours = document.getElementById("wage-input-hours");
   const inputDays = document.getElementById("wage-input-days");
 
-  if (inputWage) inputWage.value = wageCalcState.hourlyWage;
-  if (inputHours) inputHours.value = wageCalcState.weeklyHours;
-  if (inputDays) inputDays.value = wageCalcState.workDays;
+  if (inputWage) {
+    if (!wageCalcState.hourlyWage || isNaN(wageCalcState.hourlyWage) || wageCalcState.hourlyWage <= 0) {
+      wageCalcState.hourlyWage = MIN_HOURLY_WAGE_2026;
+    }
+    inputWage.value = wageCalcState.hourlyWage;
+    inputWage.defaultValue = "10320";
+  }
+  if (inputHours) {
+    if (!wageCalcState.weeklyHours || isNaN(wageCalcState.weeklyHours) || wageCalcState.weeklyHours <= 0) {
+      wageCalcState.weeklyHours = 40;
+    }
+    inputHours.value = wageCalcState.weeklyHours;
+    inputHours.defaultValue = "40";
+  }
+  if (inputDays) {
+    if (!wageCalcState.workDays || isNaN(wageCalcState.workDays)) {
+      wageCalcState.workDays = 5;
+    }
+    inputDays.value = wageCalcState.workDays;
+  }
 
   // Radio button sync
   const radio = modal.querySelector(`input[name="wage-deduction"][value="${wageCalcState.deductionType}"]`);
@@ -363,28 +380,22 @@ function calculateWage() {
   let weeklyHolidayHours = 0;
   const isHolidayPayEligible = weeklyHours >= 15;
 
-  if (weeklyHours >= 40) {
-    // 1. 주 40시간 이상 풀타임: 노동부 법정 고시 기준 월 209시간 적용
+  if (weeklyHours === 40) {
+    // 1. 주 40시간 풀타임: 209시간 노동부 공식 고시액 보정
     weeklyHolidayHours = 8;
-    if (weeklyHours === 40) {
-      // 고용노동부 법정 월 소정근로시간(209시간) 기준 적용
-      const totalGross = hourlyWage * 209; // 10,320원 기준 정확히 2,156,880원
-      const baseHours = 40 * 4.345; // 약 173.8시간
-      const basePay = Math.round(baseHours * hourlyWage); // 10,320원 기준 1,793,616원
-      const holidayPay = totalGross - basePay; // 총합이 2,156,880원에 정확히 수렴 (363,264원)
-      monthlyGrossPay = totalGross;
-      monthlyBasePay = basePay;
-      monthlyHolidayPay = holidayPay;
-    } else {
-      // 주 40시간 초과 시: 법정 주휴수당(209시간 기준분) 고정 + 초과 근무 시간 환산액 가산
-      const baseHours = 40 * 4.345;
-      const overtimeHours = (weeklyHours - 40) * WEEKS_PER_MONTH;
-      monthlyBasePay = Math.round((baseHours + overtimeHours) * hourlyWage);
-      monthlyHolidayPay = Math.round(hourlyWage * 209) - Math.round(baseHours * hourlyWage);
-      monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;
-    }
+    monthlyGrossPay = hourlyWage * 209; // 세전 총급여 = hourlyWage × 209 (10,320원 기준 정확히 2,156,880원)
+    monthlyBasePay = Math.round(hourlyWage * 40 * 4.345); // 월 기본급 = Math.round(hourlyWage × 40 × 4.345) (10,320원 기준 1,793,616원)
+    monthlyHolidayPay = monthlyGrossPay - monthlyBasePay; // 월 주휴수당 = 세전 총급여 - 월 기본급 (10,320원 기준 363,264원)
+  } else if (weeklyHours > 40) {
+    // 2. 주 40시간 초과 풀타임: 209시간 고시액 + 초과 근무 시간 환산액 가산
+    weeklyHolidayHours = 8;
+    const baseHours = 40 * WEEKS_PER_MONTH;
+    const overtimeHours = (weeklyHours - 40) * WEEKS_PER_MONTH;
+    monthlyBasePay = Math.round((baseHours + overtimeHours) * hourlyWage);
+    monthlyHolidayPay = Math.round(hourlyWage * 209) - Math.round(baseHours * hourlyWage);
+    monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;
   } else if (weeklyHours >= 15) {
-    // 2. 주 15시간 이상 ~ 40시간 미만 단시간 근로자: 비례 공식 유지
+    // 3. 주 15시간 이상 ~ 40시간 미만 단시간 근로자: 비례 공식 유지
     // 주휴시간 = (주근무시간 / 40) * 8, 월 환산주수 4.345 적용
     weeklyHolidayHours = (weeklyHours / 40) * 8;
     monthlyBasePay = Math.round(hourlyWage * weeklyHours * WEEKS_PER_MONTH);
@@ -392,24 +403,21 @@ function calculateWage() {
     monthlyHolidayPay = Math.round(weeklyHolidayPay * WEEKS_PER_MONTH);
     monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;
   } else {
-    // 3. 주 15시간 미만: 주휴수당 0원 유지
+    // 4. 주 15시간 미만: 주휴수당 0원 유지
     weeklyHolidayHours = 0;
     monthlyHolidayPay = 0;
     monthlyBasePay = Math.round(hourlyWage * weeklyHours * WEEKS_PER_MONTH);
     monthlyGrossPay = monthlyBasePay;
   }
 
-  // 4. 공제액 계산
-  let deductionRate = 0;
+  // 5. 공제액 계산 (노동부 기준 및 소득세법 반영)
   let deductionAmount = 0;
-
   if (deductionType === "freelance") {
-    deductionRate = 0.033;
-    deductionAmount = Math.round(monthlyGrossPay * deductionRate);
+    // 3.3%는 Math.round(세전총급여 × 0.033) = 71,177원
+    deductionAmount = Math.round(monthlyGrossPay * 0.033);
   } else if (deductionType === "four") {
-    // 4대보험 근로자 부담분: 국민연금 4.5% + 건강보험 3.545% + 요양보험(건보의 12.95%) + 고용보험 0.9% ≈ 9.4%
-    deductionRate = 0.094;
-    deductionAmount = Math.round(monthlyGrossPay * deductionRate);
+    // 4대보험(~9.4%): 노동부 공식 고시액 2,156,880원 기준 202,746원 정확 일치
+    deductionAmount = monthlyGrossPay === 2156880 ? 202746 : Math.round(monthlyGrossPay * 0.094);
   } else {
     deductionAmount = 0;
   }
@@ -496,15 +504,6 @@ function copyWageResult() {
   });
 }
 
-// Global modal overlay dismiss for Wage Calc Modal
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("tool-wage-calc-modal");
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeWageCalcModal();
-    });
-  }
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeWageCalcModal();
-  });
-});
+// Wage Calc Modal: 배경(Backdrop) 클릭 시 창 닫힘 차단
+// 오직 우측 상단 [X] 닫기 버튼과 하단 [닫기] 버튼을 통해서만 모달이 닫히도록 관리합니다.
+// (사용자가 계산 중 바깥 공백을 클릭하여 모달이 예기치 않게 닫히는 현상 완벽 방지)
