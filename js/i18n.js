@@ -24,7 +24,7 @@ const translations = {
       globalComingSoonSubtitle: "전 세계 사용자를 위한 유용한 온라인 도구를 준비하고 있습니다.",
       wageCalc: {
         title: "실수령액 & 주휴수당 계산기",
-        subtitle: "2026년 최저시급(10,030원) 기준 알바 및 근로소득 자동 계산",
+        subtitle: "2026년 최저시급(10,320원) 기준 알바 및 근로소득 자동 계산",
         desc: "시급과 근무시간만 입력하면 주휴수당과 4대보험/3.3% 공제액을 1초 만에 자동 계산합니다.",
         hourlyWageLabel: "시급 (원)",
         weeklyHoursLabel: "1주 총 근무시간 (시간)",
@@ -38,7 +38,7 @@ const translations = {
         grossPay: "세전 총 급여",
         deductionAmount: "예상 공제액",
         netPay: "최종 예상 실수령액",
-        minWageBtn: "2026 최저시급 (10,030원)",
+        minWageBtn: "2026 최저시급 (10,320원)",
         copyBtn: "📋 결과 복사",
         copySuccess: "복사 완료!",
         tip: "※ 실제 지급액은 회사 규정, 연장/야간 수당, 주휴일 결근 여부에 따라 다소 차이가 있을 수 있습니다."
@@ -485,7 +485,7 @@ const translations = {
         grossPay: "Gross Salary",
         deductionAmount: "Estimated Deduction",
         netPay: "Estimated Net Salary",
-        minWageBtn: "2026 Min Wage (10,030 KRW)",
+        minWageBtn: "2026 Min Wage (10,320 KRW)",
         copyBtn: "📋 Copy Results",
         copySuccess: "Copied!",
         tip: "※ Actual pay may vary depending on overtime, night shifts, or company attendance policies."

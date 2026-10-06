@@ -256,7 +256,7 @@ function handleWebToolAction(toolId) {
 // 🧮 Wage & Holiday Allowance Calculator Logic & Modal
 // ═════════════════════════════════════════════════════════════
 
-const MIN_HOURLY_WAGE_2026 = 10030; // 2026/2025 대한민국 법정 최저시급
+const MIN_HOURLY_WAGE_2026 = 10320; // 2026 대한민국 고용노동부 법정 최저시급 고시
 
 let wageCalcState = {
   hourlyWage: MIN_HOURLY_WAGE_2026,
@@ -357,24 +357,35 @@ function calculateWage() {
   const { hourlyWage, weeklyHours, deductionType } = wageCalcState;
   const WEEKS_PER_MONTH = 4.345; // 통상 한달 평균 주수 (365 / 7 / 12)
 
-  // 1. 기본급 (월)
-  const monthlyBasePay = Math.round(hourlyWage * weeklyHours * WEEKS_PER_MONTH);
-
-  // 2. 주휴수당 (1주 15시간 이상 근무 시 발생)
+  let monthlyBasePay = 0;
+  let monthlyHolidayPay = 0;
   let weeklyHolidayHours = 0;
-  let isHolidayPayEligible = weeklyHours >= 15;
+  const isHolidayPayEligible = weeklyHours >= 15;
 
-  if (isHolidayPayEligible) {
-    if (weeklyHours >= 40) {
-      weeklyHolidayHours = 8;
+  if (weeklyHours === 40) {
+    // 주 40시간 풀타임 (고용노동부 공식 기준: 월 209시간 = 소정근로 174시간 + 유급주휴 35시간)
+    monthlyBasePay = Math.round(hourlyWage * 174);
+    weeklyHolidayHours = 8;
+    monthlyHolidayPay = Math.round(hourlyWage * 35);
+  } else {
+    // 1. 기본급 (월) - 통상 한달 평균 주수 (4.345주) 환산
+    monthlyBasePay = Math.round(hourlyWage * weeklyHours * WEEKS_PER_MONTH);
+
+    // 2. 주휴수당 (1주 15시간 이상 근무 시 발생)
+    if (isHolidayPayEligible) {
+      if (weeklyHours > 40) {
+        weeklyHolidayHours = 8;
+      } else {
+        // 주 15시간 이상 40시간 미만 비례 계산: (주간근무시간 / 40) * 8
+        weeklyHolidayHours = (weeklyHours / 40) * 8;
+      }
+      const weeklyHolidayPay = Math.round(weeklyHolidayHours * hourlyWage);
+      monthlyHolidayPay = Math.round(weeklyHolidayPay * WEEKS_PER_MONTH);
     } else {
-      // 주 15시간 이상 40시간 미만 비례 계산: (주간근무시간 / 40) * 8
-      weeklyHolidayHours = (weeklyHours / 40) * 8;
+      weeklyHolidayHours = 0;
+      monthlyHolidayPay = 0;
     }
   }
-
-  const weeklyHolidayPay = Math.round(weeklyHolidayHours * hourlyWage);
-  const monthlyHolidayPay = Math.round(weeklyHolidayPay * WEEKS_PER_MONTH);
 
   // 3. 세전 총 급여 (월)
   const monthlyGrossPay = monthlyBasePay + monthlyHolidayPay;

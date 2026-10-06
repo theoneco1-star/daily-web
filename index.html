@@ -407,7 +407,7 @@
         <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-2xl shrink-0 border border-white/20">🧮</div>
         <div>
           <h2 id="wage-calc-title" class="text-base md:text-lg font-bold tracking-tight text-white" data-i18n="webTools.wageCalc.title">실수령액 & 주휴수당 계산기</h2>
-          <p class="text-xs text-white/75" data-i18n="webTools.wageCalc.subtitle">2026년 최저시급(10,030원) 기준 알바 및 근로소득 자동 계산</p>
+          <p class="text-xs text-white/75" data-i18n="webTools.wageCalc.subtitle">2026년 최저시급(10,320원) 기준 알바 및 근로소득 자동 계산</p>
         </div>
       </div>
       <button type="button" onclick="closeWageCalcModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/25 text-white flex items-center justify-center text-sm transition-colors cursor-pointer" aria-label="Close modal">✕</button>
@@ -419,11 +419,11 @@
       <div class="wage-field-group">
         <div class="flex items-center justify-between mb-1.5">
           <label for="wage-input-hourly" class="wage-field-label" data-i18n="webTools.wageCalc.hourlyWageLabel">시급 (원)</label>
-          <button type="button" onclick="setWagePreset(10030)" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer" data-i18n="webTools.wageCalc.minWageBtn">2026 최저시급 (10,030원)</button>
+          <button type="button" onclick="setWagePreset(10320)" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer" data-i18n="webTools.wageCalc.minWageBtn">2026 최저시급 (10,320원)</button>
         </div>
-        <input type="number" id="wage-input-hourly" class="wage-input" value="10030" min="0" step="10" oninput="calculateWage()" placeholder="10030" />
+        <input type="number" id="wage-input-hourly" class="wage-input" value="10320" min="0" step="10" oninput="calculateWage()" placeholder="10320" />
         <div class="flex items-center gap-1.5 mt-2 flex-wrap">
-          <button type="button" class="wage-chip-btn" onclick="setWagePreset(10030)">10,030원</button>
+          <button type="button" class="wage-chip-btn" onclick="setWagePreset(10320)">10,320원</button>
           <button type="button" class="wage-chip-btn" onclick="setWagePreset(11000)">11,000원</button>
           <button type="button" class="wage-chip-btn" onclick="setWagePreset(12000)">12,000원</button>
           <button type="button" class="wage-chip-btn" onclick="setWagePreset(15000)">15,000원</button>
