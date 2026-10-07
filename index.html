@@ -1362,59 +1362,88 @@
       </span>
     </div>
 
-    <!-- Center: Drawing Tools & Properties -->
-    <div class="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-1 px-1 max-w-[50vw] sm:max-w-none">
-      <!-- Tool Buttons (V, H, T, M, C, S) -->
-      <div class="inline-flex p-0.5 rounded-lg bg-slate-950 border border-slate-800 shrink-0">
-        <button type="button" data-pdf-tool="select" onclick="window.pdfChecker.setTool('select')" class="pdf-tool-btn active px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 text-slate-300 hover:text-white" title="선택 (단축키: V)">
-          <span>↖</span>
-          <span class="hidden lg:inline text-[11px]">선택</span>
+    <!-- Center: Drawing Tools & Quick Options -->
+    <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto py-1 px-1 min-w-0 max-w-full">
+      <!-- 1. Tool Buttons (V, H, T, M, C, S) -->
+      <div class="inline-flex p-0.5 rounded-lg bg-slate-950 border border-slate-800 shrink-0 gap-0.5" role="group" aria-label="도구 선택">
+        <button type="button" data-pdf-tool="select" onclick="window.pdfChecker.setTool('select')" class="pdf-tool-btn active" title="선택 도구 (단축키: V)">
+          <span class="text-sm font-bold">↖</span>
+          <span>선택 (V)</span>
         </button>
-        <button type="button" data-pdf-tool="pan" onclick="window.pdfChecker.setTool('pan')" class="pdf-tool-btn px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 text-slate-300 hover:text-white" title="이동 / 핸드 (단축키: H 또는 Space+드래그)">
-          <span>✋</span>
-          <span class="hidden lg:inline text-[11px]">이동</span>
+        <button type="button" data-pdf-tool="pan" onclick="window.pdfChecker.setTool('pan')" class="pdf-tool-btn" title="화면 이동 / 핸드 (단축키: H 또는 Space+드래그)">
+          <span class="text-sm">✋</span>
+          <span>이동 (H)</span>
         </button>
-        <button type="button" data-pdf-tool="text" onclick="window.pdfChecker.setTool('text')" class="pdf-tool-btn px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 text-slate-300 hover:text-white" title="텍스트 입력 (단축키: T)">
-          <span>T</span>
-          <span class="hidden lg:inline text-[11px]">텍스트</span>
+        <button type="button" data-pdf-tool="text" onclick="window.pdfChecker.setTool('text')" class="pdf-tool-btn" title="텍스트 메모 입력 (단축키: T)">
+          <span class="text-sm font-black font-mono">T</span>
+          <span>텍스트 (T)</span>
         </button>
-        <button type="button" data-pdf-tool="rect" onclick="window.pdfChecker.setTool('rect')" class="pdf-tool-btn px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 text-slate-300 hover:text-white" title="사각형 마킹 (단축키: M)">
-          <span>□</span>
-          <span class="hidden lg:inline text-[11px]">사각</span>
+        <button type="button" data-pdf-tool="rect" onclick="window.pdfChecker.setTool('rect')" class="pdf-tool-btn" title="사각형 마킹 (단축키: M)">
+          <span class="text-sm">□</span>
+          <span>사각 (M)</span>
         </button>
-        <button type="button" data-pdf-tool="circle" onclick="window.pdfChecker.setTool('circle')" class="pdf-tool-btn px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 text-slate-300 hover:text-white" title="원형 / 타원 마킹 (단축키: C)">
-          <span>○</span>
-          <span class="hidden lg:inline text-[11px]">원형</span>
+        <button type="button" data-pdf-tool="circle" onclick="window.pdfChecker.setTool('circle')" class="pdf-tool-btn" title="원형 마킹 (단축키: C)">
+          <span class="text-sm">○</span>
+          <span>원형 (C)</span>
         </button>
-        <button type="button" data-pdf-tool="pen" onclick="window.pdfChecker.setTool('pen')" class="pdf-tool-btn px-2.5 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 text-slate-300 hover:text-white" title="자유곡선 펜 (단축키: S)">
-          <span>✎</span>
-          <span class="hidden lg:inline text-[11px]">펜</span>
+        <button type="button" data-pdf-tool="pen" onclick="window.pdfChecker.setTool('pen')" class="pdf-tool-btn" title="자유곡선 그리기 (단축키: S)">
+          <span class="text-sm">✏️</span>
+          <span>자유선 (S)</span>
         </button>
       </div>
 
-      <!-- Color Swatches -->
-      <div class="hidden md:flex items-center gap-1 px-1.5 py-1 rounded-lg bg-slate-950 border border-slate-800 shrink-0">
-        <button type="button" class="pdf-color-btn w-4 h-4 rounded-full bg-red-500 ring-2 ring-white scale-110 transition-transform" data-color="#ef4444" onclick="window.pdfChecker.setStrokeColor('#ef4444')" title="빨강"></button>
-        <button type="button" class="pdf-color-btn w-4 h-4 rounded-full bg-blue-500 transition-transform" data-color="#3b82f6" onclick="window.pdfChecker.setStrokeColor('#3b82f6')" title="파랑"></button>
-        <button type="button" class="pdf-color-btn w-4 h-4 rounded-full bg-emerald-500 transition-transform" data-color="#10b981" onclick="window.pdfChecker.setStrokeColor('#10b981')" title="초록"></button>
-        <button type="button" class="pdf-color-btn w-4 h-4 rounded-full bg-amber-400 transition-transform" data-color="#f59e0b" onclick="window.pdfChecker.setStrokeColor('#f59e0b')" title="노랑"></button>
-        <button type="button" class="pdf-color-btn w-4 h-4 rounded-full bg-orange-500 transition-transform" data-color="#f97316" onclick="window.pdfChecker.setStrokeColor('#f97316')" title="주황"></button>
-        <button type="button" class="pdf-color-btn w-4 h-4 rounded-full bg-purple-500 transition-transform" data-color="#a855f7" onclick="window.pdfChecker.setStrokeColor('#a855f7')" title="보라"></button>
-        <button type="button" class="pdf-color-btn w-4 h-4 rounded-full bg-white transition-transform" data-color="#ffffff" onclick="window.pdfChecker.setStrokeColor('#ffffff')" title="흰색"></button>
-        <input type="color" value="#ef4444" class="w-4 h-4 rounded cursor-pointer bg-transparent border-0 p-0" onchange="window.pdfChecker.setStrokeColor(this.value)" title="직접 색상 선택" />
+      <!-- 2. 간이 옵션 영역 (도구 버튼 바로 우측) -->
+      <!-- 1) 색상 칩: [🔴 빨강(기본값)] [🔵 파랑] [🟡 노랑] [⚫ 검정] -->
+      <div class="inline-flex items-center p-0.5 rounded-lg bg-slate-950 border border-slate-800 shrink-0 gap-0.5" role="group" aria-label="기본 색상 선택">
+        <button type="button" class="pdf-color-chip active" data-color="#ef4444" onclick="window.pdfChecker.setStrokeColor('#ef4444')" title="빨강 (기본값)">
+          <span>🔴</span>
+          <span>빨강</span>
+        </button>
+        <button type="button" class="pdf-color-chip" data-color="#3b82f6" onclick="window.pdfChecker.setStrokeColor('#3b82f6')" title="파랑">
+          <span>🔵</span>
+          <span>파랑</span>
+        </button>
+        <button type="button" class="pdf-color-chip" data-color="#f59e0b" onclick="window.pdfChecker.setStrokeColor('#f59e0b')" title="노랑">
+          <span>🟡</span>
+          <span>노랑</span>
+        </button>
+        <button type="button" class="pdf-color-chip" data-color="#000000" onclick="window.pdfChecker.setStrokeColor('#000000')" title="검정">
+          <span>⚫</span>
+          <span>검정</span>
+        </button>
+        <div class="relative flex items-center px-1 border-l border-slate-800" title="기타 색상 직접 선택">
+          <input type="color" id="pdf-custom-color" value="#ef4444" class="w-4 h-4 rounded cursor-pointer bg-transparent border-0 p-0" onchange="window.pdfChecker.setStrokeColor(this.value)" />
+        </div>
       </div>
 
-      <!-- Stroke Width Selector -->
-      <select onchange="window.pdfChecker.setStrokeWidth(this.value)" class="hidden lg:block bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-blue-500 shrink-0" title="선 굵기">
-        <option value="1">선: 1px</option>
-        <option value="2">선: 2px</option>
-        <option value="3" selected>선: 3px</option>
-        <option value="5">선: 5px</option>
-        <option value="8">선: 8px</option>
-      </select>
+      <!-- 2) 선 굵기: [얇게 2px] [보통 4px(기본)] [굵게 8px] 3단 토글 버튼 -->
+      <div class="inline-flex items-center p-0.5 rounded-lg bg-slate-950 border border-slate-800 shrink-0 gap-0.5" role="group" aria-label="선 굵기 선택">
+        <button type="button" data-stroke-width="2" onclick="window.pdfChecker.setStrokeWidth(2)" class="pdf-width-toggle-btn" title="선 굵기: 얇게 (2px)">
+          얇게 2px
+        </button>
+        <button type="button" data-stroke-width="4" onclick="window.pdfChecker.setStrokeWidth(4)" class="pdf-width-toggle-btn active" title="선 굵기: 보통 (4px - 기본값)">
+          보통 4px
+        </button>
+        <button type="button" data-stroke-width="8" onclick="window.pdfChecker.setStrokeWidth(8)" class="pdf-width-toggle-btn" title="선 굵기: 굵게 (8px)">
+          굵게 8px
+        </button>
+      </div>
 
-      <!-- Fill Option Selector -->
-      <select onchange="window.pdfChecker.setFillColor(this.value)" class="hidden xl:block bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-blue-500 shrink-0" title="도형 채우기">
+      <!-- 3) 글자 크기: [작게 18px] [보통 28px(기본)] [크게 42px] 3단 토글 버튼 -->
+      <div class="inline-flex items-center p-0.5 rounded-lg bg-slate-950 border border-slate-800 shrink-0 gap-0.5" role="group" aria-label="글자 크기 선택">
+        <button type="button" data-font-size="18" onclick="window.pdfChecker.setFontSize(18)" class="pdf-size-toggle-btn" title="글자 크기: 작게 (18px)">
+          작게 18px
+        </button>
+        <button type="button" data-font-size="28" onclick="window.pdfChecker.setFontSize(28)" class="pdf-size-toggle-btn active" title="글자 크기: 보통 (28px - 기본값)">
+          보통 28px
+        </button>
+        <button type="button" data-font-size="42" onclick="window.pdfChecker.setFontSize(42)" class="pdf-size-toggle-btn" title="글자 크기: 크게 (42px)">
+          크게 42px
+        </button>
+      </div>
+
+      <!-- 도형 채우기 (선택적 옵션) -->
+      <select onchange="window.pdfChecker.setFillColor(this.value)" class="hidden 2xl:block bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-blue-500 shrink-0" title="도형 채우기">
         <option value="transparent" selected>채우기: 투명</option>
         <option value="semitransparent">채우기: 반투명</option>
         <option value="solid">채우기: 색상 채움</option>

@@ -22,9 +22,9 @@
     history: {}, // { [pageId]: { past: [], future: [] } }
     currentTool: 'select', // 'select' | 'pan' | 'text' | 'rect' | 'circle' | 'pen' | 'arrow'
     strokeColor: '#ef4444',
-    strokeWidth: 3,
+    strokeWidth: 4,
     fillMode: 'transparent', // 'transparent' | 'semitransparent' | 'solid'
-    fontSize: 24,
+    fontSize: 28,
     zoom: 1.0,
     isSpacePressed: false,
     isPanning: false,
@@ -140,6 +140,10 @@
             } catch (_) {}
           }, 60);
         }
+        updateToolButtonsUI();
+        updateColorUI(state.strokeColor);
+        updateStrokeWidthUI();
+        updateFontSizeUI();
       } catch (engineErr) {
         console.warn('PDF engine init warning:', engineErr);
       }
@@ -249,6 +253,9 @@
       bindCanvasInteractionEvents();
       bindKeyboardShortcuts();
       updateToolButtonsUI();
+      updateColorUI(state.strokeColor);
+      updateStrokeWidthUI();
+      updateFontSizeUI();
       updateUndoRedoUI();
       state.isInitialized = true;
     } catch (err) {
@@ -431,6 +438,14 @@
     canvas.on('object:modified', function () {
       pushUndo();
     });
+
+    // Object selection synchronization with toolbar options
+    canvas.on('selection:created', function (opt) {
+      syncPropertiesFromSelected(opt.selected ? opt.selected[0] : null);
+    });
+    canvas.on('selection:updated', function (opt) {
+      syncPropertiesFromSelected(opt.selected ? opt.selected[0] : null);
+    });
   }
 
   function insertTextObject(x, y) {
@@ -583,19 +598,37 @@
       state.canvas.renderAll();
       pushUndo();
     }
+    updateColorUI(color);
+  }
 
-    // Highlight active color dot
+  function updateColorUI(color) {
+    const targetColor = (color || state.strokeColor || '#ef4444').toLowerCase();
+    document.querySelectorAll('.pdf-color-chip').forEach((btn) => {
+      const c = (btn.getAttribute('data-color') || '').toLowerCase();
+      if (c === targetColor) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
     document.querySelectorAll('.pdf-color-btn').forEach((btn) => {
-      if (btn.getAttribute('data-color') === color) {
+      const c = (btn.getAttribute('data-color') || '').toLowerCase();
+      if (c === targetColor) {
         btn.classList.add('ring-2', 'ring-white', 'scale-110');
       } else {
         btn.classList.remove('ring-2', 'ring-white', 'scale-110');
       }
     });
+
+    const customPicker = document.getElementById('pdf-custom-color');
+    if (customPicker && targetColor.startsWith('#')) {
+      customPicker.value = targetColor;
+    }
   }
 
   function setStrokeWidth(width) {
-    state.strokeWidth = parseInt(width, 10) || 3;
+    state.strokeWidth = parseInt(width, 10) || 4;
     if (state.canvas && state.canvas.isDrawingMode) {
       state.canvas.freeDrawingBrush.width = state.strokeWidth;
     }
@@ -604,6 +637,63 @@
       activeObj.set('strokeWidth', state.strokeWidth);
       state.canvas.renderAll();
       pushUndo();
+    }
+    updateStrokeWidthUI();
+  }
+
+  function updateStrokeWidthUI() {
+    const w = String(state.strokeWidth);
+    document.querySelectorAll('.pdf-width-toggle-btn').forEach((btn) => {
+      if (btn.getAttribute('data-stroke-width') === w) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  function setFontSize(size) {
+    state.fontSize = parseInt(size, 10) || 28;
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj && activeObj.type === 'i-text') {
+      activeObj.set('fontSize', state.fontSize);
+      state.canvas.renderAll();
+      pushUndo();
+    }
+    updateFontSizeUI();
+  }
+
+  function updateFontSizeUI() {
+    const s = String(state.fontSize);
+    document.querySelectorAll('.pdf-size-toggle-btn').forEach((btn) => {
+      if (btn.getAttribute('data-font-size') === s) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  function syncPropertiesFromSelected(obj) {
+    if (!obj) return;
+    if (obj.type === 'i-text') {
+      if (obj.fontSize) {
+        state.fontSize = obj.fontSize;
+        updateFontSizeUI();
+      }
+      if (obj.fill && typeof obj.fill === 'string') {
+        state.strokeColor = obj.fill;
+        updateColorUI(obj.fill);
+      }
+    } else {
+      if (obj.stroke && typeof obj.stroke === 'string') {
+        state.strokeColor = obj.stroke;
+        updateColorUI(obj.stroke);
+      }
+      if (obj.strokeWidth) {
+        state.strokeWidth = obj.strokeWidth;
+        updateStrokeWidthUI();
+      }
     }
   }
 
@@ -1545,6 +1635,7 @@
     setTool: setTool,
     setStrokeColor: setStrokeColor,
     setStrokeWidth: setStrokeWidth,
+    setFontSize: setFontSize,
     setFillColor: setFillColor,
     undo: undo,
     redo: redo,
