@@ -679,6 +679,9 @@ document.addEventListener("keydown", (e) => {
     closeModal();
     if (typeof closeWageCalcModal === "function") closeWageCalcModal();
     if (typeof closeCharByteModal === "function") closeCharByteModal();
+    if (typeof closeExcelDelimiterModal === "function") closeExcelDelimiterModal();
+    if (typeof closeAnnualLeaveModal === "function") closeAnnualLeaveModal();
+    if (typeof closePdfCheckerModal === "function") closePdfCheckerModal();
   }
 });
 
@@ -869,6 +872,7 @@ function checkDeepLinks() {
 
     const pdfCheckerAliases = [
       "pdf-checker",
+      "pdf-checker-modal",
       "pdf-marking",
       "drawing-checker",
       "pdf-jpg-checker",

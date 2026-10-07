@@ -94,86 +94,134 @@
       : null;
   }
 
+  // ── Modal Helper ─────────────────────────────────────────────
+  function getPdfModal() {
+    return document.getElementById('pdf-checker-modal') || document.getElementById('pdf-checker');
+  }
+
   // ── Fullscreen Modal Open / Close ───────────────────────────
   function openPdfCheckerModal() {
-    const modal = document.getElementById('pdf-checker');
-    if (!modal) return;
+    try {
+      const modal = getPdfModal();
+      if (!modal) {
+        console.warn('PDF checker modal element not found');
+        return;
+      }
 
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modal.style.display = 'flex';
+      modal.style.zIndex = '9999';
+      document.body.style.overflow = 'hidden';
 
-    if (window.location.hash !== '#pdf-checker') {
-      history.replaceState(null, document.title, window.location.pathname + window.location.search + '#pdf-checker');
-    }
+      if (window.location.hash !== '#pdf-checker') {
+        try {
+          history.replaceState(null, document.title, window.location.pathname + window.location.search + '#pdf-checker');
+        } catch (_) {}
+      }
 
-    if (!state.isInitialized) {
-      initEngine();
-      state.isInitialized = true;
-    } else {
-      setTimeout(() => {
-        resizeCanvasToWrapper();
-        if (state.pages.length > 0) {
-          fitToScreen();
-        }
-      }, 60);
+      if (!state.isInitialized) {
+        initEngine();
+      } else {
+        setTimeout(() => {
+          try {
+            resizeCanvasToWrapper();
+            if (state.pages.length > 0) {
+              fitToScreen();
+            }
+          } catch (_) {}
+        }, 60);
+      }
+    } catch (err) {
+      console.error('Error opening PDF Checker modal:', err);
     }
   }
 
   function closePdfCheckerModal() {
-    const modal = document.getElementById('pdf-checker');
-    if (!modal) return;
+    try {
+      const modal = getPdfModal();
+      if (!modal) return;
 
-    modal.classList.remove('flex');
-    modal.classList.add('hidden');
-    document.body.style.overflow = '';
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
 
-    const aliases = ['#pdf-checker', '#pdf-marking', '#drawing-checker', '#pdf-jpg-checker', '#pdfchecker', '#도면검토', '#pdf검토'];
-    if (aliases.includes(window.location.hash)) {
-      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+      const aliases = [
+        '#pdf-checker',
+        '#pdf-checker-modal',
+        '#pdf-marking',
+        '#drawing-checker',
+        '#pdf-jpg-checker',
+        '#pdfchecker',
+        '#도면검토',
+        '#pdf검토'
+      ];
+      if (aliases.includes(window.location.hash)) {
+        try {
+          history.replaceState(null, document.title, window.location.pathname + window.location.search);
+        } catch (_) {}
+      }
+    } catch (err) {
+      console.error('Error closing PDF Checker modal:', err);
     }
   }
 
   // ── Engine Initialization ───────────────────────────────────
   function initEngine() {
-    const canvasEl = document.getElementById('pdf-checker-canvas');
-    const wrapper = document.getElementById('pdf-checker-canvas-wrapper');
-    const container = document.getElementById('pdf-checker-canvas-container');
-    if (!canvasEl || !wrapper) return;
-
-    // Set initial canvas dimension to viewport wrapper
-    const initialW = wrapper.clientWidth || 1000;
-    const initialH = wrapper.clientHeight || 700;
-
-    state.canvas = new fabric.Canvas('pdf-checker-canvas', {
-      width: initialW,
-      height: initialH,
-      selection: true,
-      preserveObjectStacking: true,
-      stopContextMenu: true,
-      fireRightClick: true,
-      enableRetinaScaling: false
-    });
-
-    // Make canvas container visible once initialized
-    if (container) {
-      container.classList.remove('hidden');
-      container.style.width = '100%';
-      container.style.height = '100%';
-    }
-
-    // Auto-resize on window resize
-    window.addEventListener('resize', () => {
-      const modal = document.getElementById('pdf-checker');
-      if (modal && !modal.classList.contains('hidden')) {
-        resizeCanvasToWrapper();
+    try {
+      if (typeof fabric === 'undefined') {
+        console.warn('fabric.js library is not yet loaded, retrying init in 150ms...');
+        setTimeout(() => {
+          if (!state.isInitialized) {
+            initEngine();
+          }
+        }, 150);
+        return;
       }
-    });
 
-    bindCanvasInteractionEvents();
-    bindKeyboardShortcuts();
-    updateToolButtonsUI();
-    updateUndoRedoUI();
+      const canvasEl = document.getElementById('pdf-checker-canvas');
+      const wrapper = document.getElementById('pdf-checker-canvas-wrapper');
+      const container = document.getElementById('pdf-checker-canvas-container');
+      if (!canvasEl || !wrapper) return;
+
+      // Set initial canvas dimension to viewport wrapper
+      const initialW = wrapper.clientWidth || 1000;
+      const initialH = wrapper.clientHeight || 700;
+
+      state.canvas = new fabric.Canvas('pdf-checker-canvas', {
+        width: initialW,
+        height: initialH,
+        selection: true,
+        preserveObjectStacking: true,
+        stopContextMenu: true,
+        fireRightClick: true,
+        enableRetinaScaling: false
+      });
+
+      // Make canvas container visible once initialized
+      if (container) {
+        container.classList.remove('hidden');
+        container.style.width = '100%';
+        container.style.height = '100%';
+      }
+
+      // Auto-resize on window resize
+      window.addEventListener('resize', () => {
+        const modal = getPdfModal();
+        if (modal && !modal.classList.contains('hidden') && modal.style.display !== 'none') {
+          resizeCanvasToWrapper();
+        }
+      });
+
+      bindCanvasInteractionEvents();
+      bindKeyboardShortcuts();
+      updateToolButtonsUI();
+      updateUndoRedoUI();
+      state.isInitialized = true;
+    } catch (err) {
+      console.error('PDF Checker Engine initialization error:', err);
+    }
   }
 
   function resizeCanvasToWrapper() {
@@ -376,8 +424,13 @@
   // ── Keyboard Shortcuts (With Text Box Isolation) ────────────
   function bindKeyboardShortcuts() {
     window.addEventListener('keydown', function (e) {
-      const modal = document.getElementById('pdf-checker');
-      if (!modal || modal.classList.contains('hidden')) return;
+      const modal = getPdfModal();
+      if (!modal || modal.classList.contains('hidden') || modal.style.display === 'none') return;
+
+      if (e.key === 'Escape') {
+        closePdfCheckerModal();
+        return;
+      }
 
       // 텍스트 박스 입력 중에는 단축키 오작동 방지
       const activeEl = document.activeElement;
@@ -1484,31 +1537,42 @@
 
   // Hash-based deep link handler
   function checkHashOnLoad() {
-    const raw = (window.location.hash || '').trim().toLowerCase();
-    let h = '';
     try {
-      h = decodeURIComponent(raw).replace(/^#/, '');
-    } catch (_) {
-      h = raw.replace(/^#/, '');
-    }
+      const raw = (window.location.hash || '').trim().toLowerCase();
+      let h = '';
+      try {
+        h = decodeURIComponent(raw).replace(/^#/, '');
+      } catch (_) {
+        h = raw.replace(/^#/, '');
+      }
 
-    const aliases = [
-      'pdf-checker',
-      'pdf-marking',
-      'drawing-checker',
-      'pdf-jpg-checker',
-      'blueprint-checker',
-      'pdfchecker',
-      'pdf검토',
-      '도면검토',
-      '도면마킹',
-      '도면검토툴',
-      'pdf마킹',
-      '도면'
-    ];
+      const aliases = [
+        'pdf-checker',
+        'pdf-checker-modal',
+        'pdf-marking',
+        'drawing-checker',
+        'pdf-jpg-checker',
+        'blueprint-checker',
+        'pdfchecker',
+        'pdf검토',
+        '도면검토',
+        '도면마킹',
+        '도면검토툴',
+        'pdf마킹',
+        '도면'
+      ];
 
-    if (aliases.includes(h)) {
-      setTimeout(openPdfCheckerModal, 60);
+      if (aliases.includes(h)) {
+        setTimeout(() => {
+          try {
+            openPdfCheckerModal();
+          } catch (e) {
+            console.error('Deep link openPdfCheckerModal error:', e);
+          }
+        }, 60);
+      }
+    } catch (err) {
+      console.warn('PDF checker hash check error:', err);
     }
   }
 

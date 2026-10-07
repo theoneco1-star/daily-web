@@ -44,7 +44,7 @@
   <!-- PDF & Drawing Checker Engine Libraries (100% Client-side) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.9/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -238,7 +238,7 @@
                 onclick="switchMainTab('tools')">
           <span class="gnb-tab-icon">⚡</span>
           <span class="gnb-tab-text" data-i18n="tabs.webTools">웹 도구</span>
-          <span class="gnb-tab-badge new-badge badge-tools-count" id="badge-tools-count">1</span>
+          <span class="gnb-tab-badge new-badge badge-tools-count" id="badge-tools-count">5</span>
         </button>
       </nav>
     </div>
@@ -277,7 +277,7 @@
               onclick="switchMainTab('tools')">
         <span class="subnav-icon">⚡</span>
         <span class="subnav-text" data-i18n="tabs.webTools">웹 도구</span>
-        <span class="subnav-badge new-badge badge-tools-count">1</span>
+        <span class="subnav-badge new-badge badge-tools-count">5</span>
       </button>
     </div>
   </nav>
@@ -1324,10 +1324,11 @@
 
     </div>
   </div>
+</div>
 <!-- ══════════════════════════════════════════
      WEB TOOL: PDF & DRAWING CHECKER FULLSCREEN MODAL (무설치 PDF & 도면/이미지 검토·마킹 툴)
 ════════════════════════════════════════════ -->
-<div id="pdf-checker" class="fixed inset-0 z-[100] hidden w-screen h-screen bg-slate-950 text-slate-100 flex flex-col overflow-hidden select-none" role="dialog" aria-modal="true" aria-label="무설치 PDF & 도면/이미지 검토·마킹 툴">
+<div id="pdf-checker-modal" class="fixed inset-0 z-[9999] hidden w-screen h-screen bg-slate-950 text-slate-100 flex flex-col overflow-hidden select-none" style="z-index: 9999;" role="dialog" aria-modal="true" aria-label="무설치 PDF & 도면/이미지 검토·마킹 툴">
 
   <!-- 1. Top Header Toolbar -->
   <header class="h-14 bg-slate-900 border-b border-slate-800 px-3 sm:px-4 flex items-center justify-between shrink-0 gap-2 z-20">
@@ -1627,6 +1628,7 @@
       try { h = decodeURIComponent(raw).replace(/^#/, ""); } catch (_) { h = raw.replace(/^#/, ""); }
       var aliases = [
         "pdf-checker",
+        "pdf-checker-modal",
         "pdf-marking",
         "drawing-checker",
         "pdf-jpg-checker",
@@ -1640,10 +1642,12 @@
         "도면"
       ];
       if (aliases.indexOf(h) !== -1) {
-        var m = document.getElementById("pdf-checker");
+        var m = document.getElementById("pdf-checker-modal") || document.getElementById("pdf-checker");
         if (m) {
           m.classList.remove("hidden");
           m.classList.add("flex");
+          m.style.display = "flex";
+          m.style.zIndex = "9999";
           document.body.style.overflow = "hidden";
         }
       }
