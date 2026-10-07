@@ -3078,6 +3078,167 @@ html.dark .coming-soon-tag {
   }
 }
 
+/* ═════════════════════════════════════════════════════════════
+   📐 FULL-SCREEN PDF & DRAWING CHECKER (PDF & JPG CHECKER)
+   ═════════════════════════════════════════════════════════════ */
+
+#pdf-checker {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 99999 !important;
+  background-color: #090d16 !important;
+  overflow: hidden !important;
+  display: none;
+  flex-direction: column !important;
+}
+
+#pdf-checker.flex {
+  display: flex !important;
+}
+
+.pdf-checker-topbar {
+  background: rgba(15, 23, 42, 0.96) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.pdf-checker-sidebar {
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  border-right: 1px solid rgba(51, 65, 85, 0.6) !important;
+}
+
+/* Custom Scrollbar for Sidebar */
+.pdf-checker-sidebar ::-webkit-scrollbar,
+#pdf-thumbnails-list::-webkit-scrollbar {
+  width: 6px;
+}
+.pdf-checker-sidebar ::-webkit-scrollbar-track,
+#pdf-thumbnails-list::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+.pdf-checker-sidebar ::-webkit-scrollbar-thumb,
+#pdf-thumbnails-list::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.8);
+  border-radius: 4px;
+}
+.pdf-checker-sidebar ::-webkit-scrollbar-thumb:hover,
+#pdf-thumbnails-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.8);
+}
+
+/* Central Canvas Blueprint Grid Pattern */
+#pdf-checker-canvas-container {
+  background-color: #0b0f19 !important;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 0),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+  background-size: 24px 24px, 120px 120px, 120px 120px !important;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.canvas-container {
+  margin: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+/* Toolbar Segmented Buttons */
+.pdf-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  min-width: 34px;
+  padding: 0 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  user-select: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.pdf-tool-btn:hover {
+  background-color: rgba(51, 65, 85, 0.8);
+  color: #ffffff;
+}
+
+.pdf-tool-btn.active {
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%) !important;
+  color: #ffffff !important;
+  border-color: rgba(129, 140, 248, 0.6) !important;
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.35) !important;
+}
+
+/* Quick Color Dot */
+.pdf-color-preset-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+.pdf-color-preset-btn:hover {
+  transform: scale(1.2);
+  border-color: #ffffff;
+}
+
+/* Dropzone Overlay */
+#pdf-checker-dropzone-overlay {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+/* Floating Info & Shortcuts Capsule */
+.pdf-floating-pill {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(71, 85, 105, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* PDF Checker High-Contrast Action Buttons */
+.pdf-btn-primary {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+  border: 1px solid rgba(52, 211, 153, 0.6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 12px rgba(16, 185, 129, 0.35) !important;
+  transition: all 0.18s ease !important;
+}
+.pdf-btn-primary:hover {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45) !important;
+}
+
+/* Animated Loading Spinner */
+.pdf-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: pdf-spin 0.8s linear infinite;
+}
+@keyframes pdf-spin {
+  to { transform: rotate(360deg); }
+}
+
+
 
 
 

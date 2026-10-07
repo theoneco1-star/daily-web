@@ -6,6 +6,29 @@
 // ── Default Web Tools Data (Instant fallback & offline ready) ──
 let webToolsData = [
   {
+    id: "pdf-checker",
+    nameKo: "무설치 PDF & 도면/이미지 검토·마킹 툴",
+    nameEn: "PDF & Drawing Review / Marking Tool (PDF & JPG Checker)",
+    targetLang: "ALL",
+    isKrOnly: false,
+    category: "utility",
+    color: "from-sky-600 via-indigo-600 to-blue-700",
+    iconEmoji: "📐",
+    isHot: true,
+    isFree: true,
+    isNew: true,
+    badges: ["HOT", "NEW", "무료 도구", "Web Utility"],
+    descKo: "서버 업로드 없이 브라우저 단독으로 대용량 PDF 및 도면(JPG/PNG)을 병합·검토하고, 텍스트·도형 마킹 후 고화질 최적화 PDF로 즉시 내보냅니다.",
+    descEn: "Review, merge and annotate large CAD/PDF/image drawings directly in your browser with zero upload, then export to ultra-high-definition optimized PDF instantly.",
+    tagsKo: ["PDF검토", "도면마킹", "이미지병합", "무설치"],
+    tagsEn: ["PDFReview", "DrawingMarkup", "MergeImages", "NoInstall"],
+    ctaTextKo: "바로 사용하기",
+    ctaTextEn: "Use Tool Now",
+    actionType: "modal",
+    targetModal: "pdf-checker",
+    deepLink: "#pdf-checker"
+  },
+  {
     id: "wage-calc",
     nameKo: "실수령액 & 주휴수당 계산기",
     nameEn: "Net Salary & Holiday Allowance Calculator",
@@ -96,6 +119,29 @@ let webToolsData = [
     actionType: "modal",
     targetModal: "excel-delimiter-converter",
     deepLink: "#excel-delimiter-converter"
+  },
+  {
+    id: "pdf-checker",
+    nameKo: "무설치 PDF & 도면/이미지 검토·마킹 툴",
+    nameEn: "PDF & Blueprint Marking / Review Tool",
+    targetLang: "ALL",
+    isKrOnly: false,
+    category: "utility",
+    color: "from-red-600 via-rose-600 to-amber-600",
+    iconEmoji: "📐",
+    isHot: true,
+    isFree: true,
+    isNew: true,
+    badges: ["HOT", "NEW", "무료 도구"],
+    descKo: "서버 업로드 없이 브라우저 단독으로 대용량 PDF 및 도면(JPG/PNG)을 병합·검토하고, 텍스트·도형 마킹 후 고화질 최적화 PDF로 즉시 내보냅니다.",
+    descEn: "Merge & review large PDFs and blueprints (JPG/PNG) locally in browser, add text/shape markups, and export optimized high-res PDF with editable annotations.",
+    tagsKo: ["PDF검토", "도면마킹", "이미지병합", "무설치"],
+    tagsEn: ["PDFChecker", "DrawingMarkup", "ImageMerge", "NoInstall"],
+    ctaTextKo: "바로 사용하기",
+    ctaTextEn: "Use Tool Now",
+    actionType: "modal",
+    targetModal: "pdf-checker",
+    deepLink: "#pdf-checker"
   }
 ];
 
@@ -331,6 +377,12 @@ function handleWebToolAction(toolId) {
     openExcelDelimiterModal();
   } else if (toolId === "annual-leave-calculator" || toolId === "leave-calc") {
     openAnnualLeaveModal();
+  } else if (toolId === "pdf-checker" || toolId === "pdf-marking" || toolId === "drawing-checker") {
+    if (typeof openPdfCheckerModal === "function") {
+      openPdfCheckerModal();
+    } else if (typeof window.openPdfCheckerModal === "function") {
+      window.openPdfCheckerModal();
+    }
   }
 }
 

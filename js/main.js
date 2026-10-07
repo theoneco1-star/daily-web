@@ -866,6 +866,35 @@ function checkDeepLinks() {
         setTimeout(openLeave, 60);
       }
     }
+
+    const pdfCheckerAliases = [
+      "pdf-checker",
+      "pdf-marking",
+      "drawing-checker",
+      "pdf-jpg-checker",
+      "blueprint-checker",
+      "pdfchecker",
+      "pdf검토",
+      "도면검토",
+      "도면마킹",
+      "도면검토툴",
+      "pdf마킹",
+      "도면"
+    ];
+
+    if (pdfCheckerAliases.includes(hash) || pdfCheckerAliases.includes(toolParam)) {
+      if (typeof showPage === "function") {
+        showPage("main");
+      }
+      if (typeof switchMainTab === "function") {
+        switchMainTab("tools");
+      }
+      const openPdf = (typeof openPdfCheckerModal === "function") ? openPdfCheckerModal : window.openPdfCheckerModal;
+      if (typeof openPdf === "function") {
+        openPdf();
+        setTimeout(openPdf, 60);
+      }
+    }
   } catch (err) {
     console.warn("Deep link handling error:", err);
   }
