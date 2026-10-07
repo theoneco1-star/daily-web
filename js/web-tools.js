@@ -21,7 +21,8 @@ function restoreDefaultTitle() {
   ];
   const anyOpen = modals.some(m => m && !m.classList.contains("hidden") && m.style.display !== "none");
   if (!anyOpen) {
-    document.title = SITE_DEFAULT_TITLE;
+    const isEn = (typeof currentLang !== "undefined" ? currentLang : "ko") === "en";
+    document.title = isEn ? "Daily Helper | Smart Tools for Everyday Life" : SITE_DEFAULT_TITLE;
   }
 }
 
@@ -400,11 +401,15 @@ function openPdfCheckerModal() {
     modal.style.display = "flex";
     modal.style.zIndex = "9999";
     document.body.style.overflow = "hidden";
-    setSiteTitle("무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움");
+    const isEn = (typeof currentLang !== "undefined" ? currentLang : "ko") === "en";
+    setSiteTitle(isEn ? "PDF & Drawing Review / Marking Tool | Daily Helper" : "무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움");
     if (window.location.hash !== "#pdf-checker") {
       try {
         history.replaceState(null, document.title, window.location.pathname + window.location.search + "#pdf-checker");
       } catch (_) {}
+    }
+    if (typeof setPdfCheckerLang === "function") {
+      setPdfCheckerLang(isEn ? "en" : "ko");
     }
   }
 }

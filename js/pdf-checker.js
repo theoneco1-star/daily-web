@@ -38,6 +38,255 @@
     bgImageInstance: null
   };
 
+  // ── i18n Translation Dictionary ──────────────────────────────
+  const pdfCheckerI18n = {
+    ko: {
+      title: '무설치 PDF & 도면/이미지 검토·마킹 툴',
+      subtitle: '서버 업로드 없이 브라우저에서 대용량 PDF 및 도면(JPG/PNG)을 병합·검토하고 마킹 후 고화질 PDF로 내보냅니다.',
+      browserTitle: '무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움',
+      brandTitle: 'PDF & 도면 마킹 툴',
+      brandBadge: '100% 로컬 보안',
+      brandSub: 'PDF & JPG Checker',
+      langToggle: 'EN',
+      openAddFiles: '+ 파일 열기 / 추가',
+      pageCounterTitle: '현재 페이지 / 총 페이지',
+      pageTotalBadge: '0 페이지',
+      toolSelect: '선택',
+      toolPan: '이동',
+      toolText: '텍스트',
+      toolRect: '사각',
+      toolCircle: '원형',
+      toolDraw: '자유선',
+      toolSelectTitle: '선택 도구 (단축키: V)',
+      toolPanTitle: '화면 이동 (단축키: H 또는 Space+드래그)',
+      toolTextTitle: '텍스트 메모 입력 (단축키: T)',
+      toolRectTitle: '사각형 마킹 (단축키: M)',
+      toolCircleTitle: '원형 마킹 (단축키: C)',
+      toolDrawTitle: '자유곡선 그리기 (단축키: S)',
+      optLine: '선:',
+      optFont: '글자:',
+      fillTitle: '도형 채우기',
+      fillTransparent: '채우기: 투명',
+      fillSemitransparent: '채우기: 반투명',
+      fillSolid: '채우기: 색상 채움',
+      undoTitle: '실행 취소 (Ctrl+Z)',
+      redoTitle: '다시 실행 (Ctrl+Y)',
+      deleteSelectedTitle: '선택 객체 삭제 (Del)',
+      zoomOutTitle: '축소 (Ctrl+휠)',
+      zoomResetTitle: '100% 리셋',
+      zoomInTitle: '확대 (Ctrl+휠)',
+      zoomFitTitle: '화면 맞춤',
+      exportTitle: '50MB 도면을 5~7MB 초고화질 최적화 PDF로 즉시 내보내기',
+      exportPdfBtn: '고화질 PDF 내보내기',
+      saveBtn: '저장',
+      closeModalTitle: '닫기 (Esc)',
+      sidebarPages: '페이지 목록',
+      toggleSidebarTitle: '사이드바 접기/펼치기',
+      addFileBtn: '+ 파일 추가',
+      clearAllBtn: '비우기',
+      clearAllTitle: '전체 비우기',
+      emptyThumbList: '불러온 페이지가 없습니다.',
+      moveUpTitle: '위로 이동',
+      moveDownTitle: '아래로 이동',
+      deletePageTitle: '페이지 삭제',
+      emptyTitle: '검토할 PDF 또는 도면을 불러오세요',
+      emptyDesc: '서버 업로드 없이 100% 브라우저 메모리 안에서만 동작하여 안전합니다.<br />CAD 도면(PDF), JPG, PNG, WebP 파일을 혼합하여 병합할 수 있습니다.',
+      emptySelectBtn: '+ 파일 선택하기 (다중 선택 가능)',
+      emptySampleBtn: '샘플 도면으로 바로 체험하기',
+      emptyDropHint: '또는 여기에 파일을 직접 드래그 앤 드롭하세요',
+      dropOverlayTitle: '여기에 도면/PDF 파일을 놓으세요',
+      dropOverlayDesc: '기존 마킹 데이터를 보존하며 뒤 페이지로 자동 이어붙입니다.',
+      shortcutSelect: '<strong class="text-blue-400 font-mono">V</strong> 선택',
+      shortcutPan: '<strong class="text-blue-400 font-mono">H</strong> 이동(Space+드래그)',
+      shortcutText: '<strong class="text-blue-400 font-mono">T</strong> 텍스트',
+      shortcutRect: '<strong class="text-blue-400 font-mono">M</strong> 사각',
+      shortcutCircle: '<strong class="text-blue-400 font-mono">C</strong> 원',
+      shortcutDraw: '<strong class="text-blue-400 font-mono">S</strong> 자유선',
+      shortcutZoom: '<strong class="text-blue-400 font-mono">Ctrl+휠</strong> 확대/축소',
+      shortcutDelete: '<strong class="text-blue-400 font-mono">Del</strong> 삭제',
+      loadingProcessing: '파일 처리 중...',
+      loadingLargeNotice: '대용량 도면의 경우 수 초 정도 소요될 수 있습니다.',
+      loadingCompositing: '고화질 최적화 PDF를 합성하고 생성하는 중입니다...',
+      toastExportSuccess: '고화질 최적화 PDF가 성공적으로 다운로드되었습니다!',
+      toastExportFail: 'PDF 내보내기 실패: ',
+      toastNoPages: '내보낼 도면이나 문서가 없습니다. 먼저 파일을 불러와주세요.',
+      toastPageOrderChanged: '페이지 순서가 변경되었습니다.',
+      toastPageDeleted: '페이지가 삭제되었습니다.',
+      toastSampleLoaded: '초고화질 샘플 도면이 로드되었습니다! 마킹을 시작해보세요.',
+      toastSampleFail: '샘플 로드 실패',
+      confirmDeletePage: '페이지 {page}을(를) 정말 삭제하시겠습니까?',
+      sampleDrawingTitle: '샘플 도면 (3F 건축 평면도)',
+      demoReviewMemo: '검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)'
+    },
+    en: {
+      title: 'PDF & Drawing Review / Marking Tool (PDF & JPG Checker)',
+      subtitle: 'Merge, review, and annotate large CAD/PDF/image drawings directly in your browser with zero upload, then export to ultra-high-definition optimized PDF instantly.',
+      browserTitle: 'PDF & Drawing Review / Marking Tool | Daily Helper',
+      brandTitle: 'PDF & Drawing Review Tool',
+      brandBadge: '100% Local Security',
+      brandSub: 'PDF & JPG Checker',
+      langToggle: 'KO',
+      openAddFiles: '+ Open / Add Files',
+      pageCounterTitle: 'Current / Total Pages',
+      pageTotalBadge: '0 Page',
+      toolSelect: 'Select',
+      toolPan: 'Pan',
+      toolText: 'Text',
+      toolRect: 'Rect',
+      toolCircle: 'Circle',
+      toolDraw: 'Draw',
+      toolSelectTitle: 'Select Tool (Hotkey: V)',
+      toolPanTitle: 'Pan (Hotkey: H or Space+Drag)',
+      toolTextTitle: 'Text Annotation (Hotkey: T)',
+      toolRectTitle: 'Rectangle Markup (Hotkey: M)',
+      toolCircleTitle: 'Circle Markup (Hotkey: C)',
+      toolDrawTitle: 'Freehand Draw (Hotkey: S)',
+      optLine: 'Line:',
+      optFont: 'Font:',
+      fillTitle: 'Shape Fill',
+      fillTransparent: 'Fill: Transparent',
+      fillSemitransparent: 'Fill: Semi-transparent',
+      fillSolid: 'Fill: Solid Color',
+      undoTitle: 'Undo (Ctrl+Z)',
+      redoTitle: 'Redo (Ctrl+Y)',
+      deleteSelectedTitle: 'Delete Selected (Del)',
+      zoomOutTitle: 'Zoom Out (Ctrl+Wheel)',
+      zoomResetTitle: 'Reset 100%',
+      zoomInTitle: 'Zoom In (Ctrl+Wheel)',
+      zoomFitTitle: 'Fit to Screen',
+      exportTitle: 'Export 50MB drawing as 5~7MB ultra-HD optimized PDF instantly',
+      exportPdfBtn: 'Export High-Res PDF',
+      saveBtn: 'Save',
+      closeModalTitle: 'Close (Esc)',
+      sidebarPages: 'Pages',
+      toggleSidebarTitle: 'Collapse/Expand Sidebar',
+      addFileBtn: '+ Add File',
+      clearAllBtn: 'Clear All',
+      clearAllTitle: 'Clear All',
+      emptyThumbList: 'No pages loaded.',
+      moveUpTitle: 'Move Up',
+      moveDownTitle: 'Move Down',
+      deletePageTitle: 'Delete Page',
+      emptyTitle: 'Open PDF or Drawings to Review',
+      emptyDesc: '100% processed securely in your local browser memory without server upload. Merge and review CAD drawings (PDF), JPG, PNG, and WebP files.',
+      emptySelectBtn: '+ Select Files (Multi-select)',
+      emptySampleBtn: 'Try Sample Drawing',
+      emptyDropHint: 'or drag and drop files here',
+      dropOverlayTitle: 'Drop PDF or drawing files here',
+      dropOverlayDesc: 'Appends pages while preserving existing annotations.',
+      shortcutSelect: '<strong class="text-blue-400 font-mono">V</strong> Select',
+      shortcutPan: '<strong class="text-blue-400 font-mono">H</strong> Pan(Space+Drag)',
+      shortcutText: '<strong class="text-blue-400 font-mono">T</strong> Text',
+      shortcutRect: '<strong class="text-blue-400 font-mono">M</strong> Rect',
+      shortcutCircle: '<strong class="text-blue-400 font-mono">C</strong> Circle',
+      shortcutDraw: '<strong class="text-blue-400 font-mono">S</strong> Draw',
+      shortcutZoom: '<strong class="text-blue-400 font-mono">Ctrl+Wheel</strong> Zoom',
+      shortcutDelete: '<strong class="text-blue-400 font-mono">Del</strong> Delete',
+      loadingProcessing: 'Processing files...',
+      loadingLargeNotice: 'Large drawings may take a few seconds.',
+      loadingCompositing: 'Compositing and generating high-resolution optimized PDF...',
+      toastExportSuccess: 'High-resolution optimized PDF downloaded successfully!',
+      toastExportFail: 'PDF export failed: ',
+      toastNoPages: 'No documents or drawings to export. Please load files first.',
+      toastPageOrderChanged: 'Page order updated.',
+      toastPageDeleted: 'Page deleted.',
+      toastSampleLoaded: 'Ultra-HD sample drawing loaded! Start reviewing & marking.',
+      toastSampleFail: 'Failed to load sample.',
+      confirmDeletePage: 'Are you sure you want to delete Page {page}?',
+      sampleDrawingTitle: 'Sample Blueprint (3F Floor Plan)',
+      demoReviewMemo: 'Review Note: Confirm projector & power wiring layout in main conference room (REV 02)'
+    }
+  };
+
+  function getPdfCheckerLang() {
+    if (typeof currentLang !== 'undefined') return currentLang;
+    try {
+      const saved = localStorage.getItem('dh_lang');
+      if (saved) return saved;
+    } catch (_) {}
+    return 'ko';
+  }
+
+  function getI18nText(key, fallback) {
+    const lang = getPdfCheckerLang();
+    const dict = pdfCheckerI18n[lang] || pdfCheckerI18n.ko;
+    if (dict && dict[key] !== undefined) return dict[key];
+    return fallback !== undefined ? fallback : key;
+  }
+
+  function setPdfCheckerLang(lang) {
+    const l = lang === 'en' ? 'en' : 'ko';
+    const dict = pdfCheckerI18n[l] || pdfCheckerI18n.ko;
+
+    const toggleLabel = document.getElementById('pdf-lang-toggle-label');
+    if (toggleLabel) {
+      toggleLabel.textContent = dict.langToggle;
+    }
+
+    const modal = getPdfModal();
+    const isModalOpen = modal && !modal.classList.contains('hidden') && modal.style.display !== 'none';
+    if (isModalOpen) {
+      if (typeof window.setSiteTitle === 'function') {
+        window.setSiteTitle(dict.browserTitle);
+      } else {
+        document.title = dict.browserTitle;
+      }
+    }
+
+    if (modal) {
+      modal.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (key && key.startsWith('webTools.pdfChecker.')) {
+          const subKey = key.replace('webTools.pdfChecker.', '');
+          if (dict[subKey] !== undefined) {
+            el.textContent = dict[subKey];
+          }
+        }
+      });
+
+      modal.querySelectorAll('[data-i18n-html]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-html');
+        if (key && key.startsWith('webTools.pdfChecker.')) {
+          const subKey = key.replace('webTools.pdfChecker.', '');
+          if (dict[subKey] !== undefined) {
+            el.innerHTML = dict[subKey];
+          }
+        }
+      });
+
+      modal.querySelectorAll('[data-i18n-title]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-title');
+        if (key && key.startsWith('webTools.pdfChecker.')) {
+          const subKey = key.replace('webTools.pdfChecker.', '');
+          if (dict[subKey] !== undefined) {
+            el.setAttribute('title', dict[subKey]);
+          }
+        }
+      });
+    }
+
+    updatePageCounter();
+    if (state.pages.length === 0) {
+      const listEl = document.getElementById('pdf-checker-thumb-list');
+      if (listEl) {
+        listEl.innerHTML = `
+          <div class="p-4 text-center text-xs text-slate-500">
+            ${dict.emptyThumbList}
+          </div>`;
+      }
+    }
+  }
+
+  function togglePdfCheckerLang() {
+    const current = getPdfCheckerLang();
+    const nextLang = current === 'ko' ? 'en' : 'ko';
+    if (typeof setLang === 'function') {
+      setLang(nextLang);
+    } else {
+      setPdfCheckerLang(nextLang);
+    }
+  }
+
   // ── Helper Utilities ────────────────────────────────────────
   function uid() {
     return 'p_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
@@ -115,11 +364,15 @@
       document.body.style.overflow = 'hidden';
 
       // 브라우저 탭 타이틀 일시 변경
+      const curLang = getPdfCheckerLang();
+      const dict = pdfCheckerI18n[curLang] || pdfCheckerI18n.ko;
       if (typeof window.setSiteTitle === 'function') {
-        window.setSiteTitle('무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움');
+        window.setSiteTitle(dict.browserTitle);
       } else {
-        document.title = '무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움';
+        document.title = dict.browserTitle;
       }
+
+      setPdfCheckerLang(curLang);
 
       if (window.location.hash !== '#pdf-checker') {
         try {
@@ -196,7 +449,10 @@
       if (typeof window.restoreDefaultTitle === 'function') {
         window.restoreDefaultTitle();
       } else {
-        document.title = '일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음';
+        const isEn = getPdfCheckerLang() === 'en';
+        document.title = isEn
+          ? 'Daily Helper | Smart Tools for Everyday Life'
+          : '일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음';
       }
     } catch (err) {
       console.error('Error closing PDF Checker modal:', err);
@@ -1150,9 +1406,14 @@
     const badge = document.getElementById('pdf-checker-page-total-badge');
     const total = state.pages.length;
     const current = total > 0 ? state.currentPageIndex + 1 : 0;
+    const isEn = getPdfCheckerLang() === 'en';
 
     if (counter) counter.textContent = `${current} / ${total}`;
-    if (badge) badge.textContent = `${total} 페이지`;
+    if (badge) {
+      badge.textContent = isEn
+        ? (total === 1 ? '1 Page' : (total === 0 ? '0 Page' : `${total} Pages`))
+        : `${total} 페이지`;
+    }
   }
 
   function showEmptyState(show) {
@@ -1171,7 +1432,7 @@
     if (state.pages.length === 0) {
       listEl.innerHTML = `
         <div class="p-4 text-center text-xs text-slate-500">
-          불러온 페이지가 없습니다.
+          ${getI18nText('emptyThumbList', '불러온 페이지가 없습니다.')}
         </div>`;
       return;
     }
@@ -1190,15 +1451,15 @@
             <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
               ${
                 i > 0
-                  ? `<button type="button" class="p-0.5 hover:text-white text-slate-400" title="위로 이동" onclick="event.stopPropagation(); window.pdfChecker.movePage(${i}, -1)">▲</button>`
+                  ? `<button type="button" class="p-0.5 hover:text-white text-slate-400" title="${getI18nText('moveUpTitle', '위로 이동')}" onclick="event.stopPropagation(); window.pdfChecker.movePage(${i}, -1)">▲</button>`
                   : ''
               }
               ${
                 i < state.pages.length - 1
-                  ? `<button type="button" class="p-0.5 hover:text-white text-slate-400" title="아래로 이동" onclick="event.stopPropagation(); window.pdfChecker.movePage(${i}, 1)">▼</button>`
+                  ? `<button type="button" class="p-0.5 hover:text-white text-slate-400" title="${getI18nText('moveDownTitle', '아래로 이동')}" onclick="event.stopPropagation(); window.pdfChecker.movePage(${i}, 1)">▼</button>`
                   : ''
               }
-              <button type="button" class="p-0.5 hover:text-red-400 text-slate-400" title="페이지 삭제" onclick="event.stopPropagation(); window.pdfChecker.deletePage(${i})">🗑️</button>
+              <button type="button" class="p-0.5 hover:text-red-400 text-slate-400" title="${getI18nText('deletePageTitle', '페이지 삭제')}" onclick="event.stopPropagation(); window.pdfChecker.deletePage(${i})">🗑️</button>
             </div>
           </div>
           <div class="w-full h-24 bg-slate-950 rounded-lg overflow-hidden border border-slate-800/80 flex items-center justify-center relative">
@@ -1279,7 +1540,7 @@
 
     renderThumbnailsSidebar();
     switchPage(state.currentPageIndex);
-    showToast('페이지 순서가 변경되었습니다.');
+    showToast(getI18nText('toastPageOrderChanged', '페이지 순서가 변경되었습니다.'));
   }
 
   function deletePage(index) {
@@ -1288,7 +1549,11 @@
       return;
     }
 
-    if (!confirm(`페이지 ${index + 1}을(를) 정말 삭제하시겠습니까?`)) return;
+    const isEn = getPdfCheckerLang() === 'en';
+    const confirmMsg = isEn
+      ? `Are you sure you want to delete Page ${index + 1}?`
+      : `페이지 ${index + 1}을(를) 정말 삭제하시겠습니까?`;
+    if (!confirm(confirmMsg)) return;
 
     saveCurrentPageAnnotations();
     const removed = state.pages.splice(index, 1)[0];
@@ -1301,7 +1566,7 @@
 
     renderThumbnailsSidebar();
     switchPage(state.currentPageIndex);
-    showToast('페이지가 삭제되었습니다.');
+    showToast(getI18nText('toastPageDeleted', '페이지가 삭제되었습니다.'));
   }
 
   function toggleSidebar() {
@@ -1322,12 +1587,12 @@
   // ── High-Quality Optimized PDF Export (50MB -> 5~7MB) ───────
   async function exportOptimizedPdf() {
     if (state.pages.length === 0) {
-      showToast('내보낼 도면이나 문서가 없습니다. 먼저 파일을 불러와주세요.');
+      showToast(getI18nText('toastNoPages', '내보낼 도면이나 문서가 없습니다. 먼저 파일을 불러와주세요.'));
       return;
     }
 
     saveCurrentPageAnnotations();
-    setOverlayLoading(true, '고화질 최적화 PDF를 합성하고 생성하는 중입니다...');
+    setOverlayLoading(true, getI18nText('loadingCompositing', '고화질 최적화 PDF를 합성하고 생성하는 중입니다...'));
 
     try {
       const { PDFDocument } = window.PDFLib;
@@ -1342,8 +1607,11 @@
       };
 
       for (let i = 0; i < state.pages.length; i++) {
-        const pageData = state.pages[i];
-        setOverlayLoading(true, `고화질 합성 인코딩 중... (${i + 1} / ${state.pages.length})`);
+        const isEn = getPdfCheckerLang() === 'en';
+        const encodingMsg = isEn
+          ? `High-res composite encoding... (${i + 1} / ${state.pages.length})`
+          : `고화질 합성 인코딩 중... (${i + 1} / ${state.pages.length})`;
+        setOverlayLoading(true, encodingMsg);
 
         // 1. Prepare 1:1 offscreen composite canvas
         const offCanvas = document.createElement('canvas');
@@ -1436,7 +1704,10 @@
       // Trigger download
       const blob = new Blob([finalPdfBytes], { type: 'application/pdf' });
       const downloadUrl = URL.createObjectURL(blob);
-      const fileName = `도면마킹검토_${new Date().toISOString().slice(0, 10)}.pdf`;
+      const isEn = getPdfCheckerLang() === 'en';
+      const fileName = isEn
+        ? `Drawing_Review_${new Date().toISOString().slice(0, 10)}.pdf`
+        : `도면마킹검토_${new Date().toISOString().slice(0, 10)}.pdf`;
 
       const a = document.createElement('a');
       a.href = downloadUrl;
@@ -1447,10 +1718,10 @@
 
       setTimeout(() => URL.revokeObjectURL(downloadUrl), 10000); // Prevent file lock/leak
 
-      showToast('고화질 최적화 PDF가 성공적으로 다운로드되었습니다!');
+      showToast(getI18nText('toastExportSuccess', '고화질 최적화 PDF가 성공적으로 다운로드되었습니다!'));
     } catch (err) {
       console.error('Export PDF error:', err);
-      showToast('PDF 내보내기 실패: ' + err.message);
+      showToast(getI18nText('toastExportFail', 'PDF 내보내기 실패: ') + err.message);
     } finally {
       setOverlayLoading(false);
     }
@@ -1458,7 +1729,7 @@
 
   // ── Sample Blueprint Generator (Instant Wow Demo) ───────────
   async function loadSampleBlueprint() {
-    setOverlayLoading(true, '초고해상도 샘플 건축 도면을 생성 중입니다...');
+    setOverlayLoading(true, getI18nText('loadingSample', '초고해상도 샘플 건축 도면을 생성 중입니다...'));
 
     try {
       const width = 3508; // A3 High-DPI Landscape
@@ -1560,6 +1831,7 @@
 
       clearAllPages(false);
       const pageId = uid();
+      const isEn = getPdfCheckerLang() === 'en';
       state.pages.push({
         id: pageId,
         type: 'image',
@@ -1570,7 +1842,7 @@
         widthPt: (width * 72) / 150,
         heightPt: (height * 72) / 150,
         fileName: 'Sample_Blueprint_FloorPlan_A3.jpg',
-        title: '샘플 도면 (3F 건축 평면도)'
+        title: isEn ? 'Sample Blueprint (3F Floor Plan)' : '샘플 도면 (3F 건축 평면도)'
       });
 
       renderThumbnailsSidebar();
@@ -1581,10 +1853,10 @@
         addDemoMarkups();
       }, 350);
 
-      showToast('초고화질 샘플 도면이 로드되었습니다! 마킹을 시작해보세요.');
+      showToast(getI18nText('toastSampleLoaded', '초고화질 샘플 도면이 로드되었습니다! 마킹을 시작해보세요.'));
     } catch (err) {
       console.error('Sample load error:', err);
-      showToast('샘플 로드 실패');
+      showToast(getI18nText('toastSampleFail', '샘플 로드 실패'));
     } finally {
       setOverlayLoading(false);
     }
@@ -1608,7 +1880,11 @@
     });
 
     // 2. Yellow highlighted text memo
-    const text = new fabric.IText('검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)', {
+    const isEn = getPdfCheckerLang() === 'en';
+    const memoText = isEn
+      ? 'Review Note: Confirm projector & power wiring layout in main conference room (REV 02)'
+      : '검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)';
+    const text = new fabric.IText(memoText, {
       left: 1410,
       top: 390,
       fontFamily: 'Noto Sans KR, sans-serif',
@@ -1650,6 +1926,8 @@
     clearAllPages: clearAllPages,
     toggleSidebar: toggleSidebar,
     loadSampleBlueprint: loadSampleBlueprint,
+    setLang: setPdfCheckerLang,
+    toggleLang: togglePdfCheckerLang,
     state: state
   };
 
@@ -1657,6 +1935,9 @@
   window.PdfChecker = publicApi;
   window.openPdfCheckerModal = openPdfCheckerModal;
   window.closePdfCheckerModal = closePdfCheckerModal;
+  window.setPdfCheckerLang = setPdfCheckerLang;
+  window.togglePdfCheckerLang = togglePdfCheckerLang;
+  window.pdfCheckerI18n = pdfCheckerI18n;
 
   // Hash-based deep link handler
   function checkHashOnLoad() {
@@ -1698,6 +1979,12 @@
       console.warn('PDF checker hash check error:', err);
     }
   }
+
+  // Initialize language from current site state
+  try {
+    const initL = getPdfCheckerLang();
+    setPdfCheckerLang(initL);
+  } catch (_) {}
 
   window.addEventListener('hashchange', checkHashOnLoad);
   if (document.readyState === 'loading') {
