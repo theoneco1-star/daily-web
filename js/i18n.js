@@ -138,8 +138,8 @@ const translations = {
         toastPasteError: "클립보드 읽기 권한이 없습니다. Ctrl+V로 붙여넣어 주세요.",
         guide: {
           mainTitle: "💡 엑셀 줄바꿈 & 구분자 변환기 200% 활용 팁",
-          tip1Title: "엑셀(Excel) 열 데이터 한 번에 복사하기",
-          tip1Content: "엑셀에서 원하는 데이터 열을 드래그하거나 Ctrl+Shift+↓로 선택한 뒤 복사(Ctrl+C)하여 입력창에 붙여넣으면 줄바꿈으로 자동 입력됩니다.",
+          tip1Title: "엑셀(Excel) 다중 열 & 줄바꿈 한 번에 복사하기",
+          tip1Content: "엑셀에서 세로 열뿐만 아니라 가로 여러 열(다중 셀)을 복사해 붙여넣어도 탭(Tab) 문자를 자동 인식하여 각각 개별 항목으로 분리 변환합니다.",
           tip2Title: "DB 쿼리 WHERE column IN (...) 작성 팁",
           tip2Content: "엑셀의 사번, ID, 고객번호 목록을 복사한 후 'SQL 작은따옴표' 프리셋과 'SQL IN 괄호 감싸기'를 체크하면 즉시 실행 가능한 SQL IN 구문이 완성됩니다.",
           tip3Title: "개인정보 및 보안 안내",
@@ -688,8 +688,8 @@ const translations = {
         toastPasteError: "Clipboard permission denied. Please press Ctrl+V directly.",
         guide: {
           mainTitle: "💡 Excel Line Break & Delimiter Tips",
-          tip1Title: "Quickly copying columns from Excel / Google Sheets",
-          tip1Content: "Select any column in Excel or Google Sheets (Ctrl+Shift+Down) and copy (Ctrl+C). Paste here to convert instantly.",
+          tip1Title: "Copying columns & multi-row cells from Excel",
+          tip1Content: "Select columns or multiple cells in Excel / Google Sheets and copy (Ctrl+C). Both line breaks and multi-column tabs (\\t) are split automatically into individual items.",
           tip2Title: "Generate DB Query WHERE col IN (...)",
           tip2Content: "Select 'SQL Single Quotes' and check 'Wrap with SQL IN (...)' to generate ready-to-run SQL IN clauses in seconds.",
           tip3Title: "100% Client-Side Privacy & Security",

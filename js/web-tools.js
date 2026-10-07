@@ -1347,7 +1347,7 @@ function parseDelimitedText(text, preset, customDelim) {
 
   // Standard delimiter split
   const escapedDelim = delimiter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const items = cleaned.split(new RegExp(escapedDelim + "|\\r?\\n"));
+  const items = cleaned.split(new RegExp(escapedDelim + "|\\r?\\n|\\t+"));
   return items.map((s) => s.trim()).filter((s) => s.length > 0);
 }
 
@@ -1391,10 +1391,12 @@ function runExcelConversion() {
   let items = [];
 
   if (currentEdMode === "line-to-delim") {
-    // Mode 1: Line Break → Delimiter
-    items = rawInput.split(/\r\n|\r|\n/);
+    // Mode 1: Line Break & Multi-column Tabs → Delimiter
+    items = rawInput.split(/(?:\r\n|\r|\n|\t)+/);
     if (optTrim) {
       items = items.map((s) => s.trim()).filter((s) => s.length > 0);
+    } else {
+      items = items.filter((s) => s.trim().length > 0);
     }
     if (optDedupe) {
       items = Array.from(new Set(items));
