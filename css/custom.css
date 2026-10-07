@@ -3395,3 +3395,52 @@ html.dark .dummy-ad-box-modal,
 .leave-btn-copy.w-full {
   width: 100% !important;
 }
+
+/* ═════════════════════════════════════════════════════════════
+   PDF Checker 모바일(스마트폰) 대응 안내 레이아웃
+   - 화면 너비 768px 미만: 툴바와 캔버스 숨김 처리, 화면 중앙에 깔끔한 안내 박스 노출
+   - 화면 너비 768px 이상: 기존 풀스크린 뷰어 및 마킹 툴바 100% 정상 작동
+   ═════════════════════════════════════════════════════════════ */
+#pdf-checker-mobile-notice {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  #pdf-checker-modal {
+    justify-content: center;
+    align-items: center;
+  }
+  #pdf-checker-modal .pdf-checker-header,
+  #pdf-checker-modal > header {
+    display: none !important;
+  }
+  #pdf-checker-modal .pdf-checker-workspace,
+  #pdf-checker-modal > .pdf-checker-workspace {
+    display: none !important;
+  }
+  #pdf-checker-mobile-notice {
+    display: flex !important;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  }
+}
+
+@media (min-width: 768px) {
+  #pdf-checker-mobile-notice {
+    display: none !important;
+  }
+  #pdf-checker-modal .pdf-checker-header,
+  #pdf-checker-modal > header {
+    display: flex !important;
+  }
+  #pdf-checker-modal .pdf-checker-workspace,
+  #pdf-checker-modal > .pdf-checker-workspace {
+    display: flex !important;
+  }
+}
+

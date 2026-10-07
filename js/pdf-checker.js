@@ -116,7 +116,10 @@
       toastSampleFail: '샘플 로드 실패',
       confirmDeletePage: '페이지 {page}을(를) 정말 삭제하시겠습니까?',
       sampleDrawingTitle: '샘플 도면 (3F 건축 평면도)',
-      demoReviewMemo: '검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)'
+      demoReviewMemo: '검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)',
+      mobileNoticeTitle: 'PC 환경에 최적화된 도구입니다',
+      mobileNoticeDesc: '대용량 CAD 도면 검토 및 정밀 마킹 기능은 마우스와 넓은 화면을 지원하는 데스크톱(PC) 또는 태블릿 가로 모드 이용을 권장합니다.',
+      mobileNoticeCloseBtn: '메인으로 돌아가기 (Close)'
     },
     en: {
       title: 'PDF & Drawing Review / Marking Tool (PDF & JPG Checker)',
@@ -194,7 +197,10 @@
       toastSampleFail: 'Failed to load sample.',
       confirmDeletePage: 'Are you sure you want to delete Page {page}?',
       sampleDrawingTitle: 'Sample Blueprint (3F Floor Plan)',
-      demoReviewMemo: 'Review Note: Confirm projector & power wiring layout in main conference room (REV 02)'
+      demoReviewMemo: 'Review Note: Confirm projector & power wiring layout in main conference room (REV 02)',
+      mobileNoticeTitle: 'Optimized for Desktop / PC',
+      mobileNoticeDesc: 'Large drawing review and annotation tools are optimized for desktop PC or landscape tablet screens.',
+      mobileNoticeCloseBtn: 'Back to Home (Close)'
     }
   };
 

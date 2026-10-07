@@ -52,7 +52,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css?v=3.8" />
+  <link rel="stylesheet" href="css/custom.css?v=3.9" />
 
   <!-- High Visibility Card Styles (Guaranteed Override) -->
   <style>
@@ -1445,8 +1445,38 @@
 ════════════════════════════════════════════ -->
 <div id="pdf-checker-modal" class="fixed inset-0 z-[9999] hidden w-screen h-screen bg-slate-950 text-slate-100 flex flex-col overflow-hidden select-none" style="display: none; z-index: 9999;" role="dialog" aria-modal="true" aria-label="무설치 PDF & 도면/이미지 검토·마킹 툴" data-i18n-aria-label="webTools.pdfChecker.title">
 
+  <!-- ==========================================
+       [MOBILE NOTICE: PDF & DRAWING CHECKER]
+       스마트폰 화면(< 768px) 전용 데스크톱/PC 환경 권장 안내 박스
+       ========================================== -->
+  <div id="pdf-checker-mobile-notice" class="pdf-checker-mobile-notice hidden inset-0 z-50 flex-col items-center justify-center p-5 text-center bg-slate-950/95 backdrop-blur-md text-slate-100">
+    <div class="w-full max-w-sm p-6 sm:p-8 rounded-2xl bg-slate-900/95 border border-slate-800 shadow-2xl flex flex-col items-center text-center my-auto">
+      <!-- Icon Badge -->
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-900/60 to-indigo-900/40 border border-blue-500/30 flex items-center justify-center text-3xl mb-4 shadow-xl">
+        📐
+      </div>
+      <!-- Title -->
+      <h3 class="text-base sm:text-lg font-bold text-white mb-2.5 tracking-tight" data-i18n="webTools.pdfChecker.mobileNoticeTitle">
+        PC 환경에 최적화된 도구입니다
+      </h3>
+      <!-- Description -->
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6" data-i18n="webTools.pdfChecker.mobileNoticeDesc">
+        대용량 CAD 도면 검토 및 정밀 마킹 기능은 마우스와 넓은 화면을 지원하는 데스크톱(PC) 또는 태블릿 가로 모드 이용을 권장합니다.
+      </p>
+      <!-- Close / Back Button -->
+      <button
+        type="button"
+        onclick="closePdfCheckerModal()"
+        class="w-full py-3 px-5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg hover:shadow-blue-500/25 transition-all cursor-pointer flex items-center justify-center gap-2"
+      >
+        <span>←</span>
+        <span data-i18n="webTools.pdfChecker.mobileNoticeCloseBtn">메인으로 돌아가기 (Close)</span>
+      </button>
+    </div>
+  </div>
+
   <!-- 1. Top Header Toolbar -->
-  <header class="h-14 bg-slate-900 border-b border-slate-800 px-3 sm:px-4 flex items-center justify-between shrink-0 gap-2 z-20">
+  <header class="pdf-checker-header h-14 bg-slate-900 border-b border-slate-800 px-3 sm:px-4 flex items-center justify-between shrink-0 gap-2 z-20">
     <!-- Left: Branding, File Open & Page Counter -->
     <div class="flex items-center gap-2.5 sm:gap-3 shrink-0 min-w-0">
       <div class="flex items-center gap-2">
@@ -1625,7 +1655,7 @@
   </header>
 
   <!-- 2. Main Workspace (Sidebar + Canvas Viewport) -->
-  <div class="flex-1 flex overflow-hidden relative">
+  <div class="pdf-checker-workspace flex-1 flex overflow-hidden relative">
 
     <!-- Left Thumbnails Sidebar -->
     <aside id="pdf-checker-sidebar" class="w-56 bg-slate-900/95 border-r border-slate-800 flex flex-col shrink-0 transition-all duration-200 z-10">
