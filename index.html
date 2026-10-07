@@ -52,7 +52,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css?v=3.9" />
+  <link rel="stylesheet" href="css/custom.css?v=4.0" />
 
   <!-- High Visibility Card Styles (Guaranteed Override) -->
   <style>
@@ -415,33 +415,7 @@
     </section>
   </main>
 
-  <!-- 기존 하단 애드센스 슬롯 (임시 더미 배너 테스트 기간 동안 주석 보존) -->
-  <!--
-  <div class="container pb-4">
-    <div class="ad-placeholder-bottom">
-      <span class="ad-label" data-i18n="ad.label">광고</span>
-    </div>
-  </div>
-  -->
-
-  <!-- ==========================================
-       [DUMMY AD BANNER TEST: MAIN SCREEN]
-       메인 화면 가상 더미 광고 배너 (카드 목록과 푸터 사이)
-       ※ 테스트 완료 후 이 블록 전체를 삭제하거나 주석 처리할 수 있습니다.
-       ========================================== -->
-  <aside class="container pb-8 pt-2" aria-label="메인 화면 광고 영역 테스트">
-    <div class="dummy-ad-box dummy-ad-box-main mx-auto rounded-2xl flex flex-col items-center justify-center p-3 text-center shadow-xs">
-      <div class="text-xs sm:text-sm md:text-base font-bold text-slate-700 dark:text-slate-200 flex items-center justify-center gap-1.5">
-        <span>📢 [광고 영역 테스트] 구글 반응형 디스플레이 배너 (가로형)</span>
-      </div>
-      <div class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">
-        반응형 가로 배너 (Google AdSense Responsive Display · 높이 100px~120px)
-      </div>
-    </div>
-  </aside>
-  <!-- ==========================================
-       [/DUMMY AD BANNER TEST: MAIN SCREEN]
-       ========================================== -->
+  <!-- AdSense Banner Area -->
 
 </div><!-- /page-main -->
 
@@ -1067,22 +1041,7 @@
         </details>
       </div>
 
-      <!-- ==========================================
-           [DUMMY AD BANNER TEST: EXCEL MODAL]
-           엑셀 변환기 모달 가상 더미 광고 배너 (결과 복사 버튼 아래, 닫기 버튼 위쪽)
-           ※ 테스트 완료 후 이 블록 전체를 삭제하거나 주석 처리할 수 있습니다.
-           ========================================== -->
-      <div class="dummy-ad-box-modal w-full h-[68px] sm:h-[76px] rounded-xl flex flex-col items-center justify-center p-2 text-center mt-2.5">
-        <div class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 flex items-center justify-center gap-1.5">
-          <span>📢 [광고 영역 테스트] 구글 반응형 배너 (슬림형)</span>
-        </div>
-        <div class="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-          슬림 반응형 배너 (높이 약 60px~90px)
-        </div>
-      </div>
-      <!-- ==========================================
-           [/DUMMY AD BANNER TEST: EXCEL MODAL]
-           ========================================== -->
+      <!-- AdSense Modal Banner Area -->
 
       <!-- 4. 하단 닫기 버튼 액션 바 -->
       <div class="flex items-center justify-end pt-2 border-t border-slate-800/60">
@@ -1303,50 +1262,22 @@
           </div>
         </div>
 
-        <!-- 기존 나란히 정렬 바 (원복 시 참고용 주석)
+        <!-- 액션 버튼 바 (계산 결과 복사하기 & 닫기 나란히 정렬) -->
         <div class="leave-actions-bar pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-2.5 sm:gap-3 w-full">
-          <button type="button" id="leave-btn-copy" onclick="copyAnnualLeaveResult()" class="leave-btn-copy flex-1 py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm text-white shadow-lg cursor-pointer transition-all flex items-center justify-center gap-2 whitespace-nowrap min-w-0" data-i18n="webTools.annualLeaveCalc.copyBtn"><span>📋</span> <span>계산 결과 복사하기</span></button>
-          <button type="button" onclick="closeAnnualLeaveModal()" class="leave-btn-close py-2.5 px-5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl font-semibold transition-colors cursor-pointer text-xs sm:text-sm whitespace-nowrap shrink-0 text-center" data-i18n="modal.close">닫기</button>
-        </div>
-        -->
-
-        <!-- 1) 계산 결과 복사 액션 버튼 -->
-        <div class="pt-3.5 border-t border-slate-800/80 w-full">
           <button
             type="button"
             id="leave-btn-copy"
             onclick="copyAnnualLeaveResult()"
-            class="leave-btn-copy w-full py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm text-white shadow-lg cursor-pointer transition-all flex items-center justify-center gap-2 whitespace-nowrap min-w-0"
+            class="leave-btn-copy flex-1 py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm text-white shadow-lg cursor-pointer transition-all flex items-center justify-center gap-2 whitespace-nowrap min-w-0"
             data-i18n="webTools.annualLeaveCalc.copyBtn"
           >
             <span>📋</span>
             <span>계산 결과 복사하기</span>
           </button>
-        </div>
-
-        <!-- ==========================================
-             [DUMMY AD BANNER TEST: ANNUAL LEAVE MODAL]
-             연차 계산기 모달 가상 더미 광고 배너 (결과 복사 버튼 아래, 닫기 버튼 위쪽)
-             ※ 테스트 완료 후 이 블록 전체를 삭제하거나 주석 처리할 수 있습니다.
-             ========================================== -->
-        <div class="dummy-ad-box-modal w-full h-[68px] sm:h-[76px] rounded-xl flex flex-col items-center justify-center p-2 text-center mt-2.5">
-          <div class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 flex items-center justify-center gap-1.5">
-            <span>📢 [광고 영역 테스트] 구글 반응형 배너 (슬림형)</span>
-          </div>
-          <div class="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-            슬림 반응형 배너 (높이 약 60px~90px)
-          </div>
-        </div>
-        <!-- ==========================================
-             [/DUMMY AD BANNER TEST: ANNUAL LEAVE MODAL]
-             ========================================== -->
-
-        <!-- 2) 닫기 액션 버튼 바 -->
-        <div class="flex items-center justify-end pt-2">
           <button
             type="button"
             onclick="closeAnnualLeaveModal()"
-            class="leave-btn-close py-2.5 px-6 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl font-semibold transition-colors cursor-pointer text-xs sm:text-sm whitespace-nowrap shrink-0 text-center"
+            class="leave-btn-close py-2.5 px-5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl font-semibold transition-colors cursor-pointer text-xs sm:text-sm whitespace-nowrap shrink-0 text-center"
             data-i18n="modal.close"
           >
             닫기
