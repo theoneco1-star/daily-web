@@ -3,6 +3,32 @@
  * Manages web tools data, rendering, and interactive tool modals.
  */
 
+// ── Site Title State Management ──
+const SITE_DEFAULT_TITLE = "일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음";
+
+function setSiteTitle(customTitle) {
+  document.title = customTitle || SITE_DEFAULT_TITLE;
+}
+
+function restoreDefaultTitle() {
+  const modals = [
+    document.getElementById("pdf-checker-modal"),
+    document.getElementById("tool-wage-calc-modal"),
+    document.getElementById("tool-char-byte-modal"),
+    document.getElementById("tool-excel-delimiter-modal"),
+    document.getElementById("annual-leave-calculator"),
+    document.getElementById("app-modal")
+  ];
+  const anyOpen = modals.some(m => m && !m.classList.contains("hidden") && m.style.display !== "none");
+  if (!anyOpen) {
+    document.title = SITE_DEFAULT_TITLE;
+  }
+}
+
+window.SITE_DEFAULT_TITLE = SITE_DEFAULT_TITLE;
+window.setSiteTitle = setSiteTitle;
+window.restoreDefaultTitle = restoreDefaultTitle;
+
 // ── Default Web Tools Data (Instant fallback & offline ready) ──
 let webToolsData = [
   {
@@ -355,13 +381,56 @@ function handleWebToolAction(toolId) {
   } else if (toolId === "annual-leave-calculator" || toolId === "leave-calc") {
     openAnnualLeaveModal();
   } else if (toolId === "pdf-checker" || toolId === "pdf-checker-modal" || toolId === "pdf-marking" || toolId === "drawing-checker") {
-    if (typeof openPdfCheckerModal === "function") {
-      openPdfCheckerModal();
-    } else if (typeof window.openPdfCheckerModal === "function") {
-      window.openPdfCheckerModal();
+    openPdfCheckerModal();
+  }
+}
+
+/**
+ * Open / Close PDF Checker Modal (Safe Base & Delegation)
+ */
+function openPdfCheckerModal() {
+  if (window.pdfChecker && typeof window.pdfChecker.open === "function") {
+    window.pdfChecker.open();
+    return;
+  }
+  const modal = document.getElementById("pdf-checker-modal") || document.getElementById("pdf-checker");
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    modal.style.display = "flex";
+    modal.style.zIndex = "9999";
+    document.body.style.overflow = "hidden";
+    setSiteTitle("무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움");
+    if (window.location.hash !== "#pdf-checker") {
+      try {
+        history.replaceState(null, document.title, window.location.pathname + window.location.search + "#pdf-checker");
+      } catch (_) {}
     }
   }
 }
+
+function closePdfCheckerModal() {
+  if (window.pdfChecker && typeof window.pdfChecker.close === "function") {
+    window.pdfChecker.close();
+    return;
+  }
+  const modal = document.getElementById("pdf-checker-modal") || document.getElementById("pdf-checker");
+  if (modal) {
+    modal.classList.remove("flex");
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+    try {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    } catch (_) {
+      window.location.hash = "";
+    }
+    restoreDefaultTitle();
+  }
+}
+
+window.openPdfCheckerModal = openPdfCheckerModal;
+window.closePdfCheckerModal = closePdfCheckerModal;
 
 // ═════════════════════════════════════════════════════════════
 // 🧮 Wage & Holiday Allowance Calculator Logic & Modal
@@ -434,6 +503,7 @@ function openWageCalcModal() {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
+  setSiteTitle("실수령액 & 주휴수당 계산기 | 일상의도움");
 
   setTimeout(() => {
     const panel = modal.querySelector(".wage-modal-container, .modal-panel");
@@ -470,6 +540,8 @@ function closeWageCalcModal() {
   } catch (e) {
     // Ignore history state errors in restricted environments
   }
+
+  restoreDefaultTitle();
 
   setTimeout(() => {
     modal.classList.add("hidden");
@@ -713,6 +785,7 @@ function openCharByteModal() {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
+  setSiteTitle("자소서/공문서 글자수 & Byte 변환기 | 일상의도움");
 
   const panel = modal.querySelector(".char-modal-container, .wage-modal-container");
   if (panel) {
@@ -767,6 +840,8 @@ function closeCharByteModal() {
   } catch (e) {
     // Ignore history error
   }
+
+  restoreDefaultTitle();
 
   setTimeout(() => {
     modal.classList.add("hidden");
@@ -1179,6 +1254,7 @@ function openExcelDelimiterModal() {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
+  setSiteTitle("엑셀 줄바꿈 ↔ 쉼표 구분자 변환기 | 일상의도움");
 
   const panel = modal.querySelector(".ed-modal-container");
   if (panel) {
@@ -1239,6 +1315,8 @@ function closeExcelDelimiterModal() {
   } catch (e) {
     // Ignore history error
   }
+
+  restoreDefaultTitle();
 
   setTimeout(() => {
     modal.classList.add("hidden");
@@ -2397,6 +2475,7 @@ function openAnnualLeaveModal() {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
+  setSiteTitle("근로기준법 연차 자동 계산기 | 일상의도움");
 
   const panel = modal.querySelector(".leave-modal-container, .ed-modal-container, .modal-panel");
   if (panel) {
@@ -2453,6 +2532,8 @@ function closeAnnualLeaveModal() {
   } catch (e) {
     // Ignore history error
   }
+
+  restoreDefaultTitle();
 
   setTimeout(() => {
     modal.classList.add("hidden");

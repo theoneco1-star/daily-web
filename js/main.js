@@ -466,12 +466,22 @@ function openModal(appId) {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
+  if (typeof setSiteTitle === "function") {
+    setSiteTitle(`${name} | 일상의도움`);
+  } else {
+    document.title = `${name} | 일상의도움`;
+  }
   setTimeout(() => modal.querySelector(".modal-panel").classList.add("modal-open"), 10);
 }
 
 function closeModal() {
   const panel = modal.querySelector(".modal-panel");
   if (panel) panel.classList.remove("modal-open");
+  if (typeof restoreDefaultTitle === "function") {
+    restoreDefaultTitle();
+  } else {
+    document.title = "일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음";
+  }
   setTimeout(() => {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
@@ -500,6 +510,7 @@ const pages = { main: pageMain, about: pageAbout, privacy: pagePrivacy, terms: p
 
 function showPage(name) {
   if (typeof closeModal === "function") closeModal();
+  if (typeof restoreDefaultTitle === "function") restoreDefaultTitle();
   Object.entries(pages).forEach(([key, el]) => {
     if (!el) return;
     el.classList.toggle("hidden", key !== name);
@@ -736,6 +747,12 @@ function checkDeepLinks() {
     }
     const params = new URLSearchParams(window.location.search);
     const toolParam = (params.get("tool") || params.get("calc") || "").trim().toLowerCase();
+
+    if (!hash && !toolParam) {
+      if (typeof restoreDefaultTitle === "function") {
+        restoreDefaultTitle();
+      }
+    }
 
     const wageCalcAliases = [
       "part-time-calculator",

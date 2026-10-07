@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>근로기준법 연차 계산기 | 1년 미만 월차·회계연도 기준 자동 계산 - Daily Helper</title>
+  <title>일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음</title>
   
   <!-- SEO Meta Tags (Google & Naver Search Optimization) -->
   <meta name="description" content="근로기준법 제60조 기준 입사일 및 회계연도(1월 1일) 연차/월차 자동 계산기. 1년 미만 11일, 근속 가산 연차, 연차수당 산정 기준 실시간 무료 조회." />
@@ -1328,7 +1328,7 @@
 <!-- ══════════════════════════════════════════
      WEB TOOL: PDF & DRAWING CHECKER FULLSCREEN MODAL (무설치 PDF & 도면/이미지 검토·마킹 툴)
 ════════════════════════════════════════════ -->
-<div id="pdf-checker-modal" class="fixed inset-0 z-[9999] hidden w-screen h-screen bg-slate-950 text-slate-100 flex flex-col overflow-hidden select-none" style="z-index: 9999;" role="dialog" aria-modal="true" aria-label="무설치 PDF & 도면/이미지 검토·마킹 툴">
+<div id="pdf-checker-modal" class="fixed inset-0 z-[9999] hidden w-screen h-screen bg-slate-950 text-slate-100 flex flex-col overflow-hidden select-none" style="display: none; z-index: 9999;" role="dialog" aria-modal="true" aria-label="무설치 PDF & 도면/이미지 검토·마킹 툴">
 
   <!-- 1. Top Header Toolbar -->
   <header class="h-14 bg-slate-900 border-b border-slate-800 px-3 sm:px-4 flex items-center justify-between shrink-0 gap-2 z-20">
@@ -1613,6 +1613,7 @@
           document.body.style.overflow = "hidden";
           var p = m.querySelector(".leave-modal-container, .modal-panel");
           if (p) p.classList.add("modal-open");
+          document.title = "근로기준법 연차 자동 계산기 | 일상의도움";
         }
       }
     } catch (_) {}
@@ -1649,6 +1650,7 @@
           m.style.display = "flex";
           m.style.zIndex = "9999";
           document.body.style.overflow = "hidden";
+          document.title = "무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움";
         }
       }
     } catch (_) {}

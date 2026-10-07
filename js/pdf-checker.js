@@ -114,23 +114,34 @@
       modal.style.zIndex = '9999';
       document.body.style.overflow = 'hidden';
 
+      // 브라우저 탭 타이틀 일시 변경
+      if (typeof window.setSiteTitle === 'function') {
+        window.setSiteTitle('무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움');
+      } else {
+        document.title = '무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움';
+      }
+
       if (window.location.hash !== '#pdf-checker') {
         try {
           history.replaceState(null, document.title, window.location.pathname + window.location.search + '#pdf-checker');
         } catch (_) {}
       }
 
-      if (!state.isInitialized) {
-        initEngine();
-      } else {
-        setTimeout(() => {
-          try {
-            resizeCanvasToWrapper();
-            if (state.pages.length > 0) {
-              fitToScreen();
-            }
-          } catch (_) {}
-        }, 60);
+      try {
+        if (!state.isInitialized) {
+          initEngine();
+        } else {
+          setTimeout(() => {
+            try {
+              resizeCanvasToWrapper();
+              if (state.pages.length > 0) {
+                fitToScreen();
+              }
+            } catch (_) {}
+          }, 60);
+        }
+      } catch (engineErr) {
+        console.warn('PDF engine init warning:', engineErr);
       }
     } catch (err) {
       console.error('Error opening PDF Checker modal:', err);
@@ -140,11 +151,11 @@
   function closePdfCheckerModal() {
     try {
       const modal = getPdfModal();
-      if (!modal) return;
-
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
-      modal.style.display = 'none';
+      if (modal) {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
       document.body.style.overflow = '';
 
       const aliases = [
@@ -153,14 +164,35 @@
         '#pdf-marking',
         '#drawing-checker',
         '#pdf-jpg-checker',
+        '#blueprint-checker',
         '#pdfchecker',
         '#도면검토',
-        '#pdf검토'
+        '#도면마킹',
+        '#도면검토툴',
+        '#pdf마킹',
+        '#도면'
       ];
-      if (aliases.includes(window.location.hash)) {
+      const rawHash = (window.location.hash || '').toLowerCase();
+      let decodedHash = '';
+      try {
+        decodedHash = decodeURIComponent(rawHash).toLowerCase();
+      } catch (_) {
+        decodedHash = rawHash;
+      }
+
+      if (aliases.includes(rawHash) || aliases.includes(decodedHash) || rawHash.includes('pdf') || rawHash.includes('drawing')) {
         try {
-          history.replaceState(null, document.title, window.location.pathname + window.location.search);
-        } catch (_) {}
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (_) {
+          window.location.hash = '';
+        }
+      }
+
+      // 브라우저 기본 타이틀 정상 복원
+      if (typeof window.restoreDefaultTitle === 'function') {
+        window.restoreDefaultTitle();
+      } else {
+        document.title = '일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음';
       }
     } catch (err) {
       console.error('Error closing PDF Checker modal:', err);
