@@ -99,7 +99,7 @@ function buildFilters() {
   if (!filterContainer) return;
   const cats = (typeof categoriesData !== "undefined" && categoriesData.length > 0)
     ? categoriesData.map(c => c.id)
-    : ["all", "tools", "utility", "daily", "games"];
+    : ["all", "tools", "utility", "daily"];
 
   filterContainer.innerHTML = cats.map(cat => `
     <button
@@ -140,7 +140,7 @@ function updateTabBadges() {
   const badgeAppsList = document.querySelectorAll(".badge-apps-count, #badge-apps-count");
   badgeAppsList.forEach(b => {
     if (typeof appsData !== "undefined") {
-      b.textContent = `${appsData.length}+`;
+      b.textContent = String(appsData.length);
     }
   });
 
@@ -169,7 +169,7 @@ function updateHeroCount() {
 
   const appCountText = searchQuery
     ? `${filteredApps.length} ${t("hero.resultsFound")}`
-    : `${totalApps} ${t("hero.totalApps")}`;
+    : (currentLang === "ko" ? `${totalApps}개의 앱` : `${totalApps} apps available`);
 
   const toolCountLabel = t("webTools.heroCount") || (currentLang === "ko" ? "개의 웹 도구" : "web tools");
   const toolFoundLabel = t("webTools.resultsFound") || (currentLang === "ko" ? "개 검색됨" : "results found");
@@ -544,20 +544,6 @@ const guideAppsConfig = [
     nameEn: "BookSpot",
     iconEmoji: "📚",
     isReady: true,
-  },
-  {
-    id: "clipflow",
-    nameKo: "ClipFlow",
-    nameEn: "ClipFlow",
-    iconEmoji: "📋",
-    isReady: false,
-  },
-  {
-    id: "freshcue",
-    nameKo: "FreshCue",
-    nameEn: "FreshCue",
-    iconEmoji: "🥬",
-    isReady: false,
   }
 ];
 

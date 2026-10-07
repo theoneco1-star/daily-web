@@ -289,7 +289,7 @@ const translations = {
       resultsFound: "개 검색됨",
     },
     proof: {
-      apps: "10+ 유용한 스마트폰 앱",
+      apps: "3종의 스마트폰 앱",
       free: "100% 무료 & 안전한 도구",
       update: "주기적인 신규 앱 업데이트"
     },
@@ -971,7 +971,7 @@ const translations = {
       resultsFound: "results found",
     },
     proof: {
-      apps: "10+ Useful Android Apps",
+      apps: "3 Useful Android Apps",
       free: "100% Free & Secure Tools",
       update: "Regular App Updates"
     },
