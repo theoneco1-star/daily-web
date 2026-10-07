@@ -1,28 +1,29 @@
 /**
  * Daily Helper — PDF & Drawing Review / Marking Tool (PDF & JPG Checker)
- * Engine: Fabric.js v5.3.1, Mozilla pdf.js v3.11, pdf-lib v1.17.9
+ * Full-screen Modal Component Engine
+ * Core Engines: Fabric.js v5.3.1, Mozilla pdf.js v3.11, pdf-lib v1.17.9
  * 100% Client-Side In-Memory Execution (Zero Server Transmission)
  */
 
 (function () {
   'use strict';
 
-  // Configure pdf.js worker
+  // ── Configure Mozilla pdf.js Worker ────────────────────────
   if (typeof window !== 'undefined' && window.pdfjsLib) {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc =
       'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
-  // ── Global State ──────────────────────────────────────────
+  // ── State Container ─────────────────────────────────────────
   const state = {
-    pages: [], // [{ id, type: 'pdf'|'image', pdfDoc, pageNum, blob, blobUrl, width, height, widthPt, heightPt, fileName, thumbnail }]
+    pages: [], // Array of { id, type: 'pdf'|'image', pdfDoc, pageNum, blob, blobUrl, width, height, widthPt, heightPt, fileName, title, thumbnailUrl }
     currentPageIndex: 0,
-    annotations: {}, // { [pageId]: serializedFabricObjects }
-    history: {}, // { [pageId]: { undo: [], redo: [] } }
+    annotations: {}, // { [pageId]: Array of serialized Fabric objects }
+    history: {}, // { [pageId]: { past: [], future: [] } }
     currentTool: 'select', // 'select' | 'pan' | 'text' | 'rect' | 'circle' | 'pen' | 'arrow'
-    strokeColor: '#ef4444', // Default red for blueprint markups
-    strokeWidth: 4,
-    fillMode: 'transparent', // 'transparent' | 'semi' | 'solid'
+    strokeColor: '#ef4444',
+    strokeWidth: 3,
+    fillMode: 'transparent', // 'transparent' | 'semitransparent' | 'solid'
     fontSize: 24,
     zoom: 1.0,
     isSpacePressed: false,
@@ -33,55 +34,38 @@
     shapeStartPoint: { x: 0, y: 0 },
     canvas: null,
     isLoading: false,
-    isInitialized: false
+    isInitialized: false,
+    bgImageInstance: null
   };
 
-  // ── Utilities ─────────────────────────────────────────────
+  // ── Helper Utilities ────────────────────────────────────────
   function uid() {
     return 'p_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
-  }
-
-  function formatBytes(bytes) {
-    if (!bytes) return '0 B';
-    const k = 1024;
-    const sizes = ['B', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
-  }
-
-  function getI18nText(key, fallback) {
-    if (typeof window.t === 'function') {
-      const val = window.t('webTools.pdfChecker.' + key);
-      if (val && !val.startsWith('webTools.')) return val;
-    }
-    return fallback;
   }
 
   function showToast(message) {
     const toast = document.getElementById('pdf-checker-toast');
     const msgEl = document.getElementById('pdf-checker-toast-msg');
-    if (!toast || !msgEl) {
-      console.log('[PDF Checker]', message);
-      return;
-    }
+    if (!toast || !msgEl) return;
     msgEl.textContent = message;
-    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+    toast.classList.remove('hidden', 'opacity-0', 'translate-y-2');
     toast.classList.add('opacity-100', 'translate-y-0');
 
     if (toast._timer) clearTimeout(toast._timer);
     toast._timer = setTimeout(() => {
-      toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
-      toast.classList.remove('opacity-100', 'translate-y-0');
+      toast.classList.add('opacity-0', 'translate-y-2');
+      toast.classList.remove('opacity-100');
+      setTimeout(() => toast.classList.add('hidden'), 300);
     }, 2800);
   }
 
   function setOverlayLoading(show, message) {
     const overlay = document.getElementById('pdf-checker-loading-overlay');
-    const label = document.getElementById('pdf-checker-loading-msg');
+    const msgEl = document.getElementById('pdf-checker-loading-msg');
     if (!overlay) return;
     state.isLoading = show;
     if (show) {
-      if (label && message) label.textContent = message;
+      if (msgEl && message) msgEl.textContent = message;
       overlay.classList.remove('hidden');
       overlay.classList.add('flex');
     } else {
@@ -90,7 +74,27 @@
     }
   }
 
-  // ── Modal Open / Close / Deep Link ────────────────────────
+  function getFillColor(mode, strokeColor) {
+    if (mode === 'solid') return strokeColor;
+    if (mode === 'semitransparent') {
+      const rgb = hexToRgb(strokeColor);
+      return rgb ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.22)` : 'rgba(239, 68, 68, 0.22)';
+    }
+    return 'transparent';
+  }
+
+  function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        }
+      : null;
+  }
+
+  // ── Fullscreen Modal Open / Close ───────────────────────────
   function openPdfCheckerModal() {
     const modal = document.getElementById('pdf-checker');
     if (!modal) return;
@@ -104,15 +108,15 @@
     }
 
     if (!state.isInitialized) {
-      initPdfChecker();
+      initEngine();
       state.isInitialized = true;
-    } else if (state.canvas) {
+    } else {
       setTimeout(() => {
-        resizeCanvasViewport();
+        resizeCanvasToWrapper();
         if (state.pages.length > 0) {
           fitToScreen();
         }
-      }, 50);
+      }, 60);
     }
   }
 
@@ -124,59 +128,73 @@
     modal.classList.add('hidden');
     document.body.style.overflow = '';
 
-    const aliases = ['#pdf-checker', '#pdf-marking', '#drawing-checker', '#pdf-jpg-checker', '#pdfchecker'];
+    const aliases = ['#pdf-checker', '#pdf-marking', '#drawing-checker', '#pdf-jpg-checker', '#pdfchecker', '#도면검토', '#pdf검토'];
     if (aliases.includes(window.location.hash)) {
       history.replaceState(null, document.title, window.location.pathname + window.location.search);
     }
   }
 
-  // ── Canvas Initialization ─────────────────────────────────
-  function initPdfChecker() {
+  // ── Engine Initialization ───────────────────────────────────
+  function initEngine() {
     const canvasEl = document.getElementById('pdf-checker-canvas');
+    const wrapper = document.getElementById('pdf-checker-canvas-wrapper');
     const container = document.getElementById('pdf-checker-canvas-container');
-    if (!canvasEl || !container) return;
+    if (!canvasEl || !wrapper) return;
 
-    // Initialize Fabric.js
+    // Set initial canvas dimension to viewport wrapper
+    const initialW = wrapper.clientWidth || 1000;
+    const initialH = wrapper.clientHeight || 700;
+
     state.canvas = new fabric.Canvas('pdf-checker-canvas', {
+      width: initialW,
+      height: initialH,
       selection: true,
       preserveObjectStacking: true,
-      fireRightClick: true,
       stopContextMenu: true,
-      enableRetinaScaling: false // We control High-DPI scaling directly for maximum sharpness
+      fireRightClick: true,
+      enableRetinaScaling: false
     });
 
-    resizeCanvasViewport();
+    // Make canvas container visible once initialized
+    if (container) {
+      container.classList.remove('hidden');
+      container.style.width = '100%';
+      container.style.height = '100%';
+    }
+
+    // Auto-resize on window resize
     window.addEventListener('resize', () => {
-      if (document.getElementById('pdf-checker') && !document.getElementById('pdf-checker').classList.contains('hidden')) {
-        resizeCanvasViewport();
+      const modal = document.getElementById('pdf-checker');
+      if (modal && !modal.classList.contains('hidden')) {
+        resizeCanvasToWrapper();
       }
     });
 
-    bindCanvasEvents();
-    bindToolbarEvents();
+    bindCanvasInteractionEvents();
     bindKeyboardShortcuts();
-    bindDragDropEvents();
-
-    updateToolbarUI();
-    updateZoomUI();
-    renderEmptyState();
+    updateToolButtonsUI();
+    updateUndoRedoUI();
   }
 
-  function resizeCanvasViewport() {
-    const container = document.getElementById('pdf-checker-canvas-container');
-    if (!container || !state.canvas) return;
-    const width = container.clientWidth || 800;
-    const height = container.clientHeight || 600;
-    state.canvas.setWidth(width);
-    state.canvas.setHeight(height);
-    state.canvas.renderAll();
+  function resizeCanvasToWrapper() {
+    const wrapper = document.getElementById('pdf-checker-canvas-wrapper');
+    if (!wrapper || !state.canvas) return;
+    const w = wrapper.clientWidth;
+    const h = wrapper.clientHeight;
+    if (w > 50 && h > 50) {
+      state.canvas.setWidth(w);
+      state.canvas.setHeight(h);
+      state.canvas.renderAll();
+    }
   }
 
-  // ── Canvas Events (Zoom, Pan, Shapes) ─────────────────────
-  function bindCanvasEvents() {
+  // ── Canvas Interaction Events (Zoom, Pan, Shapes) ───────────
+  function bindCanvasInteractionEvents() {
     const canvas = state.canvas;
 
-    // ① Zoom: Strictly Ctrl + Wheel for Cursor-Centered Zoom; Normal Wheel scrolls
+    // ① Zoom & Pan via Mouse Wheel
+    // Strictly: Ctrl + Mouse Wheel = Cursor-Centered Zoom
+    // Normal Mouse Wheel = Pan viewport vertically (Shift + Wheel = horizontally)
     canvas.on('mouse:wheel', function (opt) {
       const e = opt.e;
       if (e.ctrlKey) {
@@ -192,9 +210,9 @@
         const point = { x: opt.e.offsetX, y: opt.e.offsetY };
         canvas.zoomToPoint(point, zoom);
         state.zoom = zoom;
-        updateZoomUI();
+        updateZoomLabel();
       } else {
-        // Normal wheel: Pan viewport vertically / horizontally (Shift + Wheel)
+        // Normal wheel scrolls viewport
         e.preventDefault();
         const vpt = canvas.viewportTransform;
         if (e.shiftKey) {
@@ -210,7 +228,7 @@
     canvas.on('mouse:down', function (opt) {
       const e = opt.e;
 
-      // Pan mode (or Space + Drag)
+      // Pan mode (or Space key pressed or middle mouse button)
       if (state.isSpacePressed || state.currentTool === 'pan' || e.button === 1) {
         state.isPanning = true;
         canvas.selection = false;
@@ -219,20 +237,19 @@
         return;
       }
 
-      if (state.currentTool === 'select') {
-        return;
-      }
+      if (state.currentTool === 'select') return;
 
-      // Shape / Text creation
       const pointer = canvas.getPointer(e);
       state.shapeStartPoint = { x: pointer.x, y: pointer.y };
 
+      // Text Tool
       if (state.currentTool === 'text') {
-        createTextAnnotation(pointer.x, pointer.y);
+        insertTextObject(pointer.x, pointer.y);
         setTool('select');
         return;
       }
 
+      // Shape Tool
       if (state.currentTool === 'rect') {
         state.isDrawingShape = true;
         const rect = new fabric.Rect({
@@ -267,16 +284,6 @@
         });
         state.activeShape = ellipse;
         canvas.add(ellipse);
-      } else if (state.currentTool === 'arrow') {
-        state.isDrawingShape = true;
-        const line = new fabric.Line([pointer.x, pointer.y, pointer.x, pointer.y], {
-          stroke: state.strokeColor,
-          strokeWidth: state.strokeWidth,
-          strokeLineCap: 'round',
-          selectable: true
-        });
-        state.activeShape = line;
-        canvas.add(line);
       }
     });
 
@@ -313,9 +320,6 @@
         const ry = Math.abs(startY - pointer.y) / 2;
         state.activeShape.set({ left, top, rx, ry });
         canvas.renderAll();
-      } else if (state.currentTool === 'arrow') {
-        state.activeShape.set({ x2: pointer.x, y2: pointer.y });
-        canvas.renderAll();
       }
     });
 
@@ -323,19 +327,13 @@
     canvas.on('mouse:up', function () {
       if (state.isPanning) {
         state.isPanning = false;
-        canvas.setViewportTransform(canvas.viewportTransform); // Retain viewport stably
+        canvas.setViewportTransform(canvas.viewportTransform); // Retain viewport stably (prevents snapping)
         canvas.defaultCursor = state.currentTool === 'pan' ? 'grab' : 'default';
         return;
       }
 
       if (state.isDrawingShape && state.activeShape) {
         state.isDrawingShape = false;
-
-        // If shape is arrow, add arrowhead polygon to make a complete arrow group
-        if (state.currentTool === 'arrow') {
-          finalizeArrow(state.activeShape);
-        }
-
         state.activeShape.setCoords();
         canvas.setActiveObject(state.activeShape);
         state.activeShape = null;
@@ -344,88 +342,25 @@
       }
     });
 
-    // Object added via freehand drawing
+    // Path created (Freehand Pen)
     canvas.on('path:created', function () {
       pushUndo();
     });
 
-    // Object modified / rotated / scaled
+    // Object modified / transformed
     canvas.on('object:modified', function () {
       pushUndo();
     });
   }
 
-  function getFillColor(mode, strokeColor) {
-    if (mode === 'solid') return strokeColor;
-    if (mode === 'semi') {
-      // 20% transparent highlight
-      const rgb = hexToRgb(strokeColor);
-      return rgb ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.22)` : 'rgba(239, 68, 68, 0.22)';
-    }
-    return 'transparent';
-  }
-
-  function hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16)
-        }
-      : null;
-  }
-
-  function finalizeArrow(line) {
-    const x1 = line.x1;
-    const y1 = line.y1;
-    const x2 = line.x2;
-    const y2 = line.y2;
-    const dx = x2 - x1;
-    const dy = y2 - y1;
-    const angle = Math.atan2(dy, dx);
-    const headLen = Math.max(14, state.strokeWidth * 3.5);
-
-    state.canvas.remove(line);
-
-    // Arrowhead points
-    const arrowHead = new fabric.Triangle({
-      left: x2,
-      top: y2,
-      pointType: 'arrow_head',
-      originX: 'center',
-      originY: 'center',
-      angle: (angle * 180) / Math.PI + 90,
-      width: headLen,
-      height: headLen,
-      fill: state.strokeColor
-    });
-
-    const stemLine = new fabric.Line([x1, y1, x2 - (Math.cos(angle) * headLen) / 2, y2 - (Math.sin(angle) * headLen) / 2], {
-      stroke: state.strokeColor,
-      strokeWidth: state.strokeWidth,
-      strokeLineCap: 'round'
-    });
-
-    const arrowGroup = new fabric.Group([stemLine, arrowHead], {
-      selectable: true,
-      cornerColor: '#3b82f6',
-      cornerSize: 8,
-      transparentCorners: false
-    });
-
-    state.canvas.add(arrowGroup);
-    state.activeShape = arrowGroup;
-  }
-
-  function createTextAnnotation(x, y) {
-    const text = new fabric.IText('도면 검토 메모 입력', {
+  function insertTextObject(x, y) {
+    const text = new fabric.IText('검토 메모 입력', {
       left: x,
       top: y,
       fontFamily: 'Noto Sans KR, Inter, sans-serif',
       fontSize: state.fontSize,
       fill: state.strokeColor,
-      backgroundColor: state.fillMode === 'semi' ? 'rgba(254, 240, 138, 0.85)' : 'transparent',
+      backgroundColor: state.fillMode === 'semitransparent' ? 'rgba(254, 240, 138, 0.9)' : 'transparent',
       cornerColor: '#3b82f6',
       cornerSize: 8,
       transparentCorners: false,
@@ -438,7 +373,75 @@
     pushUndo();
   }
 
-  // ── Tool Switching & Modes ────────────────────────────────
+  // ── Keyboard Shortcuts (With Text Box Isolation) ────────────
+  function bindKeyboardShortcuts() {
+    window.addEventListener('keydown', function (e) {
+      const modal = document.getElementById('pdf-checker');
+      if (!modal || modal.classList.contains('hidden')) return;
+
+      // 텍스트 박스 입력 중에는 단축키 오작동 방지
+      const activeEl = document.activeElement;
+      if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+        return;
+      }
+      const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+      if (activeObj && activeObj.isEditing) {
+        return;
+      }
+
+      // Space Pan Key Down
+      if (e.code === 'Space' && !state.isSpacePressed) {
+        e.preventDefault();
+        state.isSpacePressed = true;
+        if (state.canvas) state.canvas.defaultCursor = 'grab';
+        return;
+      }
+
+      // Undo / Redo
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        if (e.shiftKey) redo();
+        else undo();
+        return;
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') {
+        e.preventDefault();
+        redo();
+        return;
+      }
+
+      // Delete Active Object
+      if (e.key === 'Delete' || e.key === 'Del' || e.key === 'Backspace') {
+        if (activeObj && !activeObj.isEditing) {
+          e.preventDefault();
+          deleteSelected();
+          return;
+        }
+      }
+
+      // Tool Switching Shortcuts (V, H, T, M, C, S)
+      if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+        const k = e.key.toLowerCase();
+        if (k === 'v') setTool('select');
+        else if (k === 'h') setTool('pan');
+        else if (k === 't') setTool('text');
+        else if (k === 'm') setTool('rect');
+        else if (k === 'c') setTool('circle');
+        else if (k === 's') setTool('pen');
+      }
+    });
+
+    window.addEventListener('keyup', function (e) {
+      if (e.code === 'Space') {
+        state.isSpacePressed = false;
+        if (state.canvas && state.currentTool !== 'pan') {
+          state.canvas.defaultCursor = state.currentTool === 'select' ? 'default' : 'crosshair';
+        }
+      }
+    });
+  }
+
+  // ── Tool & Property Actions ─────────────────────────────────
   function setTool(toolName) {
     state.currentTool = toolName;
     const canvas = state.canvas;
@@ -460,118 +463,80 @@
       canvas.defaultCursor = 'crosshair';
     }
 
-    updateToolbarUI();
+    updateToolButtonsUI();
   }
 
-  function updateToolbarUI() {
-    const tools = ['select', 'pan', 'text', 'rect', 'circle', 'pen', 'arrow'];
-    tools.forEach((t) => {
-      const btn = document.getElementById(`pdf-tool-${t}`);
-      if (btn) {
-        if (state.currentTool === t) {
-          btn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
-          btn.classList.remove('text-slate-400', 'hover:bg-slate-800');
-        } else {
-          btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
-          btn.classList.add('text-slate-400', 'hover:bg-slate-800');
-        }
+  function updateToolButtonsUI() {
+    const buttons = document.querySelectorAll('[data-pdf-tool]');
+    buttons.forEach((btn) => {
+      const t = btn.getAttribute('data-pdf-tool');
+      if (t === state.currentTool) {
+        btn.classList.add('active', 'bg-blue-600', 'text-white');
+        btn.classList.remove('text-slate-300');
+      } else {
+        btn.classList.remove('active', 'bg-blue-600', 'text-white');
+        btn.classList.add('text-slate-300');
       }
     });
+  }
 
-    // Update active color indicator
-    const colorPicker = document.getElementById('pdf-color-picker');
-    if (colorPicker) colorPicker.value = state.strokeColor;
-
-    // Update stroke width buttons/display
-    const strokeIndicator = document.getElementById('pdf-stroke-indicator');
-    if (strokeIndicator) strokeIndicator.textContent = state.strokeWidth + 'px';
-
-    // Update fill mode indicator
-    const fillBtn = document.getElementById('pdf-fill-toggle-btn');
-    if (fillBtn) {
-      if (state.fillMode === 'transparent') {
-        fillBtn.setAttribute('title', '채우기: 투명 (선만 표시)');
-        fillBtn.classList.remove('bg-slate-700', 'text-indigo-300');
-      } else if (state.fillMode === 'semi') {
-        fillBtn.setAttribute('title', '채우기: 20% 반투명 하이라이트');
-        fillBtn.classList.add('bg-slate-700', 'text-indigo-300');
+  function setStrokeColor(color) {
+    state.strokeColor = color;
+    if (state.canvas && state.canvas.isDrawingMode) {
+      state.canvas.freeDrawingBrush.color = color;
+    }
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj) {
+      if (activeObj.type === 'i-text') {
+        activeObj.set('fill', color);
       } else {
-        fillBtn.setAttribute('title', '채우기: 100% 완전 채움');
-        fillBtn.classList.add('bg-indigo-900', 'text-white');
+        activeObj.set({
+          stroke: color,
+          fill: getFillColor(state.fillMode, color)
+        });
       }
+      state.canvas.renderAll();
+      pushUndo();
+    }
+
+    // Highlight active color dot
+    document.querySelectorAll('.pdf-color-btn').forEach((btn) => {
+      if (btn.getAttribute('data-color') === color) {
+        btn.classList.add('ring-2', 'ring-white', 'scale-110');
+      } else {
+        btn.classList.remove('ring-2', 'ring-white', 'scale-110');
+      }
+    });
+  }
+
+  function setStrokeWidth(width) {
+    state.strokeWidth = parseInt(width, 10) || 3;
+    if (state.canvas && state.canvas.isDrawingMode) {
+      state.canvas.freeDrawingBrush.width = state.strokeWidth;
+    }
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj && activeObj.type !== 'i-text') {
+      activeObj.set('strokeWidth', state.strokeWidth);
+      state.canvas.renderAll();
+      pushUndo();
     }
   }
 
-  // ── Keyboard Shortcuts (With Text Box Isolation) ──────────
-  function bindKeyboardShortcuts() {
-    window.addEventListener('keydown', function (e) {
-      const modal = document.getElementById('pdf-checker');
-      if (!modal || modal.classList.contains('hidden')) return;
-
-      // 텍스트 박스 타이핑 중에는 단축키 오작동 방지
-      const activeEl = document.activeElement;
-      if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
-        return;
+  function setFillColor(mode) {
+    state.fillMode = mode;
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj) {
+      if (activeObj.type === 'i-text') {
+        activeObj.set('backgroundColor', mode === 'semitransparent' ? 'rgba(254, 240, 138, 0.9)' : 'transparent');
+      } else {
+        activeObj.set('fill', getFillColor(mode, state.strokeColor));
       }
-      const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
-      if (activeObj && activeObj.isEditing) {
-        return;
-      }
-
-      // Space Pan key down
-      if (e.code === 'Space' && !state.isSpacePressed) {
-        e.preventDefault();
-        state.isSpacePressed = true;
-        if (state.canvas) state.canvas.defaultCursor = 'grab';
-        return;
-      }
-
-      // Undo / Redo
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
-        e.preventDefault();
-        if (e.shiftKey) redo();
-        else undo();
-        return;
-      }
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') {
-        e.preventDefault();
-        redo();
-        return;
-      }
-
-      // Delete active object
-      if (e.key === 'Delete' || e.key === 'Del' || e.key === 'Backspace') {
-        if (activeObj && !activeObj.isEditing) {
-          e.preventDefault();
-          deleteActiveObject();
-          return;
-        }
-      }
-
-      // Tool change keys: V, H, T, M, C, S, A
-      if (!e.ctrlKey && !e.metaKey && !e.altKey) {
-        const k = e.key.toLowerCase();
-        if (k === 'v') setTool('select');
-        else if (k === 'h') setTool('pan');
-        else if (k === 't') setTool('text');
-        else if (k === 'm') setTool('rect');
-        else if (k === 'c') setTool('circle');
-        else if (k === 's') setTool('pen');
-        else if (k === 'a') setTool('arrow');
-      }
-    });
-
-    window.addEventListener('keyup', function (e) {
-      if (e.code === 'Space') {
-        state.isSpacePressed = false;
-        if (state.canvas && state.currentTool !== 'pan') {
-          state.canvas.defaultCursor = state.currentTool === 'select' ? 'default' : 'crosshair';
-        }
-      }
-    });
+      state.canvas.renderAll();
+      pushUndo();
+    }
   }
 
-  function deleteActiveObject() {
+  function deleteSelected() {
     if (!state.canvas) return;
     const activeObjects = state.canvas.getActiveObjects();
     if (activeObjects && activeObjects.length > 0) {
@@ -583,7 +548,7 @@
     }
   }
 
-  // ── Undo / Redo History ───────────────────────────────────
+  // ── Undo / Redo History ─────────────────────────────────────
   function getActivePageId() {
     const page = state.pages[state.currentPageIndex];
     return page ? page.id : null;
@@ -594,50 +559,62 @@
     if (!pageId || !state.canvas) return;
 
     if (!state.history[pageId]) {
-      state.history[pageId] = { undo: [], redo: [] };
+      state.history[pageId] = { past: [], future: [] };
     }
 
-    const json = serializeCanvasAnnotations();
-    state.history[pageId].undo.push(json);
-    if (state.history[pageId].undo.length > 30) {
-      state.history[pageId].undo.shift();
+    const currentObjects = serializeCanvasAnnotations();
+    state.history[pageId].past.push(currentObjects);
+    if (state.history[pageId].past.length > 30) {
+      state.history[pageId].past.shift();
     }
-    state.history[pageId].redo = []; // Clear redo stack on new action
+    state.history[pageId].future = []; // Clear redo
+    updateUndoRedoUI();
   }
 
   function undo() {
     const pageId = getActivePageId();
-    if (!pageId || !state.history[pageId] || state.history[pageId].undo.length === 0) return;
+    if (!pageId || !state.history[pageId] || state.history[pageId].past.length === 0) return;
 
     const current = serializeCanvasAnnotations();
-    state.history[pageId].redo.push(current);
+    state.history[pageId].future.push(current);
 
-    const prev = state.history[pageId].undo.pop();
+    const prev = state.history[pageId].past.pop();
     loadSerializedAnnotations(prev);
+    updateUndoRedoUI();
     showToast('실행 취소 (Undo)');
   }
 
   function redo() {
     const pageId = getActivePageId();
-    if (!pageId || !state.history[pageId] || state.history[pageId].redo.length === 0) return;
+    if (!pageId || !state.history[pageId] || state.history[pageId].future.length === 0) return;
 
     const current = serializeCanvasAnnotations();
-    state.history[pageId].undo.push(current);
+    state.history[pageId].past.push(current);
 
-    const next = state.history[pageId].redo.pop();
+    const next = state.history[pageId].future.pop();
     loadSerializedAnnotations(next);
+    updateUndoRedoUI();
     showToast('다시 실행 (Redo)');
   }
 
+  function updateUndoRedoUI() {
+    const undoBtn = document.getElementById('pdf-btn-undo');
+    const redoBtn = document.getElementById('pdf-btn-redo');
+    const pageId = getActivePageId();
+    const hist = pageId ? state.history[pageId] : null;
+
+    if (undoBtn) undoBtn.disabled = !hist || hist.past.length === 0;
+    if (redoBtn) redoBtn.disabled = !hist || hist.future.length === 0;
+  }
+
   function serializeCanvasAnnotations() {
-    if (!state.canvas) return null;
+    if (!state.canvas) return [];
     const objects = state.canvas.getObjects().filter((obj) => !obj.isBackgroundElement);
     return objects.map((obj) => obj.toObject(['id', 'pointType']));
   }
 
   function loadSerializedAnnotations(objectsData) {
     if (!state.canvas) return;
-    // Clear only annotations (preserve background)
     const objects = state.canvas.getObjects().slice();
     objects.forEach((obj) => {
       if (!obj.isBackgroundElement) {
@@ -657,34 +634,26 @@
     }
   }
 
-  // ── Zoom Controls ─────────────────────────────────────────
-  function zoomIn() {
+  // ── Zoom & Fit to Screen ────────────────────────────────────
+  function changeZoom(factor) {
     if (!state.canvas) return;
-    let zoom = state.canvas.getZoom() * 1.25;
-    if (zoom > 25) zoom = 25;
+    let newZoom = state.canvas.getZoom() * factor;
+    if (newZoom > 25) newZoom = 25;
+    if (newZoom < 0.05) newZoom = 0.05;
+
     const center = { x: state.canvas.getWidth() / 2, y: state.canvas.getHeight() / 2 };
-    state.canvas.zoomToPoint(center, zoom);
-    state.zoom = zoom;
-    updateZoomUI();
+    state.canvas.zoomToPoint(center, newZoom);
+    state.zoom = newZoom;
+    updateZoomLabel();
   }
 
-  function zoomOut() {
-    if (!state.canvas) return;
-    let zoom = state.canvas.getZoom() / 1.25;
-    if (zoom < 0.05) zoom = 0.05;
-    const center = { x: state.canvas.getWidth() / 2, y: state.canvas.getHeight() / 2 };
-    state.canvas.zoomToPoint(center, zoom);
-    state.zoom = zoom;
-    updateZoomUI();
-  }
-
-  function resetZoom() {
+  function resetZoom100() {
     if (!state.canvas) return;
     state.canvas.setZoom(1.0);
     state.canvas.viewportTransform = [1, 0, 0, 1, 0, 0];
     state.canvas.renderAll();
     state.zoom = 1.0;
-    updateZoomUI();
+    updateZoomLabel();
   }
 
   function fitToScreen() {
@@ -692,99 +661,111 @@
     const page = state.pages[state.currentPageIndex];
     if (!page) return;
 
-    const canvasWidth = state.canvas.getWidth();
-    const canvasHeight = state.canvas.getHeight();
-    const docWidth = page.renderWidth || page.width || 1200;
-    const docHeight = page.renderHeight || page.height || 800;
+    const canvasW = state.canvas.getWidth();
+    const canvasH = state.canvas.getHeight();
+    const docW = page.renderWidth || page.width || 1200;
+    const docH = page.renderHeight || page.height || 800;
 
-    // Calculate scale with comfortable padding
-    const padding = 40;
-    const scaleX = (canvasWidth - padding) / docWidth;
-    const scaleY = (canvasHeight - padding) / docHeight;
+    const padding = 36;
+    const scaleX = (canvasW - padding) / docW;
+    const scaleY = (canvasH - padding) / docH;
     const fitScale = Math.min(scaleX, scaleY, 2.0);
 
-    const left = (canvasWidth - docWidth * fitScale) / 2;
-    const top = (canvasHeight - docHeight * fitScale) / 2;
+    const left = (canvasW - docW * fitScale) / 2;
+    const top = (canvasH - docH * fitScale) / 2;
 
     state.canvas.setViewportTransform([fitScale, 0, 0, fitScale, left, top]);
     state.zoom = fitScale;
-    updateZoomUI();
+    updateZoomLabel();
   }
 
-  function updateZoomUI() {
-    const label = document.getElementById('pdf-zoom-level-label');
+  function updateZoomLabel() {
+    const label = document.getElementById('pdf-checker-zoom-label');
     if (label) {
       label.textContent = Math.round(state.zoom * 100) + '%';
     }
   }
 
-  // ── File Loading & Multi-Merge (Append) ───────────────────
-  async function handleFiles(fileList, isAppend = false) {
-    if (!fileList || fileList.length === 0) return;
+  // ── File Loading & Multi-Merge (Append) ─────────────────────
+  async function handleFileSelect(event) {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      // If we already have loaded pages, append new ones!
+      const isAppend = state.pages.length > 0;
+      await processFiles(files, isAppend);
+      event.target.value = '';
+    }
+  }
 
-    setOverlayLoading(true, '파일을 로드하고 고화질 도면을 렌더링하는 중입니다...');
+  async function handleDropFiles(event) {
+    event.preventDefault();
+    hideDropOverlay();
+    const files = event.dataTransfer.files;
+    if (files && files.length > 0) {
+      const isAppend = state.pages.length > 0;
+      await processFiles(files, isAppend);
+    }
+  }
+
+  function showDropOverlay() {
+    const overlay = document.getElementById('pdf-checker-drop-overlay');
+    if (overlay) overlay.classList.remove('hidden');
+  }
+
+  function hideDropOverlay() {
+    const overlay = document.getElementById('pdf-checker-drop-overlay');
+    if (overlay) overlay.classList.add('hidden');
+  }
+
+  async function processFiles(fileList, isAppend = false) {
+    setOverlayLoading(true, '파일을 로컬 메모리로 로드하고 초고화질 도면을 렌더링 중입니다...');
 
     try {
       if (!isAppend) {
-        // Clear previous state and revoke blob URLs to prevent memory leak
-        clearCurrentSession();
+        clearAllPages(false);
       }
 
       const files = Array.from(fileList);
-      let loadedCount = 0;
+      let count = 0;
 
       for (const file of files) {
         const ext = file.name.split('.').pop().toLowerCase();
-
         if (ext === 'pdf') {
-          await loadPdfFile(file);
-          loadedCount++;
+          await loadPdf(file);
+          count++;
         } else if (['jpg', 'jpeg', 'png', 'webp', 'bmp'].includes(ext)) {
-          await loadImageFile(file);
-          loadedCount++;
+          await loadImage(file);
+          count++;
         }
       }
 
       if (state.pages.length > 0) {
-        renderSidebarThumbnails();
+        renderThumbnailsSidebar();
         await switchPage(isAppend ? state.pages.length - 1 : 0);
-        showToast(`${loadedCount}개 파일이 성공적으로 로드되었습니다.`);
+        showToast(`${count}개 파일이 성공적으로 병합·로드되었습니다.`);
       } else {
-        showToast('지원되는 PDF 또는 이미지 파일이 없습니다.');
+        showToast('지원되는 형식(PDF, JPG, PNG, WebP)의 파일이 없습니다.');
       }
     } catch (err) {
       console.error('File load error:', err);
-      showToast('파일을 불러오는 중 오류가 발생했습니다: ' + err.message);
+      showToast('파일 로드 실패: ' + err.message);
     } finally {
       setOverlayLoading(false);
     }
   }
 
-  function clearCurrentSession() {
-    state.pages.forEach((p) => {
-      if (p.blobUrl) URL.revokeObjectURL(p.blobUrl);
-      if (p.thumbnail) URL.revokeObjectURL(p.thumbnail);
-    });
-    state.pages = [];
-    state.annotations = {};
-    state.history = {};
-    state.currentPageIndex = 0;
-    if (state.canvas) state.canvas.clear();
-  }
-
-  // Load PDF File via pdf.js
-  async function loadPdfFile(file) {
+  async function loadPdf(file) {
     const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
-    // Check for re-editable annotations stored in metadata (/Subject)
+    // Check for re-editable annotations in PDF Subject metadata
     let reEditableMap = null;
     try {
       const meta = await pdfDoc.getMetadata();
       const subject = meta && meta.info ? meta.info.Subject : '';
       if (subject && subject.includes('DailyHelper-PDF-Checker')) {
         const pkg = JSON.parse(subject);
-        if (pkg && pkg.pages) {
+        if (pkg && Array.isArray(pkg.pages)) {
           reEditableMap = pkg.pages;
         }
       }
@@ -804,19 +785,22 @@
         widthPt: vp.width,
         heightPt: vp.height,
         fileName: file.name,
-        title: `${file.name.replace(/\.pdf$/i, '')} - P.${pNum}`,
+        title: `${file.name.replace(/\.pdf$/i, '')} (P.${pNum})`,
         arrayBuffer: arrayBuffer
       });
 
-      // Restore annotation if available
+      // Restore serialized annotations if present
       if (reEditableMap && reEditableMap[pNum - 1]) {
         state.annotations[pageId] = reEditableMap[pNum - 1];
       }
     }
+
+    if (reEditableMap) {
+      showToast('이전에 저장된 마킹 데이터를 100% 편집 가능한 상태로 복원했습니다!');
+    }
   }
 
-  // Load Image File (JPG, PNG, WebP)
-  async function loadImageFile(file) {
+  async function loadImage(file) {
     const blobUrl = URL.createObjectURL(file);
     const img = await new Promise((resolve, reject) => {
       const image = new Image();
@@ -833,14 +817,35 @@
       blobUrl: blobUrl,
       width: img.naturalWidth,
       height: img.naturalHeight,
-      widthPt: (img.naturalWidth * 72) / 150, // Approx 150 DPI pt size
+      widthPt: (img.naturalWidth * 72) / 150,
       heightPt: (img.naturalHeight * 72) / 150,
       fileName: file.name,
       title: file.name
     });
   }
 
-  // ── High-DPI Rendering & Page Switch ──────────────────────
+  function clearAllPages(confirmPrompt = true) {
+    if (confirmPrompt && state.pages.length > 0) {
+      if (!confirm('모든 페이지와 마킹 데이터를 지우고 초기화하시겠습니까?')) return;
+    }
+
+    // Revoke previous blob URLs to prevent memory leaks
+    state.pages.forEach((p) => {
+      if (p.blobUrl) URL.revokeObjectURL(p.blobUrl);
+    });
+    state.pages = [];
+    state.annotations = {};
+    state.history = {};
+    state.currentPageIndex = 0;
+
+    if (state.canvas) state.canvas.clear();
+    renderThumbnailsSidebar();
+    updatePageCounter();
+    showEmptyState(true);
+    showToast('작업 캔버스가 초기화되었습니다.');
+  }
+
+  // ── High-DPI Rendering & Page Switching ─────────────────────
   async function switchPage(index) {
     if (index < 0 || index >= state.pages.length) return;
 
@@ -850,9 +855,10 @@
     state.currentPageIndex = index;
     const page = state.pages[index];
 
-    setOverlayLoading(true, `페이지 ${index + 1} / ${state.pages.length} 렌더링 중...`);
+    setOverlayLoading(true, `페이지 ${index + 1} / ${state.pages.length} 고화질 렌더링 중...`);
 
     try {
+      showEmptyState(false);
       state.canvas.clear();
 
       if (page.type === 'pdf') {
@@ -866,13 +872,13 @@
         loadSerializedAnnotations(state.annotations[page.id]);
       }
 
-      // Fit to screen on initial page switch
       fitToScreen();
-      updatePageInfoBar(page);
+      updatePageCounter();
       highlightActiveThumbnail(index);
+      updateUndoRedoUI();
     } catch (err) {
       console.error('Page render error:', err);
-      showToast('페이지 렌더링 오류: ' + err.message);
+      showToast('페이지 렌더링 실패: ' + err.message);
     } finally {
       setOverlayLoading(false);
     }
@@ -885,12 +891,12 @@
     }
   }
 
-  // Render PDF page to canvas background with High-DPI 2.5~3.0x scale and 3840px 4K limit
+  // Render PDF page to canvas background with High-DPI (2.5~3.0x scale) capped at 3840px (4K)
   async function renderPdfPageBackground(pageData) {
     const pdfPage = await pageData.pdfDoc.getPage(pageData.pageNum);
     const unscaledVp = pdfPage.getViewport({ scale: 1.0 });
 
-    // High-DPI Scale calculation: 2.5x ~ 3.0x, capped at 3840px on longest edge
+    // High-DPI Scale calculation: 2.5x ~ 3.0x, intelligent 4K cap (max 3840px)
     const maxDimension = Math.max(unscaledVp.width, unscaledVp.height);
     let scale = Math.min(3.0, 3840 / maxDimension);
     if (scale < 2.0) scale = 2.0;
@@ -899,19 +905,18 @@
     pageData.renderWidth = Math.round(viewport.width);
     pageData.renderHeight = Math.round(viewport.height);
 
-    // Render to offscreen canvas
-    const offscreenCanvas = document.createElement('canvas');
-    offscreenCanvas.width = pageData.renderWidth;
-    offscreenCanvas.height = pageData.renderHeight;
-    const ctx = offscreenCanvas.getContext('2d', { alpha: false });
+    // Offscreen High-DPI canvas
+    const offCanvas = document.createElement('canvas');
+    offCanvas.width = pageData.renderWidth;
+    offCanvas.height = pageData.renderHeight;
+    const ctx = offCanvas.getContext('2d', { alpha: false });
 
     await pdfPage.render({
       canvasContext: ctx,
       viewport: viewport
     }).promise;
 
-    // Convert to Image and set as background
-    const bgImgUrl = offscreenCanvas.toDataURL('image/jpeg', 0.9);
+    const bgImgUrl = offCanvas.toDataURL('image/jpeg', 0.9);
     await new Promise((resolve) => {
       fabric.Image.fromURL(bgImgUrl, (fImg) => {
         fImg.set({
@@ -928,12 +933,12 @@
       });
     });
 
-    // Cleanup offscreen memory
-    offscreenCanvas.width = 0;
-    offscreenCanvas.height = 0;
+    // Clean up offscreen canvas
+    offCanvas.width = 0;
+    offCanvas.height = 0;
   }
 
-  // Render Image file to canvas background with 3840px cap
+  // Render Image page background with intelligent 4K cap (max 3840px)
   async function renderImagePageBackground(pageData) {
     let targetW = pageData.width;
     let targetH = pageData.height;
@@ -965,36 +970,36 @@
     });
   }
 
-  function updatePageInfoBar(page) {
-    const pageIndexEl = document.getElementById('pdf-current-page-indicator');
-    const resEl = document.getElementById('pdf-current-resolution-indicator');
-    if (pageIndexEl) {
-      pageIndexEl.textContent = `${state.currentPageIndex + 1} / ${state.pages.length}`;
-    }
-    if (resEl) {
-      resEl.textContent = `${page.renderWidth} × ${page.renderHeight} px (High-DPI)`;
+  function updatePageCounter() {
+    const counter = document.getElementById('pdf-checker-page-counter');
+    const badge = document.getElementById('pdf-checker-page-total-badge');
+    const total = state.pages.length;
+    const current = total > 0 ? state.currentPageIndex + 1 : 0;
+
+    if (counter) counter.textContent = `${current} / ${total}`;
+    if (badge) badge.textContent = `${total} 페이지`;
+  }
+
+  function showEmptyState(show) {
+    const emptyState = document.getElementById('pdf-checker-empty-state');
+    if (emptyState) {
+      if (show) emptyState.classList.remove('hidden');
+      else emptyState.classList.add('hidden');
     }
   }
 
-  // ── Sidebar Thumbnails & Navigation ───────────────────────
-  function renderSidebarThumbnails() {
-    const listEl = document.getElementById('pdf-thumbnails-list');
-    const emptyNotice = document.getElementById('pdf-empty-sidebar-notice');
-    const countBadge = document.getElementById('pdf-pages-count-badge');
+  // ── Thumbnails Sidebar ──────────────────────────────────────
+  function renderThumbnailsSidebar() {
+    const listEl = document.getElementById('pdf-checker-thumb-list');
     if (!listEl) return;
 
     if (state.pages.length === 0) {
-      listEl.innerHTML = '';
-      if (emptyNotice) emptyNotice.classList.remove('hidden');
-      if (countBadge) countBadge.textContent = '0';
-      renderEmptyState();
+      listEl.innerHTML = `
+        <div class="p-4 text-center text-xs text-slate-500">
+          불러온 페이지가 없습니다.
+        </div>`;
       return;
     }
-
-    if (emptyNotice) emptyNotice.classList.add('hidden');
-    if (countBadge) countBadge.textContent = String(state.pages.length);
-
-    hideEmptyState();
 
     let html = '';
     state.pages.forEach((page, i) => {
@@ -1002,79 +1007,78 @@
       html += `
         <div class="pdf-thumb-card group relative p-2 rounded-xl transition-all cursor-pointer border ${
           isActive
-            ? 'bg-indigo-950/60 border-indigo-500 shadow-lg shadow-indigo-500/20'
+            ? 'bg-blue-950/70 border-blue-500 shadow-lg shadow-blue-500/20'
             : 'bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-850'
-        }" onclick="window.PdfChecker.switchPage(${i})">
+        }" onclick="window.pdfChecker.switchPage(${i})">
           <div class="flex items-center justify-between gap-1 mb-1.5 text-xs">
-            <span class="font-bold ${isActive ? 'text-indigo-400' : 'text-slate-300'}">P.${i + 1}</span>
+            <span class="font-bold ${isActive ? 'text-blue-400' : 'text-slate-300'} font-mono">P.${i + 1}</span>
             <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
               ${
                 i > 0
-                  ? `<button type="button" class="p-1 hover:text-white text-slate-400" title="위로 이동" onclick="event.stopPropagation(); window.PdfChecker.movePage(${i}, -1)">▲</button>`
+                  ? `<button type="button" class="p-0.5 hover:text-white text-slate-400" title="위로 이동" onclick="event.stopPropagation(); window.pdfChecker.movePage(${i}, -1)">▲</button>`
                   : ''
               }
               ${
                 i < state.pages.length - 1
-                  ? `<button type="button" class="p-1 hover:text-white text-slate-400" title="아래로 이동" onclick="event.stopPropagation(); window.PdfChecker.movePage(${i}, 1)">▼</button>`
+                  ? `<button type="button" class="p-0.5 hover:text-white text-slate-400" title="아래로 이동" onclick="event.stopPropagation(); window.pdfChecker.movePage(${i}, 1)">▼</button>`
                   : ''
               }
-              <button type="button" class="p-1 hover:text-red-400 text-slate-400" title="페이지 삭제" onclick="event.stopPropagation(); window.PdfChecker.deletePage(${i})">🗑️</button>
+              <button type="button" class="p-0.5 hover:text-red-400 text-slate-400" title="페이지 삭제" onclick="event.stopPropagation(); window.pdfChecker.deletePage(${i})">🗑️</button>
             </div>
           </div>
-          <div class="w-full h-28 bg-slate-950 rounded-lg overflow-hidden border border-slate-800/80 flex items-center justify-center relative">
-            <div id="thumb-preview-${page.id}" class="w-full h-full flex items-center justify-center text-slate-600 text-xs">
+          <div class="w-full h-24 bg-slate-950 rounded-lg overflow-hidden border border-slate-800/80 flex items-center justify-center relative">
+            <div id="thumb-img-wrap-${page.id}" class="w-full h-full flex items-center justify-center text-slate-600 text-[10px]">
               <span class="animate-pulse">Loading...</span>
             </div>
           </div>
-          <div class="mt-1.5 text-[11px] text-slate-400 truncate" title="${page.title}">${page.title}</div>
+          <div class="mt-1 text-[11px] text-slate-400 truncate" title="${page.title}">${page.title}</div>
         </div>`;
     });
-    listEl.innerHTML = html;
 
-    // Generate thumbnails asynchronously
-    generateThumbnails();
+    listEl.innerHTML = html;
+    generateThumbnailsAsync();
   }
 
-  async function generateThumbnails() {
+  async function generateThumbnailsAsync() {
     for (let i = 0; i < state.pages.length; i++) {
       const page = state.pages[i];
-      const previewEl = document.getElementById(`thumb-preview-${page.id}`);
-      if (!previewEl) continue;
+      const wrap = document.getElementById(`thumb-img-wrap-${page.id}`);
+      if (!wrap) continue;
 
       if (page.thumbnailUrl) {
-        previewEl.innerHTML = `<img src="${page.thumbnailUrl}" class="w-full h-full object-contain" alt="P.${i + 1}">`;
+        wrap.innerHTML = `<img src="${page.thumbnailUrl}" class="w-full h-full object-contain" alt="P.${i + 1}">`;
         continue;
       }
 
       if (page.type === 'pdf') {
         try {
           const pdfPage = await page.pdfDoc.getPage(page.pageNum);
-          const vp = pdfPage.getViewport({ scale: 0.22 });
+          const vp = pdfPage.getViewport({ scale: 0.2 });
           const offCanvas = document.createElement('canvas');
           offCanvas.width = vp.width;
           offCanvas.height = vp.height;
           const ctx = offCanvas.getContext('2d');
           await pdfPage.render({ canvasContext: ctx, viewport: vp }).promise;
           page.thumbnailUrl = offCanvas.toDataURL('image/jpeg', 0.7);
-          previewEl.innerHTML = `<img src="${page.thumbnailUrl}" class="w-full h-full object-contain" alt="P.${i + 1}">`;
+          wrap.innerHTML = `<img src="${page.thumbnailUrl}" class="w-full h-full object-contain" alt="P.${i + 1}">`;
           offCanvas.width = 0;
           offCanvas.height = 0;
         } catch (_) {}
       } else if (page.type === 'image') {
         page.thumbnailUrl = page.blobUrl;
-        previewEl.innerHTML = `<img src="${page.blobUrl}" class="w-full h-full object-contain" alt="P.${i + 1}">`;
+        wrap.innerHTML = `<img src="${page.blobUrl}" class="w-full h-full object-contain" alt="P.${i + 1}">`;
       }
     }
   }
 
   function highlightActiveThumbnail(index) {
-    const listEl = document.getElementById('pdf-thumbnails-list');
+    const listEl = document.getElementById('pdf-checker-thumb-list');
     if (!listEl) return;
     const cards = listEl.querySelectorAll('.pdf-thumb-card');
     cards.forEach((card, idx) => {
       if (idx === index) {
         card.className =
-          'pdf-thumb-card group relative p-2 rounded-xl transition-all cursor-pointer border bg-indigo-950/60 border-indigo-500 shadow-lg shadow-indigo-500/20';
+          'pdf-thumb-card group relative p-2 rounded-xl transition-all cursor-pointer border bg-blue-950/70 border-blue-500 shadow-lg shadow-blue-500/20';
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       } else {
         card.className =
@@ -1084,33 +1088,28 @@
   }
 
   function movePage(index, dir) {
-    const targetIdx = index + dir;
-    if (targetIdx < 0 || targetIdx >= state.pages.length) return;
+    const target = index + dir;
+    if (target < 0 || target >= state.pages.length) return;
 
     saveCurrentPageAnnotations();
     const temp = state.pages[index];
-    state.pages[index] = state.pages[targetIdx];
-    state.pages[targetIdx] = temp;
+    state.pages[index] = state.pages[target];
+    state.pages[target] = temp;
 
     if (state.currentPageIndex === index) {
-      state.currentPageIndex = targetIdx;
-    } else if (state.currentPageIndex === targetIdx) {
+      state.currentPageIndex = target;
+    } else if (state.currentPageIndex === target) {
       state.currentPageIndex = index;
     }
 
-    renderSidebarThumbnails();
+    renderThumbnailsSidebar();
     switchPage(state.currentPageIndex);
     showToast('페이지 순서가 변경되었습니다.');
   }
 
   function deletePage(index) {
     if (state.pages.length <= 1) {
-      if (confirm('마지막 페이지입니다. 모든 페이지를 지우고 초기화하시겠습니까?')) {
-        clearCurrentSession();
-        renderSidebarThumbnails();
-        renderEmptyState();
-        showToast('작업 캔버스가 초기화되었습니다.');
-      }
+      clearAllPages(true);
       return;
     }
 
@@ -1125,30 +1124,45 @@
       state.currentPageIndex = state.pages.length - 1;
     }
 
-    renderSidebarThumbnails();
+    renderThumbnailsSidebar();
     switchPage(state.currentPageIndex);
     showToast('페이지가 삭제되었습니다.');
   }
 
-  // ── High-Quality Optimized PDF Export (50MB -> 5~7MB) ─────
-  async function exportHighResPdf() {
+  function toggleSidebar() {
+    const sidebar = document.getElementById('pdf-checker-sidebar');
+    const toggleBtn = document.getElementById('pdf-btn-sidebar-toggle');
+    if (!sidebar) return;
+
+    if (sidebar.classList.contains('hidden')) {
+      sidebar.classList.remove('hidden');
+      if (toggleBtn) toggleBtn.textContent = '◀';
+    } else {
+      sidebar.classList.add('hidden');
+      if (toggleBtn) toggleBtn.textContent = '▶';
+    }
+    setTimeout(resizeCanvasToWrapper, 50);
+  }
+
+  // ── High-Quality Optimized PDF Export (50MB -> 5~7MB) ───────
+  async function exportOptimizedPdf() {
     if (state.pages.length === 0) {
       showToast('내보낼 도면이나 문서가 없습니다. 먼저 파일을 불러와주세요.');
       return;
     }
 
     saveCurrentPageAnnotations();
-    setOverlayLoading(true, '고화질 최적화 PDF를 생성하고 마킹 데이터를 합성 중입니다...');
+    setOverlayLoading(true, '고화질 최적화 PDF를 합성하고 생성하는 중입니다...');
 
     try {
       const { PDFDocument } = window.PDFLib;
       const outDoc = await PDFDocument.create();
 
-      // Package re-editable annotations into PDF Subject metadata
+      // Serialization package for re-editable annotations
       const reEditablePackage = {
         format: 'DailyHelper-PDF-Checker',
         version: 1,
-        createdAt: new Date().toISOString(),
+        exportedAt: new Date().toISOString(),
         pages: []
       };
 
@@ -1161,7 +1175,7 @@
         let width = pageData.renderWidth || 2400;
         let height = pageData.renderHeight || 1600;
 
-        // Longest side 4K cap
+        // Longest side 4K intelligent cap
         const maxDim = Math.max(width, height);
         if (maxDim > 3840) {
           const ratio = 3840 / maxDim;
@@ -1192,7 +1206,6 @@
         // Draw overlay annotations if present
         const pageAnnotations = state.annotations[pageData.id];
         if (Array.isArray(pageAnnotations) && pageAnnotations.length > 0) {
-          // Render annotations via temporary fabric static canvas
           const tempFabricCanvas = new fabric.StaticCanvas(null, {
             width: width,
             height: height,
@@ -1207,19 +1220,18 @@
             });
           });
 
-          // Composite annotations over background
           ctx.drawImage(tempFabricCanvas.lowerCanvasEl, 0, 0);
           tempFabricCanvas.dispose();
         }
 
-        // 2. High-quality JPEG compression encoding (Quality 86% -> 50MB reduced to 5~7MB)
+        // 2. High-quality JPEG compression encoding (86% quality -> 50MB down to 5~7MB)
         const jpgDataUrl = offCanvas.toDataURL('image/jpeg', 0.86);
         const jpgBytes = await fetch(jpgDataUrl).then((res) => res.arrayBuffer());
 
-        // Embed in PDF document
+        // Embed in pdf-lib document
         const embeddedImage = await outDoc.embedJpg(jpgBytes);
 
-        // Determine PDF page point dimensions
+        // Calculate PDF point dimensions (pt)
         const ptWidth = pageData.widthPt || (width * 72) / 150;
         const ptHeight = pageData.heightPt || (height * 72) / 150;
 
@@ -1231,7 +1243,7 @@
           height: ptHeight
         });
 
-        // Save annotation serialized data
+        // Store serialized annotation for this page
         reEditablePackage.pages.push(pageAnnotations || []);
 
         // Free offscreen canvas memory
@@ -1239,7 +1251,7 @@
         offCanvas.height = 0;
       }
 
-      // Metadata serialization (Embeds re-editable annotations inside PDF)
+      // Re-editable annotation metadata stored in PDF Subject
       outDoc.setSubject(JSON.stringify(reEditablePackage));
       outDoc.setKeywords(['DH_ANNOTATIONS_V1', 'DAILYHELPER_PDF_CHECKER']);
       outDoc.setProducer('DailyHelper PDF & Drawing Checker v1.0');
@@ -1249,7 +1261,7 @@
       // Trigger download
       const blob = new Blob([finalPdfBytes], { type: 'application/pdf' });
       const downloadUrl = URL.createObjectURL(blob);
-      const fileName = `도면검토_마킹완료_${new Date().toISOString().slice(0, 10)}.pdf`;
+      const fileName = `도면마킹검토_${new Date().toISOString().slice(0, 10)}.pdf`;
 
       const a = document.createElement('a');
       a.href = downloadUrl;
@@ -1258,23 +1270,23 @@
       a.click();
       document.body.removeChild(a);
 
-      setTimeout(() => URL.revokeObjectURL(downloadUrl), 10000); // Prevent memory leak
+      setTimeout(() => URL.revokeObjectURL(downloadUrl), 10000); // Prevent file lock/leak
 
       showToast('고화질 최적화 PDF가 성공적으로 다운로드되었습니다!');
     } catch (err) {
-      console.error('Export error:', err);
+      console.error('Export PDF error:', err);
       showToast('PDF 내보내기 실패: ' + err.message);
     } finally {
       setOverlayLoading(false);
     }
   }
 
-  // ── Sample Blueprint Generator (Instant Wow Experience) ───
+  // ── Sample Blueprint Generator (Instant Wow Demo) ───────────
   async function loadSampleBlueprint() {
     setOverlayLoading(true, '초고해상도 샘플 건축 도면을 생성 중입니다...');
 
     try {
-      const width = 3508; // A3 High-DPI Landscape (300 DPI equivalent)
+      const width = 3508; // A3 High-DPI Landscape
       const height = 2480;
 
       const offCanvas = document.createElement('canvas');
@@ -1282,20 +1294,20 @@
       offCanvas.height = height;
       const ctx = offCanvas.getContext('2d');
 
-      // 1. Drawing paper background (Clean Blueprint Grid)
+      // 1. Drawing paper background
       ctx.fillStyle = '#0f172a';
       ctx.fillRect(0, 0, width, height);
 
       // Grid lines
       ctx.strokeStyle = '#1e293b';
       ctx.lineWidth = 1;
-      for (let x = 0; x < width; x += 50) {
+      for (let x = 0; x < width; x += 60) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
         ctx.lineTo(x, height);
         ctx.stroke();
       }
-      for (let y = 0; y < height; y += 50) {
+      for (let y = 0; y < height; y += 60) {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(width, y);
@@ -1308,39 +1320,38 @@
       ctx.strokeRect(60, 60, width - 120, height - 120);
 
       ctx.fillStyle = '#1e293b';
-      ctx.fillRect(width - 700, height - 320, 620, 240);
-      ctx.strokeRect(width - 700, height - 320, 620, 240);
+      ctx.fillRect(width - 750, height - 320, 670, 240);
+      ctx.strokeRect(width - 750, height - 320, 670, 240);
 
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 36px "Noto Sans KR", sans-serif';
-      ctx.fillText('SAMPLE ARCHITECTURAL PLAN (SAMPLE-A3)', width - 680, height - 250);
-      ctx.font = '24px "Noto Sans KR", sans-serif';
+      ctx.font = 'bold 34px "Noto Sans KR", sans-serif';
+      ctx.fillText('SAMPLE ARCHITECTURAL PLAN (A3)', width - 720, height - 250);
+      ctx.font = '22px "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#94a3b8';
-      ctx.fillText('PROJECT: DAILY HELPER HEADQUARTERS 3F', width - 680, height - 200);
-      ctx.fillText('SCALE: 1:100  |  DATE: 2026. 10  |  REV: 02', width - 680, height - 150);
-      ctx.fillText('ENGINEER: WG DESIGN STUDIO (CLIENT REVIEW)', width - 680, height - 105);
+      ctx.fillText('PROJECT: DAILY HELPER HEADQUARTERS 3F', width - 720, height - 200);
+      ctx.fillText('SCALE: 1:100  |  DATE: 2026. 10  |  REV: 02', width - 720, height - 150);
+      ctx.fillText('STATUS: CLIENT REVIEW (BLUEPRINT CHECKER)', width - 720, height - 105);
 
       // 3. Walls & Partitions (외벽 & 내벽)
       ctx.strokeStyle = '#e2e8f0';
       ctx.lineWidth = 8;
-      ctx.strokeRect(300, 300, 2400, 1600); // Main outline
+      ctx.strokeRect(300, 300, 2400, 1600); // Main boundary
 
-      // Interior rooms
       ctx.lineWidth = 5;
       ctx.beginPath();
-      // Room 1 (Executive Room)
+      // Partition 1
       ctx.moveTo(300, 900);
       ctx.lineTo(1300, 900);
       ctx.moveTo(1300, 300);
       ctx.lineTo(1300, 900);
 
-      // Room 2 (Conference Room)
+      // Partition 2
       ctx.moveTo(1300, 750);
       ctx.lineTo(2100, 750);
       ctx.moveTo(2100, 300);
       ctx.lineTo(2100, 1100);
 
-      // Room 3 (Lobby & Open Workspace)
+      // Partition 3
       ctx.moveTo(1300, 1400);
       ctx.lineTo(2700, 1400);
       ctx.stroke();
@@ -1351,7 +1362,6 @@
       ctx.fillStyle = '#38bdf8';
       ctx.font = 'bold 22px monospace';
 
-      // Top dimension
       ctx.beginPath();
       ctx.moveTo(300, 220);
       ctx.lineTo(2700, 220);
@@ -1364,8 +1374,8 @@
 
       // Room Text Labels
       ctx.fillStyle = '#f8fafc';
-      ctx.font = 'bold 32px "Noto Sans KR", sans-serif';
-      ctx.fillText('대회의실 (MAIN CONFERENCE ROOM)', 1400, 520);
+      ctx.font = 'bold 30px "Noto Sans KR", sans-serif';
+      ctx.fillText('대회의실 (MAIN CONFERENCE)', 1420, 520);
       ctx.fillText('임원 집무실 (EXECUTIVE SUITE)', 550, 600);
       ctx.fillText('오픈 스마트 오피스 (OPEN LAB)', 700, 1300);
       ctx.fillText('휴게 라운지 (PANTRY & LOUNGE)', 2200, 800);
@@ -1373,7 +1383,7 @@
       const blob = await new Promise((res) => offCanvas.toBlob(res, 'image/jpeg', 0.95));
       const blobUrl = URL.createObjectURL(blob);
 
-      clearCurrentSession();
+      clearAllPages(false);
       const pageId = uid();
       state.pages.push({
         id: pageId,
@@ -1384,352 +1394,128 @@
         height: height,
         widthPt: (width * 72) / 150,
         heightPt: (height * 72) / 150,
-        fileName: 'Sample_FloorPlan_A3.jpg',
+        fileName: 'Sample_Blueprint_FloorPlan_A3.jpg',
         title: '샘플 도면 (3F 건축 평면도)'
       });
 
-      renderSidebarThumbnails();
+      renderThumbnailsSidebar();
       await switchPage(0);
 
-      // Add pre-loaded sample markup to wow the user
+      // Add pre-loaded demo markups
       setTimeout(() => {
-        addSampleDemoMarkups();
-      }, 300);
+        addDemoMarkups();
+      }, 350);
 
-      showToast('초고화질 샘플 도면이 로드되었습니다! 마킹 도구를 체험해보세요.');
+      showToast('초고화질 샘플 도면이 로드되었습니다! 마킹을 시작해보세요.');
     } catch (err) {
-      console.error(err);
-      showToast('샘플 도면 로드 오류');
+      console.error('Sample load error:', err);
+      showToast('샘플 로드 실패');
     } finally {
       setOverlayLoading(false);
     }
   }
 
-  function addSampleDemoMarkups() {
+  function addDemoMarkups() {
     if (!state.canvas) return;
 
-    // 1. Red Review Rectangle on Conference Room
+    // 1. Red Review Box on Conference Room
     const rect = new fabric.Rect({
-      left: 1380,
-      top: 450,
-      width: 680,
-      height: 250,
+      left: 1390,
+      top: 440,
+      width: 660,
+      height: 260,
       stroke: '#ef4444',
-      strokeWidth: 5,
-      fill: 'rgba(239, 68, 68, 0.12)',
+      strokeWidth: 4,
+      fill: 'rgba(239, 68, 68, 0.15)',
       cornerColor: '#3b82f6',
       cornerSize: 8,
       selectable: true
     });
 
-    // 2. Text Box with review note
-    const text = new fabric.IText('도면 검토 의견: 빔프로젝터 배선 위치 확인 요망 (REV 02)', {
-      left: 1400,
-      top: 400,
+    // 2. Yellow highlighted text memo
+    const text = new fabric.IText('검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)', {
+      left: 1410,
+      top: 390,
       fontFamily: 'Noto Sans KR, sans-serif',
-      fontSize: 26,
+      fontSize: 24,
       fill: '#ef4444',
-      backgroundColor: 'rgba(254, 240, 138, 0.9)',
+      backgroundColor: 'rgba(254, 240, 138, 0.92)',
       padding: 6,
       selectable: true
     });
 
-    // 3. Arrow pointing to Executive door
-    const line = new fabric.Line([950, 850, 1150, 950], {
-      stroke: '#3b82f6',
-      strokeWidth: 4,
-      strokeLineCap: 'round'
-    });
-    const head = new fabric.Triangle({
-      left: 1150,
-      top: 950,
-      width: 18,
-      height: 18,
-      fill: '#3b82f6',
-      angle: 65,
-      originX: 'center',
-      originY: 'center'
-    });
-    const arrow = new fabric.Group([line, head], { selectable: true });
-
-    state.canvas.add(rect, text, arrow);
+    state.canvas.add(rect, text);
     state.canvas.renderAll();
     pushUndo();
   }
 
-  // ── Drag & Drop Events ────────────────────────────────────
-  function bindDragDropEvents() {
-    const modal = document.getElementById('pdf-checker');
-    const dropzone = document.getElementById('pdf-checker-dropzone-overlay');
-    if (!modal) return;
-
-    ['dragenter', 'dragover'].forEach((eventName) => {
-      modal.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (dropzone) dropzone.classList.remove('hidden');
-      });
-    });
-
-    ['dragleave', 'drop'].forEach((eventName) => {
-      modal.addEventListener(eventName, (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (e.target === dropzone || eventName === 'drop') {
-          if (dropzone) dropzone.classList.add('hidden');
-        }
-      });
-    });
-
-    modal.addEventListener('drop', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (dropzone) dropzone.classList.add('hidden');
-
-      const files = e.dataTransfer.files;
-      if (files && files.length > 0) {
-        // If we already have pages, append new files to preserve existing markups!
-        const isAppend = state.pages.length > 0;
-        handleFiles(files, isAppend);
-      }
-    });
-  }
-
-  // ── Toolbar Event Bindings ────────────────────────────────
-  function bindToolbarEvents() {
-    // Tool buttons
-    const tools = ['select', 'pan', 'text', 'rect', 'circle', 'pen', 'arrow'];
-    tools.forEach((t) => {
-      const btn = document.getElementById(`pdf-tool-${t}`);
-      if (btn) btn.addEventListener('click', () => setTool(t));
-    });
-
-    // Color picker & Quick color presets
-    const colorPicker = document.getElementById('pdf-color-picker');
-    if (colorPicker) {
-      colorPicker.addEventListener('input', (e) => {
-        state.strokeColor = e.target.value;
-        applyStyleToActiveObject();
-        updateToolbarUI();
-      });
-    }
-
-    document.querySelectorAll('.pdf-color-preset-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const color = btn.getAttribute('data-color');
-        if (color) {
-          state.strokeColor = color;
-          applyStyleToActiveObject();
-          updateToolbarUI();
-        }
-      });
-    });
-
-    // Stroke width buttons
-    document.querySelectorAll('.pdf-stroke-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const width = parseInt(btn.getAttribute('data-width'), 10);
-        if (width) {
-          state.strokeWidth = width;
-          applyStyleToActiveObject();
-          updateToolbarUI();
-        }
-      });
-    });
-
-    // Fill mode toggle
-    const fillBtn = document.getElementById('pdf-fill-toggle-btn');
-    if (fillBtn) {
-      fillBtn.addEventListener('click', () => {
-        if (state.fillMode === 'transparent') state.fillMode = 'semi';
-        else if (state.fillMode === 'semi') state.fillMode = 'solid';
-        else state.fillMode = 'transparent';
-        applyStyleToActiveObject();
-        updateToolbarUI();
-        showToast(
-          state.fillMode === 'transparent'
-            ? '채우기: 투명 (선만 표시)'
-            : state.fillMode === 'semi'
-            ? '채우기: 20% 반투명 하이라이트'
-            : '채우기: 100% 완전 채움'
-        );
-      });
-    }
-
-    // Font size selector
-    const fontSelect = document.getElementById('pdf-font-size-select');
-    if (fontSelect) {
-      fontSelect.addEventListener('change', (e) => {
-        state.fontSize = parseInt(e.target.value, 10);
-        const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
-        if (activeObj && activeObj.type === 'i-text') {
-          activeObj.set('fontSize', state.fontSize);
-          state.canvas.renderAll();
-          pushUndo();
-        }
-      });
-    }
-
-    // Action buttons
-    const undoBtn = document.getElementById('pdf-undo-btn');
-    if (undoBtn) undoBtn.addEventListener('click', undo);
-
-    const redoBtn = document.getElementById('pdf-redo-btn');
-    if (redoBtn) redoBtn.addEventListener('click', redo);
-
-    const delBtn = document.getElementById('pdf-delete-obj-btn');
-    if (delBtn) delBtn.addEventListener('click', deleteActiveObject);
-
-    const clearPageBtn = document.getElementById('pdf-clear-page-btn');
-    if (clearPageBtn) {
-      clearPageBtn.addEventListener('click', () => {
-        if (confirm('현재 페이지의 모든 마킹을 지우시겠습니까?')) {
-          loadSerializedAnnotations([]);
-          pushUndo();
-          showToast('현재 페이지의 마킹이 초기화되었습니다.');
-        }
-      });
-    }
-
-    // Zoom buttons
-    const zoomInBtn = document.getElementById('pdf-zoom-in-btn');
-    if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
-
-    const zoomOutBtn = document.getElementById('pdf-zoom-out-btn');
-    if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
-
-    const zoomFitBtn = document.getElementById('pdf-zoom-fit-btn');
-    if (zoomFitBtn) zoomFitBtn.addEventListener('click', fitToScreen);
-
-    const zoomResetBtn = document.getElementById('pdf-zoom-reset-btn');
-    if (zoomResetBtn) zoomResetBtn.addEventListener('click', resetZoom);
-
-    // Export PDF button
-    const exportBtn = document.getElementById('pdf-export-btn');
-    if (exportBtn) exportBtn.addEventListener('click', exportHighResPdf);
-
-    // Close button
-    const closeBtn = document.getElementById('pdf-modal-close-btn');
-    if (closeBtn) closeBtn.addEventListener('click', closePdfCheckerModal);
-
-    // File input trigger (New / Append)
-    const fileInput = document.getElementById('pdf-checker-file-input');
-    const openFileBtn = document.getElementById('pdf-open-file-btn');
-    const addFileBtn = document.getElementById('pdf-add-files-btn');
-    const sidebarAddBtn = document.getElementById('pdf-sidebar-add-btn');
-    const emptySelectBtn = document.getElementById('pdf-empty-select-btn');
-
-    let appendFlag = false;
-
-    if (fileInput) {
-      fileInput.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-          handleFiles(e.target.files, appendFlag);
-          e.target.value = '';
-        }
-      });
-    }
-
-    if (openFileBtn) {
-      openFileBtn.addEventListener('click', () => {
-        appendFlag = false;
-        if (fileInput) fileInput.click();
-      });
-    }
-
-    if (addFileBtn) {
-      addFileBtn.addEventListener('click', () => {
-        appendFlag = true;
-        if (fileInput) fileInput.click();
-      });
-    }
-
-    if (sidebarAddBtn) {
-      sidebarAddBtn.addEventListener('click', () => {
-        appendFlag = true;
-        if (fileInput) fileInput.click();
-      });
-    }
-
-    if (emptySelectBtn) {
-      emptySelectBtn.addEventListener('click', () => {
-        appendFlag = false;
-        if (fileInput) fileInput.click();
-      });
-    }
-
-    // Sample button
-    const sampleBtn = document.getElementById('pdf-sample-load-btn');
-    if (sampleBtn) sampleBtn.addEventListener('click', loadSampleBlueprint);
-
-    // Sidebar toggle button
-    const sidebarToggleBtn = document.getElementById('pdf-sidebar-toggle-btn');
-    const sidebar = document.getElementById('pdf-checker-sidebar');
-    if (sidebarToggleBtn && sidebar) {
-      sidebarToggleBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('hidden');
-        setTimeout(() => resizeCanvasViewport(), 50);
-      });
-    }
-  }
-
-  function applyStyleToActiveObject() {
-    if (!state.canvas) return;
-    const activeObj = state.canvas.getActiveObject();
-    if (!activeObj) return;
-
-    if (activeObj.type === 'i-text') {
-      activeObj.set({
-        fill: state.strokeColor,
-        backgroundColor: state.fillMode === 'semi' ? 'rgba(254, 240, 138, 0.9)' : 'transparent'
-      });
-    } else {
-      activeObj.set({
-        stroke: state.strokeColor,
-        strokeWidth: state.strokeWidth,
-        fill: getFillColor(state.fillMode, state.strokeColor)
-      });
-    }
-    state.canvas.renderAll();
-    pushUndo();
-  }
-
-  function renderEmptyState() {
-    const emptyEl = document.getElementById('pdf-empty-workspace');
-    if (emptyEl) emptyEl.classList.remove('hidden');
-  }
-
-  function hideEmptyState() {
-    const emptyEl = document.getElementById('pdf-empty-workspace');
-    if (emptyEl) emptyEl.classList.add('hidden');
-  }
-
-  // ── Public Global Bindings ────────────────────────────────
-  window.openPdfCheckerModal = openPdfCheckerModal;
-  window.closePdfCheckerModal = closePdfCheckerModal;
-
-  window.PdfChecker = {
+  // ── Public Global API Bindings ──────────────────────────────
+  const publicApi = {
     open: openPdfCheckerModal,
     close: closePdfCheckerModal,
-    switchPage: switchPage,
-    movePage: movePage,
-    deletePage: deletePage,
-    exportPdf: exportHighResPdf,
-    loadSample: loadSampleBlueprint,
+    handleFileSelect: handleFileSelect,
+    handleDropFiles: handleDropFiles,
+    showDropOverlay: showDropOverlay,
+    hideDropOverlay: hideDropOverlay,
     setTool: setTool,
+    setStrokeColor: setStrokeColor,
+    setStrokeWidth: setStrokeWidth,
+    setFillColor: setFillColor,
     undo: undo,
     redo: redo,
+    deleteSelected: deleteSelected,
+    changeZoom: changeZoom,
+    resetZoom100: resetZoom100,
+    fitToScreen: fitToScreen,
+    exportOptimizedPdf: exportOptimizedPdf,
+    switchPage: switchPage,
+    deletePage: deletePage,
+    movePage: movePage,
+    clearAllPages: clearAllPages,
+    toggleSidebar: toggleSidebar,
+    loadSampleBlueprint: loadSampleBlueprint,
     state: state
   };
 
-  // Immediate deep link listener for #pdf-checker
+  window.pdfChecker = publicApi;
+  window.PdfChecker = publicApi;
+  window.openPdfCheckerModal = openPdfCheckerModal;
+  window.closePdfCheckerModal = closePdfCheckerModal;
+
+  // Hash-based deep link handler
   function checkHashOnLoad() {
-    const aliases = ['#pdf-checker', '#pdf-marking', '#drawing-checker', '#pdf-jpg-checker', '#pdfchecker', '#도면검토', '#pdf검토'];
-    if (aliases.includes(window.location.hash)) {
+    const raw = (window.location.hash || '').trim().toLowerCase();
+    let h = '';
+    try {
+      h = decodeURIComponent(raw).replace(/^#/, '');
+    } catch (_) {
+      h = raw.replace(/^#/, '');
+    }
+
+    const aliases = [
+      'pdf-checker',
+      'pdf-marking',
+      'drawing-checker',
+      'pdf-jpg-checker',
+      'blueprint-checker',
+      'pdfchecker',
+      'pdf검토',
+      '도면검토',
+      '도면마킹',
+      '도면검토툴',
+      'pdf마킹',
+      '도면'
+    ];
+
+    if (aliases.includes(h)) {
       setTimeout(openPdfCheckerModal, 60);
     }
   }
 
   window.addEventListener('hashchange', checkHashOnLoad);
-  window.addEventListener('DOMContentLoaded', checkHashOnLoad);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkHashOnLoad);
+  } else {
+    checkHashOnLoad();
+  }
 })();
