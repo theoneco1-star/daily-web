@@ -29,6 +29,29 @@ let webToolsData = [
     deepLink: "#wage-calc"
   },
   {
+    id: "annual-leave-calculator",
+    nameKo: "근로기준법 연차 자동 계산기",
+    nameEn: "Annual Leave Calculator",
+    targetLang: "ALL",
+    isKrOnly: false,
+    category: "salary",
+    color: "from-blue-600 via-indigo-600 to-sky-500",
+    iconEmoji: "📅",
+    isHot: true,
+    isFree: true,
+    isNew: true,
+    badges: ["HOT", "근로기준법"],
+    descKo: "입사일만 넣으면 1년 미만 월차부터 근속 가산 연차까지 대한민국 근로기준법 제60조 기준으로 실시간 자동 계산합니다.",
+    descEn: "Automatically calculate monthly and annual paid leave under Article 60 of Korean Labor Standards Act with hire & fiscal modes.",
+    tagsKo: ["연차계산기", "근로기준법", "월차계산", "연차발생일수"],
+    tagsEn: ["LeaveCalc", "LaborLaw", "AnnualLeave", "VacationCalc"],
+    ctaTextKo: "바로 사용하기",
+    ctaTextEn: "Use Tool Now",
+    actionType: "modal",
+    targetModal: "annual-leave-calculator",
+    deepLink: "#annual-leave-calculator"
+  },
+  {
     id: "char-byte-counter",
     nameKo: "자소서/공문서 글자수 & Byte 변환기",
     nameEn: "Word & Character / Byte Counter",
@@ -306,6 +329,8 @@ function handleWebToolAction(toolId) {
     openCharByteModal();
   } else if (toolId === "excel-delimiter-converter") {
     openExcelDelimiterModal();
+  } else if (toolId === "annual-leave-calculator" || toolId === "leave-calc") {
+    openAnnualLeaveModal();
   }
 }
 
@@ -1697,3 +1722,743 @@ if (typeof window !== "undefined") {
   window.updateExcelDelimiterStats = updateExcelDelimiterStats;
   window.excelDelimiterI18n = excelDelimiterI18n;
 }
+
+// ═════════════════════════════════════════════════════════════
+// 📅 Annual Leave Calculator (대한민국 근로기준법 제60조 연차 자동 계산기)
+// ═════════════════════════════════════════════════════════════
+
+let annualLeaveState = {
+  mode: "hire", // "hire" (입사일 기준) | "fiscal" (회계연도 기준)
+  hireDate: "",
+  baseDate: "",
+  lang: "ko"
+};
+
+let annualLeaveToastTimer = null;
+
+const annualLeaveI18n = {
+  ko: {
+    title: "근로기준법 기준 연차 자동 계산기",
+    subtitle: "대한민국 근로기준법 제60조 기준 실시간 연차·월차 자동 계산",
+    statutoryBadge: "근로기준법 제60조 준수",
+    statutoryBadgeTitle: "대한민국 근로기준법 제60조(연차 유급휴가) 법정 규정을 정확히 반영합니다.",
+    langToggle: "EN",
+    modeLabel: "계산 기준 모드",
+    modeHireDate: "입사일 기준 (법정 원칙)",
+    modeFiscalYear: "회계연도 기준 (매년 1월 1일)",
+    modeFiscalNotice: "※ 매년 1월 1일 일괄 부여하는 기업 규정 방식입니다. 퇴직 시 입사일 기준과 비교하여 유리한 조건으로 정산해야 합니다.",
+    inputHireLabel: "입사일",
+    inputBaseLabel: "기준일 (계산 시점)",
+    todayBtn: "오늘 날짜로 리셋",
+    sampleBtn: "기본 샘플 입력 (2년차)",
+    presetsLabel: "빠른 샘플 프리셋:",
+    presetFreshman: "신입 (6개월)",
+    presetOneYear: "만 1년",
+    presetThreeYears: "3년차",
+    presetFiveYears: "5년차",
+    presetTenYears: "10년차",
+    servicePeriodLabel: "근속 기간",
+    workingStatus: "근무 중",
+    totalGrantedLabel: "총 발생 연차",
+    cumulativeBadge: "입사 이래 누적 총 {days}일 발생",
+    cardMonthlyTitle: "1년 미만 월차 발생일수",
+    cardMonthlyDesc: "1개월 개근 시 1일씩 발생 (최대 11일)",
+    cardRegularTitle: "1년 이상 정기 연차 발생일수",
+    cardRegularDesc: "기본 15일 + 3년차부터 2년마다 1일 가산 (최대 25일)",
+    copyBtn: "📋 계산 결과 복사하기",
+    copiedBtn: "✓ 복사 완료!",
+    toastCopied: "연차 계산 결과가 클립보드에 복사되었습니다!",
+    toastSampleLoaded: "기본 샘플 데이터(입사 2년차)가 입력되었습니다.",
+    toastResetToday: "기준일이 오늘 날짜로 재설정되었습니다.",
+    errorDateOrder: "기준일이 입사일보다 이전입니다."
+  },
+  en: {
+    title: "Annual Leave Calculator (Korean Labor Standards Act)",
+    subtitle: "Real-time calculation of statutory annual & monthly paid leave under Art. 60",
+    statutoryBadge: "Art. 60 Labor Standards Act",
+    statutoryBadgeTitle: "Complies accurately with Article 60 of the Korean Labor Standards Act.",
+    langToggle: "KO",
+    modeLabel: "Calculation Mode",
+    modeHireDate: "Hire Date Basis (Statutory Standard)",
+    modeFiscalYear: "Fiscal Year Basis (Jan 1st)",
+    modeFiscalNotice: "※ Company standard granting leave on Jan 1st. Upon resignation, it must be reconciled against the hire-date basis so the employee suffers no disadvantage.",
+    inputHireLabel: "Hire Date",
+    inputBaseLabel: "Base Reference Date",
+    todayBtn: "Reset to Today",
+    sampleBtn: "Load Sample (2 Years)",
+    presetsLabel: "Quick Sample Presets:",
+    presetFreshman: "New Hire (6 Mo)",
+    presetOneYear: "1 Year",
+    presetThreeYears: "3 Years",
+    presetFiveYears: "5 Years",
+    presetTenYears: "10 Years",
+    servicePeriodLabel: "Service Period",
+    workingStatus: "employed",
+    totalGrantedLabel: "Total Annual Leave",
+    cumulativeBadge: "Total cumulative leave: {days} days since hire",
+    cardMonthlyTitle: "Monthly Leave (< 1 Year)",
+    cardMonthlyDesc: "1 day granted per full month worked (up to 11 days)",
+    cardRegularTitle: "Regular Annual Leave (≥ 1 Year)",
+    cardRegularDesc: "Base 15 days + 1 bonus day every 2 yrs from Year 3 (Max 25 days)",
+    copyBtn: "📋 Copy Calculation Results",
+    copiedBtn: "✓ Copied!",
+    toastCopied: "Annual leave calculation copied to clipboard!",
+    toastSampleLoaded: "Sample 2-year employment data loaded.",
+    toastResetToday: "Base date has been reset to today.",
+    errorDateOrder: "Base date must be after hire date."
+  }
+};
+
+function formatLeaveIsoDate(d) {
+  if (!d || isNaN(d.getTime())) return "";
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function parseLeaveIsoDate(str) {
+  if (!str || typeof str !== "string") return null;
+  const parts = str.trim().split("-").map(Number);
+  if (parts.length !== 3 || isNaN(parts[0]) || isNaN(parts[1]) || isNaN(parts[2])) return null;
+  return new Date(parts[0], parts[1] - 1, parts[2]);
+}
+
+function getLeaveServicePeriod(hire, base) {
+  if (!hire || !base || base < hire) {
+    return { years: 0, months: 0, days: 0, totalDays: 0, isValid: false };
+  }
+
+  let y = base.getFullYear() - hire.getFullYear();
+  let m = base.getMonth() - hire.getMonth();
+  let d = base.getDate() - hire.getDate();
+
+  if (d < 0) {
+    m -= 1;
+    const prevMonthDays = new Date(base.getFullYear(), base.getMonth(), 0).getDate();
+    d += prevMonthDays;
+  }
+  if (m < 0) {
+    y -= 1;
+    m += 12;
+  }
+
+  const oneDayMs = 86400000;
+  const totalDays = Math.round((base.getTime() - hire.getTime()) / oneDayMs) + 1;
+
+  return { years: y, months: m, days: d, totalDays, isValid: true };
+}
+
+function getLeaveCompletedMonthsUnderOneYear(hire, base) {
+  if (!hire || !base || base < hire) return 0;
+  let count = 0;
+  for (let i = 1; i <= 11; i++) {
+    const target = new Date(hire.getFullYear(), hire.getMonth() + i, hire.getDate());
+    const maxDayInTargetMonth = new Date(hire.getFullYear(), hire.getMonth() + i + 1, 0).getDate();
+    if (hire.getDate() > maxDayInTargetMonth) {
+      target.setDate(maxDayInTargetMonth);
+    }
+    if (base >= target) {
+      count++;
+    } else {
+      break;
+    }
+  }
+  return count;
+}
+
+function getLeaveCompletedYears(hire, base) {
+  if (!hire || !base || base < hire) return 0;
+  let years = 0;
+  while (true) {
+    const nextAnniversary = new Date(hire.getFullYear() + years + 1, hire.getMonth(), hire.getDate());
+    const maxDay = new Date(hire.getFullYear() + years + 1, hire.getMonth() + 1, 0).getDate();
+    if (hire.getDate() > maxDay) {
+      nextAnniversary.setDate(maxDay);
+    }
+    if (base >= nextAnniversary) {
+      years++;
+    } else {
+      break;
+    }
+  }
+  return years;
+}
+
+function calculateHireDateLeave(hire, base) {
+  const period = getLeaveServicePeriod(hire, base);
+  if (!period.isValid) {
+    return {
+      isValid: false,
+      period,
+      completedYears: 0,
+      monthlyLeave: 0,
+      regularLeave: 0,
+      addedLeave: 0,
+      currentLeave: 0,
+      cumulativeLeave: 0
+    };
+  }
+
+  const completedYears = getLeaveCompletedYears(hire, base);
+  let monthlyLeave = 0;
+  let regularLeave = 0;
+  let addedLeave = 0;
+  let currentLeave = 0;
+  let cumulativeLeave = 0;
+
+  if (completedYears === 0) {
+    monthlyLeave = getLeaveCompletedMonthsUnderOneYear(hire, base);
+    regularLeave = 0;
+    addedLeave = 0;
+    currentLeave = monthlyLeave;
+    cumulativeLeave = monthlyLeave;
+  } else {
+    monthlyLeave = 11;
+    addedLeave = Math.floor((completedYears - 1) / 2);
+    regularLeave = Math.min(25, 15 + addedLeave);
+    currentLeave = regularLeave;
+
+    let sumRegular = 0;
+    for (let y = 1; y <= completedYears; y++) {
+      const added = Math.floor((y - 1) / 2);
+      sumRegular += Math.min(25, 15 + added);
+    }
+    cumulativeLeave = 11 + sumRegular;
+  }
+
+  return {
+    isValid: true,
+    completedYears,
+    period,
+    monthlyLeave,
+    regularLeave,
+    addedLeave,
+    currentLeave,
+    cumulativeLeave
+  };
+}
+
+function calculateFiscalYearLeave(hire, base) {
+  const period = getLeaveServicePeriod(hire, base);
+  if (!period.isValid) {
+    return {
+      isValid: false,
+      period,
+      completedYears: 0,
+      monthlyLeave: 0,
+      regularLeave: 0,
+      addedLeave: 0,
+      currentLeave: 0,
+      cumulativeLeave: 0,
+      proRatedDays: 0
+    };
+  }
+
+  const hireYear = hire.getFullYear();
+  const baseYear = base.getFullYear();
+  const completedYears = getLeaveCompletedYears(hire, base);
+  const monthlyLeave = completedYears >= 1 ? 11 : getLeaveCompletedMonthsUnderOneYear(hire, base);
+
+  const dec31HireYear = new Date(hireYear, 11, 31);
+  const daysWorkedInHireYear = Math.round((dec31HireYear.getTime() - hire.getTime()) / 86400000) + 1;
+  const isHireLeap = (hireYear % 4 === 0 && hireYear % 100 !== 0) || (hireYear % 400 === 0);
+  const totalDaysInHireYear = isHireLeap ? 366 : 365;
+  const proRatedDays = Math.round((15 * (daysWorkedInHireYear / totalDaysInHireYear)) * 10) / 10;
+
+  let currentLeave = 0;
+  let regularLeave = 0;
+  let addedLeave = 0;
+  let cumulativeLeave = 0;
+
+  if (baseYear === hireYear) {
+    currentLeave = monthlyLeave;
+    regularLeave = 0;
+    addedLeave = 0;
+    cumulativeLeave = monthlyLeave;
+  } else {
+    const passedFiscalYears = baseYear - hireYear;
+    if (passedFiscalYears === 1) {
+      regularLeave = proRatedDays;
+      addedLeave = 0;
+      currentLeave = proRatedDays;
+      cumulativeLeave = 11 + proRatedDays;
+    } else if (passedFiscalYears === 2) {
+      regularLeave = 15;
+      addedLeave = 0;
+      currentLeave = 15;
+      cumulativeLeave = 11 + proRatedDays + 15;
+    } else {
+      addedLeave = Math.floor((passedFiscalYears - 1) / 2);
+      regularLeave = Math.min(25, 15 + addedLeave);
+      currentLeave = regularLeave;
+
+      let sum = 11 + proRatedDays + 15;
+      for (let py = 3; py <= passedFiscalYears; py++) {
+        const add = Math.floor((py - 1) / 2);
+        sum += Math.min(25, 15 + add);
+      }
+      cumulativeLeave = Math.round(sum * 10) / 10;
+    }
+  }
+
+  return {
+    isValid: true,
+    period,
+    completedYears,
+    monthlyLeave,
+    regularLeave,
+    addedLeave,
+    currentLeave,
+    cumulativeLeave,
+    proRatedDays,
+    daysWorkedInHireYear,
+    totalDaysInHireYear
+  };
+}
+
+function calculateAnnualLeave() {
+  const inputHire = document.getElementById("leave-input-hire");
+  const inputBase = document.getElementById("leave-input-base");
+  if (!inputHire || !inputBase) return;
+
+  const hireVal = (inputHire.value || "").trim();
+  const baseVal = (inputBase.value || "").trim();
+
+  annualLeaveState.hireDate = hireVal;
+  annualLeaveState.baseDate = baseVal;
+
+  const hire = parseLeaveIsoDate(hireVal);
+  const base = parseLeaveIsoDate(baseVal);
+
+  const isKo = (annualLeaveState.lang || "ko") === "ko";
+  const dict = annualLeaveI18n[isKo ? "ko" : "en"] || annualLeaveI18n.ko;
+
+  const textService = document.getElementById("leave-service-text");
+  const modeBadge = document.getElementById("leave-mode-badge");
+  const resTotal = document.getElementById("leave-res-total");
+  const resCumulative = document.getElementById("leave-res-cumulative");
+  const monthlyBadge = document.getElementById("leave-monthly-days-badge");
+  const monthlyProgressBar = document.getElementById("leave-monthly-progress-bar");
+  const regularBadge = document.getElementById("leave-regular-days-badge");
+  const regularBreakdown = document.getElementById("leave-regular-breakdown");
+  const fiscalNotice = document.getElementById("leave-fiscal-notice");
+
+  if (!hire || !base) {
+    if (resTotal) resTotal.textContent = isKo ? "날짜를 선택하세요" : "Select dates";
+    return;
+  }
+
+  if (base < hire) {
+    if (textService) textService.textContent = dict.errorDateOrder;
+    if (resTotal) resTotal.textContent = isKo ? "0일 (날짜 확인)" : "0 days (Check dates)";
+    if (resCumulative) resCumulative.textContent = isKo ? "기준일이 입사일 이전입니다" : "Base date is earlier than hire date";
+    if (monthlyBadge) monthlyBadge.textContent = "0일 / 11일";
+    if (monthlyProgressBar) monthlyProgressBar.style.width = "0%";
+    if (regularBadge) regularBadge.textContent = "0일";
+    if (regularBreakdown) regularBreakdown.textContent = isKo ? "기본 0일 + 가산 0일" : "Base 0 + Bonus 0";
+    return;
+  }
+
+  const isHireMode = annualLeaveState.mode === "hire";
+  const result = isHireMode ? calculateHireDateLeave(hire, base) : calculateFiscalYearLeave(hire, base);
+  const p = result.period;
+
+  // 1. Service period badge
+  if (textService) {
+    const periodStr = isKo
+      ? `${p.years}년 ${p.months}개월 ${p.days}일 근무 중 (총 ${p.totalDays}일)`
+      : `${p.years}y ${p.months}m ${p.days}d employed (Total ${p.totalDays}d)`;
+    textService.textContent = periodStr;
+  }
+
+  // 2. Mode badge
+  if (modeBadge) {
+    modeBadge.textContent = isHireMode
+      ? (isKo ? "⚖️ 입사일 기준 산정" : "⚖️ Hire Date Basis")
+      : (isKo ? "🏢 회계연도(1.1) 기준 산정" : "🏢 Fiscal Year (Jan 1) Basis");
+  }
+
+  // 3. Fiscal notice banner
+  if (fiscalNotice) {
+    if (!isHireMode) {
+      fiscalNotice.classList.remove("hidden");
+    } else {
+      fiscalNotice.classList.add("hidden");
+    }
+  }
+
+  // 4. Hero Total
+  if (resTotal) {
+    resTotal.textContent = isKo ? `총 ${result.currentLeave}일` : `Total ${result.currentLeave} days`;
+  }
+  if (resCumulative) {
+    resCumulative.textContent = isKo
+      ? `입사 이래 누적 총 ${result.cumulativeLeave}일 발생`
+      : `Total cumulative leave: ${result.cumulativeLeave} days`;
+  }
+
+  // 5. Monthly leave card
+  if (monthlyBadge) {
+    monthlyBadge.textContent = `${result.monthlyLeave}일 / 11일`;
+  }
+  if (monthlyProgressBar) {
+    const pct = Math.min(100, Math.round((result.monthlyLeave / 11) * 100));
+    monthlyProgressBar.style.width = `${pct}%`;
+  }
+
+  // 6. Regular leave card
+  if (regularBadge) {
+    regularBadge.textContent = `${result.regularLeave}일`;
+  }
+  if (regularBreakdown) {
+    if (isHireMode) {
+      regularBreakdown.textContent = isKo
+        ? `기본 15일 + 가산 ${result.addedLeave}일`
+        : `Base 15 + Bonus ${result.addedLeave}`;
+    } else {
+      if (result.period.years === 0 && (base.getFullYear() === hire.getFullYear())) {
+        regularBreakdown.textContent = isKo
+          ? `입사 당해 연도 (다음해 1.1 비례 ${result.proRatedDays}일 예정)`
+          : `Hire year (Next Jan 1: ${result.proRatedDays} pro-rated days)`;
+      } else if (result.completedYears <= 1) {
+        regularBreakdown.textContent = isKo
+          ? `전년도 재직 비례 ${result.proRatedDays}일`
+          : `Prior year pro-rated ${result.proRatedDays} days`;
+      } else {
+        regularBreakdown.textContent = isKo
+          ? `기본 15일 + 가산 ${result.addedLeave}일`
+          : `Base 15 + Bonus ${result.addedLeave}`;
+      }
+    }
+  }
+}
+
+function setAnnualLeaveMode(mode) {
+  annualLeaveState.mode = mode === "fiscal" ? "fiscal" : "hire";
+  const btnHire = document.getElementById("leave-mode-btn-hire");
+  const btnFiscal = document.getElementById("leave-mode-btn-fiscal");
+
+  if (btnHire && btnFiscal) {
+    if (annualLeaveState.mode === "hire") {
+      btnHire.classList.add("active");
+      btnHire.classList.remove("text-slate-400");
+      btnHire.setAttribute("aria-selected", "true");
+      btnFiscal.classList.remove("active");
+      btnFiscal.classList.add("text-slate-400");
+      btnFiscal.setAttribute("aria-selected", "false");
+    } else {
+      btnFiscal.classList.add("active");
+      btnFiscal.classList.remove("text-slate-400");
+      btnFiscal.setAttribute("aria-selected", "true");
+      btnHire.classList.remove("active");
+      btnHire.classList.add("text-slate-400");
+      btnHire.setAttribute("aria-selected", "false");
+    }
+  }
+
+  calculateAnnualLeave();
+}
+
+function resetLeaveBaseDateToday() {
+  const inputBase = document.getElementById("leave-input-base");
+  const todayStr = formatLeaveIsoDate(new Date());
+  if (inputBase) {
+    inputBase.value = todayStr;
+  }
+  annualLeaveState.baseDate = todayStr;
+  calculateAnnualLeave();
+  const isKo = (annualLeaveState.lang || "ko") === "ko";
+  showAnnualLeaveToast(isKo ? "기준일이 오늘 날짜로 재설정되었습니다." : "Base date reset to today.");
+}
+
+function loadLeaveDefaultSample() {
+  const today = new Date();
+  const d = new Date(today);
+  d.setFullYear(d.getFullYear() - 2);
+
+  const hireStr = formatLeaveIsoDate(d);
+  const baseStr = formatLeaveIsoDate(today);
+
+  const inputHire = document.getElementById("leave-input-hire");
+  const inputBase = document.getElementById("leave-input-base");
+
+  if (inputHire) inputHire.value = hireStr;
+  if (inputBase) inputBase.value = baseStr;
+
+  annualLeaveState.hireDate = hireStr;
+  annualLeaveState.baseDate = baseStr;
+
+  const modal = document.getElementById("annual-leave-calculator") || document.getElementById("tool-annual-leave-calculator-modal");
+  if (modal) {
+    modal.querySelectorAll(".leave-chip-btn").forEach(btn => btn.classList.remove("active"));
+  }
+
+  calculateAnnualLeave();
+  const isKo = (annualLeaveState.lang || "ko") === "ko";
+  showAnnualLeaveToast(isKo ? "기본 샘플 데이터(입사 2년차)가 입력되었습니다." : "Sample 2-year employment data loaded.");
+}
+
+function setLeavePreset(presetType) {
+  const baseInput = document.getElementById("leave-input-base");
+  const hireInput = document.getElementById("leave-input-hire");
+  const today = new Date();
+  const baseDate = baseInput && baseInput.value ? parseLeaveIsoDate(baseInput.value) || today : today;
+
+  const hireDate = new Date(baseDate);
+  if (presetType === "6m") {
+    hireDate.setMonth(hireDate.getMonth() - 6);
+  } else if (presetType === "1y") {
+    hireDate.setFullYear(hireDate.getFullYear() - 1);
+  } else if (presetType === "3y") {
+    hireDate.setFullYear(hireDate.getFullYear() - 3);
+  } else if (presetType === "5y") {
+    hireDate.setFullYear(hireDate.getFullYear() - 5);
+  } else if (presetType === "10y") {
+    hireDate.setFullYear(hireDate.getFullYear() - 10);
+  }
+
+  const hireIso = formatLeaveIsoDate(hireDate);
+  const baseIso = formatLeaveIsoDate(baseDate);
+
+  if (hireInput) hireInput.value = hireIso;
+  if (baseInput) baseInput.value = baseIso;
+  annualLeaveState.hireDate = hireIso;
+  annualLeaveState.baseDate = baseIso;
+
+  const modal = document.getElementById("annual-leave-calculator") || document.getElementById("tool-annual-leave-calculator-modal");
+  if (modal) {
+    modal.querySelectorAll(".leave-chip-btn").forEach(btn => btn.classList.remove("active"));
+    const activeBtn = modal.querySelector(`.leave-chip-btn[onclick*="'${presetType}'"]`);
+    if (activeBtn) activeBtn.classList.add("active");
+  }
+
+  calculateAnnualLeave();
+}
+
+function copyAnnualLeaveResult() {
+  const isKo = (annualLeaveState.lang || "ko") === "ko";
+  const dict = annualLeaveI18n[isKo ? "ko" : "en"] || annualLeaveI18n.ko;
+
+  const hire = parseLeaveIsoDate(annualLeaveState.hireDate);
+  const base = parseLeaveIsoDate(annualLeaveState.baseDate);
+
+  if (!hire || !base || base < hire) {
+    showAnnualLeaveToast(dict.errorDateOrder);
+    return;
+  }
+
+  const isHire = annualLeaveState.mode === "hire";
+  const result = isHire ? calculateHireDateLeave(hire, base) : calculateFiscalYearLeave(hire, base);
+  const p = result.period;
+  const modeName = isHire ? "입사일 기준 (법정 원칙)" : "회계연도 기준 (매년 1월 1일)";
+
+  const textToCopy = `[근로기준법 제60조 기준 연차 계산 결과]
+• 산정 모드: ${modeName}
+• 입사일: ${annualLeaveState.hireDate}
+• 기준일: ${annualLeaveState.baseDate}
+• 근속 기간: ${p.years}년 ${p.months}개월 ${p.days}일 (총 ${p.totalDays}일 근무)
+───────────────────────────────
+★ 당해 발생 연차: 총 ${result.currentLeave}일
+• 1년 미만 월차 발생: ${result.monthlyLeave}일 (최대 11일 중)
+• 1년 이상 정기 연차: ${result.regularLeave}일 (기본 15일 + 근속 가산 ${result.addedLeave}일)
+• 입사 이래 누적 연차: 총 ${result.cumulativeLeave}일
+───────────────────────────────
+※ 대한민국 근로기준법 제60조 준수 (출근율 80% 이상 전제)
+※ 1년 미만 발생 월차는 입사일로부터 1년이 지나면 사용권이 소멸됩니다.
+(연차 자동 계산기 바로가기: https://www.dailyhelperhub.com/#annual-leave-calculator)`;
+
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    showAnnualLeaveToast(dict.toastCopied);
+    const copyBtn = document.getElementById("leave-btn-copy");
+    if (copyBtn) {
+      const origHtml = copyBtn.innerHTML;
+      copyBtn.innerHTML = `<span>✓</span> <span>${dict.copiedBtn}</span>`;
+      copyBtn.classList.add("bg-emerald-600");
+      setTimeout(() => {
+        copyBtn.innerHTML = origHtml;
+        copyBtn.classList.remove("bg-emerald-600");
+      }, 1800);
+    }
+  }).catch((err) => {
+    console.error("Clipboard copy failed:", err);
+  });
+}
+
+function showAnnualLeaveToast(message) {
+  const toast = document.getElementById("annual-leave-toast");
+  const msgEl = document.getElementById("annual-leave-toast-msg");
+  if (!toast) return;
+
+  if (msgEl && message) {
+    msgEl.textContent = message;
+  }
+  toast.classList.add("show");
+
+  clearTimeout(annualLeaveToastTimer);
+  annualLeaveToastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2300);
+}
+
+function setAnnualLeaveLang(lang) {
+  annualLeaveState.lang = lang === "en" ? "en" : "ko";
+  const dict = annualLeaveI18n[annualLeaveState.lang] || annualLeaveI18n.ko;
+
+  const toggleLabel = document.getElementById("leave-lang-toggle-label");
+  if (toggleLabel) {
+    toggleLabel.textContent = dict.langToggle;
+  }
+
+  const modal = document.getElementById("annual-leave-calculator") || document.getElementById("tool-annual-leave-calculator-modal");
+  if (modal) {
+    modal.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (key && (key.startsWith("webTools.annualLeaveCalc.") || key.startsWith("webTools.annualLeaveCalculator."))) {
+        const subKey = key.replace("webTools.annualLeaveCalc.", "").replace("webTools.annualLeaveCalculator.", "");
+        if (dict[subKey]) {
+          el.textContent = dict[subKey];
+        }
+      }
+    });
+
+    modal.querySelectorAll("[data-i18n-title]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-title");
+      if (key && (key.startsWith("webTools.annualLeaveCalc.") || key.startsWith("webTools.annualLeaveCalculator."))) {
+        const subKey = key.replace("webTools.annualLeaveCalc.", "").replace("webTools.annualLeaveCalculator.", "");
+        if (dict[subKey]) {
+          el.setAttribute("title", dict[subKey]);
+        }
+      }
+    });
+  }
+
+  calculateAnnualLeave();
+}
+
+function toggleAnnualLeaveLang() {
+  const nextLang = annualLeaveState.lang === "ko" ? "en" : "ko";
+  setAnnualLeaveLang(nextLang);
+  if (typeof setLang === "function") {
+    setLang(nextLang);
+  }
+}
+
+function openAnnualLeaveModal() {
+  const modal = document.getElementById("annual-leave-calculator") || document.getElementById("tool-annual-leave-calculator-modal");
+  if (!modal) return;
+
+  const todayStr = formatLeaveIsoDate(new Date());
+  const inputHire = document.getElementById("leave-input-hire");
+  const inputBase = document.getElementById("leave-input-base");
+
+  if (inputBase && !inputBase.value) {
+    inputBase.value = todayStr;
+    annualLeaveState.baseDate = todayStr;
+  }
+  if (inputHire && !inputHire.value) {
+    const d = new Date();
+    d.setFullYear(d.getFullYear() - 2);
+    const defaultHire = formatLeaveIsoDate(d);
+    inputHire.value = defaultHire;
+    annualLeaveState.hireDate = defaultHire;
+  }
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  document.body.style.overflow = "hidden";
+
+  const panel = modal.querySelector(".leave-modal-container, .ed-modal-container, .modal-panel");
+  if (panel) {
+    panel.classList.add("modal-open");
+  }
+
+  try {
+    if (window.location.hash !== "#annual-leave-calculator") {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search + "#annual-leave-calculator");
+    }
+  } catch (e) {
+    // Ignore history error
+  }
+
+  if (typeof currentLang !== "undefined") {
+    setAnnualLeaveLang(currentLang);
+  } else {
+    setAnnualLeaveLang("ko");
+  }
+
+  calculateAnnualLeave();
+}
+
+function closeAnnualLeaveModal() {
+  const modal = document.getElementById("annual-leave-calculator") || document.getElementById("tool-annual-leave-calculator-modal");
+  if (!modal) return;
+
+  const panel = modal.querySelector(".leave-modal-container, .ed-modal-container, .modal-panel");
+  if (panel) panel.classList.remove("modal-open");
+
+  try {
+    const rawHash = (window.location.hash || "").trim().toLowerCase();
+    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    const leaveAliases = [
+      "annual-leave-calculator",
+      "annual-leave",
+      "annual-leave-calc",
+      "leave-calc",
+      "leave-calculator",
+      "연차계산기",
+      "연차계산",
+      "연차자동계산기",
+      "연차"
+    ];
+    if (leaveAliases.includes(hash)) {
+      history.replaceState(null, document.title, window.location.pathname + window.location.search);
+    }
+  } catch (e) {
+    // Ignore history error
+  }
+
+  setTimeout(() => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    document.body.style.overflow = "";
+  }, 250);
+}
+
+// Global ESC and backdrop click event listeners
+if (typeof document !== "undefined") {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const leaveModal = document.getElementById("annual-leave-calculator") || document.getElementById("tool-annual-leave-calculator-modal");
+      if (leaveModal && !leaveModal.classList.contains("hidden")) {
+        closeAnnualLeaveModal();
+      }
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    const leaveModal = document.getElementById("annual-leave-calculator") || document.getElementById("tool-annual-leave-calculator-modal");
+    if (leaveModal && !leaveModal.classList.contains("hidden")) {
+      if (e.target === leaveModal) {
+        closeAnnualLeaveModal();
+      }
+    }
+  });
+}
+
+// Window global bindings for Annual Leave Calculator
+if (typeof window !== "undefined") {
+  window.openAnnualLeaveModal = openAnnualLeaveModal;
+  window.closeAnnualLeaveModal = closeAnnualLeaveModal;
+  window.setAnnualLeaveMode = setAnnualLeaveMode;
+  window.calculateAnnualLeave = calculateAnnualLeave;
+  window.resetLeaveBaseDateToday = resetLeaveBaseDateToday;
+  window.loadLeaveDefaultSample = loadLeaveDefaultSample;
+  window.setLeavePreset = setLeavePreset;
+  window.copyAnnualLeaveResult = copyAnnualLeaveResult;
+  window.showAnnualLeaveToast = showAnnualLeaveToast;
+  window.setAnnualLeaveLang = setAnnualLeaveLang;
+  window.toggleAnnualLeaveLang = toggleAnnualLeaveLang;
+  window.annualLeaveI18n = annualLeaveI18n;
+}
+

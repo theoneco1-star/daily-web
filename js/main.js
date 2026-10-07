@@ -834,6 +834,32 @@ function checkDeepLinks() {
         setTimeout(openExcel, 60);
       }
     }
+
+    const annualLeaveAliases = [
+      "annual-leave-calculator",
+      "annual-leave",
+      "annual-leave-calc",
+      "leave-calc",
+      "leave-calculator",
+      "연차계산기",
+      "연차계산",
+      "연차자동계산기",
+      "연차"
+    ];
+
+    if (annualLeaveAliases.includes(hash) || annualLeaveAliases.includes(toolParam)) {
+      if (typeof showPage === "function") {
+        showPage("main");
+      }
+      if (typeof switchMainTab === "function") {
+        switchMainTab("tools");
+      }
+      const openLeave = (typeof openAnnualLeaveModal === "function") ? openAnnualLeaveModal : window.openAnnualLeaveModal;
+      if (typeof openLeave === "function") {
+        openLeave();
+        setTimeout(openLeave, 60);
+      }
+    }
   } catch (err) {
     console.warn("Deep link handling error:", err);
   }
