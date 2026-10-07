@@ -2270,16 +2270,17 @@ function copyAnnualLeaveResult() {
 
   navigator.clipboard.writeText(textToCopy).then(() => {
     showAnnualLeaveToast(dict.toastCopied);
-    const copyBtn = document.getElementById("leave-btn-copy");
-    if (copyBtn) {
-      const origHtml = copyBtn.innerHTML;
+    const copyBtns = document.querySelectorAll(".leave-btn-copy, #leave-btn-copy");
+    copyBtns.forEach((copyBtn) => {
+      const origHtml = copyBtn.dataset.origHtml || copyBtn.innerHTML;
+      copyBtn.dataset.origHtml = origHtml;
       copyBtn.innerHTML = `<span>✓</span> <span>${dict.copiedBtn}</span>`;
-      copyBtn.classList.add("bg-emerald-600");
+      copyBtn.classList.add("bg-emerald-600", "copied");
       setTimeout(() => {
-        copyBtn.innerHTML = origHtml;
-        copyBtn.classList.remove("bg-emerald-600");
+        copyBtn.innerHTML = copyBtn.dataset.origHtml || origHtml;
+        copyBtn.classList.remove("bg-emerald-600", "copied");
       }, 1800);
-    }
+    });
   }).catch((err) => {
     console.error("Clipboard copy failed:", err);
   });

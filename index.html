@@ -47,7 +47,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css?v=3.6" />
+  <link rel="stylesheet" href="css/custom.css?v=3.7" />
 
   <!-- High Visibility Card Styles (Guaranteed Override) -->
   <style>
@@ -971,7 +971,7 @@
      WEB TOOL: ANNUAL LEAVE CALCULATOR MODAL (근로기준법 연차 자동 계산기)
 ════════════════════════════════════════════ -->
 <div id="annual-leave-calculator" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="annual-leave-title">
-  <div class="leave-modal-container ed-modal-container wage-modal-container w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto flex flex-col">
+  <div class="leave-modal-container w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto flex flex-col">
     <!-- Modal Header -->
     <div class="leave-modal-header flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0284c7 100%);">
       <div class="flex items-center gap-3 min-w-0">
@@ -1175,14 +1175,13 @@
           </div>
         </div>
 
-        <!-- 액션 버튼 바 -->
-        <div class="pt-3 border-t border-slate-800/80 flex items-center gap-2.5">
+        <!-- 액션 버튼 바 (계산 결과 복사하기 & 닫기 나란히 정렬) -->
+        <div class="leave-actions-bar pt-3.5 border-t border-slate-800/80 flex items-center justify-between gap-2.5 sm:gap-3 w-full">
           <button
             type="button"
             id="leave-btn-copy"
             onclick="copyAnnualLeaveResult()"
-            class="detail-btn flex-1 py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm text-white shadow-lg cursor-pointer transition-all flex items-center justify-center gap-2"
-            style="background: linear-gradient(135deg, #2563eb, #0284c7);"
+            class="leave-btn-copy flex-1 py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm text-white shadow-lg cursor-pointer transition-all flex items-center justify-center gap-2 whitespace-nowrap min-w-0"
             data-i18n="webTools.annualLeaveCalc.copyBtn"
           >
             <span>📋</span>
@@ -1191,7 +1190,7 @@
           <button
             type="button"
             onclick="closeAnnualLeaveModal()"
-            class="detail-btn py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl font-medium transition-colors cursor-pointer text-xs sm:text-sm"
+            class="leave-btn-close py-2.5 px-5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-xl font-semibold transition-colors cursor-pointer text-xs sm:text-sm whitespace-nowrap shrink-0 text-center"
             data-i18n="modal.close"
           >
             닫기
