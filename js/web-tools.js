@@ -1267,6 +1267,22 @@ function setExcelDelimiterPreset(preset) {
 }
 
 /**
+ * Sanitize item for quotation:
+ * Strips pre-existing outer single/double quotes and trims outer whitespace
+ * to avoid issues like ' 'A' ' or 'A ' , 'B'.
+ */
+function sanitizeExcelItemForQuotes(s) {
+  if (s == null) return "";
+  let val = String(s).trim();
+  if ((val.startsWith("'") && val.endsWith("'")) || (val.startsWith('"') && val.endsWith('"'))) {
+    if (val.length >= 2) {
+      val = val.slice(1, -1).trim();
+    }
+  }
+  return val;
+}
+
+/**
  * Real-time 150ms debounced input handler
  */
 function handleExcelInputChanged() {
@@ -1274,6 +1290,21 @@ function handleExcelInputChanged() {
   edDebounceTimer = setTimeout(() => {
     runExcelConversion();
   }, 150);
+}
+
+/**
+ * Handler for SQL IN checkbox change
+ * Automatically switches delimiter preset to SQL single quotes ('A', 'B') if on comma preset
+ */
+function handleExcelSqlInChanged() {
+  const sqlInEl = document.getElementById("ed-opt-sql-in");
+  if (sqlInEl && sqlInEl.checked) {
+    if (currentEdPreset === "comma") {
+      setExcelDelimiterPreset("sql-single");
+      return;
+    }
+  }
+  runExcelConversion();
 }
 
 /**
@@ -1297,13 +1328,15 @@ function parseDelimitedText(text, preset, customDelim) {
   // If text contains single or double quotes, parse with tokenizer
   if (cleaned.includes("'") || cleaned.includes('"')) {
     const tokens = [];
-    const tokenRegex = /'((?:''|[^'])*)'|"((?:""|[^"])*)"|([^,\t\r\n|;]+)/g;
+    const tokenRegex = /'((?:''|[^'])*)'|"((?:""|[^"])*)"|([^,\t\r\n|;\s][^,\t\r\n|;]*)/g;
     let match;
     while ((match = tokenRegex.exec(cleaned)) !== null) {
       if (match[1] !== undefined) {
-        tokens.push(match[1].replace(/''/g, "'"));
+        const val = match[1].replace(/''/g, "'").trim();
+        if (val) tokens.push(val);
       } else if (match[2] !== undefined) {
-        tokens.push(match[2].replace(/""/g, '"'));
+        const val = match[2].replace(/""/g, '"').trim();
+        if (val) tokens.push(val);
       } else if (match[3] !== undefined) {
         const val = match[3].trim();
         if (val) tokens.push(val);
@@ -1315,7 +1348,7 @@ function parseDelimitedText(text, preset, customDelim) {
   // Standard delimiter split
   const escapedDelim = delimiter.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const items = cleaned.split(new RegExp(escapedDelim + "|\\r?\\n"));
-  return items;
+  return items.map((s) => s.trim()).filter((s) => s.length > 0);
 }
 
 /**
@@ -1368,22 +1401,62 @@ function runExcelConversion() {
     }
 
     let result = "";
-    if (currentEdPreset === "comma") {
-      result = items.join(", ");
-    } else if (currentEdPreset === "sql-single") {
-      result = items.map((s) => "'" + s.replace(/'/g, "''") + "'").join(", ");
-    } else if (currentEdPreset === "double-quote") {
-      result = items.map((s) => '"' + s.replace(/"/g, '""') + '"').join(", ");
-    } else if (currentEdPreset === "space") {
-      result = items.join(" ");
-    } else if (currentEdPreset === "tab") {
-      result = items.join("\t");
-    } else if (currentEdPreset === "custom") {
-      result = items.join(customDelim);
-    }
-
-    if (optSqlIn && result.length > 0) {
-      result = `IN (${result})`;
+    if (optSqlIn) {
+      // When SQL IN (...) is checked, default to SQL single quotes ('A', 'B') unless double-quote is selected
+      if (currentEdPreset === "double-quote") {
+        result = items
+          .map((s) => {
+            const val = sanitizeExcelItemForQuotes(s);
+            if (!val && optTrim) return null;
+            return '"' + val.replace(/"/g, '""') + '"';
+          })
+          .filter((s) => s !== null)
+          .join(", ");
+      } else {
+        result = items
+          .map((s) => {
+            const val = sanitizeExcelItemForQuotes(s);
+            if (!val && optTrim) return null;
+            return "'" + val.replace(/'/g, "''") + "'";
+          })
+          .filter((s) => s !== null)
+          .join(", ");
+      }
+      // Wrap with SQL IN (...) cleanly without leading/trailing spaces inside parentheses
+      const trimmedResult = result.trim();
+      if (trimmedResult.length > 0) {
+        result = `IN (${trimmedResult})`;
+      } else {
+        result = "";
+      }
+    } else {
+      if (currentEdPreset === "comma") {
+        result = items.map((s) => (optTrim ? s.trim() : s)).join(", ");
+      } else if (currentEdPreset === "sql-single") {
+        result = items
+          .map((s) => {
+            const val = sanitizeExcelItemForQuotes(s);
+            if (!val && optTrim) return null;
+            return "'" + val.replace(/'/g, "''") + "'";
+          })
+          .filter((s) => s !== null)
+          .join(", ");
+      } else if (currentEdPreset === "double-quote") {
+        result = items
+          .map((s) => {
+            const val = sanitizeExcelItemForQuotes(s);
+            if (!val && optTrim) return null;
+            return '"' + val.replace(/"/g, '""') + '"';
+          })
+          .filter((s) => s !== null)
+          .join(", ");
+      } else if (currentEdPreset === "space") {
+        result = items.map((s) => (optTrim ? s.trim() : s)).join(" ");
+      } else if (currentEdPreset === "tab") {
+        result = items.map((s) => (optTrim ? s.trim() : s)).join("\t");
+      } else if (currentEdPreset === "custom") {
+        result = items.map((s) => (optTrim ? s.trim() : s)).join(customDelim);
+      }
     }
 
     outputEl.value = result;
@@ -1608,6 +1681,7 @@ if (typeof window !== "undefined") {
   window.setExcelConverterMode = setExcelConverterMode;
   window.setExcelDelimiterPreset = setExcelDelimiterPreset;
   window.handleExcelInputChanged = handleExcelInputChanged;
+  window.handleExcelSqlInChanged = handleExcelSqlInChanged;
   window.runExcelConversion = runExcelConversion;
   window.pasteExcelFromClipboard = pasteExcelFromClipboard;
   window.clearExcelInput = clearExcelInput;
