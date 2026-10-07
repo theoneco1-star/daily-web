@@ -2407,9 +2407,15 @@ function closeAnnualLeaveModal() {
       "annual-leave-calc",
       "leave-calc",
       "leave-calculator",
+      "annualleave",
+      "annualleavecalculator",
       "연차계산기",
       "연차계산",
       "연차자동계산기",
+      "근로기준법연차계산기",
+      "연차-계산기",
+      "월차계산기",
+      "회계연도연차계산기",
       "연차"
     ];
     if (leaveAliases.includes(hash)) {

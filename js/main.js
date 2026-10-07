@@ -841,9 +841,15 @@ function checkDeepLinks() {
       "annual-leave-calc",
       "leave-calc",
       "leave-calculator",
+      "annualleave",
+      "annualleavecalculator",
       "연차계산기",
       "연차계산",
       "연차자동계산기",
+      "근로기준법연차계산기",
+      "연차-계산기",
+      "월차계산기",
+      "회계연도연차계산기",
       "연차"
     ];
 
@@ -870,6 +876,11 @@ function initDeepLinks() {
   window.addEventListener("hashchange", checkDeepLinks);
   window.addEventListener("load", checkDeepLinks);
 }
+
+// Immediate check on script parse
+try {
+  checkDeepLinks();
+} catch (_) {}
 
 // ── Init ──────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", async () => {
