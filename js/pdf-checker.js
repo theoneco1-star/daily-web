@@ -531,9 +531,11 @@
     const w = wrapper.clientWidth;
     const h = wrapper.clientHeight;
     if (w > 50 && h > 50) {
-      state.canvas.setWidth(w);
-      state.canvas.setHeight(h);
-      state.canvas.renderAll();
+      if (state.canvas.getWidth() !== w || state.canvas.getHeight() !== h) {
+        state.canvas.setWidth(w);
+        state.canvas.setHeight(h);
+        state.canvas.calcOffset();
+      }
     }
   }
 
@@ -1051,24 +1053,37 @@
   }
 
   function loadSerializedAnnotations(objectsData) {
-    if (!state.canvas) return;
-    const objects = state.canvas.getObjects().slice();
-    objects.forEach((obj) => {
-      if (!obj.isBackgroundElement) {
-        state.canvas.remove(obj);
+    return new Promise((resolve) => {
+      if (!state.canvas) {
+        resolve();
+        return;
+      }
+      const objects = state.canvas.getObjects().slice();
+      objects.forEach((obj) => {
+        if (!obj.isBackgroundElement) {
+          state.canvas.remove(obj);
+        }
+      });
+
+      if (Array.isArray(objectsData) && objectsData.length > 0) {
+        fabric.util.enlivenObjects(objectsData, function (enlivenedObjects) {
+          try {
+            if (Array.isArray(enlivenedObjects)) {
+              enlivenedObjects.forEach((obj) => {
+                state.canvas.add(obj);
+              });
+            }
+            state.canvas.renderAll();
+          } catch (e) {
+            console.warn('Enliven objects warning:', e);
+          }
+          resolve();
+        });
+      } else {
+        state.canvas.renderAll();
+        resolve();
       }
     });
-
-    if (Array.isArray(objectsData) && objectsData.length > 0) {
-      fabric.util.enlivenObjects(objectsData, function (enlivenedObjects) {
-        enlivenedObjects.forEach((obj) => {
-          state.canvas.add(obj);
-        });
-        state.canvas.renderAll();
-      });
-    } else {
-      state.canvas.renderAll();
-    }
   }
 
   // ── Zoom & Fit to Screen ────────────────────────────────────
@@ -1098,6 +1113,8 @@
     const page = state.pages[state.currentPageIndex];
     if (!page) return;
 
+    resizeCanvasToWrapper();
+
     const canvasW = state.canvas.getWidth();
     const canvasH = state.canvas.getHeight();
     const docW = page.renderWidth || page.width || 1200;
@@ -1106,7 +1123,8 @@
     const padding = 36;
     const scaleX = (canvasW - padding) / docW;
     const scaleY = (canvasH - padding) / docH;
-    const fitScale = Math.min(scaleX, scaleY, 2.0);
+    let fitScale = Math.min(scaleX, scaleY, 2.0);
+    if (fitScale <= 0 || isNaN(fitScale)) fitScale = 1.0;
 
     const left = (canvasW - docW * fitScale) / 2;
     const top = (canvasH - docH * fitScale) / 2;
@@ -1114,6 +1132,7 @@
     state.canvas.setViewportTransform([fitScale, 0, 0, fitScale, left, top]);
     state.zoom = fitScale;
     updateZoomLabel();
+    state.canvas.requestRenderAll();
   }
 
   function updateZoomLabel() {
@@ -1304,6 +1323,18 @@
   async function switchPage(index) {
     if (index < 0 || index >= state.pages.length) return;
 
+    // 0. End active editing & reset interaction states
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj && typeof activeObj.exitEditing === 'function' && activeObj.isEditing) {
+      activeObj.exitEditing();
+    }
+    if (state.canvas) {
+      state.canvas.discardActiveObject();
+    }
+    state.isPanning = false;
+    state.isDrawingShape = false;
+    state.activeShape = null;
+
     // 1. Save current page annotations
     saveCurrentPageAnnotations();
 
@@ -1314,20 +1345,28 @@
 
     try {
       showEmptyState(false);
+      resizeCanvasToWrapper();
+
+      // Clear previous canvas objects and background
       state.canvas.clear();
 
+      // Immediately reset Zoom and Pan to screen fit for the selected page
+      fitToScreen();
+
+      // Render base document/image
       if (page.type === 'pdf') {
         await renderPdfPageBackground(page);
       } else {
         await renderImagePageBackground(page);
       }
 
-      // Restore saved annotations for this page
-      if (state.annotations[page.id]) {
-        loadSerializedAnnotations(state.annotations[page.id]);
-      }
+      // Restore and render saved annotations for this page
+      await loadSerializedAnnotations(state.annotations[page.id] || []);
 
+      // Center and fit canvas, then render everything immediately
       fitToScreen();
+      state.canvas.renderAll();
+
       updatePageCounter();
       highlightActiveThumbnail(index);
       updateUndoRedoUI();
@@ -1348,57 +1387,89 @@
 
   // Render PDF page to canvas background with High-DPI (2.5~3.0x scale) capped at 3840px (4K)
   async function renderPdfPageBackground(pageData) {
-    const pdfPage = await pageData.pdfDoc.getPage(pageData.pageNum);
-    const unscaledVp = pdfPage.getViewport({ scale: 1.0 });
+    let bgImgUrl = pageData.bgDataUrl;
 
-    // High-DPI Scale calculation: 2.5x ~ 3.0x, intelligent 4K cap (max 3840px)
-    const maxDimension = Math.max(unscaledVp.width, unscaledVp.height);
-    let scale = Math.min(3.0, 3840 / maxDimension);
-    if (scale < 2.0) scale = 2.0;
+    if (!bgImgUrl) {
+      const pdfPage = await pageData.pdfDoc.getPage(pageData.pageNum);
+      const unscaledVp = pdfPage.getViewport({ scale: 1.0 });
 
-    const viewport = pdfPage.getViewport({ scale: scale });
-    pageData.renderWidth = Math.round(viewport.width);
-    pageData.renderHeight = Math.round(viewport.height);
+      // High-DPI Scale calculation: 2.5x ~ 3.0x, intelligent 4K cap (max 3840px)
+      const maxDimension = Math.max(unscaledVp.width, unscaledVp.height);
+      let scale = Math.min(3.0, 3840 / maxDimension);
+      if (scale < 2.0) scale = 2.0;
 
-    // Offscreen High-DPI canvas
-    const offCanvas = document.createElement('canvas');
-    offCanvas.width = pageData.renderWidth;
-    offCanvas.height = pageData.renderHeight;
-    const ctx = offCanvas.getContext('2d', { alpha: false });
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, pageData.renderWidth, pageData.renderHeight);
+      const viewport = pdfPage.getViewport({ scale: scale });
+      pageData.renderWidth = Math.round(viewport.width);
+      pageData.renderHeight = Math.round(viewport.height);
 
-    await pdfPage.render({
-      canvasContext: ctx,
-      viewport: viewport
-    }).promise;
+      // Offscreen High-DPI canvas
+      const offCanvas = document.createElement('canvas');
+      offCanvas.width = pageData.renderWidth;
+      offCanvas.height = pageData.renderHeight;
+      const ctx = offCanvas.getContext('2d', { alpha: false });
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, pageData.renderWidth, pageData.renderHeight);
 
-    const bgImgUrl = offCanvas.toDataURL('image/jpeg', 0.9);
+      await pdfPage.render({
+        canvasContext: ctx,
+        viewport: viewport
+      }).promise;
+
+      bgImgUrl = offCanvas.toDataURL('image/jpeg', 0.9);
+      pageData.bgDataUrl = bgImgUrl;
+
+      // Clean up offscreen canvas
+      offCanvas.width = 0;
+      offCanvas.height = 0;
+    }
+
     await new Promise((resolve) => {
-      fabric.Image.fromURL(bgImgUrl, (fImg) => {
-        fImg.set({
-          left: 0,
-          top: 0,
-          selectable: false,
-          evented: false,
-          isBackgroundElement: true
-        });
-        state.canvas.setBackgroundImage(fImg, () => {
-          state.canvas.renderAll();
-          resolve();
-        });
-      });
+      fabric.Image.fromURL(
+        bgImgUrl,
+        (fImg) => {
+          if (!fImg) {
+            resolve();
+            return;
+          }
+          fImg.set({
+            left: 0,
+            top: 0,
+            originX: 'left',
+            originY: 'top',
+            selectable: false,
+            evented: false,
+            isBackgroundElement: true
+          });
+          state.canvas.setBackgroundImage(fImg, () => {
+            state.canvas.renderAll();
+            resolve();
+          });
+        },
+        { crossOrigin: 'anonymous' }
+      );
     });
-
-    // Clean up offscreen canvas
-    offCanvas.width = 0;
-    offCanvas.height = 0;
   }
 
   // Render Image page background with intelligent 4K cap (max 3840px)
   async function renderImagePageBackground(pageData) {
+    if (!pageData.blobUrl && pageData.blob) {
+      pageData.blobUrl = URL.createObjectURL(pageData.blob);
+    }
+
     let targetW = pageData.width;
     let targetH = pageData.height;
+    if (!targetW || !targetH) {
+      const imgInfo = await new Promise((res, rej) => {
+        const im = new Image();
+        im.onload = () => res({ w: im.naturalWidth, h: im.naturalHeight });
+        im.onerror = rej;
+        im.src = pageData.blobUrl;
+      });
+      targetW = imgInfo.w;
+      targetH = imgInfo.h;
+      pageData.width = targetW;
+      pageData.height = targetH;
+    }
     const maxDim = Math.max(targetW, targetH);
     if (maxDim > 3840) {
       const ratio = 3840 / maxDim;
@@ -1409,21 +1480,31 @@
     pageData.renderHeight = targetH;
 
     await new Promise((resolve) => {
-      fabric.Image.fromURL(pageData.blobUrl, (fImg) => {
-        fImg.set({
-          left: 0,
-          top: 0,
-          scaleX: targetW / pageData.width,
-          scaleY: targetH / pageData.height,
-          selectable: false,
-          evented: false,
-          isBackgroundElement: true
-        });
-        state.canvas.setBackgroundImage(fImg, () => {
-          state.canvas.renderAll();
-          resolve();
-        });
-      });
+      fabric.Image.fromURL(
+        pageData.blobUrl,
+        (fImg) => {
+          if (!fImg) {
+            resolve();
+            return;
+          }
+          fImg.set({
+            left: 0,
+            top: 0,
+            originX: 'left',
+            originY: 'top',
+            scaleX: pageData.width ? targetW / pageData.width : 1,
+            scaleY: pageData.height ? targetH / pageData.height : 1,
+            selectable: false,
+            evented: false,
+            isBackgroundElement: true
+          });
+          state.canvas.setBackgroundImage(fImg, () => {
+            state.canvas.renderAll();
+            resolve();
+          });
+        },
+        { crossOrigin: 'anonymous' }
+      );
     });
   }
 
@@ -1627,6 +1708,9 @@
     setOverlayLoading(true, getI18nText('loadingCompositing', '고화질 최적화 PDF를 합성하고 생성하는 중입니다...'));
 
     try {
+      if (!window.PDFLib || !window.PDFLib.PDFDocument) {
+        throw new Error('PDF-lib 라이브러리가 로드되지 않았습니다.');
+      }
       const { PDFDocument } = window.PDFLib;
       const outDoc = await PDFDocument.create();
 
@@ -1675,6 +1759,9 @@
           }
         } else {
           // Image page (JPG, PNG, WebP, etc.)
+          if (!pageData.blobUrl && pageData.blob) {
+            pageData.blobUrl = URL.createObjectURL(pageData.blob);
+          }
           if (!width || !height) {
             let targetW = pageData.width;
             let targetH = pageData.height;
@@ -1749,13 +1836,22 @@
           });
 
           await new Promise((resolve) => {
-            fabric.util.enlivenObjects(pageAnnotations, function (objects) {
-              if (Array.isArray(objects)) {
-                objects.forEach((obj) => tempFabricCanvas.add(obj));
-              }
-              tempFabricCanvas.renderAll();
+            try {
+              fabric.util.enlivenObjects(pageAnnotations, function (objects) {
+                try {
+                  if (Array.isArray(objects)) {
+                    objects.forEach((obj) => tempFabricCanvas.add(obj));
+                  }
+                  tempFabricCanvas.renderAll();
+                } catch (e) {
+                  console.warn('Annotation render warning:', e);
+                }
+                resolve();
+              });
+            } catch (err) {
+              console.warn('Enliven objects warning:', err);
               resolve();
-            });
+            }
           });
 
           ctx.drawImage(overlayCanvas, 0, 0);
