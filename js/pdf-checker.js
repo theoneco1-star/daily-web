@@ -14,6 +14,94 @@
       'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }
 
+  // ── Fabric.js Text Markup Enhancements (Box & Border) ──────
+  function setupFabricCustomizations() {
+    if (typeof fabric === 'undefined' || !fabric.IText) return;
+
+    // Helper: Draw cross-browser rounded rectangle path
+    function drawRoundedRectPath(ctx, x, y, width, height, radius) {
+      const r = Math.max(0, Math.min(radius, width / 2, height / 2));
+      ctx.beginPath();
+      if (typeof ctx.roundRect === 'function') {
+        ctx.roundRect(x, y, width, height, r);
+      } else {
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + width - r, y);
+        ctx.arcTo(x + width, y, x + width, y + r, r);
+        ctx.lineTo(x + width, y + height - r);
+        ctx.arcTo(x + width, y + height, x + width - r, y + height, r);
+        ctx.lineTo(x + r, y + height);
+        ctx.arcTo(x, y + height, x, y + height - r, r);
+        ctx.lineTo(x, y + r);
+        ctx.arcTo(x, y, x + r, y, r);
+        ctx.closePath();
+      }
+    }
+
+    // Custom background box rendering for IText & Text
+    // Features: 90%~100% white background, 1.5px solid border matching text color, 4~6px padding, 4px border-radius
+    const customRenderBackground = function (ctx) {
+      if (this.hasBox === false) {
+        if (this.backgroundColor && this.backgroundColor !== 'transparent') {
+          const dim = this._getNonTransformedDimensions();
+          ctx.fillStyle = this.backgroundColor;
+          ctx.fillRect(-dim.x / 2, -dim.y / 2, dim.x, dim.y);
+        }
+        return;
+      }
+
+      // 1. Text Background Box: pure white or 90%~95% opaque white
+      let bg = this.boxBackgroundColor || this.backgroundColor;
+      if (!bg || bg === 'transparent' || (typeof bg === 'string' && bg.includes('254, 240, 138'))) {
+        bg = 'rgba(255, 255, 255, 0.95)';
+      }
+
+      // 2. Box Border: current text color (e.g. red text -> red 1.5px solid border)
+      const borderColor = this.boxBorderColor || this.fill || state.strokeColor || '#ef4444';
+      const borderWidth = typeof this.boxBorderWidth === 'number' ? this.boxBorderWidth : 1.5;
+
+      // 3. Margin & Border-Radius: 4~6px padding (5px), 4px radius
+      const pad = typeof this.boxPadding === 'number' ? this.boxPadding : 5;
+      const rx = typeof this.boxRadius === 'number' ? this.boxRadius : 4;
+
+      const dim = this._getNonTransformedDimensions();
+      const x = -dim.x / 2 - pad;
+      const y = -dim.y / 2 - pad;
+      const w = dim.x + pad * 2;
+      const h = dim.y + pad * 2;
+
+      ctx.save();
+      drawRoundedRectPath(ctx, x, y, w, h, rx);
+
+      ctx.fillStyle = bg;
+      ctx.fill();
+
+      if (borderWidth > 0 && borderColor && borderColor !== 'transparent') {
+        ctx.strokeStyle = borderColor;
+        ctx.lineWidth = borderWidth;
+        ctx.stroke();
+      }
+
+      ctx.restore();
+      if (typeof this._removeShadow === 'function') {
+        this._removeShadow(ctx);
+      }
+    };
+
+    fabric.IText.prototype._renderBackground = customRenderBackground;
+    if (fabric.Text) {
+      fabric.Text.prototype._renderBackground = customRenderBackground;
+    }
+
+    fabric.IText.prototype.objectCaching = false;
+    fabric.IText.prototype.padding = 7;
+  }
+
+  if (typeof window !== 'undefined' && window.fabric) {
+    setupFabricCustomizations();
+  }
+
+
   // ── State Container ─────────────────────────────────────────
   const state = {
     pages: [], // Array of { id, type: 'pdf'|'image', pdfDoc, pageNum, blob, blobUrl, width, height, widthPt, heightPt, fileName, title, thumbnailUrl }
@@ -478,6 +566,8 @@
         return;
       }
 
+      setupFabricCustomizations();
+
       const canvasEl = document.getElementById('pdf-checker-canvas');
       const wrapper = document.getElementById('pdf-checker-canvas-wrapper');
       const container = document.getElementById('pdf-checker-canvas-container');
@@ -713,17 +803,25 @@
   }
 
   function insertTextObject(x, y) {
+    const bg = state.fillMode === 'solid' ? '#ffffff' : 'rgba(255, 255, 255, 0.95)';
     const text = new fabric.IText('검토 메모 입력', {
       left: x,
       top: y,
       fontFamily: 'Noto Sans KR, Inter, sans-serif',
       fontSize: state.fontSize,
       fill: state.strokeColor,
-      backgroundColor: state.fillMode === 'semitransparent' ? 'rgba(254, 240, 138, 0.9)' : 'transparent',
+      backgroundColor: bg,
+      boxBackgroundColor: bg,
+      boxBorderColor: state.strokeColor,
+      boxBorderWidth: 1.5,
+      boxPadding: 5,
+      boxRadius: 4,
+      hasBox: true,
+      objectCaching: false,
       cornerColor: '#3b82f6',
       cornerSize: 8,
       transparentCorners: false,
-      padding: 4
+      padding: 7
     });
     state.canvas.add(text);
     state.canvas.setActiveObject(text);
@@ -851,13 +949,24 @@
     }
     const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
     if (activeObj) {
-      if (activeObj.type === 'i-text') {
-        activeObj.set('fill', color);
+      const applyColor = (obj) => {
+        if (obj.type === 'i-text') {
+          obj.set({
+            fill: color,
+            boxBorderColor: color
+          });
+        } else {
+          obj.set({
+            stroke: color,
+            fill: getFillColor(state.fillMode, color)
+          });
+        }
+      };
+
+      if (activeObj.type === 'activeSelection') {
+        activeObj.forEachObject(applyColor);
       } else {
-        activeObj.set({
-          stroke: color,
-          fill: getFillColor(state.fillMode, color)
-        });
+        applyColor(activeObj);
       }
       state.canvas.renderAll();
       pushUndo();
@@ -919,8 +1028,14 @@
   function setFontSize(size) {
     state.fontSize = parseInt(size, 10) || 28;
     const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
-    if (activeObj && activeObj.type === 'i-text') {
-      activeObj.set('fontSize', state.fontSize);
+    if (activeObj) {
+      if (activeObj.type === 'i-text') {
+        activeObj.set('fontSize', state.fontSize);
+      } else if (activeObj.type === 'activeSelection') {
+        activeObj.forEachObject((obj) => {
+          if (obj.type === 'i-text') obj.set('fontSize', state.fontSize);
+        });
+      }
       state.canvas.renderAll();
       pushUndo();
     }
@@ -945,9 +1060,10 @@
         state.fontSize = obj.fontSize;
         updateFontSizeUI();
       }
-      if (obj.fill && typeof obj.fill === 'string') {
-        state.strokeColor = obj.fill;
-        updateColorUI(obj.fill);
+      const c = obj.boxBorderColor || obj.fill;
+      if (c && typeof c === 'string') {
+        state.strokeColor = c;
+        updateColorUI(c);
       }
     } else {
       if (obj.stroke && typeof obj.stroke === 'string') {
@@ -965,10 +1081,22 @@
     state.fillMode = mode;
     const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
     if (activeObj) {
-      if (activeObj.type === 'i-text') {
-        activeObj.set('backgroundColor', mode === 'semitransparent' ? 'rgba(254, 240, 138, 0.9)' : 'transparent');
+      const applyFill = (obj) => {
+        if (obj.type === 'i-text') {
+          const bg = mode === 'solid' ? '#ffffff' : (mode === 'transparent' ? 'rgba(255, 255, 255, 0.90)' : 'rgba(255, 255, 255, 0.95)');
+          obj.set({
+            backgroundColor: bg,
+            boxBackgroundColor: bg
+          });
+        } else {
+          obj.set('fill', getFillColor(mode, state.strokeColor));
+        }
+      };
+
+      if (activeObj.type === 'activeSelection') {
+        activeObj.forEachObject(applyFill);
       } else {
-        activeObj.set('fill', getFillColor(mode, state.strokeColor));
+        applyFill(activeObj);
       }
       state.canvas.renderAll();
       pushUndo();
@@ -1049,7 +1177,18 @@
   function serializeCanvasAnnotations() {
     if (!state.canvas) return [];
     const objects = state.canvas.getObjects().filter((obj) => !obj.isBackgroundElement);
-    return objects.map((obj) => obj.toObject(['id', 'pointType']));
+    return objects.map((obj) =>
+      obj.toObject([
+        'id',
+        'pointType',
+        'hasBox',
+        'boxBackgroundColor',
+        'boxBorderColor',
+        'boxBorderWidth',
+        'boxPadding',
+        'boxRadius'
+      ])
+    );
   }
 
   function loadSerializedAnnotations(objectsData) {
@@ -1070,6 +1209,12 @@
           try {
             if (Array.isArray(enlivenedObjects)) {
               enlivenedObjects.forEach((obj) => {
+                if (obj.type === 'i-text') {
+                  obj.set('objectCaching', false);
+                  if (typeof obj.padding !== 'number' || obj.padding < 7) {
+                    obj.set('padding', 7);
+                  }
+                }
                 state.canvas.add(obj);
               });
             }
@@ -1840,7 +1985,12 @@
               fabric.util.enlivenObjects(pageAnnotations, function (objects) {
                 try {
                   if (Array.isArray(objects)) {
-                    objects.forEach((obj) => tempFabricCanvas.add(obj));
+                    objects.forEach((obj) => {
+                      if (obj.type === 'i-text') {
+                        obj.set('objectCaching', false);
+                      }
+                      tempFabricCanvas.add(obj);
+                    });
                   }
                   tempFabricCanvas.renderAll();
                 } catch (e) {
@@ -2080,7 +2230,7 @@
       selectable: true
     });
 
-    // 2. Yellow highlighted text memo
+    // 2. White-backed text memo with red border (Review Note)
     const isEn = getPdfCheckerLang() === 'en';
     const memoText = isEn
       ? 'Review Note: Confirm projector & power wiring layout in main conference room (REV 02)'
@@ -2091,8 +2241,15 @@
       fontFamily: 'Noto Sans KR, sans-serif',
       fontSize: 24,
       fill: '#ef4444',
-      backgroundColor: 'rgba(254, 240, 138, 0.92)',
-      padding: 6,
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+      boxBackgroundColor: 'rgba(255, 255, 255, 0.95)',
+      boxBorderColor: '#ef4444',
+      boxBorderWidth: 1.5,
+      boxPadding: 5,
+      boxRadius: 4,
+      hasBox: true,
+      objectCaching: false,
+      padding: 7,
       selectable: true
     });
 
