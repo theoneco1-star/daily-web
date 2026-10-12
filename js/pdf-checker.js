@@ -104,8 +104,9 @@
 
   // ── State Container ─────────────────────────────────────────
   const state = {
-    pages: [], // Array of { id, type: 'pdf'|'image', pdfDoc, pageNum, blob, blobUrl, width, height, widthPt, heightPt, fileName, title, thumbnailUrl }
+    pages: [], // Array of { id, pageId, type: 'pdf'|'image', pdfDoc, pageNum, blob, blobUrl, width, height, widthPt, heightPt, fileName, title, thumbnailUrl, annotations: [] }
     currentPageIndex: 0,
+    activePageId: null, // Strict 1:1 binding to currently active page UUID/pageId on canvas
     annotations: {}, // { [pageId]: Array of serialized Fabric objects }
     history: {}, // { [pageId]: { past: [], future: [] } }
     currentTool: 'select', // 'select' | 'pan' | 'text' | 'rect' | 'circle' | 'pen' | 'arrow'
@@ -381,9 +382,34 @@
     }
   }
 
-  // ── Helper Utilities ────────────────────────────────────────
+  // ── Helper Utilities (UUID v4 / PageId Generator) ───────────
+  function generateUUID() {
+    if (typeof crypto !== 'undefined') {
+      if (typeof crypto.randomUUID === 'function') {
+        try {
+          return crypto.randomUUID();
+        } catch (_) {}
+      }
+      if (typeof crypto.getRandomValues === 'function') {
+        try {
+          const buf = new Uint8Array(16);
+          crypto.getRandomValues(buf);
+          buf[6] = (buf[6] & 0x0f) | 0x40; // RFC 4122 v4
+          buf[8] = (buf[8] & 0x3f) | 0x80; // Variant 10
+          const hex = Array.from(buf, (b) => b.toString(16).padStart(2, '0')).join('');
+          return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+        } catch (_) {}
+      }
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = (Math.random() * 16) | 0;
+      const v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+
   function uid() {
-    return 'p_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
+    return generateUUID();
   }
 
   function showToast(message) {
@@ -793,6 +819,16 @@
       pushUndo();
     });
 
+    // Text content real-time edit synchronization
+    canvas.on('text:changed', function () {
+      saveCurrentPageAnnotations();
+    });
+
+    // Text editing exited
+    canvas.on('text:editing:exited', function () {
+      pushUndo();
+    });
+
     // Object selection synchronization with toolbar options
     canvas.on('selection:created', function (opt) {
       syncPropertiesFromSelected(opt.selected ? opt.selected[0] : null);
@@ -1117,8 +1153,9 @@
 
   // ── Undo / Redo History ─────────────────────────────────────
   function getActivePageId() {
+    if (state.activePageId) return state.activePageId;
     const page = state.pages[state.currentPageIndex];
-    return page ? page.id : null;
+    return page ? (page.id || page.pageId) : null;
   }
 
   function pushUndo() {
@@ -1136,9 +1173,10 @@
     }
     state.history[pageId].future = []; // Clear redo
     updateUndoRedoUI();
+    saveCurrentPageAnnotations();
   }
 
-  function undo() {
+  async function undo() {
     const pageId = getActivePageId();
     if (!pageId || !state.history[pageId] || state.history[pageId].past.length === 0) return;
 
@@ -1146,12 +1184,13 @@
     state.history[pageId].future.push(current);
 
     const prev = state.history[pageId].past.pop();
-    loadSerializedAnnotations(prev);
+    await loadSerializedAnnotations(prev);
+    saveCurrentPageAnnotations();
     updateUndoRedoUI();
     showToast('실행 취소 (Undo)');
   }
 
-  function redo() {
+  async function redo() {
     const pageId = getActivePageId();
     if (!pageId || !state.history[pageId] || state.history[pageId].future.length === 0) return;
 
@@ -1159,7 +1198,8 @@
     state.history[pageId].past.push(current);
 
     const next = state.history[pageId].future.pop();
-    loadSerializedAnnotations(next);
+    await loadSerializedAnnotations(next);
+    saveCurrentPageAnnotations();
     updateUndoRedoUI();
     showToast('다시 실행 (Redo)');
   }
@@ -1324,6 +1364,8 @@
     try {
       if (!isAppend) {
         clearAllPages(false);
+      } else {
+        saveCurrentPageAnnotations();
       }
 
       const files = Array.from(fileList);
@@ -1382,9 +1424,11 @@
       if (scale < 2.0) scale = 2.0;
       const renderVp = page.getViewport({ scale: scale });
 
-      const pageId = uid();
-      state.pages.push({
+      const pageId = generateUUID();
+      const pageAnnotations = (reEditableMap && Array.isArray(reEditableMap[pNum - 1])) ? reEditableMap[pNum - 1] : [];
+      const pageObj = {
         id: pageId,
+        pageId: pageId,
         type: 'pdf',
         pdfDoc: pdfDoc,
         pageNum: pNum,
@@ -1394,13 +1438,13 @@
         renderHeight: Math.round(renderVp.height),
         fileName: file.name,
         title: `${file.name.replace(/\.pdf$/i, '')} (P.${pNum})`,
-        arrayBuffer: arrayBuffer
-      });
+        arrayBuffer: arrayBuffer,
+        annotations: pageAnnotations
+      };
+      state.pages.push(pageObj);
 
-      // Restore serialized annotations if present
-      if (reEditableMap && reEditableMap[pNum - 1]) {
-        state.annotations[pageId] = reEditableMap[pNum - 1];
-      }
+      // Restore serialized annotations bound strictly to pageId
+      state.annotations[pageId] = pageAnnotations;
     }
 
     if (reEditableMap) {
@@ -1426,9 +1470,10 @@
       targetH = Math.round(targetH * ratio);
     }
 
-    const pageId = uid();
-    state.pages.push({
+    const pageId = generateUUID();
+    const pageObj = {
       id: pageId,
+      pageId: pageId,
       type: 'image',
       blob: file,
       blobUrl: blobUrl,
@@ -1439,8 +1484,11 @@
       widthPt: (img.naturalWidth * 72) / 150,
       heightPt: (img.naturalHeight * 72) / 150,
       fileName: file.name,
-      title: file.name
-    });
+      title: file.name,
+      annotations: []
+    };
+    state.pages.push(pageObj);
+    state.annotations[pageId] = pageObj.annotations;
   }
 
   function clearAllPages(confirmPrompt = true) {
@@ -1448,11 +1496,20 @@
       if (!confirm('모든 페이지와 마킹 데이터를 지우고 초기화하시겠습니까?')) return;
     }
 
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj && typeof activeObj.exitEditing === 'function' && activeObj.isEditing) {
+      activeObj.exitEditing();
+    }
+    if (state.canvas) {
+      state.canvas.discardActiveObject();
+    }
+
     // Revoke previous blob URLs to prevent memory leaks
     state.pages.forEach((p) => {
       if (p.blobUrl) URL.revokeObjectURL(p.blobUrl);
     });
     state.pages = [];
+    state.activePageId = null;
     state.annotations = {};
     state.history = {};
     state.currentPageIndex = 0;
@@ -1465,7 +1522,14 @@
   }
 
   // ── High-DPI Rendering & Page Switching ─────────────────────
-  async function switchPage(index) {
+  async function switchPage(identifier) {
+    let index = -1;
+    if (typeof identifier === 'number') {
+      index = identifier;
+    } else if (typeof identifier === 'string') {
+      index = state.pages.findIndex((p) => p.id === identifier || p.pageId === identifier);
+    }
+
     if (index < 0 || index >= state.pages.length) return;
 
     // 0. End active editing & reset interaction states
@@ -1480,11 +1544,12 @@
     state.isDrawingShape = false;
     state.activeShape = null;
 
-    // 1. Save current page annotations
+    // 1. Save current active page annotations strictly to its unique pageId
     saveCurrentPageAnnotations();
 
     state.currentPageIndex = index;
     const page = state.pages[index];
+    state.activePageId = page ? (page.id || page.pageId) : null;
 
     setOverlayLoading(true, `페이지 ${index + 1} / ${state.pages.length} 고화질 렌더링 중...`);
 
@@ -1505,8 +1570,9 @@
         await renderImagePageBackground(page);
       }
 
-      // Restore and render saved annotations for this page
-      await loadSerializedAnnotations(state.annotations[page.id] || []);
+      // Restore and render saved annotations for this page strictly bound by UUID/pageId
+      const pageAnnotations = page.annotations || state.annotations[page.id] || (page.pageId ? state.annotations[page.pageId] : null) || [];
+      await loadSerializedAnnotations(pageAnnotations);
 
       // Center and fit canvas, then render everything immediately
       fitToScreen();
@@ -1524,9 +1590,17 @@
   }
 
   function saveCurrentPageAnnotations() {
-    const curPage = state.pages[state.currentPageIndex];
-    if (curPage && state.canvas) {
-      state.annotations[curPage.id] = serializeCanvasAnnotations();
+    if (!state.canvas || !state.activePageId) return;
+
+    // Locate the page strictly by its unique identifier (UUID / pageId)
+    const curPage = state.pages.find((p) => p.id === state.activePageId || p.pageId === state.activePageId);
+    if (!curPage) return; // Deleted or not present in remaining pages
+
+    const serialized = serializeCanvasAnnotations();
+    curPage.annotations = serialized;
+    state.annotations[curPage.id] = serialized;
+    if (curPage.pageId) {
+      state.annotations[curPage.pageId] = serialized;
     }
   }
 
@@ -1711,7 +1785,7 @@
                   ? `<button type="button" class="p-0.5 hover:text-white text-slate-400" title="${getI18nText('moveDownTitle', '아래로 이동')}" onclick="event.stopPropagation(); window.pdfChecker.movePage(${i}, 1)">▼</button>`
                   : ''
               }
-              <button type="button" class="p-0.5 hover:text-red-400 text-slate-400" title="${getI18nText('deletePageTitle', '페이지 삭제')}" onclick="event.stopPropagation(); window.pdfChecker.deletePage(${i})">🗑️</button>
+              <button type="button" class="p-0.5 hover:text-red-400 text-slate-400" title="${getI18nText('deletePageTitle', '페이지 삭제')}" onclick="event.stopPropagation(); window.pdfChecker.deletePage('${page.id}')">🗑️</button>
             </div>
           </div>
           <div class="w-full h-24 bg-slate-950 rounded-lg overflow-hidden border border-slate-800/80 flex items-center justify-center relative">
@@ -1775,27 +1849,51 @@
     });
   }
 
-  function movePage(index, dir) {
+  async function movePage(index, dir) {
     const target = index + dir;
     if (target < 0 || target >= state.pages.length) return;
+
+    // End active text editing
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj && typeof activeObj.exitEditing === 'function' && activeObj.isEditing) {
+      activeObj.exitEditing();
+    }
+    if (state.canvas) {
+      state.canvas.discardActiveObject();
+    }
 
     saveCurrentPageAnnotations();
     const temp = state.pages[index];
     state.pages[index] = state.pages[target];
     state.pages[target] = temp;
 
-    if (state.currentPageIndex === index) {
-      state.currentPageIndex = target;
-    } else if (state.currentPageIndex === target) {
-      state.currentPageIndex = index;
+    let nextIndex = state.currentPageIndex;
+    if (state.activePageId) {
+      const found = state.pages.findIndex((p) => p.id === state.activePageId || p.pageId === state.activePageId);
+      if (found !== -1) nextIndex = found;
+    } else {
+      if (state.currentPageIndex === index) {
+        nextIndex = target;
+      } else if (state.currentPageIndex === target) {
+        nextIndex = index;
+      }
     }
 
     renderThumbnailsSidebar();
-    switchPage(state.currentPageIndex);
+    await switchPage(nextIndex);
     showToast(getI18nText('toastPageOrderChanged', '페이지 순서가 변경되었습니다.'));
   }
 
-  function deletePage(index) {
+  async function deletePage(identifier) {
+    let index = -1;
+    if (typeof identifier === 'number') {
+      index = identifier;
+    } else if (typeof identifier === 'string') {
+      index = state.pages.findIndex((p) => p.id === identifier || p.pageId === identifier);
+    }
+
+    if (index < 0 || index >= state.pages.length) return;
+
     if (state.pages.length <= 1) {
       clearAllPages(true);
       return;
@@ -1807,17 +1905,78 @@
       : `페이지 ${index + 1}을(를) 정말 삭제하시겠습니까?`;
     if (!confirm(confirmMsg)) return;
 
-    saveCurrentPageAnnotations();
-    const removed = state.pages.splice(index, 1)[0];
-    if (removed && removed.blobUrl) URL.revokeObjectURL(removed.blobUrl);
-    delete state.annotations[removed.id];
-
-    if (state.currentPageIndex >= state.pages.length) {
-      state.currentPageIndex = state.pages.length - 1;
+    // 0. End active text editing
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj && typeof activeObj.exitEditing === 'function' && activeObj.isEditing) {
+      activeObj.exitEditing();
+    }
+    if (state.canvas) {
+      state.canvas.discardActiveObject();
     }
 
+    const targetPage = state.pages[index];
+    if (!targetPage) return;
+    const targetPageId = targetPage.id || targetPage.pageId;
+
+    // 1. Check if the deleted page is the currently active/rendered page
+    const isCurrentActivePage = (state.activePageId === targetPageId) || (state.currentPageIndex === index);
+
+    if (isCurrentActivePage) {
+      // Disassociate activePageId and clear canvas so deleted page's objects can never pollute remaining pages
+      state.activePageId = null;
+      if (state.canvas) {
+        state.canvas.clear();
+      }
+    } else {
+      // Save the currently active page's markings safely first
+      saveCurrentPageAnnotations();
+    }
+
+    // 2. Remove ONLY the target page from state.pages
+    const removedArr = state.pages.splice(index, 1);
+    const removedPage = removedArr[0];
+
+    // Clean up resources strictly belonging to the removed page
+    if (removedPage) {
+      if (removedPage.blobUrl) {
+        try {
+          URL.revokeObjectURL(removedPage.blobUrl);
+        } catch (_) {}
+      }
+      delete state.annotations[removedPage.id];
+      if (removedPage.pageId) {
+        delete state.annotations[removedPage.pageId];
+      }
+      delete state.history[removedPage.id];
+      if (removedPage.pageId) {
+        delete state.history[removedPage.pageId];
+      }
+    }
+
+    // 3. Determine the next active page index
+    let nextIndex = 0;
+    if (isCurrentActivePage) {
+      // Active page was deleted: move to the same index (which now has the next page),
+      // or if last page was deleted, move to the new last page.
+      nextIndex = index;
+      if (nextIndex >= state.pages.length) {
+        nextIndex = state.pages.length - 1;
+      }
+      if (nextIndex < 0) {
+        nextIndex = 0;
+      }
+    } else {
+      // Active page was not deleted: find where the active page is now in state.pages
+      const foundIdx = state.pages.findIndex((p) => p.id === state.activePageId || p.pageId === state.activePageId);
+      nextIndex = foundIdx !== -1 ? foundIdx : 0;
+    }
+
+    // 4. Update thumbnails list and page counter
     renderThumbnailsSidebar();
-    switchPage(state.currentPageIndex);
+
+    // 5. Cleanly switch to the active page
+    await switchPage(nextIndex);
+
     showToast(getI18nText('toastPageDeleted', '페이지가 삭제되었습니다.'));
   }
 
@@ -1969,7 +2128,7 @@
         }
 
         // 4. Draw overlay annotations if present
-        const pageAnnotations = state.annotations[pageData.id];
+        const pageAnnotations = pageData.annotations || state.annotations[pageData.id] || (pageData.pageId ? state.annotations[pageData.pageId] : null) || [];
         if (Array.isArray(pageAnnotations) && pageAnnotations.length > 0) {
           const overlayCanvas = document.createElement('canvas');
           overlayCanvas.width = width;
@@ -2179,10 +2338,11 @@
       const blobUrl = URL.createObjectURL(blob);
 
       clearAllPages(false);
-      const pageId = uid();
+      const pageId = generateUUID();
       const isEn = getPdfCheckerLang() === 'en';
-      state.pages.push({
+      const samplePageObj = {
         id: pageId,
+        pageId: pageId,
         type: 'image',
         blob: blob,
         blobUrl: blobUrl,
@@ -2193,8 +2353,11 @@
         widthPt: (width * 72) / 150,
         heightPt: (height * 72) / 150,
         fileName: 'Sample_Blueprint_FloorPlan_A3.jpg',
-        title: isEn ? 'Sample Blueprint (3F Floor Plan)' : '샘플 도면 (3F 건축 평면도)'
-      });
+        title: isEn ? 'Sample Blueprint (3F Floor Plan)' : '샘플 도면 (3F 건축 평면도)',
+        annotations: []
+      };
+      state.pages.push(samplePageObj);
+      state.annotations[pageId] = samplePageObj.annotations;
 
       renderThumbnailsSidebar();
       await switchPage(0);
@@ -2256,6 +2419,7 @@
     state.canvas.add(rect, text);
     state.canvas.renderAll();
     pushUndo();
+    saveCurrentPageAnnotations();
   }
 
   // ── Public Global API Bindings ──────────────────────────────
