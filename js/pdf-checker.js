@@ -1213,6 +1213,11 @@
       const page = await pdfDoc.getPage(pNum);
       const vp = page.getViewport({ scale: 1.0 });
 
+      const maxDimension = Math.max(vp.width, vp.height);
+      let scale = Math.min(3.0, 3840 / maxDimension);
+      if (scale < 2.0) scale = 2.0;
+      const renderVp = page.getViewport({ scale: scale });
+
       const pageId = uid();
       state.pages.push({
         id: pageId,
@@ -1221,6 +1226,8 @@
         pageNum: pNum,
         widthPt: vp.width,
         heightPt: vp.height,
+        renderWidth: Math.round(renderVp.width),
+        renderHeight: Math.round(renderVp.height),
         fileName: file.name,
         title: `${file.name.replace(/\.pdf$/i, '')} (P.${pNum})`,
         arrayBuffer: arrayBuffer
@@ -1246,6 +1253,15 @@
       image.src = blobUrl;
     });
 
+    let targetW = img.naturalWidth;
+    let targetH = img.naturalHeight;
+    const maxDim = Math.max(targetW, targetH);
+    if (maxDim > 3840) {
+      const ratio = 3840 / maxDim;
+      targetW = Math.round(targetW * ratio);
+      targetH = Math.round(targetH * ratio);
+    }
+
     const pageId = uid();
     state.pages.push({
       id: pageId,
@@ -1254,6 +1270,8 @@
       blobUrl: blobUrl,
       width: img.naturalWidth,
       height: img.naturalHeight,
+      renderWidth: targetW,
+      renderHeight: targetH,
       widthPt: (img.naturalWidth * 72) / 150,
       heightPt: (img.naturalHeight * 72) / 150,
       fileName: file.name,
@@ -1347,6 +1365,8 @@
     offCanvas.width = pageData.renderWidth;
     offCanvas.height = pageData.renderHeight;
     const ctx = offCanvas.getContext('2d', { alpha: false });
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, pageData.renderWidth, pageData.renderHeight);
 
     await pdfPage.render({
       canvasContext: ctx,
@@ -1597,6 +1617,12 @@
       return;
     }
 
+    // Exit active text editing if any
+    const activeObj = state.canvas ? state.canvas.getActiveObject() : null;
+    if (activeObj && typeof activeObj.exitEditing === 'function' && activeObj.isEditing) {
+      activeObj.exitEditing();
+    }
+
     saveCurrentPageAnnotations();
     setOverlayLoading(true, getI18nText('loadingCompositing', '고화질 최적화 PDF를 합성하고 생성하는 중입니다...'));
 
@@ -1613,49 +1639,110 @@
       };
 
       for (let i = 0; i < state.pages.length; i++) {
+        const pageData = state.pages[i];
+        if (!pageData) continue;
+
         const isEn = getPdfCheckerLang() === 'en';
         const encodingMsg = isEn
           ? `High-res composite encoding... (${i + 1} / ${state.pages.length})`
           : `고화질 합성 인코딩 중... (${i + 1} / ${state.pages.length})`;
         setOverlayLoading(true, encodingMsg);
 
-        // 1. Prepare 1:1 offscreen composite canvas
-        const offCanvas = document.createElement('canvas');
-        let width = pageData.renderWidth || 2400;
-        let height = pageData.renderHeight || 1600;
+        // 1. Determine exact page dimensions
+        let width = pageData.renderWidth;
+        let height = pageData.renderHeight;
+        let pdfPage = null;
+        let pdfViewport = null;
 
-        // Longest side 4K intelligent cap
-        const maxDim = Math.max(width, height);
-        if (maxDim > 3840) {
-          const ratio = 3840 / maxDim;
-          width = Math.round(width * ratio);
-          height = Math.round(height * ratio);
+        if (pageData.type === 'pdf') {
+          pdfPage = await pageData.pdfDoc.getPage(pageData.pageNum);
+          const unscaledVp = pdfPage.getViewport({ scale: 1.0 });
+          if (!pageData.widthPt) pageData.widthPt = unscaledVp.width;
+          if (!pageData.heightPt) pageData.heightPt = unscaledVp.height;
+
+          if (!width || !height) {
+            const maxDimension = Math.max(unscaledVp.width, unscaledVp.height);
+            let scale = Math.min(3.0, 3840 / maxDimension);
+            if (scale < 2.0) scale = 2.0;
+            pdfViewport = pdfPage.getViewport({ scale: scale });
+            width = Math.round(pdfViewport.width);
+            height = Math.round(pdfViewport.height);
+            pageData.renderWidth = width;
+            pageData.renderHeight = height;
+          } else {
+            const scale = width / unscaledVp.width;
+            pdfViewport = pdfPage.getViewport({ scale: scale });
+          }
+        } else {
+          // Image page (JPG, PNG, WebP, etc.)
+          if (!width || !height) {
+            let targetW = pageData.width;
+            let targetH = pageData.height;
+            if (!targetW || !targetH) {
+              const imgInfo = await new Promise((res, rej) => {
+                const im = new Image();
+                im.onload = () => res({ w: im.naturalWidth, h: im.naturalHeight });
+                im.onerror = rej;
+                im.src = pageData.blobUrl;
+              });
+              targetW = imgInfo.w;
+              targetH = imgInfo.h;
+              pageData.width = targetW;
+              pageData.height = targetH;
+            }
+            const maxDim = Math.max(targetW, targetH);
+            if (maxDim > 3840) {
+              const ratio = 3840 / maxDim;
+              targetW = Math.round(targetW * ratio);
+              targetH = Math.round(targetH * ratio);
+            }
+            width = targetW;
+            height = targetH;
+            pageData.renderWidth = width;
+            pageData.renderHeight = height;
+          }
+
+          if (!pageData.widthPt || !pageData.heightPt) {
+            pageData.widthPt = (width * 72) / 150;
+            pageData.heightPt = (height * 72) / 150;
+          }
         }
 
+        if (!width || !height) {
+          width = 2400;
+          height = 1600;
+        }
+
+        // 2. Prepare 1:1 offscreen composite canvas
+        const offCanvas = document.createElement('canvas');
         offCanvas.width = width;
         offCanvas.height = height;
-        const ctx = offCanvas.getContext('2d', { alpha: false });
+        const ctx = offCanvas.getContext('2d');
 
-        // Draw base document / image
+        // Clean white paper background
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+
+        // 3. Draw base document / image
         if (pageData.type === 'pdf') {
-          const pdfPage = await pageData.pdfDoc.getPage(pageData.pageNum);
-          const unscaledVp = pdfPage.getViewport({ scale: 1.0 });
-          const scale = width / unscaledVp.width;
-          const vp = pdfPage.getViewport({ scale });
-          await pdfPage.render({ canvasContext: ctx, viewport: vp }).promise;
+          await pdfPage.render({ canvasContext: ctx, viewport: pdfViewport }).promise;
         } else {
-          const img = await new Promise((res) => {
+          const img = await new Promise((res, rej) => {
             const im = new Image();
             im.onload = () => res(im);
+            im.onerror = rej;
             im.src = pageData.blobUrl;
           });
           ctx.drawImage(img, 0, 0, width, height);
         }
 
-        // Draw overlay annotations if present
+        // 4. Draw overlay annotations if present
         const pageAnnotations = state.annotations[pageData.id];
         if (Array.isArray(pageAnnotations) && pageAnnotations.length > 0) {
-          const tempFabricCanvas = new fabric.StaticCanvas(null, {
+          const overlayCanvas = document.createElement('canvas');
+          overlayCanvas.width = width;
+          overlayCanvas.height = height;
+          const tempFabricCanvas = new fabric.StaticCanvas(overlayCanvas, {
             width: width,
             height: height,
             enableRetinaScaling: false
@@ -1663,22 +1750,32 @@
 
           await new Promise((resolve) => {
             fabric.util.enlivenObjects(pageAnnotations, function (objects) {
-              objects.forEach((obj) => tempFabricCanvas.add(obj));
+              if (Array.isArray(objects)) {
+                objects.forEach((obj) => tempFabricCanvas.add(obj));
+              }
               tempFabricCanvas.renderAll();
               resolve();
             });
           });
 
-          ctx.drawImage(tempFabricCanvas.lowerCanvasEl, 0, 0);
+          ctx.drawImage(overlayCanvas, 0, 0);
           tempFabricCanvas.dispose();
+          overlayCanvas.width = 0;
+          overlayCanvas.height = 0;
         }
 
-        // 2. High-quality JPEG compression encoding (86% quality -> 50MB down to 5~7MB)
-        const jpgDataUrl = offCanvas.toDataURL('image/jpeg', 0.86);
-        const jpgBytes = await fetch(jpgDataUrl).then((res) => res.arrayBuffer());
+        // 5. High-quality JPEG compression encoding (86% quality -> 50MB down to 5~7MB)
+        let jpgBytes;
+        if (offCanvas.toBlob) {
+          const jpgBlob = await new Promise((res) => offCanvas.toBlob(res, 'image/jpeg', 0.86));
+          jpgBytes = await jpgBlob.arrayBuffer();
+        } else {
+          const jpgDataUrl = offCanvas.toDataURL('image/jpeg', 0.86);
+          jpgBytes = await fetch(jpgDataUrl).then((res) => res.arrayBuffer());
+        }
 
         // Embed in pdf-lib document
-        const embeddedImage = await outDoc.embedJpg(jpgBytes);
+        const embeddedImage = await outDoc.embedJpg(new Uint8Array(jpgBytes));
 
         // Calculate PDF point dimensions (pt)
         const ptWidth = pageData.widthPt || (width * 72) / 150;
@@ -1845,6 +1942,8 @@
         blobUrl: blobUrl,
         width: width,
         height: height,
+        renderWidth: width,
+        renderHeight: height,
         widthPt: (width * 72) / 150,
         heightPt: (height * 72) / 150,
         fileName: 'Sample_Blueprint_FloorPlan_A3.jpg',
