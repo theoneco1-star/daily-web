@@ -3398,3 +3398,42 @@ html.dark .coming-soon-tag {
   }
 }
 
+/* ═════════════════════════════════════════════════════════════
+   PDF Checker In-Modal Guide Drawer & Home SEO Section Styles
+   ═════════════════════════════════════════════════════════════ */
+#pdf-checker-guide-drawer {
+  position: absolute;
+  top: 3.5rem;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 680px;
+  background: #0f172a;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  flex-direction: column;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  #pdf-checker-guide-drawer {
+    max-width: 100%;
+  }
+}
+
+.home-about-seo-section {
+  position: relative;
+  border-radius: 1.5rem;
+  transition: all 0.25s ease;
+}
+
+.guide-tab-badge-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+

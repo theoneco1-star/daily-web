@@ -2447,11 +2447,26 @@
     movePage: movePage,
     clearAllPages: clearAllPages,
     toggleSidebar: toggleSidebar,
+    toggleGuide: toggleGuide,
     loadSampleBlueprint: loadSampleBlueprint,
     setLang: setPdfCheckerLang,
     toggleLang: togglePdfCheckerLang,
     state: state
   };
+
+  function toggleGuide(forceShow) {
+    const drawer = document.getElementById('pdf-checker-guide-drawer');
+    if (!drawer) return;
+    const isShowing = !drawer.classList.contains('hidden');
+    const shouldShow = typeof forceShow === 'boolean' ? forceShow : !isShowing;
+    if (shouldShow) {
+      drawer.classList.remove('hidden');
+      drawer.classList.add('flex');
+    } else {
+      drawer.classList.add('hidden');
+      drawer.classList.remove('flex');
+    }
+  }
 
   window.pdfChecker = publicApi;
   window.PdfChecker = publicApi;

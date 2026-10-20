@@ -3,1827 +3,1436 @@
  * Supports: Korean (ko), English (en)
  */
 const translations = {
-  ko: {
-    brand: "일상의도움",
-    slogan: "당신의 삶을 풍요롭게 합니다",
-    nav: { home: "홈", about: "소개", privacy: "개인정보처리방침", terms: "이용약관", contact: "문의하기", backToHome: "← 홈으로", guide: "앱 가이드" },
-    tabs: {
-      mobileApps: "모바일 앱",
-      webTools: "웹 도구"
+  "ko": {
+    "brand": "일상의도움",
+    "slogan": "당신의 삶을 풍요롭게 합니다",
+    "nav": {
+      "home": "홈",
+      "about": "소개",
+      "privacy": "개인정보처리방침",
+      "terms": "이용약관",
+      "contact": "문의하기",
+      "backToHome": "← 홈으로",
+      "guide": "가이드",
+      "webTools": "웹 도구"
     },
-    webTools: {
-      sectionTitle: "설치 없이 브라우저에서 바로 사용하는 실용 웹 도구",
-      heroCount: "개의 웹 도구",
-      resultsFound: "개 웹 도구 검색됨",
-      badgeHot: "HOT",
-      badgeFree: "무료 도구",
-      useToolBtn: "바로 사용하기",
-      emptyTitle: "검색된 웹 도구가 없습니다",
-      emptySubtitle: "다른 키워드로 검색해 보세요.",
-      globalComingSoonTitle: "New Global Web Tools Coming Soon!",
-      globalComingSoonSubtitle: "전 세계 사용자를 위한 유용한 온라인 도구를 준비하고 있습니다.",
-      wageCalc: {
-        title: "실수령액 & 주휴수당 계산기",
-        subtitle: "2026년 최저시급(10,320원) 기준 알바 및 근로소득 자동 계산",
-        desc: "시급과 근무시간만 입력하면 주휴수당과 4대보험/3.3% 공제액을 1초 만에 자동 계산합니다.",
-        hourlyWageLabel: "시급 (원)",
-        weeklyHoursLabel: "1주 총 근무시간 (시간)",
-        workDaysLabel: "1주 근무일수 (일)",
-        deductionLabel: "공제 방식 선택",
-        deductionNone: "미적용 (0%)",
-        deductionFreelance: "3.3% (프리랜서/알바)",
-        deductionFourInsurances: "4대보험 (~9.4%)",
-        basePay: "월 기본급",
-        holidayPay: "월 주휴수당",
-        grossPay: "세전 총 급여",
-        deductionAmount: "예상 공제액",
-        netPay: "최종 예상 실수령액",
-        minWageBtn: "2026 최저시급 (10,320원)",
-        copyBtn: "📋 결과 복사",
-        copySuccess: "복사 완료!",
-        tip: "※ 실제 지급액은 회사 규정, 연장/야간 수당, 주휴일 결근 여부에 따라 다소 차이가 있을 수 있습니다.",
-        guide: {
-          mainTitle: "2026 알바 급여 & 주휴수당 완벽 가이드",
-          badge: "노동법 핵심 요약",
-          item1Title: "2026년 법정 최저임금 안내",
-          item1Content: `<div class="space-y-1.5"><p>• <strong>시간급:</strong> <span class="text-indigo-600 dark:text-indigo-400 font-bold">10,320원</span> (전년 대비 290원 인상)</p><p>• <strong>주 40시간 근무 시 월 환산액:</strong> <span class="font-bold text-slate-900 dark:text-white">2,156,880원</span> (주휴시간 8시간 포함 월 209시간 기준, 10,320원 × 209시간)</p><p>• <strong>기본급 &amp; 주휴수당 구성:</strong> 월 기본급 1,793,616원 (173.8시간) + 월 주휴수당 363,264원 (35.2시간) = 합계 2,156,880원</p><p>• <strong>적용 대상:</strong> 1인 이상 모든 사업장에 적용되며 아르바이트, 파트타임, 일용직, 계약직 등 근로 형태와 무관하게 전면 적용됩니다.</p></div>`,
-          item2Title: "주휴수당 발생 3대 핵심 조건",
-          item2Content: `<div class="space-y-1.5"><p>근로기준법 제55조에 따라 아래 3대 조건을 모두 충족하면 1주 평균 1회 이상의 유급휴일(주휴수당)이 보장됩니다:</p><p>• <strong>① 주 소정근로시간 15시간 이상:</strong> 4주간 평균 1주일간 정해진 소정근로시간이 15시간 이상이어야 합니다. (15시간 미만 초단기 근로자는 제외)</p><p>• <strong>② 약속한 소정근로일 개근:</strong> 근로계약서상 일하기로 정한 소정근로일에 결근 없이 모두 출근해야 합니다. (지각이나 조퇴는 결근이 아니므로 주휴수당이 전액 정상 발생합니다)</p><p>• <strong>③ 다음 주 근로 예정 여부:</strong> 계속적인 근로 관계가 예정되어 있어야 합니다. (통상적 계속 근무 시 보장)</p><p>• <strong>단시간 근로자 계산식:</strong> (주 근무시간 ÷ 40시간) × 8시간 × 시급</p></div>`,
-          item3Title: "공제 방식 차이 (3.3% 프리랜서 vs 4대 보험)",
-          item3Content: `<div class="space-y-1.5"><p>• <strong>3.3% 사업소득세 원천징수 (단기/프리랜서):</strong> 사업소득세 3% + 지방소득세 0.3%를 차감합니다. 단기 알바 또는 사업소득 계약 시 주로 적용되며, 매년 5월 종합소득세 신고 시 소득 구간에 따라 원천징수된 세금을 전액 환급받을 수 있습니다.</p><p>• <strong>4대 보험 (~9.4% 근로자 부담분):</strong> 국민연금(4.5%) + 건강보험(3.545%) + 노인장기요양보험(건보의 12.95%) + 고용보험(0.9%)으로 구성되어 약 9.4%가 급여에서 공제됩니다. (산재보험은 사업주가 100% 전액 부담)</p><p>• <strong>의무 가입 기준:</strong> 월 60시간(주 15시간) 이상 근무하고 1개월 이상 지속 근로하는 모든 근로자는 4대보험 가입이 법적 의무입니다.</p></div>`
+    "tabs": {
+      "mobileApps": "모바일 앱",
+      "webTools": "웹 도구",
+      "guide": "가이드"
+    },
+    "webTools": {
+      "sectionTitle": "설치 없이 브라우저에서 바로 사용하는 실용 웹 도구",
+      "heroCount": "개의 웹 도구",
+      "resultsFound": "개 웹 도구 검색됨",
+      "badgeHot": "HOT",
+      "badgeFree": "무료 도구",
+      "useToolBtn": "바로 사용하기",
+      "emptyTitle": "검색된 웹 도구가 없습니다",
+      "emptySubtitle": "다른 키워드로 검색해 보세요.",
+      "globalComingSoonTitle": "New Global Web Tools Coming Soon!",
+      "globalComingSoonSubtitle": "전 세계 사용자를 위한 유용한 온라인 도구를 준비하고 있습니다.",
+      "wageCalc": {
+        "title": "실수령액 & 주휴수당 계산기",
+        "subtitle": "2026년 최저시급(10,320원) 기준 알바 및 근로소득 자동 계산",
+        "desc": "시급과 근무시간만 입력하면 주휴수당과 4대보험/3.3% 공제액을 1초 만에 자동 계산합니다.",
+        "hourlyWageLabel": "시급 (원)",
+        "weeklyHoursLabel": "1주 총 근무시간 (시간)",
+        "workDaysLabel": "1주 근무일수 (일)",
+        "deductionLabel": "공제 방식 선택",
+        "deductionNone": "미적용 (0%)",
+        "deductionFreelance": "3.3% (프리랜서/알바)",
+        "deductionFourInsurances": "4대보험 (~9.4%)",
+        "basePay": "월 기본급",
+        "holidayPay": "월 주휴수당",
+        "grossPay": "세전 총 급여",
+        "deductionAmount": "예상 공제액",
+        "netPay": "최종 예상 실수령액",
+        "minWageBtn": "2026 최저시급 (10,320원)",
+        "copyBtn": "📋 결과 복사",
+        "copySuccess": "복사 완료!",
+        "tip": "※ 실제 지급액은 회사 규정, 연장/야간 수당, 주휴일 결근 여부에 따라 다소 차이가 있을 수 있습니다.",
+        "guide": {
+          "mainTitle": "2026 알바 급여 & 주휴수당 완벽 가이드",
+          "badge": "노동법 핵심 요약",
+          "item1Title": "2026년 법정 최저임금 안내",
+          "item1Content": "<div class=\"space-y-1.5\"><p>• <strong>시간급:</strong> <span class=\"text-indigo-600 dark:text-indigo-400 font-bold\">10,320원</span> (전년 대비 290원 인상)</p><p>• <strong>주 40시간 근무 시 월 환산액:</strong> <span class=\"font-bold text-slate-900 dark:text-white\">2,156,880원</span> (주휴시간 8시간 포함 월 209시간 기준, 10,320원 × 209시간)</p><p>• <strong>기본급 &amp; 주휴수당 구성:</strong> 월 기본급 1,793,616원 (173.8시간) + 월 주휴수당 363,264원 (35.2시간) = 합계 2,156,880원</p><p>• <strong>적용 대상:</strong> 1인 이상 모든 사업장에 적용되며 아르바이트, 파트타임, 일용직, 계약직 등 근로 형태와 무관하게 전면 적용됩니다.</p></div>",
+          "item2Title": "주휴수당 발생 3대 핵심 조건",
+          "item2Content": "<div class=\"space-y-1.5\"><p>근로기준법 제55조에 따라 아래 3대 조건을 모두 충족하면 1주 평균 1회 이상의 유급휴일(주휴수당)이 보장됩니다:</p><p>• <strong>① 주 소정근로시간 15시간 이상:</strong> 4주간 평균 1주일간 정해진 소정근로시간이 15시간 이상이어야 합니다. (15시간 미만 초단기 근로자는 제외)</p><p>• <strong>② 약속한 소정근로일 개근:</strong> 근로계약서상 일하기로 정한 소정근로일에 결근 없이 모두 출근해야 합니다. (지각이나 조퇴는 결근이 아니므로 주휴수당이 전액 정상 발생합니다)</p><p>• <strong>③ 다음 주 근로 예정 여부:</strong> 계속적인 근로 관계가 예정되어 있어야 합니다. (통상적 계속 근무 시 보장)</p><p>• <strong>단시간 근로자 계산식:</strong> (주 근무시간 ÷ 40시간) × 8시간 × 시급</p></div>",
+          "item3Title": "공제 방식 차이 (3.3% 프리랜서 vs 4대 보험)",
+          "item3Content": "<div class=\"space-y-1.5\"><p>• <strong>3.3% 사업소득세 원천징수 (단기/프리랜서):</strong> 사업소득세 3% + 지방소득세 0.3%를 차감합니다. 단기 알바 또는 사업소득 계약 시 주로 적용되며, 매년 5월 종합소득세 신고 시 소득 구간에 따라 원천징수된 세금을 전액 환급받을 수 있습니다.</p><p>• <strong>4대 보험 (~9.4% 근로자 부담분):</strong> 국민연금(4.5%) + 건강보험(3.545%) + 노인장기요양보험(건보의 12.95%) + 고용보험(0.9%)으로 구성되어 약 9.4%가 급여에서 공제됩니다. (산재보험은 사업주가 100% 전액 부담)</p><p>• <strong>의무 가입 기준:</strong> 월 60시간(주 15시간) 이상 근무하고 1개월 이상 지속 근로하는 모든 근로자는 4대보험 가입이 법적 의무입니다.</p></div>",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>🧮</span>\n        <span>도구 개요 &amp; 무설치 보안 안내</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">2026년 대한민국 법정 최저시급인 시간당 10,320원을 기준으로, 아르바이트 및 근로자의 주휴수당 발생 여부와 월 기본급, 세전 총 급여, 공제액(3.3% 프리랜서 사업소득세 vs 4대 보험), 그리고 최종 통장에 입금되는 세후 실수령액을 1초 만에 자동 산출하는 급여 계산 도구입니다. 주 소정근로시간 15시간 이상 근무 시 법적으로 보장되는 주휴수당을 자동으로 판별하며, 통상근로자(주 40시간 월 209시간)뿐만 아니라 주 15시간~39시간 파트타임 단시간 근로자의 비례 계산 공식까지 노동법 규정에 맞춰 정확하게 처리합니다.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>주요 핵심 기능</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 2026 최저임금(10,320원) & 209시간 환산</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">2026년 최저시급 10,320원을 기준으로 주 40시간 근무 시 법정 월 환산 기준인 209시간(기본급 1,793,616원 + 주휴수당 363,264원 = 총 2,156,880원)을 실시간 자동 계산합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 주휴수당 3대 조건 판별 & 단시간 비례 계산</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">주 소정근로시간 15시간 이상 개근 여부에 따른 주휴수당 대상 여부를 실시간 검증하고, 단시간 알바생을 위한 비례 산출 공식 `(주 근로시간 ÷ 40시간) × 8시간 × 시급`을 완벽 적용합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 공제 방식 실시간 비교 (3.3% vs 4대 보험)</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">세금 미적용(0%), 프리랜서/단기 알바 3.3% 사업소득세 원천징수, 4대 보험(~9.4% 근로자 부담분)을 선택하여 공제액과 세후 최종 실수령액을 실시간으로 대조합니다.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>단계별 사용 가이드 (Step-by-Step)</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">시급 입력 및 프리셋 선택:</strong> '2026 최저시급 (10,320원)' 원클릭 버튼을 누르거나 본인의 약속된 시급 금액을 입력창에 기입합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">1주 총 근무시간 설정 (주휴수당 판별):</strong> 근로계약서상 1주 동안 일하기로 정한 소정근로시간을 입력합니다. 15시간 이상 입력 시 상단에 '✅ 주휴수당 발생 대상' 배지가 즉시 활성화됩니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">공제 방식 선택 (프리랜서 3.3% or 4대보험):</strong> 본인의 근로 계약 형태에 맞추어 비과세(0%), 3.3% 프리랜서 사업소득세, 또는 4대 보험(~9.4%) 라디오 버튼을 선택합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">실수령액 및 주휴수당 확인 후 결과 복사:</strong> 월 기본급, 월 주휴수당, 세전 총 급여, 공제액, 최종 예상 실수령액을 확인하고 '📋 결과 복사'를 눌러 근로자나 사업주 간 급여 협의에 활용합니다.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">전문가 실무 팁 (Tip)</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">알바 급여 & 주휴수당 전문가 실무 팁: 주휴수당은 근로계약서상 약속한 소정근로일을 '개근'하면 결근이 없는 한 지각이나 조퇴가 있더라도 전액 발생합니다(지각·조퇴 시간만큼 시급을 삭감할 수는 있어도 주휴수당 자체를 미지급하는 것은 불법입니다). 또한 주 15시간 이상 1개월 이상 계속 근로하는 모든 근로자는 4대 보험 가입이 법적 의무이며, 사업주가 주휴수당을 미지급할 경우 근로기준법 제55조 위반으로 3년 이하의 징역 또는 3천만 원 이하의 벌금형에 처해질 수 있습니다.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      annualLeaveCalc: {
-        title: "근로기준법 기준 연차 자동 계산기",
-        subtitle: "대한민국 근로기준법 제60조 기준 실시간 연차·월차 자동 계산",
-        statutoryBadge: "근로기준법 제60조 준수",
-        statutoryBadgeTitle: "대한민국 근로기준법 제60조(연차 유급휴가) 법정 규정을 정확히 반영합니다.",
-        langToggle: "EN",
-        modeLabel: "계산 기준 모드",
-        modeHireDate: "📅 입사일 기준 (법정 원칙)",
-        modeFiscalYear: "🏢 회계연도 기준 (매년 1월 1일)",
-        modeFiscalNotice: "※ 매년 1월 1일 일괄 부여하는 기업 규정 방식입니다. 퇴직 시 입사일 기준과 비교하여 유리한 조건으로 정산해야 합니다.",
-        inputHireLabel: "입사일",
-        inputBaseLabel: "기준일 (계산 시점)",
-        todayBtn: "오늘 날짜로 리셋",
-        sampleBtn: "기본 샘플 입력 (2년차)",
-        presetsLabel: "빠른 샘플 프리셋",
-        presetFreshman: "신입 (6개월)",
-        presetOneYear: "만 1년",
-        presetThreeYears: "3년차",
-        presetFiveYears: "5년차",
-        presetTenYears: "10년차",
-        dashboardTitle: "연차 산정 결과 대시보드",
-        servicePeriodLabel: "근속 기간",
-        workingStatus: "근무 중",
-        totalGrantedLabel: "총 발생 연차",
-        totalUnit: "일",
-        totalDaysUnit: "총 {days}일",
-        cumulativeBadge: "입사 이래 누적 총 {days}일 발생",
-        cardMonthlyTitle: "1년 미만 월차 발생일수",
-        cardMonthlyDesc: "1개월 개근 시 1일씩 발생 (최대 11일)",
-        cardRegularTitle: "1년 이상 정기 연차 발생일수",
-        cardRegularDesc: "기본 15일 + 3년차부터 2년마다 1일 가산 (최대 25일)",
-        cardFiscalTitle: "회계연도 기준 비례 연차",
-        cardFiscalDesc: "입사 당해 연도 재직일수 비례 환산",
-        baseLeaveLabel: "기본 연차",
-        addedLeaveLabel: "근속 가산일수",
-        copyBtn: "📋 계산 결과 복사하기",
-        closeBtn: "닫기",
-        toastCopied: "연차 계산 결과가 클립보드에 복사되었습니다!",
-        toastSampleLoaded: "샘플 근속 데이터가 입력되었습니다.",
-        toastResetToday: "기준일이 오늘 날짜로 재설정되었습니다.",
-        errorDateOrder: "기준일은 입사일 이후여야 합니다.",
-        guide: {
-          mainTitle: "근로기준법 제60조 연차유급휴가 핵심 법정 가이드",
-          badge: "노동법 핵심 요약",
-          item1Title: "1년 미만 발생 연차의 소멸 시효 (입사 1년 도래 시)",
-          item1Content: `<div class="space-y-1.5"><p>• <strong>1년 미만 월차:</strong> 입사 1년 미만 기간 동안에는 1개월 개근 시마다 1일씩, 최대 11일의 유급휴가가 발생합니다.</p><p>• <strong>소멸 시효:</strong> 1년 미만 기간에 발생한 연차는 <strong>입사일로부터 1년이 지나면 사용권이 법적으로 소멸</strong>됩니다 (근로기준법 제60조 제7항). 단, 사용자의 귀책사유로 쓰지 못한 경우에는 미사용 연차수당으로 청구할 수 있습니다.</p></div>`,
-          item2Title: "1년 도달 시 기본 15일 부여 및 80% 출근율 전제",
-          item2Content: `<div class="space-y-1.5"><p>• <strong>기본 15일 부여:</strong> 1년간 80% 이상 출근한 근로자에게는 1년이 되는 날(입사 1주년) 즉시 15일의 유급휴가가 새롭게 발생합니다.</p><p>• <strong>출근율 80% 미만:</strong> 출근율이 80% 미만인 경우에도 1개월 개근 시 1일씩의 연차가 주어집니다.</p></div>`,
-          item3Title: "3년 이상 근속 시 매 2년마다 1일 가산 (최대 법정 25일 한도)",
-          item3Content: `<div class="space-y-1.5"><p>• <strong>가산 규정:</strong> 3년 이상 계속 근로한 근로자에게는 최초 1년을 초과하는 계속근로연수 매 2년마다 1일을 가산합니다.</p><p>• <strong>연차 발생 표:</strong> 1~2년차: 15일 / 3~4년차: 16일 / 5~6년차: 17일 / 7~8년차: 18일 ... / 21년차 이상: 25일 (최대 법정 한도 도달 시 고정).</p></div>`,
-          item4Title: "회계연도 기준(1월 1일) 도입 기업의 퇴직 정산 원칙",
-          item4Content: `<div class="space-y-1.5"><p>• <strong>행정 편의 인정:</strong> 회사의 관리 편의상 매년 1월 1일을 기준으로 전 사원의 연차를 일괄 부여하는 것은 노동부 행정해석상 유효합니다.</p><p>• <strong>퇴직 시 필수 비교 정산:</strong> 근로자가 퇴직할 때는 <strong>'입사일 기준'으로 계산한 총 연차일수</strong>와 비교하여, 회계연도 기준이 근로자에게 불리한 경우 반드시 그 차이일수만큼 미사용 연차수당으로 지급해야 합니다.</p></div>`
+      "annualLeaveCalc": {
+        "title": "근로기준법 기준 연차 자동 계산기",
+        "subtitle": "대한민국 근로기준법 제60조 기준 실시간 연차·월차 자동 계산",
+        "statutoryBadge": "근로기준법 제60조 준수",
+        "statutoryBadgeTitle": "대한민국 근로기준법 제60조(연차 유급휴가) 법정 규정을 정확히 반영합니다.",
+        "langToggle": "EN",
+        "modeLabel": "계산 기준 모드",
+        "modeHireDate": "📅 입사일 기준 (법정 원칙)",
+        "modeFiscalYear": "🏢 회계연도 기준 (매년 1월 1일)",
+        "modeFiscalNotice": "※ 매년 1월 1일 일괄 부여하는 기업 규정 방식입니다. 퇴직 시 입사일 기준과 비교하여 유리한 조건으로 정산해야 합니다.",
+        "inputHireLabel": "입사일",
+        "inputBaseLabel": "기준일 (계산 시점)",
+        "todayBtn": "오늘 날짜로 리셋",
+        "sampleBtn": "기본 샘플 입력 (2년차)",
+        "presetsLabel": "빠른 샘플 프리셋",
+        "presetFreshman": "신입 (6개월)",
+        "presetOneYear": "만 1년",
+        "presetThreeYears": "3년차",
+        "presetFiveYears": "5년차",
+        "presetTenYears": "10년차",
+        "dashboardTitle": "연차 산정 결과 대시보드",
+        "servicePeriodLabel": "근속 기간",
+        "workingStatus": "근무 중",
+        "totalGrantedLabel": "총 발생 연차",
+        "totalUnit": "일",
+        "totalDaysUnit": "총 {days}일",
+        "cumulativeBadge": "입사 이래 누적 총 {days}일 발생",
+        "cardMonthlyTitle": "1년 미만 월차 발생일수",
+        "cardMonthlyDesc": "1개월 개근 시 1일씩 발생 (최대 11일)",
+        "cardRegularTitle": "1년 이상 정기 연차 발생일수",
+        "cardRegularDesc": "기본 15일 + 3년차부터 2년마다 1일 가산 (최대 25일)",
+        "cardFiscalTitle": "회계연도 기준 비례 연차",
+        "cardFiscalDesc": "입사 당해 연도 재직일수 비례 환산",
+        "baseLeaveLabel": "기본 연차",
+        "addedLeaveLabel": "근속 가산일수",
+        "copyBtn": "📋 계산 결과 복사하기",
+        "closeBtn": "닫기",
+        "toastCopied": "연차 계산 결과가 클립보드에 복사되었습니다!",
+        "toastSampleLoaded": "샘플 근속 데이터가 입력되었습니다.",
+        "toastResetToday": "기준일이 오늘 날짜로 재설정되었습니다.",
+        "errorDateOrder": "기준일은 입사일 이후여야 합니다.",
+        "guide": {
+          "mainTitle": "근로기준법 제60조 연차유급휴가 핵심 법정 가이드",
+          "badge": "노동법 핵심 요약",
+          "item1Title": "1년 미만 발생 연차의 소멸 시효 (입사 1년 도래 시)",
+          "item1Content": "<div class=\"space-y-1.5\"><p>• <strong>1년 미만 월차:</strong> 입사 1년 미만 기간 동안에는 1개월 개근 시마다 1일씩, 최대 11일의 유급휴가가 발생합니다.</p><p>• <strong>소멸 시효:</strong> 1년 미만 기간에 발생한 연차는 <strong>입사일로부터 1년이 지나면 사용권이 법적으로 소멸</strong>됩니다 (근로기준법 제60조 제7항). 단, 사용자의 귀책사유로 쓰지 못한 경우에는 미사용 연차수당으로 청구할 수 있습니다.</p></div>",
+          "item2Title": "1년 도달 시 기본 15일 부여 및 80% 출근율 전제",
+          "item2Content": "<div class=\"space-y-1.5\"><p>• <strong>기본 15일 부여:</strong> 1년간 80% 이상 출근한 근로자에게는 1년이 되는 날(입사 1주년) 즉시 15일의 유급휴가가 새롭게 발생합니다.</p><p>• <strong>출근율 80% 미만:</strong> 출근율이 80% 미만인 경우에도 1개월 개근 시 1일씩의 연차가 주어집니다.</p></div>",
+          "item3Title": "3년 이상 근속 시 매 2년마다 1일 가산 (최대 법정 25일 한도)",
+          "item3Content": "<div class=\"space-y-1.5\"><p>• <strong>가산 규정:</strong> 3년 이상 계속 근로한 근로자에게는 최초 1년을 초과하는 계속근로연수 매 2년마다 1일을 가산합니다.</p><p>• <strong>연차 발생 표:</strong> 1~2년차: 15일 / 3~4년차: 16일 / 5~6년차: 17일 / 7~8년차: 18일 ... / 21년차 이상: 25일 (최대 법정 한도 도달 시 고정).</p></div>",
+          "item4Title": "회계연도 기준(1월 1일) 도입 기업의 퇴직 정산 원칙",
+          "item4Content": "<div class=\"space-y-1.5\"><p>• <strong>행정 편의 인정:</strong> 회사의 관리 편의상 매년 1월 1일을 기준으로 전 사원의 연차를 일괄 부여하는 것은 노동부 행정해석상 유효합니다.</p><p>• <strong>퇴직 시 필수 비교 정산:</strong> 근로자가 퇴직할 때는 <strong>'입사일 기준'으로 계산한 총 연차일수</strong>와 비교하여, 회계연도 기준이 근로자에게 불리한 경우 반드시 그 차이일수만큼 미사용 연차수당으로 지급해야 합니다.</p></div>",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📅</span>\n        <span>도구 개요 &amp; 무설치 보안 안내</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">대한민국 근로기준법 제60조(연차 유급휴가)의 최신 법정 기준을 완벽하게 반영하여, 근로자의 입사일과 계산 기준일만 입력하면 1년 미만 재직자의 월차(최대 11일)부터 1년 이상 정기 연차(기본 15일) 및 근속 가산 연차(최대 25일)를 실시간으로 자동 산출하는 노무 전문 계산기입니다. 법정 원칙인 '입사일 기준'과 대다수 기업 인사팀에서 채택하는 '회계연도 기준(매년 1월 1일)' 산정 방식을 상호 비교할 수 있으며, 입사일 이래 발생한 누적 총 연차일수와 근속기간(년/월/일)을 직관적인 대시보드와 프로그레스 바 형태로 시각화합니다.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>주요 핵심 기능</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 회계연도 기준 vs 입사일 기준 비교</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">근로기준법상 법정 원칙인 '입사일 기준 산정 방식'과 기업 실무에서 전 사원 일괄 관리 목적으로 활용하는 '회계연도 기준(매년 1월 1일) 방식'을 원클릭 탭으로 상호 대조합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 근속연수별 가산연차 자동 계산</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">입사 1년 미만 매월 개근 시 1일씩 발생하는 최대 11일의 월차와, 만 1년 도래 시 새롭게 부여되는 15일, 그리고 3년차부터 매 2년마다 1일씩 가산되는 법정 가산연차(최대 25일 한도)를 정확하게 분리 계산합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 미사용 연차수당 산출 공식 & 권익 지원</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">미사용 연차에 대한 통상임금 기준 수당 청구 권리와 소멸시효(3년), 그리고 퇴직 시점에서 회계연도 기준과 입사일 기준을 정밀 비교하여 근로자에게 유리한 조건으로 정산하는 가이드를 제공합니다.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>단계별 사용 가이드 (Step-by-Step)</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">입사일 및 계산 기준일 입력:</strong> 본인이 실제 회사에 첫 출근한 공식 '입사일'과 산정을 원하는 '기준일(계산 시점, 기본값: 오늘 날짜)'을 달력 피커에서 선택합니다. 빠른 시뮬레이션을 위한 연차별 샘플 프리셋도 지원합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">산정 기준 모드 선택 (근무 형태):</strong> 법정 원칙인 '입사일 기준 (법정 원칙)' 또는 회사 인사 규정에 따른 '회계연도 기준 (매년 1월 1일)' 중 원하는 모드를 선택합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">연차 발생 내역 및 수당 확인:</strong> 상단 근속기간 배지와 총 발생 연차, 1년 미만 월차 달성 현황(최대 11일 프로그레스 바), 1년 이상 정기 연차(기본 15일+근속 가산일수) 세부 산정 내역을 한눈에 확인합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">산정 결과 복사 및 사내 활용:</strong> '계산 결과 복사하기' 버튼을 누르면 총 근속기간과 세부 연차 발생 내역이 정돈된 텍스트 형식으로 클립보드에 복사되어 휴가계 결재나 노무 관리용으로 즉시 활용할 수 있습니다.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">전문가 실무 팁 (Tip)</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">퇴직 시 정산 기준 및 단시간 근로자 노무 팁: 회사가 관리 편의를 위해 매년 1월 1일 회계연도 기준으로 연차를 일괄 부여하더라도, 근로자가 퇴직할 때는 반드시 '입사일 기준'으로 계산한 총 연차일수와 대조해야 합니다. 입사일 기준 연차가 회계연도 기준보다 많다면 회사는 근로자에게 유리한 입사일 기준으로 차이일수만큼 미사용 연차수당을 지급해야 합니다(대법원 판례 및 노동부 행정해석). 단시간 근로자의 연차는 [단시간 근로시간 ÷ 40시간 × 8시간 × 15일] 공식으로 비례 계산되며, 미사용 연차수당의 청구권 소멸시효는 3년입니다.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      charByteCounter: {
-        title: "자소서/공문서 글자수 & Byte 변환기",
-        subtitle: "자소서·공문서 제출 규격 1초 실시간 검증",
-        desc: "공백 포함/제외 글자수 실시간 계산, 취업포털(2Byte) 및 시스템(UTF-8 3Byte) 바이트 분리 지원",
-        inputTitle: "본문 입력",
-        placeholder: "자기소개서, 이력서, 공문서 또는 레포트 본문을 여기에 붙여넣거나 직접 작성하세요.\n실시간으로 글자수와 바이트(Byte)가 자동 계산됩니다.",
-        pasteBtn: "📋 클립보드 붙여넣기",
-        clearBtn: "🗑️ 전체 지우기",
-        cleanSpacesBtn: "✨ 공백 1칸 정리",
-        cleanLinesBtn: "↵ 빈 줄 정리",
-        copyTextBtn: "📋 본문 복사",
-        copyStatsBtn: "📊 통계 복사",
-        statWithSpaces: "공백 포함 글자수",
-        statWithoutSpaces: "공백 제외 글자수",
-        statBytes: "바이트 (Byte)",
-        statDocStructure: "문서 분량",
-        statByteStandard: "한글 2Byte 기준",
-        statEucKr: "취업포털 (2Byte)",
-        statEucKrDesc: "사람인 · 잡코리아 · 인크루트 (EUC-KR)",
-        statUtf8: "시스템/공공 (3Byte)",
-        statUtf8Desc: "공공기관 · 대기업 전산시스템 (UTF-8)",
-        statWords: "단어 수",
-        statLines: "줄 수 (행)",
-        statSpaces: "공백 수",
-        unitChar: "자",
-        unitByte: "Byte",
-        unitWord: "단어",
-        unitLine: "줄",
-        copiedToast: "클립보드에 복사되었습니다!",
-        pasteError: "클립보드 읽기 권한이 없습니다. 직접 Ctrl+V로 붙여넣어 주세요.",
-        confirmClear: "입력된 내용을 모두 지우시겠습니까?",
-        guide: {
-          mainTitle: "💡 글자수 및 바이트 계산 기준 안내",
-          singleTitle: "💡 글자수 및 바이트 계산 기준 안내",
-          badge: "제출 규격 완벽 검증",
-          singleContent: `<p>• <strong>공백 포함/제외:</strong> 기업 서류 접수 시 별도 공지가 없다면 통상 '공백 포함' 기준입니다.</p><p>• <strong>바이트(Byte):</strong> 일반 취업포털(사람인, 잡코리아 등)은 한글을 2Byte(영문/기호/공백 1Byte)로 환산합니다.</p>`,
-          item1Title: "취업포털별 바이트(Byte) 산정 기준 차이",
-          item1Content: `<div class="space-y-1.5"><p>• <strong>사람인 / 잡코리아 / 인크루트:</strong> 대부분 <strong>한글 2Byte (EUC-KR)</strong> 기준을 채택하고 있습니다. 한글 1자는 2Byte, 영문/숫자/공백(스페이스)/줄바꿈(엔터)은 1Byte로 계산됩니다.</p><p>• <strong>예시:</strong> 한글 500자 = 약 1,000Byte (공백 미포함 시), 공백 포함 시 공백 수만큼 Byte 추가.</p></div>`,
-          item2Title: "공공기관 · 대기업 채용 시스템 (UTF-8 3Byte) 주의점",
-          item2Content: `<div class="space-y-1.5"><p>• <strong>공공기관 / 웹시스템 규격:</strong> 전산 시스템 DB(Oracle, MySQL 등) 설정에 따라 <strong>UTF-8 (한글 3Byte)</strong>을 기준으로 삼는 곳이 있으므로 사전 확인이 필수입니다.</p><p>• <strong>주의사항:</strong> 3,000Byte 제한 공고 시 EUC-KR 기준으로는 한글 1,500자까지 들어가지만, UTF-8 기준 시스템에서는 1,000자만 입력되어 뒷부분이 잘릴 수 있으니 유의하세요.</p></div>`,
-          item3Title: "공백 포함 vs 제외 작성 원칙",
-          item3Content: `<div class="space-y-1.5"><p>• <strong>작성 원칙:</strong> 기업 채용 공고나 자소서 문항에 <strong>'공백 제외' 명시가 없다면 통상 '공백 포함'을 기준</strong>으로 작성하는 것이 인사담당자 및 채용 시스템의 기본 원칙입니다.</p><p>• <strong>분량 권장 팁:</strong> 제한 글자수의 <strong>85% ~ 95%</strong> 수준으로 꽉 채워 작성할 때 가장 성의 있고 완결성 높은 자소서로 평가받습니다.</p></div>`
+      "charByteCounter": {
+        "title": "자소서/공문서 글자수 & Byte 변환기",
+        "subtitle": "자소서·공문서 제출 규격 1초 실시간 검증",
+        "desc": "공백 포함/제외 글자수 실시간 계산, 취업포털(2Byte) 및 시스템(UTF-8 3Byte) 바이트 분리 지원",
+        "inputTitle": "본문 입력",
+        "placeholder": "자기소개서, 이력서, 공문서 또는 레포트 본문을 여기에 붙여넣거나 직접 작성하세요.\n실시간으로 글자수와 바이트(Byte)가 자동 계산됩니다.",
+        "pasteBtn": "📋 클립보드 붙여넣기",
+        "clearBtn": "🗑️ 전체 지우기",
+        "cleanSpacesBtn": "✨ 공백 1칸 정리",
+        "cleanLinesBtn": "↵ 빈 줄 정리",
+        "copyTextBtn": "📋 본문 복사",
+        "copyStatsBtn": "📊 통계 복사",
+        "statWithSpaces": "공백 포함 글자수",
+        "statWithoutSpaces": "공백 제외 글자수",
+        "statBytes": "바이트 (Byte)",
+        "statDocStructure": "문서 분량",
+        "statByteStandard": "한글 2Byte 기준",
+        "statEucKr": "취업포털 (2Byte)",
+        "statEucKrDesc": "사람인 · 잡코리아 · 인크루트 (EUC-KR)",
+        "statUtf8": "시스템/공공 (3Byte)",
+        "statUtf8Desc": "공공기관 · 대기업 전산시스템 (UTF-8)",
+        "statWords": "단어 수",
+        "statLines": "줄 수 (행)",
+        "statSpaces": "공백 수",
+        "unitChar": "자",
+        "unitByte": "Byte",
+        "unitWord": "단어",
+        "unitLine": "줄",
+        "copiedToast": "클립보드에 복사되었습니다!",
+        "pasteError": "클립보드 읽기 권한이 없습니다. 직접 Ctrl+V로 붙여넣어 주세요.",
+        "confirmClear": "입력된 내용을 모두 지우시겠습니까?",
+        "guide": {
+          "mainTitle": "💡 글자수 및 바이트 계산 기준 안내",
+          "singleTitle": "💡 글자수 및 바이트 계산 기준 안내",
+          "badge": "제출 규격 완벽 검증",
+          "singleContent": "<p>• <strong>공백 포함/제외:</strong> 기업 서류 접수 시 별도 공지가 없다면 통상 '공백 포함' 기준입니다.</p><p>• <strong>바이트(Byte):</strong> 일반 취업포털(사람인, 잡코리아 등)은 한글을 2Byte(영문/기호/공백 1Byte)로 환산합니다.</p>",
+          "item1Title": "취업포털별 바이트(Byte) 산정 기준 차이",
+          "item1Content": "<div class=\"space-y-1.5\"><p>• <strong>사람인 / 잡코리아 / 인크루트:</strong> 대부분 <strong>한글 2Byte (EUC-KR)</strong> 기준을 채택하고 있습니다. 한글 1자는 2Byte, 영문/숫자/공백(스페이스)/줄바꿈(엔터)은 1Byte로 계산됩니다.</p><p>• <strong>예시:</strong> 한글 500자 = 약 1,000Byte (공백 미포함 시), 공백 포함 시 공백 수만큼 Byte 추가.</p></div>",
+          "item2Title": "공공기관 · 대기업 채용 시스템 (UTF-8 3Byte) 주의점",
+          "item2Content": "<div class=\"space-y-1.5\"><p>• <strong>공공기관 / 웹시스템 규격:</strong> 전산 시스템 DB(Oracle, MySQL 등) 설정에 따라 <strong>UTF-8 (한글 3Byte)</strong>을 기준으로 삼는 곳이 있으므로 사전 확인이 필수입니다.</p><p>• <strong>주의사항:</strong> 3,000Byte 제한 공고 시 EUC-KR 기준으로는 한글 1,500자까지 들어가지만, UTF-8 기준 시스템에서는 1,000자만 입력되어 뒷부분이 잘릴 수 있으니 유의하세요.</p></div>",
+          "item3Title": "공백 포함 vs 제외 작성 원칙",
+          "item3Content": "<div class=\"space-y-1.5\"><p>• <strong>작성 원칙:</strong> 기업 채용 공고나 자소서 문항에 <strong>'공백 제외' 명시가 없다면 통상 '공백 포함'을 기준</strong>으로 작성하는 것이 인사담당자 및 채용 시스템의 기본 원칙입니다.</p><p>• <strong>분량 권장 팁:</strong> 제한 글자수의 <strong>85% ~ 95%</strong> 수준으로 꽉 채워 작성할 때 가장 성의 있고 완결성 높은 자소서로 평가받습니다.</p></div>",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📝</span>\n        <span>도구 개요 &amp; 무설치 보안 안내</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">대기업, 공공기관, 금융권 채용 자기소개서 및 공문서 제출 규격에 맞추어 공백 포함/제외 글자수와 바이트(Byte)를 실시간으로 정밀 측정하고 텍스트 서식을 정제하는 취업·문서 전문 유틸리티입니다. 취업포털(사람인, 잡코리아, 인크루트)에서 통용되는 한글 2Byte(EUC-KR) 규격과 공공기관·대기업 전산망 DB에서 주로 채택하는 한글 3Byte(UTF-8) 규격을 분리하여 제공하므로 시스템별 용량 초과로 인한 텍스트 잘림 현상을 사전에 방지할 수 있습니다. 또한 연속된 다중 공백을 1칸으로 정리하고 불필요한 빈 줄을 원클릭으로 다듬는 편의 기능을 지원합니다.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>주요 핵심 기능</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 공백 포함 & 제외 글자수 실시간 동시 계측</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">타이핑 및 붙여넣기와 동시에 공백 포함 글자수와 공백 제외 글자수를 분리 표시하여 채용 공고별 상이한 요구 규격을 한눈에 검증합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ EUC-KR(2Byte) vs UTF-8(3Byte) 분리 지원</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">사람인/잡코리아 채용 서류 접수용 한글 2Byte 규격과 공공기관 전산망 DB용 한글 3Byte 규격을 분리 계측하여 제출 시 글자 잘림을 차단합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 단어수 · 줄수(행) · 공백수 상세 구조 분석</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">전체 문서의 단어 수, 엔터 줄 수, 스페이스 공백 개수를 4분할 카드로 시각화하여 자소서의 단락 호흡과 문장 구조를 체계적으로 파악합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 원클릭 텍스트 정제 (공백 1칸 & 빈 줄 정리)</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">자소서 작성 시 흔히 발생하는 연속 공백(스페이스바 중복)을 1칸으로 정리하고, 잉여 줄바꿈(엔터)을 단 1초 만에 깔끔하게 정돈합니다.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>단계별 사용 가이드 (Step-by-Step)</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">자소서 및 문서 본문 붙여넣기:</strong> 작성 중인 자기소개서, 이력서, 레포트 본문을 입력창에 붙여넣습니다 (Ctrl+V 또는 '📋 클립보드 붙여넣기' 버튼 클릭).</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">실시간 글자수 및 바이트 규격 확인:</strong> 하단 4분할 통계 카드에서 공백 포함/제외 글자수와 취업포털 기준 바이트(Byte) 및 단어/줄 수를 실시간으로 확인합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">서식 정제 도구 활용 (공백 1칸 & 빈 줄 정리):</strong> '✨ 공백 1칸 정리' 및 '↵ 빈 줄 정리' 버튼을 눌러 불필요한 공백과 빈 줄을 깔끔하게 정제하여 가독성을 극대화합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">완성된 본문 및 통계 데이터 복사:</strong> '📋 본문 복사' 버튼으로 정제된 본문을 클립보드에 복사해 채용 사이트에 붙여넣거나, '📊 통계 복사'로 분량 보고서를 백업합니다.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">전문가 실무 팁 (Tip)</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">취업 컨설턴트 자소서 작성 팁: 기업 채용 공고에 '공백 제외'라는 별도 명시가 없다면 인사담당자 및 채용 전산시스템은 통상 '공백 포함'을 기준으로 심사합니다. 자소서 분량은 제한 글자수의 85% ~ 95% 수준으로 꽉 채워 작성할 때 가장 성의 있고 완성도 높은 인상을 줄 수 있습니다. 또한 공공기관 지원 시 3,000Byte 제한 공고는 한글 3Byte(UTF-8) 기준일 경우 1,000자까지만 입력되므로 사전에 바이트 규격을 반드시 확인하세요.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      excelDelimiterConverter: {
-        title: "엑셀 줄바꿈 ↔ 구분자 변환기",
-        subtitle: "엑셀 행/열 데이터를 쉼표(,), SQL IN, 따옴표로 1초 만에 상호 변환",
-        securityBadge: "100% 브라우저 로컬 처리 (보안 안심)",
-        securityBadgeTitle: "서버로 데이터를 전송하지 않으며 클라이언트에서 즉시 처리됩니다.",
-        langToggle: "EN",
-        modeLabel: "변환 모드",
-        modeLineToDelim: "줄바꿈 → 구분자",
-        modeDelimToLine: "구분자 → 줄바꿈",
-        inputTitle: "입력 데이터 (Input)",
-        inputPlaceholderLine: "엑셀에서 복사한 여러 줄의 데이터를 여기에 붙여넣으세요.\n예시:\n홍길동\n이순신\n강감찬\n유관순",
-        inputPlaceholderDelim: "쉼표나 공백 등으로 구분된 데이터를 여기에 붙여넣으세요.\n예시:\n'홍길동', '이순신', '강감찬', '유관순'\n또는 IN ('홍길동', '이순신')",
-        pasteBtn: "📋 붙여넣기",
-        clearBtn: "🗑️ 비우기",
-        sampleBtn: "💡 샘플 넣기",
-        optionsTitle: "변환 옵션 및 구분자 설정",
-        presetLabel: "구분자 프리셋",
-        presetComma: "쉼표 (, )",
-        presetSqlSingle: "SQL 작은따옴표 ('A', 'B')",
-        presetDoubleQuote: "큰따옴표 (\"A\", \"B\")",
-        presetSpace: "공백 (Space)",
-        presetTab: "탭 (Tab)",
-        presetCustom: "직접 입력",
-        customDelimPlaceholder: "구분자 입력 (예: | or ;)",
-        optTrim: "빈 줄 및 양쪽 공백 제거",
-        optDedupe: "중복 항목 제거",
-        optSqlIn: "SQL IN (...) 괄호 감싸기",
-        outputTitle: "변환 결과 (Output)",
-        outputPlaceholder: "변환된 결과가 여기에 실시간으로 표시됩니다.",
-        countBadge: "총 {count}개 항목 변환 완료",
-        copyBtn: "📋 결과 복사하기",
-        swapBtn: "🔄 결과를 입력으로 이동",
-        toastCopied: "클립보드에 복사되었습니다!",
-        toastCleared: "입력창이 초기화되었습니다.",
-        toastSampleLoaded: "샘플 데이터가 로드되었습니다.",
-        toastPasted: "클립보드 내용을 붙여넣었습니다.",
-        toastSwapped: "변환 결과가 입력창으로 이동되었습니다.",
-        toastNoResult: "복사할 변환 결과가 없습니다.",
-        toastPasteError: "클립보드 읽기 권한이 없습니다. Ctrl+V로 붙여넣어 주세요.",
-        guide: {
-          mainTitle: "💡 엑셀 줄바꿈 & 구분자 변환기 200% 활용 팁",
-          tip1Title: "엑셀(Excel) 다중 열 & 줄바꿈 한 번에 복사하기",
-          tip1Content: "엑셀에서 세로 열뿐만 아니라 가로 여러 열(다중 셀)을 복사해 붙여넣어도 탭(Tab) 문자를 자동 인식하여 각각 개별 항목으로 분리 변환합니다.",
-          tip2Title: "DB 쿼리 WHERE column IN (...) 작성 팁",
-          tip2Content: "엑셀의 사번, ID, 고객번호 목록을 복사한 후 'SQL 작은따옴표' 프리셋과 'SQL IN 괄호 감싸기'를 체크하면 즉시 실행 가능한 SQL IN 구문이 완성됩니다.",
-          tip3Title: "개인정보 및 보안 안내",
-          tip3Content: "본 도구는 100% 사용자의 웹 브라우저 메모리 안에서만 동작합니다. 어떤 데이터도 외부 서버나 네트워크로 전송되지 않으므로 사내 보안 데이터나 개인정보도 안심하고 변환할 수 있습니다."
+      "excelDelimiterConverter": {
+        "title": "엑셀 줄바꿈 ↔ 구분자 변환기",
+        "subtitle": "엑셀 행/열 데이터를 쉼표(,), SQL IN, 따옴표로 1초 만에 상호 변환",
+        "securityBadge": "100% 브라우저 로컬 처리 (보안 안심)",
+        "securityBadgeTitle": "서버로 데이터를 전송하지 않으며 클라이언트에서 즉시 처리됩니다.",
+        "langToggle": "EN",
+        "modeLabel": "변환 모드",
+        "modeLineToDelim": "줄바꿈 → 구분자",
+        "modeDelimToLine": "구분자 → 줄바꿈",
+        "inputTitle": "입력 데이터 (Input)",
+        "inputPlaceholderLine": "엑셀에서 복사한 여러 줄의 데이터를 여기에 붙여넣으세요.\n예시:\n홍길동\n이순신\n강감찬\n유관순",
+        "inputPlaceholderDelim": "쉼표나 공백 등으로 구분된 데이터를 여기에 붙여넣으세요.\n예시:\n'홍길동', '이순신', '강감찬', '유관순'\n또는 IN ('홍길동', '이순신')",
+        "pasteBtn": "📋 붙여넣기",
+        "clearBtn": "🗑️ 비우기",
+        "sampleBtn": "💡 샘플 넣기",
+        "optionsTitle": "변환 옵션 및 구분자 설정",
+        "presetLabel": "구분자 프리셋",
+        "presetComma": "쉼표 (, )",
+        "presetSqlSingle": "SQL 작은따옴표 ('A', 'B')",
+        "presetDoubleQuote": "큰따옴표 (\"A\", \"B\")",
+        "presetSpace": "공백 (Space)",
+        "presetTab": "탭 (Tab)",
+        "presetCustom": "직접 입력",
+        "customDelimPlaceholder": "구분자 입력 (예: | or ;)",
+        "optTrim": "빈 줄 및 양쪽 공백 제거",
+        "optDedupe": "중복 항목 제거",
+        "optSqlIn": "SQL IN (...) 괄호 감싸기",
+        "outputTitle": "변환 결과 (Output)",
+        "outputPlaceholder": "변환된 결과가 여기에 실시간으로 표시됩니다.",
+        "countBadge": "총 {count}개 항목 변환 완료",
+        "copyBtn": "📋 결과 복사하기",
+        "swapBtn": "🔄 결과를 입력으로 이동",
+        "toastCopied": "클립보드에 복사되었습니다!",
+        "toastCleared": "입력창이 초기화되었습니다.",
+        "toastSampleLoaded": "샘플 데이터가 로드되었습니다.",
+        "toastPasted": "클립보드 내용을 붙여넣었습니다.",
+        "toastSwapped": "변환 결과가 입력창으로 이동되었습니다.",
+        "toastNoResult": "복사할 변환 결과가 없습니다.",
+        "toastPasteError": "클립보드 읽기 권한이 없습니다. Ctrl+V로 붙여넣어 주세요.",
+        "guide": {
+          "mainTitle": "💡 엑셀 줄바꿈 & 구분자 변환기 200% 활용 팁",
+          "tip1Title": "엑셀(Excel) 다중 열 & 줄바꿈 한 번에 복사하기",
+          "tip1Content": "엑셀에서 세로 열뿐만 아니라 가로 여러 열(다중 셀)을 복사해 붙여넣어도 탭(Tab) 문자를 자동 인식하여 각각 개별 항목으로 분리 변환합니다.",
+          "tip2Title": "DB 쿼리 WHERE column IN (...) 작성 팁",
+          "tip2Content": "엑셀의 사번, ID, 고객번호 목록을 복사한 후 'SQL 작은따옴표' 프리셋과 'SQL IN 괄호 감싸기'를 체크하면 즉시 실행 가능한 SQL IN 구문이 완성됩니다.",
+          "tip3Title": "개인정보 및 보안 안내",
+          "tip3Content": "본 도구는 100% 사용자의 웹 브라우저 메모리 안에서만 동작합니다. 어떤 데이터도 외부 서버나 네트워크로 전송되지 않으므로 사내 보안 데이터나 개인정보도 안심하고 변환할 수 있습니다.",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📊</span>\n        <span>도구 개요 &amp; 무설치 보안 안내</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">엑셀(Excel) 스프레드시트의 세로 행(줄바꿈) 데이터를 쉼표(,), SQL IN 쿼리 조건절('A', 'B'), 큰따옴표(\"A\", \"B\"), 공백, 탭 등으로 1초 만에 상호 변환하고 반대로 구분자 텍스트를 엑셀 친화적 세로 줄바꿈 형태로 역변환하는 고성능 텍스트 정제 도구입니다. 데이터베이스 쿼리 작성, 대용량 마케팅 이메일/전화번호 목록 가공, CSV 데이터 정제 등 반복적인 실무 작업을 획기적으로 단축해 줍니다. 특히 모든 텍스트 정제 연산이 외부 서버 전송 없이 100% 사용자의 브라우저 메모리에서만 동작하므로, 사내 고객 데이터나 기밀 개인정보도 유출 위험 없이 안심하고 가공할 수 있습니다.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>주요 핵심 기능</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 양방향 실시간 상호 변환</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">줄바꿈 → 구분자 모드와 구분자 → 줄바꿈 역변환 모드를 클릭 한 번으로 자유롭게 전환하며, 입력창과 결과창의 텍스트를 상호 교환(Swap)할 수 있습니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ SQL IN 조건절 & 괄호 자동 감싸기</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">'SQL 작은따옴표' 프리셋과 'SQL IN (...) 괄호 감싸기' 옵션을 체크하면 복잡한 수작업 없이 데이터베이스 쿼리 WHERE column IN (...) 절에 즉시 실행 가능한 코드를 완성합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 중복 항목 제거(Deduplication) & 공백 트림</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">대량의 데이터에서 중복된 행이나 항목을 1초 만에 자동 판별하여 고유값(Unique)만 추출하며, 각 항목의 앞뒤 불필요한 공백과 빈 줄을 깔끔하게 자동 정제합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 100% 브라우저 온메모리 보안 처리</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">사용자가 붙여넣는 엑셀 행 데이터와 결과 텍스트는 일체 외부 서버나 네트워크로 전송되지 않고 클라이언트 브라우저 로컬 메모리에서만 안전하게 연산됩니다.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>단계별 사용 가이드 (Step-by-Step)</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">데이터 붙여넣기 (Input):</strong> 엑셀 스프레드시트에서 가공할 세로 열 데이터를 복사(Ctrl+C)한 후 입력창에 붙여넣거나 '📋 붙여넣기' 버튼을 클릭합니다. 테스트용 '💡 샘플 넣기' 기능도 제공됩니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">변환 모드 및 구분자 프리셋 선택:</strong> '줄바꿈 → 구분자' 모드를 선택한 후 쉼표(, ), SQL 작은따옴표('A', 'B'), 큰따옴표, 공백, 탭, 또는 직접 입력 프리셋 중 원하는 포맷을 선택합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">정제 옵션 지정 (중복 제거 & 공백 트림):</strong> '빈 줄 및 양쪽 공백 제거', '중복 항목 제거', 'SQL IN (...) 괄호 감싸기' 체크박스를 필요에 따라 활성화하여 데이터를 완벽하게 정제합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">1초 변환 결과 복사 및 실무 활용:</strong> 우측 결과창에서 실시간으로 정제된 결과와 총 항목 개수를 확인한 뒤 '📋 결과 복사하기' 버튼을 눌러 DB 쿼리문이나 엑셀 보고서에 붙여넣습니다.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">전문가 실무 팁 (Tip)</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">데이터 정제 & DB 쿼리 전문가 실무 팁: 엑셀에서 단일 세로 열뿐만 아니라 가로 여러 열(다중 셀)을 복사해 붙여넣어도 탭(Tab) 문자를 자동 인식하여 각 항목별로 깔끔하게 분리 변환합니다. 또한 수천 건의 사번이나 고객 ID 목록을 DB에서 조회할 때 'SQL 작은따옴표' 프리셋과 '중복 항목 제거' 옵션을 켜면 중복 조회를 방지하고 쿼리 실행 속도를 대폭 최적화할 수 있습니다.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      pdfChecker: {
-        title: "무설치 PDF & 도면/이미지 검토·마킹 툴",
-        subtitle: "서버 업로드 없이 브라우저에서 대용량 PDF 및 도면(JPG/PNG)을 병합·검토하고 마킹 후 고화질 PDF로 내보냅니다.",
-        browserTitle: "무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움",
-        brandTitle: "PDF & 도면 마킹 툴",
-        brandBadge: "100% 로컬 보안",
-        brandSub: "PDF & JPG Checker",
-        langToggle: "EN",
-        openAddFiles: "+ 파일 열기 / 추가",
-        pageCounterTitle: "현재 페이지 / 총 페이지",
-        pageTotalBadge: "0 페이지",
-        toolSelect: "선택",
-        toolPan: "이동",
-        toolText: "텍스트",
-        toolRect: "사각",
-        toolCircle: "원형",
-        toolDraw: "자유선",
-        toolSelectTitle: "선택 도구 (단축키: V)",
-        toolPanTitle: "화면 이동 (단축키: H 또는 Space+드래그)",
-        toolTextTitle: "텍스트 메모 입력 (단축키: T)",
-        toolRectTitle: "사각형 마킹 (단축키: M)",
-        toolCircleTitle: "원형 마킹 (단축키: C)",
-        toolDrawTitle: "자유곡선 그리기 (단축키: S)",
-        optLine: "선:",
-        optFont: "글자:",
-        fillTitle: "도형 채우기",
-        fillTransparent: "채우기: 투명",
-        fillSemitransparent: "채우기: 반투명",
-        fillSolid: "채우기: 색상 채움",
-        undoTitle: "실행 취소 (Ctrl+Z)",
-        redoTitle: "다시 실행 (Ctrl+Y)",
-        deleteSelectedTitle: "선택 객체 삭제 (Del)",
-        zoomOutTitle: "축소 (Ctrl+휠)",
-        zoomResetTitle: "100% 리셋",
-        zoomInTitle: "확대 (Ctrl+휠)",
-        zoomFitTitle: "화면 맞춤",
-        exportTitle: "50MB 도면을 5~7MB 초고화질 최적화 PDF로 즉시 내보내기",
-        exportPdfBtn: "고화질 PDF 내보내기",
-        saveBtn: "저장",
-        closeModalTitle: "닫기 (Esc)",
-        sidebarPages: "페이지 목록",
-        toggleSidebarTitle: "사이드바 접기/펼치기",
-        addFileBtn: "+ 파일 추가",
-        clearAllBtn: "비우기",
-        clearAllTitle: "전체 비우기",
-        emptyThumbList: "불러온 페이지가 없습니다.",
-        moveUpTitle: "위로 이동",
-        moveDownTitle: "아래로 이동",
-        deletePageTitle: "페이지 삭제",
-        emptyTitle: "검토할 PDF 또는 도면을 불러오세요",
-        emptyDesc: "서버 업로드 없이 100% 브라우저 메모리 안에서만 동작하여 안전합니다.<br />CAD 도면(PDF), JPG, PNG, WebP 파일을 혼합하여 병합할 수 있습니다.",
-        emptySelectBtn: "+ 파일 선택하기 (다중 선택 가능)",
-        emptySampleBtn: "샘플 도면으로 바로 체험하기",
-        emptyDropHint: "또는 여기에 파일을 직접 드래그 앤 드롭하세요",
-        dropOverlayTitle: "여기에 도면/PDF 파일을 놓으세요",
-        dropOverlayDesc: "기존 마킹 데이터를 보존하며 뒤 페이지로 자동 이어붙입니다.",
-        shortcutSelect: '<strong class="text-blue-400 font-mono">V</strong> 선택',
-        shortcutPan: '<strong class="text-blue-400 font-mono">H</strong> 이동(Space+드래그)',
-        shortcutText: '<strong class="text-blue-400 font-mono">T</strong> 텍스트',
-        shortcutRect: '<strong class="text-blue-400 font-mono">M</strong> 사각',
-        shortcutCircle: '<strong class="text-blue-400 font-mono">C</strong> 원',
-        shortcutDraw: '<strong class="text-blue-400 font-mono">S</strong> 자유선',
-        shortcutZoom: '<strong class="text-blue-400 font-mono">Ctrl+휠</strong> 확대/축소',
-        shortcutDelete: '<strong class="text-blue-400 font-mono">Del</strong> 삭제',
-        loadingProcessing: "파일 처리 중...",
-        loadingLargeNotice: "대용량 도면의 경우 수 초 정도 소요될 수 있습니다.",
-        loadingCompositing: "고화질 최적화 PDF를 합성하고 생성하는 중입니다...",
-        toastExportSuccess: "고화질 최적화 PDF가 성공적으로 다운로드되었습니다!",
-        toastExportFail: "PDF 내보내기 실패: ",
-        toastNoPages: "내보낼 도면이나 문서가 없습니다. 먼저 파일을 불러와주세요.",
-        toastPageOrderChanged: "페이지 순서가 변경되었습니다.",
-        toastPageDeleted: "페이지가 삭제되었습니다.",
-        toastSampleLoaded: "초고화질 샘플 도면이 로드되었습니다! 마킹을 시작해보세요.",
-        toastSampleFail: "샘플 로드 실패",
-        confirmDeletePage: "페이지 {page}을(를) 정말 삭제하시겠습니까?",
-        sampleDrawingTitle: "샘플 도면 (3F 건축 평면도)",
-        demoReviewMemo: "검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)",
-        mobileNoticeTitle: "PC 환경에 최적화된 도구입니다",
-        mobileNoticeDesc: "대용량 CAD 도면 검토 및 정밀 마킹 기능은 마우스와 넓은 화면을 지원하는 데스크톱(PC) 또는 태블릿 가로 모드 이용을 권장합니다.",
-        mobileNoticeCloseBtn: "메인으로 돌아가기 (Close)"
+      "pdfChecker": {
+        "title": "무설치 PDF & 도면/이미지 검토·마킹 툴",
+        "subtitle": "서버 업로드 없이 브라우저에서 대용량 PDF 및 도면(JPG/PNG)을 병합·검토하고 마킹 후 고화질 PDF로 내보냅니다.",
+        "browserTitle": "무설치 PDF & 도면/이미지 검토·마킹 툴 | 일상의도움",
+        "brandTitle": "PDF & 도면 마킹 툴",
+        "brandBadge": "100% 로컬 보안",
+        "brandSub": "PDF & JPG Checker",
+        "langToggle": "EN",
+        "openAddFiles": "+ 파일 열기 / 추가",
+        "pageCounterTitle": "현재 페이지 / 총 페이지",
+        "pageTotalBadge": "0 페이지",
+        "toolSelect": "선택",
+        "toolPan": "이동",
+        "toolText": "텍스트",
+        "toolRect": "사각",
+        "toolCircle": "원형",
+        "toolDraw": "자유선",
+        "toolSelectTitle": "선택 도구 (단축키: V)",
+        "toolPanTitle": "화면 이동 (단축키: H 또는 Space+드래그)",
+        "toolTextTitle": "텍스트 메모 입력 (단축키: T)",
+        "toolRectTitle": "사각형 마킹 (단축키: M)",
+        "toolCircleTitle": "원형 마킹 (단축키: C)",
+        "toolDrawTitle": "자유곡선 그리기 (단축키: S)",
+        "optLine": "선:",
+        "optFont": "글자:",
+        "fillTitle": "도형 채우기",
+        "fillTransparent": "채우기: 투명",
+        "fillSemitransparent": "채우기: 반투명",
+        "fillSolid": "채우기: 색상 채움",
+        "undoTitle": "실행 취소 (Ctrl+Z)",
+        "redoTitle": "다시 실행 (Ctrl+Y)",
+        "deleteSelectedTitle": "선택 객체 삭제 (Del)",
+        "zoomOutTitle": "축소 (Ctrl+휠)",
+        "zoomResetTitle": "100% 리셋",
+        "zoomInTitle": "확대 (Ctrl+휠)",
+        "zoomFitTitle": "화면 맞춤",
+        "exportTitle": "50MB 도면을 5~7MB 초고화질 최적화 PDF로 즉시 내보내기",
+        "exportPdfBtn": "고화질 PDF 내보내기",
+        "saveBtn": "저장",
+        "closeModalTitle": "닫기 (Esc)",
+        "sidebarPages": "페이지 목록",
+        "toggleSidebarTitle": "사이드바 접기/펼치기",
+        "addFileBtn": "+ 파일 추가",
+        "clearAllBtn": "비우기",
+        "clearAllTitle": "전체 비우기",
+        "emptyThumbList": "불러온 페이지가 없습니다.",
+        "moveUpTitle": "위로 이동",
+        "moveDownTitle": "아래로 이동",
+        "deletePageTitle": "페이지 삭제",
+        "emptyTitle": "검토할 PDF 또는 도면을 불러오세요",
+        "emptyDesc": "서버 업로드 없이 100% 브라우저 메모리 안에서만 동작하여 안전합니다.<br />CAD 도면(PDF), JPG, PNG, WebP 파일을 혼합하여 병합할 수 있습니다.",
+        "emptySelectBtn": "+ 파일 선택하기 (다중 선택 가능)",
+        "emptySampleBtn": "샘플 도면으로 바로 체험하기",
+        "emptyDropHint": "또는 여기에 파일을 직접 드래그 앤 드롭하세요",
+        "dropOverlayTitle": "여기에 도면/PDF 파일을 놓으세요",
+        "dropOverlayDesc": "기존 마킹 데이터를 보존하며 뒤 페이지로 자동 이어붙입니다.",
+        "shortcutSelect": "<strong class=\"text-blue-400 font-mono\">V</strong> 선택",
+        "shortcutPan": "<strong class=\"text-blue-400 font-mono\">H</strong> 이동(Space+드래그)",
+        "shortcutText": "<strong class=\"text-blue-400 font-mono\">T</strong> 텍스트",
+        "shortcutRect": "<strong class=\"text-blue-400 font-mono\">M</strong> 사각",
+        "shortcutCircle": "<strong class=\"text-blue-400 font-mono\">C</strong> 원",
+        "shortcutDraw": "<strong class=\"text-blue-400 font-mono\">S</strong> 자유선",
+        "shortcutZoom": "<strong class=\"text-blue-400 font-mono\">Ctrl+휠</strong> 확대/축소",
+        "shortcutDelete": "<strong class=\"text-blue-400 font-mono\">Del</strong> 삭제",
+        "loadingProcessing": "파일 처리 중...",
+        "loadingLargeNotice": "대용량 도면의 경우 수 초 정도 소요될 수 있습니다.",
+        "loadingCompositing": "고화질 최적화 PDF를 합성하고 생성하는 중입니다...",
+        "toastExportSuccess": "고화질 최적화 PDF가 성공적으로 다운로드되었습니다!",
+        "toastExportFail": "PDF 내보내기 실패: ",
+        "toastNoPages": "내보낼 도면이나 문서가 없습니다. 먼저 파일을 불러와주세요.",
+        "toastPageOrderChanged": "페이지 순서가 변경되었습니다.",
+        "toastPageDeleted": "페이지가 삭제되었습니다.",
+        "toastSampleLoaded": "초고화질 샘플 도면이 로드되었습니다! 마킹을 시작해보세요.",
+        "toastSampleFail": "샘플 로드 실패",
+        "confirmDeletePage": "페이지 {page}을(를) 정말 삭제하시겠습니까?",
+        "sampleDrawingTitle": "샘플 도면 (3F 건축 평면도)",
+        "demoReviewMemo": "검토 의견: 대회의실 빔프로젝터 및 전열 배선 위치 재확인 요망 (REV 02)",
+        "mobileNoticeTitle": "PC 환경에 최적화된 도구입니다",
+        "mobileNoticeDesc": "대용량 CAD 도면 검토 및 정밀 마킹 기능은 마우스와 넓은 화면을 지원하는 데스크톱(PC) 또는 태블릿 가로 모드 이용을 권장합니다.",
+        "mobileNoticeCloseBtn": "메인으로 돌아가기 (Close)",
+        "guide": {
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📐</span>\n        <span>도구 개요 &amp; 무설치 보안 안내</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">대용량 건축·토목 CAD 도면(PDF)과 고해상도 조감도, 현장 시공 사진(JPG, PNG, WebP)을 별도의 고가 소프트웨어 설치 없이 웹 브라우저에서 즉시 열람하고 정밀 마킹하는 전문 웹 유틸리티입니다. 모든 파일 검토 및 합성 작업이 사용자의 로컬 브라우저 메모리(In-Memory) 안에서만 100% 처리되므로 기업 대외비 도면과 현장 설계 데이터가 외부 서버로 절대 유출되지 않는 강력한 보안성을 보장합니다. 서로 다른 포맷의 이미지와 PDF를 드래그 앤 드롭으로 자유롭게 무손실 병합하고, 실시간 캔버스 마킹(선, 사각형, 원형, 자유선, 화이트 박스 텍스트 배지)을 적용한 뒤, 최대 50MB에 달하는 대용량 문서를 5~7MB 수준의 인쇄용 초고화질 압축 PDF로 1초 만에 최적화하여 내보낼 수 있습니다.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>주요 핵심 기능</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 멀티 포맷 무손실 병합</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">대용량 건축 CAD PDF, 고해상도 조감도(JPG), 투명 배경 도면(PNG), WebP 등 다양한 포맷의 파일들을 드래그 앤 드롭으로 즉시 로드하여 순서 변경 및 단일 문서로 결합합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 고정밀 캔버스 마킹 & 텍스트 배지</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">선, 직사각형, 원형, 자유곡선(Pen) 마킹과 더불어 복잡한 도면 선 위에서도 시인성이 탁월한 95% 불투명 화이트 배경 및 컬러 테두리 텍스트 메모 배지를 지원합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 실시간 초고속 Zoom & Pan 탐색</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">대용량 A0/A1 대형 규격 도면도 렉이나 끊김 없이 부드럽게 실시간 확대/축소(마우스 휠) 및 화면 이동(Space+드래그)을 지원하여 미세한 치수선까지 정밀하게 검토합니다.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 페이지 재배열 & 초고화질 압축 PDF 내보내기</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">썸네일 사이드바를 통해 페이지 순서를 자유롭게 이동하거나 불필요한 장을 선택 삭제할 수 있으며, 마킹 벡터를 완벽 보존한 인쇄용 초고화질 최적화 PDF를 즉시 생성합니다.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>단계별 사용 가이드 (Step-by-Step)</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">파일 업로드 및 도면 병합:</strong> '+ 파일 열기 / 추가' 버튼을 누르거나 캔버스 중앙으로 검토할 대용량 PDF 도면, JPG, PNG 파일들을 드래그 앤 드롭합니다. 여러 개의 서로 다른 파일도 순서대로 한 번에 불러와 병합할 수 있습니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">도면 정밀 검토 및 마킹 도구 활용:</strong> 상단 툴바에서 사각형(M), 원형(C), 자유곡선(S), 텍스트(T) 도구를 선택하고 원하는 색상(🔴, 🔵, 🟡, ⚫)과 선 굵기를 지정하여 검토 의견을 기록합니다. 화이트 배경 텍스트 배지를 활용하여 복잡한 도면 위에서도 가독성을 극대화합니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">페이지 순서 정리 및 선택 삭제:</strong> 좌측 썸네일 사이드바에서 페이지별 위/아래 이동 버튼(▲/▼)으로 보고서 출력 순서를 정리하고, 불필요한 페이지는 삭제(🗑️)합니다. 페이지를 정리해도 기존에 작업한 마킹 데이터는 안전하게 보존됩니다.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">단일 통합 고화질 최적화 PDF 내보내기:</strong> 우측 상단의 '고화질 PDF 내보내기' 버튼을 클릭하면, 수십 MB에 달하는 원본 도면과 마킹 레이어를 합성하여 인쇄용 고해상도를 유지한 채 5~7MB의 초경량 압축 규격 PDF로 1초 만에 즉시 다운로드합니다.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">전문가 실무 팁 (Tip)</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">도면 검토 전문가 실무 팁: 복잡한 배선이나 배관이 얽힌 CAD 도면 위에서는 일반 텍스트 대신 '1.5px 컬러 테두리가 포함된 화이트 배경 텍스트 배지'를 활용하면 인쇄 시에도 글자가 묻히지 않고 명확하게 도드라집니다. 또한 본 도구는 서버 업로드 없이 브라우저 단독 연산으로 작동하므로 기업 내부 보안망이나 오프라인 환경에서도 사내 보안 규정 위반 걱정 없이 안전하게 검토 업무를 수행할 수 있습니다.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
+        },
+        "guideBtn": "가이드",
+        "guideBtnTitle": "PDF & 도면 검토 활용 가이드 열기",
+        "guideDrawerTitle": "PDF & 도면 마킹 툴 완벽 활용 가이드"
       }
     },
-    hero: {
-      title: "일상을 더 스마트하게",
-      titlePrefix: "일상을 더",
-      titleHighlight: "스마트하게",
-      subtitle: "검증된 안드로이드 앱과 유용한 도구로 당신의 하루를 업그레이드하세요.",
-      searchPlaceholder: "앱 또는 도구 이름 검색...",
-      totalApps: "개의 앱",
-      resultsFound: "개 검색됨",
+    "hero": {
+      "title": "일상을 더 스마트하게",
+      "titlePrefix": "일상을 더",
+      "titleHighlight": "스마트하게",
+      "subtitle": "검증된 안드로이드 앱과 유용한 도구로 당신의 하루를 업그레이드하세요.",
+      "searchPlaceholder": "앱 또는 도구 이름 검색...",
+      "totalApps": "개의 앱",
+      "resultsFound": "개 검색됨"
     },
-    proof: {
-      apps: "4종의 스마트폰 앱",
-      free: "100% 무료 & 안전한 도구",
-      update: "주기적인 신규 앱 업데이트"
+    "proof": {
+      "apps": "10+ 유용한 스마트폰 앱",
+      "free": "100% 무료 & 안전한 도구",
+      "update": "주기적인 신규 앱 업데이트",
+      "guide": "📖 앱 가이드"
     },
-    categories: { all: "전체", work: "도구/업무", tools: "도구/업무", utility: "유틸리티", daily: "일상/일정", games: "게임", game: "게임" },
-    card: { detailBtn: "상세보기 & 다운로드", freeTag: "무료", newTag: "신규", featuredTag: "추천", comingSoonBadge: "준비중", comingSoonBtn: "출시 예정" },
-    modal: {
-      close: "닫기", downloadBtn: "Google Play에서 다운로드",
-      features: "주요 기능", guide: "사용 가이드 & 꿀팁", versionInfo: "버전 정보",
-      version: "버전", updated: "최종 업데이트", size: "앱 크기",
-      requires: "최소 요구 사양", developer: "개발사", screenshots: "스크린샷", noScreenshots: "스크린샷 준비 중입니다.",
+    "categories": {
+      "all": "전체",
+      "work": "도구/업무",
+      "tools": "도구/업무",
+      "utility": "유틸리티",
+      "daily": "일상/일정",
+      "games": "게임",
+      "game": "게임"
     },
-    ad: { label: "광고" },
-    appGuideText: "📖 앱 가이드",
-    badge: {
-      guide: "📖 앱 가이드 →",
+    "card": {
+      "detailBtn": "상세보기 & 다운로드",
+      "freeTag": "무료",
+      "newTag": "신규",
+      "featuredTag": "추천",
+      "comingSoonBadge": "준비중",
+      "comingSoonBtn": "출시 예정"
     },
-    guide: {
-      mainTitle: "앱 사용 가이드",
-      mainSubtitle: "일상의도움에서 제공하는 앱별 핵심 기능과 상세 활용 팁을 확인해보세요.",
-      tabComingSoon: "준비 중",
-      comingSoonNotice: "현재 구글 플레이 출시 준비 중입니다. 정식 출시 후 상세 가이드가 업데이트됩니다.",
-      timekeeper: {
-        title: "TimeKeeper (타임키퍼) - 나만의 스마트 루틴 & 습관 관리",
-        appName: "TimeKeeper (타임키퍼) - 나만의 스마트 루틴 & 습관 관리",
-        overview: "TimeKeeper는 본인만의 맞춤형 루틴을 등록하고 원하는 시간과 주기에 맞춰 정확한 알림을 받아볼 수 있는 안드로이드 시간·습관 관리 도구입니다. 복잡한 가입 없이 오프라인에서도 완벽하게 동작하며, 하루의 달성률을 한눈에 시각화해 줍니다.",
-        featuresTitle: "핵심 기능",
-        features: [
-          { title: "맞춤형 루틴 및 정밀 주기 설정", desc: "매일, 평일, 주말 또는 월~일 특정 요일을 자유롭게 선택하여 AM/PM 원하는 시각에 루틴 알림을 세팅할 수 있습니다." },
-          { title: "직관적인 아이콘 & 루틴 관리", desc: "약 먹기, 물 마시기, 산책, 독서, 명상 등 다양한 감성 이모지 아이콘으로 루틴을 직관적으로 분류하고 생성합니다." },
-          { title: "연속 달성 스트릭(Streak) & 대시보드", desc: "당일 달성률(%) 프로그레스 바와 함께 '연속 달성 스트릭(불꽃 카운트)'을 제공하여 매일 습관을 이어가는 동기를 부여합니다." },
-          { title: "인앱 타이머 & 스톱워치 탑재", desc: "루틴 카드마다 스톱워치 기능이 연동되어 있어 독서, 운동 등 집중 시간이 필요한 루틴을 실시간으로 측정할 수 있습니다." },
-          { title: "라이프스타일 맞춤 리셋 시각 설정", desc: "기본 새벽 04:00 등 하루가 리셋되는 기준 시각을 사용자가 직접 변경할 수 있어 밤샘 작업자나 교대근무자도 끊김 없이 관리할 수 있습니다." },
-          { title: "철저한 개인정보 보호 및 데이터 관리", desc: "외부 서버로 데이터를 전송하지 않고 기기 내 로컬(Local)에만 안전하게 저장되며, JSON 백업 및 복원을 간편하게 지원합니다." },
-          { title: "다크 모드 & 다국어 완벽 지원", desc: "눈이 편안한 다크 모드/라이트 모드 테마와 한국어/영어 인터페이스를 기본 제공합니다." }
+    "modal": {
+      "close": "닫기",
+      "downloadBtn": "Google Play에서 다운로드",
+      "features": "주요 기능",
+      "guide": "사용 가이드 & 꿀팁",
+      "versionInfo": "버전 정보",
+      "version": "버전",
+      "updated": "최종 업데이트",
+      "size": "앱 크기",
+      "requires": "최소 요구 사양",
+      "developer": "개발사",
+      "screenshots": "스크린샷",
+      "noScreenshots": "스크린샷 준비 중입니다."
+    },
+    "ad": {
+      "label": "광고"
+    },
+    "appGuideText": "📖 앱 가이드",
+    "badge": {
+      "guide": "📖 앱 가이드 →"
+    },
+    "guide": {
+      "mainTitle": "앱 사용 가이드",
+      "mainSubtitle": "일상의도움에서 제공하는 앱별 핵심 기능과 상세 활용 팁을 확인해보세요.",
+      "tabComingSoon": "준비 중",
+      "comingSoonNotice": "현재 구글 플레이 출시 준비 중입니다. 정식 출시 후 상세 가이드가 업데이트됩니다.",
+      "timekeeper": {
+        "title": "TimeKeeper (타임키퍼) - 스마트 데일리 루틴 & 습관 타이머",
+        "appName": "TimeKeeper",
+        "subtitle": "일상 생활과 시간 관리를 위한 스마트하고 직관적인 습관 및 일정 관리 도구",
+        "overview": "TimeKeeper는 일상 속 목표와 반복 루틴을 체계적으로 등록하고 정밀한 알림과 인앱 타이머를 통해 하루의 생산성을 극대화하는 온디바이스 습관 관리 도구입니다. 회원가입이나 복잡한 계정 연동 없이 100% 오프라인에서도 완벽하게 동작하며, 모든 루틴 및 시간 측정 기록은 외부 서버로 전송되지 않고 사용자의 기기 내 로컬(Local)에만 안전하게 보관됩니다. 당일 달성률(%) 프로그레스 바와 연속 달성 스트릭(Streak) 불꽃 뱃지를 통해 매일 작은 성취감을 느끼며 장기적인 습관을 자연스럽게 완성할 수 있습니다.",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "맞춤형 루틴 및 정밀 주기 설정",
+            "desc": "매일, 평일, 주말, 또는 특정 요일(월~일)을 원하는 AM/PM 시각에 맞추어 자유롭게 세팅하고 지능형 푸시 알림을 수신합니다."
+          },
+          {
+            "title": "감성 이모지 아이콘 & 카테고리화",
+            "desc": "약 복용, 수분 섭취, 조깅, 독서, 명상, 공부 등 직관적인 이모지 아이콘으로 루틴을 한눈에 식별하고 손쉽게 관리합니다."
+          },
+          {
+            "title": "연속 달성 스트릭(Streak) & 통계",
+            "desc": "당일 실천율(%) 프로그레스 바와 함께 연속 달성 일수를 기록하는 불꽃 스트릭 카운터로 동기부여를 극대화합니다."
+          },
+          {
+            "title": "인앱 집중 타이머 & 스톱워치 연동",
+            "desc": "루틴 카드마다 스톱워치 기능이 탑재되어 있어 독서나 운동 등 집중 시간이 필요한 활동을 앱 내에서 실시간 계측합니다."
+          }
         ],
-        quickGuideTitle: "간단 사용 가이드",
-        quickGuide: [
-          "메인 화면의 `+ 루틴 추가` 버튼을 누릅니다.",
-          "이모지 아이콘을 고르고 루틴 이름(예: 아침 약 먹기)을 입력합니다.",
-          "알림을 받을 시각(AM/PM)과 반복 주기(매일/특정 요일)를 선택한 후 `저장`을 누릅니다.",
-          "알림 시간에 맞춰 활동을 진행하고, 스톱워치가 필요하다면 시계 아이콘을 눌러 집중 시간을 측정합니다.",
-          "실천 완료 후 `Check`를 누르면 상단 대시보드의 달성률(%)과 연속 달성 스트릭이 갱신됩니다."
+        "quickGuideTitle": "단계별 상세 가이드",
+        "quickGuide": [
+          "STEP 1. 신규 루틴 등록: 메인 화면 하단의 '+ 루틴 추가' 버튼을 눌러 목표 활동 타이틀(예: 아침 영양제 챙겨먹기)을 입력합니다.",
+          "STEP 2. 이모지 아이콘 및 알림 시간 설정: 루틴을 대표할 이모지 아이콘을 고르고 알림을 받을 시각(AM/PM)과 반복 주기(매일/평일/주말/선택 요일)를 지정한 후 '저장'을 누릅니다.",
+          "STEP 3. 스톱워치 연동 집중 시간 측정: 독서나 공부 등 시간 측정이 필요한 루틴은 카드 내 스톱워치 아이콘을 눌러 집중 몰입 시간을 측정합니다.",
+          "STEP 4. 실천 완료 체크 및 달성률 갱신: 목표를 완수한 후 'Check' 버튼을 누르면 상단 대시보드의 당일 달성률(%)과 연속 달성 스트릭(불꽃 카운트)이 즉시 갱신됩니다.",
+          "STEP 5. 로컬 백업 및 라이프스타일 리셋 시각 설정: 새벽 04:00 등 하루가 리셋되는 기준 시각을 본인의 생활 패턴에 맞게 설정하고, 데이터는 원클릭 JSON 백업으로 안전하게 보관합니다."
         ],
-        openDetailBtn: "TimeKeeper 앱 상세 정보",
-        body: `<div class="guide-lead-box p-4 rounded-xl mb-6 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60"><h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2" style="margin-top:0;">앱 개요</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-0">TimeKeeper는 본인만의 맞춤형 루틴을 등록하고 원하는 시간과 주기에 맞춰 정확한 알림을 받아볼 수 있는 안드로이드 시간·습관 관리 도구입니다. 복잡한 가입 없이 오프라인에서도 완벽하게 동작하며, 하루의 달성률을 한눈에 시각화해 줍니다.</p></div><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>핵심 기능</h3><ul class="guide-feature-list space-y-3 mb-8"><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">1. 맞춤형 루틴 및 정밀 주기 설정:</strong><span class="text-slate-600 dark:text-slate-300">매일, 평일, 주말 또는 월~일 특정 요일을 자유롭게 선택하여 AM/PM 원하는 시각에 루틴 알림을 세팅할 수 있습니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">2. 직관적인 아이콘 &amp; 루틴 관리:</strong><span class="text-slate-600 dark:text-slate-300">약 먹기, 물 마시기, 산책, 독서, 명상 등 다양한 감성 이모지 아이콘으로 루틴을 직관적으로 분류하고 생성합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">3. 연속 달성 스트릭(Streak) &amp; 대시보드:</strong><span class="text-slate-600 dark:text-slate-300">당일 달성률(%) 프로그레스 바와 함께 '연속 달성 스트릭(불꽃 카운트)'을 제공하여 매일 습관을 이어가는 동기를 부여합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">4. 인앱 타이머 &amp; 스톱워치 탑재:</strong><span class="text-slate-600 dark:text-slate-300">루틴 카드마다 스톱워치 기능이 연동되어 있어 독서, 운동 등 집중 시간이 필요한 루틴을 실시간으로 측정할 수 있습니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">5. 라이프스타일 맞춤 리셋 시각 설정:</strong><span class="text-slate-600 dark:text-slate-300">기본 새벽 04:00 등 하루가 리셋되는 기준 시각을 사용자가 직접 변경할 수 있어 밤샘 작업자나 교대근무자도 끊김 없이 관리할 수 있습니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">6. 철저한 개인정보 보호 및 데이터 관리:</strong><span class="text-slate-600 dark:text-slate-300">외부 서버로 데이터를 전송하지 않고 기기 내 로컬(Local)에만 안전하게 저장되며, JSON 백업 및 복원을 간편하게 지원합니다.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">7. 다크 모드 &amp; 다국어 완벽 지원:</strong><span class="text-slate-600 dark:text-slate-300">눈이 편안한 다크 모드/라이트 모드 테마와 한국어/영어 인터페이스를 기본 제공합니다.</span></li></ul><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>간단 사용 가이드</h3><ol class="guide-steps-list space-y-3 mb-8"><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span class="text-slate-700 dark:text-slate-200">메인 화면의 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">+ 루틴 추가</code> 버튼을 누릅니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span class="text-slate-700 dark:text-slate-200">이모지 아이콘을 고르고 루틴 이름(예: 아침 약 먹기)을 입력합니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span class="text-slate-700 dark:text-slate-200">알림을 받을 시각(AM/PM)과 반복 주기(매일/특정 요일)를 선택한 후 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">저장</code>을 누릅니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span><span class="text-slate-700 dark:text-slate-200">알림 시간에 맞춰 활동을 진행하고, 스톱워치가 필요하다면 시계 아이콘을 눌러 집중 시간을 측정합니다.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span><span class="text-slate-700 dark:text-slate-200">실천 완료 후 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Check</code>를 누르면 상단 대시보드의 달성률(%)과 연속 달성 스트릭이 갱신됩니다.</span></li></ol>`
+        "tipTitle": "전문가 실무 팁 (Tip)",
+        "tipContent": "TimeKeeper 200% 활용 팁: 매일 아침 기상 직후 1~2개의 아주 작은 습관(물 1잔 마시기, 가벼운 스트레칭)부터 시작해 보세요. 연속 달성 스트릭(불꽃)이 쌓일수록 습관 유지율이 급격히 향상됩니다. 또한 밤샘 작업자나 교대근무자는 설정에서 '일간 리셋 시각'을 오전 06:00 등으로 늦추면 날짜가 바뀌어도 스트릭이 끊기지 않고 연속 관리할 수 있습니다.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        ⏱️\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">TimeKeeper</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            v1.0.0 정식 지원\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          일상 생활과 시간 관리를 위한 스마트하고 직관적인 습관 및 일정 관리 도구\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.timekeeper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">▶</span>\n      <span>구글 플레이에서 다운로드</span>\n    </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>⏱️</span>\n    <span>개요 및 핵심 가치 (Overview)</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    TimeKeeper는 일상 속 목표와 반복 루틴을 체계적으로 등록하고 정밀한 알림과 인앱 타이머를 통해 하루의 생산성을 극대화하는 온디바이스 습관 관리 도구입니다. 회원가입이나 복잡한 계정 연동 없이 100% 오프라인에서도 완벽하게 동작하며, 모든 루틴 및 시간 측정 기록은 외부 서버로 전송되지 않고 사용자의 기기 내 로컬(Local)에만 안전하게 보관됩니다. 당일 달성률(%) 프로그레스 바와 연속 달성 스트릭(Streak) 불꽃 뱃지를 통해 매일 작은 성취감을 느끼며 장기적인 습관을 자연스럽게 완성할 수 있습니다.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">맞춤형 루틴 및 정밀 주기 설정</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">매일, 평일, 주말, 또는 특정 요일(월~일)을 원하는 AM/PM 시각에 맞추어 자유롭게 세팅하고 지능형 푸시 알림을 수신합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">감성 이모지 아이콘 & 카테고리화</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">약 복용, 수분 섭취, 조깅, 독서, 명상, 공부 등 직관적인 이모지 아이콘으로 루틴을 한눈에 식별하고 손쉽게 관리합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">연속 달성 스트릭(Streak) & 통계</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">당일 실천율(%) 프로그레스 바와 함께 연속 달성 일수를 기록하는 불꽃 스트릭 카운터로 동기부여를 극대화합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">인앱 집중 타이머 & 스톱워치 연동</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">루틴 카드마다 스톱워치 기능이 탑재되어 있어 독서나 운동 등 집중 시간이 필요한 활동을 앱 내에서 실시간 계측합니다.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>단계별 상세 가이드 (Step-by-Step)</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">신규 루틴 등록:</strong>\n        메인 화면 하단의 '+ 루틴 추가' 버튼을 눌러 목표 활동 타이틀(예: 아침 영양제 챙겨먹기)을 입력합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">이모지 아이콘 및 알림 시간 설정:</strong>\n        루틴을 대표할 이모지 아이콘을 고르고 알림을 받을 시각(AM/PM)과 반복 주기(매일/평일/주말/선택 요일)를 지정한 후 '저장'을 누릅니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">스톱워치 연동 집중 시간 측정:</strong>\n        독서나 공부 등 시간 측정이 필요한 루틴은 카드 내 스톱워치 아이콘을 눌러 집중 몰입 시간을 측정합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">실천 완료 체크 및 달성률 갱신:</strong>\n        목표를 완수한 후 'Check' 버튼을 누르면 상단 대시보드의 당일 달성률(%)과 연속 달성 스트릭(불꽃 카운트)이 즉시 갱신됩니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 5\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">로컬 백업 및 라이프스타일 리셋 시각 설정:</strong>\n        새벽 04:00 등 하루가 리셋되는 기준 시각을 본인의 생활 패턴에 맞게 설정하고, 데이터는 원클릭 JSON 백업으로 안전하게 보관합니다.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        전문가 팁 &amp; 실무 노하우 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"TimeKeeper 200% 활용 팁: 매일 아침 기상 직후 1~2개의 아주 작은 습관(물 1잔 마시기, 가벼운 스트레칭)부터 시작해 보세요. 연속 달성 스트릭(불꽃)이 쌓일수록 습관 유지율이 급격히 향상됩니다. 또한 밤샘 작업자나 교대근무자는 설정에서 '일간 리셋 시각'을 오전 06:00 등으로 늦추면 날짜가 바뀌어도 스트릭이 끊기지 않고 연속 관리할 수 있습니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.timekeeper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">▶</span>\n      <span>구글 플레이에서 다운로드</span>\n    </a>\n</div>"
       },
-      daycount: {
-        title: "DayCount",
-        appName: "DayCount",
-        subtitle: "소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터",
-        overview: "소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터",
-        featuresTitle: "주요 핵심 기능",
-        features: [
-          { title: "직관적인 카드 뷰", desc: "시험, 생일, 기념일 등 다가오는 일정을 깔끔한 카드 형태로 한눈에 확인" },
-          { title: "맞춤 카테고리 분류", desc: "시험 / 기념일 / 생일 / 여행 등 목적별로 자유롭게 그룹화하여 체계적 관리" },
-          { title: "스마트 정렬 & 로컬 보안", desc: "남은 날짜순 및 생성순 정렬 지원, 외부 유출 없이 기기 내 안전한 데이터 보관" }
+      "daycount": {
+        "title": "DayCount",
+        "appName": "DayCount",
+        "subtitle": "소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터",
+        "overview": "소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "직관적인 카드 뷰",
+            "desc": "시험, 생일, 기념일 등 다가오는 일정을 깔끔한 카드 형태로 한눈에 확인"
+          },
+          {
+            "title": "맞춤 카테고리 분류",
+            "desc": "시험 / 기념일 / 생일 / 여행 등 목적별로 자유롭게 그룹화하여 체계적 관리"
+          },
+          {
+            "title": "스마트 정렬 & 로컬 보안",
+            "desc": "남은 날짜순 및 생성순 정렬 지원, 외부 유출 없이 기기 내 안전한 데이터 보관"
+          }
         ],
-        quickGuideTitle: "3단계 간편 사용법",
-        quickGuide: [
+        "quickGuideTitle": "3단계 간편 사용법",
+        "quickGuide": [
           "STEP 1. 일정 등록: 우측 하단 '+' 버튼을 눌러 목표일과 타이틀을 입력합니다.",
           "STEP 2. 카테고리 지정: 목적에 맞는 카테고리 태그를 선택하여 목록을 정리합니다.",
           "STEP 3. D-Day 확인 & 관리: 남은 날짜순으로 자동 정렬된 카드를 통해 디데이를 편리하게 확인합니다."
         ],
-        tipTitle: "활용 팁",
-        tipContent: "시험일이나 기념일이 여러 개일 때는 '가까운 일정순' 정렬을 활용해 보세요. 놓치기 쉬운 주요 일정을 우선순위로 빠르게 파악할 수 있습니다.",
-        openDetailBtn: "DayCount 상세정보",
-        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-    <div class="flex items-start md:items-center gap-4">
-      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-orange-500/25 shrink-0 border border-white/20">
-        📅
-      </div>
-      <div>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">DayCount</h2>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
-            v1.0.3 정식 지원
-          </span>
-        </div>
-        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
-          소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.424V3.238c0-.555.228-1.056.609-1.424zM15.207 13.414l2.76-2.76-13.358-7.712 10.598 10.472zm2.76-4.068l2.973 1.716c.866.5.866 1.317 0 1.818l-2.973 1.716-2.227-2.227 2.227-3.023zm-2.76 5.482L4.609 25.302l13.358-7.712-2.76-2.76z" transform="scale(0.85) translate(2, 2)"/></svg>
-        <span>구글 플레이에서 다운로드</span>
-      </a>
-      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
-        <span>← 홈으로</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>주요 핵심 기능</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
-        📌
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">직관적인 카드 뷰</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        시험, 생일, 기념일 등 다가오는 일정을 깔끔한 카드 형태로 한눈에 확인
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
-        🏷️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">맞춤 카테고리 분류</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        시험 / 기념일 / 생일 / 여행 등 목적별로 자유롭게 그룹화하여 체계적 관리
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
-        ⏱️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">스마트 정렬 &amp; 로컬 보안</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        남은 날짜순 및 생성순 정렬 지원, 외부 유출 없이 기기 내 안전한 데이터 보관
-      </p>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>3단계 간편 사용법</span>
-</h3>
-<ol class="guide-steps-list space-y-3.5 mb-8">
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 1
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">일정 등록:</strong>
-      우측 하단 <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-orange-600 dark:text-orange-400 font-mono text-xs font-bold">+</code> 버튼을 눌러 목표일과 타이틀을 입력합니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 2
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">카테고리 지정:</strong>
-      목적에 맞는 카테고리 태그를 선택하여 목록을 정리합니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 3
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">D-Day 확인 &amp; 관리:</strong>
-      남은 날짜순으로 자동 정렬된 카드를 통해 디데이를 편리하게 확인합니다.
-    </div>
-  </li>
-</ol>
-
-<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
-  <div class="flex items-start gap-3">
-    <span class="text-2xl shrink-0 mt-0.5">💡</span>
-    <div>
-      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
-        활용 팁 (Tip)
-      </h4>
-      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
-        "시험일이나 기념일이 여러 개일 때는 <strong>'가까운 일정순'</strong> 정렬을 활용해 보세요. 놓치기 쉬운 주요 일정을 우선순위로 빠르게 파악할 수 있습니다."
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
-  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
-    ← 홈으로
-  </button>
-  <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>구글 플레이에서 다운로드</span> ↗
-  </a>
-  <button type="button" onclick="openModal('daycount')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
-    📅 <span>DayCount 상세정보</span>
-  </button>
-</div>`
+        "tipTitle": "활용 팁",
+        "tipContent": "시험일이나 기념일이 여러 개일 때는 '가까운 일정순' 정렬을 활용해 보세요. 놓치기 쉬운 주요 일정을 우선순위로 빠르게 파악할 수 있습니다.",
+        "openDetailBtn": "DayCount 상세정보",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-orange-500/25 shrink-0 border border-white/20\">\n        📅\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">DayCount</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60\">\n            v1.0.3 정식 지원\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          소중한 기념일과 목표를 직관적으로 관리하는 스마트 D-Day 카운터\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.daycount\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200\">\n        <svg class=\"w-4 h-4 fill-current\" viewBox=\"0 0 24 24\"><path d=\"M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.424V3.238c0-.555.228-1.056.609-1.424zM15.207 13.414l2.76-2.76-13.358-7.712 10.598 10.472zm2.76-4.068l2.973 1.716c.866.5.866 1.317 0 1.818l-2.973 1.716-2.227-2.227 2.227-3.023zm-2.76 5.482L4.609 25.302l13.358-7.712-2.76-2.76z\" transform=\"scale(0.85) translate(2, 2)\"/></svg>\n        <span>구글 플레이에서 다운로드</span>\n      </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4 mb-8\">\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3\">\n        📌\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">직관적인 카드 뷰</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        시험, 생일, 기념일 등 다가오는 일정을 깔끔한 카드 형태로 한눈에 확인\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3\">\n        🏷️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">맞춤 카테고리 분류</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        시험 / 기념일 / 생일 / 여행 등 목적별로 자유롭게 그룹화하여 체계적 관리\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3\">\n        ⏱️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">스마트 정렬 &amp; 로컬 보안</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        남은 날짜순 및 생성순 정렬 지원, 외부 유출 없이 기기 내 안전한 데이터 보관\n      </p>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>3단계 간편 사용법</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 1\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">일정 등록:</strong>\n      우측 하단 <code class=\"px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-orange-600 dark:text-orange-400 font-mono text-xs font-bold\">+</code> 버튼을 눌러 목표일과 타이틀을 입력합니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 2\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">카테고리 지정:</strong>\n      목적에 맞는 카테고리 태그를 선택하여 목록을 정리합니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 3\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">D-Day 확인 &amp; 관리:</strong>\n      남은 날짜순으로 자동 정렬된 카드를 통해 디데이를 편리하게 확인합니다.\n    </div>\n  </li>\n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1\">\n        활용 팁 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"시험일이나 기념일이 여러 개일 때는 <strong>'가까운 일정순'</strong> 정렬을 활용해 보세요. 놓치기 쉬운 주요 일정을 우선순위로 빠르게 파악할 수 있습니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.daycount\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"detail-btn\" style=\"max-width:260px; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;\">\n    <span>구글 플레이에서 다운로드</span> ↗\n  </a>\n  <button type=\"button\" onclick=\"openModal('daycount')\" class=\"detail-btn\" style=\"max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;\">\n    📅 <span>DayCount 상세정보</span>\n  </button>\n</div>"
       },
-      bookspot: {
-        title: "BookSpot (책 쏙쏙)",
-        appName: "BookSpot (책 쏙쏙)",
-        subtitle: "말하듯 쉽게 등록하고 한눈에 찾는 우리 집 스마트 서재 관리 도구",
-        overview: "우리 집 책장 구역별 도서 보관부터 음성 인식 초고속 등록까지, 스마트한 온디바이스 도서 정리 도구",
-        featuresTitle: "주요 핵심 기능",
-        features: [
-          { title: "구역별 맞춤 보관함", desc: "거실 책장, 아이 방, 서재 등 구역을 자유롭게 생성하고 책 권수 한눈에 확인" },
-          { title: "음성 인식 & 초고속 입력", desc: "마이크를 켜고 책 제목을 말하기만 하면 타이핑 없이 즉시 리스트업" },
-          { title: "초성/키워드 고속 검색", desc: "\"ㄱㅅ\"만 쳐도 관련 도서와 보관된 책장 단수를 1초 만에 확인" }
+      "bookspot": {
+        "title": "BookSpot (책 쏙쏙)",
+        "appName": "BookSpot (책 쏙쏙)",
+        "subtitle": "말하듯 쉽게 등록하고 한눈에 찾는 우리 집 스마트 서재 관리 도구",
+        "overview": "우리 집 책장 구역별 도서 보관부터 음성 인식 초고속 등록까지, 스마트한 온디바이스 도서 정리 도구",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "구역별 맞춤 보관함",
+            "desc": "거실 책장, 아이 방, 서재 등 구역을 자유롭게 생성하고 책 권수 한눈에 확인"
+          },
+          {
+            "title": "음성 인식 & 초고속 입력",
+            "desc": "마이크를 켜고 책 제목을 말하기만 하면 타이핑 없이 즉시 리스트업"
+          },
+          {
+            "title": "초성/키워드 고속 검색",
+            "desc": "\"ㄱㅅ\"만 쳐도 관련 도서와 보관된 책장 단수를 1초 만에 확인"
+          }
         ],
-        quickGuideTitle: "3단계 간편 사용법",
-        quickGuide: [
+        "quickGuideTitle": "3단계 간편 사용법",
+        "quickGuide": [
           "STEP 1. 보관 구역 추가: '+' 버튼으로 도서를 보관할 책장이나 서랍 구역을 생성합니다.",
           "STEP 2. 음성으로 책 등록: 등록할 구역을 선택하고 마이크 음성이나 키보드로 책 제목을 빠르게 추가합니다.",
           "STEP 3. 위치 검색 & 완독 관리: 찾고 싶은 책을 제목이나 초성으로 검색해 어느 책장에 꽂혀 있는지 즉시 확인합니다."
         ],
-        tipTitle: "활용 팁",
-        tipContent: "도서 정리 시 '거실 책장 1단', '2단'처럼 층별로 구역명을 세분화해 두면 나중에 책을 꺼낼 때 헤매지 않고 바로 찾을 수 있습니다.",
-        openDetailBtn: "BookSpot 상세정보",
-        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-teal-500/10 via-emerald-500/10 to-green-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-green-950/30 border border-teal-200/80 dark:border-teal-700/50 shadow-sm">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-    <div class="flex items-start md:items-center gap-4">
-      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-teal-600 via-emerald-500 to-green-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-teal-500/25 shrink-0 border border-white/20">
-        📚
-      </div>
-      <div>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">BookSpot (책 쏙쏙)</h2>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 border border-teal-200 dark:border-teal-700/60">
-            v1.0.0 온디바이스 지원
-          </span>
-        </div>
-        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
-          말하듯 쉽게 등록하고 한눈에 찾는 우리 집 스마트 서재 관리 도구
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <span class="text-base">▶</span>
-        <span>구글 플레이에서 다운로드</span>
-      </a>
-      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
-        <span>← 홈으로</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
-  <span>주요 핵심 기능</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-3">
-        🗄️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">구역별 맞춤 보관함</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        거실 책장, 아이 방, 서재 등 구역을 자유롭게 생성하고 책 권수 한눈에 확인
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-3">
-        🎙️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">음성 인식 &amp; 초고속 입력</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        마이크를 켜고 책 제목을 말하기만 하면 타이핑 없이 즉시 리스트업
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-950/80 text-green-600 dark:text-green-400 flex items-center justify-center text-xl mb-3">
-        🔍
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">초성/키워드 고속 검색</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        "ㄱㅅ"만 쳐도 관련 도서와 보관된 책장 단수를 1초 만에 확인
-      </p>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
-  <span>3단계 간편 사용법</span>
-</h3>
-<ol class="guide-steps-list space-y-3.5 mb-8">
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 1
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">보관 구역 추가:</strong>
-      <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-teal-600 dark:text-teal-400 font-mono text-xs font-bold">+</code> 버튼으로 도서를 보관할 책장이나 서랍 구역을 생성합니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 2
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">음성으로 책 등록:</strong>
-      등록할 구역을 선택하고 마이크 음성이나 키보드로 책 제목을 빠르게 추가합니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 3
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">위치 검색 &amp; 완독 관리:</strong>
-      찾고 싶은 책을 제목이나 초성으로 검색해 어느 책장에 꽂혀 있는지 즉시 확인합니다.
-    </div>
-  </li>
-</ol>
-
-<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/20 border-l-4 border-teal-500 border-t border-r border-b border-teal-200/80 dark:border-teal-700/50 shadow-sm mb-8">
-  <div class="flex items-start gap-3">
-    <span class="text-2xl shrink-0 mt-0.5">💡</span>
-    <div>
-      <h4 class="text-sm font-bold text-teal-900 dark:text-teal-300 uppercase tracking-wide mb-1">
-        활용 팁 (Tip)
-      </h4>
-      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
-        "도서 정리 시 <strong>'거실 책장 1단'</strong>, <strong>'2단'</strong>처럼 층별로 구역명을 세분화해 두면 나중에 책을 꺼낼 때 헤매지 않고 바로 찾을 수 있습니다."
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
-  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
-    ← 홈으로
-  </button>
-  <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>구글 플레이 다운로드</span> ↗
-  </a>
-  <button type="button" onclick="openModal('bookspot')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
-    📚 <span>BookSpot 상세정보</span>
-  </button>
-</div>`
+        "tipTitle": "활용 팁",
+        "tipContent": "도서 정리 시 '거실 책장 1단', '2단'처럼 층별로 구역명을 세분화해 두면 나중에 책을 꺼낼 때 헤매지 않고 바로 찾을 수 있습니다.",
+        "openDetailBtn": "BookSpot 상세정보",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-teal-500/10 via-emerald-500/10 to-green-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-green-950/30 border border-teal-200/80 dark:border-teal-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-teal-600 via-emerald-500 to-green-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-teal-500/25 shrink-0 border border-white/20\">\n        📚\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">BookSpot (책 쏙쏙)</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 border border-teal-200 dark:border-teal-700/60\">\n            v1.0.0 온디바이스 지원\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          말하듯 쉽게 등록하고 한눈에 찾는 우리 집 스마트 서재 관리 도구\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.bookspot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200\">\n        <span class=\"text-base\">▶</span>\n        <span>구글 플레이에서 다운로드</span>\n      </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4 mb-8\">\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-3\">\n        🗄️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">구역별 맞춤 보관함</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        거실 책장, 아이 방, 서재 등 구역을 자유롭게 생성하고 책 권수 한눈에 확인\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-3\">\n        🎙️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">음성 인식 &amp; 초고속 입력</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        마이크를 켜고 책 제목을 말하기만 하면 타이핑 없이 즉시 리스트업\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-green-100 dark:bg-green-950/80 text-green-600 dark:text-green-400 flex items-center justify-center text-xl mb-3\">\n        🔍\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">초성/키워드 고속 검색</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        \"ㄱㅅ\"만 쳐도 관련 도서와 보관된 책장 단수를 1초 만에 확인\n      </p>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block\"></span>\n  <span>3단계 간편 사용법</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 1\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">보관 구역 추가:</strong>\n      <code class=\"px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-teal-600 dark:text-teal-400 font-mono text-xs font-bold\">+</code> 버튼으로 도서를 보관할 책장이나 서랍 구역을 생성합니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 2\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">음성으로 책 등록:</strong>\n      등록할 구역을 선택하고 마이크 음성이나 키보드로 책 제목을 빠르게 추가합니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 3\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">위치 검색 &amp; 완독 관리:</strong>\n      찾고 싶은 책을 제목이나 초성으로 검색해 어느 책장에 꽂혀 있는지 즉시 확인합니다.\n    </div>\n  </li>\n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/20 border-l-4 border-teal-500 border-t border-r border-b border-teal-200/80 dark:border-teal-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-teal-900 dark:text-teal-300 uppercase tracking-wide mb-1\">\n        활용 팁 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"도서 정리 시 <strong>'거실 책장 1단'</strong>, <strong>'2단'</strong>처럼 층별로 구역명을 세분화해 두면 나중에 책을 꺼낼 때 헤매지 않고 바로 찾을 수 있습니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.bookspot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"detail-btn\" style=\"max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;\">\n    <span>구글 플레이 다운로드</span> ↗\n  </a>\n  <button type=\"button\" onclick=\"openModal('bookspot')\" class=\"detail-btn\" style=\"max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;\">\n    📚 <span>BookSpot 상세정보</span>\n  </button>\n</div>"
       },
-      bakemerge: {
-        title: "Bake Merge (베이크 머지) - 달콤한 3D 베이커리 머지 퍼즐",
-        appName: "Bake Merge (베이크 머지)",
-        subtitle: "귀여운 도우를 퐁당! 병합하고 구워내는 달콤한 3D 베이커리 머지 퍼즐 게임",
-        overview: "Bake Merge는 통통 튀는 3D 물리 엔진을 기반으로 귀여운 빵 반죽들을 합쳐 나만의 자이언트 케이크를 완성하는 캐주얼 머지 퍼즐 게임입니다. 복잡한 규칙 없이 누구나 쉽게 즐길 수 있습니다.",
-        featuresTitle: "주요 핵심 기능",
-        features: [
-          { title: "리얼한 3D 물리 엔진 머지 퍼즐", desc: "살아 움직이는 듯 통통 튀는 반죽들의 역동적인 상호작용" },
-          { title: "10여 종의 베이커리 도우 도감", desc: "작은 반죽부터 거대한 자이언트 케이크까지 단계별 수집" },
-          { title: "스페셜 아이템 지원", desc: "위기 상황을 역전시키는 번개 조커 & 특수 부스터" },
-          { title: "프레스 장벽 & 피버 모드", desc: "긴장감을 높여주는 압박 프레스 라인과 짜릿한 점수 획득" },
-          { title: "심플한 원터치 조작", desc: "언제 어디서나 남녀노소 편하게 즐기는 직관적인 조작" }
+      "bakemerge": {
+        "title": "Bake Merge (베이크 머지) - 달콤한 3D 베이커리 머지 퍼즐",
+        "appName": "Bake Merge (베이크 머지)",
+        "subtitle": "귀여운 도우를 퐁당! 병합하고 구워내는 달콤한 3D 베이커리 머지 퍼즐 게임",
+        "overview": "Bake Merge는 통통 튀는 3D 물리 엔진을 기반으로 귀여운 빵 반죽들을 합쳐 나만의 자이언트 케이크를 완성하는 캐주얼 머지 퍼즐 게임입니다. 복잡한 규칙 없이 누구나 쉽게 즐길 수 있습니다.",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "리얼한 3D 물리 엔진 머지 퍼즐",
+            "desc": "살아 움직이는 듯 통통 튀는 반죽들의 역동적인 상호작용"
+          },
+          {
+            "title": "10여 종의 베이커리 도우 도감",
+            "desc": "작은 반죽부터 거대한 자이언트 케이크까지 단계별 수집"
+          },
+          {
+            "title": "스페셜 아이템 지원",
+            "desc": "위기 상황을 역전시키는 번개 조커 & 특수 부스터"
+          },
+          {
+            "title": "프레스 장벽 & 피버 모드",
+            "desc": "긴장감을 높여주는 압박 프레스 라인과 짜릿한 점수 획득"
+          },
+          {
+            "title": "심플한 원터치 조작",
+            "desc": "언제 어디서나 남녀노소 편하게 즐기는 직관적인 조작"
+          }
         ],
-        quickGuideTitle: "단계별 플레이 가이드",
-        quickGuide: [
+        "quickGuideTitle": "단계별 플레이 가이드",
+        "quickGuide": [
           "STEP 1. 도우 조준 및 드롭: 화면을 터치하고 드래그하여 원하는 위치에 도우를 조준 후 떨어뜨립니다.",
           "STEP 2. 같은 도우 병합: 같은 모양의 반죽 도우 2개가 부딪히면 다음 단계의 더 큰 빵으로 진화합니다.",
           "STEP 3. 프레스 라인 주의: 반죽들이 상단 압박 라인을 넘지 않도록 균형 있게 공간을 관리합니다.",
           "STEP 4. 부스터 활용: 공간이 부족하거나 막혔을 때는 번개 조커 등 특수 아이템을 사용해 돌파합니다.",
           "STEP 5. 자이언트 케이크 완성: 10단계 최종 도우를 완성하고 최고 점수를 달성해 보세요."
         ],
-        tipTitle: "사용 가이드 & 꿀팁",
-        tipContent: "떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 번개 조커 아이템을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다.",
-        openDetailBtn: "Bake Merge 상세정보",
-        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-    <div class="flex items-start md:items-center gap-4">
-      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-400 to-rose-400 p-1 flex items-center justify-center shadow-lg shadow-orange-500/25 shrink-0 border border-white/30 overflow-hidden">
-        <img src="images/bakemerge-icon.png" alt="Bake Merge Icon" class="w-full h-full object-cover rounded-xl" />
-      </div>
-      <div>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Bake Merge (베이크 머지)</h2>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
-            v1.0.1 신규 3D 물리 퍼즐
-          </span>
-        </div>
-        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
-          귀여운 도우를 퐁당! 병합하고 구워내는 달콤한 3D 베이커리 머지 퍼즐 게임
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <span class="text-base">▶</span>
-        <span>구글 플레이에서 다운로드</span>
-      </a>
-      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
-        <span>← 홈으로</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-rose-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-amber-200/70 dark:border-slate-700/60 shadow-sm">
-  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-    <span>🥐</span>
-    <span>앱 개요 (App Overview)</span>
-  </h3>
-  <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0">
-    Bake Merge는 통통 튀는 3D 물리 엔진을 기반으로 귀여운 빵 반죽들을 합쳐 나만의 자이언트 케이크를 완성하는 캐주얼 머지 퍼즐 게임입니다. 복잡한 규칙 없이 남녀노소 누구나 한 손으로 쉽게 즐길 수 있습니다.
-  </p>
-</div>
-
-<!-- 스크린샷 미리보기 배너 -->
-<div class="mb-8 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70">
-  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-    <span>🖼️</span>
-    <span>게임 플레이 화면 미리보기</span>
-  </h3>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-    <div class="flex flex-col items-center">
-      <div class="rounded-2xl overflow-hidden border-2 border-amber-300 dark:border-amber-600/50 shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="images/bakemerge-screenshot-ko.jpg" alt="Bake Merge 한글 화면" class="w-full h-auto max-h-[380px] object-cover" />
-      </div>
-      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">한국어 게임 메인 로비 화면</span>
-    </div>
-    <div class="flex flex-col items-center">
-      <div class="rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="images/bakemerge-screenshot-en.jpg" alt="Bake Merge 영문 화면" class="w-full h-auto max-h-[380px] object-cover" />
-      </div>
-      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">글로벌 영문 지원 로비 화면</span>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>주요 핵심 기능</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
-        🍩
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">리얼 3D 물리 엔진 머지</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        살아 움직이는 듯 통통 튀는 반죽들의 역동적인 상호작용과 기분 좋은 타격감을 선사합니다.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
-        🎂
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">10여 종 베이커리 도우 도감</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        작은 반죽부터 거대한 자이언트 케이크까지 단계별로 귀여운 도우를 수집하고 합성해 보세요.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
-        ⚡
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">스페셜 부스터 아이템</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        위기 상황을 한 방에 역전시키는 번개 조커 &amp; 특수 부스터로 막힌 쇼케이스를 시원하게 돌파합니다.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-1">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-950/80 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-3">
-        🔥
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">프레스 장벽 &amp; 피버 모드</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        긴장감을 고조시키는 천장 압박 프레스 라인과 짜릿한 점수 획득 기회를 제공합니다.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-2">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-3">
-        👆
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">심플한 원터치 조작</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        한 손으로 조준하고 손을 떼어 드롭! 언제 어디서나 남녀노소 편하게 힐링하며 즐기는 직관적인 플레이가 가능합니다.
-      </p>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>단계별 플레이 가이드 (Step-by-Step)</span>
-</h3>
-<ol class="guide-steps-list space-y-3.5 mb-8">
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 1
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">도우 조준 및 드롭:</strong>
-      화면을 터치하고 좌우로 드래그하여 원하는 위치에 도우를 조준한 후 손을 떼어 쇼케이스 안으로 떨어뜨립니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 2
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">같은 도우 병합:</strong>
-      같은 모양과 단계를 가진 반죽 도우 2개가 서로 부딪히면 퐁당 소리와 함께 다음 단계의 더 큰 빵으로 진화합니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 3
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">프레스 라인 주의:</strong>
-      반죽들이 상단 압박 프레스 라인을 넘어가 버리지 않도록 좌우 균형 있게 공간을 관리하며 드롭합니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 4
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">부스터 활용:</strong>
-      공간이 부족하거나 아쉽게 병합이 막혔을 때는 번개 조커 등 특수 부스터 아이템을 사용해 위기를 극복합니다.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 5
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">자이언트 케이크 완성:</strong>
-      10단계 최종 도우를 완성하고 환상적인 피버 타임과 함께 전 세계 최고 점수에 도전해 보세요!
-    </div>
-  </li>
-</ol>
-
-<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
-  <div class="flex items-start gap-3">
-    <span class="text-2xl shrink-0 mt-0.5">💡</span>
-    <div>
-      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
-        사용 가이드 &amp; 꿀팁 (Tip)
-      </h4>
-      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
-        "떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 <strong>번개 조커 아이템</strong>을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다."
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
-  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
-    ← 홈으로
-  </button>
-  <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #f97316); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>구글 플레이 다운로드</span> ↗
-  </a>
-  <button type="button" onclick="openModal('bakemerge')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
-    🥐 <span>Bake Merge 상세정보</span>
-  </button>
-</div>`
+        "tipTitle": "사용 가이드 & 꿀팁",
+        "tipContent": "떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 번개 조커 아이템을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다.",
+        "openDetailBtn": "Bake Merge 상세정보",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-400 to-rose-400 p-1 flex items-center justify-center shadow-lg shadow-orange-500/25 shrink-0 border border-white/30 overflow-hidden\">\n        <img src=\"images/bakemerge-icon.png\" alt=\"Bake Merge Icon\" class=\"w-full h-full object-cover rounded-xl\" />\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">Bake Merge (베이크 머지)</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60\">\n            v1.0.1 신규 3D 물리 퍼즐\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          귀여운 도우를 퐁당! 병합하고 구워내는 달콤한 3D 베이커리 머지 퍼즐 게임\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200\">\n        <span class=\"text-base\">▶</span>\n        <span>구글 플레이에서 다운로드</span>\n      </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-rose-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-amber-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>🥐</span>\n    <span>앱 개요 (App Overview)</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    Bake Merge는 통통 튀는 3D 물리 엔진을 기반으로 귀여운 빵 반죽들을 합쳐 나만의 자이언트 케이크를 완성하는 캐주얼 머지 퍼즐 게임입니다. 복잡한 규칙 없이 남녀노소 누구나 한 손으로 쉽게 즐길 수 있습니다.\n  </p>\n</div>\n\n<!-- 스크린샷 미리보기 배너 -->\n<div class=\"mb-8 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2\">\n    <span>🖼️</span>\n    <span>게임 플레이 화면 미리보기</span>\n  </h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto\">\n    <div class=\"flex flex-col items-center\">\n      <div class=\"rounded-2xl overflow-hidden border-2 border-amber-300 dark:border-amber-600/50 shadow-md hover:shadow-xl transition-all duration-300\">\n        <img src=\"images/bakemerge-screenshot-ko.jpg\" alt=\"Bake Merge 한글 화면\" class=\"w-full h-auto max-h-[380px] object-cover\" />\n      </div>\n      <span class=\"text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2\">한국어 게임 메인 로비 화면</span>\n    </div>\n    <div class=\"flex flex-col items-center\">\n      <div class=\"rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300\">\n        <img src=\"images/bakemerge-screenshot-en.jpg\" alt=\"Bake Merge 영문 화면\" class=\"w-full h-auto max-h-[380px] object-cover\" />\n      </div>\n      <span class=\"text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2\">글로벌 영문 지원 로비 화면</span>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4 mb-8\">\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3\">\n        🍩\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">리얼 3D 물리 엔진 머지</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        살아 움직이는 듯 통통 튀는 반죽들의 역동적인 상호작용과 기분 좋은 타격감을 선사합니다.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3\">\n        🎂\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">10여 종 베이커리 도우 도감</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        작은 반죽부터 거대한 자이언트 케이크까지 단계별로 귀여운 도우를 수집하고 합성해 보세요.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3\">\n        ⚡\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">스페셜 부스터 아이템</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        위기 상황을 한 방에 역전시키는 번개 조커 &amp; 특수 부스터로 막힌 쇼케이스를 시원하게 돌파합니다.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-1\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-950/80 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-3\">\n        🔥\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">프레스 장벽 &amp; 피버 모드</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        긴장감을 고조시키는 천장 압박 프레스 라인과 짜릿한 점수 획득 기회를 제공합니다.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-2\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-3\">\n        👆\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">심플한 원터치 조작</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        한 손으로 조준하고 손을 떼어 드롭! 언제 어디서나 남녀노소 편하게 힐링하며 즐기는 직관적인 플레이가 가능합니다.\n      </p>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>단계별 플레이 가이드 (Step-by-Step)</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 1\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">도우 조준 및 드롭:</strong>\n      화면을 터치하고 좌우로 드래그하여 원하는 위치에 도우를 조준한 후 손을 떼어 쇼케이스 안으로 떨어뜨립니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 2\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">같은 도우 병합:</strong>\n      같은 모양과 단계를 가진 반죽 도우 2개가 서로 부딪히면 퐁당 소리와 함께 다음 단계의 더 큰 빵으로 진화합니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 3\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">프레스 라인 주의:</strong>\n      반죽들이 상단 압박 프레스 라인을 넘어가 버리지 않도록 좌우 균형 있게 공간을 관리하며 드롭합니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 4\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">부스터 활용:</strong>\n      공간이 부족하거나 아쉽게 병합이 막혔을 때는 번개 조커 등 특수 부스터 아이템을 사용해 위기를 극복합니다.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 5\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">자이언트 케이크 완성:</strong>\n      10단계 최종 도우를 완성하고 환상적인 피버 타임과 함께 전 세계 최고 점수에 도전해 보세요!\n    </div>\n  </li>\n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1\">\n        사용 가이드 &amp; 꿀팁 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 <strong>번개 조커 아이템</strong>을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"detail-btn\" style=\"max-width:260px; background: linear-gradient(135deg, #f59e0b, #f97316); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;\">\n    <span>구글 플레이 다운로드</span> ↗\n  </a>\n  <button type=\"button\" onclick=\"openModal('bakemerge')\" class=\"detail-btn\" style=\"max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;\">\n    🥐 <span>Bake Merge 상세정보</span>\n  </button>\n</div>"
       },
-      clipflow: {
-        title: "ClipFlow (클립플로우) - 스마트 클립보드 매니저",
-        appName: "ClipFlow",
+      "clipflow": {
+        "title": "ClipFlow (클립플로우) - 스마트 클립보드 매니저",
+        "appName": "ClipFlow"
       },
-      freshcue: {
-        title: "FreshCue (프레시큐) - 냉장고 신선도 & 소비기한 관리",
-        appName: "FreshCue",
+      "freshcue": {
+        "title": "FreshCue (프레시큐) - 냉장고 신선도 & 소비기한 관리",
+        "appName": "FreshCue"
+      },
+      "pdf-checker": {
+        "title": "무설치 PDF & 도면/이미지 검토·마킹 툴 (PDF & Drawing Checker)",
+        "appName": "무설치 PDF & 도면/이미지 검토·마킹 툴",
+        "subtitle": "대용량 건축/토목 도면 및 조감도 고화질 검토, 이미지 무손실 병합 웹 도구",
+        "overview": "대용량 건축·토목 CAD 도면(PDF)과 고해상도 조감도, 현장 시공 사진(JPG, PNG, WebP)을 별도의 고가 소프트웨어 설치 없이 웹 브라우저에서 즉시 열람하고 정밀 마킹하는 전문 웹 유틸리티입니다. 모든 파일 검토 및 합성 작업이 사용자의 로컬 브라우저 메모리(In-Memory) 안에서만 100% 처리되므로 기업 대외비 도면과 현장 설계 데이터가 외부 서버로 절대 유출되지 않는 강력한 보안성을 보장합니다. 서로 다른 포맷의 이미지와 PDF를 드래그 앤 드롭으로 자유롭게 무손실 병합하고, 실시간 캔버스 마킹(선, 사각형, 원형, 자유선, 화이트 박스 텍스트 배지)을 적용한 뒤, 최대 50MB에 달하는 대용량 문서를 5~7MB 수준의 인쇄용 초고화질 압축 PDF로 1초 만에 최적화하여 내보낼 수 있습니다.",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "멀티 포맷 무손실 병합",
+            "desc": "대용량 건축 CAD PDF, 고해상도 조감도(JPG), 투명 배경 도면(PNG), WebP 등 다양한 포맷의 파일들을 드래그 앤 드롭으로 즉시 로드하여 순서 변경 및 단일 문서로 결합합니다."
+          },
+          {
+            "title": "고정밀 캔버스 마킹 & 텍스트 배지",
+            "desc": "선, 직사각형, 원형, 자유곡선(Pen) 마킹과 더불어 복잡한 도면 선 위에서도 시인성이 탁월한 95% 불투명 화이트 배경 및 컬러 테두리 텍스트 메모 배지를 지원합니다."
+          },
+          {
+            "title": "실시간 초고속 Zoom & Pan 탐색",
+            "desc": "대용량 A0/A1 대형 규격 도면도 렉이나 끊김 없이 부드럽게 실시간 확대/축소(마우스 휠) 및 화면 이동(Space+드래그)을 지원하여 미세한 치수선까지 정밀하게 검토합니다."
+          },
+          {
+            "title": "페이지 재배열 & 초고화질 압축 PDF 내보내기",
+            "desc": "썸네일 사이드바를 통해 페이지 순서를 자유롭게 이동하거나 불필요한 장을 선택 삭제할 수 있으며, 마킹 벡터를 완벽 보존한 인쇄용 초고화질 최적화 PDF를 즉시 생성합니다."
+          }
+        ],
+        "quickGuideTitle": "단계별 상세 가이드",
+        "quickGuide": [
+          "STEP 1. 파일 업로드 및 도면 병합: '+ 파일 열기 / 추가' 버튼을 누르거나 캔버스 중앙으로 검토할 대용량 PDF 도면, JPG, PNG 파일들을 드래그 앤 드롭합니다. 여러 개의 서로 다른 파일도 순서대로 한 번에 불러와 병합할 수 있습니다.",
+          "STEP 2. 도면 정밀 검토 및 마킹 도구 활용: 상단 툴바에서 사각형(M), 원형(C), 자유곡선(S), 텍스트(T) 도구를 선택하고 원하는 색상(🔴, 🔵, 🟡, ⚫)과 선 굵기를 지정하여 검토 의견을 기록합니다. 화이트 배경 텍스트 배지를 활용하여 복잡한 도면 위에서도 가독성을 극대화합니다.",
+          "STEP 3. 페이지 순서 정리 및 선택 삭제: 좌측 썸네일 사이드바에서 페이지별 위/아래 이동 버튼(▲/▼)으로 보고서 출력 순서를 정리하고, 불필요한 페이지는 삭제(🗑️)합니다. 페이지를 정리해도 기존에 작업한 마킹 데이터는 안전하게 보존됩니다.",
+          "STEP 4. 단일 통합 고화질 최적화 PDF 내보내기: 우측 상단의 '고화질 PDF 내보내기' 버튼을 클릭하면, 수십 MB에 달하는 원본 도면과 마킹 레이어를 합성하여 인쇄용 고해상도를 유지한 채 5~7MB의 초경량 압축 규격 PDF로 1초 만에 즉시 다운로드합니다."
+        ],
+        "tipTitle": "전문가 실무 팁 (Tip)",
+        "tipContent": "도면 검토 전문가 실무 팁: 복잡한 배선이나 배관이 얽힌 CAD 도면 위에서는 일반 텍스트 대신 '1.5px 컬러 테두리가 포함된 화이트 배경 텍스트 배지'를 활용하면 인쇄 시에도 글자가 묻히지 않고 명확하게 도드라집니다. 또한 본 도구는 서버 업로드 없이 브라우저 단독 연산으로 작동하므로 기업 내부 보안망이나 오프라인 환경에서도 사내 보안 규정 위반 걱정 없이 안전하게 검토 업무를 수행할 수 있습니다.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-sky-600 via-indigo-600 to-blue-700 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📐\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">무설치 PDF & 도면/이미지 검토·마킹 툴</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            v1.3 무설치 온메모리\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          대용량 건축/토목 도면 및 조감도 고화질 검토, 이미지 무손실 병합 웹 도구\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"window.pdfChecker && window.pdfChecker.openModal ? window.pdfChecker.openModal() : location.hash='#pdf-checker'\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📐</span>\n    <span>개요 및 핵심 가치 (Overview)</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    대용량 건축·토목 CAD 도면(PDF)과 고해상도 조감도, 현장 시공 사진(JPG, PNG, WebP)을 별도의 고가 소프트웨어 설치 없이 웹 브라우저에서 즉시 열람하고 정밀 마킹하는 전문 웹 유틸리티입니다. 모든 파일 검토 및 합성 작업이 사용자의 로컬 브라우저 메모리(In-Memory) 안에서만 100% 처리되므로 기업 대외비 도면과 현장 설계 데이터가 외부 서버로 절대 유출되지 않는 강력한 보안성을 보장합니다. 서로 다른 포맷의 이미지와 PDF를 드래그 앤 드롭으로 자유롭게 무손실 병합하고, 실시간 캔버스 마킹(선, 사각형, 원형, 자유선, 화이트 박스 텍스트 배지)을 적용한 뒤, 최대 50MB에 달하는 대용량 문서를 5~7MB 수준의 인쇄용 초고화질 압축 PDF로 1초 만에 최적화하여 내보낼 수 있습니다.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">멀티 포맷 무손실 병합</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">대용량 건축 CAD PDF, 고해상도 조감도(JPG), 투명 배경 도면(PNG), WebP 등 다양한 포맷의 파일들을 드래그 앤 드롭으로 즉시 로드하여 순서 변경 및 단일 문서로 결합합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">고정밀 캔버스 마킹 & 텍스트 배지</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">선, 직사각형, 원형, 자유곡선(Pen) 마킹과 더불어 복잡한 도면 선 위에서도 시인성이 탁월한 95% 불투명 화이트 배경 및 컬러 테두리 텍스트 메모 배지를 지원합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">실시간 초고속 Zoom & Pan 탐색</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">대용량 A0/A1 대형 규격 도면도 렉이나 끊김 없이 부드럽게 실시간 확대/축소(마우스 휠) 및 화면 이동(Space+드래그)을 지원하여 미세한 치수선까지 정밀하게 검토합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">페이지 재배열 & 초고화질 압축 PDF 내보내기</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">썸네일 사이드바를 통해 페이지 순서를 자유롭게 이동하거나 불필요한 장을 선택 삭제할 수 있으며, 마킹 벡터를 완벽 보존한 인쇄용 초고화질 최적화 PDF를 즉시 생성합니다.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>단계별 상세 가이드 (Step-by-Step)</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">파일 업로드 및 도면 병합:</strong>\n        '+ 파일 열기 / 추가' 버튼을 누르거나 캔버스 중앙으로 검토할 대용량 PDF 도면, JPG, PNG 파일들을 드래그 앤 드롭합니다. 여러 개의 서로 다른 파일도 순서대로 한 번에 불러와 병합할 수 있습니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">도면 정밀 검토 및 마킹 도구 활용:</strong>\n        상단 툴바에서 사각형(M), 원형(C), 자유곡선(S), 텍스트(T) 도구를 선택하고 원하는 색상(🔴, 🔵, 🟡, ⚫)과 선 굵기를 지정하여 검토 의견을 기록합니다. 화이트 배경 텍스트 배지를 활용하여 복잡한 도면 위에서도 가독성을 극대화합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">페이지 순서 정리 및 선택 삭제:</strong>\n        좌측 썸네일 사이드바에서 페이지별 위/아래 이동 버튼(▲/▼)으로 보고서 출력 순서를 정리하고, 불필요한 페이지는 삭제(🗑️)합니다. 페이지를 정리해도 기존에 작업한 마킹 데이터는 안전하게 보존됩니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">단일 통합 고화질 최적화 PDF 내보내기:</strong>\n        우측 상단의 '고화질 PDF 내보내기' 버튼을 클릭하면, 수십 MB에 달하는 원본 도면과 마킹 레이어를 합성하여 인쇄용 고해상도를 유지한 채 5~7MB의 초경량 압축 규격 PDF로 1초 만에 즉시 다운로드합니다.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        전문가 팁 &amp; 실무 노하우 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"도면 검토 전문가 실무 팁: 복잡한 배선이나 배관이 얽힌 CAD 도면 위에서는 일반 텍스트 대신 '1.5px 컬러 테두리가 포함된 화이트 배경 텍스트 배지'를 활용하면 인쇄 시에도 글자가 묻히지 않고 명확하게 도드라집니다. 또한 본 도구는 서버 업로드 없이 브라우저 단독 연산으로 작동하므로 기업 내부 보안망이나 오프라인 환경에서도 사내 보안 규정 위반 걱정 없이 안전하게 검토 업무를 수행할 수 있습니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <button type=\"button\" onclick=\"window.pdfChecker && window.pdfChecker.openModal ? window.pdfChecker.openModal() : location.hash='#pdf-checker'\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n</div>"
+      },
+      "annual-leave-calculator": {
+        "title": "대한민국 근로기준법 연차 자동 계산기 (Annual Leave Calculator)",
+        "appName": "근로기준법 연차 자동 계산기",
+        "subtitle": "대한민국 근로기준법 최신 개정안 반영 입사일·회계연도 기준 연차 일수 및 주휴수당 자동 산정",
+        "overview": "대한민국 근로기준법 제60조(연차 유급휴가)의 최신 법정 기준을 완벽하게 반영하여, 근로자의 입사일과 계산 기준일만 입력하면 1년 미만 재직자의 월차(최대 11일)부터 1년 이상 정기 연차(기본 15일) 및 근속 가산 연차(최대 25일)를 실시간으로 자동 산출하는 노무 전문 계산기입니다. 법정 원칙인 '입사일 기준'과 대다수 기업 인사팀에서 채택하는 '회계연도 기준(매년 1월 1일)' 산정 방식을 상호 비교할 수 있으며, 입사일 이래 발생한 누적 총 연차일수와 근속기간(년/월/일)을 직관적인 대시보드와 프로그레스 바 형태로 시각화합니다.",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "회계연도 기준 vs 입사일 기준 비교",
+            "desc": "근로기준법상 법정 원칙인 '입사일 기준 산정 방식'과 기업 실무에서 전 사원 일괄 관리 목적으로 활용하는 '회계연도 기준(매년 1월 1일) 방식'을 원클릭 탭으로 상호 대조합니다."
+          },
+          {
+            "title": "근속연수별 가산연차 자동 계산",
+            "desc": "입사 1년 미만 매월 개근 시 1일씩 발생하는 최대 11일의 월차와, 만 1년 도래 시 새롭게 부여되는 15일, 그리고 3년차부터 매 2년마다 1일씩 가산되는 법정 가산연차(최대 25일 한도)를 정확하게 분리 계산합니다."
+          },
+          {
+            "title": "미사용 연차수당 산출 공식 & 권익 지원",
+            "desc": "미사용 연차에 대한 통상임금 기준 수당 청구 권리와 소멸시효(3년), 그리고 퇴직 시점에서 회계연도 기준과 입사일 기준을 정밀 비교하여 근로자에게 유리한 조건으로 정산하는 가이드를 제공합니다."
+          }
+        ],
+        "quickGuideTitle": "단계별 상세 가이드",
+        "quickGuide": [
+          "STEP 1. 입사일 및 계산 기준일 입력: 본인이 실제 회사에 첫 출근한 공식 '입사일'과 산정을 원하는 '기준일(계산 시점, 기본값: 오늘 날짜)'을 달력 피커에서 선택합니다. 빠른 시뮬레이션을 위한 연차별 샘플 프리셋도 지원합니다.",
+          "STEP 2. 산정 기준 모드 선택 (근무 형태): 법정 원칙인 '입사일 기준 (법정 원칙)' 또는 회사 인사 규정에 따른 '회계연도 기준 (매년 1월 1일)' 중 원하는 모드를 선택합니다.",
+          "STEP 3. 연차 발생 내역 및 수당 확인: 상단 근속기간 배지와 총 발생 연차, 1년 미만 월차 달성 현황(최대 11일 프로그레스 바), 1년 이상 정기 연차(기본 15일+근속 가산일수) 세부 산정 내역을 한눈에 확인합니다.",
+          "STEP 4. 산정 결과 복사 및 사내 활용: '계산 결과 복사하기' 버튼을 누르면 총 근속기간과 세부 연차 발생 내역이 정돈된 텍스트 형식으로 클립보드에 복사되어 휴가계 결재나 노무 관리용으로 즉시 활용할 수 있습니다."
+        ],
+        "tipTitle": "전문가 실무 팁 (Tip)",
+        "tipContent": "퇴직 시 정산 기준 및 단시간 근로자 노무 팁: 회사가 관리 편의를 위해 매년 1월 1일 회계연도 기준으로 연차를 일괄 부여하더라도, 근로자가 퇴직할 때는 반드시 '입사일 기준'으로 계산한 총 연차일수와 대조해야 합니다. 입사일 기준 연차가 회계연도 기준보다 많다면 회사는 근로자에게 유리한 입사일 기준으로 차이일수만큼 미사용 연차수당을 지급해야 합니다(대법원 판례 및 노동부 행정해석). 단시간 근로자의 연차는 [단시간 근로시간 ÷ 40시간 × 8시간 × 15일] 공식으로 비례 계산되며, 미사용 연차수당의 청구권 소멸시효는 3년입니다.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-sky-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📅\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">근로기준법 연차 자동 계산기</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            근로기준법 제60조 법정 준수\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          대한민국 근로기준법 최신 개정안 반영 입사일·회계연도 기준 연차 일수 및 주휴수당 자동 산정\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openAnnualLeaveModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📅</span>\n    <span>개요 및 핵심 가치 (Overview)</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    대한민국 근로기준법 제60조(연차 유급휴가)의 최신 법정 기준을 완벽하게 반영하여, 근로자의 입사일과 계산 기준일만 입력하면 1년 미만 재직자의 월차(최대 11일)부터 1년 이상 정기 연차(기본 15일) 및 근속 가산 연차(최대 25일)를 실시간으로 자동 산출하는 노무 전문 계산기입니다. 법정 원칙인 '입사일 기준'과 대다수 기업 인사팀에서 채택하는 '회계연도 기준(매년 1월 1일)' 산정 방식을 상호 비교할 수 있으며, 입사일 이래 발생한 누적 총 연차일수와 근속기간(년/월/일)을 직관적인 대시보드와 프로그레스 바 형태로 시각화합니다.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📅\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">회계연도 기준 vs 입사일 기준 비교</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">근로기준법상 법정 원칙인 '입사일 기준 산정 방식'과 기업 실무에서 전 사원 일괄 관리 목적으로 활용하는 '회계연도 기준(매년 1월 1일) 방식'을 원클릭 탭으로 상호 대조합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📅\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">근속연수별 가산연차 자동 계산</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">입사 1년 미만 매월 개근 시 1일씩 발생하는 최대 11일의 월차와, 만 1년 도래 시 새롭게 부여되는 15일, 그리고 3년차부터 매 2년마다 1일씩 가산되는 법정 가산연차(최대 25일 한도)를 정확하게 분리 계산합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📅\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">미사용 연차수당 산출 공식 & 권익 지원</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">미사용 연차에 대한 통상임금 기준 수당 청구 권리와 소멸시효(3년), 그리고 퇴직 시점에서 회계연도 기준과 입사일 기준을 정밀 비교하여 근로자에게 유리한 조건으로 정산하는 가이드를 제공합니다.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>단계별 상세 가이드 (Step-by-Step)</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">입사일 및 계산 기준일 입력:</strong>\n        본인이 실제 회사에 첫 출근한 공식 '입사일'과 산정을 원하는 '기준일(계산 시점, 기본값: 오늘 날짜)'을 달력 피커에서 선택합니다. 빠른 시뮬레이션을 위한 연차별 샘플 프리셋도 지원합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">산정 기준 모드 선택 (근무 형태):</strong>\n        법정 원칙인 '입사일 기준 (법정 원칙)' 또는 회사 인사 규정에 따른 '회계연도 기준 (매년 1월 1일)' 중 원하는 모드를 선택합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">연차 발생 내역 및 수당 확인:</strong>\n        상단 근속기간 배지와 총 발생 연차, 1년 미만 월차 달성 현황(최대 11일 프로그레스 바), 1년 이상 정기 연차(기본 15일+근속 가산일수) 세부 산정 내역을 한눈에 확인합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">산정 결과 복사 및 사내 활용:</strong>\n        '계산 결과 복사하기' 버튼을 누르면 총 근속기간과 세부 연차 발생 내역이 정돈된 텍스트 형식으로 클립보드에 복사되어 휴가계 결재나 노무 관리용으로 즉시 활용할 수 있습니다.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        전문가 팁 &amp; 실무 노하우 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"퇴직 시 정산 기준 및 단시간 근로자 노무 팁: 회사가 관리 편의를 위해 매년 1월 1일 회계연도 기준으로 연차를 일괄 부여하더라도, 근로자가 퇴직할 때는 반드시 '입사일 기준'으로 계산한 총 연차일수와 대조해야 합니다. 입사일 기준 연차가 회계연도 기준보다 많다면 회사는 근로자에게 유리한 입사일 기준으로 차이일수만큼 미사용 연차수당을 지급해야 합니다(대법원 판례 및 노동부 행정해석). 단시간 근로자의 연차는 [단시간 근로시간 ÷ 40시간 × 8시간 × 15일] 공식으로 비례 계산되며, 미사용 연차수당의 청구권 소멸시효는 3년입니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <button type=\"button\" onclick=\"openAnnualLeaveModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n</div>"
+      },
+      "wage-calc": {
+        "title": "2026 최저시급·주휴수당 & 실수령액 계산기 (Wage & Net Salary Calculator)",
+        "appName": "실수령액 & 주휴수당 계산기",
+        "subtitle": "2026년 법정 최저시급 기준 알바 주휴수당, 4대보험 및 3.3% 프리랜서 소득세 공제, 세후 실수령액 자동 계산",
+        "overview": "2026년 대한민국 법정 최저시급인 시간당 10,320원을 기준으로, 아르바이트 및 근로자의 주휴수당 발생 여부와 월 기본급, 세전 총 급여, 공제액(3.3% 프리랜서 사업소득세 vs 4대 보험), 그리고 최종 통장에 입금되는 세후 실수령액을 1초 만에 자동 산출하는 급여 계산 도구입니다. 주 소정근로시간 15시간 이상 근무 시 법적으로 보장되는 주휴수당을 자동으로 판별하며, 통상근로자(주 40시간 월 209시간)뿐만 아니라 주 15시간~39시간 파트타임 단시간 근로자의 비례 계산 공식까지 노동법 규정에 맞춰 정확하게 처리합니다.",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "2026 최저임금(10,320원) & 209시간 환산",
+            "desc": "2026년 최저시급 10,320원을 기준으로 주 40시간 근무 시 법정 월 환산 기준인 209시간(기본급 1,793,616원 + 주휴수당 363,264원 = 총 2,156,880원)을 실시간 자동 계산합니다."
+          },
+          {
+            "title": "주휴수당 3대 조건 판별 & 단시간 비례 계산",
+            "desc": "주 소정근로시간 15시간 이상 개근 여부에 따른 주휴수당 대상 여부를 실시간 검증하고, 단시간 알바생을 위한 비례 산출 공식 `(주 근로시간 ÷ 40시간) × 8시간 × 시급`을 완벽 적용합니다."
+          },
+          {
+            "title": "공제 방식 실시간 비교 (3.3% vs 4대 보험)",
+            "desc": "세금 미적용(0%), 프리랜서/단기 알바 3.3% 사업소득세 원천징수, 4대 보험(~9.4% 근로자 부담분)을 선택하여 공제액과 세후 최종 실수령액을 실시간으로 대조합니다."
+          }
+        ],
+        "quickGuideTitle": "단계별 상세 가이드",
+        "quickGuide": [
+          "STEP 1. 시급 입력 및 프리셋 선택: '2026 최저시급 (10,320원)' 원클릭 버튼을 누르거나 본인의 약속된 시급 금액을 입력창에 기입합니다.",
+          "STEP 2. 1주 총 근무시간 설정 (주휴수당 판별): 근로계약서상 1주 동안 일하기로 정한 소정근로시간을 입력합니다. 15시간 이상 입력 시 상단에 '✅ 주휴수당 발생 대상' 배지가 즉시 활성화됩니다.",
+          "STEP 3. 공제 방식 선택 (프리랜서 3.3% or 4대보험): 본인의 근로 계약 형태에 맞추어 비과세(0%), 3.3% 프리랜서 사업소득세, 또는 4대 보험(~9.4%) 라디오 버튼을 선택합니다.",
+          "STEP 4. 실수령액 및 주휴수당 확인 후 결과 복사: 월 기본급, 월 주휴수당, 세전 총 급여, 공제액, 최종 예상 실수령액을 확인하고 '📋 결과 복사'를 눌러 근로자나 사업주 간 급여 협의에 활용합니다."
+        ],
+        "tipTitle": "전문가 실무 팁 (Tip)",
+        "tipContent": "알바 급여 & 주휴수당 전문가 실무 팁: 주휴수당은 근로계약서상 약속한 소정근로일을 '개근'하면 결근이 없는 한 지각이나 조퇴가 있더라도 전액 발생합니다(지각·조퇴 시간만큼 시급을 삭감할 수는 있어도 주휴수당 자체를 미지급하는 것은 불법입니다). 또한 주 15시간 이상 1개월 이상 계속 근로하는 모든 근로자는 4대 보험 가입이 법적 의무이며, 사업주가 주휴수당을 미지급할 경우 근로기준법 제55조 위반으로 3년 이하의 징역 또는 3천만 원 이하의 벌금형에 처해질 수 있습니다.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        🧮\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">실수령액 & 주휴수당 계산기</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            2026년 최저시급 10,320원\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          2026년 법정 최저시급 기준 알바 주휴수당, 4대보험 및 3.3% 프리랜서 소득세 공제, 세후 실수령액 자동 계산\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openWageCalcModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>🧮</span>\n    <span>개요 및 핵심 가치 (Overview)</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    2026년 대한민국 법정 최저시급인 시간당 10,320원을 기준으로, 아르바이트 및 근로자의 주휴수당 발생 여부와 월 기본급, 세전 총 급여, 공제액(3.3% 프리랜서 사업소득세 vs 4대 보험), 그리고 최종 통장에 입금되는 세후 실수령액을 1초 만에 자동 산출하는 급여 계산 도구입니다. 주 소정근로시간 15시간 이상 근무 시 법적으로 보장되는 주휴수당을 자동으로 판별하며, 통상근로자(주 40시간 월 209시간)뿐만 아니라 주 15시간~39시간 파트타임 단시간 근로자의 비례 계산 공식까지 노동법 규정에 맞춰 정확하게 처리합니다.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          🧮\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">2026 최저임금(10,320원) & 209시간 환산</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">2026년 최저시급 10,320원을 기준으로 주 40시간 근무 시 법정 월 환산 기준인 209시간(기본급 1,793,616원 + 주휴수당 363,264원 = 총 2,156,880원)을 실시간 자동 계산합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          🧮\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">주휴수당 3대 조건 판별 & 단시간 비례 계산</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">주 소정근로시간 15시간 이상 개근 여부에 따른 주휴수당 대상 여부를 실시간 검증하고, 단시간 알바생을 위한 비례 산출 공식 `(주 근로시간 ÷ 40시간) × 8시간 × 시급`을 완벽 적용합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          🧮\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">공제 방식 실시간 비교 (3.3% vs 4대 보험)</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">세금 미적용(0%), 프리랜서/단기 알바 3.3% 사업소득세 원천징수, 4대 보험(~9.4% 근로자 부담분)을 선택하여 공제액과 세후 최종 실수령액을 실시간으로 대조합니다.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>단계별 상세 가이드 (Step-by-Step)</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">시급 입력 및 프리셋 선택:</strong>\n        '2026 최저시급 (10,320원)' 원클릭 버튼을 누르거나 본인의 약속된 시급 금액을 입력창에 기입합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">1주 총 근무시간 설정 (주휴수당 판별):</strong>\n        근로계약서상 1주 동안 일하기로 정한 소정근로시간을 입력합니다. 15시간 이상 입력 시 상단에 '✅ 주휴수당 발생 대상' 배지가 즉시 활성화됩니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">공제 방식 선택 (프리랜서 3.3% or 4대보험):</strong>\n        본인의 근로 계약 형태에 맞추어 비과세(0%), 3.3% 프리랜서 사업소득세, 또는 4대 보험(~9.4%) 라디오 버튼을 선택합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">실수령액 및 주휴수당 확인 후 결과 복사:</strong>\n        월 기본급, 월 주휴수당, 세전 총 급여, 공제액, 최종 예상 실수령액을 확인하고 '📋 결과 복사'를 눌러 근로자나 사업주 간 급여 협의에 활용합니다.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        전문가 팁 &amp; 실무 노하우 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"알바 급여 & 주휴수당 전문가 실무 팁: 주휴수당은 근로계약서상 약속한 소정근로일을 '개근'하면 결근이 없는 한 지각이나 조퇴가 있더라도 전액 발생합니다(지각·조퇴 시간만큼 시급을 삭감할 수는 있어도 주휴수당 자체를 미지급하는 것은 불법입니다). 또한 주 15시간 이상 1개월 이상 계속 근로하는 모든 근로자는 4대 보험 가입이 법적 의무이며, 사업주가 주휴수당을 미지급할 경우 근로기준법 제55조 위반으로 3년 이하의 징역 또는 3천만 원 이하의 벌금형에 처해질 수 있습니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <button type=\"button\" onclick=\"openWageCalcModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n</div>"
+      },
+      "excel-delimiter-converter": {
+        "title": "엑셀 줄바꿈 ↔ 구분자 변환기 & SQL IN 절 포맷터 (Excel Delimiter Converter)",
+        "appName": "엑셀 줄바꿈 ↔ 구분자 변환기",
+        "subtitle": "불규칙한 텍스트 데이터, 줄바꿈, 쉼표 구분자(CSV)를 표 형식 및 엑셀 친화적 포맷으로 일괄 정제",
+        "overview": "엑셀(Excel) 스프레드시트의 세로 행(줄바꿈) 데이터를 쉼표(,), SQL IN 쿼리 조건절('A', 'B'), 큰따옴표(\"A\", \"B\"), 공백, 탭 등으로 1초 만에 상호 변환하고 반대로 구분자 텍스트를 엑셀 친화적 세로 줄바꿈 형태로 역변환하는 고성능 텍스트 정제 도구입니다. 데이터베이스 쿼리 작성, 대용량 마케팅 이메일/전화번호 목록 가공, CSV 데이터 정제 등 반복적인 실무 작업을 획기적으로 단축해 줍니다. 특히 모든 텍스트 정제 연산이 외부 서버 전송 없이 100% 사용자의 브라우저 메모리에서만 동작하므로, 사내 고객 데이터나 기밀 개인정보도 유출 위험 없이 안심하고 가공할 수 있습니다.",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "양방향 실시간 상호 변환",
+            "desc": "줄바꿈 → 구분자 모드와 구분자 → 줄바꿈 역변환 모드를 클릭 한 번으로 자유롭게 전환하며, 입력창과 결과창의 텍스트를 상호 교환(Swap)할 수 있습니다."
+          },
+          {
+            "title": "SQL IN 조건절 & 괄호 자동 감싸기",
+            "desc": "'SQL 작은따옴표' 프리셋과 'SQL IN (...) 괄호 감싸기' 옵션을 체크하면 복잡한 수작업 없이 데이터베이스 쿼리 WHERE column IN (...) 절에 즉시 실행 가능한 코드를 완성합니다."
+          },
+          {
+            "title": "중복 항목 제거(Deduplication) & 공백 트림",
+            "desc": "대량의 데이터에서 중복된 행이나 항목을 1초 만에 자동 판별하여 고유값(Unique)만 추출하며, 각 항목의 앞뒤 불필요한 공백과 빈 줄을 깔끔하게 자동 정제합니다."
+          },
+          {
+            "title": "100% 브라우저 온메모리 보안 처리",
+            "desc": "사용자가 붙여넣는 엑셀 행 데이터와 결과 텍스트는 일체 외부 서버나 네트워크로 전송되지 않고 클라이언트 브라우저 로컬 메모리에서만 안전하게 연산됩니다."
+          }
+        ],
+        "quickGuideTitle": "단계별 상세 가이드",
+        "quickGuide": [
+          "STEP 1. 데이터 붙여넣기 (Input): 엑셀 스프레드시트에서 가공할 세로 열 데이터를 복사(Ctrl+C)한 후 입력창에 붙여넣거나 '📋 붙여넣기' 버튼을 클릭합니다. 테스트용 '💡 샘플 넣기' 기능도 제공됩니다.",
+          "STEP 2. 변환 모드 및 구분자 프리셋 선택: '줄바꿈 → 구분자' 모드를 선택한 후 쉼표(, ), SQL 작은따옴표('A', 'B'), 큰따옴표, 공백, 탭, 또는 직접 입력 프리셋 중 원하는 포맷을 선택합니다.",
+          "STEP 3. 정제 옵션 지정 (중복 제거 & 공백 트림): '빈 줄 및 양쪽 공백 제거', '중복 항목 제거', 'SQL IN (...) 괄호 감싸기' 체크박스를 필요에 따라 활성화하여 데이터를 완벽하게 정제합니다.",
+          "STEP 4. 1초 변환 결과 복사 및 실무 활용: 우측 결과창에서 실시간으로 정제된 결과와 총 항목 개수를 확인한 뒤 '📋 결과 복사하기' 버튼을 눌러 DB 쿼리문이나 엑셀 보고서에 붙여넣습니다."
+        ],
+        "tipTitle": "전문가 실무 팁 (Tip)",
+        "tipContent": "데이터 정제 & DB 쿼리 전문가 실무 팁: 엑셀에서 단일 세로 열뿐만 아니라 가로 여러 열(다중 셀)을 복사해 붙여넣어도 탭(Tab) 문자를 자동 인식하여 각 항목별로 깔끔하게 분리 변환합니다. 또한 수천 건의 사번이나 고객 ID 목록을 DB에서 조회할 때 'SQL 작은따옴표' 프리셋과 '중복 항목 제거' 옵션을 켜면 중복 조회를 방지하고 쿼리 실행 속도를 대폭 최적화할 수 있습니다.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📊\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">엑셀 줄바꿈 ↔ 구분자 변환기</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            100% 브라우저 로컬 보안\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          불규칙한 텍스트 데이터, 줄바꿈, 쉼표 구분자(CSV)를 표 형식 및 엑셀 친화적 포맷으로 일괄 정제\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openExcelDelimiterModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📊</span>\n    <span>개요 및 핵심 가치 (Overview)</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    엑셀(Excel) 스프레드시트의 세로 행(줄바꿈) 데이터를 쉼표(,), SQL IN 쿼리 조건절('A', 'B'), 큰따옴표(\"A\", \"B\"), 공백, 탭 등으로 1초 만에 상호 변환하고 반대로 구분자 텍스트를 엑셀 친화적 세로 줄바꿈 형태로 역변환하는 고성능 텍스트 정제 도구입니다. 데이터베이스 쿼리 작성, 대용량 마케팅 이메일/전화번호 목록 가공, CSV 데이터 정제 등 반복적인 실무 작업을 획기적으로 단축해 줍니다. 특히 모든 텍스트 정제 연산이 외부 서버 전송 없이 100% 사용자의 브라우저 메모리에서만 동작하므로, 사내 고객 데이터나 기밀 개인정보도 유출 위험 없이 안심하고 가공할 수 있습니다.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">양방향 실시간 상호 변환</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">줄바꿈 → 구분자 모드와 구분자 → 줄바꿈 역변환 모드를 클릭 한 번으로 자유롭게 전환하며, 입력창과 결과창의 텍스트를 상호 교환(Swap)할 수 있습니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">SQL IN 조건절 & 괄호 자동 감싸기</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">'SQL 작은따옴표' 프리셋과 'SQL IN (...) 괄호 감싸기' 옵션을 체크하면 복잡한 수작업 없이 데이터베이스 쿼리 WHERE column IN (...) 절에 즉시 실행 가능한 코드를 완성합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">중복 항목 제거(Deduplication) & 공백 트림</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">대량의 데이터에서 중복된 행이나 항목을 1초 만에 자동 판별하여 고유값(Unique)만 추출하며, 각 항목의 앞뒤 불필요한 공백과 빈 줄을 깔끔하게 자동 정제합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">100% 브라우저 온메모리 보안 처리</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">사용자가 붙여넣는 엑셀 행 데이터와 결과 텍스트는 일체 외부 서버나 네트워크로 전송되지 않고 클라이언트 브라우저 로컬 메모리에서만 안전하게 연산됩니다.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>단계별 상세 가이드 (Step-by-Step)</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">데이터 붙여넣기 (Input):</strong>\n        엑셀 스프레드시트에서 가공할 세로 열 데이터를 복사(Ctrl+C)한 후 입력창에 붙여넣거나 '📋 붙여넣기' 버튼을 클릭합니다. 테스트용 '💡 샘플 넣기' 기능도 제공됩니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">변환 모드 및 구분자 프리셋 선택:</strong>\n        '줄바꿈 → 구분자' 모드를 선택한 후 쉼표(, ), SQL 작은따옴표('A', 'B'), 큰따옴표, 공백, 탭, 또는 직접 입력 프리셋 중 원하는 포맷을 선택합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">정제 옵션 지정 (중복 제거 & 공백 트림):</strong>\n        '빈 줄 및 양쪽 공백 제거', '중복 항목 제거', 'SQL IN (...) 괄호 감싸기' 체크박스를 필요에 따라 활성화하여 데이터를 완벽하게 정제합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">1초 변환 결과 복사 및 실무 활용:</strong>\n        우측 결과창에서 실시간으로 정제된 결과와 총 항목 개수를 확인한 뒤 '📋 결과 복사하기' 버튼을 눌러 DB 쿼리문이나 엑셀 보고서에 붙여넣습니다.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        전문가 팁 &amp; 실무 노하우 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"데이터 정제 & DB 쿼리 전문가 실무 팁: 엑셀에서 단일 세로 열뿐만 아니라 가로 여러 열(다중 셀)을 복사해 붙여넣어도 탭(Tab) 문자를 자동 인식하여 각 항목별로 깔끔하게 분리 변환합니다. 또한 수천 건의 사번이나 고객 ID 목록을 DB에서 조회할 때 'SQL 작은따옴표' 프리셋과 '중복 항목 제거' 옵션을 켜면 중복 조회를 방지하고 쿼리 실행 속도를 대폭 최적화할 수 있습니다.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <button type=\"button\" onclick=\"openExcelDelimiterModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n</div>"
+      },
+      "char-byte-counter": {
+        "title": "자소서·공문서 글자수 & Byte 변환기 (Character & Byte Counter)",
+        "appName": "자소서 글자수·Byte 변환기",
+        "subtitle": "자기소개서, 이력서, 공문서 제출 규격 검증 및 바이트(EUC-KR 2Byte vs UTF-8 3Byte) 정밀 변환",
+        "overview": "대기업, 공공기관, 금융권 채용 자기소개서 및 공문서 제출 규격에 맞추어 공백 포함/제외 글자수와 바이트(Byte)를 실시간으로 정밀 측정하고 텍스트 서식을 정제하는 취업·문서 전문 유틸리티입니다. 취업포털(사람인, 잡코리아, 인크루트)에서 통용되는 한글 2Byte(EUC-KR) 규격과 공공기관·대기업 전산망 DB에서 주로 채택하는 한글 3Byte(UTF-8) 규격을 분리하여 제공하므로 시스템별 용량 초과로 인한 텍스트 잘림 현상을 사전에 방지할 수 있습니다. 또한 연속된 다중 공백을 1칸으로 정리하고 불필요한 빈 줄을 원클릭으로 다듬는 편의 기능을 지원합니다.",
+        "featuresTitle": "주요 핵심 기능",
+        "features": [
+          {
+            "title": "공백 포함 & 제외 글자수 실시간 동시 계측",
+            "desc": "타이핑 및 붙여넣기와 동시에 공백 포함 글자수와 공백 제외 글자수를 분리 표시하여 채용 공고별 상이한 요구 규격을 한눈에 검증합니다."
+          },
+          {
+            "title": "EUC-KR(2Byte) vs UTF-8(3Byte) 분리 지원",
+            "desc": "사람인/잡코리아 채용 서류 접수용 한글 2Byte 규격과 공공기관 전산망 DB용 한글 3Byte 규격을 분리 계측하여 제출 시 글자 잘림을 차단합니다."
+          },
+          {
+            "title": "단어수 · 줄수(행) · 공백수 상세 구조 분석",
+            "desc": "전체 문서의 단어 수, 엔터 줄 수, 스페이스 공백 개수를 4분할 카드로 시각화하여 자소서의 단락 호흡과 문장 구조를 체계적으로 파악합니다."
+          },
+          {
+            "title": "원클릭 텍스트 정제 (공백 1칸 & 빈 줄 정리)",
+            "desc": "자소서 작성 시 흔히 발생하는 연속 공백(스페이스바 중복)을 1칸으로 정리하고, 잉여 줄바꿈(엔터)을 단 1초 만에 깔끔하게 정돈합니다."
+          }
+        ],
+        "quickGuideTitle": "단계별 상세 가이드",
+        "quickGuide": [
+          "STEP 1. 자소서 및 문서 본문 붙여넣기: 작성 중인 자기소개서, 이력서, 레포트 본문을 입력창에 붙여넣습니다 (Ctrl+V 또는 '📋 클립보드 붙여넣기' 버튼 클릭).",
+          "STEP 2. 실시간 글자수 및 바이트 규격 확인: 하단 4분할 통계 카드에서 공백 포함/제외 글자수와 취업포털 기준 바이트(Byte) 및 단어/줄 수를 실시간으로 확인합니다.",
+          "STEP 3. 서식 정제 도구 활용 (공백 1칸 & 빈 줄 정리): '✨ 공백 1칸 정리' 및 '↵ 빈 줄 정리' 버튼을 눌러 불필요한 공백과 빈 줄을 깔끔하게 정제하여 가독성을 극대화합니다.",
+          "STEP 4. 완성된 본문 및 통계 데이터 복사: '📋 본문 복사' 버튼으로 정제된 본문을 클립보드에 복사해 채용 사이트에 붙여넣거나, '📊 통계 복사'로 분량 보고서를 백업합니다."
+        ],
+        "tipTitle": "전문가 실무 팁 (Tip)",
+        "tipContent": "취업 컨설턴트 자소서 작성 팁: 기업 채용 공고에 '공백 제외'라는 별도 명시가 없다면 인사담당자 및 채용 전산시스템은 통상 '공백 포함'을 기준으로 심사합니다. 자소서 분량은 제한 글자수의 85% ~ 95% 수준으로 꽉 채워 작성할 때 가장 성의 있고 완성도 높은 인상을 줄 수 있습니다. 또한 공공기관 지원 시 3,000Byte 제한 공고는 한글 3Byte(UTF-8) 기준일 경우 1,000자까지만 입력되므로 사전에 바이트 규격을 반드시 확인하세요.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📝\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">자소서 글자수·Byte 변환기</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            취업포털 & 공문서 규격\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          자기소개서, 이력서, 공문서 제출 규격 검증 및 바이트(EUC-KR 2Byte vs UTF-8 3Byte) 정밀 변환\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openCharByteModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← 홈으로</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📝</span>\n    <span>개요 및 핵심 가치 (Overview)</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    대기업, 공공기관, 금융권 채용 자기소개서 및 공문서 제출 규격에 맞추어 공백 포함/제외 글자수와 바이트(Byte)를 실시간으로 정밀 측정하고 텍스트 서식을 정제하는 취업·문서 전문 유틸리티입니다. 취업포털(사람인, 잡코리아, 인크루트)에서 통용되는 한글 2Byte(EUC-KR) 규격과 공공기관·대기업 전산망 DB에서 주로 채택하는 한글 3Byte(UTF-8) 규격을 분리하여 제공하므로 시스템별 용량 초과로 인한 텍스트 잘림 현상을 사전에 방지할 수 있습니다. 또한 연속된 다중 공백을 1칸으로 정리하고 불필요한 빈 줄을 원클릭으로 다듬는 편의 기능을 지원합니다.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>주요 핵심 기능</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">공백 포함 & 제외 글자수 실시간 동시 계측</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">타이핑 및 붙여넣기와 동시에 공백 포함 글자수와 공백 제외 글자수를 분리 표시하여 채용 공고별 상이한 요구 규격을 한눈에 검증합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">EUC-KR(2Byte) vs UTF-8(3Byte) 분리 지원</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">사람인/잡코리아 채용 서류 접수용 한글 2Byte 규격과 공공기관 전산망 DB용 한글 3Byte 규격을 분리 계측하여 제출 시 글자 잘림을 차단합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">단어수 · 줄수(행) · 공백수 상세 구조 분석</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">전체 문서의 단어 수, 엔터 줄 수, 스페이스 공백 개수를 4분할 카드로 시각화하여 자소서의 단락 호흡과 문장 구조를 체계적으로 파악합니다.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">원클릭 텍스트 정제 (공백 1칸 & 빈 줄 정리)</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">자소서 작성 시 흔히 발생하는 연속 공백(스페이스바 중복)을 1칸으로 정리하고, 잉여 줄바꿈(엔터)을 단 1초 만에 깔끔하게 정돈합니다.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>단계별 상세 가이드 (Step-by-Step)</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">자소서 및 문서 본문 붙여넣기:</strong>\n        작성 중인 자기소개서, 이력서, 레포트 본문을 입력창에 붙여넣습니다 (Ctrl+V 또는 '📋 클립보드 붙여넣기' 버튼 클릭).\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">실시간 글자수 및 바이트 규격 확인:</strong>\n        하단 4분할 통계 카드에서 공백 포함/제외 글자수와 취업포털 기준 바이트(Byte) 및 단어/줄 수를 실시간으로 확인합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">서식 정제 도구 활용 (공백 1칸 & 빈 줄 정리):</strong>\n        '✨ 공백 1칸 정리' 및 '↵ 빈 줄 정리' 버튼을 눌러 불필요한 공백과 빈 줄을 깔끔하게 정제하여 가독성을 극대화합니다.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">완성된 본문 및 통계 데이터 복사:</strong>\n        '📋 본문 복사' 버튼으로 정제된 본문을 클립보드에 복사해 채용 사이트에 붙여넣거나, '📊 통계 복사'로 분량 보고서를 백업합니다.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        전문가 팁 &amp; 실무 노하우 (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"취업 컨설턴트 자소서 작성 팁: 기업 채용 공고에 '공백 제외'라는 별도 명시가 없다면 인사담당자 및 채용 전산시스템은 통상 '공백 포함'을 기준으로 심사합니다. 자소서 분량은 제한 글자수의 85% ~ 95% 수준으로 꽉 채워 작성할 때 가장 성의 있고 완성도 높은 인상을 줄 수 있습니다. 또한 공공기관 지원 시 3,000Byte 제한 공고는 한글 3Byte(UTF-8) 기준일 경우 1,000자까지만 입력되므로 사전에 바이트 규격을 반드시 확인하세요.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← 홈으로\n  </button>\n  <button type=\"button\" onclick=\"openCharByteModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>도구 바로 사용하기</span>\n    </button>\n</div>"
       }
     },
-    about: {
-      title: "서비스 소개",
-      subtitle: "일상의도움 포털에 오신 것을 환영합니다",
-      body: `<p>일상의도움(Daily Helper)은 바쁜 현대인의 일상 속 불편함을 해소해 줄 안드로이드 앱과 유용한 디지털 도구를 한자리에서 소개하는 큐레이션 포털 서비스입니다.</p><br/><p>저희는 직접 개발하거나 엄선한 앱만을 소개하며, 각 앱에 대한 상세한 사용 가이드와 꿀팁을 제공합니다.</p><br/><h3 class="text-lg font-semibold mt-4 mb-2">우리의 미션</h3><ul class="list-disc pl-5 space-y-1"><li>불필요한 시간 낭비를 줄이는 스마트한 도구 제공</li><li>복잡한 기능을 누구나 쉽게 사용할 수 있도록 안내</li><li>개인 정보를 존중하는 안전한 앱만 선별</li><li>지속적인 업데이트와 새로운 앱 발굴</li></ul>`,
+    "about": {
+      "title": "서비스 소개",
+      "subtitle": "일상의도움 포털에 오신 것을 환영합니다",
+      "body": "<p>일상의도움(Daily Helper)은 바쁜 현대인의 일상 속 불편함을 해소해 줄 안드로이드 앱과 유용한 디지털 도구를 한자리에서 소개하는 큐레이션 포털 서비스입니다.</p><br/><p>저희는 직접 개발하거나 엄선한 앱만을 소개하며, 각 앱에 대한 상세한 사용 가이드와 꿀팁을 제공합니다.</p><br/><h3 class=\"text-lg font-semibold mt-4 mb-2\">우리의 미션</h3><ul class=\"list-disc pl-5 space-y-1\"><li>불필요한 시간 낭비를 줄이는 스마트한 도구 제공</li><li>복잡한 기능을 누구나 쉽게 사용할 수 있도록 안내</li><li>개인 정보를 존중하는 안전한 앱만 선별</li><li>지속적인 업데이트와 새로운 앱 발굴</li></ul>"
     },
-    privacy: {
-      title: "개인정보처리방침",
-      subtitle: "귀하의 개인정보는 소중히 보호됩니다",
-      body: `<p class="text-sm opacity-60 mb-4">최종 수정일: 2026년 8월 11일</p><h3 class="text-lg font-semibold mt-4 mb-2">1. 수집하는 개인정보</h3><p>일상의도움은 <strong>어떠한 개인정보도 서버에 수집하거나 저장하지 않습니다.</strong> 본 서비스는 순수 정적 웹 페이지입니다.</p><h3 class="text-lg font-semibold mt-4 mb-2">2. 로컬 스토리지</h3><p>언어 설정 및 다크모드 설정만 브라우저 로컬 스토리지에 저장되며, 서버로 전송되지 않습니다.</p><h3 class="text-lg font-semibold mt-4 mb-2">3. 광고</h3><p>Google AdSense를 통한 광고가 표시될 수 있으며, 이 과정에서 Google의 쿠키 정책이 적용될 수 있습니다.</p><h3 class="text-lg font-semibold mt-4 mb-2">4. 문의</h3><p>개인정보 관련 문의: theoneco1@gmail.com</p>`,
+    "privacy": {
+      "title": "개인정보처리방침",
+      "subtitle": "귀하의 개인정보는 소중히 보호됩니다",
+      "body": "<p class=\"text-sm opacity-60 mb-4\">최종 수정일: 2026년 8월 11일</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">1. 수집하는 개인정보</h3><p>일상의도움은 <strong>어떠한 개인정보도 서버에 수집하거나 저장하지 않습니다.</strong> 본 서비스는 순수 정적 웹 페이지입니다.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">2. 로컬 스토리지</h3><p>언어 설정 및 다크모드 설정만 브라우저 로컬 스토리지에 저장되며, 서버로 전송되지 않습니다.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">3. 광고</h3><p>Google AdSense를 통한 광고가 표시될 수 있으며, 이 과정에서 Google의 쿠키 정책이 적용될 수 있습니다.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">4. 문의</h3><p>개인정보 관련 문의: theoneco1@gmail.com</p>"
     },
-    terms: {
-      title: "이용약관",
-      subtitle: "서비스 이용에 관한 약관",
-      body: `<p class="text-sm opacity-60 mb-4">최종 수정일: 2026년 8월 11일</p><h3 class="text-lg font-semibold mt-4 mb-2">1. 서비스 목적</h3><p>일상의도움은 Android 앱 및 유틸리티 도구에 대한 정보를 제공하는 큐레이션 포털 서비스입니다.</p><h3 class="text-lg font-semibold mt-4 mb-2">2. 이용자 의무</h3><ul class="list-disc pl-5 mt-2 space-y-1"><li>본 서비스를 불법적인 목적으로 이용하지 않습니다.</li><li>다른 이용자나 제3자에게 피해를 주는 행위를 하지 않습니다.</li></ul><h3 class="text-lg font-semibold mt-4 mb-2">3. 면책사항</h3><p>일상의도움은 소개된 외부 앱의 사용으로 인한 손해에 대해 책임을 지지 않습니다.</p><h3 class="text-lg font-semibold mt-4 mb-2">4. 문의</h3><p>이용약관 관련 문의: theoneco1@gmail.com</p>`,
+    "terms": {
+      "title": "이용약관",
+      "subtitle": "서비스 이용에 관한 약관",
+      "body": "<p class=\"text-sm opacity-60 mb-4\">최종 수정일: 2026년 8월 11일</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">1. 서비스 목적</h3><p>일상의도움은 Android 앱 및 유틸리티 도구에 대한 정보를 제공하는 큐레이션 포털 서비스입니다.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">2. 이용자 의무</h3><ul class=\"list-disc pl-5 mt-2 space-y-1\"><li>본 서비스를 불법적인 목적으로 이용하지 않습니다.</li><li>다른 이용자나 제3자에게 피해를 주는 행위를 하지 않습니다.</li></ul><h3 class=\"text-lg font-semibold mt-4 mb-2\">3. 면책사항</h3><p>일상의도움은 소개된 외부 앱의 사용으로 인한 손해에 대해 책임을 지지 않습니다.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">4. 문의</h3><p>이용약관 관련 문의: theoneco1@gmail.com</p>"
     },
-    contact: {
-      title: "문의하기",
-      subtitle: "궁금한 점이 있으시면 언제든지 연락해 주세요",
-      lastUpdated: "최종 수정일: 2026년 8월 11일",
-      emailLabel: "이메일 문의",
-      emailDesc: "앱 관련 문의, 버그 제보, 협업 제안 등 모든 문의를 환영합니다.",
-      emailBtn: "이메일 보내기",
-      responseTime: "영업일 기준 1~2일 내 답변 드립니다.",
-      appRequest: "앱 추가 요청",
-      appRequestDesc: "유용한 앱을 알고 계신가요? 소개하고 싶은 앱이 있으시면 알려주세요!",
+    "contact": {
+      "title": "문의하기",
+      "subtitle": "궁금한 점이 있으시면 언제든지 연락해 주세요",
+      "lastUpdated": "최종 수정일: 2026년 8월 11일",
+      "emailLabel": "이메일 문의",
+      "emailDesc": "앱 관련 문의, 버그 제보, 협업 제안 등 모든 문의를 환영합니다.",
+      "emailBtn": "이메일 보내기",
+      "responseTime": "영업일 기준 1~2일 내 답변 드립니다.",
+      "appRequest": "앱 추가 요청",
+      "appRequestDesc": "유용한 앱을 알고 계신가요? 소개하고 싶은 앱이 있으시면 알려주세요!"
     },
-    footer: {
-      tagline: "당신의 일상을 더 풍요롭게",
-      copyright: "© 2026 일상의도움 (Daily Helper). All rights reserved.",
-      links: "빠른 링크", legal: "법적 고지", emailLabel: "문의 이메일: ",
+    "footer": {
+      "tagline": "당신의 일상을 더 풍요롭게",
+      "copyright": "© 2026 일상의도움 (Daily Helper). All rights reserved.",
+      "links": "빠른 링크",
+      "legal": "법적 고지",
+      "emailLabel": "문의 이메일: "
     },
-    empty: {
-      title: "검색 결과가 없습니다",
-      subtitle: "다른 키워드나 카테고리를 선택해 보세요.",
-      noAppsTitle: "등록된 앱이 없습니다.",
-      noAppsSubtitle: "곧 유용한 앱들로 찾아뵙겠습니다.",
+    "empty": {
+      "title": "검색 결과가 없습니다",
+      "subtitle": "다른 키워드나 카테고리를 선택해 보세요.",
+      "noAppsTitle": "등록된 앱이 없습니다.",
+      "noAppsSubtitle": "곧 유용한 앱들로 찾아뵙겠습니다."
     },
-    proof: { apps: "10+ 유용한 스마트폰 앱", free: "100% 무료 & 안전한 도구", update: "주기적인 신규 앱 업데이트", guide: "📖 앱 가이드" },
+    "homeSeo": {
+      "fullHtml": "<div class=\"p-6 sm:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl\">\n  <div class=\"flex items-center gap-2 mb-3\">\n    <span class=\"inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60\">\n      🌐 Daily Helper Hub | 서비스 소개 &amp; 도구 모음\n    </span>\n  </div>\n\n  <h2 class=\"text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4\">\n    일상의 모든 작업을 더 스마트하고 안전하게 — Daily Helper 서비스 안내\n  </h2>\n\n  <div class=\"prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4\">\n    <p>\n      <strong>일상의도움(Daily Helper Hub)</strong>은 현대인의 복잡한 업무와 일상생활 속에서 마주치는 번거로운 계산, 문서 변환, 도면 검토 작업을 클릭 한 번으로 해결해 드리는 올인원 유틸리티 포털입니다. 별도의 프로그램 설치나 유료 결제 유도, 번거로운 회원가입 없이 웹 브라우저만 있으면 언제 어디서나 즉시 무료로 이용할 수 있는 실무 웹 도구 모음과 검증된 안드로이드 모바일 애플리케이션을 함께 제공하고 있습니다.\n    </p>\n\n    <div class=\"my-6 p-5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 border border-indigo-200/80 dark:border-indigo-800/60\">\n      <h3 class=\"text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n        <span>🛡️</span> <span>100% 브라우저 온메모리 처리 &amp; 철저한 개인정보 보호 원칙</span>\n      </h3>\n      <p class=\"text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-0\">\n        일상의도움에서 제공하는 모든 웹 도구(PDF 도면 체커, 연차 계산기, 급여/주휴수당 계산기, 자소서 글자수 카운터, 엑셀 줄바꿈 변환기)는 사용자의 파일과 입력 데이터를 <strong>절대 외부 서버로 전송하거나 저장하지 않습니다.</strong> 모든 데이터 연산과 파일 합성은 사용자의 기기 웹 브라우저 로컬 메모리(Client-Side In-Memory) 내에서만 안전하게 실행되므로, 회사의 대외비 건축 설계 도면, 임금 명세, 사내 데이터베이스 정보, 자기소개서 원문도 데이터 유출 걱정 없이 안심하고 활용하실 수 있습니다.\n      </p>\n    </div>\n\n    <h3 class=\"text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3 flex items-center gap-2\">\n      <span>⚡</span> <span>핵심 무료 웹 도구 모음 (Web Utilities)</span>\n    </h3>\n    <ul class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm pl-0 list-none\">\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#pdf-checker\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📐</span> <span>무설치 PDF &amp; 도면/이미지 검토·마킹 툴</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">대용량 건축·토목 CAD 도면(PDF)과 고해상도 조감도를 무손실 병합하고 정밀 마킹 후 5~7MB 초고화질 압축 PDF로 즉시 내보냅니다.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#annual-leave-calculator\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📅</span> <span>근로기준법 제60조 연차 자동 계산기</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">입사일 및 회계연도 기준 비교, 1년 미만 월차(최대 11일), 근속 가산 연차 및 퇴직 시 미사용 연차수당 정산 가이드를 실시간 계산합니다.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#wage-calc\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>🧮</span> <span>2026 최저시급 &amp; 주휴수당 계산기</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">2026년 법정 최저시급(10,320원) 기준으로 주 15시간 이상 주휴수당 발생 여부와 4대보험/3.3% 프리랜서 소득세 공제 후 세후 실수령액을 즉시 계산합니다.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#excel-delimiter-converter\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📊</span> <span>엑셀 줄바꿈 ↔ 구분자 변환기 &amp; SQL IN 절 포맷터</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">엑셀 세로 행 데이터를 쉼표(,), SQL IN 쿼리('A', 'B'), 큰따옴표로 상호 변환하고 중복 제거 및 공백을 1초 만에 일괄 정제합니다.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 md:col-span-2\">\n        <a href=\"#char-byte-counter\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📝</span> <span>자소서·공문서 글자수 &amp; Byte 실시간 변환기</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">취업포털(2Byte) 및 공공기관 시스템(UTF-8 3Byte) 기준 글자수와 바이트를 정밀 계측하고, 공백 1칸 정리 및 빈 줄 일괄 정제 기능을 제공합니다.</p>\n      </li>\n    </ul>\n\n    <h3 class=\"text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3 flex items-center gap-2\">\n      <span>📱</span> <span>엄선된 스마트폰 라이프스타일 앱 모음</span>\n    </h3>\n    <p>\n      구글 플레이 스토어에서 직접 다운로드하여 즐길 수 있는 3D 물리 베이커리 머지 퍼즐 게임 <strong>Bake Merge (베이크 머지)</strong>, 스마트 루틴 및 집중 시간 타이머 <strong>TimeKeeper</strong>, 소중한 기념일과 시험 디데이를 한눈에 관리하는 <strong>DayCount</strong>, 음성인식으로 우리 집 책장을 빠르게 정리하는 <strong>BookSpot (책 쏙쏙)</strong> 등 일상의 질을 높여주는 다채로운 모바일 앱을 함께 만나보세요.\n    </p>\n\n    <div class=\"flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 flex-wrap\">\n      <button type=\"button\" onclick=\"showPage('guide')\" class=\"inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md\">\n        <span>📖</span> <span>전체 앱 &amp; 웹 도구 상세 가이드 보기</span>\n      </button>\n      <button type=\"button\" onclick=\"switchMainTab('tools')\" class=\"inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700\">\n        <span>⚡</span> <span>웹 도구 모음 바로가기</span>\n      </button>\n      <button type=\"button\" onclick=\"switchMainTab('apps')\" class=\"inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700\">\n        <span>📱</span> <span>모바일 앱 둘러보기</span>\n      </button>\n    </div>\n  </div>\n</div>"
+    }
   },
-
-  en: {
-    brand: "Daily Helper",
-    slogan: "Enriching Your Daily Life",
-    nav: { home: "Home", about: "About", privacy: "Privacy Policy", terms: "Terms of Service", contact: "Contact", backToHome: "← Back to Home", guide: "App Guide" },
-    tabs: {
-      mobileApps: "Mobile Apps",
-      webTools: "Web Tools"
+  "en": {
+    "brand": "Daily Helper",
+    "slogan": "Enriching Your Daily Life",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact",
+      "backToHome": "← Back to Home",
+      "guide": "Guides",
+      "webTools": "Web Tools"
     },
-    webTools: {
-      sectionTitle: "Practical web tools ready in your browser",
-      heroCount: "web tools available",
-      resultsFound: "web tools found",
-      badgeHot: "HOT",
-      badgeFree: "Free Tool",
-      useToolBtn: "Use Tool Now",
-      emptyTitle: "No web tools found",
-      emptySubtitle: "Try searching with a different keyword.",
-      globalComingSoonTitle: "New Global Web Tools Coming Soon!",
-      globalComingSoonSubtitle: "We are currently preparing useful online tools for global users.",
-      wageCalc: {
-        title: "Net Salary & Holiday Allowance Calculator",
-        subtitle: "Hourly wage & statutory holiday allowance calculator",
-        desc: "Calculate weekly holiday allowance and deductions automatically in seconds.",
-        hourlyWageLabel: "Hourly Wage (KRW)",
-        weeklyHoursLabel: "Weekly Work Hours (hrs)",
-        workDaysLabel: "Work Days Per Week (days)",
-        deductionLabel: "Deduction Type",
-        deductionNone: "None (0%)",
-        deductionFreelance: "3.3% (Freelance / Part-time)",
-        deductionFourInsurances: "4 Major Insurances (~9.4%)",
-        basePay: "Monthly Base Pay",
-        holidayPay: "Monthly Holiday Allowance",
-        grossPay: "Gross Salary",
-        deductionAmount: "Estimated Deduction",
-        netPay: "Estimated Net Salary",
-        minWageBtn: "2026 Min Wage (10,320 KRW)",
-        copyBtn: "📋 Copy Results",
-        copySuccess: "Copied!",
-        tip: "※ Actual pay may vary depending on overtime, night shifts, or company attendance policies.",
-        guide: {
-          mainTitle: "2026 Salary & Holiday Allowance Complete Guide",
-          badge: "Labor Law Summary",
-          item1Title: "2026 Statutory Minimum Wage Information",
-          item1Content: `<div class="space-y-1.5"><p>• <strong>Hourly Wage:</strong> <span class="text-indigo-600 dark:text-indigo-400 font-bold">10,320 KRW</span> (Increased from previous year)</p><p>• <strong>Monthly Pay (40 hrs/wk):</strong> <span class="font-bold text-slate-900 dark:text-white">2,156,880 KRW</span> (Based on statutory 209 monthly hours including 8h/wk paid holiday, 10,320 × 209 hrs)</p><p>• <strong>Breakdown:</strong> Monthly Base Pay 1,793,616 KRW (173.8h) + Holiday Allowance 363,264 KRW (35.2h) = Total 2,156,880 KRW</p><p>• <strong>Coverage:</strong> Mandatory for all workplaces with 1+ employees, including part-time, temporary, and contractual workers.</p></div>`,
-          item2Title: "3 Key Conditions for Weekly Holiday Allowance",
-          item2Content: `<div class="space-y-1.5"><p>Under Article 55 of the Labor Standards Act, workers are legally entitled to weekly paid holiday allowance when fulfilling all 3 criteria:</p><p>• <strong>1. 15+ Contractual Hours per Week:</strong> Average work hours over a 4-week span must reach 15 hours or more per week.</p><p>• <strong>2. Perfect Attendance on Scheduled Days:</strong> Must fulfill all contractual work days without unexcused absences (tardiness/early leave does not forfeit the allowance).</p><p>• <strong>3. Continued Employment Scheduled:</strong> A continued work relationship scheduled for the following week.</p><p>• <strong>Part-Time Formula:</strong> (Weekly Hours ÷ 40) × 8 hrs × Hourly Wage</p></div>`,
-          item3Title: "Difference in Deductions (3.3% Freelance vs 4 Insurances)",
-          item3Content: `<div class="space-y-1.5"><p>• <strong>3.3% Business Income Tax (Freelance/Short-term):</strong> 3% national income tax + 0.3% local income tax withheld at source. Eligible for tax refund during May comprehensive income tax filing if income is below standard exemption thresholds.</p><p>• <strong>4 Major Insurances (~9.4% Employee Contribution):</strong> National Pension (4.5%) + Health Insurance (3.545%) + Long-Term Care (12.95% of health) + Employment Insurance (0.9%). (Workplace Injury Insurance is 100% paid by the employer).</p><p>• <strong>Mandatory Requirement:</strong> Any employee working 60+ hours per month (15+ hours/week) for 1 month or longer must be enrolled in all 4 insurances by law.</p></div>`
+    "tabs": {
+      "mobileApps": "Mobile Apps",
+      "webTools": "Web Tools",
+      "guide": "Guides"
+    },
+    "webTools": {
+      "sectionTitle": "Practical web tools ready in your browser",
+      "heroCount": "web tools available",
+      "resultsFound": "web tools found",
+      "badgeHot": "HOT",
+      "badgeFree": "Free Tool",
+      "useToolBtn": "Use Tool Now",
+      "emptyTitle": "No web tools found",
+      "emptySubtitle": "Try searching with a different keyword.",
+      "globalComingSoonTitle": "New Global Web Tools Coming Soon!",
+      "globalComingSoonSubtitle": "We are currently preparing useful online tools for global users.",
+      "wageCalc": {
+        "title": "Net Salary & Holiday Allowance Calculator",
+        "subtitle": "Hourly wage & statutory holiday allowance calculator",
+        "desc": "Calculate weekly holiday allowance and deductions automatically in seconds.",
+        "hourlyWageLabel": "Hourly Wage (KRW)",
+        "weeklyHoursLabel": "Weekly Work Hours (hrs)",
+        "workDaysLabel": "Work Days Per Week (days)",
+        "deductionLabel": "Deduction Type",
+        "deductionNone": "None (0%)",
+        "deductionFreelance": "3.3% (Freelance / Part-time)",
+        "deductionFourInsurances": "4 Major Insurances (~9.4%)",
+        "basePay": "Monthly Base Pay",
+        "holidayPay": "Monthly Holiday Allowance",
+        "grossPay": "Gross Salary",
+        "deductionAmount": "Estimated Deduction",
+        "netPay": "Estimated Net Salary",
+        "minWageBtn": "2026 Min Wage (10,320 KRW)",
+        "copyBtn": "📋 Copy Results",
+        "copySuccess": "Copied!",
+        "tip": "※ Actual pay may vary depending on overtime, night shifts, or company attendance policies.",
+        "guide": {
+          "mainTitle": "2026 Salary & Holiday Allowance Complete Guide",
+          "badge": "Labor Law Summary",
+          "item1Title": "2026 Statutory Minimum Wage Information",
+          "item1Content": "<div class=\"space-y-1.5\"><p>• <strong>Hourly Wage:</strong> <span class=\"text-indigo-600 dark:text-indigo-400 font-bold\">10,320 KRW</span> (Increased from previous year)</p><p>• <strong>Monthly Pay (40 hrs/wk):</strong> <span class=\"font-bold text-slate-900 dark:text-white\">2,156,880 KRW</span> (Based on statutory 209 monthly hours including 8h/wk paid holiday, 10,320 × 209 hrs)</p><p>• <strong>Breakdown:</strong> Monthly Base Pay 1,793,616 KRW (173.8h) + Holiday Allowance 363,264 KRW (35.2h) = Total 2,156,880 KRW</p><p>• <strong>Coverage:</strong> Mandatory for all workplaces with 1+ employees, including part-time, temporary, and contractual workers.</p></div>",
+          "item2Title": "3 Key Conditions for Weekly Holiday Allowance",
+          "item2Content": "<div class=\"space-y-1.5\"><p>Under Article 55 of the Labor Standards Act, workers are legally entitled to weekly paid holiday allowance when fulfilling all 3 criteria:</p><p>• <strong>1. 15+ Contractual Hours per Week:</strong> Average work hours over a 4-week span must reach 15 hours or more per week.</p><p>• <strong>2. Perfect Attendance on Scheduled Days:</strong> Must fulfill all contractual work days without unexcused absences (tardiness/early leave does not forfeit the allowance).</p><p>• <strong>3. Continued Employment Scheduled:</strong> A continued work relationship scheduled for the following week.</p><p>• <strong>Part-Time Formula:</strong> (Weekly Hours ÷ 40) × 8 hrs × Hourly Wage</p></div>",
+          "item3Title": "Difference in Deductions (3.3% Freelance vs 4 Insurances)",
+          "item3Content": "<div class=\"space-y-1.5\"><p>• <strong>3.3% Business Income Tax (Freelance/Short-term):</strong> 3% national income tax + 0.3% local income tax withheld at source. Eligible for tax refund during May comprehensive income tax filing if income is below standard exemption thresholds.</p><p>• <strong>4 Major Insurances (~9.4% Employee Contribution):</strong> National Pension (4.5%) + Health Insurance (3.545%) + Long-Term Care (12.95% of health) + Employment Insurance (0.9%). (Workplace Injury Insurance is 100% paid by the employer).</p><p>• <strong>Mandatory Requirement:</strong> Any employee working 60+ hours per month (15+ hours/week) for 1 month or longer must be enrolled in all 4 insurances by law.</p></div>",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>🧮</span>\n        <span>Tool Overview &amp; Local Security</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">Based on the official 2026 statutory minimum hourly wage of 10,320 KRW, this calculator computes statutory weekly holiday allowances, gross monthly wages, mandatory deductions (3.3% freelance withholding tax vs 4 major insurances), and net take-home salary in seconds. It automatically verifies whether an employee qualifies for weekly paid holiday allowances (15+ hours per week) and calculates proportional amounts for part-time workers under Korean labor regulations.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Key Features</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 2026 Minimum Wage & 209-Hour Total</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Pre-configured with the statutory 10,320 KRW hourly wage, reflecting standard 209-hour monthly totals (1,793,616 KRW base pay + 363,264 KRW holiday allowance = 2,156,880 KRW gross pay).</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Holiday Allowance Eligibility & Part-Time Proportions</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Instantly validates statutory weekly paid holiday qualification for employees working 15+ hours per week with proportional formulas: (Weekly Hours ÷ 40) × 8 hrs × Hourly Wage.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Comparative Deduction Models (3.3% vs. 4 Insurances)</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Real-time side-by-side comparison between 0% tax-free, 3.3% freelance business income withholding, and ~9.4% statutory employee social security deductions.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Step-by-Step Guide</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">Input Hourly Wage:</strong> Click the 2026 minimum wage button (10,320 KRW) or manually type your agreed hourly rate into the wage input field.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">Enter Weekly Contracted Hours:</strong> Input your weekly scheduled working hours. The system automatically activates the '✅ Eligible for Holiday Pay' badge when hours reach 15 or higher.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">Select Tax & Insurance Deduction Model:</strong> Choose between None (0%), 3.3% Freelance withholding tax, or standard 4 Major Social Insurances (~9.4% employee contribution).</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">Inspect Salary Breakdown & Copy:</strong> Review your monthly base wage, holiday allowance, total gross pay, deductions, and final net take-home salary, then click '📋 Copy Results'.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">Pro Tip</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">Labor Law & Payroll Compliance Tip: Tardy arrivals or early departures do not disqualify workers from weekly holiday pay as long as they were not absent on scheduled working days. Employers can deduct pay for unworked tardy minutes, but cannot withhold the full statutory holiday allowance. Unpaid weekly holiday allowance constitutes statutory wage delinquency punishable by up to 3 years imprisonment or fines up to 30 million KRW.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      annualLeaveCalc: {
-        title: "Annual Leave Calculator (Korean Labor Standards Act)",
-        subtitle: "Real-time calculation of statutory annual & monthly paid leave under Art. 60",
-        statutoryBadge: "Art. 60 Labor Standards Act",
-        statutoryBadgeTitle: "Complies accurately with Article 60 of the Korean Labor Standards Act.",
-        langToggle: "KO",
-        modeLabel: "Calculation Basis Mode",
-        modeHireDate: "📅 Hire Date Basis (Statutory Standard)",
-        modeFiscalYear: "🏢 Fiscal Year Basis (Jan 1st Standard)",
-        modeFiscalNotice: "※ Used by companies granting leave on January 1st. Upon resignation, it must be reconciled against the hire-date basis so the employee suffers no disadvantage.",
-        inputHireLabel: "Hire Date",
-        inputBaseLabel: "Base Reference Date",
-        todayBtn: "Reset to Today",
-        sampleBtn: "Load Sample (2 Years)",
-        presetsLabel: "Quick Sample Presets",
-        presetFreshman: "New Hire (6 Mo)",
-        presetOneYear: "1 Year",
-        presetThreeYears: "3 Years",
-        presetFiveYears: "5 Years",
-        presetTenYears: "10 Years",
-        dashboardTitle: "Leave Calculation Dashboard",
-        servicePeriodLabel: "Service Period",
-        workingStatus: "employed",
-        totalGrantedLabel: "Total Annual Leave",
-        totalUnit: "days",
-        totalDaysUnit: "Total {days} days",
-        cumulativeBadge: "Total cumulative leave: {days} days since hire",
-        cardMonthlyTitle: "Monthly Leave (< 1 Year)",
-        cardMonthlyDesc: "1 day granted per full month worked (up to 11 days)",
-        cardRegularTitle: "Regular Annual Leave (≥ 1 Year)",
-        cardRegularDesc: "Base 15 days + 1 extra day every 2 yrs from Year 3 (Max 25 days)",
-        cardFiscalTitle: "Fiscal Year Pro-rated Leave",
-        cardFiscalDesc: "Pro-rated by days worked in the hire year",
-        baseLeaveLabel: "Base Leave",
-        addedLeaveLabel: "Bonus Days",
-        copyBtn: "📋 Copy Calculation Results",
-        closeBtn: "Close",
-        toastCopied: "Annual leave calculation copied to clipboard!",
-        toastSampleLoaded: "Sample employment data has been loaded.",
-        toastResetToday: "Base date has been reset to today.",
-        errorDateOrder: "Base date must be after hire date.",
-        guide: {
-          mainTitle: "Core Legal Guide to Article 60 Annual Paid Leave",
-          badge: "Labor Law Summary",
-          item1Title: "Monthly Leave Expiration for 1st Year Employees",
-          item1Content: `<div class="space-y-1.5"><p>• <strong>1st Year Monthly Leave:</strong> Employees with less than 1 year of service earn 1 day of paid leave per full month worked with perfect attendance (max 11 days).</p><p>• <strong>Expiration:</strong> Leave accrued in the 1st year expires legally exactly 1 year after the hire date (Article 60(7)). Unused days must be compensated if prevented by the employer.</p></div>`,
-          item2Title: "15 Days Granted at 1-Year Mark with 80% Attendance",
-          item2Content: `<div class="space-y-1.5"><p>• <strong>15 Base Days:</strong> Employees who have worked for 1 full year with at least 80% attendance receive 15 days of paid annual leave.</p><p>• <strong>Under 80% Attendance:</strong> If attendance is under 80%, leave is granted at 1 day per full month worked.</p></div>`,
-          item3Title: "Service Bonus Days from Year 3 (Capped at 25 Days)",
-          item3Content: `<div class="space-y-1.5"><p>• <strong>Bonus Rule:</strong> 1 extra day is added for every 2 consecutive years of service starting from year 3.</p><p>• <strong>Progression:</strong> Years 1-2: 15 days / Years 3-4: 16 days / Years 5-6: 17 days / Years 7-8: 18 days ... / Year 21+: 25 days (statutory cap).</p></div>`,
-          item4Title: "Fiscal Year Basis Adoption & Final Settlement",
-          item4Content: `<div class="space-y-1.5"><p>• <strong>Administrative Convenience:</strong> Companies may adopt a calendar/fiscal year basis (Jan 1) for collective leave administration.</p><p>• <strong>Settlement on Resignation:</strong> When an employee leaves, the total leave must be compared against the hire-date basis. If the fiscal calculation yields fewer days, the company must compensate the difference.</p></div>`
+      "annualLeaveCalc": {
+        "title": "Annual Leave Calculator (Korean Labor Standards Act)",
+        "subtitle": "Real-time calculation of statutory annual & monthly paid leave under Art. 60",
+        "statutoryBadge": "Art. 60 Labor Standards Act",
+        "statutoryBadgeTitle": "Complies accurately with Article 60 of the Korean Labor Standards Act.",
+        "langToggle": "KO",
+        "modeLabel": "Calculation Basis Mode",
+        "modeHireDate": "📅 Hire Date Basis (Statutory Standard)",
+        "modeFiscalYear": "🏢 Fiscal Year Basis (Jan 1st Standard)",
+        "modeFiscalNotice": "※ Used by companies granting leave on January 1st. Upon resignation, it must be reconciled against the hire-date basis so the employee suffers no disadvantage.",
+        "inputHireLabel": "Hire Date",
+        "inputBaseLabel": "Base Reference Date",
+        "todayBtn": "Reset to Today",
+        "sampleBtn": "Load Sample (2 Years)",
+        "presetsLabel": "Quick Sample Presets",
+        "presetFreshman": "New Hire (6 Mo)",
+        "presetOneYear": "1 Year",
+        "presetThreeYears": "3 Years",
+        "presetFiveYears": "5 Years",
+        "presetTenYears": "10 Years",
+        "dashboardTitle": "Leave Calculation Dashboard",
+        "servicePeriodLabel": "Service Period",
+        "workingStatus": "employed",
+        "totalGrantedLabel": "Total Annual Leave",
+        "totalUnit": "days",
+        "totalDaysUnit": "Total {days} days",
+        "cumulativeBadge": "Total cumulative leave: {days} days since hire",
+        "cardMonthlyTitle": "Monthly Leave (< 1 Year)",
+        "cardMonthlyDesc": "1 day granted per full month worked (up to 11 days)",
+        "cardRegularTitle": "Regular Annual Leave (≥ 1 Year)",
+        "cardRegularDesc": "Base 15 days + 1 extra day every 2 yrs from Year 3 (Max 25 days)",
+        "cardFiscalTitle": "Fiscal Year Pro-rated Leave",
+        "cardFiscalDesc": "Pro-rated by days worked in the hire year",
+        "baseLeaveLabel": "Base Leave",
+        "addedLeaveLabel": "Bonus Days",
+        "copyBtn": "📋 Copy Calculation Results",
+        "closeBtn": "Close",
+        "toastCopied": "Annual leave calculation copied to clipboard!",
+        "toastSampleLoaded": "Sample employment data has been loaded.",
+        "toastResetToday": "Base date has been reset to today.",
+        "errorDateOrder": "Base date must be after hire date.",
+        "guide": {
+          "mainTitle": "Core Legal Guide to Article 60 Annual Paid Leave",
+          "badge": "Labor Law Summary",
+          "item1Title": "Monthly Leave Expiration for 1st Year Employees",
+          "item1Content": "<div class=\"space-y-1.5\"><p>• <strong>1st Year Monthly Leave:</strong> Employees with less than 1 year of service earn 1 day of paid leave per full month worked with perfect attendance (max 11 days).</p><p>• <strong>Expiration:</strong> Leave accrued in the 1st year expires legally exactly 1 year after the hire date (Article 60(7)). Unused days must be compensated if prevented by the employer.</p></div>",
+          "item2Title": "15 Days Granted at 1-Year Mark with 80% Attendance",
+          "item2Content": "<div class=\"space-y-1.5\"><p>• <strong>15 Base Days:</strong> Employees who have worked for 1 full year with at least 80% attendance receive 15 days of paid annual leave.</p><p>• <strong>Under 80% Attendance:</strong> If attendance is under 80%, leave is granted at 1 day per full month worked.</p></div>",
+          "item3Title": "Service Bonus Days from Year 3 (Capped at 25 Days)",
+          "item3Content": "<div class=\"space-y-1.5\"><p>• <strong>Bonus Rule:</strong> 1 extra day is added for every 2 consecutive years of service starting from year 3.</p><p>• <strong>Progression:</strong> Years 1-2: 15 days / Years 3-4: 16 days / Years 5-6: 17 days / Years 7-8: 18 days ... / Year 21+: 25 days (statutory cap).</p></div>",
+          "item4Title": "Fiscal Year Basis Adoption & Final Settlement",
+          "item4Content": "<div class=\"space-y-1.5\"><p>• <strong>Administrative Convenience:</strong> Companies may adopt a calendar/fiscal year basis (Jan 1) for collective leave administration.</p><p>• <strong>Settlement on Resignation:</strong> When an employee leaves, the total leave must be compared against the hire-date basis. If the fiscal calculation yields fewer days, the company must compensate the difference.</p></div>",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📅</span>\n        <span>Tool Overview &amp; Local Security</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">The Annual Leave Calculator accurately computes statutory paid leave entitlements under Article 60 of the Korean Labor Standards Act. By entering an employee's hire date and calculation reference date, it automatically breaks down first-year monthly leave (up to 11 days), regular statutory annual leave (base 15 days), and seniority-based bonus days (up to 25 days max). Users can seamlessly toggle between the statutory default 'Hire Date Mode' and the corporate standard 'Fiscal Year Mode (Jan 1)'. An intuitive dashboard displays total active service days, cumulative leave generated since inception, and detailed progress metrics for seamless HR management.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Key Features</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Fiscal Year vs. Hire Date Comparison</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Compare statutory hire-date calculations against corporate calendar-year systems (granting leave on January 1st) in real time to verify compliance and audit leave balances.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Automatic Seniority Bonus Day Calculation</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Computes 1 monthly leave day per month worked in year 1 (max 11 days), regular 15 days on the 1st anniversary, and +1 bonus day every 2 continuous service years thereafter (up to the legal 25-day ceiling).</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Unpaid Leave Allowance & Audit Guidance</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Provides clear guidance on statutory unpaid vacation allowances based on ordinary wages, 3-year statutes of limitations, and mandatory retirement settlement reconciliation.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Step-by-Step Guide</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">Input Hire Date & Reference Date:</strong> Select the employee's official start date and the target evaluation date (defaults to today's date). Quick preset chips (6m, 1y, 3y, 5y, 10y) allow instant simulation.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">Choose Calculation Standard Mode:</strong> Toggle between 'Hire Date Basis (Statutory Standard)' and 'Fiscal Year Basis (Jan 1st Standard)' to reflect your company's employment policies.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">Audit Leave Entitlements & Allowances:</strong> Inspect the primary dashboard showcasing total granted leave, monthly progress bar (max 11 days), regular base leave, seniority bonus breakdown, and cumulative totals.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">Copy Formatted Results for HR Records:</strong> Click 'Copy Results' to format and copy the full leave statement directly into your clipboard for vacation approvals, payroll records, or resignation audits.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">Pro Tip</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">Retirement Reconciliation & Part-Time Leave Tip: Even if an employer utilizes a fiscal year system (Jan 1) for administrative convenience, Korean labor law mandates that upon termination, the total leave must be reconciled against the hire-date basis. If the hire-date calculation yields more days, the company must compensate the employee for the difference as unpaid leave allowance. For part-time workers, leave is granted proportionally: (Part-time Hours ÷ 40 × 8 × 15). Note that statutory wage claims for unpaid leave allowance expire after 3 years.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      charByteCounter: {
-        title: "Word & Character / Byte Counter",
-        subtitle: "Instant character, word, line and byte count validator",
-        desc: "Real-time character, word, line, and byte counter with whitespace clean-up tools.",
-        inputTitle: "Text Input",
-        placeholder: "Paste or type your resume, document, essay, or text here.\nCharacter, word, and byte counts will be calculated instantly in real time.",
-        pasteBtn: "📋 Paste from Clipboard",
-        clearBtn: "🗑️ Clear All",
-        cleanSpacesBtn: "✨ Clean Spaces",
-        cleanLinesBtn: "↵ Clean Empty Lines",
-        copyTextBtn: "📋 Copy Text",
-        copyStatsBtn: "📊 Copy Stats",
-        statWithSpaces: "With Spaces",
-        statWithoutSpaces: "No Spaces",
-        statBytes: "Bytes (Byte)",
-        statDocStructure: "Document Volume",
-        statByteStandard: "Standard Byte (ASCII / UTF-8)",
-        statEucKr: "Job Portals (2-Byte)",
-        statEucKrDesc: "Saramin · JobKorea standard (EUC-KR)",
-        statUtf8: "System / DB (3-Byte)",
-        statUtf8Desc: "Public & Enterprise DB standard (UTF-8)",
-        statWords: "Words",
-        statLines: "Lines",
-        statSpaces: "Spaces",
-        unitChar: "chars",
-        unitByte: "Bytes",
-        unitWord: "words",
-        unitLine: "lines",
-        copiedToast: "Copied to clipboard!",
-        pasteError: "Clipboard permission denied. Please press Ctrl+V directly.",
-        confirmClear: "Are you sure you want to clear the entire text?",
-        guide: {
-          mainTitle: "💡 Character & Byte Counting Guide",
-          singleTitle: "💡 Character & Byte Counting Guide",
-          badge: "Specification Guide",
-          singleContent: `<p>• <strong>With/Without Spaces:</strong> Unless explicitly specified, job application systems count characters with whitespace included.</p><p>• <strong>Byte (Byte):</strong> Standard Korean job portals (Saramin, JobKorea, etc.) calculate Korean characters as 2 Bytes (English, symbols, spaces as 1 Byte).</p>`,
-          item1Title: "Byte Differences Across Job Portals",
-          item1Content: `<div class="space-y-1.5"><p>• <strong>Saramin / JobKorea:</strong> Standard Korean job portals adopt <strong>EUC-KR (2-Byte)</strong> encoding where 1 Korean character equals 2 Bytes, and English letters, digits, spaces, and line breaks equal 1 Byte.</p><p>• <strong>Example:</strong> 500 Korean chars = approx. 1,000 Bytes (excluding spaces), plus 1 Byte per whitespace.</p></div>`,
-          item2Title: "Public Sector & Enterprise Systems (UTF-8 3-Byte)",
-          item2Content: `<div class="space-y-1.5"><p>• <strong>Database Standard:</strong> Depending on system DB settings (Oracle, MySQL, etc.), some public recruiting portals calculate Korean characters as <strong>UTF-8 (3-Byte)</strong>. Always verify portal notices beforehand.</p><p>• <strong>Caution:</strong> A 3,000-byte limit allows 1,500 Korean characters in 2-byte systems, but only 1,000 characters in 3-byte systems.</p></div>`,
-          item3Title: "With Spaces vs Without Spaces Rule",
-          item3Content: `<div class="space-y-1.5"><p>• <strong>General Rule:</strong> Unless explicitly noted as 'without spaces', recruiting limits standardly include whitespace characters.</p><p>• <strong>Ideal Word Length:</strong> Aim for <strong>85% to 95%</strong> of the maximum character allowance for optimal readability and completeness.</p></div>`
+      "charByteCounter": {
+        "title": "Word & Character / Byte Counter",
+        "subtitle": "Instant character, word, line and byte count validator",
+        "desc": "Real-time character, word, line, and byte counter with whitespace clean-up tools.",
+        "inputTitle": "Text Input",
+        "placeholder": "Paste or type your resume, document, essay, or text here.\nCharacter, word, and byte counts will be calculated instantly in real time.",
+        "pasteBtn": "📋 Paste from Clipboard",
+        "clearBtn": "🗑️ Clear All",
+        "cleanSpacesBtn": "✨ Clean Spaces",
+        "cleanLinesBtn": "↵ Clean Empty Lines",
+        "copyTextBtn": "📋 Copy Text",
+        "copyStatsBtn": "📊 Copy Stats",
+        "statWithSpaces": "With Spaces",
+        "statWithoutSpaces": "No Spaces",
+        "statBytes": "Bytes (Byte)",
+        "statDocStructure": "Document Volume",
+        "statByteStandard": "Standard Byte (ASCII / UTF-8)",
+        "statEucKr": "Job Portals (2-Byte)",
+        "statEucKrDesc": "Saramin · JobKorea standard (EUC-KR)",
+        "statUtf8": "System / DB (3-Byte)",
+        "statUtf8Desc": "Public & Enterprise DB standard (UTF-8)",
+        "statWords": "Words",
+        "statLines": "Lines",
+        "statSpaces": "Spaces",
+        "unitChar": "chars",
+        "unitByte": "Bytes",
+        "unitWord": "words",
+        "unitLine": "lines",
+        "copiedToast": "Copied to clipboard!",
+        "pasteError": "Clipboard permission denied. Please press Ctrl+V directly.",
+        "confirmClear": "Are you sure you want to clear the entire text?",
+        "guide": {
+          "mainTitle": "💡 Character & Byte Counting Guide",
+          "singleTitle": "💡 Character & Byte Counting Guide",
+          "badge": "Specification Guide",
+          "singleContent": "<p>• <strong>With/Without Spaces:</strong> Unless explicitly specified, job application systems count characters with whitespace included.</p><p>• <strong>Byte (Byte):</strong> Standard Korean job portals (Saramin, JobKorea, etc.) calculate Korean characters as 2 Bytes (English, symbols, spaces as 1 Byte).</p>",
+          "item1Title": "Byte Differences Across Job Portals",
+          "item1Content": "<div class=\"space-y-1.5\"><p>• <strong>Saramin / JobKorea:</strong> Standard Korean job portals adopt <strong>EUC-KR (2-Byte)</strong> encoding where 1 Korean character equals 2 Bytes, and English letters, digits, spaces, and line breaks equal 1 Byte.</p><p>• <strong>Example:</strong> 500 Korean chars = approx. 1,000 Bytes (excluding spaces), plus 1 Byte per whitespace.</p></div>",
+          "item2Title": "Public Sector & Enterprise Systems (UTF-8 3-Byte)",
+          "item2Content": "<div class=\"space-y-1.5\"><p>• <strong>Database Standard:</strong> Depending on system DB settings (Oracle, MySQL, etc.), some public recruiting portals calculate Korean characters as <strong>UTF-8 (3-Byte)</strong>. Always verify portal notices beforehand.</p><p>• <strong>Caution:</strong> A 3,000-byte limit allows 1,500 Korean characters in 2-byte systems, but only 1,000 characters in 3-byte systems.</p></div>",
+          "item3Title": "With Spaces vs Without Spaces Rule",
+          "item3Content": "<div class=\"space-y-1.5\"><p>• <strong>General Rule:</strong> Unless explicitly noted as 'without spaces', recruiting limits standardly include whitespace characters.</p><p>• <strong>Ideal Word Length:</strong> Aim for <strong>85% to 95%</strong> of the maximum character allowance for optimal readability and completeness.</p></div>",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📝</span>\n        <span>Tool Overview &amp; Local Security</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">Word & Byte Counter is a real-time character and byte auditing tool tailored for job applicants, resume submissions, academic essays, and official government document formatting. It calculates character counts with and without spaces, word count, line breaks, and differentiates between 2-Byte (EUC-KR / standard portal) and 3-Byte (UTF-8 / enterprise server) storage systems to prevent text truncation upon submission. One-click formatting tools effortlessly clean up double spaces and excessive empty lines.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Key Features</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Simultaneous Character Counting</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Calculates character totals with spaces and without spaces in real time to satisfy differing corporate job submission guidelines.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Dual Byte Standards (2-Byte vs. 3-Byte)</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Compares standard job portal byte calculations against public agency database storage limits to avoid unexpected text clipping.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Structural Document Breakdown</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Analyzes total word count, paragraph lines, and space frequency in clear responsive stat cards to optimize readability.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Instant Text Formatting Cleaners</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Strips repetitive spaces down to single spaces and compacts excessive line breaks with dedicated clean-up buttons in seconds.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Step-by-Step Guide</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">Paste Document or Resume Text:</strong> Paste your cover letter, resume, or essay into the full-width text area using Ctrl+V or the '📋 Paste' button.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">Inspect Live Metrics & Byte Limits:</strong> Review character counts (with/without spaces), byte size, word counts, and line totals instantly in the 4 responsive stat cards.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">Optimize Spacing & Line Breaks:</strong> Click '✨ Clean Spaces' to reduce multi-spaces to a single space and '↵ Clean Lines' to remove redundant empty lines.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">Copy Cleansed Text or Summary Statistics:</strong> Click '📋 Copy Text' to grab your submission-ready text or '📊 Copy Stats' to review and document your submission metrics.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">Pro Tip</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">Career Advisor Resume Tip: Unless a job posting explicitly states 'excluding spaces', recruiters and Applicant Tracking Systems (ATS) evaluate submissions on a 'characters with spaces' basis. Aim for 85% to 95% of the allowable character limit for an optimally balanced response. Note that when applying to systems enforcing UTF-8 3-byte limits, a 3,000-byte cap only accommodates 1,000 Korean characters.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      excelDelimiterConverter: {
-        title: "Excel Line Break ↔ Delimiter Converter",
-        subtitle: "Convert Excel rows/columns into commas, SQL IN clauses, or quotes in 1 second",
-        securityBadge: "100% Client-Side Only (Zero Data Leak)",
-        securityBadgeTitle: "Processed 100% locally in your browser. No data is sent to any server.",
-        langToggle: "KO",
-        modeLabel: "Conversion Mode",
-        modeLineToDelim: "Line Break → Delimiter",
-        modeDelimToLine: "Delimiter → Line Break",
-        inputTitle: "Input Data",
-        inputPlaceholderLine: "Paste multiple lines of data copied from Excel here.\nExample:\nItemA\nItemB\nItemC\nItemD",
-        inputPlaceholderDelim: "Paste delimited data (commas, quotes, etc.) here.\nExample:\n'ItemA', 'ItemB', 'ItemC'\nor IN ('ItemA', 'ItemB')",
-        pasteBtn: "📋 Paste",
-        clearBtn: "🗑️ Clear",
-        sampleBtn: "💡 Sample",
-        optionsTitle: "Options & Delimiter Presets",
-        presetLabel: "Delimiter Preset",
-        presetComma: "Comma (, )",
-        presetSqlSingle: "SQL Single Quotes ('A', 'B')",
-        presetDoubleQuote: "Double Quotes (\"A\", \"B\")",
-        presetSpace: "Space",
-        presetTab: "Tab",
-        presetCustom: "Custom",
-        customDelimPlaceholder: "Enter delimiter (e.g. | or ;)",
-        optTrim: "Trim & Remove Empty Lines",
-        optDedupe: "Remove Duplicates",
-        optSqlIn: "Wrap with SQL IN (...)",
-        outputTitle: "Output Result",
-        outputPlaceholder: "Converted results will appear here in real time.",
-        countBadge: "{count} items converted",
-        copyBtn: "📋 Copy Result",
-        swapBtn: "🔄 Send Result to Input",
-        toastCopied: "Copied to clipboard!",
-        toastCleared: "Input cleared.",
-        toastSampleLoaded: "Sample data loaded.",
-        toastPasted: "Pasted from clipboard.",
-        toastSwapped: "Result moved to input.",
-        toastNoResult: "No result to copy.",
-        toastPasteError: "Clipboard permission denied. Please press Ctrl+V directly.",
-        guide: {
-          mainTitle: "💡 Excel Line Break & Delimiter Tips",
-          tip1Title: "Copying columns & multi-row cells from Excel",
-          tip1Content: "Select columns or multiple cells in Excel / Google Sheets and copy (Ctrl+C). Both line breaks and multi-column tabs (\\t) are split automatically into individual items.",
-          tip2Title: "Generate DB Query WHERE col IN (...)",
-          tip2Content: "Select 'SQL Single Quotes' and check 'Wrap with SQL IN (...)' to generate ready-to-run SQL IN clauses in seconds.",
-          tip3Title: "100% Client-Side Privacy & Security",
-          tip3Content: "All processing runs completely in your local browser runtime. Zero data is transmitted to external servers, making it safe for confidential and corporate data."
+      "excelDelimiterConverter": {
+        "title": "Excel Line Break ↔ Delimiter Converter",
+        "subtitle": "Convert Excel rows/columns into commas, SQL IN clauses, or quotes in 1 second",
+        "securityBadge": "100% Client-Side Only (Zero Data Leak)",
+        "securityBadgeTitle": "Processed 100% locally in your browser. No data is sent to any server.",
+        "langToggle": "KO",
+        "modeLabel": "Conversion Mode",
+        "modeLineToDelim": "Line Break → Delimiter",
+        "modeDelimToLine": "Delimiter → Line Break",
+        "inputTitle": "Input Data",
+        "inputPlaceholderLine": "Paste multiple lines of data copied from Excel here.\nExample:\nItemA\nItemB\nItemC\nItemD",
+        "inputPlaceholderDelim": "Paste delimited data (commas, quotes, etc.) here.\nExample:\n'ItemA', 'ItemB', 'ItemC'\nor IN ('ItemA', 'ItemB')",
+        "pasteBtn": "📋 Paste",
+        "clearBtn": "🗑️ Clear",
+        "sampleBtn": "💡 Sample",
+        "optionsTitle": "Options & Delimiter Presets",
+        "presetLabel": "Delimiter Preset",
+        "presetComma": "Comma (, )",
+        "presetSqlSingle": "SQL Single Quotes ('A', 'B')",
+        "presetDoubleQuote": "Double Quotes (\"A\", \"B\")",
+        "presetSpace": "Space",
+        "presetTab": "Tab",
+        "presetCustom": "Custom",
+        "customDelimPlaceholder": "Enter delimiter (e.g. | or ;)",
+        "optTrim": "Trim & Remove Empty Lines",
+        "optDedupe": "Remove Duplicates",
+        "optSqlIn": "Wrap with SQL IN (...)",
+        "outputTitle": "Output Result",
+        "outputPlaceholder": "Converted results will appear here in real time.",
+        "countBadge": "{count} items converted",
+        "copyBtn": "📋 Copy Result",
+        "swapBtn": "🔄 Send Result to Input",
+        "toastCopied": "Copied to clipboard!",
+        "toastCleared": "Input cleared.",
+        "toastSampleLoaded": "Sample data loaded.",
+        "toastPasted": "Pasted from clipboard.",
+        "toastSwapped": "Result moved to input.",
+        "toastNoResult": "No result to copy.",
+        "toastPasteError": "Clipboard permission denied. Please press Ctrl+V directly.",
+        "guide": {
+          "mainTitle": "💡 Excel Line Break & Delimiter Tips",
+          "tip1Title": "Copying columns & multi-row cells from Excel",
+          "tip1Content": "Select columns or multiple cells in Excel / Google Sheets and copy (Ctrl+C). Both line breaks and multi-column tabs (\\t) are split automatically into individual items.",
+          "tip2Title": "Generate DB Query WHERE col IN (...)",
+          "tip2Content": "Select 'SQL Single Quotes' and check 'Wrap with SQL IN (...)' to generate ready-to-run SQL IN clauses in seconds.",
+          "tip3Title": "100% Client-Side Privacy & Security",
+          "tip3Content": "All processing runs completely in your local browser runtime. Zero data is transmitted to external servers, making it safe for confidential and corporate data.",
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📊</span>\n        <span>Tool Overview &amp; Local Security</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">Excel Delimiter Converter is an essential data formatting utility that transforms multi-line column entries copied from Excel into comma-separated values (CSV), SQL IN clauses ('A', 'B'), double-quoted strings, or custom delimiters in real time—and vice versa. Designed for developers, database administrators, accountants, and marketers, it eliminates tedious manual editing when constructing database queries or cleansing contact records. Operates 100% locally within your browser memory with zero server uploads, keeping corporate records and personal credentials completely secure.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Key Features</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Bidirectional Real-Time Conversion</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Seamlessly toggle between Line Breaks → Delimiter and Delimiter → Line Breaks modes, with instant text swapping between input and output fields.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ SQL IN Clause & Parenthesis Formatting</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Automatically formats entries with single quotes and encloses items in SQL IN (...) parentheses, ready for instant database execution.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Deduplication & Whitespace Trimming</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Strips redundant duplicate entries to retain unique records only, while automatically cleaning up empty lines and trailing spaces.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ 100% Browser In-Memory Security</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Guarantees complete confidentiality: all string transformations occur solely inside local browser memory without server tracking.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Step-by-Step Guide</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">Paste Raw Data into Input Area:</strong> Copy rows from Excel or a text document and paste them into the input area, or click '💡 Sample' to load sample demonstration data.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">Select Mode & Target Delimiter:</strong> Choose your conversion direction and select your target delimiter preset: Comma, SQL Single Quotes ('A', 'B'), Double Quotes, Space, Tab, or Custom.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">Enable Clean-up & Deduplication Options:</strong> Check 'Trim Whitespace & Empty Lines', 'Deduplicate Items', or 'Wrap in SQL IN (...) Parentheses' based on your requirements.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">Copy Cleansed Results Instantly:</strong> Inspect the total item count and live output, then click '📋 Copy Output' to paste your clean data directly into your SQL console or spreadsheet.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">Pro Tip</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">Data Engineering Tip: When copying multiple Excel columns, tab characters are automatically parsed into individual items. When querying thousands of IDs in SQL, combining the 'SQL Single Quotes' preset with 'Deduplicate' prevents duplicate query processing and accelerates database search performance.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
         }
       },
-      pdfChecker: {
-        title: "PDF & Drawing Review / Marking Tool (PDF & JPG Checker)",
-        subtitle: "Merge, review, and annotate large CAD/PDF/image drawings directly in your browser with zero upload, then export to ultra-high-definition optimized PDF instantly.",
-        browserTitle: "PDF & Drawing Review / Marking Tool | Daily Helper",
-        brandTitle: "PDF & Drawing Review Tool",
-        brandBadge: "100% Local Security",
-        brandSub: "PDF & JPG Checker",
-        langToggle: "KO",
-        openAddFiles: "+ Open / Add Files",
-        pageCounterTitle: "Current / Total Pages",
-        pageTotalBadge: "0 Page",
-        toolSelect: "Select",
-        toolPan: "Pan",
-        toolText: "Text",
-        toolRect: "Rect",
-        toolCircle: "Circle",
-        toolDraw: "Draw",
-        toolSelectTitle: "Select Tool (Hotkey: V)",
-        toolPanTitle: "Pan (Hotkey: H or Space+Drag)",
-        toolTextTitle: "Text Annotation (Hotkey: T)",
-        toolRectTitle: "Rectangle Markup (Hotkey: M)",
-        toolCircleTitle: "Circle Markup (Hotkey: C)",
-        toolDrawTitle: "Freehand Draw (Hotkey: S)",
-        optLine: "Line:",
-        optFont: "Font:",
-        fillTitle: "Shape Fill",
-        fillTransparent: "Fill: Transparent",
-        fillSemitransparent: "Fill: Semi-transparent",
-        fillSolid: "Fill: Solid Color",
-        undoTitle: "Undo (Ctrl+Z)",
-        redoTitle: "Redo (Ctrl+Y)",
-        deleteSelectedTitle: "Delete Selected (Del)",
-        zoomOutTitle: "Zoom Out (Ctrl+Wheel)",
-        zoomResetTitle: "Reset 100%",
-        zoomInTitle: "Zoom In (Ctrl+Wheel)",
-        zoomFitTitle: "Fit to Screen",
-        exportTitle: "Export 50MB drawing as 5~7MB ultra-HD optimized PDF instantly",
-        exportPdfBtn: "Export High-Res PDF",
-        saveBtn: "Save",
-        closeModalTitle: "Close (Esc)",
-        sidebarPages: "Pages",
-        toggleSidebarTitle: "Collapse/Expand Sidebar",
-        addFileBtn: "+ Add File",
-        clearAllBtn: "Clear All",
-        clearAllTitle: "Clear All",
-        emptyThumbList: "No pages loaded.",
-        moveUpTitle: "Move Up",
-        moveDownTitle: "Move Down",
-        deletePageTitle: "Delete Page",
-        emptyTitle: "Open PDF or Drawings to Review",
-        emptyDesc: "100% processed securely in your local browser memory without server upload. Merge and review CAD drawings (PDF), JPG, PNG, and WebP files.",
-        emptySelectBtn: "+ Select Files (Multi-select)",
-        emptySampleBtn: "Try Sample Drawing",
-        emptyDropHint: "or drag and drop files here",
-        dropOverlayTitle: "Drop PDF or drawing files here",
-        dropOverlayDesc: "Appends pages while preserving existing annotations.",
-        shortcutSelect: '<strong class="text-blue-400 font-mono">V</strong> Select',
-        shortcutPan: '<strong class="text-blue-400 font-mono">H</strong> Pan(Space+Drag)',
-        shortcutText: '<strong class="text-blue-400 font-mono">T</strong> Text',
-        shortcutRect: '<strong class="text-blue-400 font-mono">M</strong> Rect',
-        shortcutCircle: '<strong class="text-blue-400 font-mono">C</strong> Circle',
-        shortcutDraw: '<strong class="text-blue-400 font-mono">S</strong> Draw',
-        shortcutZoom: '<strong class="text-blue-400 font-mono">Ctrl+Wheel</strong> Zoom',
-        shortcutDelete: '<strong class="text-blue-400 font-mono">Del</strong> Delete',
-        loadingProcessing: "Processing files...",
-        loadingLargeNotice: "Large drawings may take a few seconds.",
-        loadingCompositing: "Compositing and generating high-resolution optimized PDF...",
-        toastExportSuccess: "High-resolution optimized PDF downloaded successfully!",
-        toastExportFail: "PDF export failed: ",
-        toastNoPages: "No documents or drawings to export. Please load files first.",
-        toastPageOrderChanged: "Page order updated.",
-        toastPageDeleted: "Page deleted.",
-        toastSampleLoaded: "Ultra-HD sample drawing loaded! Start reviewing & marking.",
-        toastSampleFail: "Failed to load sample.",
-        confirmDeletePage: "Are you sure you want to delete Page {page}?",
-        sampleDrawingTitle: "Sample Blueprint (3F Floor Plan)",
-        demoReviewMemo: "Review Note: Confirm projector & power wiring layout in main conference room (REV 02)",
-        mobileNoticeTitle: "Optimized for Desktop / PC",
-        mobileNoticeDesc: "Large drawing review and annotation tools are optimized for desktop PC or landscape tablet screens.",
-        mobileNoticeCloseBtn: "Back to Home (Close)"
+      "pdfChecker": {
+        "title": "PDF & Drawing Review / Marking Tool (PDF & JPG Checker)",
+        "subtitle": "Merge, review, and annotate large CAD/PDF/image drawings directly in your browser with zero upload, then export to ultra-high-definition optimized PDF instantly.",
+        "browserTitle": "PDF & Drawing Review / Marking Tool | Daily Helper",
+        "brandTitle": "PDF & Drawing Review Tool",
+        "brandBadge": "100% Local Security",
+        "brandSub": "PDF & JPG Checker",
+        "langToggle": "KO",
+        "openAddFiles": "+ Open / Add Files",
+        "pageCounterTitle": "Current / Total Pages",
+        "pageTotalBadge": "0 Page",
+        "toolSelect": "Select",
+        "toolPan": "Pan",
+        "toolText": "Text",
+        "toolRect": "Rect",
+        "toolCircle": "Circle",
+        "toolDraw": "Draw",
+        "toolSelectTitle": "Select Tool (Hotkey: V)",
+        "toolPanTitle": "Pan (Hotkey: H or Space+Drag)",
+        "toolTextTitle": "Text Annotation (Hotkey: T)",
+        "toolRectTitle": "Rectangle Markup (Hotkey: M)",
+        "toolCircleTitle": "Circle Markup (Hotkey: C)",
+        "toolDrawTitle": "Freehand Draw (Hotkey: S)",
+        "optLine": "Line:",
+        "optFont": "Font:",
+        "fillTitle": "Shape Fill",
+        "fillTransparent": "Fill: Transparent",
+        "fillSemitransparent": "Fill: Semi-transparent",
+        "fillSolid": "Fill: Solid Color",
+        "undoTitle": "Undo (Ctrl+Z)",
+        "redoTitle": "Redo (Ctrl+Y)",
+        "deleteSelectedTitle": "Delete Selected (Del)",
+        "zoomOutTitle": "Zoom Out (Ctrl+Wheel)",
+        "zoomResetTitle": "Reset 100%",
+        "zoomInTitle": "Zoom In (Ctrl+Wheel)",
+        "zoomFitTitle": "Fit to Screen",
+        "exportTitle": "Export 50MB drawing as 5~7MB ultra-HD optimized PDF instantly",
+        "exportPdfBtn": "Export High-Res PDF",
+        "saveBtn": "Save",
+        "closeModalTitle": "Close (Esc)",
+        "sidebarPages": "Pages",
+        "toggleSidebarTitle": "Collapse/Expand Sidebar",
+        "addFileBtn": "+ Add File",
+        "clearAllBtn": "Clear All",
+        "clearAllTitle": "Clear All",
+        "emptyThumbList": "No pages loaded.",
+        "moveUpTitle": "Move Up",
+        "moveDownTitle": "Move Down",
+        "deletePageTitle": "Delete Page",
+        "emptyTitle": "Open PDF or Drawings to Review",
+        "emptyDesc": "100% processed securely in your local browser memory without server upload. Merge and review CAD drawings (PDF), JPG, PNG, and WebP files.",
+        "emptySelectBtn": "+ Select Files (Multi-select)",
+        "emptySampleBtn": "Try Sample Drawing",
+        "emptyDropHint": "or drag and drop files here",
+        "dropOverlayTitle": "Drop PDF or drawing files here",
+        "dropOverlayDesc": "Appends pages while preserving existing annotations.",
+        "shortcutSelect": "<strong class=\"text-blue-400 font-mono\">V</strong> Select",
+        "shortcutPan": "<strong class=\"text-blue-400 font-mono\">H</strong> Pan(Space+Drag)",
+        "shortcutText": "<strong class=\"text-blue-400 font-mono\">T</strong> Text",
+        "shortcutRect": "<strong class=\"text-blue-400 font-mono\">M</strong> Rect",
+        "shortcutCircle": "<strong class=\"text-blue-400 font-mono\">C</strong> Circle",
+        "shortcutDraw": "<strong class=\"text-blue-400 font-mono\">S</strong> Draw",
+        "shortcutZoom": "<strong class=\"text-blue-400 font-mono\">Ctrl+Wheel</strong> Zoom",
+        "shortcutDelete": "<strong class=\"text-blue-400 font-mono\">Del</strong> Delete",
+        "loadingProcessing": "Processing files...",
+        "loadingLargeNotice": "Large drawings may take a few seconds.",
+        "loadingCompositing": "Compositing and generating high-resolution optimized PDF...",
+        "toastExportSuccess": "High-resolution optimized PDF downloaded successfully!",
+        "toastExportFail": "PDF export failed: ",
+        "toastNoPages": "No documents or drawings to export. Please load files first.",
+        "toastPageOrderChanged": "Page order updated.",
+        "toastPageDeleted": "Page deleted.",
+        "toastSampleLoaded": "Ultra-HD sample drawing loaded! Start reviewing & marking.",
+        "toastSampleFail": "Failed to load sample.",
+        "confirmDeletePage": "Are you sure you want to delete Page {page}?",
+        "sampleDrawingTitle": "Sample Blueprint (3F Floor Plan)",
+        "demoReviewMemo": "Review Note: Confirm projector & power wiring layout in main conference room (REV 02)",
+        "mobileNoticeTitle": "Optimized for Desktop / PC",
+        "mobileNoticeDesc": "Large drawing review and annotation tools are optimized for desktop PC or landscape tablet screens.",
+        "mobileNoticeCloseBtn": "Back to Home (Close)",
+        "guide": {
+          "fullHtml": "<div class=\"space-y-4 text-slate-200\">\n    <div class=\"p-3.5 rounded-xl bg-indigo-950/40 border border-indigo-800/50\">\n      <h4 class=\"text-xs font-bold text-indigo-300 mb-1.5 flex items-center gap-1.5\">\n        <span>📐</span>\n        <span>Tool Overview &amp; Local Security</span>\n      </h4>\n      <p class=\"text-[11px] text-slate-300 leading-relaxed mb-0\">PDF & Drawing Checker is a zero-installation, professional web application designed for reviewing, annotating, and merging heavy CAD architectural/civil drawings (PDF) and high-resolution blueprint photos (JPG, PNG, WebP) directly in your browser. All file processing and rendering execution occurs 100% inside your local browser memory (Client-Side In-Memory Architecture), guaranteeing that confidential design data and site blueprints are never transmitted or stored on external servers. Seamlessly merge multi-format documents, apply high-precision annotations (lines, rectangles, circles, freehand drawings, and high-contrast white text badges), inspect fine dimensions with real-time zooming and panning, and export massive 50MB files into 5~7MB ultra-HD optimized PDFs in a single click.</p>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Key Features</span>\n      </h4>\n      <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2\">\n        \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Multi-Format Lossless Merging</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Seamlessly append and combine large CAD PDFs, high-resolution JPG site photos, PNG transparent layers, and WebP files into a unified document via simple drag and drop.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Precision Canvas Markup & Text Badges</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Draw lines, rectangles, circles, freehand sketches, and add opaque white-boxed text badges with colored borders to ensure extreme contrast over intricate architectural blueprints.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Real-Time Zoom & Pan Navigation</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Navigate massive A0/A1 engineering drawings without lag or stutter using smooth mouse-wheel zooming and spacebar-drag panning down to sub-millimeter construction details.</div>\n    </div>\n  \n    <div class=\"p-3 rounded-xl bg-slate-950/60 border border-slate-800/80\">\n      <div class=\"text-xs font-bold text-indigo-400 mb-1\">✓ Page Reordering & High-Res PDF Export</div>\n      <div class=\"text-[11px] text-slate-300 leading-relaxed\">Rearrange sheet order or delete redundant pages with thumbnails while preserving all existing vector annotations, exporting directly to publication-ready compressed HD PDF.</div>\n    </div>\n  \n      </div>\n    </div>\n\n    <div>\n      <h4 class=\"text-xs font-bold text-white mb-2 flex items-center gap-1.5\">\n        <span class=\"w-1.5 h-3.5 rounded-full bg-indigo-500 inline-block\"></span>\n        <span>Step-by-Step Guide</span>\n      </h4>\n      <ul class=\"space-y-2 pl-0 list-none\">\n        \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 1</span>\n      <div><strong class=\"text-white\">Upload & Append Drawing Files:</strong> Click '+ Add Files' or drag and drop your PDF blueprints and image files directly onto the canvas area. Multiple formats can be loaded simultaneously into browser memory.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 2</span>\n      <div><strong class=\"text-white\">Precision Inspection & Markup:</strong> Select tools from the top toolbar—Rectangle (M), Circle (C), Pen (S), or Text (T)—and choose colors (Red, Blue, Yellow, Black) and line weights to record audit notes. Use white-boxed badges for superior text legibility.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 3</span>\n      <div><strong class=\"text-white\">Reorder & Prune Drawing Sheets:</strong> In the left thumbnail sidebar, use the up/down arrows (▲/▼) to organize the sequence of drawings, or delete irrelevant pages with annotations intact.</div>\n    </li>\n  \n    <li class=\"flex items-start gap-2.5 text-xs text-slate-300 leading-relaxed\">\n      <span class=\"px-2 py-0.5 rounded bg-indigo-900/60 text-indigo-300 font-mono font-bold text-[10px] shrink-0 mt-0.5\">STEP 4</span>\n      <div><strong class=\"text-white\">Export Ultra-HD Optimized PDF:</strong> Click 'Export High-Res PDF' on the top right to instantly generate and download a unified, compressed high-resolution document ready for on-site printing and client distribution.</div>\n    </li>\n  \n      </ul>\n    </div>\n\n    <div class=\"p-3 rounded-xl bg-amber-950/30 border border-amber-600/40\">\n      <div class=\"flex items-start gap-2\">\n        <span class=\"text-base shrink-0 mt-0.5\">💡</span>\n        <div>\n          <div class=\"text-xs font-bold text-amber-300 mb-1\">Pro Tip</div>\n          <div class=\"text-[11px] text-slate-300 leading-relaxed\">Professional Blueprint Tip: When reviewing complex electrical or piping schematics, use white-background text badges with colored borders to ensure your inspection notes remain crisp and readable upon printing. Since all canvas operations run 100% client-side in browser memory, you can safely audit proprietary industrial blueprints without violating internal corporate security guidelines.</div>\n        </div>\n      </div>\n    </div>\n  </div>"
+        },
+        "guideBtn": "Guide",
+        "guideBtnTitle": "Open PDF & CAD Blueprint Review Guide",
+        "guideDrawerTitle": "PDF & Drawing Checker Complete Guide"
       }
     },
-    hero: {
-      title: "Make Daily Life Smarter",
-      titlePrefix: "Make Daily Life",
-      titleHighlight: "Smarter",
-      subtitle: "Upgrade your daily routine with handpicked Android apps and essential tools.",
-      searchPlaceholder: "Search apps or tools...",
-      totalApps: "apps available",
-      resultsFound: "results found",
+    "hero": {
+      "title": "Make Daily Life Smarter",
+      "titlePrefix": "Make Daily Life",
+      "titleHighlight": "Smarter",
+      "subtitle": "Upgrade your daily routine with handpicked Android apps and essential tools.",
+      "searchPlaceholder": "Search apps or tools...",
+      "totalApps": "apps available",
+      "resultsFound": "results found"
     },
-    proof: {
-      apps: "4 Useful Android Apps",
-      free: "100% Free & Secure Tools",
-      update: "Regular App Updates"
+    "proof": {
+      "apps": "10+ Useful Smartphone Apps",
+      "free": "100% Free & Safe Tools",
+      "update": "Regular New App Updates",
+      "guide": "📖 App Guide"
     },
-    categories: { all: "All", work: "Tools & Work", tools: "Tools & Work", utility: "Utility", daily: "Daily & Routine", games: "Game", game: "Game" },
-    card: { detailBtn: "Details & Download", freeTag: "Free", newTag: "New", featuredTag: "Featured", comingSoonBadge: "Coming Soon", comingSoonBtn: "Coming Soon" },
-    modal: {
-      close: "Close", downloadBtn: "Get it on Google Play",
-      features: "Key Features", guide: "Usage Guide & Tips", versionInfo: "Version Info",
-      version: "Version", updated: "Last Updated", size: "App Size",
-      requires: "Requires Android", developer: "Developer", screenshots: "Screenshots", noScreenshots: "Screenshots coming soon.",
+    "categories": {
+      "all": "All",
+      "work": "Tools & Work",
+      "tools": "Tools & Work",
+      "utility": "Utility",
+      "daily": "Daily & Routine",
+      "games": "Game",
+      "game": "Game"
     },
-    ad: { label: "Advertisement" },
-    appGuideText: "📖 App Guide",
-    badge: {
-      guide: "📖 App Guide →",
+    "card": {
+      "detailBtn": "Details & Download",
+      "freeTag": "Free",
+      "newTag": "New",
+      "featuredTag": "Featured",
+      "comingSoonBadge": "Coming Soon",
+      "comingSoonBtn": "Coming Soon"
     },
-    guide: {
-      mainTitle: "App Guides",
-      mainSubtitle: "Explore key features and useful tips for each Daily Helper app.",
-      tabComingSoon: "Coming Soon",
-      comingSoonNotice: "Currently preparing for Google Play release. Detailed guide will be updated soon.",
-      timekeeper: {
-        title: "TimeKeeper - Smart Daily Routine & Habit Tracker",
-        appName: "TimeKeeper - Smart Daily Routine & Habit Tracker",
-        overview: "TimeKeeper is a dedicated Android habit and routine tracker that lets you create custom routines and receive timely notifications exactly when you need them. It operates completely offline with zero sign-up required, providing a visual overview of your daily progress.",
-        featuresTitle: "Key Features",
-        features: [
-          { title: "Custom Schedules & Flexible Frequency", desc: "Easily schedule routines for Daily, Weekdays, Weekends, or specific days of the week at your chosen AM/PM time." },
-          { title: "Intuitive Emoji Icons", desc: "Personalize routines with visual icons for medication, hydration, workouts, reading, mindfulness, and more." },
-          { title: "Streak Tracking & Progress Dashboard", desc: "Track daily completion rate (%) and keep your motivation high with continuous streak counters (flame badges)." },
-          { title: "Integrated Timer & Stopwatch", desc: "Built-in stopwatch directly inside each routine card to measure focus time for studying or exercising." },
-          { title: "Customizable Day-Reset Time", desc: "Set your own daily reset time (default AM 04:00), making it ideal for night owls and shift workers." },
-          { title: "Privacy-First & Easy Data Backup", desc: "All data is safely stored locally on your device without server tracking. Supports one-click JSON backup and restore." },
-          { title: "Dark Theme & Multilingual Support", desc: "Comfortable Dark/Light themes and full Korean/English language toggling." }
+    "modal": {
+      "close": "Close",
+      "downloadBtn": "Get it on Google Play",
+      "features": "Key Features",
+      "guide": "Usage Guide & Tips",
+      "versionInfo": "Version Info",
+      "version": "Version",
+      "updated": "Last Updated",
+      "size": "App Size",
+      "requires": "Requires Android",
+      "developer": "Developer",
+      "screenshots": "Screenshots",
+      "noScreenshots": "Screenshots coming soon."
+    },
+    "ad": {
+      "label": "Advertisement"
+    },
+    "appGuideText": "📖 App Guide",
+    "badge": {
+      "guide": "📖 App Guide →"
+    },
+    "guide": {
+      "mainTitle": "App Guides",
+      "mainSubtitle": "Explore key features and useful tips for each Daily Helper app.",
+      "tabComingSoon": "Coming Soon",
+      "comingSoonNotice": "Currently preparing for Google Play release. Detailed guide will be updated soon.",
+      "timekeeper": {
+        "title": "TimeKeeper - Smart Daily Routine & Habit Tracker",
+        "appName": "TimeKeeper",
+        "subtitle": "Smart and intuitive habit & schedule management tool for daily life and time tracking",
+        "overview": "TimeKeeper is a privacy-first, on-device routine and habit tracker designed to streamline your daily routines and build lasting momentum. Operating completely offline without mandatory sign-ups or server dependencies, all habit statistics and timers stay safely on your personal device. Dynamic completion dashboards and flame streak counters foster daily motivation through visible milestones.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Custom Schedules & Precision Timing",
+            "desc": "Schedule flexible routines across Daily, Weekday, Weekend, or custom weekday repetitions at precise AM/PM reminder times."
+          },
+          {
+            "title": "Intuitive Emojis & Categorization",
+            "desc": "Organize routines with vivid emoji badges for hydration, vitamins, workouts, study sessions, and mindfulness."
+          },
+          {
+            "title": "Streak Tracking & Milestone Progress",
+            "desc": "Fuel daily motivation with real-time percentage progress bars and consecutive-day flame streak indicators."
+          },
+          {
+            "title": "Integrated Focus Timer & Stopwatch",
+            "desc": "Built-in stopwatch within every routine card lets you measure uninterrupted focus hours directly in the app."
+          }
         ],
-        quickGuideTitle: "Quick Guide",
-        quickGuide: [
-          "Tap the `+ Add Routine` button on the main screen.",
-          "Select an emoji icon and enter your routine title (e.g., Take Morning Medicine).",
-          "Set the target time (AM/PM) and repetition days, then tap `Save`.",
-          "When notified, begin your routine and tap the stopwatch icon if you need to track focus time.",
-          "Tap `Check` upon completion to instantly update your daily progress (%) and streak."
+        "quickGuideTitle": "Step-by-Step Guide",
+        "quickGuide": [
+          "STEP 1. Add a New Habit or Routine: Tap the '+ Add Routine' button on the main screen to define your milestone title (e.g., Morning Meditation).",
+          "STEP 2. Select Emoji & Reminder Frequency: Pick an illustrative emoji badge, assign notification times (AM/PM), choose repetition intervals, and tap 'Save'.",
+          "STEP 3. Track Focused Study or Workout Hours: Tap the timer icon on your routine card whenever you begin dedicated focus sessions to record elapsed time.",
+          "STEP 4. Mark Complete & Boost Streaks: Tap 'Check' upon finishing your task to instantly elevate your daily completion percentage and streak counter.",
+          "STEP 5. Customize Day-Reset & JSON Backup: Adjust the daily reset hour (default 04:00 AM) to fit night-owl routines and perform one-click offline JSON backups."
         ],
-        openDetailBtn: "View TimeKeeper Details",
-        body: `<div class="guide-lead-box p-4 rounded-xl mb-6 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60"><h3 class="text-base font-bold text-slate-800 dark:text-slate-100 mb-2" style="margin-top:0;">App Overview</h3><p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-0">TimeKeeper is a dedicated Android habit and routine tracker that lets you create custom routines and receive timely notifications exactly when you need them. It operates completely offline with zero sign-up required, providing a visual overview of your daily progress.</p></div><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>Key Features</h3><ul class="guide-feature-list space-y-3 mb-8"><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">1. Custom Schedules &amp; Flexible Frequency:</strong><span class="text-slate-600 dark:text-slate-300">Easily schedule routines for Daily, Weekdays, Weekends, or specific days of the week at your chosen AM/PM time.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">2. Intuitive Emoji Icons:</strong><span class="text-slate-600 dark:text-slate-300">Personalize routines with visual icons for medication, hydration, workouts, reading, mindfulness, and more.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">3. Streak Tracking &amp; Progress Dashboard:</strong><span class="text-slate-600 dark:text-slate-300">Track daily completion rate (%) and keep your motivation high with continuous streak counters (flame badges).</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">4. Integrated Timer &amp; Stopwatch:</strong><span class="text-slate-600 dark:text-slate-300">Built-in stopwatch directly inside each routine card to measure focus time for studying or exercising.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">5. Customizable Day-Reset Time:</strong><span class="text-slate-600 dark:text-slate-300">Set your own daily reset time (default AM 04:00), making it ideal for night owls and shift workers.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">6. Privacy-First &amp; Easy Data Backup:</strong><span class="text-slate-600 dark:text-slate-300">All data is safely stored locally on your device without server tracking. Supports one-click JSON backup and restore.</span></li><li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><strong class="text-indigo-600 dark:text-indigo-400 block mb-1">7. Dark Theme &amp; Multilingual Support:</strong><span class="text-slate-600 dark:text-slate-300">Comfortable Dark/Light themes and full Korean/English language toggling.</span></li></ul><h3 class="text-lg font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2"><span class="w-2 h-5 rounded bg-indigo-600 inline-block"></span>Quick Guide</h3><ol class="guide-steps-list space-y-3 mb-8"><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span><span class="text-slate-700 dark:text-slate-200">Tap the <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">+ Add Routine</code> button on the main screen.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span><span class="text-slate-700 dark:text-slate-200">Select an emoji icon and enter your routine title (e.g., Take Morning Medicine).</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span><span class="text-slate-700 dark:text-slate-200">Set the target time (AM/PM) and repetition days, then tap <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Save</code>.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">4</span><span class="text-slate-700 dark:text-slate-200">When notified, begin your routine and tap the stopwatch icon if you need to track focus time.</span></li><li class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/40"><span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">5</span><span class="text-slate-700 dark:text-slate-200">Tap <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 font-mono text-sm">Check</code> upon completion to instantly update your daily progress (%) and streak.</span></li></ol>`
+        "tipTitle": "Pro Tips & Best Practices",
+        "tipContent": "TimeKeeper Pro Tip: Start with 1~2 micro-habits each morning (such as drinking a glass of water). Small initial wins build powerful momentum as your flame streak multiplies. Shift workers can customize their 'Day Reset Hour' under settings to ensure night shifts do not inadvertently disrupt streak counting.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        ⏱️\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">TimeKeeper</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            v1.0.0 Official\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Smart and intuitive habit & schedule management tool for daily life and time tracking\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.timekeeper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">▶</span>\n      <span>Download on Google Play</span>\n    </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>⏱️</span>\n    <span>Overview & Core Value</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    TimeKeeper is a privacy-first, on-device routine and habit tracker designed to streamline your daily routines and build lasting momentum. Operating completely offline without mandatory sign-ups or server dependencies, all habit statistics and timers stay safely on your personal device. Dynamic completion dashboards and flame streak counters foster daily motivation through visible milestones.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Custom Schedules & Precision Timing</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Schedule flexible routines across Daily, Weekday, Weekend, or custom weekday repetitions at precise AM/PM reminder times.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Intuitive Emojis & Categorization</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Organize routines with vivid emoji badges for hydration, vitamins, workouts, study sessions, and mindfulness.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Streak Tracking & Milestone Progress</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Fuel daily motivation with real-time percentage progress bars and consecutive-day flame streak indicators.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          ⏱️\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Integrated Focus Timer & Stopwatch</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Built-in stopwatch within every routine card lets you measure uninterrupted focus hours directly in the app.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Step-by-Step Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Add a New Habit or Routine:</strong>\n        Tap the '+ Add Routine' button on the main screen to define your milestone title (e.g., Morning Meditation).\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Select Emoji & Reminder Frequency:</strong>\n        Pick an illustrative emoji badge, assign notification times (AM/PM), choose repetition intervals, and tap 'Save'.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Track Focused Study or Workout Hours:</strong>\n        Tap the timer icon on your routine card whenever you begin dedicated focus sessions to record elapsed time.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Mark Complete & Boost Streaks:</strong>\n        Tap 'Check' upon finishing your task to instantly elevate your daily completion percentage and streak counter.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 5\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Customize Day-Reset & JSON Backup:</strong>\n        Adjust the daily reset hour (default 04:00 AM) to fit night-owl routines and perform one-click offline JSON backups.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        Pro Tips &amp; Best Practices (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"TimeKeeper Pro Tip: Start with 1~2 micro-habits each morning (such as drinking a glass of water). Small initial wins build powerful momentum as your flame streak multiplies. Shift workers can customize their 'Day Reset Hour' under settings to ensure night shifts do not inadvertently disrupt streak counting.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.timekeeper\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">▶</span>\n      <span>Download on Google Play</span>\n    </a>\n</div>"
       },
-      daycount: {
-        title: "DayCount Guide",
-        appName: "DayCount",
-        subtitle: "Smart D-Day countdown tool for managing anniversaries and goals.",
-        overview: "Smart D-Day countdown tool for managing anniversaries and goals.",
-        featuresTitle: "Key Features",
-        features: [
-          { title: "Intuitive Card View", desc: "Check upcoming events like exams, birthdays, and anniversaries at a glance in clean card layouts." },
-          { title: "Custom Categories", desc: "Systematically group and manage schedules by purpose (Exam / Anniversary / Birthday / Trip)." },
-          { title: "Smart Sorting & Local Security", desc: "Support sorting by remaining days or date created, with all data kept safely on device without leaks." }
+      "daycount": {
+        "title": "DayCount Guide",
+        "appName": "DayCount",
+        "subtitle": "Smart D-Day countdown tool for managing anniversaries and goals.",
+        "overview": "Smart D-Day countdown tool for managing anniversaries and goals.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Intuitive Card View",
+            "desc": "Check upcoming events like exams, birthdays, and anniversaries at a glance in clean card layouts."
+          },
+          {
+            "title": "Custom Categories",
+            "desc": "Systematically group and manage schedules by purpose (Exam / Anniversary / Birthday / Trip)."
+          },
+          {
+            "title": "Smart Sorting & Local Security",
+            "desc": "Support sorting by remaining days or date created, with all data kept safely on device without leaks."
+          }
         ],
-        quickGuideTitle: "3-Step Simple Guide",
-        quickGuide: [
+        "quickGuideTitle": "3-Step Simple Guide",
+        "quickGuide": [
           "STEP 1. Add Event: Tap the '+' button at the bottom right to enter your target date and title.",
           "STEP 2. Assign Category: Select an appropriate category tag to organize your milestone list.",
           "STEP 3. Track D-Day: Conveniently view your countdown with cards automatically sorted by days remaining."
         ],
-        tipTitle: "Usage Tip",
-        tipContent: "Use 'Nearest Date' sorting when managing multiple exams or events to easily keep track of upcoming priorities.",
-        openDetailBtn: "View DayCount Details",
-        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-    <div class="flex items-start md:items-center gap-4">
-      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-orange-500/25 shrink-0 border border-white/20">
-        📅
-      </div>
-      <div>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">DayCount Guide</h2>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
-            v1.0.3 Official
-          </span>
-        </div>
-        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
-          Smart D-Day countdown tool for managing anniversaries and goals.
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.424V3.238c0-.555.228-1.056.609-1.424zM15.207 13.414l2.76-2.76-13.358-7.712 10.598 10.472zm2.76-4.068l2.973 1.716c.866.5.866 1.317 0 1.818l-2.973 1.716-2.227-2.227 2.227-3.023zm-2.76 5.482L4.609 25.302l13.358-7.712-2.76-2.76z" transform="scale(0.85) translate(2, 2)"/></svg>
-        <span>Get it on Google Play</span>
-      </a>
-      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
-        <span>← Back to Home</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>Key Features</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
-        📌
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Intuitive Card View</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Check upcoming events like exams, birthdays, and anniversaries at a glance in clean card layouts.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
-        🏷️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Custom Categories</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Systematically group and manage schedules by purpose (Exam / Anniversary / Birthday / Trip).
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
-        ⏱️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Smart Sorting &amp; Local Security</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Support sorting by remaining days or date created, with all data kept safely on device without leaks.
-      </p>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>3-Step Simple Guide</span>
-</h3>
-<ol class="guide-steps-list space-y-3.5 mb-8">
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 1
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Add Event:</strong>
-      Tap the <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-orange-600 dark:text-orange-400 font-mono text-xs font-bold">+</code> button at the bottom right to enter your target date and title.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 2
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Assign Category:</strong>
-      Select an appropriate category tag to organize your milestone list.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 3
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Track D-Day:</strong>
-      Conveniently view your countdown with cards automatically sorted by days remaining.
-    </div>
-  </li>
-</ol>
-
-<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
-  <div class="flex items-start gap-3">
-    <span class="text-2xl shrink-0 mt-0.5">💡</span>
-    <div>
-      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
-        Usage Tip (Tip)
-      </h4>
-      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
-        "Use <strong>'Nearest Date'</strong> sorting when managing multiple exams or events to easily keep track of upcoming priorities."
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
-  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
-    ← Back to Home
-  </button>
-  <a href="https://play.google.com/store/apps/details?id=com.wgapps.daycount" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>Get it on Google Play</span> ↗
-  </a>
-  <button type="button" onclick="openModal('daycount')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
-    📅 <span>View DayCount Details</span>
-  </button>
-</div>`
+        "tipTitle": "Usage Tip",
+        "tipContent": "Use 'Nearest Date' sorting when managing multiple exams or events to easily keep track of upcoming priorities.",
+        "openDetailBtn": "View DayCount Details",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-orange-500/25 shrink-0 border border-white/20\">\n        📅\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">DayCount Guide</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60\">\n            v1.0.3 Official\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Smart D-Day countdown tool for managing anniversaries and goals.\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.daycount\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200\">\n        <svg class=\"w-4 h-4 fill-current\" viewBox=\"0 0 24 24\"><path d=\"M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-1.424V3.238c0-.555.228-1.056.609-1.424zM15.207 13.414l2.76-2.76-13.358-7.712 10.598 10.472zm2.76-4.068l2.973 1.716c.866.5.866 1.317 0 1.818l-2.973 1.716-2.227-2.227 2.227-3.023zm-2.76 5.482L4.609 25.302l13.358-7.712-2.76-2.76z\" transform=\"scale(0.85) translate(2, 2)\"/></svg>\n        <span>Get it on Google Play</span>\n      </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4 mb-8\">\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3\">\n        📌\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Intuitive Card View</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Check upcoming events like exams, birthdays, and anniversaries at a glance in clean card layouts.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3\">\n        🏷️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Custom Categories</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Systematically group and manage schedules by purpose (Exam / Anniversary / Birthday / Trip).\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3\">\n        ⏱️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Smart Sorting &amp; Local Security</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Support sorting by remaining days or date created, with all data kept safely on device without leaks.\n      </p>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>3-Step Simple Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 1\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Add Event:</strong>\n      Tap the <code class=\"px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-orange-600 dark:text-orange-400 font-mono text-xs font-bold\">+</code> button at the bottom right to enter your target date and title.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 2\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Assign Category:</strong>\n      Select an appropriate category tag to organize your milestone list.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 3\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Track D-Day:</strong>\n      Conveniently view your countdown with cards automatically sorted by days remaining.\n    </div>\n  </li>\n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1\">\n        Usage Tip (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"Use <strong>'Nearest Date'</strong> sorting when managing multiple exams or events to easily keep track of upcoming priorities.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.daycount\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"detail-btn\" style=\"max-width:260px; background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;\">\n    <span>Get it on Google Play</span> ↗\n  </a>\n  <button type=\"button\" onclick=\"openModal('daycount')\" class=\"detail-btn\" style=\"max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;\">\n    📅 <span>View DayCount Details</span>\n  </button>\n</div>"
       },
-      bookspot: {
-        title: "BookSpot Guide",
-        appName: "BookSpot",
-        subtitle: "Smart on-device book organizer: Register books hands-free with voice recognition and locate any book at a glance.",
-        overview: "Smart on-device book organizer: Manage bookshelf zones and register books instantly via voice recognition.",
-        featuresTitle: "Key Features",
-        features: [
-          { title: "Custom Bookshelf Zones", desc: "Freely create custom zones (Living Room Shelf, Kids Room, Study) and check total book counts at a glance." },
-          { title: "Voice Input & Fast Add", desc: "Simply turn on the microphone and speak the title to catalog books without typing." },
-          { title: "Fast Search", desc: "Type initial consonants (e.g., \"ㄱㅅ\") or title keywords to discover the exact shelf location in 1 second." }
+      "bookspot": {
+        "title": "BookSpot Guide",
+        "appName": "BookSpot",
+        "subtitle": "Smart on-device book organizer: Register books hands-free with voice recognition and locate any book at a glance.",
+        "overview": "Smart on-device book organizer: Manage bookshelf zones and register books instantly via voice recognition.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Custom Bookshelf Zones",
+            "desc": "Freely create custom zones (Living Room Shelf, Kids Room, Study) and check total book counts at a glance."
+          },
+          {
+            "title": "Voice Input & Fast Add",
+            "desc": "Simply turn on the microphone and speak the title to catalog books without typing."
+          },
+          {
+            "title": "Fast Search",
+            "desc": "Type initial consonants (e.g., \"ㄱㅅ\") or title keywords to discover the exact shelf location in 1 second."
+          }
         ],
-        quickGuideTitle: "3-Step Simple Guide",
-        quickGuide: [
+        "quickGuideTitle": "3-Step Simple Guide",
+        "quickGuide": [
           "STEP 1. Add Storage Zones: Tap '+' to create custom bookshelf tiers, drawers, or rooms for storing books.",
           "STEP 2. Register via Voice: Select a zone and quickly add books using voice recognition or keyboard.",
           "STEP 3. Locate & Track: Search by title or consonants to find exactly which shelf and tier your book is placed in."
         ],
-        tipTitle: "Usage Tip",
-        tipContent: "When organizing books, name zones specifically like 'Living Room Shelf - Tier 1' or 'Tier 2' so you can locate and pull out books without hesitation.",
-        openDetailBtn: "View BookSpot Details",
-        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-teal-500/10 via-emerald-500/10 to-green-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-green-950/30 border border-teal-200/80 dark:border-teal-700/50 shadow-sm">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-    <div class="flex items-start md:items-center gap-4">
-      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-teal-600 via-emerald-500 to-green-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-teal-500/25 shrink-0 border border-white/20">
-        📚
-      </div>
-      <div>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">BookSpot Guide</h2>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 border border-teal-200 dark:border-teal-700/60">
-            v1.0.0 On-Device Local
-          </span>
-        </div>
-        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
-          Smart on-device book organizer: Register books hands-free with voice recognition and locate any book at a glance.
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <span class="text-base">▶</span>
-        <span>Download on Google Play</span>
-      </a>
-      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
-        <span>← Back to Home</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
-  <span>Key Features</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-3">
-        🗄️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Custom Bookshelf Zones</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Freely create custom zones (Living Room Shelf, Kids Room, Study) and check total book counts at a glance.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-3">
-        🎙️
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Voice Input &amp; Fast Add</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Simply turn on the microphone and speak the title to catalog books without typing.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-950/80 text-green-600 dark:text-green-400 flex items-center justify-center text-xl mb-3">
-        🔍
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Fast Search</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Type initial consonants (e.g., "ㄱㅅ") or title keywords to discover the exact shelf location in 1 second.
-      </p>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block"></span>
-  <span>3-Step Simple Guide</span>
-</h3>
-<ol class="guide-steps-list space-y-3.5 mb-8">
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 1
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Add Storage Zones:</strong>
-      Tap <code class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-teal-600 dark:text-teal-400 font-mono text-xs font-bold">+</code> to create custom bookshelf tiers, drawers, or rooms for storing books.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 2
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Register via Voice:</strong>
-      Select a zone and quickly add books using voice recognition or keyboard.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 3
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Locate &amp; Track:</strong>
-      Search by title or consonants to find exactly which shelf and tier your book is placed in.
-    </div>
-  </li>
-</ol>
-
-<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/20 border-l-4 border-teal-500 border-t border-r border-b border-teal-200/80 dark:border-teal-700/50 shadow-sm mb-8">
-  <div class="flex items-start gap-3">
-    <span class="text-2xl shrink-0 mt-0.5">💡</span>
-    <div>
-      <h4 class="text-sm font-bold text-teal-900 dark:text-teal-300 uppercase tracking-wide mb-1">
-        Usage Tip (Tip)
-      </h4>
-      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
-        "When organizing books, name zones specifically like <strong>'Living Room Shelf - Tier 1'</strong> or <strong>'Tier 2'</strong> so you can locate and pull out books without hesitation."
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
-  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
-    ← Back to Home
-  </button>
-  <a href="https://play.google.com/store/apps/details?id=com.wgapps.bookspot" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>Download on Google Play</span> ↗
-  </a>
-  <button type="button" onclick="openModal('bookspot')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
-    📚 <span>View BookSpot Details</span>
-  </button>
-</div>`
+        "tipTitle": "Usage Tip",
+        "tipContent": "When organizing books, name zones specifically like 'Living Room Shelf - Tier 1' or 'Tier 2' so you can locate and pull out books without hesitation.",
+        "openDetailBtn": "View BookSpot Details",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-teal-500/10 via-emerald-500/10 to-green-500/10 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-green-950/30 border border-teal-200/80 dark:border-teal-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-teal-600 via-emerald-500 to-green-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-teal-500/25 shrink-0 border border-white/20\">\n        📚\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">BookSpot Guide</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800 dark:bg-teal-900/60 dark:text-teal-300 border border-teal-200 dark:border-teal-700/60\">\n            v1.0.0 On-Device Local\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Smart on-device book organizer: Register books hands-free with voice recognition and locate any book at a glance.\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.bookspot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-teal-600 via-emerald-500 to-green-600 hover:from-teal-700 hover:to-green-700 shadow-md shadow-teal-500/30 hover:shadow-lg hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200\">\n        <span class=\"text-base\">▶</span>\n        <span>Download on Google Play</span>\n      </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4 mb-8\">\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/80 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-3\">\n        🗄️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Custom Bookshelf Zones</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Freely create custom zones (Living Room Shelf, Kids Room, Study) and check total book counts at a glance.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-3\">\n        🎙️\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Voice Input &amp; Fast Add</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Simply turn on the microphone and speak the title to catalog books without typing.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-green-100 dark:bg-green-950/80 text-green-600 dark:text-green-400 flex items-center justify-center text-xl mb-3\">\n        🔍\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Fast Search</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Type initial consonants (e.g., \"ㄱㅅ\") or title keywords to discover the exact shelf location in 1 second.\n      </p>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-teal-500 to-emerald-500 inline-block\"></span>\n  <span>3-Step Simple Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 1\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Add Storage Zones:</strong>\n      Tap <code class=\"px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-teal-600 dark:text-teal-400 font-mono text-xs font-bold\">+</code> to create custom bookshelf tiers, drawers, or rooms for storing books.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 2\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Register via Voice:</strong>\n      Select a zone and quickly add books using voice recognition or keyboard.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-teal-300 dark:hover:border-teal-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-teal-600 to-emerald-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 3\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Locate &amp; Track:</strong>\n      Search by title or consonants to find exactly which shelf and tier your book is placed in.\n    </div>\n  </li>\n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-teal-500/5 dark:from-teal-950/40 dark:via-emerald-950/30 dark:to-teal-950/20 border-l-4 border-teal-500 border-t border-r border-b border-teal-200/80 dark:border-teal-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-teal-900 dark:text-teal-300 uppercase tracking-wide mb-1\">\n        Usage Tip (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"When organizing books, name zones specifically like <strong>'Living Room Shelf - Tier 1'</strong> or <strong>'Tier 2'</strong> so you can locate and pull out books without hesitation.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.wgapps.bookspot\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"detail-btn\" style=\"max-width:260px; background: linear-gradient(135deg, #0d9488, #059669); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;\">\n    <span>Download on Google Play</span> ↗\n  </a>\n  <button type=\"button\" onclick=\"openModal('bookspot')\" class=\"detail-btn\" style=\"max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;\">\n    📚 <span>View BookSpot Details</span>\n  </button>\n</div>"
       },
-      bakemerge: {
-        title: "Bake Merge - Sweet 3D Bakery Merge Puzzle",
-        appName: "Bake Merge",
-        subtitle: "Drop, merge cute bakery items, and create delicious pastries in 3D physics!",
-        overview: "Bake Merge is a satisfying 3D physics-based puzzle game where you drop and combine adorable bakery doughs to bake the ultimate giant cake. Enjoy intuitive controls and fun bouncy reactions.",
-        featuresTitle: "Key Features",
-        features: [
-          { title: "Dynamic 3D Physics Merge", desc: "Satisfying bouncy collisions and realistic dough interactions" },
-          { title: "10+ Bakery Evolution Collection", desc: "Merge small pastries up to the ultimate giant cake" },
-          { title: "Tactical Booster Items", desc: "Clear difficult jams and tight spots with special Lightning Jokers" },
-          { title: "Press Barrier & Fever Mode", desc: "Thrilling ceiling mechanics and high-score fever opportunities" },
-          { title: "Easy One-Finger Control", desc: "Accessible and relaxing casual gameplay for all ages" }
+      "bakemerge": {
+        "title": "Bake Merge - Sweet 3D Bakery Merge Puzzle",
+        "appName": "Bake Merge",
+        "subtitle": "Drop, merge cute bakery items, and create delicious pastries in 3D physics!",
+        "overview": "Bake Merge is a satisfying 3D physics-based puzzle game where you drop and combine adorable bakery doughs to bake the ultimate giant cake. Enjoy intuitive controls and fun bouncy reactions.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Dynamic 3D Physics Merge",
+            "desc": "Satisfying bouncy collisions and realistic dough interactions"
+          },
+          {
+            "title": "10+ Bakery Evolution Collection",
+            "desc": "Merge small pastries up to the ultimate giant cake"
+          },
+          {
+            "title": "Tactical Booster Items",
+            "desc": "Clear difficult jams and tight spots with special Lightning Jokers"
+          },
+          {
+            "title": "Press Barrier & Fever Mode",
+            "desc": "Thrilling ceiling mechanics and high-score fever opportunities"
+          },
+          {
+            "title": "Easy One-Finger Control",
+            "desc": "Accessible and relaxing casual gameplay for all ages"
+          }
         ],
-        quickGuideTitle: "Step-by-Step Guide",
-        quickGuide: [
+        "quickGuideTitle": "Step-by-Step Guide",
+        "quickGuide": [
           "STEP 1. Aim & Drop: Touch and drag to aim, then release to drop your dough into the showcase.",
           "STEP 2. Merge Pairs: Collide two identical bakery items to combine them into a bigger treat.",
           "STEP 3. Manage Space: Prevent your pastries from piling up past the top press barrier.",
           "STEP 4. Use Boosters: Activate strategic items like the Lightning Joker when spaces get tight.",
           "STEP 5. Complete the Giant Cake: Reach the final 10th stage pastry and set your new high score!"
         ],
-        tipTitle: "Tips & Guide",
-        tipContent: "Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved Lightning Joker to clear roadblocks and create room for the giant cake!",
-        openDetailBtn: "View Bake Merge Details",
-        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-    <div class="flex items-start md:items-center gap-4">
-      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-400 to-rose-400 p-1 flex items-center justify-center shadow-lg shadow-orange-500/25 shrink-0 border border-white/30 overflow-hidden">
-        <img src="images/bakemerge-icon.png" alt="Bake Merge Icon" class="w-full h-full object-cover rounded-xl" />
-      </div>
-      <div>
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Bake Merge</h2>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
-            v1.0.1 3D Physics Merge Game
-          </span>
-        </div>
-        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
-          Drop, merge cute bakery items, and create delicious pastries in 3D physics!
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
-      <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
-        <span class="text-base">▶</span>
-        <span>Download on Google Play</span>
-      </a>
-      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
-        <span>← Back to Home</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-rose-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-amber-200/70 dark:border-slate-700/60 shadow-sm">
-  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-    <span>🥐</span>
-    <span>App Overview</span>
-  </h3>
-  <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0">
-    Bake Merge is a satisfying 3D physics-based puzzle game where you drop and combine adorable bakery doughs to bake the ultimate giant cake. Enjoy intuitive controls and fun bouncy reactions for all ages.
-  </p>
-</div>
-
-<!-- Screenshot Showcase -->
-<div class="mb-8 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70">
-  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-    <span>🖼️</span>
-    <span>Gameplay Screenshots</span>
-  </h3>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-    <div class="flex flex-col items-center">
-      <div class="rounded-2xl overflow-hidden border-2 border-amber-300 dark:border-amber-600/50 shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="images/bakemerge-screenshot-en.jpg" alt="Bake Merge English Screen" class="w-full h-auto max-h-[380px] object-cover" />
-      </div>
-      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">English Global Lobby Screen</span>
-    </div>
-    <div class="flex flex-col items-center">
-      <div class="rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300">
-        <img src="images/bakemerge-screenshot-ko.jpg" alt="Bake Merge Korean Screen" class="w-full h-auto max-h-[380px] object-cover" />
-      </div>
-      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">Korean Lobby Screen</span>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>Key Features</span>
-</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
-        🍩
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Dynamic 3D Physics Merge</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Satisfying bouncy collisions and realistic dough interactions with tactile sound effects.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
-        🎂
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">10+ Bakery Evolution Collection</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Merge small pastries step-by-step up to the ultimate giant celebratory cake.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
-        ⚡
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Tactical Booster Items</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Clear difficult jams and tight spots with special Lightning Jokers to reverse sticky situations.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-1">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-950/80 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-3">
-        🔥
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Press Barrier &amp; Fever Mode</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Thrilling ceiling pressure mechanics and high-scoring fever opportunities for maximum excitement.
-      </p>
-    </div>
-  </div>
-  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-2">
-    <div>
-      <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-3">
-        👆
-      </div>
-      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Easy One-Finger Control</h4>
-      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        Accessible, relaxing casual gameplay for all ages. Aim, release, and enjoy wherever you are!
-      </p>
-    </div>
-  </div>
-</div>
-
-<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
-  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
-  <span>Step-by-Step Guide</span>
-</h3>
-<ol class="guide-steps-list space-y-3.5 mb-8">
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 1
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Aim &amp; Drop:</strong>
-      Touch and drag to aim, then release to drop your dough into the showcase.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 2
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Merge Pairs:</strong>
-      Collide two identical bakery items to combine them into a bigger, freshly baked treat.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 3
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Manage Space:</strong>
-      Prevent your pastries from piling up past the top press barrier by balancing space.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 4
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Use Boosters:</strong>
-      Activate strategic items like the Lightning Joker when spaces get tight to break obstacles.
-    </div>
-  </li>
-  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
-    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
-      STEP 5
-    </span>
-    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
-      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Complete the Giant Cake:</strong>
-      Reach the final 10th stage pastry and set your new high score in fever mode!
-    </div>
-  </li>
-</ol>
-
-<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
-  <div class="flex items-start gap-3">
-    <span class="text-2xl shrink-0 mt-0.5">💡</span>
-    <div>
-      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
-        Tips &amp; Guide
-      </h4>
-      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
-        "Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved <strong>Lightning Joker</strong> to clear roadblocks and create room for the giant cake!"
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
-  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
-    ← Back to Home
-  </button>
-  <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #f97316); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-    <span>Download on Google Play</span> ↗
-  </a>
-  <button type="button" onclick="openModal('bakemerge')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
-    🥐 <span>View Bake Merge Details</span>
-  </button>
-</div>`
+        "tipTitle": "Tips & Guide",
+        "tipContent": "Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved Lightning Joker to clear roadblocks and create room for the giant cake!",
+        "openDetailBtn": "View Bake Merge Details",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-400 to-rose-400 p-1 flex items-center justify-center shadow-lg shadow-orange-500/25 shrink-0 border border-white/30 overflow-hidden\">\n        <img src=\"images/bakemerge-icon.png\" alt=\"Bake Merge Icon\" class=\"w-full h-full object-cover rounded-xl\" />\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">Bake Merge</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60\">\n            v1.0.1 3D Physics Merge Game\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Drop, merge cute bakery items, and create delicious pastries in 3D physics!\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <a href=\"https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200\">\n        <span class=\"text-base\">▶</span>\n        <span>Download on Google Play</span>\n      </a>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-rose-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-amber-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>🥐</span>\n    <span>App Overview</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    Bake Merge is a satisfying 3D physics-based puzzle game where you drop and combine adorable bakery doughs to bake the ultimate giant cake. Enjoy intuitive controls and fun bouncy reactions for all ages.\n  </p>\n</div>\n\n<!-- Screenshot Showcase -->\n<div class=\"mb-8 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2\">\n    <span>🖼️</span>\n    <span>Gameplay Screenshots</span>\n  </h3>\n  <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto\">\n    <div class=\"flex flex-col items-center\">\n      <div class=\"rounded-2xl overflow-hidden border-2 border-amber-300 dark:border-amber-600/50 shadow-md hover:shadow-xl transition-all duration-300\">\n        <img src=\"images/bakemerge-screenshot-en.jpg\" alt=\"Bake Merge English Screen\" class=\"w-full h-auto max-h-[380px] object-cover\" />\n      </div>\n      <span class=\"text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2\">English Global Lobby Screen</span>\n    </div>\n    <div class=\"flex flex-col items-center\">\n      <div class=\"rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300\">\n        <img src=\"images/bakemerge-screenshot-ko.jpg\" alt=\"Bake Merge Korean Screen\" class=\"w-full h-auto max-h-[380px] object-cover\" />\n      </div>\n      <span class=\"text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2\">Korean Lobby Screen</span>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4 mb-8\">\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3\">\n        🍩\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Dynamic 3D Physics Merge</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Satisfying bouncy collisions and realistic dough interactions with tactile sound effects.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3\">\n        🎂\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">10+ Bakery Evolution Collection</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Merge small pastries step-by-step up to the ultimate giant celebratory cake.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3\">\n        ⚡\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Tactical Booster Items</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Clear difficult jams and tight spots with special Lightning Jokers to reverse sticky situations.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-1\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-950/80 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-3\">\n        🔥\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Press Barrier &amp; Fever Mode</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Thrilling ceiling pressure mechanics and high-scoring fever opportunities for maximum excitement.\n      </p>\n    </div>\n  </div>\n  <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-2\">\n    <div>\n      <div class=\"w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-3\">\n        👆\n      </div>\n      <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Easy One-Finger Control</h4>\n      <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">\n        Accessible, relaxing casual gameplay for all ages. Aim, release, and enjoy wherever you are!\n      </p>\n    </div>\n  </div>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block\"></span>\n  <span>Step-by-Step Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 1\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Aim &amp; Drop:</strong>\n      Touch and drag to aim, then release to drop your dough into the showcase.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 2\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Merge Pairs:</strong>\n      Collide two identical bakery items to combine them into a bigger, freshly baked treat.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 3\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Manage Space:</strong>\n      Prevent your pastries from piling up past the top press barrier by balancing space.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 4\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Use Boosters:</strong>\n      Activate strategic items like the Lightning Joker when spaces get tight to break obstacles.\n    </div>\n  </li>\n  <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all\">\n    <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n      STEP 5\n    </span>\n    <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n      <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Complete the Giant Cake:</strong>\n      Reach the final 10th stage pastry and set your new high score in fever mode!\n    </div>\n  </li>\n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1\">\n        Tips &amp; Guide\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved <strong>Lightning Joker</strong> to clear roadblocks and create room for the giant cake!\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <a href=\"https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"detail-btn\" style=\"max-width:260px; background: linear-gradient(135deg, #f59e0b, #f97316); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;\">\n    <span>Download on Google Play</span> ↗\n  </a>\n  <button type=\"button\" onclick=\"openModal('bakemerge')\" class=\"detail-btn\" style=\"max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;\">\n    🥐 <span>View Bake Merge Details</span>\n  </button>\n</div>"
       },
-      clipflow: {
-        title: "ClipFlow - Smart Clipboard Manager",
-        appName: "ClipFlow",
+      "clipflow": {
+        "title": "ClipFlow - Smart Clipboard Manager",
+        "appName": "ClipFlow"
       },
-      freshcue: {
-        title: "FreshCue - Freshness & Expiration Tracker",
-        appName: "FreshCue",
+      "freshcue": {
+        "title": "FreshCue - Freshness & Expiration Tracker",
+        "appName": "FreshCue"
+      },
+      "pdf-checker": {
+        "title": "PDF & CAD Drawing Review / Marking Tool (PDF & JPG Checker)",
+        "appName": "PDF Drawing Checker",
+        "subtitle": "High-definition blueprint review, multi-image lossless merging & precision canvas markup",
+        "overview": "PDF & Drawing Checker is a zero-installation, professional web application designed for reviewing, annotating, and merging heavy CAD architectural/civil drawings (PDF) and high-resolution blueprint photos (JPG, PNG, WebP) directly in your browser. All file processing and rendering execution occurs 100% inside your local browser memory (Client-Side In-Memory Architecture), guaranteeing that confidential design data and site blueprints are never transmitted or stored on external servers. Seamlessly merge multi-format documents, apply high-precision annotations (lines, rectangles, circles, freehand drawings, and high-contrast white text badges), inspect fine dimensions with real-time zooming and panning, and export massive 50MB files into 5~7MB ultra-HD optimized PDFs in a single click.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Multi-Format Lossless Merging",
+            "desc": "Seamlessly append and combine large CAD PDFs, high-resolution JPG site photos, PNG transparent layers, and WebP files into a unified document via simple drag and drop."
+          },
+          {
+            "title": "Precision Canvas Markup & Text Badges",
+            "desc": "Draw lines, rectangles, circles, freehand sketches, and add opaque white-boxed text badges with colored borders to ensure extreme contrast over intricate architectural blueprints."
+          },
+          {
+            "title": "Real-Time Zoom & Pan Navigation",
+            "desc": "Navigate massive A0/A1 engineering drawings without lag or stutter using smooth mouse-wheel zooming and spacebar-drag panning down to sub-millimeter construction details."
+          },
+          {
+            "title": "Page Reordering & High-Res PDF Export",
+            "desc": "Rearrange sheet order or delete redundant pages with thumbnails while preserving all existing vector annotations, exporting directly to publication-ready compressed HD PDF."
+          }
+        ],
+        "quickGuideTitle": "Step-by-Step Guide",
+        "quickGuide": [
+          "STEP 1. Upload & Append Drawing Files: Click '+ Add Files' or drag and drop your PDF blueprints and image files directly onto the canvas area. Multiple formats can be loaded simultaneously into browser memory.",
+          "STEP 2. Precision Inspection & Markup: Select tools from the top toolbar—Rectangle (M), Circle (C), Pen (S), or Text (T)—and choose colors (Red, Blue, Yellow, Black) and line weights to record audit notes. Use white-boxed badges for superior text legibility.",
+          "STEP 3. Reorder & Prune Drawing Sheets: In the left thumbnail sidebar, use the up/down arrows (▲/▼) to organize the sequence of drawings, or delete irrelevant pages with annotations intact.",
+          "STEP 4. Export Ultra-HD Optimized PDF: Click 'Export High-Res PDF' on the top right to instantly generate and download a unified, compressed high-resolution document ready for on-site printing and client distribution."
+        ],
+        "tipTitle": "Pro Tips & Best Practices",
+        "tipContent": "Professional Blueprint Tip: When reviewing complex electrical or piping schematics, use white-background text badges with colored borders to ensure your inspection notes remain crisp and readable upon printing. Since all canvas operations run 100% client-side in browser memory, you can safely audit proprietary industrial blueprints without violating internal corporate security guidelines.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-sky-600 via-indigo-600 to-blue-700 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📐\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">PDF Drawing Checker</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            v1.3 In-Memory Client\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          High-definition blueprint review, multi-image lossless merging & precision canvas markup\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"window.pdfChecker && window.pdfChecker.openModal ? window.pdfChecker.openModal() : location.hash='#pdf-checker'\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📐</span>\n    <span>Overview & Core Value</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    PDF & Drawing Checker is a zero-installation, professional web application designed for reviewing, annotating, and merging heavy CAD architectural/civil drawings (PDF) and high-resolution blueprint photos (JPG, PNG, WebP) directly in your browser. All file processing and rendering execution occurs 100% inside your local browser memory (Client-Side In-Memory Architecture), guaranteeing that confidential design data and site blueprints are never transmitted or stored on external servers. Seamlessly merge multi-format documents, apply high-precision annotations (lines, rectangles, circles, freehand drawings, and high-contrast white text badges), inspect fine dimensions with real-time zooming and panning, and export massive 50MB files into 5~7MB ultra-HD optimized PDFs in a single click.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Multi-Format Lossless Merging</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Seamlessly append and combine large CAD PDFs, high-resolution JPG site photos, PNG transparent layers, and WebP files into a unified document via simple drag and drop.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Precision Canvas Markup & Text Badges</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Draw lines, rectangles, circles, freehand sketches, and add opaque white-boxed text badges with colored borders to ensure extreme contrast over intricate architectural blueprints.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Real-Time Zoom & Pan Navigation</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Navigate massive A0/A1 engineering drawings without lag or stutter using smooth mouse-wheel zooming and spacebar-drag panning down to sub-millimeter construction details.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📐\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Page Reordering & High-Res PDF Export</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Rearrange sheet order or delete redundant pages with thumbnails while preserving all existing vector annotations, exporting directly to publication-ready compressed HD PDF.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Step-by-Step Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Upload & Append Drawing Files:</strong>\n        Click '+ Add Files' or drag and drop your PDF blueprints and image files directly onto the canvas area. Multiple formats can be loaded simultaneously into browser memory.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Precision Inspection & Markup:</strong>\n        Select tools from the top toolbar—Rectangle (M), Circle (C), Pen (S), or Text (T)—and choose colors (Red, Blue, Yellow, Black) and line weights to record audit notes. Use white-boxed badges for superior text legibility.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Reorder & Prune Drawing Sheets:</strong>\n        In the left thumbnail sidebar, use the up/down arrows (▲/▼) to organize the sequence of drawings, or delete irrelevant pages with annotations intact.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Export Ultra-HD Optimized PDF:</strong>\n        Click 'Export High-Res PDF' on the top right to instantly generate and download a unified, compressed high-resolution document ready for on-site printing and client distribution.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        Pro Tips &amp; Best Practices (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"Professional Blueprint Tip: When reviewing complex electrical or piping schematics, use white-background text badges with colored borders to ensure your inspection notes remain crisp and readable upon printing. Since all canvas operations run 100% client-side in browser memory, you can safely audit proprietary industrial blueprints without violating internal corporate security guidelines.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <button type=\"button\" onclick=\"window.pdfChecker && window.pdfChecker.openModal ? window.pdfChecker.openModal() : location.hash='#pdf-checker'\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n</div>"
+      },
+      "annual-leave-calculator": {
+        "title": "Statutory Annual Leave Calculator (Korean Labor Standards Act Art. 60)",
+        "appName": "Annual Leave Calculator",
+        "subtitle": "Real-time calculation of statutory annual & monthly paid leave under Korean Labor Standards Act with hire & fiscal modes",
+        "overview": "The Annual Leave Calculator accurately computes statutory paid leave entitlements under Article 60 of the Korean Labor Standards Act. By entering an employee's hire date and calculation reference date, it automatically breaks down first-year monthly leave (up to 11 days), regular statutory annual leave (base 15 days), and seniority-based bonus days (up to 25 days max). Users can seamlessly toggle between the statutory default 'Hire Date Mode' and the corporate standard 'Fiscal Year Mode (Jan 1)'. An intuitive dashboard displays total active service days, cumulative leave generated since inception, and detailed progress metrics for seamless HR management.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Fiscal Year vs. Hire Date Comparison",
+            "desc": "Compare statutory hire-date calculations against corporate calendar-year systems (granting leave on January 1st) in real time to verify compliance and audit leave balances."
+          },
+          {
+            "title": "Automatic Seniority Bonus Day Calculation",
+            "desc": "Computes 1 monthly leave day per month worked in year 1 (max 11 days), regular 15 days on the 1st anniversary, and +1 bonus day every 2 continuous service years thereafter (up to the legal 25-day ceiling)."
+          },
+          {
+            "title": "Unpaid Leave Allowance & Audit Guidance",
+            "desc": "Provides clear guidance on statutory unpaid vacation allowances based on ordinary wages, 3-year statutes of limitations, and mandatory retirement settlement reconciliation."
+          }
+        ],
+        "quickGuideTitle": "Step-by-Step Guide",
+        "quickGuide": [
+          "STEP 1. Input Hire Date & Reference Date: Select the employee's official start date and the target evaluation date (defaults to today's date). Quick preset chips (6m, 1y, 3y, 5y, 10y) allow instant simulation.",
+          "STEP 2. Choose Calculation Standard Mode: Toggle between 'Hire Date Basis (Statutory Standard)' and 'Fiscal Year Basis (Jan 1st Standard)' to reflect your company's employment policies.",
+          "STEP 3. Audit Leave Entitlements & Allowances: Inspect the primary dashboard showcasing total granted leave, monthly progress bar (max 11 days), regular base leave, seniority bonus breakdown, and cumulative totals.",
+          "STEP 4. Copy Formatted Results for HR Records: Click 'Copy Results' to format and copy the full leave statement directly into your clipboard for vacation approvals, payroll records, or resignation audits."
+        ],
+        "tipTitle": "Pro Tips & Best Practices",
+        "tipContent": "Retirement Reconciliation & Part-Time Leave Tip: Even if an employer utilizes a fiscal year system (Jan 1) for administrative convenience, Korean labor law mandates that upon termination, the total leave must be reconciled against the hire-date basis. If the hire-date calculation yields more days, the company must compensate the employee for the difference as unpaid leave allowance. For part-time workers, leave is granted proportionally: (Part-time Hours ÷ 40 × 8 × 15). Note that statutory wage claims for unpaid leave allowance expire after 3 years.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-sky-500 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📅\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">Annual Leave Calculator</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            Art. 60 Compliance\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Real-time calculation of statutory annual & monthly paid leave under Korean Labor Standards Act with hire & fiscal modes\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openAnnualLeaveModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📅</span>\n    <span>Overview & Core Value</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    The Annual Leave Calculator accurately computes statutory paid leave entitlements under Article 60 of the Korean Labor Standards Act. By entering an employee's hire date and calculation reference date, it automatically breaks down first-year monthly leave (up to 11 days), regular statutory annual leave (base 15 days), and seniority-based bonus days (up to 25 days max). Users can seamlessly toggle between the statutory default 'Hire Date Mode' and the corporate standard 'Fiscal Year Mode (Jan 1)'. An intuitive dashboard displays total active service days, cumulative leave generated since inception, and detailed progress metrics for seamless HR management.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📅\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Fiscal Year vs. Hire Date Comparison</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Compare statutory hire-date calculations against corporate calendar-year systems (granting leave on January 1st) in real time to verify compliance and audit leave balances.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📅\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Automatic Seniority Bonus Day Calculation</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Computes 1 monthly leave day per month worked in year 1 (max 11 days), regular 15 days on the 1st anniversary, and +1 bonus day every 2 continuous service years thereafter (up to the legal 25-day ceiling).</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📅\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Unpaid Leave Allowance & Audit Guidance</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Provides clear guidance on statutory unpaid vacation allowances based on ordinary wages, 3-year statutes of limitations, and mandatory retirement settlement reconciliation.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Step-by-Step Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Input Hire Date & Reference Date:</strong>\n        Select the employee's official start date and the target evaluation date (defaults to today's date). Quick preset chips (6m, 1y, 3y, 5y, 10y) allow instant simulation.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Choose Calculation Standard Mode:</strong>\n        Toggle between 'Hire Date Basis (Statutory Standard)' and 'Fiscal Year Basis (Jan 1st Standard)' to reflect your company's employment policies.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Audit Leave Entitlements & Allowances:</strong>\n        Inspect the primary dashboard showcasing total granted leave, monthly progress bar (max 11 days), regular base leave, seniority bonus breakdown, and cumulative totals.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Copy Formatted Results for HR Records:</strong>\n        Click 'Copy Results' to format and copy the full leave statement directly into your clipboard for vacation approvals, payroll records, or resignation audits.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        Pro Tips &amp; Best Practices (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"Retirement Reconciliation & Part-Time Leave Tip: Even if an employer utilizes a fiscal year system (Jan 1) for administrative convenience, Korean labor law mandates that upon termination, the total leave must be reconciled against the hire-date basis. If the hire-date calculation yields more days, the company must compensate the employee for the difference as unpaid leave allowance. For part-time workers, leave is granted proportionally: (Part-time Hours ÷ 40 × 8 × 15). Note that statutory wage claims for unpaid leave allowance expire after 3 years.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <button type=\"button\" onclick=\"openAnnualLeaveModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n</div>"
+      },
+      "wage-calc": {
+        "title": "2026 Statutory Minimum Wage, Holiday Pay & Net Salary Calculator",
+        "appName": "Wage & Holiday Pay Calculator",
+        "subtitle": "Automatic calculation of statutory weekly holiday pay, gross salary, 4 insurances/3.3% tax deductions, and net take-home pay",
+        "overview": "Based on the official 2026 statutory minimum hourly wage of 10,320 KRW, this calculator computes statutory weekly holiday allowances, gross monthly wages, mandatory deductions (3.3% freelance withholding tax vs 4 major insurances), and net take-home salary in seconds. It automatically verifies whether an employee qualifies for weekly paid holiday allowances (15+ hours per week) and calculates proportional amounts for part-time workers under Korean labor regulations.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "2026 Minimum Wage & 209-Hour Total",
+            "desc": "Pre-configured with the statutory 10,320 KRW hourly wage, reflecting standard 209-hour monthly totals (1,793,616 KRW base pay + 363,264 KRW holiday allowance = 2,156,880 KRW gross pay)."
+          },
+          {
+            "title": "Holiday Allowance Eligibility & Part-Time Proportions",
+            "desc": "Instantly validates statutory weekly paid holiday qualification for employees working 15+ hours per week with proportional formulas: (Weekly Hours ÷ 40) × 8 hrs × Hourly Wage."
+          },
+          {
+            "title": "Comparative Deduction Models (3.3% vs. 4 Insurances)",
+            "desc": "Real-time side-by-side comparison between 0% tax-free, 3.3% freelance business income withholding, and ~9.4% statutory employee social security deductions."
+          }
+        ],
+        "quickGuideTitle": "Step-by-Step Guide",
+        "quickGuide": [
+          "STEP 1. Input Hourly Wage: Click the 2026 minimum wage button (10,320 KRW) or manually type your agreed hourly rate into the wage input field.",
+          "STEP 2. Enter Weekly Contracted Hours: Input your weekly scheduled working hours. The system automatically activates the '✅ Eligible for Holiday Pay' badge when hours reach 15 or higher.",
+          "STEP 3. Select Tax & Insurance Deduction Model: Choose between None (0%), 3.3% Freelance withholding tax, or standard 4 Major Social Insurances (~9.4% employee contribution).",
+          "STEP 4. Inspect Salary Breakdown & Copy: Review your monthly base wage, holiday allowance, total gross pay, deductions, and final net take-home salary, then click '📋 Copy Results'."
+        ],
+        "tipTitle": "Pro Tips & Best Practices",
+        "tipContent": "Labor Law & Payroll Compliance Tip: Tardy arrivals or early departures do not disqualify workers from weekly holiday pay as long as they were not absent on scheduled working days. Employers can deduct pay for unworked tardy minutes, but cannot withhold the full statutory holiday allowance. Unpaid weekly holiday allowance constitutes statutory wage delinquency punishable by up to 3 years imprisonment or fines up to 30 million KRW.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        🧮\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">Wage & Holiday Pay Calculator</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            2026 Minimum Wage 10,320 KRW\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Automatic calculation of statutory weekly holiday pay, gross salary, 4 insurances/3.3% tax deductions, and net take-home pay\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openWageCalcModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>🧮</span>\n    <span>Overview & Core Value</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    Based on the official 2026 statutory minimum hourly wage of 10,320 KRW, this calculator computes statutory weekly holiday allowances, gross monthly wages, mandatory deductions (3.3% freelance withholding tax vs 4 major insurances), and net take-home salary in seconds. It automatically verifies whether an employee qualifies for weekly paid holiday allowances (15+ hours per week) and calculates proportional amounts for part-time workers under Korean labor regulations.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          🧮\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">2026 Minimum Wage & 209-Hour Total</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Pre-configured with the statutory 10,320 KRW hourly wage, reflecting standard 209-hour monthly totals (1,793,616 KRW base pay + 363,264 KRW holiday allowance = 2,156,880 KRW gross pay).</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          🧮\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Holiday Allowance Eligibility & Part-Time Proportions</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Instantly validates statutory weekly paid holiday qualification for employees working 15+ hours per week with proportional formulas: (Weekly Hours ÷ 40) × 8 hrs × Hourly Wage.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          🧮\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Comparative Deduction Models (3.3% vs. 4 Insurances)</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Real-time side-by-side comparison between 0% tax-free, 3.3% freelance business income withholding, and ~9.4% statutory employee social security deductions.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Step-by-Step Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Input Hourly Wage:</strong>\n        Click the 2026 minimum wage button (10,320 KRW) or manually type your agreed hourly rate into the wage input field.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Enter Weekly Contracted Hours:</strong>\n        Input your weekly scheduled working hours. The system automatically activates the '✅ Eligible for Holiday Pay' badge when hours reach 15 or higher.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Select Tax & Insurance Deduction Model:</strong>\n        Choose between None (0%), 3.3% Freelance withholding tax, or standard 4 Major Social Insurances (~9.4% employee contribution).\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Inspect Salary Breakdown & Copy:</strong>\n        Review your monthly base wage, holiday allowance, total gross pay, deductions, and final net take-home salary, then click '📋 Copy Results'.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        Pro Tips &amp; Best Practices (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"Labor Law & Payroll Compliance Tip: Tardy arrivals or early departures do not disqualify workers from weekly holiday pay as long as they were not absent on scheduled working days. Employers can deduct pay for unworked tardy minutes, but cannot withhold the full statutory holiday allowance. Unpaid weekly holiday allowance constitutes statutory wage delinquency punishable by up to 3 years imprisonment or fines up to 30 million KRW.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <button type=\"button\" onclick=\"openWageCalcModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n</div>"
+      },
+      "excel-delimiter-converter": {
+        "title": "Excel Line Break ↔ Delimiter Converter & SQL IN Clause Formatter",
+        "appName": "Excel Delimiter Converter",
+        "subtitle": "Clean up irregular text, line breaks, and CSV delimiters into clean table and Excel-friendly formats",
+        "overview": "Excel Delimiter Converter is an essential data formatting utility that transforms multi-line column entries copied from Excel into comma-separated values (CSV), SQL IN clauses ('A', 'B'), double-quoted strings, or custom delimiters in real time—and vice versa. Designed for developers, database administrators, accountants, and marketers, it eliminates tedious manual editing when constructing database queries or cleansing contact records. Operates 100% locally within your browser memory with zero server uploads, keeping corporate records and personal credentials completely secure.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Bidirectional Real-Time Conversion",
+            "desc": "Seamlessly toggle between Line Breaks → Delimiter and Delimiter → Line Breaks modes, with instant text swapping between input and output fields."
+          },
+          {
+            "title": "SQL IN Clause & Parenthesis Formatting",
+            "desc": "Automatically formats entries with single quotes and encloses items in SQL IN (...) parentheses, ready for instant database execution."
+          },
+          {
+            "title": "Deduplication & Whitespace Trimming",
+            "desc": "Strips redundant duplicate entries to retain unique records only, while automatically cleaning up empty lines and trailing spaces."
+          },
+          {
+            "title": "100% Browser In-Memory Security",
+            "desc": "Guarantees complete confidentiality: all string transformations occur solely inside local browser memory without server tracking."
+          }
+        ],
+        "quickGuideTitle": "Step-by-Step Guide",
+        "quickGuide": [
+          "STEP 1. Paste Raw Data into Input Area: Copy rows from Excel or a text document and paste them into the input area, or click '💡 Sample' to load sample demonstration data.",
+          "STEP 2. Select Mode & Target Delimiter: Choose your conversion direction and select your target delimiter preset: Comma, SQL Single Quotes ('A', 'B'), Double Quotes, Space, Tab, or Custom.",
+          "STEP 3. Enable Clean-up & Deduplication Options: Check 'Trim Whitespace & Empty Lines', 'Deduplicate Items', or 'Wrap in SQL IN (...) Parentheses' based on your requirements.",
+          "STEP 4. Copy Cleansed Results Instantly: Inspect the total item count and live output, then click '📋 Copy Output' to paste your clean data directly into your SQL console or spreadsheet."
+        ],
+        "tipTitle": "Pro Tips & Best Practices",
+        "tipContent": "Data Engineering Tip: When copying multiple Excel columns, tab characters are automatically parsed into individual items. When querying thousands of IDs in SQL, combining the 'SQL Single Quotes' preset with 'Deduplicate' prevents duplicate query processing and accelerates database search performance.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-emerald-600 via-green-600 to-teal-700 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📊\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">Excel Delimiter Converter</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            100% Client-Side Privacy\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Clean up irregular text, line breaks, and CSV delimiters into clean table and Excel-friendly formats\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openExcelDelimiterModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📊</span>\n    <span>Overview & Core Value</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    Excel Delimiter Converter is an essential data formatting utility that transforms multi-line column entries copied from Excel into comma-separated values (CSV), SQL IN clauses ('A', 'B'), double-quoted strings, or custom delimiters in real time—and vice versa. Designed for developers, database administrators, accountants, and marketers, it eliminates tedious manual editing when constructing database queries or cleansing contact records. Operates 100% locally within your browser memory with zero server uploads, keeping corporate records and personal credentials completely secure.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Bidirectional Real-Time Conversion</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Seamlessly toggle between Line Breaks → Delimiter and Delimiter → Line Breaks modes, with instant text swapping between input and output fields.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">SQL IN Clause & Parenthesis Formatting</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Automatically formats entries with single quotes and encloses items in SQL IN (...) parentheses, ready for instant database execution.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Deduplication & Whitespace Trimming</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Strips redundant duplicate entries to retain unique records only, while automatically cleaning up empty lines and trailing spaces.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📊\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">100% Browser In-Memory Security</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Guarantees complete confidentiality: all string transformations occur solely inside local browser memory without server tracking.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Step-by-Step Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Paste Raw Data into Input Area:</strong>\n        Copy rows from Excel or a text document and paste them into the input area, or click '💡 Sample' to load sample demonstration data.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Select Mode & Target Delimiter:</strong>\n        Choose your conversion direction and select your target delimiter preset: Comma, SQL Single Quotes ('A', 'B'), Double Quotes, Space, Tab, or Custom.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Enable Clean-up & Deduplication Options:</strong>\n        Check 'Trim Whitespace & Empty Lines', 'Deduplicate Items', or 'Wrap in SQL IN (...) Parentheses' based on your requirements.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Copy Cleansed Results Instantly:</strong>\n        Inspect the total item count and live output, then click '📋 Copy Output' to paste your clean data directly into your SQL console or spreadsheet.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        Pro Tips &amp; Best Practices (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"Data Engineering Tip: When copying multiple Excel columns, tab characters are automatically parsed into individual items. When querying thousands of IDs in SQL, combining the 'SQL Single Quotes' preset with 'Deduplicate' prevents duplicate query processing and accelerates database search performance.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <button type=\"button\" onclick=\"openExcelDelimiterModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n</div>"
+      },
+      "char-byte-counter": {
+        "title": "Resume & Official Document Word, Character & Byte Counter",
+        "appName": "Word & Byte Counter",
+        "subtitle": "Real-time character, word, line, and byte counter (EUC-KR 2Byte vs UTF-8 3Byte) with whitespace clean-up tools",
+        "overview": "Word & Byte Counter is a real-time character and byte auditing tool tailored for job applicants, resume submissions, academic essays, and official government document formatting. It calculates character counts with and without spaces, word count, line breaks, and differentiates between 2-Byte (EUC-KR / standard portal) and 3-Byte (UTF-8 / enterprise server) storage systems to prevent text truncation upon submission. One-click formatting tools effortlessly clean up double spaces and excessive empty lines.",
+        "featuresTitle": "Key Features",
+        "features": [
+          {
+            "title": "Simultaneous Character Counting",
+            "desc": "Calculates character totals with spaces and without spaces in real time to satisfy differing corporate job submission guidelines."
+          },
+          {
+            "title": "Dual Byte Standards (2-Byte vs. 3-Byte)",
+            "desc": "Compares standard job portal byte calculations against public agency database storage limits to avoid unexpected text clipping."
+          },
+          {
+            "title": "Structural Document Breakdown",
+            "desc": "Analyzes total word count, paragraph lines, and space frequency in clear responsive stat cards to optimize readability."
+          },
+          {
+            "title": "Instant Text Formatting Cleaners",
+            "desc": "Strips repetitive spaces down to single spaces and compacts excessive line breaks with dedicated clean-up buttons in seconds."
+          }
+        ],
+        "quickGuideTitle": "Step-by-Step Guide",
+        "quickGuide": [
+          "STEP 1. Paste Document or Resume Text: Paste your cover letter, resume, or essay into the full-width text area using Ctrl+V or the '📋 Paste' button.",
+          "STEP 2. Inspect Live Metrics & Byte Limits: Review character counts (with/without spaces), byte size, word counts, and line totals instantly in the 4 responsive stat cards.",
+          "STEP 3. Optimize Spacing & Line Breaks: Click '✨ Clean Spaces' to reduce multi-spaces to a single space and '↵ Clean Lines' to remove redundant empty lines.",
+          "STEP 4. Copy Cleansed Text or Summary Statistics: Click '📋 Copy Text' to grab your submission-ready text or '📊 Copy Stats' to review and document your submission metrics."
+        ],
+        "tipTitle": "Pro Tips & Best Practices",
+        "tipContent": "Career Advisor Resume Tip: Unless a job posting explicitly states 'excluding spaces', recruiters and Applicant Tracking Systems (ATS) evaluate submissions on a 'characters with spaces' basis. Aim for 85% to 95% of the allowable character limit for an optimally balanced response. Note that when applying to systems enforcing UTF-8 3-byte limits, a 3,000-byte cap only accommodates 1,000 Korean characters.",
+        "body": "<div class=\"guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-blue-500/10 to-cyan-500/10 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/30 border border-indigo-200/80 dark:border-indigo-700/50 shadow-sm\">\n  <div class=\"flex flex-col md:flex-row md:items-center justify-between gap-6\">\n    <div class=\"flex items-start md:items-center gap-4\">\n      <div class=\"w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center text-3xl md:text-4xl shadow-lg shadow-indigo-500/25 shrink-0 border border-white/20\">\n        📝\n      </div>\n      <div>\n        <div class=\"flex items-center gap-2.5 flex-wrap\">\n          <h2 class=\"text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight\">Word & Byte Counter</h2>\n          <span class=\"inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/60\">\n            ATS & Job Portal Standard\n          </span>\n        </div>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl\">\n          Real-time character, word, line, and byte counter (EUC-KR 2Byte vs UTF-8 3Byte) with whitespace clean-up tools\n        </p>\n      </div>\n    </div>\n    <div class=\"flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0\">\n      <button type=\"button\" onclick=\"openCharByteModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n      <button type=\"button\" onclick=\"showPage('main')\" class=\"inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 shadow-sm transition-all duration-200\">\n        <span>← Back to Home</span>\n      </button>\n    </div>\n  </div>\n</div>\n\n<div class=\"guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-indigo-500/5 via-blue-500/5 to-cyan-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-indigo-200/70 dark:border-slate-700/60 shadow-sm\">\n  <h3 class=\"text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n    <span>📝</span>\n    <span>Overview & Core Value</span>\n  </h3>\n  <p class=\"text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0\">\n    Word & Byte Counter is a real-time character and byte auditing tool tailored for job applicants, resume submissions, academic essays, and official government document formatting. It calculates character counts with and without spaces, word count, line breaks, and differentiates between 2-Byte (EUC-KR / standard portal) and 3-Byte (UTF-8 / enterprise server) storage systems to prevent text truncation upon submission. One-click formatting tools effortlessly clean up double spaces and excessive empty lines.\n  </p>\n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Key Features</span>\n</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8\">\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Simultaneous Character Counting</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Calculates character totals with spaces and without spaces in real time to satisfy differing corporate job submission guidelines.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Dual Byte Standards (2-Byte vs. 3-Byte)</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Compares standard job portal byte calculations against public agency database storage limits to avoid unexpected text clipping.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Structural Document Breakdown</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Analyzes total word count, paragraph lines, and space frequency in clear responsive stat cards to optimize readability.</p>\n      </div>\n    </div>\n  \n    <div class=\"p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between\">\n      <div>\n        <div class=\"w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-3\">\n          📝\n        </div>\n        <h4 class=\"font-bold text-base text-slate-900 dark:text-white mb-2\">Instant Text Formatting Cleaners</h4>\n        <p class=\"text-slate-600 dark:text-slate-300 text-sm leading-relaxed\">Strips repetitive spaces down to single spaces and compacts excessive line breaks with dedicated clean-up buttons in seconds.</p>\n      </div>\n    </div>\n  \n</div>\n\n<h3 class=\"text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5\">\n  <span class=\"w-2.5 h-6 rounded-full bg-gradient-to-b from-indigo-500 to-blue-500 inline-block\"></span>\n  <span>Step-by-Step Guide</span>\n</h3>\n<ol class=\"guide-steps-list space-y-3.5 mb-8\">\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 1\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Paste Document or Resume Text:</strong>\n        Paste your cover letter, resume, or essay into the full-width text area using Ctrl+V or the '📋 Paste' button.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 2\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Inspect Live Metrics & Byte Limits:</strong>\n        Review character counts (with/without spaces), byte size, word counts, and line totals instantly in the 4 responsive stat cards.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 3\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Optimize Spacing & Line Breaks:</strong>\n        Click '✨ Clean Spaces' to reduce multi-spaces to a single space and '↵ Clean Lines' to remove redundant empty lines.\n      </div>\n    </li>\n  \n    <li class=\"flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-indigo-300 dark:hover:border-indigo-700 transition-all\">\n      <span class=\"px-2.5 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm\">\n        STEP 4\n      </span>\n      <div class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed\">\n        <strong class=\"text-slate-900 dark:text-white font-semibold mr-1.5\">Copy Cleansed Text or Summary Statistics:</strong>\n        Click '📋 Copy Text' to grab your submission-ready text or '📊 Copy Stats' to review and document your submission metrics.\n      </div>\n    </li>\n  \n</ol>\n\n<div class=\"p-4 md:p-5 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-cyan-500/5 dark:from-indigo-950/40 dark:via-blue-950/30 dark:to-cyan-950/20 border-l-4 border-indigo-500 border-t border-r border-b border-indigo-200/80 dark:border-indigo-700/50 shadow-sm mb-8\">\n  <div class=\"flex items-start gap-3\">\n    <span class=\"text-2xl shrink-0 mt-0.5\">💡</span>\n    <div>\n      <h4 class=\"text-sm font-bold text-indigo-900 dark:text-indigo-300 uppercase tracking-wide mb-1\">\n        Pro Tips &amp; Best Practices (Tip)\n      </h4>\n      <p class=\"text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium\">\n        \"Career Advisor Resume Tip: Unless a job posting explicitly states 'excluding spaces', recruiters and Applicant Tracking Systems (ATS) evaluate submissions on a 'characters with spaces' basis. Aim for 85% to 95% of the allowable character limit for an optimally balanced response. Note that when applying to systems enforcing UTF-8 3-byte limits, a 3,000-byte cap only accommodates 1,000 Korean characters.\"\n      </p>\n    </div>\n  </div>\n</div>\n\n<div class=\"flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800\">\n  <button type=\"button\" onclick=\"showPage('main')\" class=\"detail-btn\" style=\"max-width:200px;\">\n    ← Back to Home\n  </button>\n  <button type=\"button\" onclick=\"openCharByteModal()\" class=\"guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-md shadow-indigo-500/30 hover:shadow-lg transition-all duration-200\">\n      <span class=\"text-base\">⚡</span>\n      <span>Launch Tool Now</span>\n    </button>\n</div>"
       }
     },
-    about: {
-      title: "About Us",
-      subtitle: "Welcome to Daily Helper Portal",
-      body: `<p>Daily Helper is a curated portal introducing handpicked Android apps and useful digital tools designed to make your everyday life easier and smarter.</p><br/><p>We introduce only carefully selected apps, providing detailed usage guides and tips so everyone can take full advantage of these tools.</p><br/><h3 class="text-lg font-semibold mt-4 mb-2">Our Mission</h3><ul class="list-disc pl-5 space-y-1"><li>Provide smart tools that eliminate unnecessary time waste</li><li>Guide users to easily utilize complex features</li><li>Curate only safe apps that respect personal privacy</li><li>Continuously update with newly discovered apps</li></ul>`,
+    "about": {
+      "title": "About Us",
+      "subtitle": "Welcome to Daily Helper Portal",
+      "body": "<p>Daily Helper is a curated portal introducing handpicked Android apps and useful digital tools designed to make your everyday life easier and smarter.</p><br/><p>We introduce only carefully selected apps, providing detailed usage guides and tips so everyone can take full advantage of these tools.</p><br/><h3 class=\"text-lg font-semibold mt-4 mb-2\">Our Mission</h3><ul class=\"list-disc pl-5 space-y-1\"><li>Provide smart tools that eliminate unnecessary time waste</li><li>Guide users to easily utilize complex features</li><li>Curate only safe apps that respect personal privacy</li><li>Continuously update with newly discovered apps</li></ul>"
     },
-    privacy: {
-      title: "Privacy Policy",
-      subtitle: "Your privacy is our priority",
-      body: `<p class="text-sm opacity-60 mb-4">Last updated: August 11, 2026</p><h3 class="text-lg font-semibold mt-4 mb-2">1. Information We Collect</h3><p>Daily Helper <strong>does not collect or store any personal information on our servers.</strong> This is a purely static web page.</p><h3 class="text-lg font-semibold mt-4 mb-2">2. Local Storage</h3><p>Only language and dark mode preferences are stored in your browser's local storage — never sent to any server.</p><h3 class="text-lg font-semibold mt-4 mb-2">3. Advertising</h3><p>Ads may be displayed through Google AdSense. Google's cookie policy may apply.</p><h3 class="text-lg font-semibold mt-4 mb-2">4. Contact</h3><p>Privacy inquiries: theoneco1@gmail.com</p>`,
+    "privacy": {
+      "title": "Privacy Policy",
+      "subtitle": "Your privacy is our priority",
+      "body": "<p class=\"text-sm opacity-60 mb-4\">Last updated: August 11, 2026</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">1. Information We Collect</h3><p>Daily Helper <strong>does not collect or store any personal information on our servers.</strong> This is a purely static web page.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">2. Local Storage</h3><p>Only language and dark mode preferences are stored in your browser's local storage — never sent to any server.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">3. Advertising</h3><p>Ads may be displayed through Google AdSense. Google's cookie policy may apply.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">4. Contact</h3><p>Privacy inquiries: theoneco1@gmail.com</p>"
     },
-    terms: {
-      title: "Terms of Service",
-      subtitle: "Terms governing use of our service",
-      body: `<p class="text-sm opacity-60 mb-4">Last updated: August 11, 2026</p><h3 class="text-lg font-semibold mt-4 mb-2">1. Service Purpose</h3><p>Daily Helper is a curation portal providing information about Android apps and utility tools.</p><h3 class="text-lg font-semibold mt-4 mb-2">2. User Obligations</h3><ul class="list-disc pl-5 mt-2 space-y-1"><li>Do not use this service for illegal purposes.</li><li>Do not harm other users or third parties.</li></ul><h3 class="text-lg font-semibold mt-4 mb-2">3. Disclaimer</h3><p>Daily Helper is not responsible for damages arising from the use of external apps introduced on this service.</p><h3 class="text-lg font-semibold mt-4 mb-2">4. Contact</h3><p>Terms inquiries: theoneco1@gmail.com</p>`,
+    "terms": {
+      "title": "Terms of Service",
+      "subtitle": "Terms governing use of our service",
+      "body": "<p class=\"text-sm opacity-60 mb-4\">Last updated: August 11, 2026</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">1. Service Purpose</h3><p>Daily Helper is a curation portal providing information about Android apps and utility tools.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">2. User Obligations</h3><ul class=\"list-disc pl-5 mt-2 space-y-1\"><li>Do not use this service for illegal purposes.</li><li>Do not harm other users or third parties.</li></ul><h3 class=\"text-lg font-semibold mt-4 mb-2\">3. Disclaimer</h3><p>Daily Helper is not responsible for damages arising from the use of external apps introduced on this service.</p><h3 class=\"text-lg font-semibold mt-4 mb-2\">4. Contact</h3><p>Terms inquiries: theoneco1@gmail.com</p>"
     },
-    contact: {
-      title: "Contact Us",
-      subtitle: "Feel free to reach out anytime",
-      lastUpdated: "Last updated: August 11, 2026",
-      emailLabel: "Email Inquiry",
-      emailDesc: "We welcome all inquiries regarding apps, bug reports, and collaboration proposals.",
-      emailBtn: "Send Email",
-      responseTime: "We typically respond within 1-2 business days.",
-      appRequest: "App Request",
-      appRequestDesc: "Know a useful app? Tell us about it and we might feature it!",
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Feel free to reach out anytime",
+      "lastUpdated": "Last updated: August 11, 2026",
+      "emailLabel": "Email Inquiry",
+      "emailDesc": "We welcome all inquiries regarding apps, bug reports, and collaboration proposals.",
+      "emailBtn": "Send Email",
+      "responseTime": "We typically respond within 1-2 business days.",
+      "appRequest": "App Request",
+      "appRequestDesc": "Know a useful app? Tell us about it and we might feature it!"
     },
-    footer: {
-      tagline: "Enriching your daily life",
-      copyright: "© 2026 Daily Helper. All rights reserved.",
-      links: "Quick Links", legal: "Legal", emailLabel: "Contact Email: ",
+    "footer": {
+      "tagline": "Enriching your daily life",
+      "copyright": "© 2026 Daily Helper. All rights reserved.",
+      "links": "Quick Links",
+      "legal": "Legal",
+      "emailLabel": "Contact Email: "
     },
-    empty: {
-      title: "No results found",
-      subtitle: "Try a different keyword or category.",
-      noAppsTitle: "No apps available yet.",
-      noAppsSubtitle: "New apps are coming soon!",
+    "empty": {
+      "title": "No results found",
+      "subtitle": "Try a different keyword or category.",
+      "noAppsTitle": "No apps available yet.",
+      "noAppsSubtitle": "New apps are coming soon!"
     },
-    proof: { apps: "10+ Useful Smartphone Apps", free: "100% Free & Safe Tools", update: "Regular New App Updates", guide: "📖 App Guide" },
-  },
+    "homeSeo": {
+      "fullHtml": "<div class=\"p-6 sm:p-10 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl\">\n  <div class=\"flex items-center gap-2 mb-3\">\n    <span class=\"inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60\">\n      🌐 Daily Helper Hub | Services &amp; Utility Overview\n    </span>\n  </div>\n\n  <h2 class=\"text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4\">\n    Empowering Everyday Productivity with Secure &amp; Smart Tools — About Daily Helper Hub\n  </h2>\n\n  <div class=\"prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4\">\n    <p>\n      <strong>Daily Helper Hub</strong> is an all-in-one productivity platform built to simplify everyday calculations, data formatting, and document inspection. With zero software installations, zero paid subscriptions, and zero sign-ups required, anyone can immediately access our handpicked collection of 5 essential browser utilities and vetted Android mobile applications 100% free of charge.\n    </p>\n\n    <div class=\"my-6 p-5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 border border-indigo-200/80 dark:border-indigo-800/60\">\n      <h3 class=\"text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2\">\n        <span>🛡️</span> <span>100% Client-Side In-Memory Processing &amp; Privacy-First Architecture</span>\n      </h3>\n      <p class=\"text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed mb-0\">\n        Every web utility on Daily Helper Hub—from our PDF Blueprint Checker and Statutory Leave Calculator to our Salary Calculator and Excel Delimiter Formatter—operates under a strict <strong>zero server transmission policy</strong>. All calculations and file manipulations occur entirely within your local web browser memory. Your confidential CAD blueprints, salary figures, corporate database dumps, and resumes never leave your personal device, guaranteeing complete privacy and enterprise compliance.\n      </p>\n    </div>\n\n    <h3 class=\"text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3 flex items-center gap-2\">\n      <span>⚡</span> <span>Essential Free Web Utilities</span>\n    </h3>\n    <ul class=\"grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm pl-0 list-none\">\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#pdf-checker\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📐</span> <span>PDF &amp; CAD Drawing Review / Marking Tool</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">Review, annotate, and merge large CAD blueprints and images with zero server uploads, exporting to 5~7MB optimized HD PDFs.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#annual-leave-calculator\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📅</span> <span>Statutory Annual Leave Calculator (Art. 60)</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">Compute hire-date and fiscal-year paid leave under Korean labor law with first-year monthly breakdowns and seniority bonus days.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#wage-calc\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>🧮</span> <span>2026 Minimum Wage &amp; Net Salary Calculator</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">Calculate statutory weekly holiday pay and net salary based on the 10,320 KRW minimum wage with 3.3% freelance and 4 insurance models.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40\">\n        <a href=\"#excel-delimiter-converter\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📊</span> <span>Excel Line Break ↔ Delimiter &amp; SQL Formatter</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">Transform Excel rows into commas, SQL IN ('A', 'B') clauses, or quotes with automatic deduplication and whitespace trimming.</p>\n      </li>\n      <li class=\"p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 md:col-span-2\">\n        <a href=\"#char-byte-counter\" class=\"font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1\">\n          <span>📝</span> <span>Resume &amp; Document Word, Char &amp; Byte Counter</span>\n        </a>\n        <p class=\"text-slate-600 dark:text-slate-300 text-xs mb-0\">Real-time word, character, and byte counter distinguishing between 2-Byte and 3-Byte system limits with one-click whitespace cleaners.</p>\n      </li>\n    </ul>\n\n    <h3 class=\"text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-6 mb-3 flex items-center gap-2\">\n      <span>📱</span> <span>Featured Android Lifestyle Applications</span>\n    </h3>\n    <p>\n      Explore our mobile lineup on Google Play: sweet 3D physics bakery puzzle <strong>Bake Merge</strong>, daily habit and routine manager <strong>TimeKeeper</strong>, anniversary countdown tracker <strong>DayCount</strong>, and hands-free voice-enabled bookshelf organizer <strong>BookSpot</strong>.\n    </p>\n\n    <div class=\"flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 flex-wrap\">\n      <button type=\"button\" onclick=\"showPage('guide')\" class=\"inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md\">\n        <span>📖</span> <span>Browse All App &amp; Tool Guides</span>\n      </button>\n      <button type=\"button\" onclick=\"switchMainTab('tools')\" class=\"inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700\">\n        <span>⚡</span> <span>Explore Web Tools</span>\n      </button>\n      <button type=\"button\" onclick=\"switchMainTab('apps')\" class=\"inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700\">\n        <span>📱</span> <span>Discover Mobile Apps</span>\n      </button>\n    </div>\n  </div>\n</div>"
+    }
+  }
 };
 
 function getInitialLang() {

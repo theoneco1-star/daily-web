@@ -537,48 +537,151 @@ function goGallery(idx) {
 // ── Page Navigation ───────────────────────────────────────
 const pages = { main: pageMain, about: pageAbout, privacy: pagePrivacy, terms: pageTerms, contact: pageContact, guide: pageGuide };
 
-function showPage(name) {
+function showPage(name, targetTab) {
   if (typeof closeModal === "function") closeModal();
   if (typeof restoreDefaultTitle === "function") restoreDefaultTitle();
   Object.entries(pages).forEach(([key, el]) => {
     if (!el) return;
     el.classList.toggle("hidden", key !== name);
   });
+
+  const isGuide = (name === "guide");
+  const isMain = (name === "main");
+
+  // Sync tab active states in header and mobile sub-nav
+  const tabBtnGuides = document.querySelectorAll(".tab-btn-guide, #tab-btn-guide");
+  tabBtnGuides.forEach(b => {
+    b.classList.toggle("active", isGuide);
+    b.setAttribute("aria-selected", isGuide ? "true" : "false");
+  });
+
+  if (isMain) {
+    const isApps = (currentMainTab === "apps");
+    const appBtns = document.querySelectorAll(".tab-btn-apps, #tab-btn-apps");
+    const toolBtns = document.querySelectorAll(".tab-btn-tools, #tab-btn-tools");
+    appBtns.forEach(b => {
+      b.classList.toggle("active", isApps);
+      b.setAttribute("aria-selected", isApps ? "true" : "false");
+    });
+    toolBtns.forEach(b => {
+      b.classList.toggle("active", !isApps);
+      b.setAttribute("aria-selected", !isApps ? "true" : "false");
+    });
+  } else if (isGuide) {
+    const appBtns = document.querySelectorAll(".tab-btn-apps, #tab-btn-apps");
+    const toolBtns = document.querySelectorAll(".tab-btn-tools, #tab-btn-tools");
+    appBtns.forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-selected", "false");
+    });
+    toolBtns.forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-selected", "false");
+    });
+  }
+
   if (name === "guide") {
+    if (targetTab) {
+      currentGuideTab = targetTab;
+    }
     renderGuideSubtabs();
     renderGuideContent();
   }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// ── App Guide Subtabs Configuration & Management ───────────
+// ── App & Web Tools Guide Configuration & Management ───────────
 const guideAppsConfig = [
+  // 1. Mobile Apps
   {
     id: "bakemerge",
-    nameKo: "Bake Merge",
+    nameKo: "Bake Merge (베이크 머지)",
     nameEn: "Bake Merge",
     iconEmoji: "🥐",
+    type: "app",
+    badgeKo: "게임",
+    badgeEn: "Game",
     isReady: true,
   },
   {
     id: "timekeeper",
-    nameKo: "TimeKeeper",
+    nameKo: "TimeKeeper (타임키퍼)",
     nameEn: "TimeKeeper",
     iconEmoji: "⏱️",
+    type: "app",
+    badgeKo: "유틸리티",
+    badgeEn: "Routine",
     isReady: true,
   },
   {
     id: "daycount",
-    nameKo: "DayCount",
+    nameKo: "DayCount (디데이)",
     nameEn: "DayCount",
     iconEmoji: "📅",
+    type: "app",
+    badgeKo: "일정",
+    badgeEn: "D-Day",
     isReady: true,
   },
   {
     id: "bookspot",
-    nameKo: "BookSpot",
+    nameKo: "BookSpot (책 쏙쏙)",
     nameEn: "BookSpot",
     iconEmoji: "📚",
+    type: "app",
+    badgeKo: "도서관리",
+    badgeEn: "Books",
+    isReady: true,
+  },
+  // 2. Web Utilities
+  {
+    id: "pdf-checker",
+    nameKo: "PDF & 도면 체커",
+    nameEn: "PDF Drawing Checker",
+    iconEmoji: "📐",
+    type: "tool",
+    badgeKo: "웹 도구",
+    badgeEn: "Web Tool",
+    isReady: true,
+  },
+  {
+    id: "annual-leave-calculator",
+    nameKo: "연차 자동 계산기",
+    nameEn: "Annual Leave Calc",
+    iconEmoji: "📅",
+    type: "tool",
+    badgeKo: "근로기준법",
+    badgeEn: "Labor Law",
+    isReady: true,
+  },
+  {
+    id: "wage-calc",
+    nameKo: "실수령액·주휴수당",
+    nameEn: "Wage & Holiday Pay",
+    iconEmoji: "🧮",
+    type: "tool",
+    badgeKo: "급여/세무",
+    badgeEn: "Salary & Tax",
+    isReady: true,
+  },
+  {
+    id: "char-byte-counter",
+    nameKo: "자소서 글자수·Byte",
+    nameEn: "Char & Byte Counter",
+    iconEmoji: "📝",
+    type: "tool",
+    badgeKo: "문서 도구",
+    badgeEn: "Resume Tool",
+    isReady: true,
+  },
+  {
+    id: "excel-delimiter-converter",
+    nameKo: "엑셀 구분자 변환기",
+    nameEn: "Excel Converter",
+    iconEmoji: "📊",
+    type: "tool",
+    badgeKo: "데이터 정제",
+    badgeEn: "Data Tool",
     isReady: true,
   }
 ];
@@ -591,6 +694,12 @@ function setGuideTab(appId) {
   renderGuideContent();
 }
 
+function openGuideTab(appId) {
+  currentGuideTab = appId;
+  showPage("guide", appId);
+}
+window.openGuideTab = openGuideTab;
+
 function renderGuideSubtabs() {
   const container = document.getElementById("guide-subtabs");
   if (!container) return;
@@ -601,8 +710,9 @@ function renderGuideSubtabs() {
     const isActive = app.id === currentGuideTab;
     const isReady = !!app.isReady;
     const name = currentLang === "ko" ? app.nameKo : app.nameEn;
-    const badgeHtml = !isReady
-      ? `<span class="guide-tab-badge">${comingSoonText}</span>`
+    const typeBadge = currentLang === "ko" ? app.badgeKo : app.badgeEn;
+    const badgeHtml = typeBadge
+      ? `<span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold ${app.type === 'tool' ? 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'}">${typeBadge}</span>`
       : "";
 
     return `
@@ -629,18 +739,19 @@ function renderGuideContent() {
 
   if (appConfig.isReady) {
     const guideKey = `guide.${appConfig.id}`;
-    const title = t(`${guideKey}.title`) || `${appName} - ${t("badge.guide")}`;
     const bodyHtml = t(`${guideKey}.body`);
-    const backBtnText = t("nav.backToHome");
-    const detailBtnText = t(`${guideKey}.openDetailBtn`) || `${appName} ${t("card.detailBtn")}`;
 
-    if (appConfig.id === "daycount" || appConfig.id === "bookspot" || appConfig.id === "bakemerge") {
+    if (bodyHtml && !bodyHtml.startsWith("guide.")) {
       container.innerHTML = `
         <div class="guide-active-content animate-fadeIn">
           ${bodyHtml}
         </div>
       `;
     } else {
+      const title = t(`${guideKey}.title`) || `${appName} - ${t("badge.guide")}`;
+      const backBtnText = t("nav.backToHome");
+      const detailBtnText = t(`${guideKey}.openDetailBtn`) || `${appName} ${t("card.detailBtn")}`;
+
       container.innerHTML = `
         <div class="guide-active-content animate-fadeIn">
           <h3 class="guide-app-title text-slate-900 dark:text-white font-bold text-xl md:text-2xl mb-6 flex items-center gap-2.5">
@@ -662,11 +773,11 @@ function renderGuideContent() {
       `;
     }
   } else {
-    // 준비 중인 다른 앱 안내 카드 노출
+    // 안내 카드 노출
     const noticeText = t("guide.comingSoonNotice");
     const comingSoonText = t("guide.tabComingSoon");
     const backBtnText = t("nav.backToHome");
-    const timekeeperBtnText = currentLang === "ko" ? "TimeKeeper 가이드 보기" : "View TimeKeeper Guide";
+    const defaultBtnText = currentLang === "ko" ? "Bake Merge 가이드 보기" : "View Bake Merge Guide";
 
     container.innerHTML = `
       <div class="guide-coming-soon-card animate-fadeIn">
@@ -681,8 +792,8 @@ function renderGuideContent() {
           ${noticeText}
         </p>
         <div class="guide-cs-actions">
-          <button type="button" onclick="setGuideTab('timekeeper')" class="guide-cs-btn-primary">
-            ⏱️ <span>${timekeeperBtnText}</span>
+          <button type="button" onclick="setGuideTab('bakemerge')" class="guide-cs-btn-primary">
+            🥐 <span>${defaultBtnText}</span>
           </button>
           <button type="button" onclick="showPage('main')" class="guide-cs-btn-secondary">
             ${backBtnText}
@@ -936,6 +1047,13 @@ function checkDeepLinks() {
       if (typeof openPdf === "function") {
         openPdf();
         setTimeout(openPdf, 60);
+      }
+    }
+
+    if (hash === "guide" || hash.startsWith("guide-")) {
+      const targetGuide = hash.replace(/^guide-?/, "");
+      if (typeof showPage === "function") {
+        showPage("guide", targetGuide || undefined);
       }
     }
   } catch (err) {
