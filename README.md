@@ -86,7 +86,7 @@
 - **SEO & 웹 표준 최적화**
   - 검색 엔진 및 AI 크롤러 지침이 포함된 `robots.txt`, `sitemap.xml`
   - `SoftwareApplication` Schema.org 구조화 데이터 마크업 및 공식 도메인(`dailyhelperhub.com`) 반영
-  - Google AdMob `app-ads.txt` 정적 라우팅 완비
+  - Google AdSense `ads.txt` 및 Google AdMob `app-ads.txt` 정적 라우팅 완비
 
 ---
 

@@ -1,11 +1,19 @@
 {
   "rewrites": [
     {
-      "source": "/((?!app-ads\\.txt|robots\\.txt|sitemap\\.xml|data/|css/|js/|images/|_vercel/).*)",
+      "source": "/((?!ads\\.txt|app-ads\\.txt|robots\\.txt|sitemap\\.xml|data/|css/|js/|images/|_vercel/).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/ads.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
     {
       "source": "/app-ads.txt",
       "headers": [
