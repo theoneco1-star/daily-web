@@ -22,7 +22,11 @@
 
 ## 🌟 최근 UI/UX 개선 내역 (Latest Updates)
 
-- **카테고리 탭 필터링 로직 정밀화 및 앱별 1:1 단일 카테고리 매핑 확립 (Latest)**
+- **초기 렌더링 깜빡임(Flicker) 방지 및 가이드 페이지 타이틀 개선 (Latest)**
+  - 메인 카드 그리드(`#app-grid`, `#web-tools-grid`)에 초기 최소 높이(`min-height: 480px`, 모바일 `520px`)를 지정하여 카드 데이터가 로드되기 전에도 안정적인 레이아웃 영역을 사전 확보
+  - 카드 데이터 마운트 완료(`isAppGridLoaded`) 시점까지 하단 서비스 안내 박스의 렌더링을 지연 및 투명도 트랜지션(`opacity: 0 -> 1`) 처리하여 레이아웃 튐 및 밀림 현상 완전 해소
+  - 가이드 뷰 상단 메인 타이틀을 모바일 앱과 웹 도구를 아우르는 **"서비스 이용 가이드 (Guide & Tips)"**(영문: "User Guides & Tips")로 개편
+- **카테고리 탭 필터링 로직 정밀화 및 앱별 1:1 단일 카테고리 매핑 확립**
   - 상단 탭 필터 클릭 시 태그(#tag)나 다중 조건 간섭 없이 앱의 고유 `category` 속성 값으로만 엄격한 1:1 단일 필터링 적용
   - 1:1 단일 매핑 기준: BookSpot(`work`, 도구/업무), TimeKeeper(`utility`, 유틸리티), DayCount(`daily`, 일상/일정), Bake Merge(`game`, 게임)
   - 탭별 노출 보장: '전체'(4개 앱 모두), '도구/업무'(BookSpot만), '유틸리티'(TimeKeeper만), '일상/일정'(DayCount만), '게임'(Bake Merge만)

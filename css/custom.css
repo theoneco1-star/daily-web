@@ -759,14 +759,19 @@ html.dark .list-count-badge {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
   gap: 1.1rem;
+  min-height: 480px;
 }
 @media (min-width: 768px) {
   #app-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: 480px;
   }
 }
 @media (max-width: 640px) {
-  #app-grid { grid-template-columns: 1fr; }
+  #app-grid {
+    grid-template-columns: 1fr;
+    min-height: 520px;
+  }
 }
 
 /* ── App Card — Contrast-enhanced ───────────────────────── */
@@ -1716,11 +1721,13 @@ html.dark .guide-cs-btn-secondary:hover,
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.1rem;
+  min-height: 480px;
 }
 
 @media (max-width: 640px) {
   #web-tools-grid {
     grid-template-columns: 1fr;
+    min-height: 520px;
   }
 }
 
@@ -3429,7 +3436,16 @@ html.dark .coming-soon-tag {
 .home-about-seo-section {
   position: relative;
   border-radius: 1.5rem;
-  transition: all 0.25s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.home-about-seo-section.is-loaded {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .guide-tab-badge-type {

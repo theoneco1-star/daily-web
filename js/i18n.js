@@ -356,7 +356,7 @@ const translations = {
       "guide": "📖 앱 가이드 →"
     },
     "guide": {
-      "mainTitle": "앱 사용 가이드",
+      "mainTitle": "서비스 이용 가이드 (Guide & Tips)",
       "mainSubtitle": "일상의도움에서 제공하는 앱별 핵심 기능과 상세 활용 팁을 확인해보세요.",
       "tabComingSoon": "준비 중",
       "comingSoonNotice": "현재 구글 플레이 출시 준비 중입니다. 정식 출시 후 상세 가이드가 업데이트됩니다.",
@@ -1076,7 +1076,7 @@ const translations = {
       "guide": "📖 App Guide →"
     },
     "guide": {
-      "mainTitle": "App Guides",
+      "mainTitle": "User Guides & Tips",
       "mainSubtitle": "Explore key features and useful tips for each Daily Helper app.",
       "tabComingSoon": "Coming Soon",
       "comingSoonNotice": "Currently preparing for Google Play release. Detailed guide will be updated soon.",

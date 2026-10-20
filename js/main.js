@@ -26,6 +26,7 @@ const categorySection = document.getElementById("category-section");
 // ── State & Routing ───────────────────────────────────────
 let currentView = "main"; // "main" | "guide" | "about" | "privacy" | "terms" | "contact"
 let currentMainTab = "apps"; // "apps" | "tools"
+let isAppGridLoaded = false;
 
 function resolveCurrentRoute() {
   try {
@@ -48,6 +49,13 @@ function updateHomeSeoVisibility() {
   const isHomeAll = (currentView === "main" && currentMainTab === "apps" && activeCategory === "all" && !searchQuery.trim());
   homeSeo.classList.toggle("hidden", !isHomeAll);
   homeSeo.style.display = isHomeAll ? "" : "none";
+  if (isHomeAll && isAppGridLoaded) {
+    requestAnimationFrame(() => {
+      homeSeo.classList.add("is-loaded");
+    });
+  } else {
+    homeSeo.classList.remove("is-loaded");
+  }
 }
 let activeCategory = "all"; // Default: 전체
 let searchQuery = "";
@@ -1135,6 +1143,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   initSearch();
   initScrollHeader();
+
+  // Mark app grid as loaded and smoothly reveal bottom service info box
+  isAppGridLoaded = true;
+  updateHomeSeoVisibility();
+
   // Re-verify after data load and render
   checkDeepLinks();
   if (typeof updateCharByteStats === "function") {
