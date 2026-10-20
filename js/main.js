@@ -23,8 +23,32 @@ const tabBtnApps = document.getElementById("tab-btn-apps");
 const tabBtnTools = document.getElementById("tab-btn-tools");
 const categorySection = document.getElementById("category-section");
 
-// ── State ─────────────────────────────────────────────────
+// ── State & Routing ───────────────────────────────────────
+let currentView = "main"; // "main" | "guide" | "about" | "privacy" | "terms" | "contact"
 let currentMainTab = "apps"; // "apps" | "tools"
+
+function resolveCurrentRoute() {
+  try {
+    const rawHash = (window.location.hash || "").trim().toLowerCase();
+    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    if (hash === "guide" || hash.startsWith("guide-")) return "guide";
+    if (hash === "about") return "about";
+    if (hash === "privacy") return "privacy";
+    if (hash === "terms") return "terms";
+    if (hash === "contact") return "contact";
+    return "main";
+  } catch (_) {
+    return "main";
+  }
+}
+
+function updateHomeSeoVisibility() {
+  const homeSeo = document.getElementById("home-about-seo");
+  if (!homeSeo) return;
+  const isHomeAll = (currentView === "main" && currentMainTab === "apps" && activeCategory === "all" && !searchQuery.trim());
+  homeSeo.classList.toggle("hidden", !isHomeAll);
+  homeSeo.style.display = isHomeAll ? "" : "none";
+}
 let activeCategory = "all"; // Default: 전체
 let searchQuery = "";
 let isDark = localStorage.getItem("dh_dark") !== "false";
@@ -128,6 +152,7 @@ function setCategory(cat) {
   buildFilters();
   buildHeaderCatNav();
   renderApps();
+  updateHomeSeoVisibility();
 }
 
 // ── App Rendering ─────────────────────────────────────────
@@ -215,7 +240,7 @@ function updateHeroCount() {
 // ── Major Tab Switching (모바일 앱 ↔ 웹 도구) ─────────────
 function switchMainTab(tab) {
   // If user is viewing a sub-page (guide, about, etc.), return to main page
-  if (typeof pageMain !== "undefined" && pageMain && pageMain.classList.contains("hidden")) {
+  if (currentView !== "main") {
     showPage("main");
   }
 
@@ -252,6 +277,7 @@ function switchMainTab(tab) {
     if (typeof renderWebTools === "function") renderWebTools();
   }
   updateHeroCount();
+  updateHomeSeoVisibility();
 }
 
 function renderApps() {
@@ -263,6 +289,7 @@ function renderApps() {
   // Update hero count & badge counts across desktop and mobile
   updateHeroCount();
   updateTabBadges();
+  updateHomeSeoVisibility();
 
   if (filtered.length === 0) {
     const isNoApps = typeof appsData === "undefined" || appsData.length === 0;
@@ -538,27 +565,28 @@ function goGallery(idx) {
 const pages = { main: pageMain, about: pageAbout, privacy: pagePrivacy, terms: pageTerms, contact: pageContact, guide: pageGuide };
 
 function showPage(name, targetTab) {
+  currentView = name || "main";
+  window.currentView = currentView;
+
   if (typeof closeModal === "function") closeModal();
   if (typeof restoreDefaultTitle === "function") restoreDefaultTitle();
+
   Object.entries(pages).forEach(([key, el]) => {
     if (!el) return;
-    el.classList.toggle("hidden", key !== name);
+    const isTarget = (key === currentView);
+    el.classList.toggle("hidden", !isTarget);
+    el.style.display = isTarget ? "" : "none";
   });
 
-  const isGuide = (name === "guide");
-  const isMain = (name === "main");
+  const isMain = (currentView === "main");
+  const isGuide = (currentView === "guide");
 
   // Sync tab active states in header and mobile sub-nav
-  const tabBtnGuides = document.querySelectorAll(".tab-btn-guide, #tab-btn-guide");
-  tabBtnGuides.forEach(b => {
-    b.classList.toggle("active", isGuide);
-    b.setAttribute("aria-selected", isGuide ? "true" : "false");
-  });
+  const isApps = (currentMainTab === "apps");
+  const appBtns = document.querySelectorAll(".tab-btn-apps, #tab-btn-apps");
+  const toolBtns = document.querySelectorAll(".tab-btn-tools, #tab-btn-tools");
 
   if (isMain) {
-    const isApps = (currentMainTab === "apps");
-    const appBtns = document.querySelectorAll(".tab-btn-apps, #tab-btn-apps");
-    const toolBtns = document.querySelectorAll(".tab-btn-tools, #tab-btn-tools");
     appBtns.forEach(b => {
       b.classList.toggle("active", isApps);
       b.setAttribute("aria-selected", isApps ? "true" : "false");
@@ -567,9 +595,7 @@ function showPage(name, targetTab) {
       b.classList.toggle("active", !isApps);
       b.setAttribute("aria-selected", !isApps ? "true" : "false");
     });
-  } else if (isGuide) {
-    const appBtns = document.querySelectorAll(".tab-btn-apps, #tab-btn-apps");
-    const toolBtns = document.querySelectorAll(".tab-btn-tools, #tab-btn-tools");
+  } else {
     appBtns.forEach(b => {
       b.classList.remove("active");
       b.setAttribute("aria-selected", "false");
@@ -580,7 +606,10 @@ function showPage(name, targetTab) {
     });
   }
 
-  if (name === "guide") {
+  // Manage Home SEO introduction box visibility (only on main Home 전체 보기)
+  updateHomeSeoVisibility();
+
+  if (isGuide) {
     if (targetTab) {
       currentGuideTab = targetTab;
     }
@@ -625,11 +654,11 @@ const guideAppsConfig = [
   },
   {
     id: "bookspot",
-    nameKo: "BookSpot (책 쏙쏙)",
-    nameEn: "BookSpot",
+    nameKo: "BookSpot (북스팟 - 스마트 독서 기록 관리)",
+    nameEn: "BookSpot (Smart Book Organizer)",
     iconEmoji: "📚",
     type: "app",
-    badgeKo: "도서관리",
+    badgeKo: "독서관리",
     badgeEn: "Books",
     isReady: true,
   },
@@ -814,6 +843,7 @@ function initSearch() {
     } else {
       if (typeof renderWebTools === "function") renderWebTools();
     }
+    updateHomeSeoVisibility();
   });
 }
 
@@ -1076,8 +1106,15 @@ try {
 document.addEventListener("DOMContentLoaded", async () => {
   initDarkMode();
   updateLangToggle();
+
+  // 1. Synchronously resolve route and enforce view state immediately before async operations
+  currentView = resolveCurrentRoute();
+  window.currentView = currentView;
+  showPage(currentView);
+
   // Immediate trigger for direct hash link entry
   initDeepLinks();
+
   await loadAppsData();
   if (typeof loadWebToolsData === "function") {
     await loadWebToolsData();
@@ -1092,8 +1129,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (typeof renderWebTools === "function") {
     renderWebTools();
   }
-  renderGuideSubtabs();
-  renderGuideContent();
+  if (currentView === "guide") {
+    renderGuideSubtabs();
+    renderGuideContent();
+  }
   initSearch();
   initScrollHeader();
   // Re-verify after data load and render

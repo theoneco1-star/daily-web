@@ -33,9 +33,14 @@ html.dark {
   --shadow-hover:   0 8px 32px rgba(99,102,241,0.28), 0 3px 12px rgba(0,0,0,0.4);
 }
 
-/* ── Reset ──────────────────────────────────────────────── */
+/* ── Reset & Anti-Flicker Protection ─────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+/* Immediate guaranteed hiding before external CDN / JS loads */
+.hidden, [hidden] {
+  display: none !important;
+}
 
 body {
   font-family: 'Inter', 'Noto Sans KR', sans-serif;
