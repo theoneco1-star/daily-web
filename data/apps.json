@@ -3,9 +3,60 @@
     { "id": "all", "nameKo": "전체", "nameEn": "All" },
     { "id": "tools", "nameKo": "도구/업무", "nameEn": "Tools & Work" },
     { "id": "utility", "nameKo": "유틸리티", "nameEn": "Utility" },
-    { "id": "daily", "nameKo": "일상/일정", "nameEn": "Daily & Routine" }
+    { "id": "daily", "nameKo": "일상/일정", "nameEn": "Daily & Routine" },
+    { "id": "game", "nameKo": "게임", "nameEn": "Game" }
   ],
   "apps": [
+    {
+      "id": "bakemerge",
+      "nameKo": "Bake Merge (베이크 머지)",
+      "nameEn": "Bake Merge",
+      "category": "game",
+      "categories": ["game"],
+      "color": "from-amber-500 via-orange-400 to-rose-400",
+      "icon": "images/bakemerge-icon.png",
+      "iconEmoji": "🥐",
+      "isFree": true,
+      "isNew": true,
+      "isFeatured": true,
+      "tags": ["게임", "머지퍼즐", "3D물리", "베이커리", "캐주얼"],
+      "tagsKo": ["게임", "머지퍼즐", "3D물리", "베이커리", "캐주얼"],
+      "tagsEn": ["Game", "MergePuzzle", "3DPhysics", "Bakery", "Casual"],
+      "descKo": "귀여운 도우를 퐁당! 병합하고 구워내는 달콤한 3D 베이커리 머지 퍼즐 게임",
+      "descEn": "Drop, merge cute bakery items, and create delicious pastries in 3D physics!",
+      "featuresKo": [
+        "리얼한 3D 물리 엔진 머지 퍼즐: 살아 움직이는 듯 통통 튀는 반죽들의 역동적인 상호작용",
+        "10여 종의 베이커리 도우 도감: 작은 반죽부터 거대한 자이언트 케이크까지 단계별 수집",
+        "스페셜 아이템 지원: 위기 상황을 역전시키는 번개 조커 & 특수 부스터",
+        "프레스 장벽 & 피버 모드: 긴장감을 높여주는 압박 프레스 라인과 짜릿한 점수 획득",
+        "심플한 원터치 조작: 언제 어디서나 남녀노소 편하게 즐기는 직관적인 조작"
+      ],
+      "featuresEn": [
+        "Dynamic 3D Physics Merge: Satisfying bouncy collisions and realistic dough interactions",
+        "10+ Bakery Evolution Collection: Merge small pastries up to the ultimate giant cake",
+        "Tactical Booster Items: Clear difficult jams and tight spots with special Lightning Jokers",
+        "Press Barrier & Fever Mode: Thrilling ceiling mechanics and high-score fever opportunities",
+        "Easy One-Finger Control: Accessible and relaxing casual gameplay for all ages"
+      ],
+      "guideKo": "떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 번개 조커 아이템을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다.",
+      "guideEn": "Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved Lightning Joker to clear roadblocks and create room for the giant cake!",
+      "screenshots": [
+        "images/bakemerge-screenshot-ko.jpg",
+        "images/bakemerge-screenshot-en.jpg"
+      ],
+      "screenshotsKo": [
+        "images/bakemerge-screenshot-ko.jpg"
+      ],
+      "screenshotsEn": [
+        "images/bakemerge-screenshot-en.jpg"
+      ],
+      "developer": "WG Apps Studio",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge",
+      "version": "1.0.1",
+      "updated": "2026. 10",
+      "size": "약 48 MB",
+      "requires": "Android 8.0 이상 (Android 8.0+)"
+    },
     {
       "id": "timekeeper",
       "nameKo": "TimeKeeper",

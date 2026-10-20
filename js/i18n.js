@@ -292,7 +292,7 @@ const translations = {
       resultsFound: "개 검색됨",
     },
     proof: {
-      apps: "3종의 스마트폰 앱",
+      apps: "4종의 스마트폰 앱",
       free: "100% 무료 & 안전한 도구",
       update: "주기적인 신규 앱 업데이트"
     },
@@ -639,6 +639,232 @@ const translations = {
   </button>
 </div>`
       },
+      bakemerge: {
+        title: "Bake Merge (베이크 머지) - 달콤한 3D 베이커리 머지 퍼즐",
+        appName: "Bake Merge (베이크 머지)",
+        subtitle: "귀여운 도우를 퐁당! 병합하고 구워내는 달콤한 3D 베이커리 머지 퍼즐 게임",
+        overview: "Bake Merge는 통통 튀는 3D 물리 엔진을 기반으로 귀여운 빵 반죽들을 합쳐 나만의 자이언트 케이크를 완성하는 캐주얼 머지 퍼즐 게임입니다. 복잡한 규칙 없이 누구나 쉽게 즐길 수 있습니다.",
+        featuresTitle: "주요 핵심 기능",
+        features: [
+          { title: "리얼한 3D 물리 엔진 머지 퍼즐", desc: "살아 움직이는 듯 통통 튀는 반죽들의 역동적인 상호작용" },
+          { title: "10여 종의 베이커리 도우 도감", desc: "작은 반죽부터 거대한 자이언트 케이크까지 단계별 수집" },
+          { title: "스페셜 아이템 지원", desc: "위기 상황을 역전시키는 번개 조커 & 특수 부스터" },
+          { title: "프레스 장벽 & 피버 모드", desc: "긴장감을 높여주는 압박 프레스 라인과 짜릿한 점수 획득" },
+          { title: "심플한 원터치 조작", desc: "언제 어디서나 남녀노소 편하게 즐기는 직관적인 조작" }
+        ],
+        quickGuideTitle: "단계별 플레이 가이드",
+        quickGuide: [
+          "STEP 1. 도우 조준 및 드롭: 화면을 터치하고 드래그하여 원하는 위치에 도우를 조준 후 떨어뜨립니다.",
+          "STEP 2. 같은 도우 병합: 같은 모양의 반죽 도우 2개가 부딪히면 다음 단계의 더 큰 빵으로 진화합니다.",
+          "STEP 3. 프레스 라인 주의: 반죽들이 상단 압박 라인을 넘지 않도록 균형 있게 공간을 관리합니다.",
+          "STEP 4. 부스터 활용: 공간이 부족하거나 막혔을 때는 번개 조커 등 특수 아이템을 사용해 돌파합니다.",
+          "STEP 5. 자이언트 케이크 완성: 10단계 최종 도우를 완성하고 최고 점수를 달성해 보세요."
+        ],
+        tipTitle: "사용 가이드 & 꿀팁",
+        tipContent: "떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 번개 조커 아이템을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다.",
+        openDetailBtn: "Bake Merge 상세정보",
+        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="flex items-start md:items-center gap-4">
+      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-400 to-rose-400 p-1 flex items-center justify-center shadow-lg shadow-orange-500/25 shrink-0 border border-white/30 overflow-hidden">
+        <img src="images/bakemerge-icon.png" alt="Bake Merge Icon" class="w-full h-full object-cover rounded-xl" />
+      </div>
+      <div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Bake Merge (베이크 머지)</h2>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
+            v1.0.1 신규 3D 물리 퍼즐
+          </span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
+          귀여운 도우를 퐁당! 병합하고 구워내는 달콤한 3D 베이커리 머지 퍼즐 게임
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
+      <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <span class="text-base">▶</span>
+        <span>구글 플레이에서 다운로드</span>
+      </a>
+      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
+        <span>← 홈으로</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-rose-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-amber-200/70 dark:border-slate-700/60 shadow-sm">
+  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+    <span>🥐</span>
+    <span>앱 개요 (App Overview)</span>
+  </h3>
+  <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0">
+    Bake Merge는 통통 튀는 3D 물리 엔진을 기반으로 귀여운 빵 반죽들을 합쳐 나만의 자이언트 케이크를 완성하는 캐주얼 머지 퍼즐 게임입니다. 복잡한 규칙 없이 남녀노소 누구나 한 손으로 쉽게 즐길 수 있습니다.
+  </p>
+</div>
+
+<!-- 스크린샷 미리보기 배너 -->
+<div class="mb-8 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70">
+  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+    <span>🖼️</span>
+    <span>게임 플레이 화면 미리보기</span>
+  </h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+    <div class="flex flex-col items-center">
+      <div class="rounded-2xl overflow-hidden border-2 border-amber-300 dark:border-amber-600/50 shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="images/bakemerge-screenshot-ko.jpg" alt="Bake Merge 한글 화면" class="w-full h-auto max-h-[380px] object-cover" />
+      </div>
+      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">한국어 게임 메인 로비 화면</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="images/bakemerge-screenshot-en.jpg" alt="Bake Merge 영문 화면" class="w-full h-auto max-h-[380px] object-cover" />
+      </div>
+      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">글로벌 영문 지원 로비 화면</span>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>주요 핵심 기능</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
+        🍩
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">리얼 3D 물리 엔진 머지</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        살아 움직이는 듯 통통 튀는 반죽들의 역동적인 상호작용과 기분 좋은 타격감을 선사합니다.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
+        🎂
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">10여 종 베이커리 도우 도감</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        작은 반죽부터 거대한 자이언트 케이크까지 단계별로 귀여운 도우를 수집하고 합성해 보세요.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
+        ⚡
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">스페셜 부스터 아이템</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        위기 상황을 한 방에 역전시키는 번개 조커 &amp; 특수 부스터로 막힌 쇼케이스를 시원하게 돌파합니다.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-1">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-950/80 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-3">
+        🔥
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">프레스 장벽 &amp; 피버 모드</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        긴장감을 고조시키는 천장 압박 프레스 라인과 짜릿한 점수 획득 기회를 제공합니다.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-2">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-3">
+        👆
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">심플한 원터치 조작</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        한 손으로 조준하고 손을 떼어 드롭! 언제 어디서나 남녀노소 편하게 힐링하며 즐기는 직관적인 플레이가 가능합니다.
+      </p>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>단계별 플레이 가이드 (Step-by-Step)</span>
+</h3>
+<ol class="guide-steps-list space-y-3.5 mb-8">
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 1
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">도우 조준 및 드롭:</strong>
+      화면을 터치하고 좌우로 드래그하여 원하는 위치에 도우를 조준한 후 손을 떼어 쇼케이스 안으로 떨어뜨립니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 2
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">같은 도우 병합:</strong>
+      같은 모양과 단계를 가진 반죽 도우 2개가 서로 부딪히면 퐁당 소리와 함께 다음 단계의 더 큰 빵으로 진화합니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 3
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">프레스 라인 주의:</strong>
+      반죽들이 상단 압박 프레스 라인을 넘어가 버리지 않도록 좌우 균형 있게 공간을 관리하며 드롭합니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 4
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">부스터 활용:</strong>
+      공간이 부족하거나 아쉽게 병합이 막혔을 때는 번개 조커 등 특수 부스터 아이템을 사용해 위기를 극복합니다.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 5
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">자이언트 케이크 완성:</strong>
+      10단계 최종 도우를 완성하고 환상적인 피버 타임과 함께 전 세계 최고 점수에 도전해 보세요!
+    </div>
+  </li>
+</ol>
+
+<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
+  <div class="flex items-start gap-3">
+    <span class="text-2xl shrink-0 mt-0.5">💡</span>
+    <div>
+      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
+        사용 가이드 &amp; 꿀팁 (Tip)
+      </h4>
+      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
+        "떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 <strong>번개 조커 아이템</strong>을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다."
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
+  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+    ← 홈으로
+  </button>
+  <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #f97316); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>구글 플레이 다운로드</span> ↗
+  </a>
+  <button type="button" onclick="openModal('bakemerge')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
+    🥐 <span>Bake Merge 상세정보</span>
+  </button>
+</div>`
+      },
       clipflow: {
         title: "ClipFlow (클립플로우) - 스마트 클립보드 매니저",
         appName: "ClipFlow",
@@ -977,11 +1203,11 @@ const translations = {
       resultsFound: "results found",
     },
     proof: {
-      apps: "3 Useful Android Apps",
+      apps: "4 Useful Android Apps",
       free: "100% Free & Secure Tools",
       update: "Regular App Updates"
     },
-    categories: { all: "All", tools: "Tools & Work", utility: "Utility", daily: "Daily & Routine", games: "Games", game: "Games" },
+    categories: { all: "All", tools: "Tools & Work", utility: "Utility", daily: "Daily & Routine", games: "Game", game: "Game" },
     card: { detailBtn: "Details & Download", freeTag: "Free", newTag: "New", featuredTag: "Featured", comingSoonBadge: "Coming Soon", comingSoonBtn: "Coming Soon" },
     modal: {
       close: "Close", downloadBtn: "Get it on Google Play",
@@ -1321,6 +1547,232 @@ const translations = {
   </a>
   <button type="button" onclick="openModal('bookspot')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
     📚 <span>View BookSpot Details</span>
+  </button>
+</div>`
+      },
+      bakemerge: {
+        title: "Bake Merge - Sweet 3D Bakery Merge Puzzle",
+        appName: "Bake Merge",
+        subtitle: "Drop, merge cute bakery items, and create delicious pastries in 3D physics!",
+        overview: "Bake Merge is a satisfying 3D physics-based puzzle game where you drop and combine adorable bakery doughs to bake the ultimate giant cake. Enjoy intuitive controls and fun bouncy reactions.",
+        featuresTitle: "Key Features",
+        features: [
+          { title: "Dynamic 3D Physics Merge", desc: "Satisfying bouncy collisions and realistic dough interactions" },
+          { title: "10+ Bakery Evolution Collection", desc: "Merge small pastries up to the ultimate giant cake" },
+          { title: "Tactical Booster Items", desc: "Clear difficult jams and tight spots with special Lightning Jokers" },
+          { title: "Press Barrier & Fever Mode", desc: "Thrilling ceiling mechanics and high-score fever opportunities" },
+          { title: "Easy One-Finger Control", desc: "Accessible and relaxing casual gameplay for all ages" }
+        ],
+        quickGuideTitle: "Step-by-Step Guide",
+        quickGuide: [
+          "STEP 1. Aim & Drop: Touch and drag to aim, then release to drop your dough into the showcase.",
+          "STEP 2. Merge Pairs: Collide two identical bakery items to combine them into a bigger treat.",
+          "STEP 3. Manage Space: Prevent your pastries from piling up past the top press barrier.",
+          "STEP 4. Use Boosters: Activate strategic items like the Lightning Joker when spaces get tight.",
+          "STEP 5. Complete the Giant Cake: Reach the final 10th stage pastry and set your new high score!"
+        ],
+        tipTitle: "Tips & Guide",
+        tipContent: "Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved Lightning Joker to clear roadblocks and create room for the giant cake!",
+        openDetailBtn: "View Bake Merge Details",
+        body: `<div class="guide-header-hero mb-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-500/10 via-orange-500/10 to-rose-500/10 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-rose-950/30 border border-amber-200/80 dark:border-amber-700/50 shadow-sm">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="flex items-start md:items-center gap-4">
+      <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-amber-400 via-orange-400 to-rose-400 p-1 flex items-center justify-center shadow-lg shadow-orange-500/25 shrink-0 border border-white/30 overflow-hidden">
+        <img src="images/bakemerge-icon.png" alt="Bake Merge Icon" class="w-full h-full object-cover rounded-xl" />
+      </div>
+      <div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Bake Merge</h2>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-300 border border-amber-200 dark:border-amber-700/60">
+            v1.0.1 3D Physics Merge Game
+          </span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base mt-2 leading-relaxed max-w-xl">
+          Drop, merge cute bakery items, and create delicious pastries in 3D physics!
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap shrink-0">
+      <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="guide-cta-download-btn inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 shadow-md shadow-orange-500/30 hover:shadow-lg hover:shadow-orange-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+        <span class="text-base">▶</span>
+        <span>Download on Google Play</span>
+      </a>
+      <button type="button" onclick="showPage('main')" class="inline-flex items-center gap-1.5 px-4 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750 hover:-translate-y-0.5 active:translate-y-0 shadow-sm transition-all duration-200">
+        <span>← Back to Home</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="guide-lead-box p-5 rounded-2xl mb-8 bg-gradient-to-br from-amber-500/5 via-orange-500/5 to-rose-500/5 dark:from-slate-800/60 dark:to-slate-800/40 border border-amber-200/70 dark:border-slate-700/60 shadow-sm">
+  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+    <span>🥐</span>
+    <span>App Overview</span>
+  </h3>
+  <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-0">
+    Bake Merge is a satisfying 3D physics-based puzzle game where you drop and combine adorable bakery doughs to bake the ultimate giant cake. Enjoy intuitive controls and fun bouncy reactions for all ages.
+  </p>
+</div>
+
+<!-- Screenshot Showcase -->
+<div class="mb-8 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/70">
+  <h3 class="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+    <span>🖼️</span>
+    <span>Gameplay Screenshots</span>
+  </h3>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+    <div class="flex flex-col items-center">
+      <div class="rounded-2xl overflow-hidden border-2 border-amber-300 dark:border-amber-600/50 shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="images/bakemerge-screenshot-en.jpg" alt="Bake Merge English Screen" class="w-full h-auto max-h-[380px] object-cover" />
+      </div>
+      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">English Global Lobby Screen</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <div class="rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300">
+        <img src="images/bakemerge-screenshot-ko.jpg" alt="Bake Merge Korean Screen" class="w-full h-auto max-h-[380px] object-cover" />
+      </div>
+      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-2">Korean Lobby Screen</span>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>Key Features</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl mb-3">
+        🍩
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Dynamic 3D Physics Merge</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Satisfying bouncy collisions and realistic dough interactions with tactile sound effects.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-950/80 text-orange-600 dark:text-orange-400 flex items-center justify-center text-xl mb-3">
+        🎂
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">10+ Bakery Evolution Collection</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Merge small pastries step-by-step up to the ultimate giant celebratory cake.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl mb-3">
+        ⚡
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Tactical Booster Items</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Clear difficult jams and tight spots with special Lightning Jokers to reverse sticky situations.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-1">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-yellow-100 dark:bg-yellow-950/80 text-yellow-600 dark:text-yellow-400 flex items-center justify-center text-xl mb-3">
+        🔥
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Press Barrier &amp; Fever Mode</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Thrilling ceiling pressure mechanics and high-scoring fever opportunities for maximum excitement.
+      </p>
+    </div>
+  </div>
+  <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between md:col-span-2">
+    <div>
+      <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl mb-3">
+        👆
+      </div>
+      <h4 class="font-bold text-base text-slate-900 dark:text-white mb-2">Easy One-Finger Control</h4>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        Accessible, relaxing casual gameplay for all ages. Aim, release, and enjoy wherever you are!
+      </p>
+    </div>
+  </div>
+</div>
+
+<h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2.5">
+  <span class="w-2.5 h-6 rounded-full bg-gradient-to-b from-amber-500 to-rose-500 inline-block"></span>
+  <span>Step-by-Step Guide</span>
+</h3>
+<ol class="guide-steps-list space-y-3.5 mb-8">
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 1
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Aim &amp; Drop:</strong>
+      Touch and drag to aim, then release to drop your dough into the showcase.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 2
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Merge Pairs:</strong>
+      Collide two identical bakery items to combine them into a bigger, freshly baked treat.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 3
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Manage Space:</strong>
+      Prevent your pastries from piling up past the top press barrier by balancing space.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 4
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Use Boosters:</strong>
+      Activate strategic items like the Lightning Joker when spaces get tight to break obstacles.
+    </div>
+  </li>
+  <li class="flex items-start gap-3.5 p-4 rounded-xl border border-slate-200 dark:border-slate-700/70 bg-white dark:bg-slate-800/50 hover:border-amber-300 dark:hover:border-amber-700 transition-all">
+    <span class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-extrabold tracking-wide shrink-0 mt-0.5 shadow-sm">
+      STEP 5
+    </span>
+    <div class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed">
+      <strong class="text-slate-900 dark:text-white font-semibold mr-1.5">Complete the Giant Cake:</strong>
+      Reach the final 10th stage pastry and set your new high score in fever mode!
+    </div>
+  </li>
+</ol>
+
+<div class="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/5 dark:from-amber-950/40 dark:via-orange-950/30 dark:to-amber-950/20 border-l-4 border-amber-500 border-t border-r border-b border-amber-200/80 dark:border-amber-700/50 shadow-sm mb-8">
+  <div class="flex items-start gap-3">
+    <span class="text-2xl shrink-0 mt-0.5">💡</span>
+    <div>
+      <h4 class="text-sm font-bold text-amber-900 dark:text-amber-300 uppercase tracking-wide mb-1">
+        Tips &amp; Guide
+      </h4>
+      <p class="text-slate-700 dark:text-slate-200 text-sm md:text-base leading-relaxed font-medium">
+        "Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved <strong>Lightning Joker</strong> to clear roadblocks and create room for the giant cake!"
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center gap-3 mt-8 flex-wrap pt-6 border-t border-slate-200 dark:border-slate-800">
+  <button type="button" onclick="showPage('main')" class="detail-btn" style="max-width:200px;">
+    ← Back to Home
+  </button>
+  <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="detail-btn" style="max-width:260px; background: linear-gradient(135deg, #f59e0b, #f97316); color: white; border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+    <span>Download on Google Play</span> ↗
+  </a>
+  <button type="button" onclick="openModal('bakemerge')" class="detail-btn" style="max-width:220px; background: rgba(248, 250, 252, 0.9); border: 1px solid #cbd5e1;">
+    🥐 <span>View Bake Merge Details</span>
   </button>
 </div>`
       },

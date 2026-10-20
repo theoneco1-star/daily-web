@@ -22,7 +22,14 @@
 
 ## 🌟 최근 UI/UX 개선 내역 (Latest Updates)
 
-- **BookSpot (책 쏙쏙) 구글 플레이 스토어 정식 다운로드 링크 연결 완료 (Latest)**
+- **Bake Merge (베이크 머지) 신규 3D 물리 머지 게임 추가 및 '게임' 카테고리 신설 (Latest)**
+  - 신규 카테고리: 전체/도구/유틸리티/일상에 이어 신규 **'게임(Game)'** 카테고리 공식 신설 및 실시간 필터링 연동
+  - 메인 카드: Bake Merge (베이크 머지) 신규 등록, 무료·신규·추천 뱃지, 커스텀 아이콘(`bakemerge-icon.png`) 및 태그(#게임 #머지퍼즐 #3D물리 #베이커리 #캐주얼) 탑재
+  - 상세 정보 모달: 3D 물리 엔진, 10여 종 도우 도감, 스페셜 부스터, 프레스 장벽 & 피버 모드, 원터치 조작 5대 핵심 기능 및 다국어 스크린샷 갤러리 지원
+  - 구글 플레이 공식 링크([Google Play Store](https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge)) 완벽 연결
+  - 앱 사용 가이드 탭: [🥐 Bake Merge] 정식 활성 탭 추가, 헤더 히어로 배너, 게임 플레이 화면 미리보기(한/영 2종 스크린샷 쇼케이스), 5대 주요 핵심 기능 카드, 5단계 상세 플레이 가이드(Step-by-Step), 실전 꿀팁(Tip Box) 완비
+  - 한국어(KO) 및 영어(EN) 전 영역 다국어 i18n 및 SEO 구조화 데이터(JSON-LD) 완벽 동기화
+- **BookSpot (책 쏙쏙) 구글 플레이 스토어 정식 다운로드 링크 연결 완료**
   - 구글 플레이 공식 스토어 URL([Google Play Store](https://play.google.com/store/apps/details?id=com.wgapps.bookspot)) 정식 오픈에 따른 즉시 연결
   - 상세 정보 모달 내 'COMING SOON' 뱃지 제거 및 공식 'GET IT ON Google Play' 다운로드 버튼 활성화
   - 앱 사용 가이드 내 'Google Play 출시 예정' 안내 및 임시 알림(alert)을 제거하고 공식 [구글 플레이에서 다운로드] 다이렉트 CTA 버튼으로 전환
@@ -106,7 +113,19 @@
 - **앱 가이드:** 정식 지원 (기능 소개, 3단계 사용법, 팁 및 다국어 지원)
 - **플랫폼:** Android Native App ([Google Play Store](https://play.google.com/store/apps/details?id=com.wgapps.bookspot))
 
-### 4. ClipFlow `[Coming Soon]`
+### 4. Bake Merge (베이크 머지) `[정식 서비스 중]`
+- **분류:** 게임 (`game`)
+- **개요:** 귀여운 도우를 퐁당! 통통 튀는 3D 물리 엔진을 기반으로 귀여운 빵 반죽들을 합쳐 나만의 자이언트 케이크를 완성하는 달콤한 3D 베이커리 머지 퍼즐 게임
+- **주요 기능:**
+  - 리얼한 3D 물리 엔진 머지 퍼즐 (살아 움직이는 듯 통통 튀는 반죽 상호작용)
+  - 10여 종의 베이커리 도우 도감 (단계별 수집 및 진화)
+  - 스페셜 아이템 지원 (위기 상황 역전 번개 조커 & 특수 부스터)
+  - 프레스 장벽 & 피버 모드 (압박 천장 라인 및 보너스 점수 획득)
+  - 심플한 원터치 조작 (남녀노소 누구나 직관적인 조작)
+- **앱 가이드:** 정식 지원 (기능 소개, 5단계 플레이 가이드, 실전 팁, 한국어/영어 쇼케이스 및 다국어 지원)
+- **플랫폼:** Android Native App ([Google Play Store](https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge))
+
+### 5. ClipFlow `[Coming Soon]`
 - **분류:** 도구/업무 (`tools`)
 - **개요:** 자주 쓰는 문구, 서식 템플릿을 스마트하게 저장하고 원터치로 복사하는 클립보드 매니저
 

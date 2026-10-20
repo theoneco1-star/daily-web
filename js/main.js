@@ -355,25 +355,32 @@ function openModal(appId) {
     ? `<div class="modal-hero-icon flex items-center justify-center overflow-hidden"><img src="${app.icon}" alt="${name}" class="w-12 h-12 object-contain" onerror="this.onerror=null; this.parentElement.outerHTML='<div class=\\'modal-hero-icon\\'>${fallbackEmoji}</div>';"/></div>`
     : `<div class="modal-hero-icon">${app.icon || fallbackEmoji}</div>`;
 
-  const screenshotsHtml = (app.screenshots && app.screenshots.length)
+  const appScreenshots = (currentLang === "ko" && app.screenshotsKo)
+    ? [...app.screenshotsKo, ...(app.screenshotsEn || [])]
+    : ((currentLang === "en" && app.screenshotsEn)
+        ? [...app.screenshotsEn, ...(app.screenshotsKo || [])]
+        : (app.screenshots || []));
+  app.activeScreenshots = appScreenshots;
+
+  const screenshotsHtml = (appScreenshots && appScreenshots.length)
     ? `<div class="modal-screenshot-showcase">
         <div class="phone-device-frame">
           <div class="phone-device-speaker"></div>
           <div class="phone-device-camera"></div>
           <div class="phone-device-screen">
-            ${app.screenshots.length === 1
-              ? `<img src="${app.screenshots[0]}" class="phone-screenshot-img" alt="${name} screenshot" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'p-8 text-center text-slate-400 dark:text-slate-500\\'>🖼️ 스크린샷 이미지 준비 중입니다.</div>';"/>`
+            ${appScreenshots.length === 1
+              ? `<img src="${appScreenshots[0]}" class="phone-screenshot-img" alt="${name} screenshot" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'p-8 text-center text-slate-400 dark:text-slate-500\\'>🖼️ 스크린샷 이미지 준비 중입니다.</div>';"/>`
               : `<div class="gallery-track" id="gallery-track">
-                  ${app.screenshots.map(s => `<img src="${s}" class="phone-screenshot-img flex-shrink-0 w-full" alt="screenshot"/>`).join("")}
+                  ${appScreenshots.map(s => `<img src="${s}" class="phone-screenshot-img flex-shrink-0 w-full" alt="screenshot"/>`).join("")}
                 </div>`
             }
           </div>
           <div class="phone-device-home"></div>
-          ${app.screenshots.length > 1 ? `
+          ${appScreenshots.length > 1 ? `
           <button class="gallery-btn gallery-btn-prev" onclick="moveGallery(-1)">&#8249;</button>
           <button class="gallery-btn gallery-btn-next" onclick="moveGallery(1)">&#8250;</button>
           <div class="gallery-dots" id="gallery-dots">
-            ${app.screenshots.map((_, i) => `<button class="dot ${i === 0 ? 'dot-active' : ''}" onclick="goGallery(${i})"></button>`).join("")}
+            ${appScreenshots.map((_, i) => `<button class="dot ${i === 0 ? 'dot-active' : ''}" onclick="goGallery(${i})"></button>`).join("")}
           </div>` : ""}
         </div>
       </div>`
@@ -491,8 +498,9 @@ function closeModal() {
 }
 
 function moveGallery(dir) {
-  if (!currentModalApp || !currentModalApp.screenshots) return;
-  const count = currentModalApp.screenshots.length;
+  const screenshots = currentModalApp?.activeScreenshots || currentModalApp?.screenshots;
+  if (!screenshots) return;
+  const count = screenshots.length;
   if (count === 0) return;
   currentGalleryIndex = (currentGalleryIndex + dir + count) % count;
   goGallery(currentGalleryIndex);
@@ -525,6 +533,13 @@ function showPage(name) {
 // ── App Guide Subtabs Configuration & Management ───────────
 const guideAppsConfig = [
   {
+    id: "bakemerge",
+    nameKo: "Bake Merge",
+    nameEn: "Bake Merge",
+    iconEmoji: "🥐",
+    isReady: true,
+  },
+  {
     id: "timekeeper",
     nameKo: "TimeKeeper",
     nameEn: "TimeKeeper",
@@ -547,7 +562,7 @@ const guideAppsConfig = [
   }
 ];
 
-let currentGuideTab = "timekeeper";
+let currentGuideTab = "bakemerge";
 
 function setGuideTab(appId) {
   currentGuideTab = appId;
@@ -598,7 +613,7 @@ function renderGuideContent() {
     const backBtnText = t("nav.backToHome");
     const detailBtnText = t(`${guideKey}.openDetailBtn`) || `${appName} ${t("card.detailBtn")}`;
 
-    if (appConfig.id === "daycount" || appConfig.id === "bookspot") {
+    if (appConfig.id === "daycount" || appConfig.id === "bookspot" || appConfig.id === "bakemerge") {
       container.innerHTML = `
         <div class="guide-active-content animate-fadeIn">
           ${bodyHtml}
