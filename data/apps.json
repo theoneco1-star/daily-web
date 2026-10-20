@@ -1,7 +1,7 @@
 {
   "categories": [
     { "id": "all", "nameKo": "전체", "nameEn": "All" },
-    { "id": "tools", "nameKo": "도구/업무", "nameEn": "Tools & Work" },
+    { "id": "work", "nameKo": "도구/업무", "nameEn": "Tools & Work" },
     { "id": "utility", "nameKo": "유틸리티", "nameEn": "Utility" },
     { "id": "daily", "nameKo": "일상/일정", "nameEn": "Daily & Routine" },
     { "id": "game", "nameKo": "게임", "nameEn": "Game" }
@@ -61,8 +61,8 @@
       "id": "timekeeper",
       "nameKo": "TimeKeeper",
       "nameEn": "TimeKeeper",
-      "category": "daily",
-      "categories": ["daily", "utility"],
+      "category": "utility",
+      "categories": ["utility"],
       "color": "from-indigo-600 via-indigo-500 to-cyan-500",
       "icon": "images/timekeeper-icon.svg",
       "iconEmoji": "⏱️",
@@ -105,6 +105,7 @@
       "nameKo": "DayCount",
       "nameEn": "DayCount",
       "category": "daily",
+      "categories": ["daily"],
       "color": "from-amber-500 via-orange-500 to-rose-500",
       "icon": "images/daycount-icon.svg",
       "iconEmoji": "📅",
@@ -146,8 +147,8 @@
       "id": "bookspot",
       "nameKo": "BookSpot (책 쏙쏙)",
       "nameEn": "BookSpot",
-      "category": "tools",
-      "categories": ["tools", "daily"],
+      "category": "work",
+      "categories": ["work"],
       "color": "from-teal-600 via-emerald-500 to-green-600",
       "icon": "images/bookspot-icon.svg",
       "iconEmoji": "📚",

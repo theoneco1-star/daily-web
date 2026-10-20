@@ -75,6 +75,18 @@ function getCategoryLabel(catId) {
   if (catObj) {
     return currentLang === "ko" ? catObj.nameKo : catObj.nameEn;
   }
+  if (catId === "work" || catId === "tools") {
+    return currentLang === "ko" ? "도구/업무" : "Tools & Work";
+  }
+  if (catId === "utility") {
+    return currentLang === "ko" ? "유틸리티" : "Utility";
+  }
+  if (catId === "daily") {
+    return currentLang === "ko" ? "일상/일정" : "Daily & Routine";
+  }
+  if (catId === "game" || catId === "games") {
+    return currentLang === "ko" ? "게임" : "Game";
+  }
   return catId;
 }
 
@@ -84,7 +96,7 @@ function buildHeaderCatNav() {
   if (!headerNav) return;
   const cats = (typeof categoriesData !== "undefined" && categoriesData.length > 0)
     ? categoriesData.map(c => c.id)
-    : ["all", "tools", "utility", "daily", "games"];
+    : ["all", "work", "utility", "daily", "game"];
 
   headerNav.innerHTML = cats.map(cat => `
     <button
@@ -99,7 +111,7 @@ function buildFilters() {
   if (!filterContainer) return;
   const cats = (typeof categoriesData !== "undefined" && categoriesData.length > 0)
     ? categoriesData.map(c => c.id)
-    : ["all", "tools", "utility", "daily"];
+    : ["all", "work", "utility", "daily", "game"];
 
   filterContainer.innerHTML = cats.map(cat => `
     <button
@@ -122,16 +134,25 @@ function setCategory(cat) {
 function getFilteredApps() {
   if (typeof appsData === "undefined") return [];
   return appsData.filter(app => {
-    const matchCat = activeCategory === "all"
-      || app.category === activeCategory
-      || (Array.isArray(app.categories) && app.categories.includes(activeCategory))
-      || (activeCategory === "games" && app.category === "game")
-      || (activeCategory === "game" && app.category === "games");
+    // 1:1 엄격한 단일 카테고리 매핑 필터링 (고유 'category' 속성 값으로만 정확히 필터링)
+    let matchCat = false;
+    if (activeCategory === "all") {
+      matchCat = true;
+    } else if (activeCategory === "work" || activeCategory === "tools") {
+      matchCat = (app.category === "work" || app.category === "tools");
+    } else if (activeCategory === "game" || activeCategory === "games") {
+      matchCat = (app.category === "game" || app.category === "games");
+    } else {
+      matchCat = (app.category === activeCategory);
+    }
+
+    // 검색어 필터링 (검색창에 입력이 있을 때만 적용)
     const name = (currentLang === "ko" ? app.nameKo : app.nameEn).toLowerCase();
     const desc = (currentLang === "ko" ? app.descKo : app.descEn).toLowerCase();
     const tagsArr = (currentLang === "ko" ? app.tagsKo || app.tags : app.tagsEn || app.tags) || [];
     const tagsStr = Array.isArray(tagsArr) ? tagsArr.join(" ").toLowerCase() : "";
     const matchSearch = !searchQuery || name.includes(searchQuery) || desc.includes(searchQuery) || tagsStr.includes(searchQuery);
+
     return matchCat && matchSearch;
   });
 }
