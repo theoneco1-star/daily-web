@@ -14,7 +14,7 @@
       "category": "game",
       "categories": ["game"],
       "color": "from-amber-500 via-orange-400 to-rose-400",
-      "icon": "images/bakemerge-icon.png",
+      "icon": "/images/bakemerge-icon.png",
       "iconEmoji": "🥐",
       "isFree": true,
       "isNew": true,
@@ -41,14 +41,14 @@
       "guideKo": "떨어지는 도우의 물리 반동과 굴러가는 방향을 예측해 보세요. 위급할 때는 아껴둔 번개 조커 아이템을 사용해 막힌 공간을 정리하고 거대한 케이크를 완성할 수 있습니다.",
       "guideEn": "Carefully predict the bounce and rolling path of each pastry. When the case gets crowded, use the saved Lightning Joker to clear roadblocks and create room for the giant cake!",
       "screenshots": [
-        "images/bakemerge-screenshot-ko.jpg",
-        "images/bakemerge-screenshot-en.jpg"
+        "/images/bakemerge-screenshot-ko.jpg",
+        "/images/bakemerge-screenshot-en.jpg"
       ],
       "screenshotsKo": [
-        "images/bakemerge-screenshot-ko.jpg"
+        "/images/bakemerge-screenshot-ko.jpg"
       ],
       "screenshotsEn": [
-        "images/bakemerge-screenshot-en.jpg"
+        "/images/bakemerge-screenshot-en.jpg"
       ],
       "developer": "WG Apps Studio",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge",
@@ -64,7 +64,7 @@
       "category": "utility",
       "categories": ["utility"],
       "color": "from-indigo-600 via-indigo-500 to-cyan-500",
-      "icon": "images/timekeeper-icon.svg",
+      "icon": "/images/timekeeper-icon.svg",
       "iconEmoji": "⏱️",
       "isFree": true,
       "isNew": true,
@@ -91,7 +91,7 @@
       "guideKo": "매일 아침 오늘의 핵심 목표와 일정을 등록하고, 집중 타이머를 통해 몰입 시간을 관리해보세요. 일간/주간 통계를 확인하며 점진적으로 시간 관리 습관을 완성할 수 있습니다.",
       "guideEn": "Register your key daily goals and schedules each morning, and manage your focus sessions with the timer. Track your progress with daily and weekly statistics to build lasting habits.",
       "screenshots": [
-        "images/timekeeper-screenshot.jpg"
+        "/images/timekeeper-screenshot.jpg"
       ],
       "developer": "WG Apps",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.timekeeper",
@@ -107,7 +107,7 @@
       "category": "daily",
       "categories": ["daily"],
       "color": "from-amber-500 via-orange-500 to-rose-500",
-      "icon": "images/daycount-icon.svg",
+      "icon": "/images/daycount-icon.svg",
       "iconEmoji": "📅",
       "isFree": true,
       "isNew": true,
@@ -134,7 +134,7 @@
       "guideKo": "시험일, 디데이, 연인과의 기념일을 등록하고 목적별 카테고리로 묶어보세요. 가까운 일정순 정렬을 활용하면 놓치기 쉬운 일정을 한눈에 파악할 수 있습니다.",
       "guideEn": "Register exam dates, D-Days, and anniversaries with custom purpose categories. Use nearest-date sorting to keep track of upcoming events at a single glance.",
       "screenshots": [
-        "images/daycount-screenshot.jpg"
+        "/images/daycount-screenshot.jpg"
       ],
       "developer": "WG Apps",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.daycount",
@@ -150,7 +150,7 @@
       "category": "work",
       "categories": ["work"],
       "color": "from-teal-600 via-emerald-500 to-green-600",
-      "icon": "images/bookspot-icon.svg",
+      "icon": "/images/bookspot-icon.svg",
       "iconEmoji": "📚",
       "isFree": true,
       "isNew": true,
@@ -175,7 +175,7 @@
       "guideKo": "책이 많을 때는 마이크 음성 인식을 켜두고 책 제목을 연속해서 말씀해 보세요. 몇 분 만에 수십 권의 도서를 원하는 책장 구역에 쏙쏙 정리할 수 있습니다.",
       "guideEn": "When organizing multiple books, turn on voice recognition and speak book titles in sequence to catalog dozens of books into your custom bookshelf zones within minutes.",
       "screenshots": [
-        "images/bookspot-screenshot.jpg"
+        "/images/bookspot-screenshot.jpg"
       ],
       "developer": "WG Apps Studio",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.bookspot",

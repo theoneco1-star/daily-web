@@ -947,6 +947,7 @@ html.dark .app-tag {
   width: 100%;
   font-family: inherit;
   letter-spacing: 0.01em;
+  text-decoration: none;
 }
 .detail-btn:hover {
   background: var(--primary-dark);
@@ -1389,17 +1390,17 @@ html.dark .site-footer { background: #030712; }
 }
 @media (min-width: 768px) {
   .footer-grid {
-    grid-template-columns: 1.3fr 1fr 1.2fr;
-    gap: 3.5rem;
+    grid-template-columns: 1.1fr 1fr 1.2fr 1fr;
+    gap: 2rem;
   }
 }
 .footer-nav-btn {
   background: none; border: none; color: #64748b;
   font-size: 0.82rem; cursor: pointer; padding: 0.2rem 0;
   text-align: left; transition: color var(--transition-fast);
-  font-family: inherit;
+  font-family: inherit; text-decoration: none; display: inline-block;
 }
-.footer-nav-btn:hover { color: #e2e8f0; }
+.footer-nav-btn:hover { color: #e2e8f0; text-decoration: none; }
 
 /* ── Layout Utility — ① max-width 1240px 통일 ──────────── */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--container-px); }
@@ -1471,6 +1472,7 @@ html.dark .guide-steps-list li:hover {
   border: 1px solid #e2e8f0;
   background: rgba(248, 250, 252, 0.9);
   color: #475569;
+  text-decoration: none !important;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
 }

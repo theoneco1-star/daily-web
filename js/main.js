@@ -28,20 +28,299 @@ let currentView = "main"; // "main" | "guide" | "about" | "privacy" | "terms" | 
 let currentMainTab = "apps"; // "apps" | "tools"
 let isAppGridLoaded = false;
 
+function toAbsoluteUrl(url) {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("/") || url.startsWith("data:")) {
+    return url;
+  }
+  return "/" + url;
+}
+
+// ── App & Web Tools Guide Configuration & Management ───────────
+const guideAppsConfig = [
+  // 1. Mobile Apps
+  {
+    id: "bakemerge",
+    nameKo: "Bake Merge (베이크 머지)",
+    nameEn: "Bake Merge",
+    iconEmoji: "🥐",
+    type: "app",
+    badgeKo: "게임",
+    badgeEn: "Game",
+    isReady: true,
+  },
+  {
+    id: "timekeeper",
+    nameKo: "TimeKeeper (타임키퍼)",
+    nameEn: "TimeKeeper",
+    iconEmoji: "⏱️",
+    type: "app",
+    badgeKo: "유틸리티",
+    badgeEn: "Routine",
+    isReady: true,
+  },
+  {
+    id: "daycount",
+    nameKo: "DayCount (디데이)",
+    nameEn: "DayCount",
+    iconEmoji: "📅",
+    type: "app",
+    badgeKo: "일정",
+    badgeEn: "D-Day",
+    isReady: true,
+  },
+  {
+    id: "bookspot",
+    nameKo: "BookSpot (북스팟 - 스마트 독서 기록 관리)",
+    nameEn: "BookSpot (Smart Book Organizer)",
+    iconEmoji: "📚",
+    type: "app",
+    badgeKo: "독서관리",
+    badgeEn: "Books",
+    isReady: true,
+  },
+  // 2. Web Utilities
+  {
+    id: "pdf-checker",
+    nameKo: "PDF & 도면 체커",
+    nameEn: "PDF Drawing Checker",
+    iconEmoji: "📐",
+    type: "tool",
+    badgeKo: "웹 도구",
+    badgeEn: "Web Tool",
+    isReady: true,
+  },
+  {
+    id: "annual-leave-calculator",
+    nameKo: "연차 자동 계산기",
+    nameEn: "Annual Leave Calc",
+    iconEmoji: "📅",
+    type: "tool",
+    badgeKo: "근로기준법",
+    badgeEn: "Labor Law",
+    isReady: true,
+  },
+  {
+    id: "wage-calc",
+    nameKo: "실수령액·주휴수당",
+    nameEn: "Wage & Holiday Pay",
+    iconEmoji: "🧮",
+    type: "tool",
+    badgeKo: "급여/세무",
+    badgeEn: "Salary & Tax",
+    isReady: true,
+  },
+  {
+    id: "char-byte-counter",
+    nameKo: "자소서 글자수·Byte",
+    nameEn: "Char & Byte Counter",
+    iconEmoji: "📝",
+    type: "tool",
+    badgeKo: "문서 도구",
+    badgeEn: "Resume Tool",
+    isReady: true,
+  },
+  {
+    id: "excel-delimiter-converter",
+    nameKo: "엑셀 구분자 변환기",
+    nameEn: "Excel Converter",
+    iconEmoji: "📊",
+    type: "tool",
+    badgeKo: "데이터 정제",
+    badgeEn: "Data Tool",
+    isReady: true,
+  }
+];
+
+// Clean Path URL Slug Mapping for SEO & AdSense Crawlers
+const GUIDE_SLUG_MAP = {
+  // Mobile Apps
+  "bakemerge": {
+    canonicalSlug: "bake-merge",
+    aliases: ["bake-merge", "bakemerge", "bake_merge"]
+  },
+  "timekeeper": {
+    canonicalSlug: "timekeeper",
+    aliases: ["timekeeper", "time-keeper", "time_keeper"]
+  },
+  "daycount": {
+    canonicalSlug: "daycount",
+    aliases: ["daycount", "day-count", "day_count"]
+  },
+  "bookspot": {
+    canonicalSlug: "bookspot",
+    aliases: ["bookspot", "book-spot", "book_spot"]
+  },
+  // Web Tools
+  "pdf-checker": {
+    canonicalSlug: "pdf-checker",
+    aliases: ["pdf-checker", "pdfchecker", "drawing-checker", "pdf-marking"]
+  },
+  "wage-calc": {
+    canonicalSlug: "salary-calculator",
+    aliases: ["salary-calculator", "wage-calc", "wage-calculator", "part-time-calculator", "parttime-calculator", "salary"]
+  },
+  "excel-delimiter-converter": {
+    canonicalSlug: "excel-converter",
+    aliases: ["excel-converter", "excel-delimiter-converter", "excel-delimiter", "excel-line-break"]
+  },
+  "annual-leave-calculator": {
+    canonicalSlug: "annual-leave-calculator",
+    aliases: ["annual-leave-calculator", "annual-leave", "annualleave", "annual-leave-calc"]
+  },
+  "char-byte-counter": {
+    canonicalSlug: "char-byte-counter",
+    aliases: ["char-byte-counter", "char-counter", "byte-counter", "charbyte"]
+  }
+};
+
+let currentGuideTab = "bakemerge";
+
+function getGuideCanonicalSlug(appId) {
+  if (appId && GUIDE_SLUG_MAP[appId]) {
+    return GUIDE_SLUG_MAP[appId].canonicalSlug;
+  }
+  return appId || "bake-merge";
+}
+
+function resolveGuideAppId(slugOrId) {
+  if (!slugOrId) return "bakemerge";
+  const cleaned = String(slugOrId).trim().toLowerCase().replace(/^guide[-/]?/, "");
+  for (const [appId, config] of Object.entries(GUIDE_SLUG_MAP)) {
+    if (appId.toLowerCase() === cleaned) return appId;
+    if (config.canonicalSlug.toLowerCase() === cleaned) return appId;
+    if (config.aliases.some(a => a.toLowerCase() === cleaned)) return appId;
+  }
+  const found = guideAppsConfig.find(g => g.id.toLowerCase() === cleaned);
+  if (found) return found.id;
+  return "bakemerge";
+}
+
 function resolveCurrentRoute() {
   try {
+    const pathname = (window.location.pathname || "/").toLowerCase();
     const rawHash = (window.location.hash || "").trim().toLowerCase();
     const hash = decodeURIComponent(rawHash).replace(/^#/, "");
-    if (hash === "guide" || hash.startsWith("guide-")) return "guide";
-    if (hash === "about") return "about";
-    if (hash === "privacy") return "privacy";
-    if (hash === "terms") return "terms";
-    if (hash === "contact") return "contact";
-    return "main";
+
+    // 1. Clean Path Routing (/guide, /guide/bake-merge, /about, /privacy, /terms, /contact)
+    const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+
+    if (normalizedPath === "/guide" || normalizedPath.startsWith("/guide/")) {
+      const parts = normalizedPath.split("/").filter(Boolean); // ["guide"] or ["guide", "bake-merge"]
+      const slug = parts[1] || "";
+      const targetGuide = slug ? resolveGuideAppId(slug) : "bakemerge";
+      return { view: "guide", guideTab: targetGuide };
+    }
+
+    if (normalizedPath === "/about") return { view: "about" };
+    if (normalizedPath === "/privacy") return { view: "privacy" };
+    if (normalizedPath === "/terms") return { view: "terms" };
+    if (normalizedPath === "/contact") return { view: "contact" };
+    if (normalizedPath === "/tools" || normalizedPath === "/web-tools") return { view: "main", mainTab: "tools" };
+    if (normalizedPath === "/apps" || normalizedPath === "/mobile-apps") return { view: "main", mainTab: "apps" };
+
+    // 2. Hash Routing Fallback (for backwards compatibility: #guide, #guide-bakemerge, #about, etc.)
+    if (hash === "guide" || hash.startsWith("guide-") || hash.startsWith("guide/")) {
+      const slug = hash.replace(/^guide[-/]?/, "");
+      const targetGuide = slug ? resolveGuideAppId(slug) : "bakemerge";
+      return { view: "guide", guideTab: targetGuide };
+    }
+    if (hash === "about") return { view: "about" };
+    if (hash === "privacy") return { view: "privacy" };
+    if (hash === "terms") return { view: "terms" };
+    if (hash === "contact") return { view: "contact" };
+
+    return { view: "main", mainTab: "apps" };
   } catch (_) {
-    return "main";
+    return { view: "main", mainTab: "apps" };
   }
 }
+
+// ── Dynamic SEO & Canonical Link Synchronizer for Clean URLs ─────
+function updateSeoForRoute(view, guideTab) {
+  try {
+    const isEn = (typeof currentLang !== "undefined" ? currentLang : "ko") === "en";
+    let title = typeof SITE_DEFAULT_TITLE !== "undefined" ? SITE_DEFAULT_TITLE : "일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음";
+    let canonicalPath = "/";
+    let desc = "";
+
+    if (view === "guide") {
+      const targetId = guideTab || currentGuideTab || "bakemerge";
+      const targetApp = guideAppsConfig.find(a => a.id === targetId) || guideAppsConfig[0];
+      const appName = targetApp ? (isEn ? targetApp.nameEn : targetApp.nameKo) : "Bake Merge";
+      const slug = getGuideCanonicalSlug(targetId);
+      canonicalPath = `/guide/${slug}`;
+      title = isEn
+        ? `${appName} User Guide & Tips | Daily Helper`
+        : `${appName} 이용 가이드 & 활용 팁 | 일상의도움`;
+      desc = isEn
+        ? `Learn key features, step-by-step guides, and pro tips for ${appName} on Daily Helper Hub.`
+        : `일상의도움 ${appName}의 핵심 기능, 단계별 상세 이용 방법과 실무 꿀팁을 확인하세요.`;
+    } else if (view === "about") {
+      canonicalPath = "/about";
+      title = isEn ? "About Us | Daily Helper" : "서비스 소개 (About) | 일상의도움";
+      desc = isEn
+        ? "Daily Helper Hub - Safe, client-side web utility tools and productive lifestyle apps."
+        : "일상의도움(Daily Helper) - 서버 저장 없는 안전한 웹 도구와 안드로이드 생산성 앱 모음.";
+    } else if (view === "privacy") {
+      canonicalPath = "/privacy";
+      title = isEn ? "Privacy Policy | Daily Helper" : "개인정보처리방침 | 일상의도움";
+      desc = isEn
+        ? "Privacy Policy of Daily Helper Hub. 100% on-device client processing."
+        : "일상의도움 개인정보처리방침 - 100% 온디바이스 클라이언트 연산 및 개인정보 보호 방침.";
+    } else if (view === "terms") {
+      canonicalPath = "/terms";
+      title = isEn ? "Terms of Service | Daily Helper" : "이용약관 | 일상의도움";
+      desc = isEn
+        ? "Terms of Service of Daily Helper Hub."
+        : "일상의도움 이용약관 및 서비스 이용 가이드라인 안내.";
+    } else if (view === "contact") {
+      canonicalPath = "/contact";
+      title = isEn ? "Contact Us | Daily Helper" : "문의하기 | 일상의도움";
+      desc = isEn
+        ? "Contact Daily Helper Hub team for feedback, support, and app requests."
+        : "일상의도움 문의하기 - 신규 앱 요청, 버그 제보, 제휴 및 피드백 문의.";
+    } else {
+      canonicalPath = "/";
+      title = isEn ? "Daily Helper | Smart Tools for Everyday Life" : (typeof SITE_DEFAULT_TITLE !== "undefined" ? SITE_DEFAULT_TITLE : "일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음");
+      desc = "일상의도움(Daily Helper) - 무설치 PDF & 도면/이미지 검토·마킹 툴, 대한민국 근로기준법 연차 자동 계산기, 2026 최저시급·주휴수당 계산기, 자소서 글자수·Byte 변환기 등 서버 저장 없이 안전한 무료 웹 도구 모음.";
+    }
+
+    if (typeof setSiteTitle === "function") {
+      setSiteTitle(title);
+    } else {
+      document.title = title;
+    }
+
+    const fullCanonical = `https://www.dailyhelperhub.com${canonicalPath}`;
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (canonicalEl) {
+      canonicalEl.setAttribute("href", fullCanonical);
+    }
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", fullCanonical);
+    const twUrl = document.querySelector('meta[property="twitter:url"]');
+    if (twUrl) twUrl.setAttribute("content", fullCanonical);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", title);
+    const twTitle = document.querySelector('meta[property="twitter:title"]');
+    if (twTitle) twTitle.setAttribute("content", title);
+
+    if (desc) {
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute("content", desc);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute("content", desc);
+      const twDesc = document.querySelector('meta[property="twitter:description"]');
+      if (twDesc) twDesc.setAttribute("content", desc);
+    }
+  } catch (err) {
+    console.warn("Error updating SEO meta for route:", err);
+  }
+}
+window.updateSeoForRoute = updateSeoForRoute;
 
 function updateHomeSeoVisibility() {
   const homeSeo = document.getElementById("home-about-seo");
@@ -344,7 +623,7 @@ function buildAppCard(app) {
   const fallbackEmoji = app.iconEmoji || "📱";
   const isImageIcon = app.icon && (app.icon.includes("/") || app.icon.includes("."));
   const iconMarkup = isImageIcon
-    ? `<img src="${app.icon}" alt="${name}" class="w-8 h-8 object-contain rounded-lg" onerror="this.onerror=null; this.outerHTML='<span class=\\'text-2xl\\'>${fallbackEmoji}</span>';"/>`
+    ? `<img src="${toAbsoluteUrl(app.icon)}" alt="${name}" class="w-8 h-8 object-contain rounded-lg" onerror="this.onerror=null; this.outerHTML='<span class=\\'text-2xl\\'>${fallbackEmoji}</span>';"/>`
     : `<span class="text-2xl">${app.icon || fallbackEmoji}</span>`;
 
   const cardClass = app.isComingSoon ? "app-card app-card-coming-soon" : "app-card";
@@ -408,14 +687,15 @@ function openModal(appId) {
 
   const isImageIcon = app.icon && (app.icon.includes("/") || app.icon.includes("."));
   const heroIconMarkup = isImageIcon
-    ? `<div class="modal-hero-icon flex items-center justify-center overflow-hidden"><img src="${app.icon}" alt="${name}" class="w-12 h-12 object-contain" onerror="this.onerror=null; this.parentElement.outerHTML='<div class=\\'modal-hero-icon\\'>${fallbackEmoji}</div>';"/></div>`
+    ? `<div class="modal-hero-icon flex items-center justify-center overflow-hidden"><img src="${toAbsoluteUrl(app.icon)}" alt="${name}" class="w-12 h-12 object-contain" onerror="this.onerror=null; this.parentElement.outerHTML='<div class=\\'modal-hero-icon\\'>${fallbackEmoji}</div>';"/></div>`
     : `<div class="modal-hero-icon">${app.icon || fallbackEmoji}</div>`;
 
-  const appScreenshots = (currentLang === "ko" && app.screenshotsKo)
+  const appScreenshotsRaw = (currentLang === "ko" && app.screenshotsKo)
     ? [...app.screenshotsKo, ...(app.screenshotsEn || [])]
     : ((currentLang === "en" && app.screenshotsEn)
         ? [...app.screenshotsEn, ...(app.screenshotsKo || [])]
         : (app.screenshots || []));
+  const appScreenshots = (appScreenshotsRaw || []).map(toAbsoluteUrl);
   app.activeScreenshots = appScreenshots;
 
   const screenshotsHtml = (appScreenshots && appScreenshots.length)
@@ -572,14 +852,17 @@ function goGallery(idx) {
 // ── Page Navigation ───────────────────────────────────────
 const pages = { main: pageMain, about: pageAbout, privacy: pagePrivacy, terms: pageTerms, contact: pageContact, guide: pageGuide };
 
-function showPage(name, targetTab) {
+function showPage(name, targetTab, shouldPushState = true) {
   currentView = name || "main";
   window.currentView = currentView;
+  try {
+    document.documentElement.classList.remove("view-guide");
+  } catch (_) {}
 
   if (typeof closeModal === "function") closeModal();
-  if (typeof restoreDefaultTitle === "function") restoreDefaultTitle();
 
-  Object.entries(pages).forEach(([key, el]) => {
+  ["main", "about", "privacy", "terms", "contact", "guide"].forEach((key) => {
+    const el = pages[key] || document.getElementById(`page-${key}`);
     if (!el) return;
     const isTarget = (key === currentView);
     el.classList.toggle("hidden", !isTarget);
@@ -619,149 +902,135 @@ function showPage(name, targetTab) {
 
   if (isGuide) {
     if (targetTab) {
-      currentGuideTab = targetTab;
+      currentGuideTab = resolveGuideAppId(targetTab);
     }
     renderGuideSubtabs();
     renderGuideContent();
   }
+
+  // Determine clean URL path for History API
+  let targetPath = "/";
+  if (isGuide) {
+    const slug = getGuideCanonicalSlug(currentGuideTab);
+    targetPath = `/guide/${slug}`;
+  } else if (currentView === "about") {
+    targetPath = "/about";
+  } else if (currentView === "privacy") {
+    targetPath = "/privacy";
+  } else if (currentView === "terms") {
+    targetPath = "/terms";
+  } else if (currentView === "contact") {
+    targetPath = "/contact";
+  } else {
+    targetPath = "/";
+  }
+
+  if (shouldPushState && window.location.pathname !== targetPath) {
+    try {
+      history.pushState({ view: currentView, guideTab: currentGuideTab }, "", targetPath);
+    } catch (_) {}
+  }
+
+  updateSeoForRoute(currentView, currentGuideTab);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// ── App & Web Tools Guide Configuration & Management ───────────
-const guideAppsConfig = [
-  // 1. Mobile Apps
-  {
-    id: "bakemerge",
-    nameKo: "Bake Merge (베이크 머지)",
-    nameEn: "Bake Merge",
-    iconEmoji: "🥐",
-    type: "app",
-    badgeKo: "게임",
-    badgeEn: "Game",
-    isReady: true,
-  },
-  {
-    id: "timekeeper",
-    nameKo: "TimeKeeper (타임키퍼)",
-    nameEn: "TimeKeeper",
-    iconEmoji: "⏱️",
-    type: "app",
-    badgeKo: "유틸리티",
-    badgeEn: "Routine",
-    isReady: true,
-  },
-  {
-    id: "daycount",
-    nameKo: "DayCount (디데이)",
-    nameEn: "DayCount",
-    iconEmoji: "📅",
-    type: "app",
-    badgeKo: "일정",
-    badgeEn: "D-Day",
-    isReady: true,
-  },
-  {
-    id: "bookspot",
-    nameKo: "BookSpot (북스팟 - 스마트 독서 기록 관리)",
-    nameEn: "BookSpot (Smart Book Organizer)",
-    iconEmoji: "📚",
-    type: "app",
-    badgeKo: "독서관리",
-    badgeEn: "Books",
-    isReady: true,
-  },
-  // 2. Web Utilities
-  {
-    id: "pdf-checker",
-    nameKo: "PDF & 도면 체커",
-    nameEn: "PDF Drawing Checker",
-    iconEmoji: "📐",
-    type: "tool",
-    badgeKo: "웹 도구",
-    badgeEn: "Web Tool",
-    isReady: true,
-  },
-  {
-    id: "annual-leave-calculator",
-    nameKo: "연차 자동 계산기",
-    nameEn: "Annual Leave Calc",
-    iconEmoji: "📅",
-    type: "tool",
-    badgeKo: "근로기준법",
-    badgeEn: "Labor Law",
-    isReady: true,
-  },
-  {
-    id: "wage-calc",
-    nameKo: "실수령액·주휴수당",
-    nameEn: "Wage & Holiday Pay",
-    iconEmoji: "🧮",
-    type: "tool",
-    badgeKo: "급여/세무",
-    badgeEn: "Salary & Tax",
-    isReady: true,
-  },
-  {
-    id: "char-byte-counter",
-    nameKo: "자소서 글자수·Byte",
-    nameEn: "Char & Byte Counter",
-    iconEmoji: "📝",
-    type: "tool",
-    badgeKo: "문서 도구",
-    badgeEn: "Resume Tool",
-    isReady: true,
-  },
-  {
-    id: "excel-delimiter-converter",
-    nameKo: "엑셀 구분자 변환기",
-    nameEn: "Excel Converter",
-    iconEmoji: "📊",
-    type: "tool",
-    badgeKo: "데이터 정제",
-    badgeEn: "Data Tool",
-    isReady: true,
+function setGuideTab(appId, shouldPushState = true) {
+  const resolvedId = resolveGuideAppId(appId);
+  currentGuideTab = resolvedId;
+  const slug = getGuideCanonicalSlug(resolvedId);
+  const targetPath = `/guide/${slug}`;
+
+  if (shouldPushState && window.location.pathname !== targetPath) {
+    try {
+      history.pushState({ view: "guide", guideTab: resolvedId }, "", targetPath);
+    } catch (_) {}
   }
-];
 
-let currentGuideTab = "bakemerge";
-
-function setGuideTab(appId) {
-  currentGuideTab = appId;
+  updateSeoForRoute("guide", resolvedId);
   renderGuideSubtabs();
   renderGuideContent();
 }
+window.setGuideTab = setGuideTab;
 
 function openGuideTab(appId) {
-  currentGuideTab = appId;
-  showPage("guide", appId);
+  const resolvedId = resolveGuideAppId(appId);
+  currentGuideTab = resolvedId;
+  showPage("guide", resolvedId, true);
 }
 window.openGuideTab = openGuideTab;
+
+function onGuideTabClick(event, appId) {
+  if (event && !event.ctrlKey && !event.metaKey && !event.shiftKey && event.button === 0) {
+    event.preventDefault();
+  }
+  setGuideTab(appId, true);
+}
+window.onGuideTabClick = onGuideTabClick;
+
+function navigateRoute(event, targetPath) {
+  if (event) {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.button !== 0) {
+      return; // Allow open in new tab
+    }
+    event.preventDefault();
+  }
+  navigateToPath(targetPath);
+}
+window.navigateRoute = navigateRoute;
+
+function navigateToPath(targetPath, shouldPushState = true) {
+  const cleanPath = (targetPath || "/").toLowerCase().trim().replace(/\/+$/, "") || "/";
+
+  if (cleanPath === "/guide" || cleanPath.startsWith("/guide/")) {
+    const parts = cleanPath.split("/").filter(Boolean);
+    const slug = parts[1] || "";
+    const targetApp = slug ? resolveGuideAppId(slug) : "bakemerge";
+    showPage("guide", targetApp, shouldPushState);
+  } else if (cleanPath === "/about") {
+    showPage("about", undefined, shouldPushState);
+  } else if (cleanPath === "/privacy") {
+    showPage("privacy", undefined, shouldPushState);
+  } else if (cleanPath === "/terms") {
+    showPage("terms", undefined, shouldPushState);
+  } else if (cleanPath === "/contact") {
+    showPage("contact", undefined, shouldPushState);
+  } else if (cleanPath === "/tools" || cleanPath === "/web-tools") {
+    if (currentView !== "main") showPage("main", undefined, false);
+    switchMainTab("tools");
+    if (shouldPushState && window.location.pathname !== "/") {
+      try { history.pushState(null, "", "/"); } catch (_) {}
+    }
+  } else {
+    showPage("main", undefined, shouldPushState);
+  }
+}
+window.navigateToPath = navigateToPath;
 
 function renderGuideSubtabs() {
   const container = document.getElementById("guide-subtabs");
   if (!container) return;
 
-  const comingSoonText = t("guide.tabComingSoon");
-
   container.innerHTML = guideAppsConfig.map(app => {
     const isActive = app.id === currentGuideTab;
-    const isReady = !!app.isReady;
     const name = currentLang === "ko" ? app.nameKo : app.nameEn;
     const typeBadge = currentLang === "ko" ? app.badgeKo : app.badgeEn;
     const badgeHtml = typeBadge
       ? `<span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold ${app.type === 'tool' ? 'bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'}">${typeBadge}</span>`
       : "";
+    const canonicalSlug = getGuideCanonicalSlug(app.id);
+    const href = `/guide/${canonicalSlug}`;
 
     return `
-      <button type="button" 
-              class="guide-tab-btn ${isActive ? 'guide-tab-active' : ''}" 
-              onclick="setGuideTab('${app.id}')"
-              role="tab"
-              aria-selected="${isActive}">
+      <a href="${href}"
+         class="guide-tab-btn ${isActive ? 'guide-tab-active' : ''}"
+         onclick="onGuideTabClick(event, '${app.id}')"
+         role="tab"
+         aria-selected="${isActive}">
         <span class="guide-tab-icon">${app.iconEmoji}</span>
         <span class="guide-tab-name">${name}</span>
         ${badgeHtml}
-      </button>
+      </a>
     `;
   }).join("");
 }
@@ -1088,10 +1357,11 @@ function checkDeepLinks() {
       }
     }
 
-    if (hash === "guide" || hash.startsWith("guide-")) {
-      const targetGuide = hash.replace(/^guide-?/, "");
+    if (hash === "guide" || hash.startsWith("guide-") || hash.startsWith("guide/")) {
+      const targetGuide = hash.replace(/^guide[-/]?/, "");
+      const resolved = resolveGuideAppId(targetGuide);
       if (typeof showPage === "function") {
-        showPage("guide", targetGuide || undefined);
+        showPage("guide", resolved, false);
       }
     }
   } catch (err) {
@@ -1103,6 +1373,18 @@ function initDeepLinks() {
   checkDeepLinks();
   window.addEventListener("hashchange", checkDeepLinks);
   window.addEventListener("load", checkDeepLinks);
+  window.addEventListener("popstate", () => {
+    const route = resolveCurrentRoute();
+    currentView = route.view;
+    window.currentView = currentView;
+    if (route.mainTab) currentMainTab = route.mainTab;
+    if (route.guideTab) currentGuideTab = route.guideTab;
+
+    showPage(currentView, currentGuideTab, false);
+    if (currentView === "main" && route.mainTab) {
+      switchMainTab(route.mainTab);
+    }
+  });
 }
 
 // Immediate check on script parse
@@ -1116,9 +1398,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateLangToggle();
 
   // 1. Synchronously resolve route and enforce view state immediately before async operations
-  currentView = resolveCurrentRoute();
+  const initialRoute = resolveCurrentRoute();
+  currentView = initialRoute.view;
   window.currentView = currentView;
-  showPage(currentView);
+  if (initialRoute.mainTab) currentMainTab = initialRoute.mainTab;
+  if (initialRoute.guideTab) currentGuideTab = initialRoute.guideTab;
+
+  showPage(currentView, currentGuideTab, false);
 
   // Immediate trigger for direct hash link entry
   initDeepLinks();
@@ -1140,6 +1426,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (currentView === "guide") {
     renderGuideSubtabs();
     renderGuideContent();
+    updateSeoForRoute("guide", currentGuideTab);
   }
   initSearch();
   initScrollHeader();

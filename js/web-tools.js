@@ -160,7 +160,7 @@ let webToolsCategories = [
  */
 async function loadWebToolsData() {
   try {
-    const response = await fetch("data/web-tools.json?v=" + Date.now(), { cache: "no-cache" });
+    const response = await fetch("/data/web-tools.json?v=" + Date.now(), { cache: "no-cache" });
     if (response.ok) {
       const data = await response.json();
       if (Array.isArray(data.tools) && data.tools.length > 0) {

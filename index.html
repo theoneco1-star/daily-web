@@ -2,6 +2,7 @@
 <html lang="ko" class="">
 <head>
   <meta charset="UTF-8" />
+  <base href="/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>일상의도움 (Daily Helper) | 스마트한 일상의 도구 모음</title>
   
@@ -54,12 +55,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/bakemerge-icon.png" />
+
+  <!-- Immediate Route Pre-Check to eliminate subpath layout flicker -->
+  <script>
+    (function() {
+      try {
+        var p = (window.location.pathname || "/").toLowerCase();
+        var h = (window.location.hash || "").toLowerCase();
+        if (p === "/guide" || p.indexOf("/guide/") === 0 || h === "#guide" || h.indexOf("#guide-") === 0 || h.indexOf("#guide/") === 0) {
+          document.documentElement.classList.add("view-guide");
+        }
+      } catch (_) {}
+    })();
+  </script>
+
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/custom.css?v=4.1" />
+  <link rel="stylesheet" href="/css/custom.css?v=4.3" />
 
   <!-- High Visibility Card Styles (Guaranteed Override) & Anti-Flicker Reserved Space -->
   <style>
     .hidden, [hidden] { display: none !important; }
+    html.view-guide #page-main { display: none !important; }
+    html.view-guide #page-guide { display: block !important; }
     #app-grid { min-height: 480px; }
     .home-about-seo-section {
       opacity: 0;
@@ -290,7 +309,7 @@
   <div class="header-inner">
     <!-- Left: Logo + Brand & Desktop GNB Navigation -->
     <div class="header-left-group">
-      <button onclick="showPage('main')" class="header-logo-btn" style="background:none;border:none;cursor:pointer;padding:0;">
+      <a href="/" onclick="navigateRoute(event, '/')" class="header-logo-btn" style="background:none;border:none;cursor:pointer;padding:0;text-decoration:none;">
         <div class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
              style="background: linear-gradient(135deg, #312e81 0%, #4338ca 50%, #4f46e5 100%); box-shadow: 0 2px 6px -1px rgba(67, 56, 202, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.12);">
           <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -305,7 +324,7 @@
           <div class="logo-text" data-i18n="brand">일상의도움</div>
           <div class="slogan-text" data-i18n="slogan">당신의 삶을 풍요롭게 합니다</div>
         </div>
-      </button>
+      </a>
 
       <!-- Desktop GNB Navigation (PC: 로고 바로 우측에 깔끔한 탭 메뉴 배치) -->
       <nav class="desktop-gnb-nav" aria-label="주요 서비스 탐색" role="tablist">
@@ -430,10 +449,10 @@
             <span class="proof-item-text" data-i18n="proof.update">주기적인 신규 앱 업데이트</span>
           </div>
           <span class="proof-divider">·</span>
-          <button type="button" id="btn-app-guide" onclick="showPage('guide')" class="proof-guide-pill">
+          <a href="/guide" id="btn-app-guide" onclick="navigateRoute(event, '/guide')" class="proof-guide-pill" style="text-decoration:none;">
             <span data-i18n="appGuideText">📖 앱 가이드</span>
             <span class="text-[11px] font-bold">→</span>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -515,9 +534,9 @@
     </p>
 
     <div class="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 flex-wrap">
-      <button type="button" onclick="showPage('guide')" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md">
+      <a href="/guide" onclick="navigateRoute(event, '/guide')" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 shadow-md" style="text-decoration:none;">
         <span>📖</span> <span>전체 앱 &amp; 웹 도구 상세 가이드 보기</span>
-      </button>
+      </a>
       <button type="button" onclick="switchMainTab('tools')" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700">
         <span>⚡</span> <span>웹 도구 모음 바로가기</span>
       </button>
@@ -556,9 +575,9 @@
     <h2 class="text-slate-900 dark:text-white" data-i18n="about.title">서비스 소개</h2>
     <p class="page-sub" data-i18n="about.subtitle">일상의도움 포털에 오신 것을 환영합니다</p>
     <div class="static-page-body" data-i18n-html="about.body"></div>
-    <button onclick="showPage('main')" class="mt-8 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+    <a href="/" onclick="navigateRoute(event, '/')" class="mt-8 detail-btn inline-flex items-center justify-center" style="max-width:200px; text-decoration:none;" data-i18n="nav.backToHome">
       ← 홈으로
-    </button>
+    </a>
   </div>
 </div>
 
@@ -570,9 +589,9 @@
     <h2 class="text-slate-900 dark:text-white" data-i18n="privacy.title">개인정보처리방침</h2>
     <p class="page-sub" data-i18n="privacy.subtitle">귀하의 개인정보는 소중히 보호됩니다</p>
     <div class="static-page-body" data-i18n-html="privacy.body"></div>
-    <button onclick="showPage('main')" class="mt-8 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+    <a href="/" onclick="navigateRoute(event, '/')" class="mt-8 detail-btn inline-flex items-center justify-center" style="max-width:200px; text-decoration:none;" data-i18n="nav.backToHome">
       ← 홈으로
-    </button>
+    </a>
   </div>
 </div>
 
@@ -584,9 +603,9 @@
     <h2 class="text-slate-900 dark:text-white" data-i18n="terms.title">이용약관</h2>
     <p class="page-sub" data-i18n="terms.subtitle">서비스 이용에 관한 약관</p>
     <div class="static-page-body" data-i18n-html="terms.body"></div>
-    <button onclick="showPage('main')" class="mt-8 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+    <a href="/" onclick="navigateRoute(event, '/')" class="mt-8 detail-btn inline-flex items-center justify-center" style="max-width:200px; text-decoration:none;" data-i18n="nav.backToHome">
       ← 홈으로
-    </button>
+    </a>
   </div>
 </div>
 
@@ -622,9 +641,9 @@
       </a>
     </div>
 
-    <button onclick="showPage('main')" class="mt-4 detail-btn" style="max-width:200px;" data-i18n="nav.backToHome">
+    <a href="/" onclick="navigateRoute(event, '/')" class="mt-4 detail-btn inline-flex items-center justify-center" style="max-width:200px; text-decoration:none;" data-i18n="nav.backToHome">
       ← 홈으로
-    </button>
+    </a>
   </div>
 </div>
 
@@ -643,9 +662,53 @@
       일상의도움에서 제공하는 앱별 핵심 기능과 상세 활용 팁을 확인해보세요.
     </p>
 
-    <!-- Sub-tab Bar -->
+    <!-- Sub-tab Bar with Pre-rendered Semantic Links for Crawlers -->
     <div class="guide-tabs-container mb-8" id="guide-subtabs" role="tablist" aria-label="App Guide Tabs">
-      <!-- Injected by renderGuideSubtabs() -->
+      <a href="/guide/bake-merge" class="guide-tab-btn guide-tab-active" onclick="onGuideTabClick(event, 'bakemerge')" role="tab" aria-selected="true">
+        <span class="guide-tab-icon">🥐</span>
+        <span class="guide-tab-name">Bake Merge (베이크 머지)</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">게임</span>
+      </a>
+      <a href="/guide/timekeeper" class="guide-tab-btn" onclick="onGuideTabClick(event, 'timekeeper')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">⏱️</span>
+        <span class="guide-tab-name">TimeKeeper</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">유틸리티</span>
+      </a>
+      <a href="/guide/daycount" class="guide-tab-btn" onclick="onGuideTabClick(event, 'daycount')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">📅</span>
+        <span class="guide-tab-name">DayCount</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">일정</span>
+      </a>
+      <a href="/guide/bookspot" class="guide-tab-btn" onclick="onGuideTabClick(event, 'bookspot')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">📚</span>
+        <span class="guide-tab-name">BookSpot</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">독서관리</span>
+      </a>
+      <a href="/guide/pdf-checker" class="guide-tab-btn" onclick="onGuideTabClick(event, 'pdf-checker')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">📐</span>
+        <span class="guide-tab-name">PDF &amp; 도면 체커</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">웹 도구</span>
+      </a>
+      <a href="/guide/salary-calculator" class="guide-tab-btn" onclick="onGuideTabClick(event, 'wage-calc')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">🧮</span>
+        <span class="guide-tab-name">실수령액·주휴수당</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">급여/세무</span>
+      </a>
+      <a href="/guide/excel-converter" class="guide-tab-btn" onclick="onGuideTabClick(event, 'excel-delimiter-converter')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">📊</span>
+        <span class="guide-tab-name">엑셀 구분자 변환기</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">데이터 정제</span>
+      </a>
+      <a href="/guide/annual-leave-calculator" class="guide-tab-btn" onclick="onGuideTabClick(event, 'annual-leave-calculator')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">📅</span>
+        <span class="guide-tab-name">연차 자동 계산기</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">근로기준법</span>
+      </a>
+      <a href="/guide/char-byte-counter" class="guide-tab-btn" onclick="onGuideTabClick(event, 'char-byte-counter')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">📝</span>
+        <span class="guide-tab-name">자소서 글자수·Byte</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">문서 도구</span>
+      </a>
     </div>
 
     <!-- Guide Content Container -->
@@ -2166,31 +2229,47 @@
       <!-- Brand -->
       <div>
         <div class="logo-text text-white text-lg mb-2" data-i18n="brand">일상의도움</div>
-        <p class="text-sm text-slate-400" data-i18n="footer.tagline">당신의 일상을 더 풍요롭게</p>
+        <p class="text-sm text-slate-400 mb-3" data-i18n="footer.tagline">당신의 일상을 더 풍요롭게</p>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Google AdSense 및 글로벌 웹 표준을 준수하는 무설치 클라이언트 웹 유틸리티 &amp; 모바일 라이프스타일 앱 포털
+        </p>
       </div>
       <!-- Quick Links -->
       <div>
         <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.links">빠른 링크</h4>
         <ul class="space-y-1">
-          <li><button class="footer-nav-btn" onclick="showPage('main')" data-i18n="nav.home">홈</button></li>
-          <li><button class="footer-nav-btn" onclick="showPage('guide')" data-i18n="nav.guide">가이드</button></li>
-          <li><button class="footer-nav-btn" onclick="switchMainTab('tools')" data-i18n="nav.webTools">웹 도구 모음</button></li>
+          <li><a href="/" class="footer-nav-btn" onclick="navigateRoute(event, '/')" data-i18n="nav.home">홈</a></li>
+          <li><a href="/guide" class="footer-nav-btn" onclick="navigateRoute(event, '/guide')" data-i18n="nav.guide">가이드</a></li>
+          <li><button type="button" class="footer-nav-btn" onclick="switchMainTab('tools')" data-i18n="nav.webTools">웹 도구 모음</button></li>
+          <li><a href="/about" class="footer-nav-btn" onclick="navigateRoute(event, '/about')" data-i18n="nav.about">소개</a></li>
+          <li><a href="/contact" class="footer-nav-btn" onclick="navigateRoute(event, '/contact')" data-i18n="nav.contact">문의하기</a></li>
           <li class="pt-2 text-[11px] text-slate-500 font-semibold uppercase tracking-wider">주요 도구 바로가기</li>
           <li><a href="#pdf-checker" onclick="location.hash='#pdf-checker'" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📐 무설치 PDF/도면 체커</a></li>
           <li><a href="#annual-leave-calculator" onclick="openAnnualLeaveModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 근로기준법 연차 계산기</a></li>
           <li><a href="#wage-calc" onclick="openWageCalcModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🧮 실수령액/주휴수당 계산기</a></li>
-          <li><a href="#char-byte-counter" onclick="openCharByteModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📝 자소서 글자수/Byte 변환</a></li>
-          <li><a href="#excel-delimiter-converter" onclick="openExcelDelimiterModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📊 엑셀 줄바꿈 구분자 변환</a></li>
-          <li><button class="footer-nav-btn" onclick="showPage('about')" data-i18n="nav.about">소개</button></li>
-          <li><button class="footer-nav-btn" onclick="showPage('contact')" data-i18n="nav.contact">문의하기</button></li>
+        </ul>
+      </div>
+      <!-- Service Guides (Direct Clean URLs for Indexing) -->
+      <div>
+        <h4 class="text-white font-semibold mb-3 text-sm">서비스 이용 가이드</h4>
+        <ul class="space-y-1">
+          <li><a href="/guide/bake-merge" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/bake-merge')">🥐 Bake Merge (베이크 머지)</a></li>
+          <li><a href="/guide/timekeeper" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/timekeeper')">⏱️ TimeKeeper (타임키퍼)</a></li>
+          <li><a href="/guide/daycount" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/daycount')">📅 DayCount (디데이)</a></li>
+          <li><a href="/guide/bookspot" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/bookspot')">📚 BookSpot (북스팟)</a></li>
+          <li><a href="/guide/pdf-checker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/pdf-checker')">📐 PDF &amp; 도면 체커</a></li>
+          <li><a href="/guide/salary-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/salary-calculator')">🧮 실수령액·주휴수당 계산기</a></li>
+          <li><a href="/guide/excel-converter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/excel-converter')">📊 엑셀 구분자 변환기</a></li>
+          <li><a href="/guide/annual-leave-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/annual-leave-calculator')">📅 근로기준법 연차 계산기</a></li>
+          <li><a href="/guide/char-byte-counter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/char-byte-counter')">📝 자소서 글자수·Byte 변환</a></li>
         </ul>
       </div>
       <!-- Legal -->
       <div>
         <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.legal">법적 고지</h4>
         <ul class="space-y-1">
-          <li><button class="footer-nav-btn" onclick="showPage('privacy')" data-i18n="nav.privacy">개인정보처리방침</button></li>
-          <li><button class="footer-nav-btn" onclick="showPage('terms')" data-i18n="nav.terms">이용약관</button></li>
+          <li><a href="/privacy" class="footer-nav-btn" onclick="navigateRoute(event, '/privacy')" data-i18n="nav.privacy">개인정보처리방침</a></li>
+          <li><a href="/terms" class="footer-nav-btn" onclick="navigateRoute(event, '/terms')" data-i18n="nav.terms">이용약관</a></li>
           <li class="pt-2 text-xs text-slate-400">
             <span data-i18n="footer.emailLabel">문의 이메일:</span>
             <a href="mailto:theoneco1@gmail.com" class="text-indigo-400 hover:underline">theoneco1@gmail.com</a>
@@ -2208,11 +2287,11 @@
 <!-- ══════════════════════════════════════════
      SCRIPTS
 ════════════════════════════════════════════ -->
-<script src="js/i18n.js?v=3.2"></script>
-<script src="js/apps.js?v=3.1"></script>
-<script src="js/web-tools.js?v=3.1"></script>
-<script src="js/pdf-checker.js?v=1.3"></script>
-<script src="js/main.js?v=3.2"></script>
+<script src="/js/i18n.js?v=3.3"></script>
+<script src="/js/apps.js?v=3.2"></script>
+<script src="/js/web-tools.js?v=3.2"></script>
+<script src="/js/pdf-checker.js?v=1.4"></script>
+<script src="/js/main.js?v=3.3"></script>
 
 <!-- Vercel Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
