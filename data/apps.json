@@ -183,6 +183,71 @@
       "updated": "2026. 09",
       "size": "약 15 MB",
       "requires": "Android 8.0 이상 (Android 8.0+)"
+    },
+    {
+      "id": "clipflow-mate",
+      "nameKo": "ClipFlow Mate (클립플로우 메이트)",
+      "nameEn": "ClipFlow Mate",
+      "category": "work",
+      "categories": [
+        "work"
+      ],
+      "color": "from-sky-500 via-blue-500 to-indigo-500",
+      "icon": "/images/clipflow-mate-icon.svg",
+      "iconEmoji": "📋",
+      "isFree": true,
+      "isNew": true,
+      "isFeatured": true,
+      "tags": [
+        "클립보드",
+        "상용구",
+        "원터치복사",
+        "스마트메모",
+        "생산성"
+      ],
+      "tagsKo": [
+        "클립보드",
+        "상용구",
+        "원터치복사",
+        "스마트메모",
+        "생산성"
+      ],
+      "tagsEn": [
+        "Clipboard",
+        "Snippet",
+        "OneTouchCopy",
+        "SmartMemo",
+        "Productivity"
+      ],
+      "descKo": "자주 쓰는 상용구, 계좌, 주소를 저장하고 원클릭으로 복사하는 스마트 클립보드 매니저",
+      "descEn": "Smart clipboard manager to easily save, organize, and copy frequent snippets with one tap.",
+      "featuresKo": [
+        "원터치 빠른 복사: 등록된 클립 카드의 '복사' 버튼을 눌러 즉시 클립보드 복사",
+        "중요 클립 핀 고정: 매일 쓰는 핵심 문구를 최상단에 고정하여 빠른 접근",
+        "실시간 스마트 검색: 키워드 입력으로 원하는 텍스트와 상용구를 즉각 탐색",
+        "철저한 로컬 보안: 외부 서버 전송 없이 사용자의 기기 로컬에만 안전하게 데이터 보관",
+        "유연한 슬롯 확장: 필요한 만큼 안전한 보상형 리워드를 통해 클립 저장 공간 확장",
+        "눈이 편안한 테마: 장시간 사용에도 피로감이 적은 슬림 UI 및 다크 모드 지원"
+      ],
+      "featuresEn": [
+        "One-Touch Fast Copy: Instantly copy any saved snippet to your clipboard with a single tap",
+        "Pin to Top: Keep your most important items pinned at the very top of your feed",
+        "Real-Time Instant Search: Quickly find the right text by typing keywords in the search bar",
+        "Privacy First (Local Storage): All data remains strictly on your device without external cloud transfer",
+        "Flexible Slot Expansion: Expand your clip capacity safely with rewarded expansion options",
+        "Eye-Friendly Compact UI: Clean, slim cards with complete dark mode support for comfortable viewing"
+      ],
+      "guideKo": "계좌번호처럼 가장 자주 쓰는 문구는 핀 아이콘으로 상단에 고정하고, 클립이 많아지면 실시간 검색과 슬롯 확장을 활용해 보세요.",
+      "guideEn": "Pin the snippets you use most (like bank details) to the top, and use instant search and slot expansion as your clip library grows.",
+      "screenshots": [],
+      "developer": "WG Apps Studio",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.clipflowmate",
+      "version": "1.0.0",
+      "updated": "2026. 10",
+      "size": "약 15 MB",
+      "requires": "Android 8.0 이상 (Android 8.0+)",
+      "screenshotsKo": [],
+      "screenshotsEn": []
     }
   ]
 }

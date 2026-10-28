@@ -79,6 +79,16 @@ const guideAppsConfig = [
     badgeEn: "Books",
     isReady: true,
   },
+  {
+    id: "clipflow-mate",
+    nameKo: "ClipFlow Mate (클립플로우 메이트)",
+    nameEn: "ClipFlow Mate",
+    iconEmoji: "📋",
+    type: "app",
+    badgeKo: "클립보드",
+    badgeEn: "Clipboard",
+    isReady: true,
+  },
   // 2. Web Utilities
   {
     id: "pdf-checker",
@@ -146,6 +156,10 @@ const GUIDE_SLUG_MAP = {
   "daycount": {
     canonicalSlug: "daycount",
     aliases: ["daycount", "day-count", "day_count"]
+  },
+  "clipflow-mate": {
+    canonicalSlug: "clipflow-mate",
+    aliases: ["clipflow-mate", "clipflowmate", "clipflow_mate", "clipflow"]
   },
   "bookspot": {
     canonicalSlug: "bookspot",

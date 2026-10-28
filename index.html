@@ -255,6 +255,31 @@
   }
   </script>
 
+  <!-- Structured Data (JSON-LD) for ClipFlow Mate Mobile App -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ClipFlow Mate (클립플로우 메이트)",
+    "operatingSystem": "ANDROID",
+    "applicationCategory": "ProductivityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "description": "Smart clipboard manager to easily save, organize, and copy frequent snippets with one tap.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Daily Helper (일상의도움)",
+      "url": "https://www.dailyhelperhub.com/"
+    },
+    "url": "https://www.dailyhelperhub.com/guide/clipflow-mate",
+    "installUrl": "https://play.google.com/store/apps/details?id=com.wgapps.clipflowmate",
+    "image": "https://www.dailyhelperhub.com/images/clipflow-mate-icon.svg"
+  }
+  </script>
+
   <!-- Structured Data (JSON-LD) for BookSpot Mobile App -->
   <script type="application/ld+json">
   {
@@ -432,7 +457,7 @@
       <div class="category-header-wrap" id="category-section">
         <div id="category-filters"></div>
         <div class="list-meta-count shrink-0">
-          <span id="apps-count-badge" class="list-count-badge">4개의 앱</span>
+          <span id="apps-count-badge" class="list-count-badge">5개의 앱</span>
         </div>
       </div>
 
@@ -688,6 +713,11 @@
         <span class="guide-tab-icon">📚</span>
         <span class="guide-tab-name">BookSpot</span>
         <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">독서관리</span>
+      </a>
+      <a href="/guide/clipflow-mate" class="guide-tab-btn" onclick="onGuideTabClick(event, 'clipflow-mate')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">📋</span>
+        <span class="guide-tab-name">ClipFlow Mate</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">클립보드</span>
       </a>
       <a href="/guide/pdf-checker" class="guide-tab-btn" onclick="onGuideTabClick(event, 'pdf-checker')" role="tab" aria-selected="false">
         <span class="guide-tab-icon">📐</span>
@@ -2262,6 +2292,7 @@
           <li><a href="/guide/timekeeper" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/timekeeper')">⏱️ TimeKeeper (타임키퍼)</a></li>
           <li><a href="/guide/daycount" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/daycount')">📅 DayCount (디데이)</a></li>
           <li><a href="/guide/bookspot" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/bookspot')">📚 BookSpot (북스팟)</a></li>
+          <li><a href="/guide/clipflow-mate" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/clipflow-mate')">📋 ClipFlow Mate (클립플로우 메이트)</a></li>
           <li><a href="/guide/pdf-checker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/pdf-checker')">📐 PDF &amp; 도면 체커</a></li>
           <li><a href="/guide/salary-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/salary-calculator')">🧮 실수령액·주휴수당 계산기</a></li>
           <li><a href="/guide/excel-converter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/excel-converter')">📊 엑셀 구분자 변환기</a></li>
