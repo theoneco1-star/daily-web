@@ -85,8 +85,8 @@ const guideAppsConfig = [
     nameEn: "ClipFlow Mate",
     iconEmoji: "📋",
     type: "app",
-    badgeKo: "클립보드",
-    badgeEn: "Clipboard",
+    badgeKo: "도구/업무",
+    badgeEn: "Tools & Work",
     isReady: true,
   },
   // 2. Web Utilities

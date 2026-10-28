@@ -240,9 +240,7 @@
       "guideKo": "계좌번호처럼 가장 자주 쓰는 문구는 핀 아이콘으로 상단에 고정하고, 클립이 많아지면 실시간 검색과 슬롯 확장을 활용해 보세요.",
       "guideEn": "Pin the snippets you use most (like bank details) to the top, and use instant search and slot expansion as your clip library grows.",
       "screenshots": [
-        "/images/apps/clipflow-mate/screen1.png",
-        "/images/apps/clipflow-mate/screen2.png",
-        "/images/apps/clipflow-mate/screen3.png"
+        "/images/apps/clipflow-mate/screen1.png"
       ],
       "developer": "WG Apps Studio",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.clipflow.mate",
@@ -251,14 +249,10 @@
       "size": "약 15 MB",
       "requires": "Android 8.0 이상 (Android 8.0+)",
       "screenshotsKo": [
-        "/images/apps/clipflow-mate/screen1.png",
-        "/images/apps/clipflow-mate/screen2.png",
-        "/images/apps/clipflow-mate/screen3.png"
+        "/images/apps/clipflow-mate/screen1.png"
       ],
       "screenshotsEn": [
-        "/images/apps/clipflow-mate/screen1.png",
-        "/images/apps/clipflow-mate/screen2.png",
-        "/images/apps/clipflow-mate/screen3.png"
+        "/images/apps/clipflow-mate/screen1.png"
       ]
     }
   ]
