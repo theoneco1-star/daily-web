@@ -71,8 +71,8 @@ const guideAppsConfig = [
   },
   {
     id: "bookspot",
-    nameKo: "BookSpot (북스팟 - 스마트 독서 기록 관리)",
-    nameEn: "BookSpot (Smart Book Organizer)",
+    nameKo: "BookSpot (북스팟)",
+    nameEn: "BookSpot",
     iconEmoji: "📚",
     type: "app",
     badgeKo: "독서관리",
@@ -101,16 +101,6 @@ const guideAppsConfig = [
     isReady: true,
   },
   {
-    id: "annual-leave-calculator",
-    nameKo: "연차 자동 계산기",
-    nameEn: "Annual Leave Calc",
-    iconEmoji: "📅",
-    type: "tool",
-    badgeKo: "근로기준법",
-    badgeEn: "Labor Law",
-    isReady: true,
-  },
-  {
     id: "wage-calc",
     nameKo: "실수령액·주휴수당",
     nameEn: "Wage & Holiday Pay",
@@ -121,16 +111,6 @@ const guideAppsConfig = [
     isReady: true,
   },
   {
-    id: "char-byte-counter",
-    nameKo: "자소서 글자수·Byte",
-    nameEn: "Char & Byte Counter",
-    iconEmoji: "📝",
-    type: "tool",
-    badgeKo: "문서 도구",
-    badgeEn: "Resume Tool",
-    isReady: true,
-  },
-  {
     id: "excel-delimiter-converter",
     nameKo: "엑셀 구분자 변환기",
     nameEn: "Excel Converter",
@@ -138,6 +118,26 @@ const guideAppsConfig = [
     type: "tool",
     badgeKo: "데이터 정제",
     badgeEn: "Data Tool",
+    isReady: true,
+  },
+  {
+    id: "annual-leave-calculator",
+    nameKo: "연차 자동 계산기",
+    nameEn: "Annual Leave Calc",
+    iconEmoji: "📅",
+    type: "tool",
+    badgeKo: "근로기준법",
+    badgeEn: "Labor Law",
+    isReady: true,
+  },
+  {
+    id: "char-byte-counter",
+    nameKo: "자소서 글자수·Byte",
+    nameEn: "Char & Byte Counter",
+    iconEmoji: "📝",
+    type: "tool",
+    badgeKo: "문서 도구",
+    badgeEn: "Resume Tool",
     isReady: true,
   }
 ];
@@ -159,7 +159,7 @@ const GUIDE_SLUG_MAP = {
   },
   "clipflow-mate": {
     canonicalSlug: "clipflow-mate",
-    aliases: ["clipflow-mate", "clipflowmate", "clipflow_mate", "clipflow"]
+    aliases: ["clipflow-mate", "clipflowmate", "clipflow_mate", "clipflow", "clip-flow-mate", "clipflow-mate-guide"]
   },
   "bookspot": {
     canonicalSlug: "bookspot",
@@ -199,7 +199,7 @@ function getGuideCanonicalSlug(appId) {
 
 function resolveGuideAppId(slugOrId) {
   if (!slugOrId) return "bakemerge";
-  const cleaned = String(slugOrId).trim().toLowerCase().replace(/^guide[-/]?/, "");
+  const cleaned = String(slugOrId).trim().toLowerCase().replace(/^guide[-/]?/, "").replace(/^#/, "");
   for (const [appId, config] of Object.entries(GUIDE_SLUG_MAP)) {
     if (appId.toLowerCase() === cleaned) return appId;
     if (config.canonicalSlug.toLowerCase() === cleaned) return appId;
@@ -214,7 +214,22 @@ function resolveCurrentRoute() {
   try {
     const pathname = (window.location.pathname || "/").toLowerCase();
     const rawHash = (window.location.hash || "").trim().toLowerCase();
-    const hash = decodeURIComponent(rawHash).replace(/^#/, "");
+    let hash = "";
+    try {
+      hash = decodeURIComponent(rawHash).replace(/^#/, "").trim();
+    } catch (_) {
+      hash = rawHash.replace(/^#/, "").trim();
+    }
+
+    const searchParams = new URLSearchParams(window.location.search || "");
+    const queryGuide = (
+      searchParams.get("app") ||
+      searchParams.get("tab") ||
+      searchParams.get("guide") ||
+      searchParams.get("id") ||
+      searchParams.get("slug") ||
+      searchParams.get("tool")
+    );
 
     // 1. Clean Path Routing (/guide, /guide/bake-merge, /about, /privacy, /terms, /contact)
     const normalizedPath = pathname.replace(/\/+$/, "") || "/";
@@ -222,7 +237,14 @@ function resolveCurrentRoute() {
     if (normalizedPath === "/guide" || normalizedPath.startsWith("/guide/")) {
       const parts = normalizedPath.split("/").filter(Boolean); // ["guide"] or ["guide", "bake-merge"]
       const slug = parts[1] || "";
-      const targetGuide = slug ? resolveGuideAppId(slug) : "bakemerge";
+      let targetGuide = "bakemerge";
+      if (slug) {
+        targetGuide = resolveGuideAppId(slug);
+      } else if (queryGuide) {
+        targetGuide = resolveGuideAppId(queryGuide);
+      } else if (hash) {
+        targetGuide = resolveGuideAppId(hash);
+      }
       return { view: "guide", guideTab: targetGuide };
     }
 
@@ -233,11 +255,22 @@ function resolveCurrentRoute() {
     if (normalizedPath === "/tools" || normalizedPath === "/web-tools") return { view: "main", mainTab: "tools" };
     if (normalizedPath === "/apps" || normalizedPath === "/mobile-apps") return { view: "main", mainTab: "apps" };
 
-    // 2. Hash Routing Fallback (for backwards compatibility: #guide, #guide-bakemerge, #about, etc.)
+    // Direct guide query fallback (e.g. /?guide=clipflow-mate or /?app=clipflow-mate)
+    if (searchParams.get("guide")) {
+      return { view: "guide", guideTab: resolveGuideAppId(searchParams.get("guide")) };
+    }
+
+    // 2. Hash Routing Fallback (for backwards compatibility: #guide, #guide-bakemerge, #clipflow-mate, etc.)
     if (hash === "guide" || hash.startsWith("guide-") || hash.startsWith("guide/")) {
       const slug = hash.replace(/^guide[-/]?/, "");
       const targetGuide = slug ? resolveGuideAppId(slug) : "bakemerge";
       return { view: "guide", guideTab: targetGuide };
+    }
+    // Also support hash matching guide app/tool directly (e.g. #clipflow-mate, #bake-merge)
+    for (const [appId, config] of Object.entries(GUIDE_SLUG_MAP)) {
+      if (hash === appId || hash === config.canonicalSlug || config.aliases.includes(hash)) {
+        return { view: "guide", guideTab: appId };
+      }
     }
     if (hash === "about") return { view: "about" };
     if (hash === "privacy") return { view: "privacy" };
@@ -994,12 +1027,37 @@ function navigateRoute(event, targetPath) {
 window.navigateRoute = navigateRoute;
 
 function navigateToPath(targetPath, shouldPushState = true) {
-  const cleanPath = (targetPath || "/").toLowerCase().trim().replace(/\/+$/, "") || "/";
+  let raw = (targetPath || "/").trim();
+  let pathOnly = raw;
+  let searchOnly = "";
+  let hashOnly = "";
+
+  const hashIdx = pathOnly.indexOf("#");
+  if (hashIdx !== -1) {
+    hashOnly = pathOnly.slice(hashIdx + 1);
+    pathOnly = pathOnly.slice(0, hashIdx);
+  }
+  const qIdx = pathOnly.indexOf("?");
+  if (qIdx !== -1) {
+    searchOnly = pathOnly.slice(qIdx + 1);
+    pathOnly = pathOnly.slice(0, qIdx);
+  }
+
+  const cleanPath = (pathOnly || "/").toLowerCase().trim().replace(/\/+$/, "") || "/";
 
   if (cleanPath === "/guide" || cleanPath.startsWith("/guide/")) {
     const parts = cleanPath.split("/").filter(Boolean);
     const slug = parts[1] || "";
-    const targetApp = slug ? resolveGuideAppId(slug) : "bakemerge";
+    let targetApp = "bakemerge";
+    if (slug) {
+      targetApp = resolveGuideAppId(slug);
+    } else if (searchOnly) {
+      const qParams = new URLSearchParams(searchOnly);
+      const qApp = qParams.get("app") || qParams.get("tab") || qParams.get("guide") || qParams.get("id");
+      if (qApp) targetApp = resolveGuideAppId(qApp);
+    } else if (hashOnly) {
+      targetApp = resolveGuideAppId(hashOnly);
+    }
     showPage("guide", targetApp, shouldPushState);
   } else if (cleanPath === "/about") {
     showPage("about", undefined, shouldPushState);
@@ -1020,6 +1078,32 @@ function navigateToPath(targetPath, shouldPushState = true) {
   }
 }
 window.navigateToPath = navigateToPath;
+
+function syncGuideConfigWithAppsData() {
+  if (!Array.isArray(appsData) || appsData.length === 0) return;
+  appsData.forEach(app => {
+    const existing = guideAppsConfig.find(g => g.id === app.id);
+    if (!existing) {
+      const firstToolIdx = guideAppsConfig.findIndex(g => g.type === "tool");
+      const isWork = app.category === "work" || (Array.isArray(app.categories) && app.categories.includes("work"));
+      const newConfig = {
+        id: app.id,
+        nameKo: app.nameKo || app.id,
+        nameEn: app.nameEn || app.id,
+        iconEmoji: app.iconEmoji || "📋",
+        type: "app",
+        badgeKo: isWork ? "도구/업무" : (app.badgeKo || "유틸리티"),
+        badgeEn: isWork ? "Tools & Work" : (app.badgeEn || "Utility"),
+        isReady: true,
+      };
+      if (firstToolIdx !== -1) {
+        guideAppsConfig.splice(firstToolIdx, 0, newConfig);
+      } else {
+        guideAppsConfig.push(newConfig);
+      }
+    }
+  });
+}
 
 function renderGuideSubtabs() {
   const container = document.getElementById("guide-subtabs");
@@ -1371,9 +1455,23 @@ function checkDeepLinks() {
       }
     }
 
-    if (hash === "guide" || hash.startsWith("guide-") || hash.startsWith("guide/")) {
+    const appParam = (params.get("app") || params.get("tab") || params.get("guide") || params.get("id") || "").trim().toLowerCase();
+    const isGuidePath = window.location.pathname.toLowerCase().startsWith("/guide");
+
+    if (isGuidePath && (appParam || hash)) {
+      const targetGuide = appParam || hash.replace(/^guide[-/]?/, "");
+      const resolved = resolveGuideAppId(targetGuide);
+      if (typeof showPage === "function") {
+        showPage("guide", resolved, false);
+      }
+    } else if (hash === "guide" || hash.startsWith("guide-") || hash.startsWith("guide/")) {
       const targetGuide = hash.replace(/^guide[-/]?/, "");
       const resolved = resolveGuideAppId(targetGuide);
+      if (typeof showPage === "function") {
+        showPage("guide", resolved, false);
+      }
+    } else if (params.get("guide")) {
+      const resolved = resolveGuideAppId(params.get("guide"));
       if (typeof showPage === "function") {
         showPage("guide", resolved, false);
       }
@@ -1424,6 +1522,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initDeepLinks();
 
   await loadAppsData();
+  syncGuideConfigWithAppsData();
   if (typeof loadWebToolsData === "function") {
     await loadWebToolsData();
   }
