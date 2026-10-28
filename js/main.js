@@ -721,7 +721,7 @@ function openModal(appId) {
             ${appScreenshots.length === 1
               ? `<img src="${appScreenshots[0]}" class="phone-screenshot-img" alt="${name} screenshot" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'p-8 text-center text-slate-400 dark:text-slate-500\\'>🖼️ 스크린샷 이미지 준비 중입니다.</div>';"/>`
               : `<div class="gallery-track" id="gallery-track">
-                  ${appScreenshots.map(s => `<img src="${s}" class="phone-screenshot-img flex-shrink-0 w-full" alt="screenshot"/>`).join("")}
+                  ${appScreenshots.map(s => `<img src="${s}" class="phone-screenshot-img flex-shrink-0 w-full" alt="screenshot" onerror="this.onerror=null; this.src='/images/screenshot-placeholder.svg';"/>`).join("")}
                 </div>`
             }
           </div>
