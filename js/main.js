@@ -141,6 +141,16 @@ const guideAppsConfig = [
     isReady: true,
   },
   {
+    id: "pdf-to-hwpx",
+    nameKo: "PDF → 한글(HWPX)",
+    nameEn: "PDF to HWPX",
+    iconEmoji: "📑",
+    type: "tool",
+    badgeKo: "문서 변환",
+    badgeEn: "Doc Converter",
+    isReady: true,
+  },
+  {
     id: "char-byte-counter",
     nameKo: "자소서 글자수·Byte",
     nameEn: "Char & Byte Counter",
@@ -195,6 +205,10 @@ const GUIDE_SLUG_MAP = {
   "annual-leave-calculator": {
     canonicalSlug: "annual-leave-calculator",
     aliases: ["annual-leave-calculator", "annual-leave", "annualleave", "annual-leave-calc"]
+  },
+  "pdf-to-hwpx": {
+    canonicalSlug: "pdf-to-hwpx",
+    aliases: ["pdf-to-hwpx", "pdf2hwpx", "hwpx", "hwpx-converter", "pdf-hwpx", "pdf-to-hwp", "pdf변환", "hwpx변환", "한글변환"]
   },
   "char-byte-counter": {
     canonicalSlug: "char-byte-counter",
@@ -1466,6 +1480,33 @@ function checkDeepLinks() {
       if (typeof openPdf === "function") {
         openPdf();
         setTimeout(openPdf, 60);
+      }
+    }
+
+    const pdfToHwpxAliases = [
+      "pdf-to-hwpx",
+      "pdf-to-hwpx-modal",
+      "pdf2hwpx",
+      "hwpx",
+      "hwpx-converter",
+      "pdf-hwpx",
+      "pdf-to-hwp",
+      "pdf변환",
+      "hwpx변환",
+      "한글변환"
+    ];
+
+    if (pdfToHwpxAliases.includes(hash) || pdfToHwpxAliases.includes(toolParam)) {
+      if (typeof showPage === "function") {
+        showPage("main");
+      }
+      if (typeof switchMainTab === "function") {
+        switchMainTab("tools");
+      }
+      const openHwpx = (typeof openPdfToHwpxModal === "function") ? openPdfToHwpxModal : window.openPdfToHwpxModal;
+      if (typeof openHwpx === "function") {
+        openHwpx();
+        setTimeout(openHwpx, 60);
       }
     }
 
