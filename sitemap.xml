@@ -84,10 +84,10 @@
   </url>
   <!-- Dedicated Web Tools -->
   <url>
-    <loc>https://www.dailyhelperhub.com/pdf-image-converter.html</loc>
+    <loc>https://dailyhelperhub.com/pdf-image-converter.html</loc>
     <lastmod>2026-10-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <!-- Information Pages -->
   <url>
