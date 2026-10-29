@@ -186,12 +186,15 @@
   // ── Language Retrieval & Global State ─────────────────────
   function getInitialLanguage() {
     try {
-      const saved = localStorage.getItem('lang') || localStorage.getItem('dh_lang') || localStorage.getItem('selectedLang');
+      const saved = localStorage.getItem('site_lang') ||
+                    localStorage.getItem('dh_lang') ||
+                    localStorage.getItem('lang') ||
+                    localStorage.getItem('selectedLang');
       if (saved) {
         const s = String(saved).toLowerCase().trim();
         if (s === 'en' || s === 'ko') return s;
       }
-      const navLang = (navigator.language || '').toLowerCase();
+      const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
       return navLang.startsWith('ko') ? 'ko' : 'en';
     } catch (_) {
       return 'ko';
@@ -308,16 +311,21 @@
     }
   }
 
-  window.setLanguage = function (lang) {
+  function switchLanguage(lang) {
     const target = (lang || '').toLowerCase().trim() === 'en' ? 'en' : 'ko';
     state.lang = target;
     try {
-      localStorage.setItem('lang', target);
+      localStorage.setItem('site_lang', target);
       localStorage.setItem('dh_lang', target);
+      localStorage.setItem('lang', target);
       localStorage.setItem('selectedLang', target);
     } catch (_) {}
     updateUiLanguage();
-  };
+  }
+
+  // Expose both switchLanguage and setLanguage globally for full compatibility
+  window.switchLanguage = switchLanguage;
+  window.setLanguage = switchLanguage;
 
   // ── Tab Switching ──────────────────────────────────────────
   window.switchTab = function (tabName) {
@@ -1052,8 +1060,14 @@
 
   // ── Initialization ─────────────────────────────────────────
   function initApp() {
-    state.lang = getInitialLanguage();
-    updateUiLanguage();
+    // 1. Check existing site language storage keys at the top of initialization
+    const initialLang = getInitialLanguage();
+    if (initialLang === 'en') {
+      switchLanguage('en');
+    } else {
+      switchLanguage('ko');
+    }
+
     initImageDropZone();
     initPdfDropZone();
 
@@ -1063,24 +1077,23 @@
     if (btnKo) {
       btnKo.addEventListener('click', (e) => {
         e.preventDefault();
-        window.setLanguage('ko');
+        switchLanguage('ko');
       });
     }
     if (btnEn) {
       btnEn.addEventListener('click', (e) => {
         e.preventDefault();
-        window.setLanguage('en');
+        switchLanguage('en');
       });
     }
 
     // Cross-tab synchronization
     window.addEventListener('storage', (e) => {
-      if (e.key === 'lang' || e.key === 'dh_lang' || e.key === 'selectedLang') {
+      if (e.key === 'site_lang' || e.key === 'dh_lang' || e.key === 'lang' || e.key === 'selectedLang') {
         if (e.newValue) {
           const l = String(e.newValue).toLowerCase().trim();
           if ((l === 'en' || l === 'ko') && l !== state.lang) {
-            state.lang = l;
-            updateUiLanguage();
+            switchLanguage(l);
           }
         }
       }
@@ -1103,6 +1116,14 @@
       });
     }
   }
+
+  // Immediate language sync upon script evaluation to prevent any initial KO flash
+  try {
+    const immediateLang = getInitialLanguage();
+    if (immediateLang === 'en') {
+      switchLanguage('en');
+    }
+  } catch (_) {}
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initApp);

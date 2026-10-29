@@ -296,7 +296,7 @@
   function getPdfCheckerLang() {
     if (typeof currentLang !== 'undefined') return currentLang;
     try {
-      const saved = localStorage.getItem('dh_lang');
+      const saved = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang');
       if (saved) return saved;
     } catch (_) {}
     return 'ko';

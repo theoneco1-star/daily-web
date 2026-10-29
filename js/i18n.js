@@ -1610,7 +1610,7 @@ const translations = {
 };
 
 function getInitialLang() {
-  const savedLang = localStorage.getItem("dh_lang");
+  const savedLang = localStorage.getItem("site_lang") || localStorage.getItem("dh_lang") || localStorage.getItem("lang") || localStorage.getItem("selectedLang");
   if (savedLang) return savedLang;
   const navLang = (navigator.language || navigator.userLanguage || "").toLowerCase();
   return navLang.startsWith("ko") ? "ko" : "en";
@@ -1632,7 +1632,12 @@ function t(key) {
 
 function setLang(lang) {
   currentLang = lang;
-  localStorage.setItem("dh_lang", lang);
+  try {
+    localStorage.setItem("dh_lang", lang);
+    localStorage.setItem("site_lang", lang);
+    localStorage.setItem("lang", lang);
+    localStorage.setItem("selectedLang", lang);
+  } catch (_) {}
   if (typeof buildHeaderCatNav === "function") buildHeaderCatNav();
   if (typeof buildFilters === "function") buildFilters();
   applyTranslations();
