@@ -1,7 +1,14 @@
 # Local server & batch files
 run_server.bat
 *.bat
+!run_backend.bat
 *.sh
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
 
 # Node & Build Outputs
 node_modules/
