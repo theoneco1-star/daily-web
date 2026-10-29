@@ -16,16 +16,18 @@
   // ── Translation Dictionary ────────────────────────────────
   const i18n = {
     ko: {
-      docTitle: 'PDF ↔ 이미지(JPG/PNG) 변환기 (일괄 묶음·분리) | 일상의도움',
+      docTitle: 'PDF ↔ 이미지(JPG/PNG) 변환기 (일괄 묶음·분리) | 일상의도움 (Daily Helper)',
+      metaDesc: '서버 업로드 없이 브라우저 메모리 안에서 여러 이미지를 하나의 PDF로 묶거나, 다중 페이지 PDF를 고해상도 이미지(ZIP)로 즉시 분리·변환합니다. 100% 무료 무설치 웹 도구.',
       brand: '일상의도움',
+      mainHub: '메인 허브',
       badgeNew: 'NEW',
       badgeFree: '무료 도구',
       badgeClientSide: '100% 브라우저 메모리 처리 (서버 전송 없음)',
       heroTitle: 'PDF ↔ 이미지 변환기',
       heroSubtitle: '서버 업로드 없이 브라우저에서 여러 이미지를 하나의 PDF로 묶거나, 다중 페이지 PDF를 고해상도 이미지(ZIP)로 즉시 분리·변환합니다.',
-      tabImgToPdf: '📸 이미지 여러 장 → 단일 PDF 묶기',
-      tabPdfToImg: '📑 PDF 문서 → 개별 이미지 분리',
-      
+      tabImgToPdf: '📷 이미지 여러 장 → 단일 PDF 묶기',
+      tabPdfToImg: '📄 PDF 문서 → 개별 이미지 분리',
+
       // Feature 1: Image to PDF
       dropImgTitle: '이미지 파일들을 여기에 끌어다 놓으세요',
       dropImgDesc: '또는 클릭하여 파일을 선택하세요 (JPG, PNG, WEBP, GIF, BMP 등 다중 선택 가능)',
@@ -50,50 +52,68 @@
       moveRight: '뒤 ▶',
       deleteItem: '삭제',
       processingImg: 'PDF 생성 중... ({current}/{total} 페이지)',
+      imgProgressInitial: 'PDF 생성 중...',
       successPdfDownload: 'PDF 변환 완료! 다운로드가 시작되었습니다.',
       noImgWarning: '변환할 이미지를 먼저 1장 이상 추가해 주세요.',
 
       // Feature 2: PDF to Image
-      dropPdfTitle: 'PDF 파일을 여기에 끌어다 놓으세요',
+      dropPdfTitle: 'PDF 문서를 여기에 끌어다 놓으세요',
       dropPdfDesc: '또는 클릭하여 PDF 파일을 선택하세요 (다중 페이지 지원)',
       selectPdfBtn: 'PDF 파일 선택',
-      changePdfBtn: '🔄 다른 PDF 선택',
+      changePdfBtn: '다른 PDF 선택',
+      pdfDocLoading: '문서 로딩 중...',
       pdfInfo: '{name} ({pages}페이지, {size})',
       outFormatLabel: '출력 이미지 포맷',
       formatPng: 'PNG (무손실 고화질, 도면/텍스트 선명)',
-      formatJpg: 'JPG (용량 최적화, 사진/일반문서)',
+      formatJpg: 'JPG (고압축, 사진 최적화)',
       resolutionLabel: '해상도 / 선명도 (DPI 배율)',
       scale2: '2.0x 고해상도 (FHD급 선명도 - 권장)',
+      scale1: '1.0x 일반 해상도 (빠른 처리, 기본 크기)',
       scale15: '1.5x 표준 해상도 (빠른 처리)',
-      scale3: '3.0x 초고해상도 (4K/인쇄용 품질)',
-      downloadAllBtn: '✨ 모든 페이지 일괄 다운로드 ({type})',
+      scale3: '3.0x 초고해상도 (인쇄/정밀 도면용)',
+      downloadAllBtn: '✨ 모든 페이지 일괄 다운로드 (ZIP)',
       downloadSingleBtn: '✨ 고해상도 이미지 다운로드 ({ext})',
       downloadThisPage: '이 페이지만 다운로드',
       renderingPages: 'PDF 페이지 렌더링 중... ({current}/{total})',
+      pdfProgressInitial: '렌더링 중...',
       compressingZip: 'ZIP 압축 파일 패키징 중... ({percent}%)',
       successImgDownload: '이미지 변환 완료! 다운로드가 시작되었습니다.',
       noPdfWarning: '변환할 PDF 파일을 먼저 선택해 주세요.',
+      onlyPdfWarning: 'PDF 파일만 업로드할 수 있습니다.',
+      errorPdfRender: 'PDF 렌더링 오류: ',
+      errorImgBatch: '이미지 일괄 다운로드 오류: ',
+      errorPdfLibNotLoaded: 'PDF-lib 라이브러리가 로드되지 않았습니다.',
 
       // Notices
       noticeTitle: '안내 및 보안 보증',
-      notice1: '100% 브라우저 로컬 처리: 모든 변환은 사용자의 PC/스마트폰 브라우저 메모리 안에서 단독 실행되며, 서버로 파일이 전혀 업로드되지 않습니다.',
-      notice2: '다양한 포맷 완벽 지원: JPG, PNG는 물론 모바일/최신 웹 규격인 WEBP 등도 캔버스 엔진을 통해 고화질로 정상 묶음 변환됩니다.',
-      notice3: '초고해상도 렌더링: 다중 페이지 PDF를 변환할 때 scale 2.0 이상의 고해상도 캔버스로 렌더링하여 작은 글씨와 도면 선도 흐려짐 없이 선명하게 유지됩니다.'
+      notice1: '<strong>100% 브라우저 로컬 처리:</strong> 모든 변환은 사용자의 PC/스마트폰 브라우저 메모리 안에서 단독 실행되며, 서버로 파일이 전혀 업로드되지 않습니다.',
+      notice2: '<strong>다양한 포맷 완벽 지원:</strong> JPG, PNG는 물론 최신 웹 규격인 WEBP, GIF, BMP 등도 브라우저 캔버스 엔진을 통해 손실 없이 고화질 PDF로 묶을 수 있습니다.',
+      notice3: '<strong>초고해상도 렌더링:</strong> 다중 페이지 PDF를 변환할 때 scale 2.0 이상의 고해상도 캔버스로 렌더링하여 작은 글씨와 도면 선도 흐려짐 없이 선명하게 유지됩니다.',
+
+      // Footer
+      footerHome: '홈 (메인 허브)',
+      footerAbout: '소개',
+      footerPrivacy: '개인정보처리방침',
+      footerTerms: '이용약관',
+      footerContact: '문의하기',
+      footerCopyright: '© 2026 일상의도움 (Daily Helper). All rights reserved.'
     },
     en: {
-      docTitle: 'PDF ↔ Image (JPG/PNG) Converter | Daily Helper',
+      docTitle: 'PDF ↔ Image Converter (Batch Combine & Extract) | Daily Helper',
+      metaDesc: 'Combine multiple images into a single PDF or extract multi-page PDFs into high-resolution images (ZIP) right in your browser with zero server uploads.',
       brand: 'Daily Helper',
+      mainHub: 'Main Hub',
       badgeNew: 'NEW',
       badgeFree: 'Free Tool',
-      badgeClientSide: '100% In-Browser Processing (Zero Server Upload)',
+      badgeClientSide: '100% Client-Side In-Memory (Zero Server Upload)',
       heroTitle: 'PDF ↔ Image Converter',
-      heroSubtitle: 'Convert multiple images into a single PDF, or extract multi-page PDFs into high-resolution images (ZIP) entirely in your browser memory.',
-      tabImgToPdf: '📸 Images → Single PDF (Combine)',
-      tabPdfToImg: '📑 PDF → Images (Split / Extract)',
+      heroSubtitle: 'Combine multiple images into a single PDF or extract multi-page PDFs into high-resolution images (ZIP) right in your browser with zero server uploads.',
+      tabImgToPdf: '📷 Multiple Images to Single PDF',
+      tabPdfToImg: '📄 Multi-page PDF to Images',
 
       // Feature 1: Image to PDF
-      dropImgTitle: 'Drag & Drop Image Files Here',
-      dropImgDesc: 'or click to browse (JPG, PNG, WEBP, GIF, BMP supported)',
+      dropImgTitle: 'Drag & drop image files here',
+      dropImgDesc: 'or click to browse files (Supports JPG, PNG, WEBP, GIF, BMP, etc.)',
       selectImgBtn: 'Select Images',
       addMoreImgBtn: '＋ Add More Images',
       clearAllImgBtn: 'Clear All',
@@ -108,48 +128,78 @@
       marginSmall: 'Small (5mm)',
       marginNormal: 'Normal (10mm)',
       filenameLabel: 'Output PDF Filename',
-      convertImgToPdfBtn: '✨ Convert & Download Combined PDF',
+      convertImgToPdfBtn: '✨ Combine & Download PDF',
       dragHint: '💡 Drag and drop cards to reorder pages.',
       rotate90: '↻ Rotate 90°',
       moveLeft: '◀ Prev',
       moveRight: 'Next ▶',
       deleteItem: 'Delete',
       processingImg: 'Generating PDF... ({current}/{total} pages)',
+      imgProgressInitial: 'Generating PDF...',
       successPdfDownload: 'PDF conversion completed! Download started.',
       noImgWarning: 'Please add at least one image file first.',
 
       // Feature 2: PDF to Image
-      dropPdfTitle: 'Drag & Drop PDF File Here',
-      dropPdfDesc: 'or click to browse (Multi-page PDFs supported)',
+      dropPdfTitle: 'Drag & drop a PDF file here',
+      dropPdfDesc: 'or click to browse files (Supports multi-page PDF)',
       selectPdfBtn: 'Select PDF File',
-      changePdfBtn: '🔄 Choose Another PDF',
+      changePdfBtn: 'Change PDF',
+      pdfDocLoading: 'Loading document...',
       pdfInfo: '{name} ({pages} pages, {size})',
       outFormatLabel: 'Output Image Format',
-      formatPng: 'PNG (Lossless High Quality, Clear Text/Drawings)',
-      formatJpg: 'JPG (Optimized Size, Photos/Documents)',
-      resolutionLabel: 'Resolution / Scale (DPI)',
-      scale2: '2.0x High Resolution (FHD Quality - Recommended)',
+      formatPng: 'PNG (Lossless, sharp lines/text)',
+      formatJpg: 'JPG (High compression, photo optimized)',
+      resolutionLabel: 'Resolution / Clarity (DPI Scale)',
+      scale2: '2.0x High Resolution (FHD - Recommended)',
+      scale1: '1.0x Standard (Fast processing)',
       scale15: '1.5x Standard Resolution (Faster)',
-      scale3: '3.0x Ultra High Resolution (4K / Print Quality)',
-      downloadAllBtn: '✨ Download All Pages ({type})',
+      scale3: '3.0x Ultra-HD (Print & precise CAD)',
+      downloadAllBtn: '✨ Download All Pages as ZIP',
       downloadSingleBtn: '✨ Download High-Res Image ({ext})',
-      downloadThisPage: 'Download This Page',
+      downloadThisPage: 'Download this page',
       renderingPages: 'Rendering PDF pages... ({current}/{total})',
+      pdfProgressInitial: 'Rendering pages...',
       compressingZip: 'Packaging ZIP file... ({percent}%)',
       successImgDownload: 'Image conversion completed! Download started.',
       noPdfWarning: 'Please select a PDF file first.',
+      onlyPdfWarning: 'Please upload a PDF file only.',
+      errorPdfRender: 'PDF rendering error: ',
+      errorImgBatch: 'Image batch download error: ',
+      errorPdfLibNotLoaded: 'PDF-lib library failed to load.',
 
       // Notices
-      noticeTitle: 'Usage & Privacy Security Notice',
-      notice1: '100% In-Browser Privacy: All processing runs strictly inside your browser memory. Your files are never uploaded to any external server.',
-      notice2: 'Universal Image Support: JPG, PNG, WEBP, and more are processed seamlessly via high-fidelity canvas rendering.',
-      notice3: 'Ultra High Resolution: Multi-page PDFs are rendered at 2.0x+ scale to preserve crisp text and sharp lines without blur.'
+      noticeTitle: 'Security & Info Guide',
+      notice1: '<strong>100% Client-side Local Processing:</strong> All tasks run entirely inside your device\'s browser memory. Your files are never uploaded to any server.',
+      notice2: '<strong>Universal Format Support:</strong> JPG, PNG, WEBP, GIF, and BMP can all be converted and combined into high-quality PDFs with zero compression loss.',
+      notice3: '<strong>Ultra-clear Rendering:</strong> Multi-page PDFs are rendered on high-density canvases (scale 2.0+) ensuring crisp text and fine CAD line-art.',
+
+      // Footer
+      footerHome: 'Home (Main Hub)',
+      footerAbout: 'About',
+      footerPrivacy: 'Privacy Policy',
+      footerTerms: 'Terms of Service',
+      footerContact: 'Contact Us',
+      footerCopyright: '© 2026 Daily Helper. All rights reserved.'
     }
   };
 
-  // ── Global State ──────────────────────────────────────────
+  // ── Language Retrieval & Global State ─────────────────────
+  function getInitialLanguage() {
+    try {
+      const saved = localStorage.getItem('lang') || localStorage.getItem('dh_lang') || localStorage.getItem('selectedLang');
+      if (saved) {
+        const s = String(saved).toLowerCase().trim();
+        if (s === 'en' || s === 'ko') return s;
+      }
+      const navLang = (navigator.language || '').toLowerCase();
+      return navLang.startsWith('ko') ? 'ko' : 'en';
+    } catch (_) {
+      return 'ko';
+    }
+  }
+
   const state = {
-    lang: 'ko',
+    lang: getInitialLanguage(),
     activeTab: 'img-to-pdf', // 'img-to-pdf' | 'pdf-to-img'
     
     // Feature 1: Image to PDF
@@ -202,7 +252,7 @@
   // ── Language Toggle & Translation ─────────────────────────
   function t(key, vars = {}) {
     const dict = i18n[state.lang] || i18n.ko;
-    let text = dict[key] || i18n.ko[key] || key;
+    let text = dict[key] !== undefined ? dict[key] : (i18n.ko[key] !== undefined ? i18n.ko[key] : key);
     for (const [k, v] of Object.entries(vars)) {
       text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v);
     }
@@ -211,10 +261,27 @@
 
   function updateUiLanguage() {
     document.title = t('docTitle');
+    document.documentElement.lang = state.lang;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', t('metaDesc'));
+
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
-      if (key) el.textContent = t(key);
+      if (key) {
+        const val = t(key);
+        if (typeof val === 'string' && val.includes('<') && val.includes('>')) {
+          el.innerHTML = val;
+        } else {
+          el.textContent = val;
+        }
+      }
     });
+
+    document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-html');
+      if (key) el.innerHTML = t(key);
+    });
+
     document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
       const key = el.getAttribute('data-i18n-placeholder');
       if (key) el.setAttribute('placeholder', t(key));
@@ -225,22 +292,29 @@
     const btnEn = document.getElementById('lang-btn-en');
     if (btnKo && btnEn) {
       if (state.lang === 'ko') {
-        btnKo.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm';
-        btnEn.className = 'px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors';
+        btnKo.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm cursor-pointer';
+        btnEn.className = 'px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer';
       } else {
-        btnEn.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm';
-        btnKo.className = 'px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors';
+        btnEn.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm cursor-pointer';
+        btnKo.className = 'px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer';
       }
     }
 
     renderImageCount();
     renderPdfInfo();
+    updateDownloadBtnLabel();
+    if (state.images.length > 0) {
+      renderImageGrid();
+    }
   }
 
   window.setLanguage = function (lang) {
-    state.lang = lang;
+    const target = (lang || '').toLowerCase().trim() === 'en' ? 'en' : 'ko';
+    state.lang = target;
     try {
-      localStorage.setItem('selectedLang', lang);
+      localStorage.setItem('lang', target);
+      localStorage.setItem('dh_lang', target);
+      localStorage.setItem('selectedLang', target);
     } catch (_) {}
     updateUiLanguage();
   };
@@ -259,7 +333,7 @@
       panelImg.classList.remove('hidden');
       panelPdf.classList.add('hidden');
     } else {
-      tabBtnPdf.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30';
+      tabBtnPdf.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all bg-teal-600 text-white shadow-lg shadow-teal-600/30';
       tabBtnImg.className = 'flex-1 py-3 px-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-all bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800';
       panelPdf.classList.remove('hidden');
       panelImg.classList.add('hidden');
@@ -318,34 +392,19 @@
         if (files.length > 0) {
           handleImageFiles(files);
         } else {
-          showToast(state.lang === 'ko' ? '이미지 파일만 업로드할 수 있습니다.' : 'Please drop image files only.', true);
+          showToast(state.lang === 'ko' ? '유효한 이미지 파일을 추가해 주세요.' : 'Please add valid image files.', true);
         }
       });
     }
   }
 
   async function handleImageFiles(files) {
-    for (const file of files) {
-      const id = 'img_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
-      const dataUrl = await readFileAsDataUrl(file);
-      const dimensions = await getImageDimensions(dataUrl);
+    const validFiles = files.filter((f) => f.type.startsWith('image/'));
+    if (validFiles.length === 0) return;
 
-      state.images.push({
-        id,
-        file,
-        name: file.name,
-        size: file.size,
-        width: dimensions.width,
-        height: dimensions.height,
-        rotation: 0,
-        dataUrl
-      });
-    }
-
-    // Default output filename from first image
-    if (state.images.length > 0 && !document.getElementById('img-pdf-filename').value.trim()) {
-      const base = getBaseFilename(state.images[0].name);
-      document.getElementById('img-pdf-filename').value = `${base}_combined.pdf`;
+    for (const file of validFiles) {
+      const item = await readFileAsImageItem(file);
+      state.images.push(item);
     }
 
     updateImageSectionVisibility();
@@ -353,33 +412,40 @@
     renderImageCount();
   }
 
-  function readFileAsDataUrl(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  function getImageDimensions(dataUrl) {
+  function readFileAsImageItem(file) {
     return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve({ width: img.naturalWidth || img.width, height: img.naturalHeight || img.height });
-      img.onerror = () => resolve({ width: 800, height: 600 });
-      img.src = dataUrl;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        const img = new Image();
+        img.onload = () => {
+          resolve({
+            id: 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+            file: file,
+            name: file.name,
+            size: file.size,
+            width: img.naturalWidth,
+            height: img.naturalHeight,
+            rotation: 0,
+            dataUrl: dataUrl
+          });
+        };
+        img.src = dataUrl;
+      };
+      reader.readAsDataURL(file);
     });
   }
 
   function updateImageSectionVisibility() {
     const emptyZone = document.getElementById('img-dropzone');
-    const contentZone = document.getElementById('img-content-area');
-    if (state.images.length > 0) {
-      emptyZone.classList.add('hidden');
-      contentZone.classList.remove('hidden');
-    } else {
+    const contentArea = document.getElementById('img-content-area');
+
+    if (state.images.length === 0) {
       emptyZone.classList.remove('hidden');
-      contentZone.classList.add('hidden');
+      contentArea.classList.add('hidden');
+    } else {
+      emptyZone.classList.add('hidden');
+      contentArea.classList.remove('hidden');
     }
   }
 
@@ -400,43 +466,37 @@
   function renderImageGrid() {
     const grid = document.getElementById('img-grid');
     if (!grid) return;
-
     grid.innerHTML = '';
 
     state.images.forEach((item, index) => {
       const card = document.createElement('div');
-      card.className = 'group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden p-2.5 flex flex-col gap-2 hover:border-slate-700 transition-all select-none';
+      card.className = 'group relative bg-slate-900 border border-slate-800 rounded-xl overflow-hidden p-2 flex flex-col gap-2 shadow-md hover:border-slate-700 transition-all';
       card.setAttribute('data-id', item.id);
 
-      // Card HTML
       card.innerHTML = `
         <div class="relative w-full aspect-[4/3] bg-slate-950 rounded-lg overflow-hidden flex items-center justify-center card-thumbnail-wrap cursor-grab active:cursor-grabbing border border-slate-800/80">
-          <img src="${item.dataUrl}" alt="${item.name}" 
-               style="transform: rotate(${item.rotation}deg); max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.25s ease;" 
-               class="select-none pointer-events-none" />
+          <img src="${item.dataUrl}" alt="${item.name}" class="max-w-[90%] max-h-[90%] object-contain pointer-events-none select-none transition-transform duration-200" style="transform: rotate(${item.rotation}deg);" />
           <div class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[11px] font-extrabold bg-slate-900/90 text-indigo-400 border border-slate-700/80 font-mono shadow-sm">
             #${index + 1}
           </div>
-          ${item.rotation !== 0 ? `<div class="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-950/80 text-amber-300 border border-amber-600/50">${item.rotation}°</div>` : ''}
         </div>
-        <div class="flex flex-col gap-0.5 px-0.5">
-          <p class="text-xs font-semibold text-slate-200 truncate" title="${item.name}">${item.name}</p>
-          <p class="text-[10px] text-slate-500 font-mono">${item.width}×${item.height} · ${formatBytes(item.size)}</p>
+        <div class="flex flex-col px-1">
+          <span class="text-xs font-semibold text-slate-200 truncate" title="${item.name}">${item.name}</span>
+          <span class="text-[11px] text-slate-500 font-mono">${formatBytes(item.size)} · ${item.width}×${item.height}</span>
         </div>
-        <div class="flex items-center justify-between gap-1 mt-auto pt-1 border-t border-slate-800/80">
-          <button type="button" class="btn-rotate flex-1 py-1 px-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[11px] font-semibold transition-colors flex items-center justify-center gap-1" title="${t('rotate90')}">
-            <span>↻</span>
-            <span class="hidden sm:inline">90°</span>
+        <div class="flex items-center justify-between gap-1 p-1 bg-slate-950/60 rounded-lg border border-slate-800/60 mt-auto">
+          <button type="button" class="btn-rotate p-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-colors cursor-pointer" title="${t('rotate90')}">
+            ↻ 90°
           </button>
           <div class="flex items-center gap-0.5">
-            <button type="button" class="btn-prev p-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[11px] font-bold transition-colors disabled:opacity-30 disabled:pointer-events-none" ${index === 0 ? 'disabled' : ''} title="${t('moveLeft')}">
+            <button type="button" class="btn-prev p-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[11px] font-bold transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer" ${index === 0 ? 'disabled' : ''} title="${t('moveLeft')}">
               ◀
             </button>
-            <button type="button" class="btn-next p-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[11px] font-bold transition-colors disabled:opacity-30 disabled:pointer-events-none" ${index === state.images.length - 1 ? 'disabled' : ''} title="${t('moveRight')}">
+            <button type="button" class="btn-next p-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[11px] font-bold transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer" ${index === state.images.length - 1 ? 'disabled' : ''} title="${t('moveRight')}">
               ▶
             </button>
           </div>
-          <button type="button" class="btn-delete p-1 rounded-md bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 hover:text-rose-200 text-xs font-bold transition-colors" title="${t('deleteItem')}">
+          <button type="button" class="btn-delete p-1 rounded-md bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 hover:text-rose-200 text-xs font-bold transition-colors cursor-pointer" title="${t('deleteItem')}">
             ✕
           </button>
         </div>
@@ -519,20 +579,18 @@
     try {
       const PDFLib = window.PDFLib;
       if (!PDFLib || !PDFLib.PDFDocument) {
-        throw new Error('PDF-lib 라이브러리가 로드되지 않았습니다.');
+        throw new Error(t('errorPdfLibNotLoaded'));
       }
 
       const pdfDoc = await PDFLib.PDFDocument.create();
 
-      const layout = document.getElementById('img-page-size').value; // 'a4-portrait', 'a4-landscape', 'fit-image', 'a4-auto'
-      const marginType = document.getElementById('img-margin').value; // 'none', 'small', 'normal'
+      const layout = document.getElementById('img-page-size').value;
+      const marginType = document.getElementById('img-margin').value;
 
-      // Margin in points (72 points = 1 inch, 1mm = 2.83465 pt)
       let marginPt = 0;
       if (marginType === 'small') marginPt = 14.17; // ~5mm
       else if (marginType === 'normal') marginPt = 28.35; // ~10mm
 
-      // Standard A4 dimensions in points: 595.28 x 841.89
       const A4_W = 595.28;
       const A4_H = 841.89;
 
@@ -544,10 +602,7 @@
         progressBar.style.width = percent + '%';
         progressText.textContent = t('processingImg', { current: i + 1, total });
 
-        // Render rotated image to offscreen canvas
         const renderedCanvas = await renderRotatedImageToCanvas(item.dataUrl, item.rotation);
-
-        // Convert canvas to JPEG blob buffer for embedding
         const imgBuffer = await canvasToArrayBuffer(renderedCanvas, 'image/jpeg', 0.95);
         const embeddedImage = await pdfDoc.embedJpg(imgBuffer);
 
@@ -570,15 +625,13 @@
             pageH = A4_H;
           }
         } else {
-          // fit-image: exact image size with 0 margin
-          pageW = imgW;
-          pageH = imgH;
-          marginPt = 0;
+          // fit-image
+          pageW = imgW + marginPt * 2;
+          pageH = imgH + marginPt * 2;
         }
 
         const page = pdfDoc.addPage([pageW, pageH]);
 
-        // Fit image inside available page dimensions preserving aspect ratio
         const availW = Math.max(10, pageW - marginPt * 2);
         const availH = Math.max(10, pageH - marginPt * 2);
 
@@ -597,27 +650,24 @@
         });
       }
 
-      // Save PDF and Trigger Download
       const pdfBytes = await pdfDoc.save();
+      const filenameInput = document.getElementById('img-pdf-filename');
+      const filename = sanitizeFilename(filenameInput ? filenameInput.value : '', 'combined_images.pdf');
+
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-
-      let rawName = document.getElementById('img-pdf-filename').value.trim();
-      if (!rawName.toLowerCase().endsWith('.pdf')) rawName += '.pdf';
-      const outFilename = sanitizeFilename(rawName, 'converted_images.pdf');
-
       if (window.saveAs) {
-        window.saveAs(blob, outFilename);
+        window.saveAs(blob, filename);
       } else {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = outFilename;
-        link.click();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
       }
 
       showToast(t('successPdfDownload'));
     } catch (err) {
       console.error(err);
-      showToast('PDF 변환 오류: ' + (err.message || err), true);
+      showToast('Error: ' + (err.message || err), true);
     } finally {
       state.isProcessing = false;
       convertBtn.disabled = false;
@@ -633,20 +683,20 @@
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const rad = (rotation * Math.PI) / 180;
-        const isSwap = rotation === 90 || rotation === 270;
-
-        canvas.width = isSwap ? img.naturalHeight || img.height : img.naturalWidth || img.width;
-        canvas.height = isSwap ? img.naturalWidth || img.width : img.naturalHeight || img.height;
-
         const ctx = canvas.getContext('2d');
-        // Fill white background for transparent PNG/WEBP
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const rad = (rotation * Math.PI) / 180;
+
+        if (rotation === 90 || rotation === 270) {
+          canvas.width = img.naturalHeight;
+          canvas.height = img.naturalWidth;
+        } else {
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+        }
 
         ctx.translate(canvas.width / 2, canvas.height / 2);
         ctx.rotate(rad);
-        ctx.drawImage(img, -img.width / 2, -img.height / 2);
+        ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2);
 
         resolve(canvas);
       };
@@ -655,22 +705,21 @@
     });
   }
 
-  function canvasToArrayBuffer(canvas, mimeType, quality) {
+  function canvasToArrayBuffer(canvas, type = 'image/jpeg', quality = 0.95) {
     return new Promise((resolve) => {
       canvas.toBlob(
-        (blob) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result);
-          reader.readAsArrayBuffer(blob);
+        async (blob) => {
+          const buffer = await blob.arrayBuffer();
+          resolve(new Uint8Array(buffer));
         },
-        mimeType,
+        type,
         quality
       );
     });
   }
 
   // ═════════════════════════════════════════════════════════════
-  // FEATURE 2: PDF TO IMAGES (개별 이미지 분리)
+  // FEATURE 2: PDF TO IMAGES (다중 페이지 분리)
   // ═════════════════════════════════════════════════════════════
 
   function initPdfDropZone() {
@@ -717,7 +766,7 @@
         if (file) {
           handlePdfFile(file);
         } else {
-          showToast(state.lang === 'ko' ? 'PDF 파일만 업로드할 수 있습니다.' : 'Please drop a PDF file.', true);
+          showToast(t('onlyPdfWarning'), true);
         }
       });
     }
@@ -738,7 +787,11 @@
 
   function renderPdfInfo() {
     const infoEl = document.getElementById('pdf-info-badge');
-    if (!infoEl || !state.pdfFile) return;
+    if (!infoEl) return;
+    if (!state.pdfFile) {
+      infoEl.textContent = t('pdfDocLoading');
+      return;
+    }
 
     infoEl.textContent = t('pdfInfo', {
       name: state.pdfFile.name,
@@ -761,11 +814,15 @@
     state.pdfPages = [];
 
     try {
-      const arrayBuffer = await state.pdfFile.arrayBuffer();
       const pdfjsLib = window.pdfjsLib;
-      if (!pdfjsLib) throw new Error('Mozilla pdf.js 라이브러리가 로드되지 않았습니다.');
+      if (!pdfjsLib) {
+        throw new Error('Mozilla pdf.js 라이브러리가 로드되지 않았습니다.');
+      }
 
-      state.pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      const fileBuffer = await state.pdfFile.arrayBuffer();
+      const loadingTask = pdfjsLib.getDocument({ data: fileBuffer });
+      state.pdfDoc = await loadingTask.promise;
+
       renderPdfInfo();
 
       const numPages = state.pdfDoc.numPages;
@@ -780,35 +837,34 @@
         const viewport = page.getViewport({ scale });
 
         const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
         canvas.width = viewport.width;
         canvas.height = viewport.height;
-        const ctx = canvas.getContext('2d');
 
-        // White background to avoid transparent black artifacts
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+        await page.render({
+          canvasContext: ctx,
+          viewport: viewport
+        }).promise;
 
         const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
 
         state.pdfPages.push({
           pageNum,
-          width: canvas.width,
-          height: canvas.height,
-          canvas
+          width: Math.round(viewport.width),
+          height: Math.round(viewport.height),
+          canvas,
+          dataUrl
         });
 
-        // Add page preview card to grid
-        addPdfPageCard(pageNum, canvas.width, canvas.height, dataUrl);
+        addPdfPageCard(pageNum, Math.round(viewport.width), Math.round(viewport.height), dataUrl);
       }
 
       updateDownloadBtnLabel();
-      downloadBtn.disabled = false;
     } catch (err) {
       console.error(err);
-      showToast('PDF 렌더링 오류: ' + (err.message || err), true);
+      showToast(t('errorPdfRender') + (err.message || err), true);
     } finally {
+      downloadBtn.disabled = false;
       setTimeout(() => {
         progressContainer.classList.add('hidden');
         progressBar.style.width = '0%';
@@ -825,7 +881,7 @@
 
     card.innerHTML = `
       <div class="relative w-full aspect-[4/3] bg-slate-950 rounded-lg overflow-hidden flex items-center justify-center border border-slate-800/80">
-        <img src="${dataUrl}" alt="Page ${pageNum}" class="max-w-[90%] max-height-[90%] object-contain select-none" />
+        <img src="${dataUrl}" alt="Page ${pageNum}" class="max-w-[90%] max-h-[90%] object-contain select-none" />
         <div class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[11px] font-extrabold bg-slate-900/90 text-teal-400 border border-slate-700/80 font-mono shadow-sm">
           P. ${pageNum}
         </div>
@@ -833,9 +889,9 @@
       <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono px-0.5">
         <span>${width} × ${height} px</span>
       </div>
-      <button type="button" class="btn-single-download w-full py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 mt-auto border border-slate-700/80">
+      <button type="button" class="btn-single-download w-full py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 mt-auto border border-slate-700/80 cursor-pointer">
         <span>⬇</span>
-        <span>${t('downloadThisPage')}</span>
+        <span data-i18n="downloadThisPage">${t('downloadThisPage')}</span>
       </button>
     `;
 
@@ -848,24 +904,24 @@
 
   function updateDownloadBtnLabel() {
     const downloadBtn = document.getElementById('btn-download-pdf-images');
-    if (!downloadBtn || !state.pdfDoc) return;
+    if (!downloadBtn) return;
 
-    const format = document.getElementById('pdf-format').value; // 'png' or 'jpg'
+    const format = (document.getElementById('pdf-format')?.value || 'png').toUpperCase();
     const totalPages = state.pdfPages.length;
 
-    if (totalPages === 1) {
+    if (state.pdfDoc && totalPages === 1) {
       downloadBtn.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
         </svg>
-        <span>${t('downloadSingleBtn', { ext: format.toUpperCase() })}</span>
+        <span>${t('downloadSingleBtn', { ext: format })}</span>
       `;
     } else {
       downloadBtn.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
         </svg>
-        <span>${t('downloadAllBtn', { type: `ZIP · ${totalPages}P` })}</span>
+        <span data-i18n="downloadAllBtn">${t('downloadAllBtn')}</span>
       `;
     }
   }
@@ -901,9 +957,9 @@
     );
   }
 
-  // Batch Download (Single Image if 1 page, ZIP if 2+ pages)
+  // Download all pages packaged as ZIP
   window.downloadPdfImages = async function () {
-    if (state.pdfPages.length === 0) {
+    if (!state.pdfFile || !state.pdfDoc || state.pdfPages.length === 0) {
       showToast(t('noPdfWarning'), true);
       return;
     }
@@ -924,49 +980,58 @@
       const mime = isPng ? 'image/png' : 'image/jpeg';
       const ext = isPng ? 'png' : 'jpg';
       const quality = isPng ? undefined : 0.95;
-      const base = getBaseFilename(state.pdfFile ? state.pdfFile.name : 'document');
+      const baseName = getBaseFilename(state.pdfFile.name);
 
-      const totalPages = state.pdfPages.length;
-
-      // Case A: Exactly 1 page -> Direct single image download
-      if (totalPages === 1) {
+      if (state.pdfPages.length === 1) {
+        // Single page download directly
+        progressBar.style.width = '100%';
         await downloadSinglePage(1);
         return;
       }
 
-      // Case B: 2 or more pages -> JSZip compression
+      // Multi-page ZIP packaging via JSZip
       const JSZip = window.JSZip;
-      if (!JSZip) throw new Error('JSZip 라이브러리가 로드되지 않았습니다.');
-
-      const zip = new JSZip();
-
-      for (let i = 0; i < totalPages; i++) {
-        const item = state.pdfPages[i];
-        const pageNum = item.pageNum;
-        const filename = `${base}_${String(pageNum).padStart(2, '0')}.${ext}`;
-
-        const blob = await new Promise((resolve) => item.canvas.toBlob(resolve, mime, quality));
-        zip.file(filename, blob);
-
-        const percent = Math.round(((i + 1) / totalPages) * 50); // First 50% for blob extraction
-        progressBar.style.width = percent + '%';
-        progressText.textContent = `이미지 변환 패키징 중... (${i + 1}/${totalPages})`;
+      if (!JSZip) {
+        throw new Error('JSZip 라이브러리가 로드되지 않았습니다.');
       }
 
-      // Generate ZIP archive
-      progressText.textContent = t('compressingZip', { percent: 50 });
-      const zipBlob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' }, (metadata) => {
-        const overallPercent = 50 + Math.round(metadata.percent / 2);
-        progressBar.style.width = overallPercent + '%';
-        progressText.textContent = t('compressingZip', { percent: overallPercent });
-      });
+      const zip = new JSZip();
+      const folderName = `${baseName}_images`;
+      const imgFolder = zip.folder(folderName) || zip;
 
-      const zipFilename = `${base}_images.zip`;
+      const total = state.pdfPages.length;
+
+      for (let i = 0; i < total; i++) {
+        const pageItem = state.pdfPages[i];
+        const pagePercent = Math.round(((i + 1) / total) * 70);
+        progressBar.style.width = pagePercent + '%';
+        progressText.textContent = t('renderingPages', { current: i + 1, total });
+
+        const blob = await new Promise((resolve) => pageItem.canvas.toBlob(resolve, mime, quality));
+        const filename = `${baseName}_p${String(pageItem.pageNum).padStart(2, '0')}.${ext}`;
+        imgFolder.file(filename, blob);
+      }
+
+      progressText.textContent = t('compressingZip', { percent: 80 });
+      progressBar.style.width = '85%';
+
+      const zipContent = await zip.generateAsync(
+        { type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } },
+        (metadata) => {
+          const zipPercent = Math.round(85 + (metadata.percent * 0.15));
+          progressBar.style.width = zipPercent + '%';
+          progressText.textContent = t('compressingZip', { percent: Math.round(metadata.percent) });
+        }
+      );
+
+      progressBar.style.width = '100%';
+      const zipFilename = `${baseName}_images.zip`;
+
       if (window.saveAs) {
-        window.saveAs(zipBlob, zipFilename);
+        window.saveAs(zipContent, zipFilename);
       } else {
         const a = document.createElement('a');
-        a.href = URL.createObjectURL(zipBlob);
+        a.href = URL.createObjectURL(zipContent);
         a.download = zipFilename;
         a.click();
       }
@@ -974,7 +1039,7 @@
       showToast(t('successImgDownload'));
     } catch (err) {
       console.error(err);
-      showToast('이미지 일괄 다운로드 오류: ' + (err.message || err), true);
+      showToast(t('errorImgBatch') + (err.message || err), true);
     } finally {
       state.isProcessing = false;
       downloadBtn.disabled = false;
@@ -986,23 +1051,40 @@
   };
 
   // ── Initialization ─────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    // Check initial language preference
-    try {
-      const savedLang = localStorage.getItem('selectedLang');
-      if (savedLang === 'en' || savedLang === 'ko') {
-        state.lang = savedLang;
-      } else {
-        const navLang = (navigator.language || '').toLowerCase();
-        state.lang = navLang.startsWith('ko') ? 'ko' : 'en';
-      }
-    } catch (_) {
-      state.lang = 'ko';
-    }
-
+  function initApp() {
+    state.lang = getInitialLanguage();
     updateUiLanguage();
     initImageDropZone();
     initPdfDropZone();
+
+    // Event listeners for KO / EN toggles
+    const btnKo = document.getElementById('lang-btn-ko');
+    const btnEn = document.getElementById('lang-btn-en');
+    if (btnKo) {
+      btnKo.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.setLanguage('ko');
+      });
+    }
+    if (btnEn) {
+      btnEn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.setLanguage('en');
+      });
+    }
+
+    // Cross-tab synchronization
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'lang' || e.key === 'dh_lang' || e.key === 'selectedLang') {
+        if (e.newValue) {
+          const l = String(e.newValue).toLowerCase().trim();
+          if ((l === 'en' || l === 'ko') && l !== state.lang) {
+            state.lang = l;
+            updateUiLanguage();
+          }
+        }
+      }
+    });
 
     // Re-render PDF preview if options (format or scale) change
     const scaleSelect = document.getElementById('pdf-scale');
@@ -1020,5 +1102,11 @@
         updateDownloadBtnLabel();
       });
     }
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+  } else {
+    initApp();
+  }
 })();
