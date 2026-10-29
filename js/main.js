@@ -1439,6 +1439,22 @@ function checkDeepLinks() {
       }
     }
 
+    const pdfImageConverterAliases = [
+      "pdf-image-converter",
+      "pdf-converter",
+      "image-to-pdf",
+      "pdf-to-image",
+      "pdf-to-jpg",
+      "jpg-to-pdf",
+      "pdf변환",
+      "이미지pdf",
+      "pdfjpg"
+    ];
+    if (pdfImageConverterAliases.includes(hash) || pdfImageConverterAliases.includes(toolParam)) {
+      window.location.href = "/pdf-image-converter.html";
+      return;
+    }
+
     const pdfCheckerAliases = [
       "pdf-checker",
       "pdf-checker-modal",

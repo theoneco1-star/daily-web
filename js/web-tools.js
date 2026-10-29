@@ -33,6 +33,29 @@ window.restoreDefaultTitle = restoreDefaultTitle;
 // ── Default Web Tools Data (Instant fallback & offline ready) ──
 let webToolsData = [
   {
+    id: "pdf-image-converter",
+    nameKo: "PDF ↔ 이미지 변환기 (일괄 묶음·분리)",
+    nameEn: "PDF ↔ Image Converter",
+    targetLang: "ALL",
+    isKrOnly: false,
+    category: "utility",
+    color: "from-violet-600 via-indigo-600 to-cyan-600",
+    iconEmoji: "🔄",
+    isHot: true,
+    isFree: true,
+    isNew: true,
+    badges: ["NEW", "무료 도구", "Web Utility"],
+    descKo: "서버 업로드 없이 브라우저에서 여러 이미지를 하나의 PDF로 묶거나, 다중 페이지 PDF를 고해상도 이미지(ZIP)로 즉시 분리·변환합니다.",
+    descEn: "Convert multiple images into a single PDF, or split multi-page PDFs into high-resolution images (ZIP) entirely in your browser with zero server uploads.",
+    tagsKo: ["PDF변환", "이미지PDF", "PDFJPG변환", "무설치", "보안변환"],
+    tagsEn: ["PDFtoImage", "ImageToPDF", "PDFJPG", "NoInstall", "SecureConvert"],
+    ctaTextKo: "바로 사용하기",
+    ctaTextEn: "Use Tool Now",
+    actionType: "link",
+    targetUrl: "/pdf-image-converter.html",
+    deepLink: "/pdf-image-converter.html"
+  },
+  {
     id: "pdf-checker",
     nameKo: "무설치 PDF & 도면/이미지 검토·마킹 툴",
     nameEn: "PDF & Drawing Review / Marking Tool (PDF & JPG Checker)",
@@ -373,6 +396,15 @@ function buildWebToolCard(tool) {
  * Handle Web Tool Click / Action
  */
 function handleWebToolAction(toolId) {
+  const tool = (Array.isArray(webToolsData) ? webToolsData : []).find(t => t.id === toolId);
+  if (tool && tool.actionType === "link" && tool.targetUrl) {
+    window.location.href = tool.targetUrl;
+    return;
+  }
+  if (toolId === "pdf-image-converter" || toolId === "pdf-converter") {
+    window.location.href = "/pdf-image-converter.html";
+    return;
+  }
   if (toolId === "wage-calc") {
     openWageCalcModal();
   } else if (toolId === "char-byte-counter") {

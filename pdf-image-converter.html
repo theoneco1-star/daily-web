@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF ↔ 이미지(JPG/PNG) 변환기 (일괄 묶음·분리) | 일상의도움 (Daily Helper)</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="서버 업로드 없이 브라우저 메모리 안에서 여러 이미지를 하나의 PDF로 묶거나, 다중 페이지 PDF를 고해상도 이미지(ZIP)로 즉시 분리·변환합니다. 100% 무료 무설치 웹 도구." />
+  <meta name="keywords" content="PDF변환, 이미지PDF, PDFJPG변환, JPG to PDF, PNG to PDF, PDF to JPG, PDF to PNG, PDF 묶기, PDF 분리, 무설치, 일상의도움" />
+  <meta name="author" content="Daily Helper" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.dailyhelperhub.com/pdf-image-converter.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dailyhelperhub.com/pdf-image-converter.html" />
+  <meta property="og:title" content="PDF ↔ 이미지(JPG/PNG) 양방향 일괄 변환기 | 일상의도움" />
+  <meta property="og:description" content="서버 업로드 없이 브라우저에서 여러 이미지를 하나의 PDF로 묶거나, 다중 페이지 PDF를 고해상도 이미지(ZIP)로 즉시 분리·변환합니다." />
+  <meta property="og:image" content="https://www.dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6278124637694502" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#6366f1', accent: '#06b6d4' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Core Libraries CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/custom.css?v=3.6" />
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-['Noto_Sans_KR',sans-serif]">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 text-white hover:opacity-90 transition-opacity">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-md">
+            <span class="text-xl">🔄</span>
+          </div>
+          <span class="font-extrabold text-lg tracking-tight" data-i18n="brand">일상의도움</span>
+        </a>
+        <span class="text-slate-600">/</span>
+        <span class="text-xs sm:text-sm font-semibold text-indigo-400 flex items-center gap-1.5">
+          <span>📑</span>
+          <span data-i18n="heroTitle">PDF ↔ 이미지 변환기</span>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800">
+          <button type="button" id="lang-btn-ko" onclick="setLanguage('ko')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm">KO</button>
+          <button type="button" id="lang-btn-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors">EN</button>
+        </div>
+
+        <a href="/#tools" class="px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-medium transition-colors flex items-center gap-1.5">
+          <span>← 메인 허브</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8 sm:py-12 flex flex-col gap-8">
+
+    <!-- Hero Title -->
+    <div class="text-center flex flex-col items-center">
+      <div class="flex items-center gap-2 flex-wrap justify-center mb-3">
+        <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-sm">✨ NEW</span>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-950 text-indigo-300 border border-indigo-500/40 shadow-sm" data-i18n="badgeClientSide">
+          🔒 100% 브라우저 메모리 처리 (서버 전송 없음)
+        </span>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 shadow-sm" data-i18n="badgeFree">
+          무료 도구
+        </span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2 sm:mb-3" data-i18n="heroTitle">
+        PDF ↔ 이미지 변환기
+      </h1>
+      <p class="text-xs sm:text-base text-slate-400 max-w-2xl leading-relaxed" data-i18n="heroSubtitle">
+        서버 업로드 없이 브라우저에서 여러 이미지를 하나의 PDF로 묶거나, 다중 페이지 PDF를 고해상도 이미지(ZIP)로 즉시 분리·변환합니다.
+      </p>
+    </div>
+
+    <!-- Mode Selector Tabs -->
+    <div class="flex items-center gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full mx-auto shadow-inner">
+      <button type="button" id="tab-btn-img-to-pdf" onclick="switchTab('img-to-pdf')" class="flex-1 py-3 px-4 rounded-xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">
+        <span data-i18n="tabImgToPdf">📸 이미지 여러 장 → 단일 PDF 묶기</span>
+      </button>
+      <button type="button" id="tab-btn-pdf-to-img" onclick="switchTab('pdf-to-img')" class="flex-1 py-3 px-4 rounded-xl font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition-all bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800">
+        <span data-i18n="tabPdfToImg">📑 PDF 문서 → 개별 이미지 분리</span>
+      </button>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- PANEL 1: IMAGE TO SINGLE PDF (이미지 여러 장 -> 단일 PDF 묶음) -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <div id="panel-img-to-pdf" class="flex flex-col gap-6">
+
+      <!-- Upload Zone (Shown when 0 images) -->
+      <div id="img-dropzone" class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-14 text-center bg-slate-900/60 hover:bg-indigo-950/20 transition-all cursor-pointer flex flex-col items-center justify-center gap-4">
+        <input type="file" id="img-file-input" multiple accept="image/jpeg,image/png,image/webp,image/gif,image/bmp" class="hidden" />
+        <div class="w-16 h-16 rounded-2xl bg-indigo-900/40 border border-indigo-700/50 flex items-center justify-center text-3xl shadow-inner">
+          📸
+        </div>
+        <div class="flex flex-col gap-1">
+          <h3 class="text-base sm:text-lg font-bold text-white" data-i18n="dropImgTitle">이미지 파일들을 여기에 끌어다 놓으세요</h3>
+          <p class="text-xs sm:text-sm text-slate-400" data-i18n="dropImgDesc">또는 클릭하여 파일을 선택하세요 (JPG, PNG, WEBP, GIF, BMP 등 다중 선택 가능)</p>
+        </div>
+        <button type="button" id="img-select-btn" class="mt-2 py-2.5 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition-all flex items-center gap-2">
+          <span>📁</span>
+          <span data-i18n="selectImgBtn">이미지 파일 선택</span>
+        </button>
+      </div>
+
+      <!-- Content Area (Shown when images > 0) -->
+      <div id="img-content-area" class="hidden flex flex-col gap-6">
+        
+        <!-- Options & Action Bar -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col gap-4 shadow-xl">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span id="img-count-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-950 text-indigo-300 border border-indigo-700/60 font-mono">
+                선택된 이미지: 0개
+              </span>
+              <span class="text-xs text-slate-400" data-i18n="dragHint">
+                💡 마우스로 드래그하여 페이지 순서를 변경할 수 있습니다.
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" id="img-add-more-btn" class="py-1.5 px-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors flex items-center gap-1.5">
+                <span data-i18n="addMoreImgBtn">＋ 이미지 추가</span>
+              </button>
+              <button type="button" id="img-clear-all-btn" class="py-1.5 px-3 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 hover:text-rose-200 text-xs font-semibold transition-colors flex items-center gap-1">
+                <span data-i18n="clearAllImgBtn">전체 비우기</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Configuration Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Page Size Layout -->
+            <div class="flex flex-col gap-1.5">
+              <label for="img-page-size" class="text-xs font-bold text-slate-300" data-i18n="pageSizeLabel">용지 규격 / 맞춤</label>
+              <select id="img-page-size" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-200 font-medium focus:outline-none focus:border-indigo-500">
+                <option value="a4-portrait" data-i18n="pageA4Portrait">A4 세로 맞춤 (210×297mm)</option>
+                <option value="a4-landscape" data-i18n="pageA4Landscape">A4 가로 맞춤 (297×210mm)</option>
+                <option value="fit-image" data-i18n="pageFitImage">원본 이미지 크기·비율 유지 (여백 없음)</option>
+                <option value="a4-auto" data-i18n="pageA4Auto">A4 자동 방향 (종횡비 감지)</option>
+              </select>
+            </div>
+
+            <!-- Margins -->
+            <div class="flex flex-col gap-1.5">
+              <label for="img-margin" class="text-xs font-bold text-slate-300" data-i18n="marginLabel">용지 여백</label>
+              <select id="img-margin" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-200 font-medium focus:outline-none focus:border-indigo-500">
+                <option value="none" data-i18n="marginNone">여백 없음 (0mm)</option>
+                <option value="small" data-i18n="marginSmall">좁은 여백 (5mm)</option>
+                <option value="normal" data-i18n="marginNormal">보통 여백 (10mm)</option>
+              </select>
+            </div>
+
+            <!-- PDF Filename -->
+            <div class="flex flex-col gap-1.5">
+              <label for="img-pdf-filename" class="text-xs font-bold text-slate-300" data-i18n="filenameLabel">PDF 저장 파일명</label>
+              <input type="text" id="img-pdf-filename" placeholder="combined_images.pdf" value="combined_images.pdf" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-200 font-mono focus:outline-none focus:border-indigo-500" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Thumbnail Grid (Sortable) -->
+        <div id="img-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Progress Container -->
+        <div id="img-progress-container" class="hidden bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col gap-2">
+          <div class="flex items-center justify-between text-xs text-slate-300">
+            <span id="img-progress-text" class="font-medium">PDF 생성 중...</span>
+          </div>
+          <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden">
+            <div id="img-progress-bar" class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Main Action Button -->
+        <button type="button" id="btn-convert-img-to-pdf" onclick="convertImagesToPdf()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-indigo-600/30 transition-all flex items-center justify-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          <span data-i18n="convertImgToPdfBtn">✨ 단일 PDF 파일로 묶어서 다운로드</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- PANEL 2: PDF TO IMAGES (다중 페이지 PDF -> 개별 이미지 분리) -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <div id="panel-pdf-to-img" class="hidden flex flex-col gap-6">
+
+      <!-- Upload Zone (Shown when 0 PDF) -->
+      <div id="pdf-dropzone" class="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-8 sm:p-14 text-center bg-slate-900/60 hover:bg-indigo-950/20 transition-all cursor-pointer flex flex-col items-center justify-center gap-4">
+        <input type="file" id="pdf-file-input" accept="application/pdf" class="hidden" />
+        <div class="w-16 h-16 rounded-2xl bg-teal-900/40 border border-teal-700/50 flex items-center justify-center text-3xl shadow-inner">
+          📑
+        </div>
+        <div class="flex flex-col gap-1">
+          <h3 class="text-base sm:text-lg font-bold text-white" data-i18n="dropPdfTitle">PDF 파일을 여기에 끌어다 놓으세요</h3>
+          <p class="text-xs sm:text-sm text-slate-400" data-i18n="dropPdfDesc">또는 클릭하여 PDF 파일을 선택하세요 (다중 페이지 지원)</p>
+        </div>
+        <button type="button" id="pdf-select-btn" class="mt-2 py-2.5 px-6 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm shadow-lg shadow-teal-600/30 transition-all flex items-center gap-2">
+          <span>📁</span>
+          <span data-i18n="selectPdfBtn">PDF 파일 선택</span>
+        </button>
+      </div>
+
+      <!-- Content Area (Shown when PDF selected) -->
+      <div id="pdf-content-area" class="hidden flex flex-col gap-6">
+
+        <!-- Options & Action Bar -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col gap-4 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-2">
+              <span id="pdf-info-badge" class="px-3.5 py-1 rounded-full text-xs font-bold bg-teal-950 text-teal-300 border border-teal-700/60 font-mono">
+                문서 로딩 중...
+              </span>
+            </div>
+            <button type="button" id="pdf-change-btn" class="py-1.5 px-3.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors flex items-center gap-1.5 self-start sm:self-auto">
+              <span data-i18n="changePdfBtn">🔄 다른 PDF 선택</span>
+            </button>
+          </div>
+
+          <!-- Configuration Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Output Format -->
+            <div class="flex flex-col gap-1.5">
+              <label for="pdf-format" class="text-xs font-bold text-slate-300" data-i18n="outFormatLabel">출력 이미지 포맷</label>
+              <select id="pdf-format" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-200 font-medium focus:outline-none focus:border-indigo-500">
+                <option value="png" selected data-i18n="formatPng">PNG (무손실 고화질, 도면/텍스트 선명)</option>
+                <option value="jpg" data-i18n="formatJpg">JPG (용량 최적화, 사진/일반문서)</option>
+              </select>
+            </div>
+
+            <!-- Resolution Scale -->
+            <div class="flex flex-col gap-1.5">
+              <label for="pdf-scale" class="text-xs font-bold text-slate-300" data-i18n="resolutionLabel">해상도 / 선명도 (DPI 배율)</label>
+              <select id="pdf-scale" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs sm:text-sm text-slate-200 font-medium focus:outline-none focus:border-indigo-500">
+                <option value="2.0" selected data-i18n="scale2">2.0x 고해상도 (FHD급 선명도 - 권장)</option>
+                <option value="1.5" data-i18n="scale15">1.5x 표준 해상도 (빠른 처리)</option>
+                <option value="3.0" data-i18n="scale3">3.0x 초고해상도 (4K/인쇄용 품질)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview Grid -->
+        <div id="pdf-preview-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+          <!-- Dynamically populated with pages -->
+        </div>
+
+        <!-- Progress Container -->
+        <div id="pdf-progress-container" class="hidden bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col gap-2">
+          <div class="flex items-center justify-between text-xs text-slate-300">
+            <span id="pdf-progress-text" class="font-medium">렌더링 중...</span>
+          </div>
+          <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden">
+            <div id="pdf-progress-bar" class="bg-gradient-to-r from-teal-500 to-indigo-500 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Main Action Button -->
+        <button type="button" id="btn-download-pdf-images" onclick="downloadPdfImages()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-teal-600 via-indigo-600 to-cyan-500 hover:from-teal-500 hover:to-cyan-400 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-teal-600/30 transition-all flex items-center justify-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          <span data-i18n="downloadAllBtn">✨ 모든 페이지 일괄 다운로드 (ZIP)</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Security & Technical Notice Card -->
+    <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 sm:p-6 flex flex-col gap-3 text-xs sm:text-sm text-slate-400 shadow-md">
+      <div class="flex items-center gap-2 font-bold text-slate-200">
+        <span class="text-indigo-400">🛡️</span>
+        <span data-i18n="noticeTitle">안내 및 보안 보증</span>
+      </div>
+      <ul class="list-disc list-inside space-y-2 text-xs leading-relaxed text-slate-400">
+        <li data-i18n="notice1"><strong>100% 브라우저 로컬 처리:</strong> 모든 변환은 사용자의 PC/스마트폰 브라우저 메모리 안에서 단독 실행되며, 서버로 파일이 전혀 업로드되지 않습니다. 회사 기밀이나 개인정보 문서도 안전하게 변환할 수 있습니다.</li>
+        <li data-i18n="notice2"><strong>다양한 포맷 완벽 지원:</strong> JPG, PNG는 물론 최신 웹 규격인 WEBP, GIF, BMP 등도 브라우저 캔버스 엔진을 통해 손실 없이 고화질 PDF로 묶을 수 있습니다.</li>
+        <li data-i18n="notice3"><strong>초고해상도 렌더링:</strong> 다중 페이지 PDF를 이미지로 추출할 때 scale 2.0 이상의 고해상도 캔버스로 렌더링하여 작은 글씨와 도면 선도 흐려짐 없이 선명하게 유지됩니다.</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 border-t border-slate-800 py-8 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col items-center gap-2">
+      <div class="flex items-center gap-4 text-slate-400 flex-wrap justify-center">
+        <a href="/" class="hover:text-white transition-colors">홈 (메인 허브)</a>
+        <span>·</span>
+        <a href="/about" class="hover:text-white transition-colors">소개</a>
+        <span>·</span>
+        <a href="/privacy" class="hover:text-white transition-colors">개인정보처리방침</a>
+        <span>·</span>
+        <a href="/terms" class="hover:text-white transition-colors">이용약관</a>
+        <span>·</span>
+        <a href="/contact" class="hover:text-white transition-colors">문의하기</a>
+      </div>
+      <p>© 2026 일상의도움 (Daily Helper). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Element -->
+  <div id="toast-notification" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-3 rounded-xl text-sm font-semibold shadow-2xl z-50 transition-all duration-300 opacity-0 pointer-events-none"></div>
+
+  <!-- Page Logic Script -->
+  <script src="/js/pdf-image-converter.js?v=1.0"></script>
+</body>
+</html>
