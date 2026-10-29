@@ -254,6 +254,83 @@
       "screenshotsEn": [
         "/images/apps/clipflow-mate/screen1.png"
       ]
+    },
+    {
+      "id": "zoodoku",
+      "nameKo": "ZooDoku (주도쿠)",
+      "nameEn": "ZooDoku",
+      "category": "game",
+      "categories": [
+        "game"
+      ],
+      "color": "from-emerald-500 via-green-500 to-teal-600",
+      "icon": "/images/apps/zoodoku/icon.png",
+      "iconEmoji": "🦁",
+      "isFree": true,
+      "isNew": true,
+      "isFeatured": true,
+      "tags": [
+        "게임",
+        "스도쿠",
+        "동물퍼즐",
+        "사파리",
+        "두뇌트레이닝",
+        "오프라인"
+      ],
+      "tagsKo": [
+        "게임",
+        "스도쿠",
+        "동물퍼즐",
+        "사파리",
+        "두뇌트레이닝",
+        "오프라인"
+      ],
+      "tagsEn": [
+        "Game",
+        "Sudoku",
+        "AnimalPuzzle",
+        "Safari",
+        "BrainTraining",
+        "Offline"
+      ],
+      "descKo": "숫자 대신 귀여운 아기 동물 타일로 즐기는 힐링 두뇌 트레이닝 9x9 사파리 스도쿠",
+      "descEn": "A cozy brain training 9x9 safari puzzle! Match adorable baby animal tiles instead of numbers.",
+      "featuresKo": [
+        "귀여운 9종 아기 동물 타일: 딱딱한 숫자 대신 사자, 판다, 여우 등 사랑스러운 동물 친구들을 배치하는 힐링 스도쿠",
+        "사파리 정원 & 도감 수집: 퍼즐을 클리어하여 덤불에 갇힌 아기 동물들을 구출하고 나만의 정원을 완성",
+        "100% 오프라인 플레이: 데이터나 Wi-Fi 연결 없이 비행기, 지하철 등 어디서나 완전한 로컬 플레이 지원",
+        "단일 뷰 최적화 UI: 스크롤 없이 한 화면에 사파리 정원과 도감이 쏙 들어오는 쾌적한 전용 레이아웃",
+        "두뇌 부스터 & 도우미: 탐정 고양이(1칸 오픈), 올빼미 엑스레이(후보 노출) 등 직관적인 퍼즐 서포트",
+        "안전한 로컬 저장: 별도 계정 가입 없이 기기 로컬 스토리지에 진행 상황 100% 안전 보관"
+      ],
+      "featuresEn": [
+        "9 Adorable Animal Tiles: A cozy puzzle experience replacing plain numbers with cute baby animals like lions, pandas, and foxes.",
+        "Safari Sanctuary & Collection: Rescue baby animals trapped in bushes and complete your peaceful garden collection.",
+        "100% Offline Play: Enjoy smooth puzzle-solving anywhere—no Wi-Fi or cellular data connection required.",
+        "Single-Screen Compact Layout: Clean, distraction-free interface optimized for all screen ratios without scrolling.",
+        "Helpful Brain Boosters: Utilize Detective Cat (single tile reveal) and Owl X-Ray to overcome challenging spots.",
+        "Secure Local Storage: Progress is stored 100% safely on device storage without requiring account sign-ins."
+      ],
+      "guideKo": "행(가로), 열(세로), 3x3 작은 상자 안에 9마리의 동물이 겹치지 않도록 배치해 보세요. 막힐 때는 하단의 탐정 고양이나 올빼미 엑스레이 부스터를 활용하면 쉽게 풀 수 있습니다!",
+      "guideEn": "Place 9 distinct animals across each row, column, and 3x3 box without duplicates. If you get stuck, try using the Detective Cat or Owl X-Ray boosters to clear the grid!",
+      "screenshots": [
+        "/images/apps/zoodoku/screen1.png",
+        "/images/apps/zoodoku/screen2.png"
+      ],
+      "developer": "WG Apps Studio",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.wgapps.zoodoku",
+      "version": "1.0.2",
+      "updated": "2026. 10",
+      "size": "약 35 MB",
+      "requires": "Android 8.0 이상 (Android 8.0+)",
+      "screenshotsKo": [
+        "/images/apps/zoodoku/screen1.png",
+        "/images/apps/zoodoku/screen2.png"
+      ],
+      "screenshotsEn": [
+        "/images/apps/zoodoku/screen1.png",
+        "/images/apps/zoodoku/screen2.png"
+      ]
     }
   ]
 }

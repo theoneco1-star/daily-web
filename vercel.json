@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!ads\\.txt|app-ads\\.txt|robots\\.txt|sitemap\\.xml|data/|css/|js/|images/|_vercel/).*)",
+      "source": "/((?!ads\\.txt|app-ads\\.txt|robots\\.txt|sitemap\\.xml|data/|css/|js/|images/|assets/|_vercel/).*)",
       "destination": "/index.html"
     }
   ],
@@ -61,6 +61,10 @@
     },
     {
       "source": "/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    },
+    {
+      "source": "/assets/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
     }
   ]

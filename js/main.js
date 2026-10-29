@@ -89,6 +89,16 @@ const guideAppsConfig = [
     badgeEn: "Tools & Work",
     isReady: true,
   },
+  {
+    id: "zoodoku",
+    nameKo: "ZooDoku (주도쿠)",
+    nameEn: "ZooDoku",
+    iconEmoji: "🦁",
+    type: "app",
+    badgeKo: "게임",
+    badgeEn: "Game",
+    isReady: true,
+  },
   // 2. Web Utilities
   {
     id: "pdf-checker",
@@ -164,6 +174,10 @@ const GUIDE_SLUG_MAP = {
   "bookspot": {
     canonicalSlug: "bookspot",
     aliases: ["bookspot", "book-spot", "book_spot"]
+  },
+  "zoodoku": {
+    canonicalSlug: "zoodoku",
+    aliases: ["zoodoku", "zoo-doku", "zoo_doku", "zoodoku-game", "zoodoku-guide"]
   },
   // Web Tools
   "pdf-checker": {
