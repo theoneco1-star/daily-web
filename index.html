@@ -187,6 +187,24 @@
   }
   </script>
 
+  <!-- Structured Data (JSON-LD) for Color Picker & Palette Extractor WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "이미지 & PDF 색상 추출기 (Image & PDF Color Picker & Palette)",
+    "url": "https://dailyhelperhub.com/color-picker.html",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "description": "서버 업로드 없이 100% 브라우저 메모리에서 이미지나 PDF 파일을 업로드하거나 Ctrl+V로 붙여넣어 돋보기 스포이드로 원하는 픽셀 색상 코드를 정밀 추출하고 대표 팔레트를 원클릭 복사하는 무료 웹 도구."
+  }
+  </script>
+
   <!-- Structured Data (JSON-LD) for PDF & Drawing Checker WebApplication -->
   <script type="application/ld+json">
   {
@@ -598,6 +616,14 @@
           <span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">무료 도구</span>
         </a>
         <p class="text-slate-600 dark:text-slate-300 text-xs mb-0">서버 전송 없이 브라우저에서 대용량 PDF 문서와 이미지(JPG, PNG, WEBP)의 용량을 3단계 프리셋으로 즉시 압축·최적화합니다.</p>
+      </li>
+      <li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
+        <a href="/color-picker.html" class="font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1">
+          <span>🎨</span> <span>이미지 &amp; PDF 색상 추출기 (Color Picker &amp; Palette)</span>
+          <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-white">NEW</span>
+          <span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">무료 도구</span>
+        </a>
+        <p class="text-slate-600 dark:text-slate-300 text-xs mb-0">이미지나 PDF를 올리거나 캡처 후 Ctrl+V로 붙여넣어 원하는 픽셀 색상 코드를 정밀 추출하고 대표 팔레트를 원클릭 복사합니다.</p>
       </li>
       <li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
         <a href="#pdf-checker" class="font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1">
@@ -2362,6 +2388,7 @@
           <li class="pt-2 text-[11px] text-slate-500 font-semibold uppercase tracking-wider">주요 도구 바로가기</li>
           <li><a href="/pdf-image-converter.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🔄 PDF ↔ 이미지 변환기</a></li>
           <li><a href="/file-compressor.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🗜️ PDF &amp; 이미지 용량 줄이기</a></li>
+          <li><a href="/color-picker.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🎨 이미지 &amp; PDF 색상 추출기</a></li>
           <li><a href="#pdf-checker" onclick="location.hash='#pdf-checker'" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📐 무설치 PDF/도면 체커</a></li>
           <li><a href="#annual-leave-calculator" onclick="openAnnualLeaveModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 근로기준법 연차 계산기</a></li>
           <li><a href="#wage-calc" onclick="openWageCalcModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🧮 실수령액/주휴수당 계산기</a></li>
@@ -2412,8 +2439,9 @@
 <script src="/js/web-tools.js?v=3.6"></script>
 <script>
   (function() {
-    function injectCompressorTool() {
+    function injectTools() {
       if (typeof webToolsData !== 'undefined' && Array.isArray(webToolsData)) {
+        var changed = false;
         if (!webToolsData.some(function(t) { return t.id === 'file-compressor'; })) {
           webToolsData.splice(1, 0, {
             id: "file-compressor",
@@ -2438,19 +2466,48 @@
             targetUrl: "/file-compressor.html",
             deepLink: "/file-compressor.html"
           });
-          if (typeof renderWebTools === 'function') {
-            renderWebTools();
-          }
+          changed = true;
+        }
+        if (!webToolsData.some(function(t) { return t.id === 'color-picker'; })) {
+          var insertIdx = webToolsData.findIndex(function(t) { return t.id === 'file-compressor'; });
+          var targetIdx = insertIdx !== -1 ? insertIdx + 1 : 1;
+          webToolsData.splice(targetIdx, 0, {
+            id: "color-picker",
+            nameKo: "이미지 & PDF 색상 추출기 (Color Picker & Palette)",
+            nameEn: "Image & PDF Color Picker & Palette Extractor",
+            targetLang: "ALL",
+            isKrOnly: false,
+            category: "utility",
+            color: "from-pink-600 via-rose-500 to-amber-500",
+            iconEmoji: "🎨",
+            isHot: true,
+            isFree: true,
+            isNew: true,
+            badges: ["NEW", "무료 도구", "Web Utility"],
+            descKo: "이미지나 PDF를 올리거나 캡처 후 Ctrl+V로 붙여넣어 원하는 픽셀 색상 코드를 정밀 추출하고 대표 팔레트를 원클릭 복사합니다.",
+            descEn: "Extract precise pixel color codes from images or PDFs (or paste via Ctrl+V) with a magnifying loupe and auto-generate dominant palettes with one-click copy.",
+            tagsKo: ["색상추출", "컬러피커", "팔레트", "HEX코드", "RGB", "스포이드"],
+            tagsEn: ["ColorPicker", "Palette", "Eyedropper", "HEX", "RGB", "PixelColor"],
+            ctaTextKo: "바로 사용하기",
+            ctaTextEn: "Use Tool Now",
+            actionType: "link",
+            targetUrl: "/color-picker.html",
+            deepLink: "/color-picker.html"
+          });
+          changed = true;
+        }
+        if (changed && typeof renderWebTools === 'function') {
+          renderWebTools();
         }
       }
     }
-    injectCompressorTool();
+    injectTools();
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', injectCompressorTool);
+      document.addEventListener('DOMContentLoaded', injectTools);
     }
-    setTimeout(injectCompressorTool, 100);
-    setTimeout(injectCompressorTool, 400);
-    setTimeout(injectCompressorTool, 1200);
+    setTimeout(injectTools, 100);
+    setTimeout(injectTools, 400);
+    setTimeout(injectTools, 1200);
   })();
 </script>
 <script src="/js/pdf-checker.js?v=1.6"></script>
