@@ -205,6 +205,24 @@
   }
   </script>
 
+  <!-- Structured Data (JSON-LD) for PDF & Image Compressor WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF & 이미지 용량 줄이기 (PDF & Image File Compressor)",
+    "url": "https://dailyhelperhub.com/file-compressor.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "description": "서버 업로드 없이 100% 브라우저 메모리에서 PDF 및 이미지(JPG/PNG/WEBP) 파일 용량을 즉시 최적화·압축하는 무료 웹 도구."
+  }
+  </script>
+
   <!-- Structured Data (JSON-LD) for PDF & Drawing Checker WebApplication -->
   <script type="application/ld+json">
   {
@@ -572,6 +590,14 @@
           <span>🔄</span> <span>PDF ↔ 이미지(JPG/PNG) 변환기 (일괄 묶음·분리)</span>
         </a>
         <p class="text-slate-600 dark:text-slate-300 text-xs mb-0">서버 업로드 없이 브라우저 메모리 안에서 여러 이미지를 단일 PDF로 묶거나 다중 페이지 PDF를 고해상도 이미지(ZIP)로 즉시 분리·변환합니다.</p>
+      </li>
+      <li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
+        <a href="/file-compressor.html" class="font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1">
+          <span>🗜️</span> <span>PDF &amp; 이미지 용량 줄이기 (압축기)</span>
+          <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-white">NEW</span>
+          <span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">무료 도구</span>
+        </a>
+        <p class="text-slate-600 dark:text-slate-300 text-xs mb-0">서버 전송 없이 브라우저에서 대용량 PDF 문서와 이미지(JPG, PNG, WEBP)의 용량을 3단계 프리셋으로 즉시 압축·최적화합니다.</p>
       </li>
       <li class="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
         <a href="#pdf-checker" class="font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5 mb-1">
@@ -2335,6 +2361,7 @@
           <li><a href="/contact" class="footer-nav-btn" onclick="navigateRoute(event, '/contact')" data-i18n="nav.contact">문의하기</a></li>
           <li class="pt-2 text-[11px] text-slate-500 font-semibold uppercase tracking-wider">주요 도구 바로가기</li>
           <li><a href="/pdf-image-converter.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🔄 PDF ↔ 이미지 변환기</a></li>
+          <li><a href="/file-compressor.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🗜️ PDF &amp; 이미지 용량 줄이기</a></li>
           <li><a href="#pdf-checker" onclick="location.hash='#pdf-checker'" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📐 무설치 PDF/도면 체커</a></li>
           <li><a href="#annual-leave-calculator" onclick="openAnnualLeaveModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 근로기준법 연차 계산기</a></li>
           <li><a href="#wage-calc" onclick="openWageCalcModal()" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🧮 실수령액/주휴수당 계산기</a></li>
@@ -2383,6 +2410,49 @@
 <script src="/js/i18n.js?v=3.6"></script>
 <script src="/js/apps.js?v=3.6"></script>
 <script src="/js/web-tools.js?v=3.6"></script>
+<script>
+  (function() {
+    function injectCompressorTool() {
+      if (typeof webToolsData !== 'undefined' && Array.isArray(webToolsData)) {
+        if (!webToolsData.some(function(t) { return t.id === 'file-compressor'; })) {
+          webToolsData.splice(1, 0, {
+            id: "file-compressor",
+            nameKo: "PDF & 이미지 용량 줄이기 (압축기)",
+            nameEn: "PDF & Image File Compressor",
+            targetLang: "ALL",
+            isKrOnly: false,
+            category: "utility",
+            color: "from-blue-600 via-indigo-600 to-teal-500",
+            iconEmoji: "🗜️",
+            isHot: true,
+            isFree: true,
+            isNew: true,
+            badges: ["NEW", "무료 도구", "Web Utility"],
+            descKo: "서버 전송 없이 100% 브라우저 메모리에서 대용량 PDF 문서와 이미지(JPG, PNG, WEBP)의 용량을 즉시 압축·최적화합니다.",
+            descEn: "Compress and optimize PDF documents and images (JPG, PNG, WEBP) 100% locally in your browser with zero server upload.",
+            tagsKo: ["PDF압축", "이미지압축", "용량줄이기", "무설치", "보안압축"],
+            tagsEn: ["PDFCompress", "ImageCompress", "FileSizeReducer", "NoInstall", "ClientSide"],
+            ctaTextKo: "바로 사용하기",
+            ctaTextEn: "Use Tool Now",
+            actionType: "link",
+            targetUrl: "/file-compressor.html",
+            deepLink: "/file-compressor.html"
+          });
+          if (typeof renderWebTools === 'function') {
+            renderWebTools();
+          }
+        }
+      }
+    }
+    injectCompressorTool();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', injectCompressorTool);
+    }
+    setTimeout(injectCompressorTool, 100);
+    setTimeout(injectCompressorTool, 400);
+    setTimeout(injectCompressorTool, 1200);
+  })();
+</script>
 <script src="/js/pdf-checker.js?v=1.6"></script>
 <script src="/js/main.js?v=3.6"></script>
 
