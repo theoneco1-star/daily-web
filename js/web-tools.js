@@ -12,7 +12,6 @@ function setSiteTitle(customTitle) {
 
 function restoreDefaultTitle() {
   const modals = [
-    document.getElementById("pdf-to-hwpx-modal"),
     document.getElementById("pdf-checker-modal"),
     document.getElementById("tool-wage-calc-modal"),
     document.getElementById("tool-char-byte-modal"),
@@ -33,29 +32,6 @@ window.restoreDefaultTitle = restoreDefaultTitle;
 
 // ── Default Web Tools Data (Instant fallback & offline ready) ──
 let webToolsData = [
-  {
-    id: "pdf-to-hwpx",
-    nameKo: "PDF → 한글(HWPX) 문서 변환기",
-    nameEn: "PDF to HWPX Converter",
-    targetLang: "KO",
-    isKrOnly: true,
-    category: "utility",
-    color: "from-teal-600 via-emerald-600 to-cyan-700",
-    iconEmoji: "📑",
-    isHot: false,
-    isFree: true,
-    isNew: true,
-    badges: ["NEW", "무료 도구", "Web Utility"],
-    descKo: "서버 업로드 없이 브라우저에서 안전하게 PDF 문서를 편집 가능한 한글(HWPX) 파일로 즉시 변환합니다.",
-    descEn: "Instantly convert PDF documents into editable Korean Hancom HWPX files securely in your browser with zero server upload.",
-    tagsKo: ["PDF변환", "HWPX변환", "한글변환", "무설치"],
-    tagsEn: ["PDFtoHWPX", "HWPXConvert", "HangulDoc", "ClientSide"],
-    ctaTextKo: "바로 사용하기",
-    ctaTextEn: "Use Tool Now",
-    actionType: "modal",
-    targetModal: "pdf-to-hwpx-modal",
-    deepLink: "#pdf-to-hwpx"
-  },
   {
     id: "pdf-checker",
     nameKo: "무설치 PDF & 도면/이미지 검토·마킹 툴",
@@ -366,24 +342,12 @@ function buildWebToolCard(tool) {
       </div>`
     : "";
 
-  // Icon
-  const iconContent = (tool.id === "pdf-to-hwpx" || tool.iconSvg)
-    ? `<svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-        <path d="M16 13H8"></path>
-        <path d="M16 17H8"></path>
-        <path d="M10 9H8"></path>
-        <path d="M18 15l2 2-2 2" stroke-width="2.5"></path>
-      </svg>`
-    : `<span class="text-2xl">${tool.iconEmoji || "⚡"}</span>`;
-
   return `
     <div class="app-card web-tool-card" onclick="handleWebToolAction('${tool.id}')">
       <div class="app-card-inner">
         <div class="flex items-start gap-3 mb-3">
           <div class="app-icon-wrap bg-gradient-to-br ${tool.color}">
-            ${iconContent}
+            <span class="text-2xl">${tool.iconEmoji || "⚡"}</span>
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-1.5 flex-wrap">
@@ -409,9 +373,7 @@ function buildWebToolCard(tool) {
  * Handle Web Tool Click / Action
  */
 function handleWebToolAction(toolId) {
-  if (toolId === "pdf-to-hwpx" || toolId === "pdf-to-hwpx-modal" || toolId === "pdf2hwpx" || toolId === "hwpx") {
-    openPdfToHwpxModal();
-  } else if (toolId === "wage-calc") {
+  if (toolId === "wage-calc") {
     openWageCalcModal();
   } else if (toolId === "char-byte-counter") {
     openCharByteModal();
@@ -423,48 +385,6 @@ function handleWebToolAction(toolId) {
     openPdfCheckerModal();
   }
 }
-
-/**
- * Open / Close PDF to HWPX Modal
- */
-function openPdfToHwpxModal() {
-  const modal = document.getElementById("pdf-to-hwpx-modal");
-  if (modal) {
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
-    modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
-    const isEn = (typeof currentLang !== "undefined" ? currentLang : "ko") === "en";
-    setSiteTitle(isEn ? "PDF to HWPX Converter | Daily Helper" : "PDF → 한글(HWPX) 문서 변환기 | 일상의도움");
-    if (window.location.hash !== "#pdf-to-hwpx") {
-      try {
-        history.replaceState(null, document.title, window.location.pathname + window.location.search + "#pdf-to-hwpx");
-      } catch (_) {}
-    }
-    if (window.pdfToHwpx && typeof window.pdfToHwpx.onOpen === "function") {
-      window.pdfToHwpx.onOpen();
-    }
-  }
-}
-
-function closePdfToHwpxModal() {
-  const modal = document.getElementById("pdf-to-hwpx-modal");
-  if (modal) {
-    modal.classList.remove("flex");
-    modal.classList.add("hidden");
-    modal.style.display = "none";
-    document.body.style.overflow = "";
-    try {
-      history.replaceState(null, "", window.location.pathname + window.location.search);
-    } catch (_) {
-      window.location.hash = "";
-    }
-    restoreDefaultTitle();
-  }
-}
-
-window.openPdfToHwpxModal = openPdfToHwpxModal;
-window.closePdfToHwpxModal = closePdfToHwpxModal;
 
 /**
  * Open / Close PDF Checker Modal (Safe Base & Delegation)
