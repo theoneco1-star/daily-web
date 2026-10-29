@@ -393,7 +393,7 @@
             </div>
 
             <!-- Batch ZIP Download Button (Always accessible once compressed) -->
-            <button type="button" id="btn-download-zip" onclick="downloadAllImagesZip()" class="py-2.5 px-5 rounded-xl bg-gradient-to-r from-teal-600 to-indigo-600 hover:from-teal-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 justify-center cursor-pointer">
+            <button type="button" id="btn-download-zip" onclick="downloadAllImagesZip()" disabled class="py-2.5 px-5 rounded-xl bg-slate-800 text-slate-500 font-bold text-xs sm:text-sm shadow-none transition-all flex items-center gap-2 justify-center cursor-not-allowed opacity-60">
               <span>📦</span>
               <span data-i18n="downloadZipBtn">압축 파일 일괄 다운로드 (ZIP)</span>
             </button>
@@ -422,10 +422,10 @@
           <!-- Dynamically populated cards -->
         </div>
 
-        <!-- Re-compress All Button (Shown if preset changed) -->
-        <button type="button" id="btn-recompress-all" onclick="compressAllImages()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-teal-600 via-indigo-600 to-cyan-500 hover:from-teal-500 hover:to-cyan-400 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-teal-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer">
+        <!-- Image Compress Action Button -->
+        <button type="button" id="btn-start-img-compress" onclick="compressAllImages()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-teal-600 via-indigo-600 to-cyan-500 hover:from-teal-500 hover:to-cyan-400 text-white font-extrabold text-base sm:text-lg shadow-xl shadow-teal-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer">
           <span>⚡</span>
-          <span data-i18n="recompressAllBtn">전체 이미지 재압축 실행</span>
+          <span data-i18n="startImgCompressBtn">이미지 압축 시작하기</span>
         </button>
 
       </div>
@@ -529,10 +529,15 @@
           formatWebp: 'WebP 변환 (초고압축·투명도 유지)',
           downloadZipBtn: '압축 파일 일괄 다운로드 (ZIP)',
           imgCompressing: '이미지 일괄 압축 진행 중...',
+          startImgCompressBtn: '이미지 압축 시작하기',
           recompressAllBtn: '전체 이미지 재압축 실행',
           downloadSingle: '다운로드',
           originalTag: '원본',
           compressedTag: '압축',
+          statusPending: '대기 중',
+          statusProcessing: '압축 중...',
+          statusError: '오류',
+          savingsBadgeSuffix: '절감',
           totalImagesBadge: '총 {count}개 이미지',
           totalSavingsPill: '총 {percent}% 절감 (-{saved})',
 
@@ -604,10 +609,15 @@
           formatWebp: 'Convert to WebP (Highest Savings & Alpha)',
           downloadZipBtn: 'Download All Compressed (ZIP)',
           imgCompressing: 'Batch compressing images...',
+          startImgCompressBtn: 'Start Image Compression',
           recompressAllBtn: 'Re-compress All Images',
           downloadSingle: 'Download',
           originalTag: 'Original',
           compressedTag: 'Compressed',
+          statusPending: 'Pending',
+          statusProcessing: 'Compressing...',
+          statusError: 'Error',
+          savingsBadgeSuffix: 'Saved',
           totalImagesBadge: 'Total {count} Images',
           totalSavingsPill: 'Total {percent}% Saved (-{saved})',
 
@@ -742,6 +752,8 @@
         // Re-render UI elements that contain dynamic data
         updatePdfResultUI();
         renderImageList();
+        updateZipButtonState();
+        updateCompressButtonText();
       };
 
       // ── Tab Mode Switching ────────────────────────────────────
@@ -779,10 +791,9 @@
           }
         });
 
-        // If images already present, offer recompression or highlight button
+        // Update button text / state if images already present
         if (imageList.length > 0) {
-          const btn = document.getElementById('btn-recompress-all');
-          if (btn) btn.classList.remove('hidden');
+          updateCompressButtonText();
         }
       };
 
@@ -1049,7 +1060,9 @@
 
         document.getElementById('img-content-area').classList.remove('hidden');
         renderImageList();
-        compressAllImages();
+        updateTotalStats();
+        updateZipButtonState();
+        updateCompressButtonText();
       }
 
       window.clearAllImages = function() {
@@ -1060,6 +1073,9 @@
         document.getElementById('img-file-input').value = '';
         document.getElementById('img-content-area').classList.add('hidden');
         renderImageList();
+        updateTotalStats();
+        updateZipButtonState();
+        updateCompressButtonText();
       };
 
       window.removeImageItem = function(id) {
@@ -1073,11 +1089,15 @@
         } else {
           renderImageList();
           updateTotalStats();
+          updateZipButtonState();
+          updateCompressButtonText();
         }
       };
 
       window.onImgFormatChange = function() {
-        compressAllImages();
+        if (imageList.length > 0) {
+          updateCompressButtonText();
+        }
       };
 
       window.compressAllImages = async function() {
@@ -1087,6 +1107,12 @@
         const progressBox = document.getElementById('img-progress-box');
         const progressBar = document.getElementById('img-progress-bar');
         const progressPercent = document.getElementById('img-progress-percent');
+        const compressBtn = document.getElementById('btn-start-img-compress');
+        if (compressBtn) {
+          compressBtn.disabled = true;
+          compressBtn.classList.add('opacity-60', 'cursor-not-allowed');
+        }
+
         progressBox.classList.remove('hidden');
         progressBar.style.width = '0%';
         progressPercent.textContent = '0%';
@@ -1117,8 +1143,14 @@
 
         progressBox.classList.add('hidden');
         isImgProcessing = false;
+        if (compressBtn) {
+          compressBtn.disabled = false;
+          compressBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+        }
         renderImageList();
         updateTotalStats();
+        updateZipButtonState();
+        updateCompressButtonText();
         showToast(t('imgCompressSuccess'));
       };
 
@@ -1204,6 +1236,28 @@
         });
       }
 
+      function updateZipButtonState() {
+        const btnZip = document.getElementById('btn-download-zip');
+        if (!btnZip) return;
+        const hasDone = imageList.some(i => i.status === 'done' && i.compressedBlob);
+        btnZip.disabled = !hasDone;
+        if (hasDone) {
+          btnZip.className = 'py-2.5 px-5 rounded-xl bg-gradient-to-r from-teal-600 to-indigo-600 hover:from-teal-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 justify-center cursor-pointer';
+        } else {
+          btnZip.className = 'py-2.5 px-5 rounded-xl bg-slate-800 text-slate-500 font-bold text-xs sm:text-sm shadow-none transition-all flex items-center gap-2 justify-center cursor-not-allowed opacity-60';
+        }
+      }
+
+      function updateCompressButtonText() {
+        const btn = document.getElementById('btn-start-img-compress');
+        if (!btn) return;
+        const hasDone = imageList.some(i => i.status === 'done');
+        const hasPending = imageList.some(i => i.status === 'pending');
+
+        const labelKey = (!hasDone || hasPending) ? 'startImgCompressBtn' : 'recompressAllBtn';
+        btn.innerHTML = `<span>⚡</span><span data-i18n="${labelKey}">${t(labelKey)}</span>`;
+      }
+
       function renderImageList() {
         const container = document.getElementById('img-items-container');
         if (!container) return;
@@ -1221,12 +1275,14 @@
           const savedPercent = item.originalSize > 0 && item.compressedSize > 0 ? Math.round((savedBytes / item.originalSize) * 100) : 0;
 
           let badgeHtml = '';
-          if (item.status === 'processing') {
-            badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-950 text-indigo-300 border border-indigo-700/60 animate-pulse">압축 중...</span>`;
+          if (item.status === 'pending') {
+            badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">${t('statusPending')}</span>`;
+          } else if (item.status === 'processing') {
+            badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-950 text-indigo-300 border border-indigo-700/60 animate-pulse">${t('statusProcessing')}</span>`;
           } else if (item.status === 'done') {
-            badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold ${savedPercent > 0 ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-slate-800 text-slate-300 border border-slate-700'}">${savedPercent}% 절감</span>`;
+            badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold ${savedPercent > 0 ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-slate-800 text-slate-300 border border-slate-700'}">${savedPercent}% ${t('savingsBadgeSuffix')}</span>`;
           } else if (item.status === 'error') {
-            badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-950 text-rose-300 border border-rose-700/60">오류</span>`;
+            badgeHtml = `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-950 text-rose-300 border border-rose-700/60">${t('statusError')}</span>`;
           }
 
           html += `
@@ -1240,8 +1296,10 @@
                   </div>
                   <div class="flex items-center gap-2 text-xs text-slate-400 mt-1 font-mono">
                     <span class="text-slate-400">${t('originalTag')}: ${origSizeStr}</span>
-                    <span class="text-slate-600">→</span>
-                    <span class="font-bold text-emerald-400">${t('compressedTag')}: ${compSizeStr}</span>
+                    ${item.status === 'done' ? `
+                      <span class="text-slate-600">→</span>
+                      <span class="font-bold text-emerald-400">${t('compressedTag')}: ${compSizeStr}</span>
+                    ` : ''}
                   </div>
                 </div>
               </div>
@@ -1333,3 +1391,4 @@
   </script>
 </body>
 </html>
+
