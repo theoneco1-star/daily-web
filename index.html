@@ -457,7 +457,7 @@
                 onclick="switchMainTab('tools')">
           <span class="gnb-tab-icon">⚡</span>
           <span class="gnb-tab-text" data-i18n="tabs.webTools">웹 도구</span>
-          <span class="gnb-tab-badge new-badge badge-tools-count" id="badge-tools-count">5</span>
+          <span class="gnb-tab-badge new-badge badge-tools-count" id="badge-tools-count">8</span>
         </button>
       </nav>
     </div>
@@ -496,7 +496,7 @@
               onclick="switchMainTab('tools')">
         <span class="subnav-icon">⚡</span>
         <span class="subnav-text" data-i18n="tabs.webTools">웹 도구</span>
-        <span class="subnav-badge new-badge badge-tools-count">5</span>
+        <span class="subnav-badge new-badge badge-tools-count">8</span>
       </button>
     </div>
   </nav>
@@ -826,6 +826,11 @@
         <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">게임</span>
       </a>
 
+      <a href="/guide/pdf-image-converter" class="guide-tab-btn" onclick="onGuideTabClick(event, 'pdf-image-converter')" role="tab" aria-selected="false">
+        <span class="guide-tab-icon">🔄</span>
+        <span class="guide-tab-name">PDF ↔ 이미지 변환기</span>
+        <span class="guide-tab-badge-type ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300">웹 도구</span>
+      </a>
       <a href="/guide/pdf-checker" class="guide-tab-btn" onclick="onGuideTabClick(event, 'pdf-checker')" role="tab" aria-selected="false">
         <span class="guide-tab-icon">📐</span>
         <span class="guide-tab-name">PDF &amp; 도면 체커</span>
@@ -2494,6 +2499,12 @@
             targetUrl: "/color-picker.html",
             deepLink: "/color-picker.html"
           });
+          changed = true;
+        }
+        var wageTool = webToolsData.find(function(t) { return t.id === 'wage-calc'; });
+        if (wageTool && (wageTool.isKrOnly || wageTool.targetLang !== 'ALL')) {
+          wageTool.isKrOnly = false;
+          wageTool.targetLang = "ALL";
           changed = true;
         }
         if (changed && typeof renderWebTools === 'function') {

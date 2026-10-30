@@ -101,6 +101,16 @@ const guideAppsConfig = [
   },
   // 2. Web Utilities
   {
+    id: "pdf-image-converter",
+    nameKo: "PDF ↔ 이미지 변환기",
+    nameEn: "PDF & Image Converter",
+    iconEmoji: "🔄",
+    type: "tool",
+    badgeKo: "웹 도구",
+    badgeEn: "Web Tool",
+    isReady: true,
+  },
+  {
     id: "pdf-checker",
     nameKo: "PDF & 도면 체커",
     nameEn: "PDF Drawing Checker",
@@ -180,6 +190,10 @@ const GUIDE_SLUG_MAP = {
     aliases: ["zoodoku", "zoo-doku", "zoo_doku", "zoodoku-game", "zoodoku-guide"]
   },
   // Web Tools
+  "pdf-image-converter": {
+    canonicalSlug: "pdf-image-converter",
+    aliases: ["pdf-image-converter", "pdf-to-image", "image-to-pdf", "pdf-image", "pdfimage", "pdf-image-converter-guide"]
+  },
   "pdf-checker": {
     canonicalSlug: "pdf-checker",
     aliases: ["pdf-checker", "pdfchecker", "drawing-checker", "pdf-marking"]
