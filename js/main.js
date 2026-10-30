@@ -111,6 +111,16 @@ const guideAppsConfig = [
     isReady: true,
   },
   {
+    id: "file-compressor",
+    nameKo: "PDF & 이미지 압축기",
+    nameEn: "PDF & Image Compressor",
+    iconEmoji: "🗜️",
+    type: "tool",
+    badgeKo: "웹 도구",
+    badgeEn: "Web Tool",
+    isReady: true,
+  },
+  {
     id: "pdf-checker",
     nameKo: "PDF & 도면 체커",
     nameEn: "PDF Drawing Checker",
@@ -193,6 +203,10 @@ const GUIDE_SLUG_MAP = {
   "pdf-image-converter": {
     canonicalSlug: "pdf-image-converter",
     aliases: ["pdf-image-converter", "pdf-to-image", "image-to-pdf", "pdf-image", "pdfimage", "pdf-image-converter-guide"]
+  },
+  "file-compressor": {
+    canonicalSlug: "file-compressor",
+    aliases: ["file-compressor", "pdf-compressor", "image-compressor", "compressor", "file-compress", "pdf-image-compressor"]
   },
   "pdf-checker": {
     canonicalSlug: "pdf-checker",
