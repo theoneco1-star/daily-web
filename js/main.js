@@ -121,6 +121,16 @@ const guideAppsConfig = [
     isReady: true,
   },
   {
+    id: "color-picker",
+    nameKo: "이미지 & PDF 색상 추출기",
+    nameEn: "Image & PDF Color Picker",
+    iconEmoji: "🎨",
+    type: "tool",
+    badgeKo: "웹 도구",
+    badgeEn: "Web Tool",
+    isReady: true,
+  },
+  {
     id: "pdf-checker",
     nameKo: "PDF & 도면 체커",
     nameEn: "PDF Drawing Checker",
@@ -207,6 +217,10 @@ const GUIDE_SLUG_MAP = {
   "file-compressor": {
     canonicalSlug: "file-compressor",
     aliases: ["file-compressor", "pdf-compressor", "image-compressor", "compressor", "file-compress", "pdf-image-compressor"]
+  },
+  "color-picker": {
+    canonicalSlug: "color-picker",
+    aliases: ["color-picker", "colorpicker", "image-color-picker", "pdf-color-picker", "palette-extractor"]
   },
   "pdf-checker": {
     canonicalSlug: "pdf-checker",
