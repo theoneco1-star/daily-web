@@ -309,7 +309,10 @@ const translations = {
       "subtitle": "검증된 안드로이드 앱과 유용한 도구로 당신의 하루를 업그레이드하세요.",
       "searchPlaceholder": "앱 또는 도구 이름 검색...",
       "totalApps": "개의 앱",
-      "resultsFound": "개 검색됨"
+      "resultsFound": "개 검색됨",
+      "trustBadge1": "100% 클라이언트 연산 (서버 무전송)",
+      "trustBadge2": "무설치 초경량 웹 유틸리티",
+      "trustBadge3": "검증된 실무 도구 8종 & 라이프 앱 6종"
     },
     "proof": {
       "apps": "10+ 유용한 스마트폰 앱",
@@ -898,7 +901,45 @@ const translations = {
       "copyright": "© 2026 일상의도움 (Daily Helper). All rights reserved.",
       "links": "빠른 링크",
       "legal": "법적 고지",
-      "emailLabel": "문의 이메일: "
+      "emailLabel": "문의 이메일: ",
+      "desc": "Google AdSense 및 글로벌 웹 표준을 준수하는 무설치 클라이언트 웹 유틸리티 & 모바일 라이프스타일 앱 포털",
+      "toolsTitle": "주요 도구 바로가기",
+      "guidesTitle": "서비스 이용 가이드",
+      "linkArticleLeave": "📑 칼럼: 근로기준법 연차 정산 가이드",
+      "linkArticleLeaveText": "칼럼: 근로기준법 연차 정산 가이드",
+      "linkBakeMerge": "Bake Merge (베이크 머지)",
+      "bakeMerge": "Bake Merge (베이크 머지)",
+      "linkTimekeeper": "TimeKeeper (타임키퍼)",
+      "timekeeper": "TimeKeeper (타임키퍼)",
+      "linkDaycount": "DayCount (디데이)",
+      "daycount": "DayCount (디데이)",
+      "linkBookspot": "BookSpot (북스팟)",
+      "bookspot": "BookSpot (북스팟)",
+      "linkClipflow": "ClipFlow Mate (클립플로우 메이트)",
+      "clipflow": "ClipFlow Mate (클립플로우 메이트)",
+      "linkZoodoku": "ZooDoku (주도쿠)",
+      "zoodoku": "ZooDoku (주도쿠)",
+      "linkPdfConverter": "PDF ↔ 이미지 변환기",
+      "pdfConverter": "PDF ↔ 이미지 변환기",
+      "linkCompressor": "PDF & 이미지 용량 줄이기",
+      "compressor": "PDF & 이미지 용량 줄이기",
+      "linkPicker": "이미지 & PDF 색상 추출기",
+      "picker": "이미지 & PDF 색상 추출기",
+      "linkPdfChecker": "무설치 PDF/도면 체커",
+      "pdfChecker": "무설치 PDF/도면 체커",
+      "linkAnnualLeave": "근로기준법 연차 계산기",
+      "annualLeave": "근로기준법 연차 계산기",
+      "linkWageCalc": "실수령액·주휴수당 계산기",
+      "wageCalc": "실수령액·주휴수당 계산기",
+      "linkExcelConverter": "엑셀 구분자 변환기",
+      "excelConverter": "엑셀 구분자 변환기",
+      "linkCharCounter": "자소서 글자수·Byte 변환",
+      "charCounter": "자소서 글자수·Byte 변환"
+    },
+    "article": {
+      "headerCategory": "노동법률 가이드 칼럼",
+      "backHome": "← 메인 홈",
+      "home": "← Home"
     },
     "empty": {
       "title": "검색 결과가 없습니다",
@@ -1216,7 +1257,10 @@ const translations = {
       "subtitle": "Upgrade your daily routine with handpicked Android apps and essential tools.",
       "searchPlaceholder": "Search apps or tools...",
       "totalApps": "apps available",
-      "resultsFound": "results found"
+      "resultsFound": "results found",
+      "trustBadge1": "100% Client-Side Processing (Zero Server Upload)",
+      "trustBadge2": "No Install, Ultra-Lightweight Web Tools",
+      "trustBadge3": "8 Field-Ready Web Tools & 6 Lifestyle Apps"
     },
     "proof": {
       "apps": "10+ Useful Smartphone Apps",
@@ -1805,7 +1849,45 @@ const translations = {
       "copyright": "© 2026 Daily Helper. All rights reserved.",
       "links": "Quick Links",
       "legal": "Legal",
-      "emailLabel": "Contact Email: "
+      "emailLabel": "Contact Email: ",
+      "desc": "Privacy-first, zero-server client web utilities and lifestyle apps adhering to global web standards.",
+      "toolsTitle": "Featured Web Tools",
+      "guidesTitle": "Service Guides",
+      "linkArticleLeave": "📑 Article: Korean Labor Law Annual Leave Guide",
+      "linkArticleLeaveText": "Article: Korean Labor Law Annual Leave Guide",
+      "linkBakeMerge": "Bake Merge (3D Physics Puzzle)",
+      "bakeMerge": "Bake Merge (3D Physics Puzzle)",
+      "linkTimekeeper": "TimeKeeper (Smart Routine & Timer)",
+      "timekeeper": "TimeKeeper (Smart Routine & Timer)",
+      "linkDaycount": "DayCount (D-Day & Goal Tracker)",
+      "daycount": "DayCount (D-Day & Goal Tracker)",
+      "linkBookspot": "BookSpot (Voice Bookshelf Organizer)",
+      "bookspot": "BookSpot (Voice Bookshelf Organizer)",
+      "linkClipflow": "ClipFlow Mate (Smart Clipboard Manager)",
+      "clipflow": "ClipFlow Mate (Smart Clipboard Manager)",
+      "linkZoodoku": "ZooDoku (Animal Sudoku Puzzle)",
+      "zoodoku": "ZooDoku (Animal Sudoku Puzzle)",
+      "linkPdfConverter": "PDF ↔ Image Converter",
+      "pdfConverter": "PDF ↔ Image Converter",
+      "linkCompressor": "PDF & Image Compressor",
+      "compressor": "PDF & Image Compressor",
+      "linkPicker": "Image & PDF Color Picker",
+      "picker": "Image & PDF Color Picker",
+      "linkPdfChecker": "Browser PDF/Drawing Checker",
+      "pdfChecker": "Browser PDF/Drawing Checker",
+      "linkAnnualLeave": "Annual Leave Calculator",
+      "annualLeave": "Annual Leave Calculator",
+      "linkWageCalc": "Net Pay & Holiday Pay Calculator",
+      "wageCalc": "Net Pay & Holiday Pay Calculator",
+      "linkExcelConverter": "Excel Delimiter Converter",
+      "excelConverter": "Excel Delimiter Converter",
+      "linkCharCounter": "Character & Byte Counter",
+      "charCounter": "Character & Byte Counter"
+    },
+    "article": {
+      "headerCategory": "HR & Labor Law Column",
+      "backHome": "← Home",
+      "home": "← Home"
     },
     "empty": {
       "title": "No results found",
@@ -1899,4 +1981,16 @@ function applyTranslations() {
     const val = t(el.getAttribute("data-i18n-title"));
     if (val) el.setAttribute("title", val);
   });
+}
+
+window.setLang = setLang;
+window.applyTranslations = applyTranslations;
+window.t = t;
+
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyTranslations);
+  } else {
+    applyTranslations();
+  }
 }
