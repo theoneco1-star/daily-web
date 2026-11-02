@@ -127,7 +127,7 @@
 </head>
 
 <body
-  class="bg-slate-950 text-slate-100 min-h-screen lg:h-screen lg:overflow-hidden flex flex-col font-['Noto_Sans_KR',sans-serif] selection:bg-pink-500 selection:text-white">
+  class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-['Noto_Sans_KR',sans-serif] selection:bg-pink-500 selection:text-white">
 
   <!-- Top Navigation Bar (Compact 56px) -->
   <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shrink-0">
@@ -212,7 +212,7 @@
       class="hidden" />
 
     <!-- 2-Column Split Workspace Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 flex-1 min-h-0 h-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 min-h-[580px] lg:h-[calc(100vh-140px)]">
 
       <!-- ══════════════════════════════════════════════════════════════ -->
       <!-- LEFT COLUMN: Canvas & Dropzone Workspace (67% Width)           -->
@@ -417,6 +417,38 @@
 
     </div>
 
+    <!-- Frequently Asked Questions & Practical Usage Guide Section -->
+    <section class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-5 sm:p-7 flex flex-col gap-5 text-slate-300 shadow-md my-3">
+      <div class="flex items-center gap-2.5 font-bold text-base sm:text-lg text-white border-b border-slate-800/80 pb-3">
+        <span class="text-pink-400 text-lg sm:text-xl">💡</span>
+        <h2 class="text-base sm:text-lg font-bold text-white">정밀 색상 추출기 활용 팁 (FAQ)</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- FAQ Item 1 -->
+        <article class="p-4 sm:p-5 rounded-xl bg-slate-950/70 border border-slate-800/80 flex flex-col gap-2.5">
+          <h3 class="text-sm sm:text-base font-bold text-pink-300 flex items-start gap-2">
+            <span class="text-xs px-2 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800/60 font-mono font-bold shrink-0 mt-0.5">Q</span>
+            <span>별도 프로그램을 설치하지 않아도 되나요?</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pl-7 sm:pl-8 mb-0">
+            <strong class="text-slate-300">답변:</strong> 네, 포토샵이나 별도 캡처 툴 설치 없이 웹 브라우저에서 이미지/PDF 파일을 올리거나 Win+Shift+S 캡처 후 Ctrl+V 단축키로 붙여넣어 즉시 사용할 수 있습니다.
+          </p>
+        </article>
+
+        <!-- FAQ Item 2 -->
+        <article class="p-4 sm:p-5 rounded-xl bg-slate-950/70 border border-slate-800/80 flex flex-col gap-2.5">
+          <h3 class="text-sm sm:text-base font-bold text-pink-300 flex items-start gap-2">
+            <span class="text-xs px-2 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800/60 font-mono font-bold shrink-0 mt-0.5">Q</span>
+            <span>HEX, RGB, HSL 코드의 차이점은 무엇인가요?</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed pl-7 sm:pl-8 mb-0">
+            <strong class="text-slate-300">답변:</strong> 웹/앱 개발 및 대부분의 디자인 툴에는 6자리 16진수 코드인 HEX(#000000)가 주로 사용되며, 오피스 프로그램 및 파이썬 등 수치 입력 환경에는 RGB, 명도·채도 미세 조절 시에는 HSL이 활용됩니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
   </main>
 
   <!-- ══════════════════════════════════════════════════════════════ -->
@@ -455,7 +487,7 @@
 
   <!-- Minimal Slim Footer (Compact 32px) -->
   <footer
-    class="bg-slate-950 border-t border-slate-900 shrink-0 h-8 flex items-center justify-between px-4 text-[11px] text-slate-500">
+    class="bg-slate-950 border-t border-slate-900 shrink-0 min-h-8 py-3 flex items-center justify-between px-4 text-[11px] text-slate-500 mt-auto">
     <div data-i18n="footerCopyright">© 2026 일상의도움 (Daily Helper). All rights reserved.</div>
     <div class="hidden sm:flex items-center gap-3">
       <a href="/" class="hover:text-slate-400 transition-colors" data-i18n="footerHome">홈</a>
