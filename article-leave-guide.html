@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>근로기준법 제60조 기준 연차유급휴가 산정 원칙과 1년 미만 입사자 정산 완벽 가이드 | 일상의도움</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="대한민국 근로기준법 제60조에 따른 연차유급휴가 산정 원칙, 1년 미만 입사자 월차 발생 원리와 11일 독립 부여 기준, 입사일 vs 회계연도 기준 정산 비교 및 퇴직 시 미사용 연차수당 정산 공식을 총정리한 실무 인사노무 가이드입니다." />
+  <meta name="keywords" content="근로기준법 60조, 연차유급휴가, 연차 계산법, 1년 미만 연차, 월차 발생기준, 회계연도 연차, 입사일 기준 연차, 미사용 연차수당, 연차수당 계산기, 노동법 HR 가이드, 통상임금 연차수당" />
+  <meta name="author" content="일상의도움 HR 법률 리서치팀" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyhelperhub.com/article-leave-guide.html" />
+
+  <!-- Open Graph / SNS -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dailyhelperhub.com/article-leave-guide.html" />
+  <meta property="og:title" content="근로기준법 제60조 기준 연차유급휴가 산정 원칙과 1년 미만 입사자 정산 완벽 가이드" />
+  <meta property="og:description" content="입사일 기준과 회계연도 기준의 차이, 중도입사자 월차 발생 원리, 퇴직 시 미사용 연차수당 정산 기준 총정리" />
+  <meta property="og:image" content="https://dailyhelperhub.com/images/og-image.png" />
+  <meta property="article:published_time" content="2026-11-02T09:00:00+09:00" />
+  <meta property="article:section" content="Labor Law & HR Tips" />
+  <meta property="article:tag" content="연차유급휴가" />
+  <meta property="article:tag" content="근로기준법" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://dailyhelperhub.com/article-leave-guide.html" />
+  <meta name="twitter:title" content="근로기준법 제60조 기준 연차유급휴가 산정 원칙과 1년 미만 입사자 정산 완벽 가이드" />
+  <meta name="twitter:description" content="입사일 기준과 회계연도 기준의 차이, 중도입사자 월차 발생 원리, 퇴직 시 미사용 연차수당 정산 기준 총정리" />
+  <meta name="twitter:image" content="https://dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Early Theme & Language Sync to prevent FOUC -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('dh_dark');
+        if (savedTheme === 'false') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+        var savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
+          document.documentElement.lang = 'en';
+        }
+      } catch (_) { }
+    })();
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6278124637694502" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+            primaryLight: '#818cf8',
+            accent: '#06b6d4',
+            surfaceDark: '#0b0f19',
+            cardDark: '#131b2e'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/custom.css?v=4.5" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://dailyhelperhub.com/article-leave-guide.html"
+    },
+    "headline": "근로기준법 제60조 기준 연차유급휴가 산정 원칙과 1년 미만 입사자 정산 완벽 가이드",
+    "description": "입사일 기준과 회계연도 기준의 차이, 중도입사자 월차 발생 원리, 퇴직 시 미사용 연차수당 정산 기준 총정리",
+    "image": "https://dailyhelperhub.com/images/og-image.png",
+    "author": {
+      "@type": "Organization",
+      "name": "일상의도움 (Daily Helper)",
+      "url": "https://dailyhelperhub.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "일상의도움 (Daily Helper)",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://dailyhelperhub.com/favicon.svg"
+      }
+    },
+    "datePublished": "2026-11-02T09:00:00+09:00",
+    "dateModified": "2026-11-02T09:00:00+09:00"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://dailyhelperhub.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "노동법률 가이드",
+        "item": "https://dailyhelperhub.com/article-leave-guide.html"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Article Typography Enhancements */
+    .article-body h2 {
+      scroll-margin-top: 5rem;
+    }
+    .article-body h3 {
+      scroll-margin-top: 5rem;
+    }
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4, #10b981);
+      z-index: 60;
+      transition: width 0.1s ease;
+      width: 0%;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.4);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.7);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-['Noto_Sans_KR',sans-serif] antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+
+  <!-- Top Reading Progress Indicator -->
+  <div id="reading-progress" class="reading-progress-bar" aria-hidden="true"></div>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+      <!-- Left: Logo & Breadcrumb -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 text-slate-900 dark:text-white hover:opacity-90 transition-opacity">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/20">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              <path d="M5 3v4"/>
+              <path d="M19 17v4"/>
+              <path d="M3 5h4"/>
+              <path d="M17 19h4"/>
+            </svg>
+          </div>
+          <span class="font-extrabold text-base sm:text-lg tracking-tight" data-i18n="brand">일상의도움</span>
+        </a>
+        <span class="text-slate-300 dark:text-slate-700">/</span>
+        <span class="text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+          <span>📖</span>
+          <span>노동법률 가이드 칼럼</span>
+        </span>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Dark Mode Toggle Button -->
+        <button type="button" id="theme-toggle-btn" onclick="toggleDarkMode()"
+          class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+          aria-label="화면 모드 전환" title="다크/라이트 모드 전환">
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.73 0-.71-.71M6.34 6.34l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+
+        <!-- Main Hub Link -->
+        <a href="/" class="px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-indigo-700 dark:text-slate-200 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5">
+          <span>←</span>
+          <span>메인 홈</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Layout Container -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 sm:py-12 flex flex-col gap-8">
+
+    <!-- Article Header & Hero Section -->
+    <header class="border-b border-slate-200 dark:border-slate-800 pb-8">
+      <!-- Badge -->
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+          <span>⚖️</span>
+          <span>실무 노동법률 가이드 (Labor Law &amp; HR Tips)</span>
+        </span>
+        <span class="text-xs text-slate-500 dark:text-slate-400">근로기준법 실무 해설</span>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug sm:leading-tight mb-4">
+        근로기준법 제60조 기준 연차유급휴가 산정 원칙과 1년 미만 입사자 정산 완벽 가이드
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-6">
+        입사일 기준과 회계연도 기준의 차이, 중도입사자 월차 발생 원리, 퇴직 시 미사용 연차수당 정산 기준 총정리
+      </p>
+
+      <!-- Metadata Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm text-slate-500 dark:text-slate-400 pt-4 border-t border-slate-100 dark:border-slate-800/60">
+        <div class="flex items-center gap-4 flex-wrap">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span class="font-medium text-slate-700 dark:text-slate-300">일상의도움 HR 법률 리서치팀</span>
+          </span>
+          <span>•</span>
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <time datetime="2026-11-02">2026년 11월 2일 기준 법령 반영</time>
+          </span>
+          <span>•</span>
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>소요 시간: 약 6분 읽기</span>
+          </span>
+        </div>
+
+        <button type="button" onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors text-xs">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          <span>인쇄 / PDF 저장</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 목차 (Quick Navigation) Box -->
+    <nav class="p-5 sm:p-6 rounded-2xl bg-indigo-50/60 dark:bg-slate-900/80 border border-indigo-100 dark:border-indigo-900/40 shadow-sm" aria-label="목차 빠른 이동">
+      <div class="flex items-center gap-2 mb-3 text-slate-900 dark:text-white font-bold text-sm sm:text-base">
+        <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+        </svg>
+        <span>목차 (Quick Navigation)</span>
+      </div>
+      <ol class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+        <li>
+          <a href="#section-1" class="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
+            <span class="w-5 h-5 rounded-full bg-indigo-200/60 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-bold flex items-center justify-center text-xs shrink-0">1</span>
+            <span>근로기준법 제60조 연차유급휴가의 기본 개념</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-2" class="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
+            <span class="w-5 h-5 rounded-full bg-indigo-200/60 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-bold flex items-center justify-center text-xs shrink-0">2</span>
+            <span>1년 미만 근로자의 월별 연차(월차) 발생 원리와 유의사항</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-3" class="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
+            <span class="w-5 h-5 rounded-full bg-indigo-200/60 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-bold flex items-center justify-center text-xs shrink-0">3</span>
+            <span>입사일 기준 vs 회계연도 기준 정산 방식 비교</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-4" class="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
+            <span class="w-5 h-5 rounded-full bg-indigo-200/60 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-bold flex items-center justify-center text-xs shrink-0">4</span>
+            <span>근속연수에 따른 연차 가산일수 산정 공식</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-5" class="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
+            <span class="w-5 h-5 rounded-full bg-indigo-200/60 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-bold flex items-center justify-center text-xs shrink-0">5</span>
+            <span>퇴직 시 미사용 연차유급휴가 수당 산출 및 지급 의무</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-6" class="hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1.5 transition-colors">
+            <span class="w-5 h-5 rounded-full bg-indigo-200/60 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-bold flex items-center justify-center text-xs shrink-0">6</span>
+            <span>실무 적용을 위한 '연차 자동 계산기' 활용법</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Article Content Section -->
+    <article class="article-body space-y-12 text-slate-800 dark:text-slate-200 leading-relaxed text-sm sm:text-base">
+
+      <!-- Section 1 -->
+      <section id="section-1" class="space-y-4">
+        <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+          <span>Section 01</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight border-b border-slate-200 dark:border-slate-800 pb-2">
+          1. 근로기준법 제60조 연차유급휴가의 기본 개념
+        </h2>
+
+        <p>
+          대한민국 근로기준법 제60조는 노동자의 정신적·육체적 휴양의 기회를 보장하고 문화적 생활의 향상을 도모하기 위해 <strong>‘연차유급휴가(Annual Paid Leave)’</strong> 제도를 규정하고 있습니다. 연차유급휴가는 상시 근로자 수 <strong>5인 이상 사업장</strong>에 적용되며, 4주간을 평균하여 1주 동안의 소정근로시간이 <strong>15시간 이상인 근로자</strong>라면 정규직, 계약직, 아르바이트(단시간 근로자)를 불문하고 법적으로 반드시 부여받아야 하는 강행 규정입니다.
+        </p>
+
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900 border-l-4 border-indigo-500 text-xs sm:text-sm my-4">
+          <p class="font-bold text-slate-900 dark:text-white mb-1">📜 근로기준법 제60조 제1항</p>
+          <p class="text-slate-600 dark:text-slate-300 italic mb-0">
+            "사용자는 1년간 80퍼센트 이상 출근한 근로자에게 15일의 유급휴가를 주어야 한다."
+          </p>
+        </div>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 소정근로일수 산정과 출근율 80% 요건의 핵심 기준
+        </h3>
+        <p>
+          연차 발생의 핵심 기준인 <strong>출근율 80%</strong>는 역일상의 전체 일수가 아니라, 근로자와 회사가 일하기로 사전에 정한 날인 <strong>‘소정근로일수(Scheduled Working Days)’</strong>를 분모로 하여 계산합니다. 이때 법정 휴일(주휴일, 근로자의 날, 관공서 공휴일)이나 약정 휴일은 소정근로일수 계산에서 제외됩니다.
+        </p>
+        <p>
+          특히 노동법은 근로자의 귀책사유가 없는 부득이한 사유에 대해 근로기준법 제60조 제6항에 따라 <strong>출근한 것으로 의제(간주)</strong>하도록 강력히 규정하고 있습니다:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+          <li><strong>업무상 부상 또는 질병</strong>으로 인하여 휴업한 기간 (산재 요양 기간 전액 출근 간주)</li>
+          <li><strong>임신 중의 여성이 근로기준법 제74조에 따른 출산전후휴가</strong> 또는 유산·사산 휴가를 사용한 기간</li>
+          <li><strong>남녀고용평등법 제19조에 따른 육아휴직</strong>으로 휴업한 기간 (법 개정으로 육아휴직 기간 전액 출근 인정)</li>
+        </ul>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+          ※ 따라서 육아휴직을 1년간 다녀왔더라도 소정근로일수를 정상 개근한 것으로 인정받으므로 복직 시점에 온전한 15일의 연차휴가가 발생합니다.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section id="section-2" class="space-y-4">
+        <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+          <span>Section 02</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight border-b border-slate-200 dark:border-slate-800 pb-2">
+          2. 1년 미만 근로자의 월별 연차(월차) 발생 원리와 유의사항
+        </h2>
+
+        <p>
+          입사 첫해 신입사원이나 계속근로연수가 1년 미만인 근로자는 만 1년이 되기 전까지 15일의 기본 연차가 발생하지 않습니다. 대신 근로기준법 제60조 제2항에 따라 <strong>‘1개월 개근 시 1일의 유급휴가’</strong>가 익월에 발생하며, 실무적으로 이를 <strong>‘월차(Monthly Leave)’</strong>라고 통칭합니다.
+        </p>
+
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900 border-l-4 border-cyan-500 text-xs sm:text-sm my-4">
+          <p class="font-bold text-slate-900 dark:text-white mb-1">📜 근로기준법 제60조 제2항</p>
+          <p class="text-slate-600 dark:text-slate-300 italic mb-0">
+            "사용자는 계속하여 근로한 기간이 1년 미만인 근로자 또는 1년간 80퍼센트 미만 출근한 근로자에게 1개월 개근 시 1일의 유급휴가를 주어야 한다."
+          </p>
+        </div>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 1년 미만 근로자의 연차 발생 타임라인과 최대 11일 발생 원리
+        </h3>
+        <p>
+          예를 들어 1월 1일에 입사한 신입사원이 매월 결근 없이 만근하는 경우 휴가 발생 타임라인은 다음과 같습니다:
+        </p>
+        <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 my-4">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              <tr>
+                <th class="p-3 font-semibold">산정 근무 기간</th>
+                <th class="p-3 font-semibold">휴가 발생일</th>
+                <th class="p-3 font-semibold">발생 일수</th>
+                <th class="p-3 font-semibold">누적 일수</th>
+                <th class="p-3 font-semibold">비고</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                <td class="p-3">1월 1일 ~ 1월 31일 (1개월 개근)</td>
+                <td class="p-3 font-mono font-bold text-indigo-600 dark:text-indigo-400">2월 1일</td>
+                <td class="p-3 font-bold">+1일</td>
+                <td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">1일</td>
+                <td class="p-3 text-slate-500">첫 월차 발생</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                <td class="p-3">2월 1일 ~ 2월 28일 (2개월 개근)</td>
+                <td class="p-3 font-mono font-bold text-indigo-600 dark:text-indigo-400">3월 1일</td>
+                <td class="p-3 font-bold">+1일</td>
+                <td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">2일</td>
+                <td class="p-3 text-slate-500">누적 적립</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 bg-slate-50/50 dark:bg-slate-900/30">
+                <td class="p-3">... 매월 개근 반복 ...</td>
+                <td class="p-3 font-mono">매월 1일</td>
+                <td class="p-3">+1일씩</td>
+                <td class="p-3">...</td>
+                <td class="p-3 text-slate-500">최대 11개월분</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                <td class="p-3">11월 1일 ~ 11월 30일 (11개월 개근)</td>
+                <td class="p-3 font-mono font-bold text-indigo-600 dark:text-indigo-400">12월 1일</td>
+                <td class="p-3 font-bold">+1일</td>
+                <td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">11일</td>
+                <td class="p-3 text-slate-500">1년 미만 월차 발생 종료 (최대 11일)</td>
+              </tr>
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 bg-indigo-50/50 dark:bg-indigo-950/30 font-bold">
+                <td class="p-3">1년간 80% 이상 출근 완료 시점</td>
+                <td class="p-3 font-mono text-indigo-600 dark:text-indigo-400">다음해 1월 1일</td>
+                <td class="p-3 text-indigo-600 dark:text-indigo-400">+15일</td>
+                <td class="p-3 text-indigo-600 dark:text-indigo-400">총 26일 (11일+15일)</td>
+                <td class="p-3 text-indigo-600 dark:text-indigo-400">정규 1년차 연차 15일 일괄 부여</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 2018년 근로기준법 개정의 핵심: 월차의 온전한 독립 부여 (최대 26일 보장)
+        </h3>
+        <p>
+          과거 2018년 5월 29일 이전의 구 근로기준법 체계에서는 1년 미만 기간 동안 사용한 월차 일수를 1년이 지난 후 발생하는 15일의 연차에서 공제(차감)하도록 규정되어 있었습니다. 그러나 노동법이 개정되면서 공제 조항이 삭제되었으며, 현재는 <strong>1년 미만 재직 기간 동안 발생하는 최대 11일의 월차와 1년 만근 시 발생하는 15일의 기본 연차가 완전히 별개로 독립하여 부여</strong>됩니다.
+        </p>
+        <p>
+          따라서 신입사원이 입사 후 2년 동안 하루도 결근하지 않고 온전히 근무할 경우, 누적하여 <strong>최대 26일(11일 + 15일)</strong>의 유급휴가를 누릴 수 있는 법적 권리를 갖게 됩니다.
+        </p>
+
+        <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs sm:text-sm text-amber-900 dark:text-amber-200">
+          <p class="font-bold mb-1 flex items-center gap-1.5">
+            <span>⚠️</span>
+            <span>중요 실무 체크: 1년 미만 월차의 유효기간 단축 규정 (근로기준법 제60조 제7항)</span>
+          </p>
+          <p class="mb-0 leading-relaxed">
+            1년 미만 근로자에게 발생한 월차는 <strong>각 휴가 발생일로부터 1년이 아니라, 입사일로부터 1년이 되는 시점까지만 사용</strong>할 수 있습니다. 즉, 1월 1일 입사자에게 12월 1일에 발생한 11번째 월차는 그해 12월 31일까지만 사용 가능하며, 1년이 지난 다음 해에는 사용할 수 없고 미사용 연차수당 청구권으로 전환되거나 연차사용촉진 조치에 따르게 됩니다.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section id="section-3" class="space-y-4">
+        <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+          <span>Section 03</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight border-b border-slate-200 dark:border-slate-800 pb-2">
+          3. 입사일 기준 vs 회계연도 기준 정산 방식 비교
+        </h2>
+
+        <p>
+          연차유급휴가 산정 방식은 크게 <strong>‘입사일 기준(Date of Hire)’</strong>과 <strong>‘회계연도 기준(Fiscal Year)’</strong> 두 가지로 나뉩니다. 인사 실무에서 가장 빈번한 분쟁과 계산 혼선이 발생하는 영역이 바로 이 두 기준의 정산 차이입니다.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold mb-2">
+              <span class="p-1.5 rounded-lg bg-indigo-100 dark:bg-indigo-950/80">👤</span>
+              <span class="text-base">입사일 기준 (법정 원칙)</span>
+            </div>
+            <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
+              <li>• 근로자 개개인의 입사일을 기산점으로 1년 단위 산정</li>
+              <li>• 근로기준법 제60조가 명시한 법률상의 본래 원칙</li>
+              <li>• 근로자마다 연차 산정 기준일과 갱신일이 모두 상이하여 인사 관리 시스템(HRMS) 부담 증가</li>
+              <li>• 퇴직 시 별도의 복잡한 일수 재정산 절차가 필요 없음</li>
+            </ul>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold mb-2">
+              <span class="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-950/80">🏢</span>
+              <span class="text-base">회계연도 기준 (실무 편의)</span>
+            </div>
+            <ul class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
+              <li>• 사업장의 회계연도(통상 매년 1월 1일 ~ 12월 31일)를 일괄 기준으로 전 임직원 동시 부여</li>
+              <li>• 취업규칙, 단체협약에 명시할 경우 실무 관리상 허용됨</li>
+              <li>• 중도 입사자의 경우 첫해 근무일수/근무월수에 따른 <strong>비례 계산</strong> 필수</li>
+              <li>• <strong>퇴직 시 근로자에게 불리하지 않도록 입사일 기준과 반드시 재비교 의무</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 중도입사자의 회계연도 기준 첫해 연차 비례 산정 산식
+        </h3>
+        <p>
+          연도 중간에 입사한 직원에 대하여 회계연도 기준(1월 1일)을 적용할 경우, 고용노동부 행정해석에 따라 입사 당해 연도 근무기간에 비례하여 다음 연도 1월 1일에 휴가를 부여합니다:
+        </p>
+        <div class="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs sm:text-sm my-3 shadow-inner">
+          <span class="text-indigo-400 font-bold">회계연도 비례 연차 일수</span> = 15일 × (입사 당해 연도 재직일수 ÷ 365일)<br />
+          <span class="text-slate-400 text-xs">※ 일수 대신 근무월수로 계산할 경우: 15일 × (근무월수 ÷ 12개월)</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <strong>실제 예시:</strong> 2026년 7월 1일 입사자의 경우 당해 재직일수는 184일입니다. 따라서 2027년 1월 1일에 부여되는 비례 연차는 <code>15일 × (184 ÷ 365) = 7.56일</code>이 됩니다. 회사는 취업규칙에 따라 소수점(0.56일)을 그대로 부여하거나, 근로자에게 유리하게 <strong>올림(8일 부여)</strong>하여 처리하는 것이 일반적입니다.
+        </p>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 법적 안전장치: 퇴직 시 '유리한 조건 우선의 원칙' (고용노동부 행정해석)
+        </h3>
+        <p>
+          회계연도 기준 관리는 오직 <strong>‘사업장 행정 관리의 편의’</strong>를 위해 판례와 고용노동부가 예외적으로 허용한 것입니다. 따라서 근로기준법이 정한 본래 기준인 ‘입사일 기준’보다 근로자에게 불리하게 적용되어서는 안 됩니다.
+        </p>
+        <p>
+          따라서 근로자가 퇴직할 때, 회사는 반드시 재직 전 기간에 걸쳐 <strong>[입사일 기준으로 산정한 총 법정 연차일수]</strong>와 <strong>[회계연도 기준으로 기부여한 총 연차일수]</strong>를 대조 정산하여, <strong>근로자에게 더 많은 일수(유리한 쪽)로 최종 미사용 연차수당을 지급</strong>하여야 할 법적 의무가 있습니다 (근로개선정책과-4512 등 다수 행정해석).
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section id="section-4" class="space-y-4">
+        <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+          <span>Section 04</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight border-b border-slate-200 dark:border-slate-800 pb-2">
+          4. 근속연수에 따른 연차 가산일수 산정 공식
+        </h2>
+
+        <p>
+          한 직장에서 장기근속한 근로자에게는 피로 누적을 방지하고 장기근속을 우대하기 위해 기본 15일에 추가 휴가를 가산해 주는 <strong>‘가산휴가 제도’</strong>가 적용됩니다.
+        </p>
+
+        <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-900 border-l-4 border-purple-500 text-xs sm:text-sm my-4">
+          <p class="font-bold text-slate-900 dark:text-white mb-1">📜 근로기준법 제60조 제4항</p>
+          <p class="text-slate-600 dark:text-slate-300 italic mb-0">
+            "사용자는 3년 이상 계속하여 근로한 근로자에게는 제1항에 따른 휴가에 최초 1년을 초과하는 계속 근로 연수 매 2년에 대하여 1일을 가산한 유급휴가를 주어야 한다. 이 경우 가산휴가를 포함한 총 휴가 일수는 25일을 한도로 한다."
+          </p>
+        </div>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 연차 가산일수 산정 공식
+        </h3>
+        <p>
+          3년 이상 계속 근로한 근로자의 당해 연도 총 연차 일수는 다음의 정형화된 수학 공식으로 정확하게 산출됩니다:
+        </p>
+        <div class="p-4 rounded-xl bg-indigo-950/90 text-indigo-100 font-mono text-xs sm:text-sm my-3 border border-indigo-800">
+          <div class="font-bold text-sm text-indigo-300 mb-1">총 연차휴가 산출 공식:</div>
+          <code>연차 일수 = 15일 + Math.floor((근속연수 - 1) / 2)</code>
+          <div class="mt-2 text-xs text-indigo-300/80">
+            * 근속연수 1년 초과 시점부터 2년 단위마다 1일씩 가산<br />
+            * 법정 상한선: 가산일수를 포함하여 최대 25일 초과 불가
+          </div>
+        </div>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 근속연수별 법정 연차 일수 조견표 (1년 ~ 25년)
+        </h3>
+        <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 my-4">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              <tr>
+                <th class="p-3 font-semibold">근속연수</th>
+                <th class="p-3 font-semibold">기본 일수</th>
+                <th class="p-3 font-semibold">가산 일수</th>
+                <th class="p-3 font-semibold">총 부여 연차</th>
+                <th class="p-3 font-semibold">비고</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+              <tr>
+                <td class="p-3 font-medium">1년 이상 ~ 2년 미만</td>
+                <td class="p-3">15일</td>
+                <td class="p-3 text-slate-400">0일</td>
+                <td class="p-3 font-bold text-indigo-600 dark:text-indigo-400">15일</td>
+                <td class="p-3 text-slate-500">기본 연차 발생</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">2년 이상 ~ 3년 미만</td>
+                <td class="p-3">15일</td>
+                <td class="p-3 text-slate-400">0일</td>
+                <td class="p-3 font-bold text-indigo-600 dark:text-indigo-400">15일</td>
+                <td class="p-3 text-slate-500">가산 없음</td>
+              </tr>
+              <tr class="bg-indigo-50/40 dark:bg-indigo-950/20">
+                <td class="p-3 font-medium">3년 이상 ~ 4년 미만</td>
+                <td class="p-3">15일</td>
+                <td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">+1일</td>
+                <td class="p-3 font-bold text-indigo-600 dark:text-indigo-400">16일</td>
+                <td class="p-3 text-slate-500">최초 1일 가산 시작</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">4년 이상 ~ 5년 미만</td>
+                <td class="p-3">15일</td>
+                <td class="p-3">+1일</td>
+                <td class="p-3 font-bold text-indigo-600 dark:text-indigo-400">16일</td>
+                <td class="p-3 text-slate-500">-</td>
+              </tr>
+              <tr class="bg-indigo-50/40 dark:bg-indigo-950/20">
+                <td class="p-3 font-medium">5년 이상 ~ 6년 미만</td>
+                <td class="p-3">15일</td>
+                <td class="p-3 font-bold text-emerald-600 dark:text-emerald-400">+2일</td>
+                <td class="p-3 font-bold text-indigo-600 dark:text-indigo-400">17일</td>
+                <td class="p-3 text-slate-500">2일 가산</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-medium">7년차 / 9년차 / 11년차</td>
+                <td class="p-3">15일</td>
+                <td class="p-3">+3일 / +4일 / +5일</td>
+                <td class="p-3 font-bold text-indigo-600 dark:text-indigo-400">18일 / 19일 / 20일</td>
+                <td class="p-3 text-slate-500">홀수 연차마다 1일씩 증대</td>
+              </tr>
+              <tr class="bg-rose-50/50 dark:bg-rose-950/20 font-bold">
+                <td class="p-3 text-rose-600 dark:text-rose-400">21년 이상 계속근로</td>
+                <td class="p-3">15일</td>
+                <td class="p-3">+10일</td>
+                <td class="p-3 text-rose-600 dark:text-rose-400">25일</td>
+                <td class="p-3 text-rose-600 dark:text-rose-400">법정 최고 상한선 도달 (25일 한도)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 5 -->
+      <section id="section-5" class="space-y-4">
+        <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+          <span>Section 05</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight border-b border-slate-200 dark:border-slate-800 pb-2">
+          5. 퇴직 시 미사용 연차유급휴가 수당 산출 및 지급 의무
+        </h2>
+
+        <p>
+          근로자가 법적으로 부여받은 연차휴가를 1년의 사용 유효기간 내에 모두 사용하지 못하거나, 휴가를 모두 소진하기 전에 퇴직하게 되면 휴가청구권은 소멸하지만 그에 갈음하여 <strong>‘미사용 연차유급휴가 수당 청구권(임금 채권)’</strong>이 발생합니다.
+        </p>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 미사용 연차수당 산정 기준과 법정 산식
+        </h3>
+        <p>
+          미사용 연차수당은 휴가청구권이 소멸하는 날이 속한 달의 <strong>통상임금(시간급 통상임금)</strong> 또는 취업규칙 등에 정한 <strong>평균임금</strong>을 기준으로 산정합니다. 통상 실무에서는 통상임금을 기준으로 지급합니다:
+        </p>
+        <div class="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs sm:text-sm my-3 shadow-inner">
+          <span class="text-emerald-400 font-bold">1일 연차수당</span> = 1일 소정근로시간(통상 8시간) × 시간급 통상임금<br />
+          <span class="text-indigo-400 font-bold">미사용 연차수당 총액</span> = 잔여 미사용 연차 일수 × 1일 연차수당
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <strong>예시:</strong> 월 기본급 2,500,000원에 고정수당이 없어 통상시급이 <code>2,500,000원 ÷ 209시간 = 11,962원</code>인 근로자가 퇴직 시 7일의 미사용 연차가 남아 있다면, 1일 연차수당은 <code>8시간 × 11,962원 = 95,696원</code>이며, 수당 총액은 <code>7일 × 95,696원 = 669,872원</code>이 됩니다.
+        </p>
+
+        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white mt-4">
+          ■ 14일 이내 금품청산 의무 및 형사처벌 규정
+        </h3>
+        <p>
+          근로기준법 제36조(금품 청산)에 따라 사용자는 근로자가 사망 또는 퇴직한 경우, 그 지급 사유가 발생한 날부터 <strong>14일 이내</strong>에 미사용 연차수당을 포함한 일체의 금품을 지급해야 합니다(특별한 사정이 있는 경우 당사자 합의로 기일 연장 가능).
+        </p>
+        <p>
+          이를 위반하여 14일 이내에 연차수당을 지급하지 아니한 사용자는 <strong>3년 이하의 징역 또는 3천만 원 이하의 벌금</strong>에 처해질 수 있으며, 연 20%의 지연이자(근로기준법 제37조)가 부과될 수 있습니다.
+        </p>
+      </section>
+
+      <!-- Section 6 -->
+      <section id="section-6" class="space-y-4">
+        <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+          <span>Section 06</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight border-b border-slate-200 dark:border-slate-800 pb-2">
+          6. 실무 적용을 위한 '연차 자동 계산기' 활용법 및 자주 묻는 질문
+        </h2>
+
+        <p>
+          실무에서 매번 법 조항과 근속일수를 일일이 세어가며 수기로 연차를 계산하는 것은 중도입사자의 윤달, 개월 수 차이, 회계연도 기준 비례식 올림 여부 등으로 인해 큰 오차가 발생하기 쉽습니다. 특히 노동청 진정이나 노사 분쟁을 사전에 방지하기 위해서는 공식 알고리즘에 따른 <strong>신뢰할 수 있는 자동 계산기</strong>를 활용하는 것이 필수적입니다.
+        </p>
+
+        <div class="space-y-3 my-4">
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1 flex items-center gap-2">
+              <span class="text-indigo-600 dark:text-indigo-400">Q1.</span>
+              <span>1년 계약직 근로자가 만 1년을 근무하고 퇴직할 때 발생하는 연차는 총 며칠인가요?</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-0">
+              대법원 전원합의체 판결(대법원 2021.10.14. 선고 2021다245456)에 따라 만 1년(365일) 근무 후 당일 퇴직하는 계약직의 경우, 1년 미만 기간 동안 발생한 <strong>최대 11일의 월차만 인정</strong>되며 1년 만근에 따른 15일 연차는 365일을 초과하여 다음 날(366일째) 근로관계가 존속하지 않으므로 발생하지 않습니다. 단, 1년 하고도 하루라도 더 근무한 뒤 퇴직한다면 15일이 온전히 발생합니다.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1 flex items-center gap-2">
+              <span class="text-indigo-600 dark:text-indigo-400">Q2.</span>
+              <span>회사가 '연차사용촉진제도'를 시행하면 미사용 연차수당을 안 줘도 되나요?</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-0">
+              근로기준법 제61조에 따른 적법한 2차례 서면 촉진 절차(휴가 사용 시기 지정 통보 및 회사의 노무수령 거부 의사표시)를 엄격하게 모두 이행한 경우에 한하여 회사의 수당 지급 의무가 면제됩니다. 구두 통보나 사내 메신저 공지만으로는 법적 효력이 인정되지 않습니다.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm mb-1 flex items-center gap-2">
+              <span class="text-indigo-600 dark:text-indigo-400">Q3.</span>
+              <span>중도입사자가 퇴직할 때 회사 회계연도 기준이 입사일 기준보다 연차가 더 많으면 반환해야 하나요?</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-0">
+              취업규칙 등에 '퇴직 시 입사일 기준으로 재정산하여 초과 지급된 연차를 환수한다'는 명시적 규정이 사전에 등록되어 있지 않다면, 이미 부여된 유효한 휴가이므로 회사가 일방적으로 환수하거나 퇴직금에서 공제할 수 없습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Bottom CTA Banner -->
+      <section class="mt-12 pt-6">
+        <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-xl shadow-indigo-500/20 relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+
+          <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-white/20 text-white backdrop-blur-md">
+                <span>⚡</span>
+                <span>실시간 원클릭 정밀 판정</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white">
+                내 연차, 지금 바로 정확하게 확인해 보세요!
+              </h3>
+              <p class="text-xs sm:text-sm text-indigo-100 max-w-xl leading-relaxed mb-0">
+                복잡한 법적 산식을 직접 계산할 필요 없이, 입사일과 기준일만 입력하면 1초 만에 법적 연차를 정밀 산출해 주는 <strong>[일상의도움 연차 자동 계산기 바로가기]</strong>를 이용해 보세요.
+              </p>
+            </div>
+
+            <a href="work-leave.html"
+               class="shrink-0 px-6 py-3.5 rounded-2xl bg-white text-indigo-700 hover:bg-slate-100 font-extrabold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center gap-2 group">
+              <span>📅 일상의도움 연차 자동 계산기 바로가기</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+          <div class="logo-text text-white text-lg mb-2" data-i18n="brand">일상의도움</div>
+          <p class="text-sm text-slate-400 mb-3" data-i18n="footer.tagline">당신의 일상을 더 풍요롭게</p>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Google AdSense 및 글로벌 웹 표준을 준수하는 무설치 클라이언트 웹 유틸리티 &amp; 모바일 라이프스타일 앱 포털
+          </p>
+        </div>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.links">빠른 링크</h4>
+          <ul class="space-y-1">
+            <li><a href="/" class="footer-nav-btn" data-i18n="nav.home">홈</a></li>
+            <li><a href="/guide" class="footer-nav-btn" data-i18n="nav.guide">가이드</a></li>
+            <li><a href="/#tools" class="footer-nav-btn" data-i18n="nav.webTools">웹 도구 모음</a></li>
+            <li><a href="/about" class="footer-nav-btn" data-i18n="nav.about">소개</a></li>
+            <li><a href="/contact" class="footer-nav-btn" data-i18n="nav.contact">문의하기</a></li>
+            <li class="pt-2 text-[11px] text-slate-500 font-semibold uppercase tracking-wider">주요 도구 바로가기</li>
+            <li><a href="/pdf-image-converter.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🔄 PDF ↔ 이미지 변환기</a></li>
+            <li><a href="/file-compressor.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🗜️ PDF &amp; 이미지 용량 줄이기</a></li>
+            <li><a href="/color-picker.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🎨 이미지 &amp; PDF 색상 추출기</a></li>
+            <li><a href="/#pdf-checker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📐 무설치 PDF/도면 체커</a></li>
+            <li><a href="work-leave.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 근로기준법 연차 계산기</a></li>
+            <li><a href="/#wage-calc" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🧮 실수령액/주휴수당 계산기</a></li>
+          </ul>
+        </div>
+        <!-- Service Guides (Direct Clean URLs for Indexing) -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm">서비스 이용 가이드</h4>
+          <ul class="space-y-1">
+            <li><a href="/article-leave-guide.html" class="footer-sub-link text-xs text-indigo-400 font-medium hover:text-indigo-300 block transition-colors">📑 칼럼: 근로기준법 연차 정산 가이드</a></li>
+            <li><a href="/guide/bake-merge" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🥐 Bake Merge (베이크 머지)</a></li>
+            <li><a href="/guide/timekeeper" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">⏱️ TimeKeeper (타임키퍼)</a></li>
+            <li><a href="/guide/daycount" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 DayCount (디데이)</a></li>
+            <li><a href="/guide/bookspot" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📚 BookSpot (북스팟)</a></li>
+            <li><a href="/guide/clipflow-mate" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📋 ClipFlow Mate (클립플로우 메이트)</a></li>
+            <li><a href="/guide/zoodoku" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🦁 ZooDoku (주도쿠)</a></li>
+            <li><a href="/guide/pdf-checker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📐 PDF &amp; 도면 체커</a></li>
+            <li><a href="/guide/salary-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🧮 실수령액·주휴수당 계산기</a></li>
+            <li><a href="/guide/excel-converter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📊 엑셀 구분자 변환기</a></li>
+            <li><a href="/guide/annual-leave-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 근로기준법 연차 계산기</a></li>
+            <li><a href="/guide/char-byte-counter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📝 자소서 글자수·Byte 변환</a></li>
+          </ul>
+        </div>
+        <!-- Legal -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.legal">법적 고지</h4>
+          <ul class="space-y-1">
+            <li><a href="/privacy" class="footer-nav-btn" data-i18n="nav.privacy">개인정보처리방침</a></li>
+            <li><a href="/terms" class="footer-nav-btn" data-i18n="nav.terms">이용약관</a></li>
+            <li class="pt-2 text-xs text-slate-400">
+              <span data-i18n="footer.emailLabel">문의 이메일:</span>
+              <a href="mailto:theoneco1@gmail.com" class="text-indigo-400 hover:underline">theoneco1@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="border-t border-slate-800 pt-6 text-center">
+        <p class="text-sm text-slate-500" data-i18n="footer.copyright">© 2026 일상의도움 (Daily Helper). All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS (Interactive Helpers & Theme)
+  ════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Reading Progress Bar ─────────────────────────────────
+      window.addEventListener('scroll', function () {
+        var h = document.documentElement;
+        var b = document.body;
+        var st = 'scrollTop';
+        var sh = 'scrollHeight';
+        var percent = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+        var bar = document.getElementById('reading-progress');
+        if (bar) {
+          bar.style.width = Math.min(100, Math.max(0, percent)) + '%';
+        }
+      });
+
+      // ── Dark Mode Toggle ─────────────────────────────────────
+      window.toggleDarkMode = function () {
+        var isDark = document.documentElement.classList.toggle('dark');
+        try {
+          localStorage.setItem('dh_dark', isDark ? 'true' : 'false');
+        } catch (_) { }
+        updateDarkToggleIcon(isDark);
+      };
+
+      function updateDarkToggleIcon(isDark) {
+        var iconSun = document.getElementById('theme-icon-sun');
+        var iconMoon = document.getElementById('theme-icon-moon');
+        if (!iconSun || !iconMoon) return;
+        if (isDark) {
+          iconSun.classList.remove('hidden');
+          iconMoon.classList.add('hidden');
+        } else {
+          iconSun.classList.add('hidden');
+          iconMoon.classList.remove('hidden');
+        }
+      }
+
+      // ── Smooth Anchor Scrolling with header offset ───────────
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var targetId = this.getAttribute('href');
+          if (targetId === '#' || targetId === '') return;
+          var el = document.querySelector(targetId);
+          if (el) {
+            e.preventDefault();
+            var offset = 80;
+            var bodyRect = document.body.getBoundingClientRect().top;
+            var elementRect = el.getBoundingClientRect().top;
+            var elementPosition = elementRect - bodyRect;
+            var offsetPosition = elementPosition - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // ── Init on load ─────────────────────────────────────────
+      document.addEventListener('DOMContentLoaded', function () {
+        var isDark = document.documentElement.classList.contains('dark');
+        updateDarkToggleIcon(isDark);
+      });
+    })();
+  </script>
+</body>
+</html>

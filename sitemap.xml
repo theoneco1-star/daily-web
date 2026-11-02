@@ -82,6 +82,13 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- HR & Legal Articles -->
+  <url>
+    <loc>https://dailyhelperhub.com/article-leave-guide.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Dedicated Web Tools -->
   <url>
     <loc>https://dailyhelperhub.com/pdf-image-converter.html</loc>
