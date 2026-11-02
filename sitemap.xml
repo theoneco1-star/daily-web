@@ -110,10 +110,10 @@
   </url>
   <!-- Information Pages -->
   <url>
-    <loc>https://www.dailyhelperhub.com/about</loc>
-    <lastmod>2026-10-20</lastmod>
+    <loc>https://dailyhelperhub.com/about.html</loc>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/privacy</loc>

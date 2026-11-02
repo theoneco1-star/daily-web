@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>브랜드 소개 (About Us) | 일상의도움 (Daily Helper)</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="일상의도움(Daily Helper)은 설치나 회원가입 없이 100% 브라우저 인메모리 연산으로 안전하게 사용하는 실무 중심 무설치 웹 유틸리티 및 모바일 라이프스타일 앱 포털입니다. Zero-Server Privacy 원칙과 개발팀(WG Apps Studio)의 비전을 소개합니다." />
+  <meta name="keywords" content="일상의도움, Daily Helper, 브랜드소개, About Us, WG Apps Studio, 무설치 웹도구, 클라이언트 연산, 제로서버 프라이버시, PDF도면체커, 연차계산기, 무료 유틸리티" />
+  <meta name="author" content="WG Apps Studio (Daily Helper)" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyhelperhub.com/about.html" />
+
+  <!-- Open Graph / SNS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dailyhelperhub.com/about.html" />
+  <meta property="og:title" content="브랜드 소개 (About Us) — 일상의도움 (Daily Helper)" />
+  <meta property="og:description" content="설치나 회원가입 없이 브라우저에서 바로 사용하는 실무 중심 무설치 웹 유틸리티 허브. 100% 클라이언트 연산과 보안 원칙을 만나보세요." />
+  <meta property="og:image" content="https://dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://dailyhelperhub.com/about.html" />
+  <meta name="twitter:title" content="브랜드 소개 (About Us) — 일상의도움 (Daily Helper)" />
+  <meta name="twitter:description" content="설치나 회원가입 없이 브라우저에서 바로 사용하는 실무 중심 무설치 웹 유틸리티 허브" />
+  <meta name="twitter:image" content="https://dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Early Theme & Language Sync to prevent FOUC -->
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('dh_dark');
+        if (savedTheme === 'false') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+        var savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
+          document.documentElement.lang = 'en';
+        }
+      } catch (_) { }
+    })();
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6278124637694502" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+            primaryLight: '#818cf8',
+            accent: '#06b6d4',
+            surfaceDark: '#0b0f19',
+            cardDark: '#131b2e'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/custom.css?v=4.5" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "일상의도움 (Daily Helper)",
+      "alternateName": "WG Apps Studio",
+      "url": "https://dailyhelperhub.com",
+      "logo": "https://dailyhelperhub.com/favicon.svg",
+      "description": "설치나 회원가입 없이 브라우저에서 100% 클라이언트 연산으로 즉시 작동하는 무설치 실무 웹 유틸리티 & 모바일 앱 포털",
+      "foundingDate": "2024",
+      "email": "theoneco1@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "theoneco1@gmail.com",
+        "contactType": "Customer Support",
+        "availableLanguage": ["Korean", "English"]
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://dailyhelperhub.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "소개 (About Us)",
+        "item": "https://dailyhelperhub.com/about.html"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-['Noto_Sans_KR',sans-serif] antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+      <!-- Left: Logo & Breadcrumb -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 text-slate-900 dark:text-white hover:opacity-90 transition-opacity">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/20">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              <path d="M5 3v4"/>
+              <path d="M19 17v4"/>
+              <path d="M3 5h4"/>
+              <path d="M17 19h4"/>
+            </svg>
+          </div>
+          <span class="font-extrabold text-base sm:text-lg tracking-tight" data-i18n="brand">일상의도움</span>
+        </a>
+        <span class="text-slate-300 dark:text-slate-700">/</span>
+        <span class="text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+          <span>🌿</span>
+          <span>소개 (About Us)</span>
+        </span>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Dark Mode Toggle Button -->
+        <button type="button" id="theme-toggle-btn" onclick="toggleDarkMode()"
+          class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+          aria-label="화면 모드 전환" title="다크/라이트 모드 전환">
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.73 0-.71-.71M6.34 6.34l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+
+        <!-- Main Hub Link -->
+        <a href="/" class="px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-indigo-700 dark:text-slate-200 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5">
+          <span>←</span>
+          <span>메인 홈</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout Container -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8 sm:py-14 flex flex-col gap-12 sm:gap-16">
+
+    <!-- 1. Hero Section -->
+    <section class="text-center flex flex-col items-center">
+      <div class="flex items-center gap-2 flex-wrap justify-center mb-4">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/80">
+          <span>🛡️</span>
+          <span>E-E-A-T Verified • Zero-Server Privacy</span>
+        </span>
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/80">
+          <span>⚡</span>
+          <span>무설치 웹 유틸리티 허브</span>
+        </span>
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+          <span>🏢</span>
+          <span>WG Apps Studio</span>
+        </span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight sm:leading-tight mb-5 max-w-4xl">
+        일상의 모든 작업을 더 스마트하고 안전하게<br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">— Daily Helper 소개</span>
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed font-normal">
+        설치나 회원가입 없이 브라우저에서 바로 사용하는 실무 중심 무설치 웹 유틸리티 허브입니다.<br class="hidden md:inline" />
+        데이터를 서버로 전송하지 않는 엄격한 프라이버시 보호와 1초 만에 끝내는 초경량 실무 도구를 제공합니다.
+      </p>
+
+      <!-- Trust Badges Summary -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full mt-8 pt-6 border-t border-slate-200 dark:border-slate-800/80 text-left">
+        <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs text-slate-500 dark:text-slate-400 mb-1">데이터 전송</div>
+          <div class="text-sm font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+            <span>✓</span> 0 Byte (서버 무전송)
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs text-slate-500 dark:text-slate-400 mb-1">이용 절차</div>
+          <div class="text-sm font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
+            <span>✓</span> 가입·인증 없는 즉시 실행
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs text-slate-500 dark:text-slate-400 mb-1">비용 체계</div>
+          <div class="text-sm font-bold text-cyan-600 dark:text-cyan-400 flex items-center gap-1">
+            <span>✓</span> 전 기능 100% 무료
+          </div>
+        </div>
+        <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="text-xs text-slate-500 dark:text-slate-400 mb-1">호환성</div>
+          <div class="text-sm font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1">
+            <span>✓</span> PC·태블릿·모바일 반응형
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Brand Philosophy (브랜드 철학 & 설립 배경) -->
+    <section class="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm">
+      <div class="flex items-center gap-2.5 mb-4">
+        <div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-bold text-base">
+          💡
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">브랜드 철학 &amp; 미션</h2>
+      </div>
+
+      <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+        <p>
+          현대의 디지털 업무 환경은 수많은 웹 툴로 가득 차 있습니다. 하지만 사소한 PDF 페이지 회전, 이미지 포맷 변환, 연차 계산 하나를 수행하기 위해서도 <strong>불필요한 회원가입</strong>, <strong>결제 카드 등록 유도</strong>, 그리고 무엇보다 <strong>사내 대외비 문서와 개인정보가 알 수 없는 외부 서버로 무단 전송되는 심각한 프라이버시 위험</strong>을 감수해야 했습니다.
+        </p>
+        <p>
+          <strong>일상의도움(Daily Helper)</strong>은 이러한 웹 유틸리티 생태계의 불투명성과 불편함을 바로잡기 위해 출발했습니다. 최신 브라우저가 제공하는 강력한 클라이언트 연산 기술(HTML5 Canvas, WebAssembly, Web Worker, File API)을 십분 활용하여, <strong>"사용자의 데이터는 단 1바이트도 사용자의 브라우저를 벗어나지 않는다"</strong>는 확고한 철학을 모든 도구의 기반에 새겼습니다.
+        </p>
+        <p class="font-semibold text-slate-800 dark:text-slate-200 pt-2 border-t border-slate-100 dark:border-slate-800">
+          직장인, 인사/총무 담당자, 학생, 엔지니어, 프리랜서 등 실무를 처리하는 모든 이들이 보안 걱정 없이 1초 만에 업무를 완수할 수 있는 가장 믿음직한 디지털 동반자가 되는 것이 일상의도움의 궁극적인 지향점입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. 3대 핵심 원칙 카드 (3 Core Principles Cards) -->
+    <section>
+      <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+        <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest block mb-2">Core Principles</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">일상의도움 3대 핵심 원칙</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">안전하고 신속하며 정확한 도구를 만들기 위해 타협하지 않는 세 가지 기준입니다.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="rounded-2xl p-6 sm:p-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-5 shadow-sm group-hover:scale-105 transition-transform">
+              🔒
+            </div>
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 tracking-wider uppercase mb-1">원칙 01</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+              100% 클라이언트 연산<br />
+              <span class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">(Zero-Server Privacy)</span>
+            </h3>
+            <p class="text-xs font-bold text-slate-700 dark:text-slate-200 mb-3 bg-emerald-50 dark:bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-100 dark:border-emerald-900/40">
+              "파일과 데이터가 서버로 전송되지 않는 브라우저 인메모리 처리 원칙"
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              사용자가 업로드하는 PDF 문서, CAD 설계 도면, 고해상도 이미지, 자소서 텍스트 등 모든 자료는 사용자의 기기 브라우저 RAM 영역 내에서만 처리되며, 작업 종료 즉시 안전하게 파기됩니다. 어떤 파일도 외부 데이터베이스나 클라우드로 전송·저장되지 않아 기업 기밀 및 개인정보 유출을 완벽하게 원천 차단합니다.
+            </p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-2 text-[11px] text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono font-medium">In-Memory Sandbox</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono font-medium">No Log</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="rounded-2xl p-6 sm:p-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl mb-5 shadow-sm group-hover:scale-105 transition-transform">
+              ⚡
+            </div>
+            <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase mb-1">원칙 02</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+              가볍고 직관적인 도구<br />
+              <span class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">(Lightweight &amp; Intuitive)</span>
+            </h3>
+            <p class="text-xs font-bold text-slate-700 dark:text-slate-200 mb-3 bg-indigo-50 dark:bg-indigo-950/40 p-2.5 rounded-lg border border-indigo-100 dark:border-indigo-900/40">
+              "복잡한 설정 없이 1초 만에 업무를 해결하는 초경량 설계"
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              매뉴얼을 찾아보지 않아도 화면을 마주하는 순간 직관적으로 결과를 낼 수 있도록 군더더기 요소를 과감히 제거했습니다. 무거운 프로그램 설치 없이, 드래그 앤 드롭과 클릭 한 번으로 모든 프로세스가 완료되는 초경량 마이크로 인터페이스를 제공하여 사용자의 소중한 시간을 지켜드립니다.
+            </p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-2 text-[11px] text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono font-medium">Zero Install</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono font-medium">Instant Load</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="rounded-2xl p-6 sm:p-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition-all shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-950/80 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-2xl mb-5 shadow-sm group-hover:scale-105 transition-transform">
+              🛠️
+            </div>
+            <div class="text-xs font-bold text-cyan-600 dark:text-cyan-400 tracking-wider uppercase mb-1">원칙 03</div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+              실무 중심 유틸리티<br />
+              <span class="text-xs text-cyan-600 dark:text-cyan-400 font-medium">(Field-Ready Utilities)</span>
+            </h3>
+            <p class="text-xs font-bold text-slate-700 dark:text-slate-200 mb-3 bg-cyan-50 dark:bg-cyan-950/40 p-2.5 rounded-lg border border-cyan-100 dark:border-cyan-900/40">
+              "노무, 서식, 그래픽, 도면 등 현업에서 자주 쓰이는 필수 기능 집약"
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              대한민국 근로기준법 제60조 기준 연차 산정 및 퇴직 정산 공식, 최신 최저임금법 반영 주휴수당 시뮬레이션, 대용량 PDF/이미지 무손실 압축, CAD/건축 도면 핀포인트 치수 마킹, 채용 포털 맞춤형 공채 바이트(Byte) 카운터 등 실제 업무 현장에서 매일 부딪히는 실질적 문제 해결에 집중합니다.
+            </p>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-2 text-[11px] text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono font-medium">Labor Standard Act</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono font-medium">Precision Calc</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Operational Transparency & Team Information (E-E-A-T 기반 전문 운영 안내) -->
+    <section class="rounded-3xl bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-sm">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-indigo-600 text-white">E-E-A-T</span>
+          <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Experience • Expertise • Authoritativeness • Trust</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">개발팀 및 운영 투명성 안내</h2>
+        <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+          일상의도움(Daily Helper)은 독립 앱 및 웹 유틸리티 전문 개발팀 <strong>WG Apps Studio</strong>에서 기획, 개발 및 유지보수하고 있습니다. 공학적 엄밀함과 사용자 중심 UI/UX 디자인을 결합하여 전 세계 사용자들이 신뢰할 수 있는 웹 서비스를 지속해서 확장해 나가고 있습니다.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <!-- Developer Info -->
+          <div class="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+            <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">🏢 개발 &amp; 서비스 운영</div>
+            <div class="text-base font-bold text-slate-900 dark:text-white mb-1">WG Apps Studio</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              생산성 웹 유틸리티 및 구글 플레이 스토어 라이프스타일 모바일 애플리케이션 개발 전문 스튜디오
+            </p>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="p-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+            <div class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-1">✉️ 공식 고객 문의 &amp; 제휴</div>
+            <div class="text-base font-bold text-slate-900 dark:text-white mb-1">
+              <a href="mailto:theoneco1@gmail.com" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                theoneco1@gmail.com
+              </a>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              기능 개선 제안, 도구 오류 제보, 협업 문의 시 영업일 기준 24~48시간 이내에 면밀히 검토 후 답변드립니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Privacy & Standards Compliance -->
+        <div class="mt-6 p-4 rounded-xl bg-white/70 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80 text-xs text-slate-600 dark:text-slate-400 leading-relaxed space-y-1.5">
+          <div class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+            <span>⚖️</span>
+            <span>글로벌 웹 표준 &amp; 개인정보보호 준수 가이드라인</span>
+          </div>
+          <p>
+            본 사이트는 대한민국 개인정보보호법 및 글로벌 웹 표준(W3C HTML5/CSS3)을 철저히 준수합니다. 구글 애드센스(Google AdSense) 프로그램 정책 및 쿠키 가이드라인에 따라 운영되며, 사용자가 입력하는 어떠한 사적 문서나 계산 정보도 광고 타겟팅 또는 상업적 마케팅 목적으로 수집·저장하지 않습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CTA Navigation Buttons (하단 바로가기 버튼) -->
+    <section class="text-center py-6 sm:py-8 border-t border-slate-200 dark:border-slate-800">
+      <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3">
+        지금 바로 일상의 편리함을 경험해 보세요
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6 max-w-lg mx-auto">
+        복잡한 설치 과정 없이 브라우저에서 바로 실무를 처리하거나 모바일 앱을 다운로드받아 일상을 체계적으로 관리하세요.
+      </p>
+
+      <div class="flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
+        <!-- Button 1: Web Tools -->
+        <a href="/#tools"
+           class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40 transition-all flex items-center gap-2">
+          <span>🛠️</span>
+          <span>무료 웹 도구 둘러보기</span>
+        </a>
+
+        <!-- Button 2: Mobile Apps -->
+        <a href="/#apps"
+           class="px-6 py-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 border border-slate-300 dark:border-slate-700 font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-sm">
+          <span>📱</span>
+          <span>모바일 앱 컬렉션 보기</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+          <div class="logo-text text-white text-lg mb-2" data-i18n="brand">일상의도움</div>
+          <p class="text-sm text-slate-400 mb-3" data-i18n="footer.tagline">당신의 일상을 더 풍요롭게</p>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Google AdSense 및 글로벌 웹 표준을 준수하는 무설치 클라이언트 웹 유틸리티 &amp; 모바일 라이프스타일 앱 포털
+          </p>
+        </div>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.links">빠른 링크</h4>
+          <ul class="space-y-1">
+            <li><a href="/" class="footer-nav-btn" data-i18n="nav.home">홈</a></li>
+            <li><a href="/guide" class="footer-nav-btn" data-i18n="nav.guide">가이드</a></li>
+            <li><a href="/#tools" class="footer-nav-btn" data-i18n="nav.webTools">웹 도구 모음</a></li>
+            <li><a href="/about.html" class="footer-nav-btn text-indigo-400 font-medium" data-i18n="nav.about">소개</a></li>
+            <li><a href="/contact" class="footer-nav-btn" data-i18n="nav.contact">문의하기</a></li>
+            <li class="pt-2 text-[11px] text-slate-500 font-semibold uppercase tracking-wider">주요 도구 바로가기</li>
+            <li><a href="/pdf-image-converter.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🔄 PDF ↔ 이미지 변환기</a></li>
+            <li><a href="/file-compressor.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🗜️ PDF &amp; 이미지 용량 줄이기</a></li>
+            <li><a href="/color-picker.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🎨 이미지 &amp; PDF 색상 추출기</a></li>
+            <li><a href="/#pdf-checker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📐 무설치 PDF/도면 체커</a></li>
+            <li><a href="/work-leave.html" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 근로기준법 연차 계산기</a></li>
+            <li><a href="/#wage-calc" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🧮 실수령액/주휴수당 계산기</a></li>
+          </ul>
+        </div>
+        <!-- Service Guides (Direct Clean URLs for Indexing) -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm">서비스 이용 가이드</h4>
+          <ul class="space-y-1">
+            <li><a href="/article-leave-guide.html" class="footer-sub-link text-xs text-indigo-400 font-medium hover:text-indigo-300 block transition-colors">📑 칼럼: 근로기준법 연차 정산 가이드</a></li>
+            <li><a href="/guide/bake-merge" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🥐 Bake Merge (베이크 머지)</a></li>
+            <li><a href="/guide/timekeeper" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">⏱️ TimeKeeper (타임키퍼)</a></li>
+            <li><a href="/guide/daycount" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 DayCount (디데이)</a></li>
+            <li><a href="/guide/bookspot" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📚 BookSpot (북스팟)</a></li>
+            <li><a href="/guide/clipflow-mate" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📋 ClipFlow Mate (클립플로우 메이트)</a></li>
+            <li><a href="/guide/zoodoku" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🦁 ZooDoku (주도쿠)</a></li>
+            <li><a href="/guide/pdf-checker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📐 PDF &amp; 도면 체커</a></li>
+            <li><a href="/guide/salary-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">🧮 실수령액·주휴수당 계산기</a></li>
+            <li><a href="/guide/excel-converter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📊 엑셀 구분자 변환기</a></li>
+            <li><a href="/guide/annual-leave-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📅 근로기준법 연차 계산기</a></li>
+            <li><a href="/guide/char-byte-counter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors">📝 자소서 글자수·Byte 변환</a></li>
+          </ul>
+        </div>
+        <!-- Legal -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.legal">법적 고지</h4>
+          <ul class="space-y-1">
+            <li><a href="/privacy" class="footer-nav-btn" data-i18n="nav.privacy">개인정보처리방침</a></li>
+            <li><a href="/terms" class="footer-nav-btn" data-i18n="nav.terms">이용약관</a></li>
+            <li class="pt-2 text-xs text-slate-400">
+              <span data-i18n="footer.emailLabel">문의 이메일:</span>
+              <a href="mailto:theoneco1@gmail.com" class="text-indigo-400 hover:underline">theoneco1@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Copyright -->
+      <div class="border-t border-slate-800 pt-6 text-center">
+        <p class="text-sm text-slate-500" data-i18n="footer.copyright">© 2026 일상의도움 (Daily Helper). All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS (Theme Sync)
+  ════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Dark Mode Toggle ─────────────────────────────────────
+      window.toggleDarkMode = function () {
+        var isDark = document.documentElement.classList.toggle('dark');
+        try {
+          localStorage.setItem('dh_dark', isDark ? 'true' : 'false');
+        } catch (_) { }
+        updateDarkToggleIcon(isDark);
+      };
+
+      function updateDarkToggleIcon(isDark) {
+        var iconSun = document.getElementById('theme-icon-sun');
+        var iconMoon = document.getElementById('theme-icon-moon');
+        if (!iconSun || !iconMoon) return;
+        if (isDark) {
+          iconSun.classList.remove('hidden');
+          iconMoon.classList.add('hidden');
+        } else {
+          iconSun.classList.add('hidden');
+          iconMoon.classList.remove('hidden');
+        }
+      }
+
+      // ── Init on load ─────────────────────────────────────────
+      document.addEventListener('DOMContentLoaded', function () {
+        var isDark = document.documentElement.classList.contains('dark');
+        updateDarkToggleIcon(isDark);
+      });
+    })();
+  </script>
+</body>
+</html>
