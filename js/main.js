@@ -1104,7 +1104,7 @@ function navigateToPath(targetPath, shouldPushState = true) {
   if (cleanPath === "/guide" || cleanPath.startsWith("/guide/")) {
     const parts = cleanPath.split("/").filter(Boolean);
     const slug = parts[1] || "";
-    let targetApp = "bakemerge";
+    let targetApp = "";
     if (slug) {
       targetApp = resolveGuideAppId(slug);
     } else if (searchOnly) {
@@ -1114,7 +1114,14 @@ function navigateToPath(targetPath, shouldPushState = true) {
     } else if (hashOnly) {
       targetApp = resolveGuideAppId(hashOnly);
     }
-    showPage("guide", targetApp, shouldPushState);
+
+    if (targetApp) {
+      showPage("guide", targetApp, shouldPushState);
+    } else {
+      // Direct navigation to dedicated Guide Hub Index page (/guide/)
+      window.location.href = "/guide/";
+      return;
+    }
   } else if (cleanPath === "/about") {
     showPage("about", undefined, shouldPushState);
   } else if (cleanPath === "/privacy") {

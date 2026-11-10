@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>서비스 이용 가이드 (Guide & Tips) | 일상의도움 (Daily Helper)</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="일상의도움(Daily Helper) 서비스 이용 가이드 허브입니다. Bake Merge, TimeKeeper, DayCount, BookSpot, ClipFlow Mate, ZooDoku 등 모바일 앱 6종과 무설치 PDF 도면 체커, 연차 계산기, 급여 계산기 등 실무 웹 유틸리티 8종의 상세 이용 방법과 핵심 꿀팁을 확인하세요." />
+  <meta name="keywords" content="서비스이용가이드, 일상의도움 가이드, 앱 가이드, 웹도구 팁, Bake Merge 공략, TimeKeeper 사용법, DayCount 디데이, BookSpot 북스팟, ClipFlow Mate, ZooDoku 주도쿠, 무설치 PDF 도면 체커, 연차계산기 사용법" />
+  <meta name="author" content="Daily Helper" />
+  <meta name="robots" content="index, follow" />
+  <meta name="google-site-verification" content="kK3-0DU6wblKyckSaD5DyG0zpHSYjK-xLym052yOsAc" />
+  <meta name="naver-site-verification" content="c22faa7c62c26206a2030852ce4e2732001458fd" />
+  <link rel="canonical" href="https://www.dailyhelperhub.com/guide/" />
+
+  <!-- Open Graph / SNS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dailyhelperhub.com/guide/" />
+  <meta property="og:title" content="서비스 이용 가이드 (Guide & Tips) — 일상의도움 (Daily Helper)" />
+  <meta property="og:description" content="일상의도움 모바일 라이프스타일 앱 및 브라우저 기반 무설치 실무 웹 도구의 상세 가이드와 꿀팁 모음" />
+  <meta property="og:image" content="https://www.dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.dailyhelperhub.com/guide/" />
+  <meta name="twitter:title" content="서비스 이용 가이드 (Guide & Tips) — 일상의도움 (Daily Helper)" />
+  <meta name="twitter:description" content="일상의도움 모바일 라이프스타일 앱 및 브라우저 기반 무설치 실무 웹 도구의 상세 가이드와 꿀팁 모음" />
+  <meta name="twitter:image" content="https://www.dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Early Theme & Language Sync to prevent FOUC -->
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('dh_dark');
+        if (savedTheme === 'false') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+        var savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
+          document.documentElement.lang = 'en';
+        }
+      } catch (_) { }
+    })();
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6278124637694502" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+            primaryLight: '#818cf8',
+            accent: '#06b6d4',
+            surfaceDark: '#0b0f19',
+            cardDark: '#131b2e'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/custom.css?v=4.6" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "서비스 이용 가이드 (Guide & Tips) — 일상의도움 (Daily Helper)",
+    "description": "일상의도움 모바일 라이프스타일 앱 6종 및 무설치 실무 웹 도구 8종의 상세 이용 가이드 및 활용 팁",
+    "url": "https://www.dailyhelperhub.com/guide/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "일상의도움 (Daily Helper)",
+      "url": "https://www.dailyhelperhub.com",
+      "logo": "https://www.dailyhelperhub.com/favicon.svg"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://www.dailyhelperhub.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "서비스 이용 가이드 (Guide & Tips)",
+        "item": "https://www.dailyhelperhub.com/guide/"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-['Noto_Sans_KR',sans-serif] antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+      <!-- Left: Logo & Breadcrumb -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 text-slate-900 dark:text-white hover:opacity-90 transition-opacity">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/20">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              <path d="M5 3v4"/>
+              <path d="M19 17v4"/>
+              <path d="M3 5h4"/>
+              <path d="M17 19h4"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-extrabold text-sm sm:text-base tracking-tight leading-tight">일상의도움</span>
+            <span class="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-mono tracking-wider">Daily Helper</span>
+          </div>
+        </a>
+
+        <span class="text-slate-300 dark:text-slate-700 hidden sm:inline">|</span>
+        <nav class="hidden sm:flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-i18n="breadcrumb.home">홈</a>
+          <span>/</span>
+          <span class="text-slate-800 dark:text-slate-200 font-medium" data-i18n="guide.mainTitle">서비스 이용 가이드</span>
+        </nav>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Back to Home Button -->
+        <a href="/" class="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200/80 dark:border-slate-700/80 shadow-sm" style="text-decoration:none;">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span data-i18n="btn.backHome">메인 홈으로</span>
+        </a>
+
+        <!-- Language Toggle -->
+        <button type="button" onclick="toggleLanguage()" class="p-2 sm:px-2.5 sm:py-1.5 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200/60 dark:border-slate-700/60 flex items-center gap-1" title="Change Language">
+          <span id="lang-btn-text">KO</span>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button type="button" onclick="toggleDarkMode()" class="p-2 sm:p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200/60 dark:border-slate-700/60" title="Toggle Theme" aria-label="Toggle Dark Mode">
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+          </svg>
+          <svg id="theme-icon-moon" class="w-4 h-4 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Hero Header Section -->
+    <div class="mb-10 text-center sm:text-left">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60 mb-3">
+        <span>📖</span>
+        <span data-i18n="badge.guide">서비스 이용 가이드 (Guide &amp; Tips)</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3" data-i18n="guide.mainTitle">
+        서비스 이용 가이드 (Guide &amp; Tips)
+      </h1>
+
+      <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl" data-i18n="guide.mainSubtitle">
+        일상의도움에서 제공하는 모든 모바일 앱과 브라우저 기반 무설치 실무 웹 도구의 핵심 기능과 상세 활용 팁을 확인해보세요. 복잡한 설치 없이 브라우저에서 바로 쓰는 실무 팁부터 모바일 앱 플레이 공략까지 한눈에 안내합니다.
+      </p>
+
+      <!-- Filter Controls & Search Bar -->
+      <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <!-- Category Filter Tabs -->
+        <div class="inline-flex p-1 rounded-2xl bg-slate-200/80 dark:bg-slate-900 border border-slate-300/80 dark:border-slate-800 self-start sm:self-auto" role="tablist">
+          <button type="button" onclick="setCategoryFilter('all')" id="filter-btn-all" class="filter-tab-btn active px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-white bg-indigo-600 shadow-sm" role="tab">
+            <span data-i18n="filter.all">전체보기</span>
+            <span class="ml-1 text-[11px] opacity-80">(14)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('app')" id="filter-btn-app" class="filter-tab-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" role="tab">
+            <span>📱</span>
+            <span data-i18n="filter.apps">모바일 앱</span>
+            <span class="ml-1 text-[11px] opacity-80">(6)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('tool')" id="filter-btn-tool" class="filter-tab-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" role="tab">
+            <span>⚡</span>
+            <span data-i18n="filter.tools">실무 웹 도구</span>
+            <span class="ml-1 text-[11px] opacity-80">(8)</span>
+          </button>
+        </div>
+
+        <!-- Quick Live Search Input -->
+        <div class="relative w-full sm:w-72">
+          <input type="text" id="guide-search-input" oninput="handleSearch(this.value)" placeholder="앱 또는 도구 가이드 검색..." class="w-full px-3.5 py-2 pl-9 rounded-xl text-xs sm:text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all shadow-sm" />
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Guide Cards Grid -->
+    <div id="guide-card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- ══════════════════════════════════════════
+           CARD 1: Bake Merge (베이크 머지)
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="app" data-search="bake merge 베이크 머지 빵 게임 머지퍼즐 3d물리 케이크 캐주얼">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/50">🥐</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  Bake Merge (베이크 머지)
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.bakeSub">3D 물리 베이커리 머지 퍼즐</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50" data-i18n="badge.game">게임</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.bakeDesc">
+            귀여운 베이커리 도우를 떨어뜨려 병합하고 거대한 자이언트 케이크를 구워내는 3D 물리 엔진 캐주얼 퍼즐 게임입니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.bakePoint1">생생한 3D 반죽 충돌 &amp; 굴러가는 물리 궤적 예측</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.bakePoint2">위기 탈출 번개 조커 &amp; 고득점 피버 모드 공략</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.bakePoint3">10여 종 베이커리 진화 도감 완성과 최고 기록 달성</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/bake-merge" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.doughdrop.bakeandmerge" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="Google Play Store">
+            <span>Play ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 2: TimeKeeper (타임키퍼)
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="app" data-search="timekeeper 타임키퍼 루틴 습관 타이머 온디바이스 오프라인 집중 생산성">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/50">⏱️</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  TimeKeeper (타임키퍼)
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.timeSub">스마트 루틴 &amp; 습관 트래커</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50" data-i18n="badge.utility">유틸리티</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.timeDesc">
+            100% 온디바이스 오프라인으로 작동하여 서버 가입 없이 내 기기에서 안전하게 지키는 루틴 플래너 &amp; 습관 타이머입니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.timePoint1">불꽃 연속 달성 스트릭으로 만드는 지속 가능한 동기부여</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.timePoint2">오프라인 로컬 저장으로 철저한 개인정보 보안 보장</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.timePoint3">뽀모도로 &amp; 스톱워치 연동 정밀 집중 시간 통계</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/timekeeper" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 3: DayCount (디데이)
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="app" data-search="daycount 데이카운트 디데이 d-day 기념일 시험 전역 일정 위젯">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800/50">📅</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  DayCount (디데이)
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.daySub">기념일 &amp; 시험 디데이 매니저</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50" data-i18n="badge.schedule">일정</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.dayDesc">
+            소중한 연인 기념일, 목표 자격증 시험, 군대 전역일, 아기 월령을 스마트하게 카운트다운하고 홈 화면 위젯으로 확인합니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.dayPoint1">100일·1년 단위 기념일 자동 계산 및 D-Day 카운트</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.dayPoint2">스마트폰 홈 화면 맞춤형 감성 위젯 지원</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.dayPoint3">반복 기념일 알림과 소중한 추억 사진 보관 기능</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/daycount" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 4: BookSpot (북스팟)
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="app" data-search="bookspot 북스팟 책 독서 독서기록 바코드 isbn 서재 통계 도서">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50">📚</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  BookSpot (북스팟)
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.bookSub">내 손안의 스마트 서재 &amp; 독서 기록</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50" data-i18n="badge.books">독서관리</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.bookDesc">
+            바코드 ISBN 스캔으로 1초 만에 책을 등록하고 완독 목표, 인상 깊은 문장, 나만의 월별 독서 통계를 체계적으로 관리합니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.bookPoint1">바코드(ISBN) 초고속 카메라 자동 스캔 도서 등록</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.bookPoint2">독서 상태(읽는 중·완독·읽고 싶은 책) 카테고리 분류</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.bookPoint3">독서 메모 &amp; 하이라이트 문장 스크랩 및 통계 분석</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/bookspot" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 5: ClipFlow Mate (클립플로우 메이트)
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="app" data-search="clipflow mate 클립플로우 메이트 클립보드 상용구 복사 붙여넣기 템플릿 업무 생산성">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/50">📋</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  ClipFlow Mate (클립플로우)
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.clipSub">스마트 클립보드 상용구 복사기</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50" data-i18n="badge.work">도구/업무</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.clipDesc">
+            계좌번호, 이메일, 주소, 자주 쓰는 고객 응대 템플릿을 플로팅 오버레이와 퀵패드로 1초 만에 복사하여 업무 속도를 높여줍니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.clipPoint1">다른 앱 위에서 바로 뜨는 플로팅 퀵패드 1초 복사</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.clipPoint2">동적 변수({오늘날짜}, {클라이언트}) 자동 치환 템플릿</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.clipPoint3">온디바이스 AES 암호화로 계좌번호·비밀번호 안전 저장</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/clipflow-mate" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 6: ZooDoku (주도쿠)
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="app" data-search="zoodoku 주도쿠 동물 스도쿠 사파리 퍼즐 두뇌 힐링 논리 캐주얼">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-orange-50 dark:bg-orange-950/40 border border-orange-200 dark:border-orange-800/50">🦁</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  ZooDoku (주도쿠)
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.zooSub">힐링 아기 동물 9x9 사파리 스도쿠</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-200 dark:border-amber-800/50" data-i18n="badge.game">게임</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.zooDesc">
+            딱딱한 숫자 대신 사자, 코끼리 등 귀여운 아기 동물 친구들과 함께 즐기는 편안하고 똑똑한 두뇌 힐링 9x9 스도쿠 퍼즐입니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.zooPoint1">숫자/동물 모드 실시간 원터치 전환 지원</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.zooPoint2">초보자용 논리 힌트 &amp; 중복 동물 하이라이트 안내</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.zooPoint3">Easy부터 Master까지 4단계 난이도와 데일리 챌린지</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/zoodoku" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 7: 무설치 PDF & CAD 도면 체커
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="pdf checker 도면 체커 cad 도면 마킹 펜 사각형 텍스트 도면검토 무설치">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/50">📐</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  무설치 PDF &amp; 도면 체커
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.pdfSub">브라우저 인메모리 도면 검토·마킹</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.webTool">웹 도구</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.pdfDesc">
+            서버 업로드 없이 100% 브라우저 인메모리에서 대용량 CAD 도면과 PDF 문서를 열고 사각형, 펜, 텍스트 마킹 후 고해상도로 다운로드합니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.pdfPoint1">Zero-Server 기밀 도면 유출 방지 100% 클라이언트 연산</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.pdfPoint2">시공·감리용 텍스트 배지(흰 바탕) 및 다채로운 주석 마킹</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.pdfPoint3">페이지 순서 재정렬, 삭제 및 인쇄용 초고화질 병합 내보내기</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/pdf-checker" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/#pdf-checker" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 8: 2026 실수령액·주휴수당 계산기
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="실수령액 주휴수당 알바 최저임금 최저시급 10320 4대보험 3.3% 급여 계산기">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/50">🧮</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  2026 실수령액·주휴수당
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.wageSub">최저시급 10,320원 반영 급여 계산기</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.salary">급여/세무</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.wageDesc">
+            2026년 법정 최저시급(10,320원)을 기준으로 주휴수당 발생 여부와 3.3% 프리랜서 vs 4대 보험 공제 후 통장 실수령액을 즉시 계산합니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.wagePoint1">근로기준법 제55조 주휴수당 3대 성립 조건 자동 판정</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.wagePoint2">3.3% 사업소득세 vs 4대 보험(~9.4%) 공제 비교</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.wagePoint3">주 40시간 월 209시간 환산 기준 2,156,880원 정밀 산출</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/salary-calculator" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/#wage-calc" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 9: 엑셀 구분자 변환기
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="엑셀 구분자 줄바꿈 변환기 sql in절 쉼표 따옴표 파이썬 리스트 데이터 정제">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/50">📊</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  엑셀 줄바꿈·구분자 변환기
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.excelSub">SQL IN절 &amp; 쉼표 구분 일괄 변환</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.data">데이터 정제</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.excelDesc">
+            엑셀 열(Column) 데이터를 복사하여 SQL IN 절 ('A','B','C'), 파이썬 리스트, 쉼표 구분자 등으로 즉시 변환하고 정제합니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.excelPoint1">DB 쿼리용 SQL IN ('...') 구문 1초 자동 조립</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.excelPoint2">작은따옴표, 큰따옴표 감싸기 및 중복 행 일괄 제거</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.excelPoint3">공백 트림 및 빈 줄 자동 필터링 클립보드 원터치 복사</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/excel-converter" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/#excel-converter" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 10: 근로기준법 제60조 연차 계산기
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="연차 계산기 근로기준법 60조 입사일 회계연도 1년미만 월차 11일 연차수당 퇴직">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/50">📅</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  근로기준법 연차 계산기
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.leaveSub">제60조 입사일·회계연도 기준 산정</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.law">근로기준법</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.leaveDesc">
+            1년 미만 입사자 월차(최대 11일)와 정규 15일 연차, 회계연도 기준 안분 계산 및 퇴직 시 유리한 기준 정산 공식을 제공합니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.leavePoint1">1년 미만 11일 월차 독립 발생 원리 및 소멸 시점 안내</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.leavePoint2">입사일 기준 vs 회사 회계연도 기준 자동 안분 비교</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.leavePoint3">퇴직 시 미사용 연차수당 통상임금 기준 보상액 산출</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/annual-leave-calculator" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/#annual-leave" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 11: 자소서 글자수·Byte 변환기
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="글자수 세기 byte 변환기 자소서 공문서 취업포털 2byte 3byte utf-8 euc-kr 공백정리">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800/50">📝</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  자소서 글자수·Byte 변환기
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.charSub">취업포털 &amp; 공공기관 기준 정밀 계측</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.doc">문서 도구</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.charDesc">
+            취업포털(2Byte) 및 공공기관 시스템(UTF-8 3Byte) 기준 글자수와 바이트를 계측하고 불필요한 공백을 1칸으로 정리합니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.charPoint1">공백 포함/제외 글자수 및 한글/영문/숫자 분포 통계</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.charPoint2">취업포털(EUC-KR 2Byte) vs 공공기관(UTF-8 3Byte) 정밀 환산</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.charPoint3">연속 공백 1칸 압축 및 다중 빈 줄 일괄 정제 필터</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/char-byte-counter" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/#char-counter" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 12: PDF ↔ 이미지 변환기
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="pdf 이미지 변환기 pdf to image image to pdf jpg png 병합 추출 고화질">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800/50">🔄</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  PDF ↔ 이미지 변환기
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.imgConvSub">PDF 페이지 추출 &amp; 이미지 병합</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.webTool">웹 도구</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.imgConvDesc">
+            서버 전송 없이 브라우저에서 대용량 PDF의 각 페이지를 고화질 JPG/PNG로 추출하거나, 여러 장의 이미지를 하나의 PDF로 묶어줍니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.imgConvPoint1">PDF 각 페이지 고화질 PNG/JPG 렌더링 및 개별·일괄 다운로드</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.imgConvPoint2">JPG/PNG/WebP 이미지를 드래그하여 하나의 PDF 문서로 결합</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.imgConvPoint3">서버 업로드 없는 100% 브라우저 메모리 보안 처리</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/pdf-image-converter" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/pdf-image-converter.html" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 13: PDF & 이미지 압축기
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="파일 압축기 pdf 압축 이미지 압축 용량 줄이기 고압축 이메일 최적화">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-violet-50 dark:bg-violet-950/40 border border-violet-200 dark:border-violet-800/50">🗜️</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  PDF &amp; 이미지 압축기
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.compSub">화질 손실 최소화 용량 다이어트</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.webTool">웹 도구</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.compDesc">
+            이메일 첨부나 포털 제출용으로 대용량 PDF 문서와 사진 이미지를 70~80% 가볍게 줄여주는 고효율 클라이언트 압축 도구입니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.compPoint1">시각적 해상도 저하 없는 스마트 캔버스 리샘플링</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.compPoint2">압축 전/후 용량 및 절감률 실시간 비교 뷰</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.compPoint3">외부 서버 전송 없는 100% 인메모리 처리로 보안 보장</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/file-compressor" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/file-compressor.html" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- ══════════════════════════════════════════
+           CARD 14: 이미지 & PDF 색상 추출기 (컬러 픽커)
+      ════════════════════════════════════════════ -->
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-200" data-category="tool" data-search="컬러 픽커 색상 추출기 스포이트 hex rgb hsl 팔레트 디자인 pdf 이미지">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2.5">
+              <span class="text-3xl p-2 rounded-xl bg-pink-50 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-800/50">🎨</span>
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  이미지 &amp; PDF 컬러 픽커
+                </h2>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.colorSub">정밀 스포이트 픽셀 색상 추출</span>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.webTool">웹 도구</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.colorDesc">
+            사진이나 디자인 시안, PDF 문서의 픽셀을 스포이트로 찍어 HEX, RGB, HSL 코드를 1초 만에 클립보드에 복사하고 팔레트를 만듭니다.
+          </p>
+
+          <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.colorPoint1">고배율 확대 돋보기로 정밀 픽셀 스포이트 샘플링</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.colorPoint2">HEX, RGB, HSL 원터치 복사 및 최근 추출 색상 히스토리</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-indigo-500 font-bold">✓</span>
+              <span data-i18n="guideCard.colorPoint3">대표 5대 주요 색상 팔레트 자동 분석 및 내보내기</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <a href="/guide/color-picker" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
+            <span>→</span>
+          </a>
+          <a href="/color-picker.html" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="guide-empty-state" class="hidden text-center py-16">
+      <div class="text-4xl mb-3">🔍</div>
+      <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1" data-i18n="empty.title">일치하는 가이드가 없습니다</h3>
+      <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400" data-i18n="empty.subtitle">다른 검색어로 검색하거나 카테고리 필터를 '전체보기'로 변경해 보세요.</p>
+    </div>
+
+    <!-- Google AdSense Responsive Display Unit -->
+    <section class="mt-12 p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center" aria-label="Advertisement">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-6278124637694502"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER (Consistent with Brand)
+  ════════════════════════════════════════════ -->
+  <footer class="bg-slate-900 text-slate-300 py-12 px-4 mt-auto border-t border-slate-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <!-- Brand Info -->
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">✨</span>
+            <span class="font-bold text-lg text-white">일상의도움</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4" data-i18n="footer.desc">
+            서버 저장 없는 100% 클라이언트 연산 무설치 웹 도구와 안드로이드 생산성 앱 모음. 일상의 모든 순간을 더 스마트하게 만들어드립니다.
+          </p>
+          <div class="text-xs text-slate-500 font-mono">
+            Zero-Server Privacy First Hub
+          </div>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.quickLinks">빠른 메뉴</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="/" class="text-slate-400 hover:text-indigo-400 transition-colors" data-i18n="breadcrumb.home">홈으로 가기</a></li>
+            <li><a href="/guide/" class="text-indigo-400 font-semibold" data-i18n="guide.mainTitle">서비스 이용 가이드</a></li>
+            <li><a href="/about.html" class="text-slate-400 hover:text-indigo-400 transition-colors" data-i18n="footer.about">서비스 소개 (About Us)</a></li>
+            <li><a href="/article-leave-guide.html" class="text-slate-400 hover:text-indigo-400 transition-colors">근로기준법 연차 완벽 가이드</a></li>
+          </ul>
+        </div>
+
+        <!-- App Guides -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.appGuides">모바일 앱 가이드</h4>
+          <ul class="space-y-1.5 text-xs text-slate-400">
+            <li><a href="/guide/bake-merge" class="hover:text-indigo-400 transition-colors">🥐 Bake Merge (베이크 머지)</a></li>
+            <li><a href="/guide/timekeeper" class="hover:text-indigo-400 transition-colors">⏱️ TimeKeeper (타임키퍼)</a></li>
+            <li><a href="/guide/daycount" class="hover:text-indigo-400 transition-colors">📅 DayCount (디데이)</a></li>
+            <li><a href="/guide/bookspot" class="hover:text-indigo-400 transition-colors">📚 BookSpot (북스팟)</a></li>
+            <li><a href="/guide/clipflow-mate" class="hover:text-indigo-400 transition-colors">📋 ClipFlow Mate (클립플로우)</a></li>
+            <li><a href="/guide/zoodoku" class="hover:text-indigo-400 transition-colors">🦁 ZooDoku (주도쿠)</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.legal">법적 고지</h4>
+          <ul class="space-y-1.5 text-xs text-slate-400">
+            <li><a href="/privacy" class="hover:text-indigo-400 transition-colors" data-i18n="nav.privacy">개인정보처리방침</a></li>
+            <li><a href="/terms" class="hover:text-indigo-400 transition-colors" data-i18n="nav.terms">이용약관</a></li>
+            <li class="pt-2 text-[11px] text-slate-500">
+              <span data-i18n="footer.emailLabel">문의:</span>
+              <a href="mailto:theoneco1@gmail.com" class="text-indigo-400 hover:underline">theoneco1@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+        <p data-i18n="footer.copyright">© 2026 일상의도움 (Daily Helper). All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS: Theme, Language & Filter
+  ════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Translations dictionary for Guide Hub ─────────────────
+      var i18nData = {
+        ko: {
+          'breadcrumb.home': '홈',
+          'guide.mainTitle': '서비스 이용 가이드 (Guide & Tips)',
+          'guide.mainSubtitle': '일상의도움에서 제공하는 모든 모바일 앱과 브라우저 기반 무설치 실무 웹 도구의 핵심 기능과 상세 활용 팁을 확인해보세요. 복잡한 설치 없이 브라우저에서 바로 쓰는 실무 팁부터 모바일 앱 플레이 공략까지 한눈에 안내합니다.',
+          'badge.guide': '서비스 이용 가이드 (Guide & Tips)',
+          'btn.backHome': '메인 홈으로',
+          'filter.all': '전체보기',
+          'filter.apps': '모바일 앱',
+          'filter.tools': '실무 웹 도구',
+          'empty.title': '일치하는 가이드가 없습니다',
+          'empty.subtitle': '다른 검색어로 검색하거나 카테고리 필터를 "전체보기"로 변경해 보세요.',
+          'btn.viewGuide': '가이드 보기',
+          'btn.openTool': '도구 열기 ↗',
+          'badge.game': '게임',
+          'badge.utility': '유틸리티',
+          'badge.schedule': '일정',
+          'badge.books': '독서관리',
+          'badge.work': '도구/업무',
+          'badge.webTool': '웹 도구',
+          'badge.salary': '급여/세무',
+          'badge.data': '데이터 정제',
+          'badge.law': '근로기준법',
+          'badge.doc': '문서 도구',
+          'footer.desc': '서버 저장 없는 100% 클라이언트 연산 무설치 웹 도구와 안드로이드 생산성 앱 모음. 일상의 모든 순간을 더 스마트하게 만들어드립니다.',
+          'footer.quickLinks': '빠른 메뉴',
+          'footer.appGuides': '모바일 앱 가이드',
+          'footer.legal': '법적 고지',
+          'footer.about': '서비스 소개 (About Us)',
+          'footer.emailLabel': '문의:',
+          'footer.copyright': '© 2026 일상의도움 (Daily Helper). All rights reserved.',
+          'nav.privacy': '개인정보처리방침',
+          'nav.terms': '이용약관',
+
+          // Cards
+          'guideCard.bakeSub': '3D 물리 베이커리 머지 퍼즐',
+          'guideCard.bakeDesc': '귀여운 베이커리 도우를 떨어뜨려 병합하고 거대한 자이언트 케이크를 구워내는 3D 물리 엔진 캐주얼 퍼즐 게임입니다.',
+          'guideCard.bakePoint1': '생생한 3D 반죽 충돌 & 굴러가는 물리 궤적 예측',
+          'guideCard.bakePoint2': '위기 탈출 번개 조커 & 고득점 피버 모드 공략',
+          'guideCard.bakePoint3': '10여 종 베이커리 진화 도감 완성과 최고 기록 달성',
+
+          'guideCard.timeSub': '스마트 루틴 & 습관 트래커',
+          'guideCard.timeDesc': '100% 온디바이스 오프라인으로 작동하여 서버 가입 없이 내 기기에서 안전하게 지키는 루틴 플래너 & 습관 타이머입니다.',
+          'guideCard.timePoint1': '불꽃 연속 달성 스트릭으로 만드는 지속 가능한 동기부여',
+          'guideCard.timePoint2': '오프라인 로컬 저장으로 철저한 개인정보 보안 보장',
+          'guideCard.timePoint3': '뽀모도로 & 스톱워치 연동 정밀 집중 시간 통계',
+
+          'guideCard.daySub': '기념일 & 시험 디데이 매니저',
+          'guideCard.dayDesc': '소중한 연인 기념일, 목표 자격증 시험, 군대 전역일, 아기 월령을 스마트하게 카운트다운하고 홈 화면 위젯으로 확인합니다.',
+          'guideCard.dayPoint1': '100일·1년 단위 기념일 자동 계산 및 D-Day 카운트',
+          'guideCard.dayPoint2': '스마트폰 홈 화면 맞춤형 감성 위젯 지원',
+          'guideCard.dayPoint3': '반복 기념일 알림과 소중한 추억 사진 보관 기능',
+
+          'guideCard.bookSub': '내 손안의 스마트 서재 & 독서 기록',
+          'guideCard.bookDesc': '바코드 ISBN 스캔으로 1초 만에 책을 등록하고 완독 목표, 인상 깊은 문장, 나만의 월별 독서 통계를 체계적으로 관리합니다.',
+          'guideCard.bookPoint1': '바코드(ISBN) 초고속 카메라 자동 스캔 도서 등록',
+          'guideCard.bookPoint2': '독서 상태(읽는 중·완독·읽고 싶은 책) 카테고리 분류',
+          'guideCard.bookPoint3': '독서 메모 & 하이라이트 문장 스크랩 및 통계 분석',
+
+          'guideCard.clipSub': '스마트 클립보드 상용구 복사기',
+          'guideCard.clipDesc': '계좌번호, 이메일, 주소, 자주 쓰는 고객 응대 템플릿을 플로팅 오버레이와 퀵패드로 1초 만에 복사하여 업무 속도를 높여줍니다.',
+          'guideCard.clipPoint1': '다른 앱 위에서 바로 뜨는 플로팅 퀵패드 1초 복사',
+          'guideCard.clipPoint2': '동적 변수({오늘날짜}, {클라이언트}) 자동 치환 템플릿',
+          'guideCard.clipPoint3': '온디바이스 AES 암호화로 계좌번호·비밀번호 안전 저장',
+
+          'guideCard.zooSub': '힐링 아기 동물 9x9 사파리 스도쿠',
+          'guideCard.zooDesc': '딱딱한 숫자 대신 사자, 코끼리 등 귀여운 아기 동물 친구들과 함께 즐기는 편안하고 똑똑한 두뇌 힐링 9x9 스도쿠 퍼즐입니다.',
+          'guideCard.zooPoint1': '숫자/동물 모드 실시간 원터치 전환 지원',
+          'guideCard.zooPoint2': '초보자용 논리 힌트 & 중복 동물 하이라이트 안내',
+          'guideCard.zooPoint3': 'Easy부터 Master까지 4단계 난이도와 데일리 챌린지',
+
+          'guideCard.pdfSub': '브라우저 인메모리 도면 검토·마킹',
+          'guideCard.pdfDesc': '서버 업로드 없이 100% 브라우저 인메모리에서 대용량 CAD 도면과 PDF 문서를 열고 사각형, 펜, 텍스트 마킹 후 고해상도로 다운로드합니다.',
+          'guideCard.pdfPoint1': 'Zero-Server 기밀 도면 유출 방지 100% 클라이언트 연산',
+          'guideCard.pdfPoint2': '시공·감리용 텍스트 배지(흰 바탕) 및 다채로운 주석 마킹',
+          'guideCard.pdfPoint3': '페이지 순서 재정렬, 삭제 및 인쇄용 초고화질 병합 내보내기',
+
+          'guideCard.wageSub': '최저시급 10,320원 반영 급여 계산기',
+          'guideCard.wageDesc': '2026년 법정 최저시급(10,320원)을 기준으로 주휴수당 발생 여부와 3.3% 프리랜서 vs 4대 보험 공제 후 통장 실수령액을 즉시 계산합니다.',
+          'guideCard.wagePoint1': '근로기준법 제55조 주휴수당 3대 성립 조건 자동 판정',
+          'guideCard.wagePoint2': '3.3% 사업소득세 vs 4대 보험(~9.4%) 공제 비교',
+          'guideCard.wagePoint3': '주 40시간 월 209시간 환산 기준 2,156,880원 정밀 산출',
+
+          'guideCard.excelSub': 'SQL IN절 & 쉼표 구분 일괄 변환',
+          'guideCard.excelDesc': '엑셀 열(Column) 데이터를 복사하여 SQL IN 절 (\'A\',\'B\',\'C\'), 파이썬 리스트, 쉼표 구분자 등으로 즉시 변환하고 정제합니다.',
+          'guideCard.excelPoint1': 'DB 쿼리용 SQL IN (\'...\') 구문 1초 자동 조립',
+          'guideCard.excelPoint2': '작은따옴표, 큰따옴표 감싸기 및 중복 행 일괄 제거',
+          'guideCard.excelPoint3': '공백 트림 및 빈 줄 자동 필터링 클립보드 원터치 복사',
+
+          'guideCard.leaveSub': '제60조 입사일·회계연도 기준 산정',
+          'guideCard.leaveDesc': '1년 미만 입사자 월차(최대 11일)와 정규 15일 연차, 회계연도 기준 안분 계산 및 퇴직 시 유리한 기준 정산 공식을 제공합니다.',
+          'guideCard.leavePoint1': '1년 미만 11일 월차 독립 발생 원리 및 소멸 시점 안내',
+          'guideCard.leavePoint2': '입사일 기준 vs 회사 회계연도 기준 자동 안분 비교',
+          'guideCard.leavePoint3': '퇴직 시 미사용 연차수당 통상임금 기준 보상액 산출',
+
+          'guideCard.charSub': '취업포털 & 공공기관 기준 정밀 계측',
+          'guideCard.charDesc': '취업포털(2Byte) 및 공공기관 시스템(UTF-8 3Byte) 기준 글자수와 바이트를 계측하고 불필요한 공백을 1칸으로 정리합니다.',
+          'guideCard.charPoint1': '공백 포함/제외 글자수 및 한글/영문/숫자 분포 통계',
+          'guideCard.charPoint2': '취업포털(EUC-KR 2Byte) vs 공공기관(UTF-8 3Byte) 정밀 환산',
+          'guideCard.charPoint3': '연속 공백 1칸 압축 및 다중 빈 줄 일괄 정제 필터',
+
+          'guideCard.imgConvSub': 'PDF 페이지 추출 & 이미지 병합',
+          'guideCard.imgConvDesc': '서버 전송 없이 브라우저에서 대용량 PDF의 각 페이지를 고화질 JPG/PNG로 추출하거나, 여러 장의 이미지를 하나의 PDF로 묶어줍니다.',
+          'guideCard.imgConvPoint1': 'PDF 각 페이지 고화질 PNG/JPG 렌더링 및 개별·일괄 다운로드',
+          'guideCard.imgConvPoint2': 'JPG/PNG/WebP 이미지를 드래그하여 하나의 PDF 문서로 결합',
+          'guideCard.imgConvPoint3': '서버 업로드 없는 100% 브라우저 메모리 보안 처리',
+
+          'guideCard.compSub': '화질 손실 최소화 용량 다이어트',
+          'guideCard.compDesc': '이메일 첨부나 포털 제출용으로 대용량 PDF 문서와 사진 이미지를 70~80% 가볍게 줄여주는 고효율 클라이언트 압축 도구입니다.',
+          'guideCard.compPoint1': '시각적 해상도 저하 없는 스마트 캔버스 리샘플링',
+          'guideCard.compPoint2': '압축 전/후 용량 및 절감률 실시간 비교 뷰',
+          'guideCard.compPoint3': '외부 서버 전송 없는 100% 인메모리 처리로 보안 보장',
+
+          'guideCard.colorSub': '정밀 스포이트 픽셀 색상 추출',
+          'guideCard.colorDesc': '사진이나 디자인 시안, PDF 문서의 픽셀을 스포이트로 찍어 HEX, RGB, HSL 코드를 1초 만에 클립보드에 복사하고 팔레트를 만듭니다.',
+          'guideCard.colorPoint1': '고배율 확대 돋보기로 정밀 픽셀 스포이트 샘플링',
+          'guideCard.colorPoint2': 'HEX, RGB, HSL 원터치 복사 및 최근 추출 색상 히스토리',
+          'guideCard.colorPoint3': '대표 5대 주요 색상 팔레트 자동 분석 및 내보내기'
+        },
+        en: {
+          'breadcrumb.home': 'Home',
+          'guide.mainTitle': 'Service User Guides (Guide & Tips)',
+          'guide.mainSubtitle': 'Explore comprehensive user guides and practical tips for all Daily Helper mobile apps and in-browser zero-install web utility tools. Boost your productivity with verified workflows and step-by-step guides.',
+          'badge.guide': 'Service User Guides (Guide & Tips)',
+          'btn.backHome': 'Back to Home',
+          'filter.all': 'View All',
+          'filter.apps': 'Mobile Apps',
+          'filter.tools': 'Web Utilities',
+          'empty.title': 'No Matching Guides Found',
+          'empty.subtitle': 'Try a different search keyword or switch back to the "View All" filter.',
+          'btn.viewGuide': 'View Guide',
+          'btn.openTool': 'Open Tool ↗',
+          'badge.game': 'Game',
+          'badge.utility': 'Utility',
+          'badge.schedule': 'Schedule',
+          'badge.books': 'Books',
+          'badge.work': 'Work & Tools',
+          'badge.webTool': 'Web Tool',
+          'badge.salary': 'Salary & Tax',
+          'badge.data': 'Data Tool',
+          'badge.law': 'Labor Law',
+          'badge.doc': 'Doc Tool',
+          'footer.desc': 'Zero-server, 100% client-side privacy-first web utilities and productive Android lifestyle apps designed for seamless daily workflows.',
+          'footer.quickLinks': 'Quick Links',
+          'footer.appGuides': 'Mobile App Guides',
+          'footer.legal': 'Legal Notice',
+          'footer.about': 'About Us',
+          'footer.emailLabel': 'Contact:',
+          'footer.copyright': '© 2026 Daily Helper. All rights reserved.',
+          'nav.privacy': 'Privacy Policy',
+          'nav.terms': 'Terms of Service',
+
+          // Cards
+          'guideCard.bakeSub': '3D Physics Bakery Merge Puzzle',
+          'guideCard.bakeDesc': 'Drop bouncy pastry dough, merge matching pastries, and craft giant cakes in satisfying real-time 3D physics!',
+          'guideCard.bakePoint1': 'Predict satisfying bouncy collisions and rolling physical trajectories',
+          'guideCard.bakePoint2': 'Use tactical Lightning Jokers and activate high-scoring Fever Mode',
+          'guideCard.bakePoint3': 'Collect 10+ bakery evolution stages and set your personal best score',
+
+          'guideCard.timeSub': 'Smart Routine & Habit Tracker',
+          'guideCard.timeDesc': '100% on-device offline routine planner & focus timer that safeguards your privacy without mandatory server logins.',
+          'guideCard.timePoint1': 'Flame streak milestones that fuel lasting daily momentum',
+          'guideCard.timePoint2': 'Guaranteed data privacy with complete local-device storage',
+          'guideCard.timePoint3': 'Integrated Pomodoro timer with in-depth focus analytics',
+
+          'guideCard.daySub': 'Anniversary & Exam D-Day Countdown',
+          'guideCard.dayDesc': 'Track cherished relationships, upcoming certificate exams, milestones, and baby growth with customizable home screen widgets.',
+          'guideCard.dayPoint1': 'Automatic 100-day & anniversary milestones and exact D-Day counts',
+          'guideCard.dayPoint2': 'Beautiful home screen widgets tailored to your aesthetic',
+          'guideCard.dayPoint3': 'Recurring reminders with personal photo memories',
+
+          'guideCard.bookSub': 'Personal Library & Reading Log',
+          'guideCard.bookDesc': 'Scan barcode ISBNs in 1 second to catalog books, track annual reading goals, save quotes, and visualize monthly reading charts.',
+          'guideCard.bookPoint1': 'Ultra-fast camera barcode (ISBN) scanning and auto-book lookup',
+          'guideCard.bookPoint2': 'Organize by Reading, Completed, and Wishlist categories',
+          'guideCard.bookPoint3': 'Highlight memorable excerpts and track reading habits over time',
+
+          'guideCard.clipSub': 'Smart Floating Clipboard Snippets',
+          'guideCard.clipDesc': 'Instantly paste bank account numbers, emails, addresses, and customer replies across any app via floating quickpads.',
+          'guideCard.clipPoint1': 'Floating quickpad overlay for 1-second pasting anywhere',
+          'guideCard.clipPoint2': 'Dynamic variable template replacement ({today}, {client_name})',
+          'guideCard.clipPoint3': 'On-device AES encrypted storage for sensitive text and credentials',
+
+          'guideCard.zooSub': 'Healing 9x9 Baby Animal Safari Sudoku',
+          'guideCard.zooDesc': 'A gentle and intelligent 9x9 logic puzzle experience featuring cute baby safari animals instead of rigid numbers.',
+          'guideCard.zooPoint1': 'One-tap toggle between cute animal icons and classic numbers',
+          'guideCard.zooPoint2': 'Smart logical hints and duplicate animal highlights for beginners',
+          'guideCard.zooPoint3': '4 difficulty tiers (Easy to Master) plus Daily Challenges',
+
+          'guideCard.pdfSub': 'In-Memory PDF Review & Markup',
+          'guideCard.pdfDesc': 'Audit large architectural blueprints and PDF contracts directly in browser memory. Add rectangles, text badges, and pens safely.',
+          'guideCard.pdfPoint1': 'Zero-server client processing eliminates corporate data leak risks',
+          'guideCard.pdfPoint2': 'White-backed inspection text badges for crystal-clear field printing',
+          'guideCard.pdfPoint3': 'Reorder, delete sheets, and export unified ultra-high-res PDFs',
+
+          'guideCard.wageSub': '2026 Wage & Holiday Pay Calculator',
+          'guideCard.wageDesc': 'Accurately compute 2026 statutory minimum hourly wages (₩10,320), weekly holiday allowances, and after-tax net take-home pay.',
+          'guideCard.wagePoint1': 'Automatic qualification audit for 3 core statutory conditions',
+          'guideCard.wagePoint2': 'Compare 3.3% freelancer tax vs 4 Major Social Insurances (~9.4%)',
+          'guideCard.wagePoint3': 'Standard 209-hour monthly baseline: ₩2,156,880 guaranteed breakdown',
+
+          'guideCard.excelSub': 'SQL IN Clause & Delimiter Converter',
+          'guideCard.excelDesc': 'Instantly convert copied Excel spreadsheet columns into SQL IN queries, Python lists, or comma-delimited text with custom quotes.',
+          'guideCard.excelPoint1': '1-second SQL IN (\'...\') query assembly for database debugging',
+          'guideCard.excelPoint2': 'Single quote, double quote wrapping with instant deduplication',
+          'guideCard.excelPoint3': 'Auto whitespace trimming and one-click clipboard copying',
+
+          'guideCard.leaveSub': 'Article 60 Statutory Annual Leave Calculator',
+          'guideCard.leaveDesc': 'Calculate statutory annual paid leave for employees under 1 year (up to 11 days) and fiscal vs anniversary year comparisons.',
+          'guideCard.leavePoint1': 'First-year monthly leave rules and exact expiration timelines',
+          'guideCard.leavePoint2': 'Anniversary vs corporate fiscal year prorated calculations',
+          'guideCard.leavePoint3': 'Standard wage formula for unused leave allowance payouts upon resignation',
+
+          'guideCard.charSub': 'Accurate Character & Byte Counter',
+          'guideCard.charDesc': 'Measure character counts and exact bytes according to hiring portals (2Byte) and government recruitment portals (UTF-8 3Byte).',
+          'guideCard.charPoint1': 'Total character counts with/without spaces plus glyph breakdown',
+          'guideCard.charPoint2': 'Job portal (EUC-KR 2Byte) vs Gov (UTF-8 3Byte) exact byte counts',
+          'guideCard.charPoint3': 'Compress consecutive spaces into 1 and batch prune blank lines',
+
+          'guideCard.imgConvSub': 'PDF Page Extraction & Image Merging',
+          'guideCard.imgConvDesc': 'Extract high-resolution JPG/PNG images from PDF documents or combine multiple images into a single clean PDF document.',
+          'guideCard.imgConvPoint1': 'High-resolution PNG/JPG rendering with single or batch downloads',
+          'guideCard.imgConvPoint2': 'Drag-and-drop JPG/PNG/WebP images into one organized PDF',
+          'guideCard.imgConvPoint3': '100% in-browser memory execution with zero server uploading',
+
+          'guideCard.compSub': 'Lossless PDF & Image Size Reducer',
+          'guideCard.compDesc': 'Shrink hefty PDF documents and high-res photos by 70~80% for seamless email attachments and portal uploads without quality loss.',
+          'guideCard.compPoint1': 'Smart canvas resampling with virtually imperceptible quality changes',
+          'guideCard.compPoint2': 'Side-by-side file size and reduction percentage previews',
+          'guideCard.compPoint3': 'Zero data transmission outside your device guarantees top security',
+
+          'guideCard.colorSub': 'Precision Dropper Pixel Color Picker',
+          'guideCard.colorDesc': 'Sample exact pixel colors from photos, design mockups, and PDFs to copy HEX, RGB, and HSL codes and create color palettes.',
+          'guideCard.colorPoint1': 'High-power zoom loupe for single-pixel precision sampling',
+          'guideCard.colorPoint2': 'One-click copy for HEX, RGB, HSL codes with history logging',
+          'guideCard.colorPoint3': 'Auto-extract dominant 5-color harmony palettes for UI design'
+        }
+      };
+
+      // ── Current State ─────────────────────────────────────────
+      var currentLang = 'ko';
+      var currentCategory = 'all';
+      var searchQuery = '';
+
+      // ── Dark Mode Handler ─────────────────────────────────────
+      window.toggleDarkMode = function () {
+        var isDark = document.documentElement.classList.toggle('dark');
+        try {
+          localStorage.setItem('dh_dark', isDark ? 'true' : 'false');
+        } catch (_) { }
+        updateDarkToggleIcon(isDark);
+      };
+
+      function updateDarkToggleIcon(isDark) {
+        var iconSun = document.getElementById('theme-icon-sun');
+        var iconMoon = document.getElementById('theme-icon-moon');
+        if (!iconSun || !iconMoon) return;
+        if (isDark) {
+          iconSun.classList.remove('hidden');
+          iconMoon.classList.add('hidden');
+        } else {
+          iconSun.classList.add('hidden');
+          iconMoon.classList.remove('hidden');
+        }
+      }
+
+      // ── Language Toggle Handler ───────────────────────────────
+      window.toggleLanguage = function () {
+        currentLang = (currentLang === 'ko') ? 'en' : 'ko';
+        try {
+          localStorage.setItem('site_lang', currentLang);
+          localStorage.setItem('dh_lang', currentLang);
+        } catch (_) { }
+        applyLanguage(currentLang);
+      };
+
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        var btn = document.getElementById('lang-btn-text');
+        if (btn) btn.textContent = (lang === 'ko') ? 'KO' : 'EN';
+
+        var dict = i18nData[lang] || i18nData.ko;
+        var elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.innerHTML = dict[key];
+          }
+        });
+
+        // Search placeholder
+        var searchInput = document.getElementById('guide-search-input');
+        if (searchInput) {
+          searchInput.placeholder = (lang === 'ko')
+            ? '앱 또는 도구 가이드 검색...'
+            : 'Search app or tool guide...';
+        }
+      }
+
+      // ── Category Filter Handler ───────────────────────────────
+      window.setCategoryFilter = function (category) {
+        currentCategory = category || 'all';
+        ['all', 'app', 'tool'].forEach(function (cat) {
+          var btn = document.getElementById('filter-btn-' + cat);
+          if (!btn) return;
+          var isActive = (cat === currentCategory);
+          if (isActive) {
+            btn.className = 'filter-tab-btn active px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-white bg-indigo-600 shadow-sm';
+          } else {
+            btn.className = 'filter-tab-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white';
+          }
+        });
+        filterCards();
+      };
+
+      // ── Live Search Handler ───────────────────────────────────
+      window.handleSearch = function (val) {
+        searchQuery = (val || '').trim().toLowerCase();
+        filterCards();
+      };
+
+      function filterCards() {
+        var cards = document.querySelectorAll('.guide-item-card');
+        var visibleCount = 0;
+
+        cards.forEach(function (card) {
+          var cardCategory = card.getAttribute('data-category');
+          var cardSearch = (card.getAttribute('data-search') || '') + ' ' + card.innerText;
+          cardSearch = cardSearch.toLowerCase();
+
+          var matchesCategory = (currentCategory === 'all' || cardCategory === currentCategory);
+          var matchesSearch = !searchQuery || cardSearch.indexOf(searchQuery) !== -1;
+
+          if (matchesCategory && matchesSearch) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        var emptyState = document.getElementById('guide-empty-state');
+        if (emptyState) {
+          emptyState.classList.toggle('hidden', visibleCount > 0);
+        }
+      }
+
+      // ── Init on DOMContentLoaded ──────────────────────────────
+      document.addEventListener('DOMContentLoaded', function () {
+        var isDark = document.documentElement.classList.contains('dark');
+        updateDarkToggleIcon(isDark);
+
+        var savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang');
+        if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
+          currentLang = 'en';
+        } else {
+          currentLang = 'ko';
+        }
+        applyLanguage(currentLang);
+      });
+    })();
+  </script>
+</body>
+</html>

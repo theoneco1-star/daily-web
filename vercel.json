@@ -4,10 +4,14 @@
   "rewrites": [
     {
       "source": "/guide",
-      "destination": "/index.html"
+      "destination": "/guide/index.html"
     },
     {
-      "source": "/guide/(.*)",
+      "source": "/guide/",
+      "destination": "/guide/index.html"
+    },
+    {
+      "source": "/guide/(.+)",
       "destination": "/index.html"
     },
     {
