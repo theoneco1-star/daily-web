@@ -4,43 +4,43 @@
   "rewrites": [
     {
       "source": "/guide",
-      "destination": "/guide/index.html"
+      "destination": "/guide"
     },
     {
       "source": "/guide/",
-      "destination": "/guide/index.html"
+      "destination": "/guide"
     },
     {
       "source": "/guide/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/privacy",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/terms",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/contact",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/tools",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/web-tools",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/apps",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/mobile-apps",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ],
   "headers": [
