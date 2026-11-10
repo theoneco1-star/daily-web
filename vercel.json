@@ -11,7 +11,7 @@
       "destination": "/guide/index.html"
     },
     {
-      "source": "/guide/(.+)",
+      "source": "/guide/(.*)",
       "destination": "/index.html"
     },
     {
