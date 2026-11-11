@@ -18,6 +18,46 @@
   ],
   "tools": [
     {
+      "id": "pdf-to-dxf",
+      "nameKo": "PDF 도면 ➔ CAD(DXF) 변환기",
+      "nameEn": "PDF Drawing to CAD (DXF) Converter",
+      "targetLang": "ALL",
+      "isKrOnly": false,
+      "category": "utility",
+      "color": "from-sky-600 via-blue-600 to-indigo-600",
+      "iconEmoji": "📐",
+      "isHot": true,
+      "isFree": true,
+      "isNew": true,
+      "badges": [
+        "HOT",
+        "NEW",
+        "무료 도구",
+        "Web Utility"
+      ],
+      "descKo": "서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원.",
+      "descEn": "Instantly convert vector PDF drawings to CAD-compatible DXF files in your browser with zero server uploads. Extracts lines, curves, and dimensions.",
+      "tagsKo": [
+        "PDF변환",
+        "CAD변환",
+        "DXF추출",
+        "도면변환",
+        "무설치"
+      ],
+      "tagsEn": [
+        "PDFtoCAD",
+        "DXF",
+        "VectorExtract",
+        "DrawingConverter",
+        "NoUpload"
+      ],
+      "ctaTextKo": "바로 사용하기",
+      "ctaTextEn": "Use Tool Now",
+      "actionType": "link",
+      "targetUrl": "/pdf-to-dxf.html",
+      "deepLink": "/pdf-to-dxf.html"
+    },
+    {
       "id": "pdf-image-converter",
       "nameKo": "PDF ↔ 이미지 변환기 (일괄 묶음·분리)",
       "nameEn": "PDF ↔ Image Converter",
@@ -55,6 +95,86 @@
       "actionType": "link",
       "targetUrl": "/pdf-image-converter.html",
       "deepLink": "/pdf-image-converter.html"
+    },
+    {
+      "id": "file-compressor",
+      "nameKo": "PDF & 이미지 파일 용량 압축기",
+      "nameEn": "PDF & Image File Compressor",
+      "targetLang": "ALL",
+      "isKrOnly": false,
+      "category": "utility",
+      "color": "from-blue-600 via-indigo-600 to-teal-500",
+      "iconEmoji": "🗜️",
+      "isHot": true,
+      "isFree": true,
+      "isNew": true,
+      "badges": [
+        "NEW",
+        "무료 도구",
+        "Web Utility"
+      ],
+      "descKo": "100% 브라우저 메모리 연산으로 대용량 PDF 및 이미지(JPG, PNG, WEBP)의 화질을 유지하며 파일 크기를 최대 90%까지 안전하게 압축합니다.",
+      "descEn": "Compress and optimize PDF documents and images (JPG, PNG, WEBP) 100% locally in your browser with zero server upload.",
+      "tagsKo": [
+        "PDF압축",
+        "이미지압축",
+        "용량줄이기",
+        "무설치",
+        "보안압축"
+      ],
+      "tagsEn": [
+        "PDFCompress",
+        "ImageCompress",
+        "FileSizeReducer",
+        "NoInstall",
+        "ClientSide"
+      ],
+      "ctaTextKo": "바로 사용하기",
+      "ctaTextEn": "Use Tool Now",
+      "actionType": "link",
+      "targetUrl": "/file-compressor.html",
+      "deepLink": "/file-compressor.html"
+    },
+    {
+      "id": "color-picker",
+      "nameKo": "이미지 & PDF 색상 추출기",
+      "nameEn": "Image & PDF Color Picker & Palette Extractor",
+      "targetLang": "ALL",
+      "isKrOnly": false,
+      "category": "utility",
+      "color": "from-pink-600 via-rose-500 to-amber-500",
+      "iconEmoji": "🎨",
+      "isHot": true,
+      "isFree": true,
+      "isNew": true,
+      "badges": [
+        "NEW",
+        "무료 도구",
+        "Web Utility"
+      ],
+      "descKo": "이미지나 PDF 문서를 올리거나 Ctrl+V 캡처 붙여넣기로 원하는 픽셀의 HEX, RGB, HSL 색상 코드를 정밀 스포이드로 즉시 추출 및 복사합니다.",
+      "descEn": "Extract precise pixel color codes from images or PDFs (or paste via Ctrl+V) with a magnifying loupe and auto-generate dominant palettes with one-click copy.",
+      "tagsKo": [
+        "색상추출",
+        "컬러피커",
+        "팔레트",
+        "HEX코드",
+        "RGB",
+        "스포이드"
+      ],
+      "tagsEn": [
+        "ColorPicker",
+        "Palette",
+        "Eyedropper",
+        "HEX",
+        "RGB",
+        "PixelColor"
+      ],
+      "ctaTextKo": "바로 사용하기",
+      "ctaTextEn": "Use Tool Now",
+      "actionType": "link",
+      "targetUrl": "/color-picker.html",
+      "deepLink": "/color-picker.html"
     },
     {
       "id": "pdf-checker",

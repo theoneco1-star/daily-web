@@ -101,6 +101,16 @@ const guideAppsConfig = [
   },
   // 2. Web Utilities
   {
+    id: "pdf-to-dxf",
+    nameKo: "PDF 도면 ➔ CAD(DXF) 변환기",
+    nameEn: "PDF Drawing to CAD (DXF) Converter",
+    iconEmoji: "📐",
+    type: "tool",
+    badgeKo: "웹 도구",
+    badgeEn: "Web Tool",
+    isReady: true,
+  },
+  {
     id: "pdf-image-converter",
     nameKo: "PDF ↔ 이미지 변환기",
     nameEn: "PDF & Image Converter",
@@ -210,6 +220,10 @@ const GUIDE_SLUG_MAP = {
     aliases: ["zoodoku", "zoo-doku", "zoo_doku", "zoodoku-game", "zoodoku-guide"]
   },
   // Web Tools
+  "pdf-to-dxf": {
+    canonicalSlug: "pdf-to-dxf",
+    aliases: ["pdf-to-dxf", "pdf-to-cad", "pdf-dxf", "cad-converter", "dxf-converter"]
+  },
   "pdf-image-converter": {
     canonicalSlug: "pdf-image-converter",
     aliases: ["pdf-image-converter", "pdf-to-image", "image-to-pdf", "pdf-image", "pdfimage", "pdf-image-converter-guide"]

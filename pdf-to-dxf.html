@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF 도면 ➔ CAD(DXF) 변환기 | 무료 무설치 CAD 변환 - Daily Helper Hub</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원." />
+  <meta name="keywords" content="PDF변환, CAD변환, DXF추출, 도면변환, 무설치, PDF to CAD, PDF to DXF, AutoCAD 변환" />
+  <meta name="author" content="Daily Helper" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dailyhelperhub.com/pdf-to-dxf.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dailyhelperhub.com/pdf-to-dxf.html" />
+  <meta property="og:title" content="PDF 도면 ➔ CAD(DXF) 변환기 - 일상의도움" />
+  <meta property="og:description" content="100% 브라우저 메모리 연산으로 서버 전송 없는 안전한 PDF CAD(DXF) 도면 변환기" />
+  <meta property="og:image" content="https://dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://dailyhelperhub.com/pdf-to-dxf.html" />
+  <meta property="twitter:title" content="PDF 도면 ➔ CAD(DXF) 변환기 - 일상의도움" />
+  <meta property="twitter:description" content="100% 브라우저 메모리 연산으로 서버 전송 없는 안전한 PDF CAD(DXF) 도면 변환기" />
+  <meta property="twitter:image" content="https://dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Early Theme & Language Sync to prevent FOUC -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('dh_dark');
+        if (savedTheme === 'false') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+        var savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
+          document.documentElement.lang = 'en';
+        }
+      } catch (_) {}
+    })();
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6278124637694502" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0284c7', // Sky-600
+            accent: '#06b6d4',  // Cyan-500
+            cad: '#2563eb'     // Blue-600
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Core Libraries CDN: PDF.js & FileSaver -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/custom.css?v=3.6" />
+
+  <style>
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace, ui-monospace;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.4);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.5);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.7);
+    }
+    .drop-pulse {
+      animation: pulseBorder 2s infinite;
+    }
+    @keyframes pulseBorder {
+      0%, 100% { border-color: rgba(56, 189, 248, 0.4); }
+      50% { border-color: rgba(56, 189, 248, 0.9); }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-['Noto_Sans_KR',sans-serif]">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 text-white hover:opacity-90 transition-opacity">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 via-blue-600 to-indigo-600 flex items-center justify-center shadow-md">
+            <span class="text-xl">📐</span>
+          </div>
+          <span class="font-extrabold text-lg tracking-tight" data-i18n="brand">일상의도움</span>
+        </a>
+        <span class="text-slate-600">/</span>
+        <span class="text-xs sm:text-sm font-semibold text-sky-400 flex items-center gap-1.5">
+          <span>📑</span>
+          <span data-i18n="toolTitleShort">PDF ➔ CAD(DXF) 변환기</span>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800">
+          <button type="button" id="lang-btn-ko" onclick="switchLanguage('ko')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-sky-600 text-white shadow-sm cursor-pointer">KO</button>
+          <button type="button" id="lang-btn-en" onclick="switchLanguage('en')" class="px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer">EN</button>
+        </div>
+
+        <!-- Back to Home -->
+        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors">
+          <span data-i18n="backToHome">← 홈으로</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8 md:py-12">
+
+    <!-- Hero / Title Section -->
+    <div class="text-center mb-8 md:mb-10">
+      <div class="flex items-center justify-center gap-2 mb-3 flex-wrap">
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <span>🔥</span> <span data-i18n="badgeHot">HOT</span>
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          <span>✨</span> <span data-i18n="badgeNew">NEW</span>
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30">
+          <span>🎁</span> <span data-i18n="badgeFree">무료 도구</span>
+        </span>
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+          <span data-i18n="badgeUtility">Web Utility</span>
+        </span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+        <span class="bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent" data-i18n="toolTitle">PDF 도면 ➔ CAD(DXF) 변환기</span>
+      </h1>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed mb-4" data-i18n="toolCardDesc">
+        서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원.
+      </p>
+
+      <!-- Security Trust Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-sky-500/30 text-xs text-sky-300 shadow-sm">
+        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zm3.707 6.765a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <span class="font-semibold" data-i18n="securityPill">100% 브라우저 메모리 연산 (서버 전송 없음 · 도면 유출 원천 차단)</span>
+      </div>
+
+      <!-- Hashtags -->
+      <div class="flex items-center justify-center gap-2 mt-3 text-xs text-slate-400 flex-wrap">
+        <span class="app-tag">#PDF변환</span>
+        <span class="app-tag">#CAD변환</span>
+        <span class="app-tag">#DXF추출</span>
+        <span class="app-tag">#도면변환</span>
+        <span class="app-tag">#무설치</span>
+      </div>
+    </div>
+
+    <!-- Converter Main Card Container -->
+    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-sm mb-10">
+
+      <!-- Upload Drop Zone (Step 1) -->
+      <div id="drop-zone" class="border-2 border-dashed border-slate-700 hover:border-sky-500/70 transition-all duration-200 rounded-xl p-8 sm:p-12 text-center cursor-pointer bg-slate-950/40 hover:bg-slate-950/70">
+        <input type="file" id="pdf-file-input" accept="application/pdf" class="hidden" />
+        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-sky-600/30 to-blue-600/30 border border-sky-500/40 flex items-center justify-center text-3xl shadow-lg shadow-sky-500/10">
+          📁
+        </div>
+        <h3 class="text-base sm:text-lg font-bold text-white mb-2" data-i18n="dropTitle">PDF 파일 선택 또는 드래그</h3>
+        <p class="text-xs sm:text-sm text-slate-400 max-w-md mx-auto mb-4" data-i18n="dropSub">
+          건축, 기계, 토목, 전기 CAD 벡터 PDF 도면을 마우스로 끌어다 놓거나 클릭하여 선택하세요. (최대 100MB)
+        </p>
+        <button type="button" onclick="document.getElementById('pdf-file-input').click()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 shadow-md shadow-sky-600/20 transition-all cursor-pointer">
+          <span>📂</span>
+          <span data-i18n="selectFileBtn">PDF 파일 열기</span>
+        </button>
+      </div>
+
+      <!-- File Loaded & Conversion Control Section (Step 2) -->
+      <div id="control-section" class="hidden mt-6 space-y-6">
+
+        <!-- File Info Bar -->
+        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between flex-wrap gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-lg bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-xl shrink-0">
+              📄
+            </div>
+            <div class="min-w-0">
+              <div id="file-name" class="font-bold text-sm sm:text-base text-white truncate max-w-xs sm:max-w-md md:max-w-lg">drawing.pdf</div>
+              <div class="flex items-center gap-2 text-xs text-slate-400 mt-0.5">
+                <span id="file-size">0 KB</span>
+                <span>•</span>
+                <span id="file-pages">1 페이지</span>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="btn-reselect" onclick="resetFileSelection()" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-750 border border-slate-700 transition-colors">
+            <span data-i18n="reselectBtn">다른 파일 선택</span>
+          </button>
+        </div>
+
+        <!-- Page Selection Interface -->
+        <div class="p-4 sm:p-5 rounded-xl bg-slate-950/60 border border-slate-800">
+          <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <span class="w-1.5 h-4 rounded-full bg-sky-500 inline-block"></span>
+              <span data-i18n="selectPage">변환할 페이지 선택</span>
+              <span id="selected-pages-count" class="text-xs px-2 py-0.5 rounded-full bg-sky-950 text-sky-400 border border-sky-800/60 font-mono">1 / 1</span>
+            </h4>
+            <div class="flex items-center gap-2">
+              <button type="button" id="btn-select-all-pages" onclick="selectAllPages(true)" class="text-xs px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">
+                <span data-i18n="selectAll">전체 선택</span>
+              </button>
+              <button type="button" id="btn-select-first-page" onclick="selectFirstPageOnly()" class="text-xs px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">
+                <span data-i18n="selectFirst">1페이지 선택</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Page Thumbnails Grid -->
+          <div id="pages-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 max-h-72 overflow-y-auto custom-scrollbar p-1">
+            <!-- Thumbnails injected via JS -->
+          </div>
+        </div>
+
+        <!-- Conversion Options Panel -->
+        <div class="p-4 sm:p-5 rounded-xl bg-slate-950/60 border border-slate-800 space-y-4">
+          <h4 class="text-sm font-bold text-white flex items-center gap-2">
+            <span class="w-1.5 h-4 rounded-full bg-indigo-500 inline-block"></span>
+            <span data-i18n="optionsTitle">CAD(DXF) 추출 정밀 설정</span>
+          </h4>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <!-- Option 1: Text Layer -->
+            <label class="flex items-start gap-3 p-3 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 cursor-pointer">
+              <input type="checkbox" id="opt-include-text" checked class="w-4 h-4 mt-0.5 rounded text-sky-600 focus:ring-sky-500 border-slate-700 bg-slate-950" />
+              <div>
+                <div class="text-xs font-bold text-slate-200" data-i18n="optTextTitle">텍스트 & 치수 추출</div>
+                <div class="text-[11px] text-slate-400 leading-tight mt-0.5" data-i18n="optTextDesc">도면 내 문자/숫자를 'PDF_TEXT' 레이어로 분리 추출</div>
+              </div>
+            </label>
+
+            <!-- Option 2: Curve Smoothness -->
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
+              <label for="opt-curve-segments" class="block text-xs font-bold text-slate-200 mb-1" data-i18n="optCurveTitle">곡선 세분화 정밀도</label>
+              <select id="opt-curve-segments" class="w-full text-xs bg-slate-950 border border-slate-700 rounded-md px-2.5 py-1.5 text-slate-300 focus:outline-none focus:border-sky-500">
+                <option value="8" data-i18n="optCurveLow">빠름 (8 세그먼트)</option>
+                <option value="12" selected data-i18n="optCurveNormal">표준 권장 (12 세그먼트)</option>
+                <option value="20" data-i18n="optCurveHigh">고정밀 매끄럽게 (20 세그먼트)</option>
+              </select>
+            </div>
+
+            <!-- Option 3: Y-Axis Coordinate Alignment -->
+            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
+              <label for="opt-y-alignment" class="block text-xs font-bold text-slate-200 mb-1" data-i18n="optYTitle">Y축 좌표계 보정 (WCS)</label>
+              <select id="opt-y-alignment" class="w-full text-xs bg-slate-950 border border-slate-700 rounded-md px-2.5 py-1.5 text-slate-300 focus:outline-none focus:border-sky-500">
+                <option value="auto" selected data-i18n="optYAuto">자동 (CAD 표준 WCS 데카르트)</option>
+                <option value="invert" data-i18n="optYInvert">Y축 반전 (하향 기준 PDF 보정)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action & Progress Area -->
+        <div class="pt-2">
+          <!-- Convert Trigger Button -->
+          <button type="button" id="btn-convert" onclick="startConversion()" class="w-full py-4 px-6 rounded-xl font-extrabold text-base text-white bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 shadow-xl shadow-sky-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <span>⚡</span>
+            <span data-i18n="convertBtn">DXF로 변환하기</span>
+          </button>
+
+          <!-- Progress Bar & Status (Hidden initially) -->
+          <div id="progress-container" class="hidden mt-4 p-4 rounded-xl bg-slate-950 border border-sky-500/30">
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span id="progress-status" class="text-sky-400 font-semibold flex items-center gap-2">
+                <svg class="animate-spin h-3.5 w-3.5 text-sky-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span data-i18n="downloading">다운로드 중...</span>
+              </span>
+              <span id="progress-percent" class="font-mono text-sky-300 font-bold">0%</span>
+            </div>
+            <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+              <div id="progress-bar-fill" class="bg-gradient-to-r from-sky-500 to-indigo-500 h-2.5 rounded-full transition-all duration-200" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Error Alert Banner (Hidden initially) -->
+          <div id="error-banner" class="hidden mt-4 p-4 rounded-xl bg-rose-950/40 border border-rose-600/60 text-rose-200">
+            <div class="flex items-start gap-3">
+              <span class="text-xl shrink-0">⚠️</span>
+              <div>
+                <h5 id="error-title" class="font-bold text-sm text-rose-300 mb-1" data-i18n="errorScanned">오류: 벡터 데이터가 없는 스캔 이미지 PDF입니다.</h5>
+                <p id="error-desc" class="text-xs text-rose-200 leading-relaxed mb-0" data-i18n="errorScannedDesc">
+                  선택하신 문서는 종이 도면을 스캐너나 카메라로 촬영한 래스터(비트맵) 이미지로만 이루어져 있어 CAD(DXF) 선/곡선 벡터로 변환할 수 없습니다. CAD 소프트웨어(AutoCAD, Revit 등)에서 직접 내보낸 원본 벡터 PDF를 사용해 주세요.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success Results Card (Hidden initially) -->
+          <div id="result-card" class="hidden mt-5 p-5 rounded-xl bg-gradient-to-br from-emerald-950/40 via-slate-900 to-slate-950 border border-emerald-500/40 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2 border-b border-slate-800 pb-3">
+              <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                <span>✅</span>
+                <span data-i18n="conversionSuccess">CAD(DXF) 변환이 성공적으로 완료되었습니다!</span>
+              </div>
+              <span id="result-dxf-size" class="text-xs font-mono text-slate-400">DXF 크기: 0 KB</span>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+              <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+                <div class="text-[11px] text-slate-400" data-i18n="statLines">추출된 직선 (LINE)</div>
+                <div id="stat-lines" class="text-base font-bold text-sky-400 font-mono mt-0.5">0</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+                <div class="text-[11px] text-slate-400" data-i18n="statCurves">추출된 곡선 (CURVE)</div>
+                <div id="stat-curves" class="text-base font-bold text-indigo-400 font-mono mt-0.5">0</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+                <div class="text-[11px] text-slate-400" data-i18n="statPolys">폴리선/면 (POLYLINE)</div>
+                <div id="stat-polys" class="text-base font-bold text-cyan-400 font-mono mt-0.5">0</div>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800">
+                <div class="text-[11px] text-slate-400" data-i18n="statTexts">텍스트/치수 (TEXT)</div>
+                <div id="stat-texts" class="text-base font-bold text-emerald-400 font-mono mt-0.5">0</div>
+              </div>
+            </div>
+
+            <!-- Download Button -->
+            <div class="flex items-center gap-3 pt-2">
+              <button type="button" id="btn-download-dxf" onclick="triggerDxfDownload()" class="flex-1 py-3 px-4 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <span>📥</span>
+                <span data-i18n="downloadDxfBtn">DXF 파일 다시 다운로드</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Features & Technical Specification Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+      <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
+        <div class="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mb-3">
+          📐
+        </div>
+        <h4 class="text-sm font-bold text-white mb-1.5" data-i18n="feature1Title">정밀 벡터 형상 추출</h4>
+        <p class="text-xs text-slate-400 leading-relaxed" data-i18n="feature1Desc">
+          PDF의 내부 드로잉 연산자를 역추적하여 선(Line), 3차 베지어 곡선(Polyline), 사각형을 CAD 표준 엔티티로 무손실 정밀 변환합니다.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
+        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl mb-3">
+          🏷️
+        </div>
+        <h4 class="text-sm font-bold text-white mb-1.5" data-i18n="feature2Title">스마트 레이어 분리</h4>
+        <p class="text-xs text-slate-400 leading-relaxed" data-i18n="feature2Desc">
+          선 도면(PDF_VECTORS), 문자/치수(PDF_TEXT), 채우기 면(PDF_HATCH)으로 레이어가 자동 분류되어 캐드 프로그램에서 즉시 편집할 수 있습니다.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800">
+        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-3">
+          🔒
+        </div>
+        <h4 class="text-sm font-bold text-white mb-1.5" data-i18n="feature3Title">100% 클라이언트 로컬 보안</h4>
+        <p class="text-xs text-slate-400 leading-relaxed" data-i18n="feature3Desc">
+          도면 파일이 외부 웹 서버로 전송되지 않고 사용자의 컴퓨터 메모리(RAM)에서만 처리되므로 기밀 건축/설계 도면도 100% 안전합니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- Supported CAD Software & Compatibility Guide -->
+    <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800 mb-10">
+      <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+        <span>🖥️</span>
+        <span data-i18n="compatTitle">호환 CAD 소프트웨어 및 표준 규격</span>
+      </h3>
+      <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="compatDesc">
+        본 변환기는 전 세계 산업 표준인 <strong>AutoCAD 2000 (AC1015) ASCII DXF</strong> 형식으로 출력됩니다. 생성된 DXF 파일은 아래의 모든 최신 및 구버전 CAD 프로그램에서 라이선스 제약 없이 즉시 열립니다:
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>AutoCAD (오토캐드)</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>ZWCAD (지더블유캐드)</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>GstarCAD (지스타캐드)</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>BricsCAD / DraftSight</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>LibreCAD (무료 오픈소스)</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>QCAD / nanoCAD</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>SolidWorks / Inventor</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
+          <span>✓</span> <span>Rhino 3D / SketchUp</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="p-6 rounded-2xl bg-slate-900/40 border border-slate-800 mb-8 space-y-4">
+      <h3 class="text-base font-bold text-white mb-2 flex items-center gap-2">
+        <span>❓</span>
+        <span data-i18n="faqTitle">자주 묻는 질문 (FAQ)</span>
+      </h3>
+
+      <div class="space-y-3 text-xs">
+        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+          <div class="font-bold text-sky-300 mb-1" data-i18n="faq1Q">Q. 스캔한 PDF 도면도 CAD 파일로 변환되나요?</div>
+          <div class="text-slate-300 leading-relaxed" data-i18n="faq1A">
+            A. 종이 도면을 스캔하거나 촬영한 PDF는 비트맵 이미지(픽셀 덩어리)이므로 벡터 선 데이터를 추출할 수 없습니다. 본 도구는 AutoCAD, Revit, ArchiCAD, 캐드 인쇄 드라이버 등에서 생성된 원본 벡터 PDF 도면을 전문적으로 DXF 선/곡선으로 변환합니다.
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+          <div class="font-bold text-sky-300 mb-1" data-i18n="faq2Q">Q. 한글 도면 문자가 캐드에서 깨지지 않나요?</div>
+          <div class="text-slate-300 leading-relaxed" data-i18n="faq2A">
+            A. 본 엔진은 한글 및 유니코드 문자를 AutoCAD 표준 유니코드 포맷(\U+XXXX)으로 자동 인코딩하여 캐드 버전이나 OS 언어 설정에 관계없이 한글이 깨지지 않고 온전하게 표시되도록 처리합니다.
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+          <div class="font-bold text-sky-300 mb-1" data-i18n="faq3Q">Q. 여러 페이지 PDF 중 원하는 페이지만 변환할 수 있나요?</div>
+          <div class="text-slate-300 leading-relaxed" data-i18n="faq3A">
+            A. 네! PDF 파일을 업로드하면 썸네일 미리보기와 함께 페이지 선택 창이 표시됩니다. 원하는 페이지만 클릭하여 단일 DXF로 변환하거나 전체 페이지를 선택할 수 있습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 px-4 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-400">Daily Helper (일상의도움)</span>
+        <span>•</span>
+        <span data-i18n="footerSlogan">스마트한 일상의 도구 모음</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="/" class="hover:text-white transition-colors" data-i18n="nav.home">홈</a>
+        <a href="/pdf-image-converter.html" class="hover:text-white transition-colors">PDF ↔ 이미지 변환</a>
+        <a href="/file-compressor.html" class="hover:text-white transition-colors">파일 용량 압축</a>
+        <a href="/color-picker.html" class="hover:text-white transition-colors">색상 추출기</a>
+      </div>
+    </div>
+    <div class="mt-4 text-[11px] text-slate-600">
+      © 2026 Daily Helper Hub. 100% Client-Side In-Memory Processing. Zero Server Upload.
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs font-semibold shadow-2xl transition-all duration-300 opacity-0 pointer-events-none"></div>
+
+  <!-- Include Isolated Converter Engine -->
+  <script src="/js/pdf-to-dxf.js"></script>
+
+  <!-- Page UI Logic and Multi-Language Controller -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Multi-Language Dictionaries ──────────────────────────
+      const i18n = {
+        ko: {
+          brand: "일상의도움",
+          toolTitleShort: "PDF ➔ CAD(DXF) 변환기",
+          backToHome: "← 홈으로",
+          badgeHot: "HOT",
+          badgeNew: "NEW",
+          badgeFree: "무료 도구",
+          badgeUtility: "Web Utility",
+          toolTitle: "PDF 도면 ➔ CAD(DXF) 변환기",
+          toolCardDesc: "서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원.",
+          securityPill: "100% 브라우저 메모리 연산 (서버 전송 없음 · 도면 유출 원천 차단)",
+          dropTitle: "PDF 파일 선택 또는 드래그",
+          dropSub: "건축, 기계, 토목, 전기 CAD 벡터 PDF 도면을 마우스로 끌어다 놓거나 클릭하여 선택하세요. (최대 100MB)",
+          selectFileBtn: "PDF 파일 열기",
+          reselectBtn: "다른 파일 선택",
+          selectPage: "변환할 페이지 선택",
+          selectAll: "전체 선택",
+          selectFirst: "1페이지 선택",
+          optionsTitle: "CAD(DXF) 추출 정밀 설정",
+          optTextTitle: "텍스트 & 치수 추출",
+          optTextDesc: "도면 내 문자/숫자를 'PDF_TEXT' 레이어로 분리 추출",
+          optCurveTitle: "곡선 세분화 정밀도",
+          optCurveLow: "빠름 (8 세그먼트)",
+          optCurveNormal: "표준 권장 (12 세그먼트)",
+          optCurveHigh: "고정밀 매끄럽게 (20 세그먼트)",
+          optYTitle: "Y축 좌표계 보정 (WCS)",
+          optYAuto: "자동 (CAD 표준 WCS 데카르트)",
+          optYInvert: "Y축 반전 (하향 기준 PDF 보정)",
+          convertBtn: "DXF로 변환하기",
+          downloading: "다운로드 중...",
+          errorScanned: "오류: 벡터 데이터가 없는 스캔 이미지 PDF입니다.",
+          errorScannedDesc: "선택하신 문서는 종이 도면을 스캐너나 카메라로 촬영한 래스터(비트맵) 이미지로만 이루어져 있어 CAD(DXF) 선/곡선 벡터로 변환할 수 없습니다. CAD 소프트웨어(AutoCAD, Revit 등)에서 직접 내보낸 원본 벡터 PDF를 사용해 주세요.",
+          conversionSuccess: "CAD(DXF) 변환이 성공적으로 완료되었습니다!",
+          statLines: "추출된 직선 (LINE)",
+          statCurves: "추출된 곡선 (CURVE)",
+          statPolys: "폴리선/면 (POLYLINE)",
+          statTexts: "텍스트/치수 (TEXT)",
+          downloadDxfBtn: "DXF 파일 다시 다운로드",
+          feature1Title: "정밀 벡터 형상 추출",
+          feature1Desc: "PDF의 내부 드로잉 연산자를 역추적하여 선(Line), 3차 베지어 곡선(Polyline), 사각형을 CAD 표준 엔티티로 무손실 정밀 변환합니다.",
+          feature2Title: "스마트 레이어 분리",
+          feature2Desc: "선 도면(PDF_VECTORS), 문자/치수(PDF_TEXT), 채우기 면(PDF_HATCH)으로 레이어가 자동 분류되어 캐드 프로그램에서 즉시 편집할 수 있습니다.",
+          feature3Title: "100% 클라이언트 로컬 보안",
+          feature3Desc: "도면 파일이 외부 웹 서버로 전송되지 않고 사용자의 컴퓨터 메모리(RAM)에서만 처리되므로 기밀 건축/설계 도면도 100% 안전합니다.",
+          compatTitle: "호환 CAD 소프트웨어 및 표준 규격",
+          compatDesc: "본 변환기는 전 세계 산업 표준인 AutoCAD 2000 (AC1015) ASCII DXF 형식으로 출력됩니다. 모든 최신 및 구버전 CAD 프로그램에서 라이선스 제약 없이 즉시 열립니다.",
+          faqTitle: "자주 묻는 질문 (FAQ)",
+          faq1Q: "Q. 스캔한 PDF 도면도 CAD 파일로 변환되나요?",
+          faq1A: "A. 종이 도면을 스캔하거나 촬영한 PDF는 비트맵 이미지(픽셀 덩어리)이므로 벡터 선 데이터를 추출할 수 없습니다. 본 도구는 AutoCAD, Revit 등에서 생성된 원본 벡터 PDF 도면을 전문적으로 DXF 선/곡선으로 변환합니다.",
+          faq2Q: "Q. 한글 도면 문자가 캐드에서 깨지지 않나요?",
+          faq2A: "A. 본 엔진은 한글 및 유니코드 문자를 AutoCAD 표준 유니코드 포맷(\\U+XXXX)으로 자동 인코딩하여 캐드 버전이나 OS 언어 설정에 관계없이 한글이 깨지지 않고 온전하게 표시되도록 처리합니다.",
+          faq3Q: "Q. 여러 페이지 PDF 중 원하는 페이지만 변환할 수 있나요?",
+          faq3A: "A. 네! PDF 파일을 업로드하면 썸네일 미리보기와 함께 페이지 선택 창이 표시됩니다. 원하는 페이지만 클릭하여 단일 DXF로 변환하거나 전체 페이지를 선택할 수 있습니다.",
+          footerSlogan: "스마트한 일상의 도구 모음",
+          noFileToast: "PDF 파일을 먼저 선택해 주세요.",
+          noPageSelectedToast: "최소 1개 이상의 페이지를 선택해 주세요."
+        },
+        en: {
+          brand: "Daily Helper",
+          toolTitleShort: "PDF ➔ CAD (DXF) Converter",
+          backToHome: "← Back to Home",
+          badgeHot: "HOT",
+          badgeNew: "NEW",
+          badgeFree: "Free Tool",
+          badgeUtility: "Web Utility",
+          toolTitle: "PDF Drawing to CAD (DXF) Converter",
+          toolCardDesc: "Instantly convert vector PDF drawings to CAD-compatible DXF files in your browser with zero server uploads. Extracts lines, curves, and dimensions.",
+          securityPill: "100% Client-Side In-Memory Processing (Zero Server Upload · Zero Data Leakage)",
+          dropTitle: "Select or drop PDF file",
+          dropSub: "Drop architectural, mechanical, or civil vector CAD drawings here or click to browse. (Up to 100MB)",
+          selectFileBtn: "Open PDF File",
+          reselectBtn: "Select Another File",
+          selectPage: "Select Page",
+          selectAll: "Select All",
+          selectFirst: "Page 1 Only",
+          optionsTitle: "CAD (DXF) Precision Options",
+          optTextTitle: "Extract Text & Dimensions",
+          optTextDesc: "Extract labels and numbers into separate 'PDF_TEXT' layer",
+          optCurveTitle: "Curve Smoothing Segments",
+          optCurveLow: "Fast (8 Segments)",
+          optCurveNormal: "Standard (12 Segments)",
+          optCurveHigh: "Ultra Smooth (20 Segments)",
+          optYTitle: "Y-Axis Alignment (WCS)",
+          optYAuto: "Auto (AutoCAD Standard WCS)",
+          optYInvert: "Invert Y-Axis (For top-down PDF)",
+          convertBtn: "Convert to DXF",
+          downloading: "Downloading...",
+          errorScanned: "Error: No vector data found in scanned PDF.",
+          errorScannedDesc: "The selected document is a scanned raster image without vector paths. CAD (DXF) conversion requires an original vector PDF exported from CAD software (AutoCAD, Revit, etc.).",
+          conversionSuccess: "CAD (DXF) conversion completed successfully!",
+          statLines: "Extracted Lines (LINE)",
+          statCurves: "Extracted Curves (CURVE)",
+          statPolys: "Polylines / Faces (POLYLINE)",
+          statTexts: "Texts / Labels (TEXT)",
+          downloadDxfBtn: "Download DXF File Again",
+          feature1Title: "Precision Vector Geometry",
+          feature1Desc: "Reconstructs lines, cubic Bezier curves, and rectangles directly into AutoCAD standard entities with zero distortion.",
+          feature2Title: "Smart Layer Separation",
+          feature2Desc: "Automatically organizes entities into PDF_VECTORS, PDF_TEXT, and PDF_HATCH layers for effortless CAD editing.",
+          feature3Title: "100% Client-Side Privacy",
+          feature3Desc: "Blueprints are processed entirely in your computer's RAM. Zero files are sent to any server, keeping confidential designs 100% secure.",
+          compatTitle: "Compatible CAD Software & Standards",
+          compatDesc: "Outputs standard AutoCAD 2000 (AC1015) ASCII DXF files. Fully compatible with AutoCAD, ZWCAD, GstarCAD, DraftSight, LibreCAD, and more.",
+          faqTitle: "Frequently Asked Questions",
+          faq1Q: "Q. Can scanned paper drawings be converted?",
+          faq1A: "A. Scanned paper drawings are raster bitmaps and cannot be extracted into vector lines. This tool is designed for vector PDFs exported from CAD systems.",
+          faq2Q: "Q. Will Korean/foreign fonts get corrupted in CAD?",
+          faq2A: "A. Our engine automatically encodes non-ASCII text into AutoCAD unicode escape sequences (\\U+XXXX) to prevent garbled text across all CAD versions.",
+          faq3Q: "Q. Can I convert a specific page from a multi-page PDF?",
+          faq3A: "A. Yes! Use our interactive page thumbnail selector to pick individual pages or convert all pages together.",
+          footerSlogan: "Smart Tools for Everyday Life",
+          noFileToast: "Please select a PDF file first.",
+          noPageSelectedToast: "Please select at least one page to convert."
+        }
+      };
+
+      let currentLang = 'ko';
+
+      window.switchLanguage = function (lang) {
+        currentLang = lang === 'en' ? 'en' : 'ko';
+        try {
+          localStorage.setItem('site_lang', currentLang);
+          localStorage.setItem('dh_lang', currentLang);
+        } catch (_) {}
+
+        document.documentElement.lang = currentLang;
+
+        // Button styles
+        const btnKo = document.getElementById('lang-btn-ko');
+        const btnEn = document.getElementById('lang-btn-en');
+        if (btnKo && btnEn) {
+          if (currentLang === 'ko') {
+            btnKo.className = "px-2.5 py-1 rounded-md text-xs font-bold bg-sky-600 text-white shadow-sm cursor-pointer";
+            btnEn.className = "px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer";
+          } else {
+            btnEn.className = "px-2.5 py-1 rounded-md text-xs font-bold bg-sky-600 text-white shadow-sm cursor-pointer";
+            btnKo.className = "px-2.5 py-1 rounded-md text-xs font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer";
+          }
+        }
+
+        // Apply translations
+        const dict = i18n[currentLang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.textContent = dict[key];
+          }
+        });
+
+        // Update Page Title
+        document.title = currentLang === 'ko'
+          ? "PDF 도면 ➔ CAD(DXF) 변환기 | 무료 무설치 CAD 변환 - Daily Helper Hub"
+          : "PDF Drawing to CAD (DXF) Converter | Free Client-Side Tool - Daily Helper Hub";
+      };
+
+      // ── UI & Conversion State ────────────────────────────────
+      let converter = null;
+      let currentFile = null;
+      let selectedPages = new Set([1]);
+      let totalPages = 1;
+      let lastDxfString = null;
+      let lastDxfFileName = '';
+
+      function showToast(msg) {
+        const toast = document.getElementById('toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.remove('opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'pointer-events-none');
+        }, 2800);
+      }
+
+      function formatBytes(bytes) {
+        if (!bytes || bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      // Drag & Drop Handlers
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('pdf-file-input');
+
+      ['dragenter', 'dragover'].forEach(evtName => {
+        dropZone.addEventListener(evtName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.add('border-sky-400', 'bg-sky-950/20', 'drop-pulse');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(evtName => {
+        dropZone.addEventListener(evtName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.remove('border-sky-400', 'bg-sky-950/20', 'drop-pulse');
+        });
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const files = e.dataTransfer.files;
+        if (files && files.length > 0) {
+          handleFile(files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+          handleFile(e.target.files[0]);
+        }
+      });
+
+      window.resetFileSelection = function () {
+        currentFile = null;
+        selectedPages = new Set([1]);
+        fileInput.value = '';
+        document.getElementById('control-section').classList.add('hidden');
+        document.getElementById('drop-zone').classList.remove('hidden');
+        document.getElementById('result-card').classList.add('hidden');
+        document.getElementById('error-banner').classList.add('hidden');
+        document.getElementById('progress-container').classList.add('hidden');
+      };
+
+      async function handleFile(file) {
+        if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
+          showToast(currentLang === 'ko' ? 'PDF 파일만 업로드할 수 있습니다.' : 'Only PDF files are supported.');
+          return;
+        }
+
+        currentFile = file;
+        document.getElementById('file-name').textContent = file.name;
+        document.getElementById('file-size').textContent = formatBytes(file.size);
+
+        // Hide errors/results
+        document.getElementById('error-banner').classList.add('hidden');
+        document.getElementById('result-card').classList.add('hidden');
+
+        try {
+          converter = new window.PdfToDxfConverter();
+          const info = await converter.load(file, file.name);
+          totalPages = info.numPages;
+
+          document.getElementById('file-pages').textContent = totalPages + (currentLang === 'ko' ? ' 페이지' : ' Page(s)');
+
+          // Render Page Selection Thumbnails
+          renderPageThumbnails(totalPages);
+
+          // Show control section
+          document.getElementById('drop-zone').classList.add('hidden');
+          document.getElementById('control-section').classList.remove('hidden');
+
+        } catch (err) {
+          console.error('Failed to load PDF:', err);
+          showToast(currentLang === 'ko' ? 'PDF 파일을 불러오는 데 실패했습니다.' : 'Failed to load PDF file.');
+        }
+      }
+
+      function updatePageCountUI() {
+        const counter = document.getElementById('selected-pages-count');
+        if (counter) {
+          counter.textContent = `${selectedPages.size} / ${totalPages}`;
+        }
+      }
+
+      window.selectAllPages = function () {
+        selectedPages.clear();
+        for (let i = 1; i <= totalPages; i++) {
+          selectedPages.add(i);
+        }
+        document.querySelectorAll('.page-thumb-card').forEach(card => {
+          card.classList.add('border-sky-500', 'bg-sky-950/40');
+          card.classList.remove('border-slate-800');
+          const check = card.querySelector('.page-check');
+          if (check) check.checked = true;
+        });
+        updatePageCountUI();
+      };
+
+      window.selectFirstPageOnly = function () {
+        selectedPages.clear();
+        selectedPages.add(1);
+        document.querySelectorAll('.page-thumb-card').forEach((card, idx) => {
+          const check = card.querySelector('.page-check');
+          if (idx === 0) {
+            card.classList.add('border-sky-500', 'bg-sky-950/40');
+            card.classList.remove('border-slate-800');
+            if (check) check.checked = true;
+          } else {
+            card.classList.remove('border-sky-500', 'bg-sky-950/40');
+            card.classList.add('border-slate-800');
+            if (check) check.checked = false;
+          }
+        });
+        updatePageCountUI();
+      };
+
+      function renderPageThumbnails(count) {
+        const container = document.getElementById('pages-container');
+        container.innerHTML = '';
+        selectedPages = new Set([1]); // default page 1
+
+        for (let p = 1; p <= count; p++) {
+          const card = document.createElement('div');
+          card.className = `page-thumb-card p-2 rounded-lg border transition-all cursor-pointer relative flex flex-col items-center ${p === 1 ? 'border-sky-500 bg-sky-950/40' : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'}`;
+          card.dataset.page = p;
+
+          card.innerHTML = `
+            <div class="w-full flex items-center justify-between mb-1.5 px-0.5">
+              <span class="text-[11px] font-bold text-slate-300 font-mono">P. ${p}</span>
+              <input type="checkbox" class="page-check w-3.5 h-3.5 rounded text-sky-600 focus:ring-0 border-slate-700 bg-slate-950 cursor-pointer" ${p === 1 ? 'checked' : ''} />
+            </div>
+            <div class="w-full aspect-[3/4] bg-white/5 rounded border border-slate-800/80 flex items-center justify-center overflow-hidden">
+              <canvas id="thumb-canvas-${p}" class="max-w-full max-h-full object-contain"></canvas>
+            </div>
+          `;
+
+          // Toggle Selection on Click
+          card.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'INPUT') {
+              const check = card.querySelector('.page-check');
+              check.checked = !check.checked;
+            }
+            const isChecked = card.querySelector('.page-check').checked;
+            if (isChecked) {
+              selectedPages.add(p);
+              card.classList.add('border-sky-500', 'bg-sky-950/40');
+              card.classList.remove('border-slate-800');
+            } else {
+              selectedPages.delete(p);
+              card.classList.remove('border-sky-500', 'bg-sky-950/40');
+              card.classList.add('border-slate-800');
+            }
+            updatePageCountUI();
+          });
+
+          container.appendChild(card);
+
+          // Lazy Render Thumbnail Canvas
+          const canvas = card.querySelector(`#thumb-canvas-${p}`);
+          converter.renderPageThumbnail(p, canvas, 140).catch(err => {
+            console.warn('Thumbnail render err for page ' + p, err);
+          });
+        }
+
+        updatePageCountUI();
+      }
+
+      // Conversion Trigger
+      window.startConversion = async function () {
+        if (!converter || !currentFile) {
+          showToast(i18n[currentLang].noFileToast);
+          return;
+        }
+
+        if (selectedPages.size === 0) {
+          showToast(i18n[currentLang].noPageSelectedToast);
+          return;
+        }
+
+        // UI Reset
+        document.getElementById('error-banner').classList.add('hidden');
+        document.getElementById('result-card').classList.add('hidden');
+        const progressBox = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar-fill');
+        const progressPercent = document.getElementById('progress-percent');
+        const progressStatus = document.getElementById('progress-status');
+        const btnConvert = document.getElementById('btn-convert');
+
+        progressBox.classList.remove('hidden');
+        btnConvert.disabled = true;
+        btnConvert.classList.add('opacity-50', 'pointer-events-none');
+
+        const pagesArr = Array.from(selectedPages).sort((a, b) => a - b);
+        const includeText = document.getElementById('opt-include-text').checked;
+        const curveSegments = parseInt(document.getElementById('opt-curve-segments').value, 10) || 12;
+        const yMode = document.getElementById('opt-y-alignment').value;
+        const invertY = yMode === 'invert';
+
+        try {
+          const result = await converter.convert({
+            pageNumbers: pagesArr,
+            includeText,
+            curveSegments,
+            invertY,
+            onProgress: ({ percent, status }) => {
+              progressBar.style.width = percent + '%';
+              progressPercent.textContent = percent + '%';
+              if (progressStatus.querySelector('span')) {
+                progressStatus.querySelector('span').textContent = status;
+              }
+            }
+          });
+
+          lastDxfString = result.dxfString;
+          lastDxfFileName = currentFile.name.replace(/\.pdf$/i, '') + '.dxf';
+
+          // Update Result UI
+          document.getElementById('stat-lines').textContent = result.stats.totalLines.toLocaleString();
+          document.getElementById('stat-curves').textContent = result.stats.totalCurves.toLocaleString();
+          document.getElementById('stat-polys').textContent = result.stats.totalPolygons.toLocaleString();
+          document.getElementById('stat-texts').textContent = result.stats.totalTexts.toLocaleString();
+
+          const dxfBlob = new Blob([lastDxfString], { type: 'application/dxf;charset=utf-8' });
+          document.getElementById('result-dxf-size').textContent = `DXF: ${formatBytes(dxfBlob.size)}`;
+
+          // Automatic download trigger
+          converter.downloadDxf(lastDxfString, lastDxfFileName);
+
+          // Show success card
+          document.getElementById('result-card').classList.remove('hidden');
+          showToast(currentLang === 'ko' ? 'DXF 파일 다운로드가 시작되었습니다!' : 'DXF file download started!');
+
+        } catch (err) {
+          console.error('Conversion error:', err);
+          if (err.message === 'NO_VECTOR_DATA') {
+            document.getElementById('error-banner').classList.remove('hidden');
+          } else {
+            showToast(currentLang === 'ko' ? '변환 중 오류가 발생했습니다: ' + err.message : 'Error during conversion: ' + err.message);
+          }
+        } finally {
+          btnConvert.disabled = false;
+          btnConvert.classList.remove('opacity-50', 'pointer-events-none');
+          setTimeout(() => {
+            progressBox.classList.add('hidden');
+          }, 800);
+        }
+      };
+
+      window.triggerDxfDownload = function () {
+        if (!lastDxfString || !converter) return;
+        converter.downloadDxf(lastDxfString, lastDxfFileName);
+      };
+
+      // ── Initial Setup ────────────────────────────────────────
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
+          window.switchLanguage('en');
+        } else {
+          window.switchLanguage('ko');
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

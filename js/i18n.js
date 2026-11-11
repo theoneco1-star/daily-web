@@ -32,6 +32,11 @@ const translations = {
       "emptySubtitle": "다른 키워드로 검색해 보세요.",
       "globalComingSoonTitle": "New Global Web Tools Coming Soon!",
       "globalComingSoonSubtitle": "전 세계 사용자를 위한 유용한 온라인 도구를 준비하고 있습니다.",
+      "pdfToDxf": {
+        "title": "PDF 도면 ➔ CAD(DXF) 변환기",
+        "subtitle": "100% 브라우저 메모리 연산 무설치 CAD 변환기",
+        "desc": "서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원."
+      },
       "wageCalc": {
         "title": "실수령액 & 주휴수당 계산기",
         "subtitle": "2026년 최저시급(10,320원) 기준 알바 및 근로소득 자동 계산",
@@ -919,6 +924,8 @@ const translations = {
       "clipflow": "ClipFlow Mate (클립플로우 메이트)",
       "linkZoodoku": "ZooDoku (주도쿠)",
       "zoodoku": "ZooDoku (주도쿠)",
+      "linkPdfToDxf": "PDF 도면 ➔ CAD(DXF) 변환기",
+      "pdfToDxf": "PDF 도면 ➔ CAD(DXF) 변환기",
       "linkPdfConverter": "PDF ↔ 이미지 변환기",
       "pdfConverter": "PDF ↔ 이미지 변환기",
       "linkCompressor": "PDF & 이미지 용량 줄이기",
@@ -980,6 +987,11 @@ const translations = {
       "emptySubtitle": "Try searching with a different keyword.",
       "globalComingSoonTitle": "New Global Web Tools Coming Soon!",
       "globalComingSoonSubtitle": "We are currently preparing useful online tools for global users.",
+      "pdfToDxf": {
+        "title": "PDF Drawing to CAD (DXF) Converter",
+        "subtitle": "100% Client-Side In-Memory CAD Converter",
+        "desc": "Instantly convert vector PDF drawings to CAD-compatible DXF files in your browser with zero server uploads. Extracts lines, curves, and dimensions."
+      },
       "wageCalc": {
         "title": "Net Salary & Holiday Allowance Calculator",
         "subtitle": "Hourly wage & statutory holiday allowance calculator",
@@ -1867,6 +1879,8 @@ const translations = {
       "clipflow": "ClipFlow Mate (Smart Clipboard Manager)",
       "linkZoodoku": "ZooDoku (Animal Sudoku Puzzle)",
       "zoodoku": "ZooDoku (Animal Sudoku Puzzle)",
+      "linkPdfToDxf": "PDF Drawing to CAD (DXF)",
+      "pdfToDxf": "PDF Drawing to CAD (DXF)",
       "linkPdfConverter": "PDF ↔ Image Converter",
       "pdfConverter": "PDF ↔ Image Converter",
       "linkCompressor": "PDF & Image Compressor",

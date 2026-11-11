@@ -33,6 +33,29 @@ window.restoreDefaultTitle = restoreDefaultTitle;
 // ── Default Web Tools Data (Instant fallback & offline ready) ──
 let webToolsData = [
   {
+    id: "pdf-to-dxf",
+    nameKo: "PDF 도면 ➔ CAD(DXF) 변환기",
+    nameEn: "PDF Drawing to CAD (DXF) Converter",
+    targetLang: "ALL",
+    isKrOnly: false,
+    category: "utility",
+    color: "from-sky-600 via-blue-600 to-indigo-600",
+    iconEmoji: "📐",
+    isHot: true,
+    isFree: true,
+    isNew: true,
+    badges: ["HOT", "NEW", "무료 도구", "Web Utility"],
+    descKo: "서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원.",
+    descEn: "Instantly convert vector PDF drawings to CAD-compatible DXF files in your browser with zero server uploads. Extracts lines, curves, and dimensions.",
+    tagsKo: ["PDF변환", "CAD변환", "DXF추출", "도면변환", "무설치"],
+    tagsEn: ["PDFtoCAD", "DXF", "VectorExtract", "DrawingConverter", "NoUpload"],
+    ctaTextKo: "바로 사용하기",
+    ctaTextEn: "Use Tool Now",
+    actionType: "link",
+    targetUrl: "/pdf-to-dxf.html",
+    deepLink: "/pdf-to-dxf.html"
+  },
+  {
     id: "pdf-image-converter",
     nameKo: "PDF ↔ 이미지 변환기 (일괄 묶음·분리)",
     nameEn: "PDF ↔ Image Converter",
@@ -399,6 +422,10 @@ function handleWebToolAction(toolId) {
   const tool = (Array.isArray(webToolsData) ? webToolsData : []).find(t => t.id === toolId);
   if (tool && tool.actionType === "link" && tool.targetUrl) {
     window.location.href = tool.targetUrl;
+    return;
+  }
+  if (toolId === "pdf-to-dxf" || toolId === "pdf-to-cad") {
+    window.location.href = "/pdf-to-dxf.html";
     return;
   }
   if (toolId === "pdf-image-converter" || toolId === "pdf-converter") {
