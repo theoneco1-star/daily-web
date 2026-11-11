@@ -1,7 +1,7 @@
 /**
  * PDF Drawing to CAD (DXF) Converter Engine
  * 100% Client-side In-Memory Processing (Zero Server Transmission)
- * Converts vector PDF blueprints and drawings into CAD-compatible DXF (R2000 / AC1015) files.
+ * Converts vector PDF blueprints and drawings into CAD-compatible DXF (AutoCAD R12 / AC1009) files.
  */
 (function (global) {
   'use strict';
@@ -38,10 +38,10 @@
   }
 
   /**
-   * Approximate Cubic Bezier curve with piecewise linear segments
+   * Approximate Cubic Bezier curve with piecewise linear segments (default 16 steps)
    */
-  function approximateCubicBezier(p0, p1, p2, p3, segments) {
-    const numSteps = Math.max(4, Math.min(segments || 12, 32));
+  function approximateCubicBezier(p0, p1, p2, p3, segments = 16) {
+    const numSteps = Math.max(4, Math.min(segments || 16, 32));
     const points = [];
     for (let i = 1; i <= numSteps; i++) {
       const t = i / numSteps;
@@ -60,20 +60,22 @@
 
   /**
    * Escape text for AutoCAD DXF standard format with Unicode fallback (\U+XXXX)
+   * Cleans newlines and invalid control characters to maintain DXF line structure integrity
    */
   function encodeDxfText(str) {
     if (!str) return '';
+    // Strip carriage returns, newlines, and non-printable control characters
+    const cleanStr = String(str).replace(/[\r\n\t]+/g, ' ').replace(/[\x00-\x1F\x7F]/g, '').trim();
+    if (!cleanStr) return '';
     let result = '';
-    for (let i = 0; i < str.length; i++) {
-      const code = str.charCodeAt(i);
-      // Clean control characters
-      if (code < 32 && code !== 9) continue;
-      // Printable ASCII (except backslash and caret)
+    for (let i = 0; i < cleanStr.length; i++) {
+      const code = cleanStr.charCodeAt(i);
+      // Printable ASCII (except caret)
       if (code >= 32 && code <= 126) {
-        if (str[i] === '^') {
+        if (cleanStr[i] === '^') {
           result += ' ';
         } else {
-          result += str[i];
+          result += cleanStr[i];
         }
       } else {
         // Unicode escape for AutoCAD (supports Korean, Chinese, Japanese, symbols)
@@ -85,11 +87,12 @@
   }
 
   /**
-   * Format float coordinates to 4 decimal places for compact & precise DXF
+   * Format float coordinates to fixed 4 decimal places (no scientific notation)
    */
   function f4(num) {
-    if (typeof num !== 'number' || isNaN(num) || !isFinite(num)) return '0.0';
-    return (Math.round(num * 10000) / 10000).toFixed(4);
+    if (typeof num !== 'number' || isNaN(num) || !isFinite(num)) return '0.0000';
+    if (Math.abs(num) < 0.00005) return '0.0000';
+    return Number(num).toFixed(4);
   }
 
   /**
@@ -176,8 +179,9 @@
         : [1];
 
       const includeText = options.includeText !== false;
-      const curveSegments = options.curveSegments || 12;
-      const invertYOption = options.invertY !== undefined ? options.invertY : 'auto';
+      const curveSegments = options.curveSegments || 16;
+      // Fixed standard Cartesian coordinate system (AutoCAD WCS: Y points upwards)
+      const shouldInvertY = options.invertY === true;
       const onProgress = options.onProgress || (() => {});
 
       const allEntities = [];
@@ -201,18 +205,6 @@
         const viewport = page.getViewport({ scale: 1.0 });
         const pageHeight = viewport.height;
         const pageWidth = viewport.width;
-
-        // Determine Y-axis inversion
-        // By default, PDF user coordinates have Y pointing up.
-        // If invertY is true, CAD Y = pageHeight - y
-        let shouldInvertY = false;
-        if (invertYOption === true) {
-          shouldInvertY = true;
-        } else if (invertYOption === 'auto') {
-          // Keep AutoCAD WCS: PDF user space already has Y pointing up.
-          // Invert only if the page transform has negative Y scale.
-          shouldInvertY = false;
-        }
 
         // Layer suffix if multiple pages
         const layerSuffix = pagesToProcess.length > 1 ? `_P${pageNum}` : '';
@@ -254,7 +246,7 @@
             if (sp.length < 2) continue;
 
             if (asFill && sp.length >= 3 && sp.isClosed) {
-              // Convert filled polygon to LWPOLYLINE or SOLID
+              // Convert filled polygon to POLYLINE or SOLID
               if (sp.length === 4 || sp.length === 5) {
                 // Quad or Triangle SOLID
                 allEntities.push({
@@ -265,7 +257,7 @@
                 totalPolygons++;
               } else {
                 allEntities.push({
-                  type: 'LWPOLYLINE',
+                  type: 'POLYLINE',
                   layer: fillLayer,
                   isClosed: true,
                   points: sp
@@ -273,7 +265,7 @@
                 totalPolygons++;
               }
             } else {
-              // Stroke: Convert to LWPOLYLINE or individual LINE entities
+              // Stroke: Convert to individual LINE or continuous POLYLINE
               if (sp.length === 2) {
                 allEntities.push({
                   type: 'LINE',
@@ -286,7 +278,7 @@
                 totalLines++;
               } else {
                 allEntities.push({
-                  type: 'LWPOLYLINE',
+                  type: 'POLYLINE',
                   layer: vectorLayer,
                   isClosed: !!sp.isClosed,
                   points: sp
@@ -552,29 +544,29 @@
             const textContent = await page.getTextContent({ normalizeWhitespace: true });
             if (textContent && Array.isArray(textContent.items)) {
               for (const item of textContent.items) {
-                if (!item.str || !item.str.trim()) continue;
+                if (!item || !item.str) continue;
 
-                const tr = item.transform; // [a, b, c, d, x, y]
+                const safeText = encodeDxfText(item.str);
+                if (!safeText) continue;
+
+                const tr = item.transform || [1, 0, 0, 1, 0, 0];
                 const fontSize = Math.hypot(tr[0], tr[1]) || item.height || 10;
                 const rotationRad = Math.atan2(tr[1], tr[0]);
                 const rotationDeg = (rotationRad * 180) / Math.PI;
 
-                const tx = tr[4];
-                const ty = shouldInvertY ? (pageHeight - tr[5]) : tr[5];
-                const safeText = encodeDxfText(item.str);
+                const tx = tr[4] || 0;
+                const ty = shouldInvertY ? (pageHeight - (tr[5] || 0)) : (tr[5] || 0);
 
-                if (safeText) {
-                  allEntities.push({
-                    type: 'TEXT',
-                    layer: textLayer,
-                    x: tx,
-                    y: ty,
-                    height: Math.max(0.5, fontSize),
-                    rotation: rotationDeg,
-                    text: safeText
-                  });
-                  totalTexts++;
-                }
+                allEntities.push({
+                  type: 'TEXT',
+                  layer: textLayer || 'PDF_TEXT',
+                  x: tx,
+                  y: ty,
+                  height: Math.max(0.5, fontSize),
+                  rotation: rotationDeg,
+                  text: safeText
+                });
+                totalTexts++;
               }
             }
           } catch (textErr) {
@@ -599,7 +591,7 @@
 
       onProgress({
         percent: 96,
-        status: 'Assembling ASCII DXF R2000 structure...'
+        status: 'Assembling ASCII DXF R12 structure...'
       });
 
       // 4. Assemble Pure ASCII DXF Document
@@ -624,99 +616,127 @@
     }
 
     /**
-     * Assemble AutoCAD 2000 (AC1015) ASCII DXF
+     * Assemble AutoCAD R12 (AC1009) ASCII DXF
+     * Pure, simple, and universally compatible DXF specification
      */
     buildDxf(entities, pages) {
-      let handleCounter = 100;
-      function nextHandle() {
-        return (handleCounter++).toString(16).toUpperCase();
+      // Map of defined layers to default ACI colors
+      const definedLayers = new Map();
+      definedLayers.set('0', 7); // Default layer 0: White/Black (ACI 7)
+      definedLayers.set('PDF_VECTORS', 7);
+      definedLayers.set('PDF_TEXT', 3);  // Green (ACI 3)
+      definedLayers.set('PDF_HATCH', 8); // Gray (ACI 8)
+
+      for (const ent of entities) {
+        if (ent.layer && !definedLayers.has(ent.layer)) {
+          let color = 7;
+          if (ent.layer.includes('TEXT')) color = 3;
+          else if (ent.layer.includes('HATCH')) color = 8;
+          else if (ent.layer.includes('VECTORS')) color = 7;
+          definedLayers.set(ent.layer, color);
+        }
       }
 
       let dxf = '';
 
-      // --- HEADER SECTION ---
+      // --- 1. HEADER SECTION (AutoCAD R12 / AC1009) ---
       dxf += '  0\nSECTION\n  2\nHEADER\n';
-      dxf += '  9\n$ACADVER\n  1\nAC1015\n';
-      dxf += '  9\n$HANDSEED\n  5\nFFFF\n';
-      dxf += '  9\n$INSUNITS\n 70\n4\n'; // 4 = Millimeters
-      dxf += '  9\n$MEASUREMENT\n 70\n1\n'; // 1 = Metric
+      dxf += '  9\n$ACADVER\n  1\nAC1009\n';
+      dxf += '  9\n$INSUNITS\n 70\n4\n';      // 4 = Millimeters
+      dxf += '  9\n$MEASUREMENT\n 70\n1\n';   // 1 = Metric
       dxf += '  0\nENDSEC\n';
 
-      // --- TABLES SECTION ---
+      // --- 2. TABLES SECTION ---
       dxf += '  0\nSECTION\n  2\nTABLES\n';
 
-      // VPORT Table
+      // VPORT Table (Active Viewport)
       dxf += '  0\nTABLE\n  2\nVPORT\n 70\n1\n';
-      dxf += '  0\nVPORT\n  2\n*ACTIVE\n 70\n0\n 10\n0.0\n 20\n0.0\n 11\n1.0\n 21\n1.0\n 12\n0.0\n 22\n0.0\n 40\n1000.0\n 41\n1.4\n 76\n0\n';
+      dxf += '  0\nVPORT\n  2\n*ACTIVE\n 70\n0\n';
+      dxf += ' 10\n0.0000\n 20\n0.0000\n';
+      dxf += ' 11\n1.0000\n 21\n1.0000\n';
+      dxf += ' 12\n0.0000\n 22\n0.0000\n';
+      dxf += ' 13\n0.0000\n 23\n0.0000\n';
+      dxf += ' 14\n1.0000\n 24\n1.0000\n';
+      dxf += ' 15\n0.0000\n 25\n0.0000\n';
+      dxf += ' 40\n1000.0000\n 41\n1.4000\n 42\n50.0000\n';
+      dxf += ' 43\n0.0000\n 44\n0.0000\n 50\n0.0000\n 51\n0.0000\n';
+      dxf += ' 71\n0\n 72\n1000\n 73\n1\n 74\n3\n 75\n1\n 76\n1\n 77\n0\n 78\n0\n';
       dxf += '  0\nENDTAB\n';
 
-      // LTYPE Table
+      // LTYPE Table (Continuous)
       dxf += '  0\nTABLE\n  2\nLTYPE\n 70\n1\n';
-      dxf += '  0\nLTYPE\n  2\nCONTINUOUS\n 70\n0\n  3\nSolid line\n 72\n65\n 73\n0\n 40\n0.0\n';
+      dxf += '  0\nLTYPE\n  2\nCONTINUOUS\n 70\n0\n  3\nSolid line\n 72\n65\n 73\n0\n 40\n0.0000\n';
       dxf += '  0\nENDTAB\n';
 
       // LAYER Table
       dxf += '  0\nTABLE\n  2\nLAYER\n';
-      dxf += ` 70\n${pages.length * 3 + 1}\n`;
-
-      // Layer 0
-      dxf += '  0\nLAYER\n  2\n0\n 70\n0\n 62\n7\n  6\nCONTINUOUS\n';
-
-      // Unique layers across pages
-      const definedLayers = new Set(['0']);
-      for (const ent of entities) {
-        if (!definedLayers.has(ent.layer)) {
-          definedLayers.add(ent.layer);
-          let color = 7; // White/Black
-          if (ent.layer.includes('TEXT')) color = 3; // Green
-          else if (ent.layer.includes('HATCH')) color = 8; // Gray
-          else if (ent.layer.includes('VECTORS')) color = 7; // White
-
-          dxf += `  0\nLAYER\n  2\n${ent.layer}\n 70\n0\n 62\n${color}\n  6\nCONTINUOUS\n`;
-        }
+      dxf += ` 70\n${definedLayers.size}\n`;
+      for (const [layerName, color] of definedLayers.entries()) {
+        dxf += `  0\nLAYER\n  2\n${layerName}\n 70\n0\n 62\n${color}\n  6\nCONTINUOUS\n`;
       }
       dxf += '  0\nENDTAB\n';
+
+      // STYLE Table (Standard Text Style)
+      dxf += '  0\nTABLE\n  2\nSTYLE\n 70\n1\n';
+      dxf += '  0\nSTYLE\n  2\nSTANDARD\n 70\n0\n';
+      dxf += ' 40\n0.0000\n 41\n1.0000\n 50\n0.0000\n 71\n0\n 42\n1.0000\n';
+      dxf += '  3\ntxt\n  4\n\n';
+      dxf += '  0\nENDTAB\n';
+
       dxf += '  0\nENDSEC\n';
 
-      // --- BLOCKS SECTION ---
+      // --- 3. BLOCKS SECTION ---
       dxf += '  0\nSECTION\n  2\nBLOCKS\n  0\nENDSEC\n';
 
-      // --- ENTITIES SECTION ---
+      // --- 4. ENTITIES SECTION ---
       dxf += '  0\nSECTION\n  2\nENTITIES\n';
 
       for (const ent of entities) {
-        const handle = nextHandle();
+        const layer = ent.layer || '0';
 
         if (ent.type === 'LINE') {
-          dxf += `  0\nLINE\n  5\n${handle}\n  8\n${ent.layer}\n`;
-          dxf += ` 10\n${f4(ent.x1)}\n 20\n${f4(ent.y1)}\n 30\n0.0\n`;
-          dxf += ` 11\n${f4(ent.x2)}\n 21\n${f4(ent.y2)}\n 31\n0.0\n`;
-        } else if (ent.type === 'LWPOLYLINE') {
+          dxf += `  0\nLINE\n  8\n${layer}\n`;
+          dxf += ` 10\n${f4(ent.x1)}\n 20\n${f4(ent.y1)}\n 30\n0.0000\n`;
+          dxf += ` 11\n${f4(ent.x2)}\n 21\n${f4(ent.y2)}\n 31\n0.0000\n`;
+        } else if (ent.type === 'POLYLINE' || ent.type === 'LWPOLYLINE') {
           const pts = ent.points || [];
           if (pts.length < 2) continue;
-          dxf += `  0\nLWPOLYLINE\n  5\n${handle}\n  8\n${ent.layer}\n`;
-          dxf += ` 90\n${pts.length}\n`;
-          dxf += ` 70\n${ent.isClosed ? 1 : 0}\n`;
+          const isClosed = ent.isClosed ? 1 : 0;
+
+          dxf += `  0\nPOLYLINE\n  8\n${layer}\n 66\n1\n`;
+          dxf += ` 10\n0.0000\n 20\n0.0000\n 30\n0.0000\n`;
+          dxf += ` 70\n${isClosed}\n`;
+
           for (const p of pts) {
-            dxf += ` 10\n${f4(p.x)}\n 20\n${f4(p.y)}\n`;
+            dxf += `  0\nVERTEX\n  8\n${layer}\n`;
+            dxf += ` 10\n${f4(p.x)}\n 20\n${f4(p.y)}\n 30\n0.0000\n`;
           }
+
+          dxf += `  0\nSEQEND\n  8\n${layer}\n`;
         } else if (ent.type === 'SOLID') {
           const pts = ent.points || [];
           if (pts.length < 3) continue;
           const p1 = pts[0];
           const p2 = pts[1];
-          const p3 = pts[2];
-          const p4 = pts[3] || p3;
-          dxf += `  0\nSOLID\n  5\n${handle}\n  8\n${ent.layer}\n`;
-          dxf += ` 10\n${f4(p1.x)}\n 20\n${f4(p1.y)}\n 30\n0.0\n`;
-          dxf += ` 11\n${f4(p2.x)}\n 21\n${f4(p2.y)}\n 31\n0.0\n`;
-          dxf += ` 12\n${f4(p3.x)}\n 22\n${f4(p3.y)}\n 32\n0.0\n`;
-          dxf += ` 13\n${f4(p4.x)}\n 23\n${f4(p4.y)}\n 33\n0.0\n`;
+          // DXF SOLID expects vertices in cross-over order: 1, 2, 4, 3
+          const p3 = pts.length > 3 ? pts[3] : pts[2];
+          const p4 = pts[2];
+
+          dxf += `  0\nSOLID\n  8\n${layer}\n`;
+          dxf += ` 10\n${f4(p1.x)}\n 20\n${f4(p1.y)}\n 30\n0.0000\n`;
+          dxf += ` 11\n${f4(p2.x)}\n 21\n${f4(p2.y)}\n 31\n0.0000\n`;
+          dxf += ` 12\n${f4(p3.x)}\n 22\n${f4(p3.y)}\n 32\n0.0000\n`;
+          dxf += ` 13\n${f4(p4.x)}\n 23\n${f4(p4.y)}\n 33\n0.0000\n`;
         } else if (ent.type === 'TEXT') {
-          dxf += `  0\nTEXT\n  5\n${handle}\n  8\n${ent.layer}\n`;
-          dxf += ` 10\n${f4(ent.x)}\n 20\n${f4(ent.y)}\n 30\n0.0\n`;
-          dxf += ` 40\n${f4(ent.height)}\n`;
-          dxf += `  1\n${ent.text}\n`;
+          const txt = (ent.text || '').trim();
+          if (!txt) continue;
+          const textLayer = ent.layer || 'PDF_TEXT';
+
+          dxf += `  0\nTEXT\n  8\n${textLayer}\n`;
+          dxf += ` 10\n${f4(ent.x)}\n 20\n${f4(ent.y)}\n 30\n0.0000\n`;
+          dxf += ` 40\n${f4(ent.height || 2.5)}\n`;
+          dxf += `  1\n${txt}\n`;
+          dxf += `  7\nSTANDARD\n`;
           if (ent.rotation && Math.abs(ent.rotation) > 0.01) {
             dxf += ` 50\n${f4(ent.rotation)}\n`;
           }

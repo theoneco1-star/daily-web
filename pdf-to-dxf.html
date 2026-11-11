@@ -175,11 +175,11 @@
 
       <!-- Hashtags -->
       <div class="flex items-center justify-center gap-2 mt-3 text-xs text-slate-400 flex-wrap">
-        <span class="app-tag">#PDF변환</span>
-        <span class="app-tag">#CAD변환</span>
-        <span class="app-tag">#DXF추출</span>
-        <span class="app-tag">#도면변환</span>
-        <span class="app-tag">#무설치</span>
+        <span class="app-tag" data-i18n="tagPdf">#PDF변환</span>
+        <span class="app-tag" data-i18n="tagCad">#CAD변환</span>
+        <span class="app-tag" data-i18n="tagDxf">#DXF추출</span>
+        <span class="app-tag" data-i18n="tagDrawing">#도면변환</span>
+        <span class="app-tag" data-i18n="tagNoInstall">#무설치</span>
       </div>
     </div>
 
@@ -249,42 +249,15 @@
           </div>
         </div>
 
-        <!-- Conversion Options Panel -->
-        <div class="p-4 sm:p-5 rounded-xl bg-slate-950/60 border border-slate-800 space-y-4">
-          <h4 class="text-sm font-bold text-white flex items-center gap-2">
-            <span class="w-1.5 h-4 rounded-full bg-indigo-500 inline-block"></span>
-            <span data-i18n="optionsTitle">CAD(DXF) 추출 정밀 설정</span>
-          </h4>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <!-- Option 1: Text Layer -->
-            <label class="flex items-start gap-3 p-3 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 cursor-pointer">
-              <input type="checkbox" id="opt-include-text" checked class="w-4 h-4 mt-0.5 rounded text-sky-600 focus:ring-sky-500 border-slate-700 bg-slate-950" />
-              <div>
-                <div class="text-xs font-bold text-slate-200" data-i18n="optTextTitle">텍스트 & 치수 추출</div>
-                <div class="text-[11px] text-slate-400 leading-tight mt-0.5" data-i18n="optTextDesc">도면 내 문자/숫자를 'PDF_TEXT' 레이어로 분리 추출</div>
-              </div>
-            </label>
-
-            <!-- Option 2: Curve Smoothness -->
-            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
-              <label for="opt-curve-segments" class="block text-xs font-bold text-slate-200 mb-1" data-i18n="optCurveTitle">곡선 세분화 정밀도</label>
-              <select id="opt-curve-segments" class="w-full text-xs bg-slate-950 border border-slate-700 rounded-md px-2.5 py-1.5 text-slate-300 focus:outline-none focus:border-sky-500">
-                <option value="8" data-i18n="optCurveLow">빠름 (8 세그먼트)</option>
-                <option value="12" selected data-i18n="optCurveNormal">표준 권장 (12 세그먼트)</option>
-                <option value="20" data-i18n="optCurveHigh">고정밀 매끄럽게 (20 세그먼트)</option>
-              </select>
+        <!-- Conversion Options (Minimal) -->
+        <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between flex-wrap gap-2">
+          <label class="flex items-center gap-3 cursor-pointer select-none">
+            <input type="checkbox" id="opt-include-text" checked class="w-4 h-4 rounded text-sky-600 focus:ring-sky-500 border-slate-700 bg-slate-950 cursor-pointer" />
+            <div>
+              <span class="text-xs font-bold text-slate-200" data-i18n="optTextTitle">텍스트 & 치수 추출</span>
+              <span class="text-[11px] text-slate-400 ml-2 hidden sm:inline" data-i18n="optTextDesc">도면 내 문자/숫자를 'PDF_TEXT' 레이어로 분리 추출</span>
             </div>
-
-            <!-- Option 3: Y-Axis Coordinate Alignment -->
-            <div class="p-3 rounded-lg bg-slate-900 border border-slate-800">
-              <label for="opt-y-alignment" class="block text-xs font-bold text-slate-200 mb-1" data-i18n="optYTitle">Y축 좌표계 보정 (WCS)</label>
-              <select id="opt-y-alignment" class="w-full text-xs bg-slate-950 border border-slate-700 rounded-md px-2.5 py-1.5 text-slate-300 focus:outline-none focus:border-sky-500">
-                <option value="auto" selected data-i18n="optYAuto">자동 (CAD 표준 WCS 데카르트)</option>
-                <option value="invert" data-i18n="optYInvert">Y축 반전 (하향 기준 PDF 보정)</option>
-              </select>
-            </div>
-          </div>
+          </label>
         </div>
 
         <!-- Action & Progress Area -->
@@ -410,23 +383,23 @@
         <span data-i18n="compatTitle">호환 CAD 소프트웨어 및 표준 규격</span>
       </h3>
       <p class="text-xs text-slate-300 leading-relaxed mb-4" data-i18n="compatDesc">
-        본 변환기는 전 세계 산업 표준인 <strong>AutoCAD 2000 (AC1015) ASCII DXF</strong> 형식으로 출력됩니다. 생성된 DXF 파일은 아래의 모든 최신 및 구버전 CAD 프로그램에서 라이선스 제약 없이 즉시 열립니다:
+        본 변환기는 전 세계 산업 표준인 <strong>AutoCAD R12 (AC1009) ASCII DXF</strong> 형식으로 출력됩니다. 생성된 DXF 파일은 아래의 모든 최신 및 구버전 CAD 프로그램에서 라이선스 제약 없이 즉시 열립니다:
       </p>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
         <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
-          <span>✓</span> <span>AutoCAD (오토캐드)</span>
+          <span>✓</span> <span data-i18n="cadAutoCAD">AutoCAD</span>
         </div>
         <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
-          <span>✓</span> <span>ZWCAD (지더블유캐드)</span>
+          <span>✓</span> <span data-i18n="cadZWCAD">ZWCAD</span>
         </div>
         <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
-          <span>✓</span> <span>GstarCAD (지스타캐드)</span>
+          <span>✓</span> <span data-i18n="cadGstarCAD">GstarCAD</span>
         </div>
         <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
           <span>✓</span> <span>BricsCAD / DraftSight</span>
         </div>
         <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
-          <span>✓</span> <span>LibreCAD (무료 오픈소스)</span>
+          <span>✓</span> <span data-i18n="cadLibreCAD">LibreCAD (무료 오픈소스)</span>
         </div>
         <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-slate-300 flex items-center gap-2">
           <span>✓</span> <span>QCAD / nanoCAD</span>
@@ -482,10 +455,10 @@
         <span data-i18n="footerSlogan">스마트한 일상의 도구 모음</span>
       </div>
       <div class="flex items-center gap-4 text-slate-400">
-        <a href="/" class="hover:text-white transition-colors" data-i18n="nav.home">홈</a>
-        <a href="/pdf-image-converter.html" class="hover:text-white transition-colors">PDF ↔ 이미지 변환</a>
-        <a href="/file-compressor.html" class="hover:text-white transition-colors">파일 용량 압축</a>
-        <a href="/color-picker.html" class="hover:text-white transition-colors">색상 추출기</a>
+        <a href="/" class="hover:text-white transition-colors" data-i18n="navHome">홈</a>
+        <a href="/pdf-image-converter.html" class="hover:text-white transition-colors" data-i18n="navPdfConverter">PDF ↔ 이미지 변환</a>
+        <a href="/file-compressor.html" class="hover:text-white transition-colors" data-i18n="navCompressor">파일 용량 압축</a>
+        <a href="/color-picker.html" class="hover:text-white transition-colors" data-i18n="navPicker">색상 추출기</a>
       </div>
     </div>
     <div class="mt-4 text-[11px] text-slate-600">
@@ -517,6 +490,11 @@
           toolTitle: "PDF 도면 ➔ CAD(DXF) 변환기",
           toolCardDesc: "서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원.",
           securityPill: "100% 브라우저 메모리 연산 (서버 전송 없음 · 도면 유출 원천 차단)",
+          tagPdf: "#PDF변환",
+          tagCad: "#CAD변환",
+          tagDxf: "#DXF추출",
+          tagDrawing: "#도면변환",
+          tagNoInstall: "#무설치",
           dropTitle: "PDF 파일 선택 또는 드래그",
           dropSub: "건축, 기계, 토목, 전기 CAD 벡터 PDF 도면을 마우스로 끌어다 놓거나 클릭하여 선택하세요. (최대 100MB)",
           selectFileBtn: "PDF 파일 열기",
@@ -524,16 +502,8 @@
           selectPage: "변환할 페이지 선택",
           selectAll: "전체 선택",
           selectFirst: "1페이지 선택",
-          optionsTitle: "CAD(DXF) 추출 정밀 설정",
           optTextTitle: "텍스트 & 치수 추출",
           optTextDesc: "도면 내 문자/숫자를 'PDF_TEXT' 레이어로 분리 추출",
-          optCurveTitle: "곡선 세분화 정밀도",
-          optCurveLow: "빠름 (8 세그먼트)",
-          optCurveNormal: "표준 권장 (12 세그먼트)",
-          optCurveHigh: "고정밀 매끄럽게 (20 세그먼트)",
-          optYTitle: "Y축 좌표계 보정 (WCS)",
-          optYAuto: "자동 (CAD 표준 WCS 데카르트)",
-          optYInvert: "Y축 반전 (하향 기준 PDF 보정)",
           convertBtn: "DXF로 변환하기",
           downloading: "다운로드 중...",
           errorScanned: "오류: 벡터 데이터가 없는 스캔 이미지 PDF입니다.",
@@ -551,7 +521,11 @@
           feature3Title: "100% 클라이언트 로컬 보안",
           feature3Desc: "도면 파일이 외부 웹 서버로 전송되지 않고 사용자의 컴퓨터 메모리(RAM)에서만 처리되므로 기밀 건축/설계 도면도 100% 안전합니다.",
           compatTitle: "호환 CAD 소프트웨어 및 표준 규격",
-          compatDesc: "본 변환기는 전 세계 산업 표준인 AutoCAD 2000 (AC1015) ASCII DXF 형식으로 출력됩니다. 모든 최신 및 구버전 CAD 프로그램에서 라이선스 제약 없이 즉시 열립니다.",
+          compatDesc: "본 변환기는 전 세계 산업 표준인 AutoCAD R12 (AC1009) ASCII DXF 형식으로 출력됩니다. 생성된 DXF 파일은 아래의 모든 최신 및 구버전 CAD 프로그램에서 라이선스 제약 없이 즉시 열립니다:",
+          cadAutoCAD: "AutoCAD",
+          cadZWCAD: "ZWCAD",
+          cadGstarCAD: "GstarCAD",
+          cadLibreCAD: "LibreCAD (무료 오픈소스)",
           faqTitle: "자주 묻는 질문 (FAQ)",
           faq1Q: "Q. 스캔한 PDF 도면도 CAD 파일로 변환되나요?",
           faq1A: "A. 종이 도면을 스캔하거나 촬영한 PDF는 비트맵 이미지(픽셀 덩어리)이므로 벡터 선 데이터를 추출할 수 없습니다. 본 도구는 AutoCAD, Revit 등에서 생성된 원본 벡터 PDF 도면을 전문적으로 DXF 선/곡선으로 변환합니다.",
@@ -560,6 +534,10 @@
           faq3Q: "Q. 여러 페이지 PDF 중 원하는 페이지만 변환할 수 있나요?",
           faq3A: "A. 네! PDF 파일을 업로드하면 썸네일 미리보기와 함께 페이지 선택 창이 표시됩니다. 원하는 페이지만 클릭하여 단일 DXF로 변환하거나 전체 페이지를 선택할 수 있습니다.",
           footerSlogan: "스마트한 일상의 도구 모음",
+          navHome: "홈",
+          navPdfConverter: "PDF ↔ 이미지 변환",
+          navCompressor: "파일 용량 압축",
+          navPicker: "색상 추출기",
           noFileToast: "PDF 파일을 먼저 선택해 주세요.",
           noPageSelectedToast: "최소 1개 이상의 페이지를 선택해 주세요."
         },
@@ -574,25 +552,22 @@
           toolTitle: "PDF Drawing to CAD (DXF) Converter",
           toolCardDesc: "Instantly convert vector PDF drawings to CAD-compatible DXF files in your browser with zero server uploads. Extracts lines, curves, and dimensions.",
           securityPill: "100% Client-Side In-Memory Processing (Zero Server Upload · Zero Data Leakage)",
+          tagPdf: "#PDFtoCAD",
+          tagCad: "#CADConverter",
+          tagDxf: "#DXFExport",
+          tagDrawing: "#DrawingToCAD",
+          tagNoInstall: "#NoInstall",
           dropTitle: "Select or drop PDF file",
           dropSub: "Drop architectural, mechanical, or civil vector CAD drawings here or click to browse. (Up to 100MB)",
           selectFileBtn: "Open PDF File",
-          reselectBtn: "Select Another File",
-          selectPage: "Select Page",
+          reselectBtn: "Change File",
+          selectPage: "Select Pages to Convert",
           selectAll: "Select All",
-          selectFirst: "Page 1 Only",
-          optionsTitle: "CAD (DXF) Precision Options",
+          selectFirst: "Select Page 1",
           optTextTitle: "Extract Text & Dimensions",
           optTextDesc: "Extract labels and numbers into separate 'PDF_TEXT' layer",
-          optCurveTitle: "Curve Smoothing Segments",
-          optCurveLow: "Fast (8 Segments)",
-          optCurveNormal: "Standard (12 Segments)",
-          optCurveHigh: "Ultra Smooth (20 Segments)",
-          optYTitle: "Y-Axis Alignment (WCS)",
-          optYAuto: "Auto (AutoCAD Standard WCS)",
-          optYInvert: "Invert Y-Axis (For top-down PDF)",
           convertBtn: "Convert to DXF",
-          downloading: "Downloading...",
+          downloading: "Converting...",
           errorScanned: "Error: No vector data found in scanned PDF.",
           errorScannedDesc: "The selected document is a scanned raster image without vector paths. CAD (DXF) conversion requires an original vector PDF exported from CAD software (AutoCAD, Revit, etc.).",
           conversionSuccess: "CAD (DXF) conversion completed successfully!",
@@ -608,7 +583,11 @@
           feature3Title: "100% Client-Side Privacy",
           feature3Desc: "Blueprints are processed entirely in your computer's RAM. Zero files are sent to any server, keeping confidential designs 100% secure.",
           compatTitle: "Compatible CAD Software & Standards",
-          compatDesc: "Outputs standard AutoCAD 2000 (AC1015) ASCII DXF files. Fully compatible with AutoCAD, ZWCAD, GstarCAD, DraftSight, LibreCAD, and more.",
+          compatDesc: "Outputs standard AutoCAD R12 (AC1009) ASCII DXF files. Fully compatible with AutoCAD, ZWCAD, GstarCAD, DraftSight, LibreCAD, and more.",
+          cadAutoCAD: "AutoCAD",
+          cadZWCAD: "ZWCAD",
+          cadGstarCAD: "GstarCAD",
+          cadLibreCAD: "LibreCAD (Open Source)",
           faqTitle: "Frequently Asked Questions",
           faq1Q: "Q. Can scanned paper drawings be converted?",
           faq1A: "A. Scanned paper drawings are raster bitmaps and cannot be extracted into vector lines. This tool is designed for vector PDFs exported from CAD systems.",
@@ -617,6 +596,10 @@
           faq3Q: "Q. Can I convert a specific page from a multi-page PDF?",
           faq3A: "A. Yes! Use our interactive page thumbnail selector to pick individual pages or convert all pages together.",
           footerSlogan: "Smart Tools for Everyday Life",
+          navHome: "Home",
+          navPdfConverter: "PDF ↔ Image Converter",
+          navCompressor: "File Compressor",
+          navPicker: "Color Picker",
           noFileToast: "Please select a PDF file first.",
           noPageSelectedToast: "Please select at least one page to convert."
         }
@@ -654,6 +637,12 @@
             el.textContent = dict[key];
           }
         });
+
+        // Update Dynamic file page counter if active
+        const pageSpan = document.getElementById('file-pages');
+        if (pageSpan && totalPages) {
+          pageSpan.textContent = totalPages + (currentLang === 'ko' ? ' 페이지' : ' Page(s)');
+        }
 
         // Update Page Title
         document.title = currentLang === 'ko'
@@ -881,17 +870,14 @@
         btnConvert.classList.add('opacity-50', 'pointer-events-none');
 
         const pagesArr = Array.from(selectedPages).sort((a, b) => a - b);
-        const includeText = document.getElementById('opt-include-text').checked;
-        const curveSegments = parseInt(document.getElementById('opt-curve-segments').value, 10) || 12;
-        const yMode = document.getElementById('opt-y-alignment').value;
-        const invertY = yMode === 'invert';
+        const includeText = document.getElementById('opt-include-text') ? document.getElementById('opt-include-text').checked : true;
 
         try {
           const result = await converter.convert({
             pageNumbers: pagesArr,
             includeText,
-            curveSegments,
-            invertY,
+            curveSegments: 16,
+            invertY: false,
             onProgress: ({ percent, status }) => {
               progressBar.style.width = percent + '%';
               progressPercent.textContent = percent + '%';
@@ -955,3 +941,4 @@
   </script>
 </body>
 </html>
+
