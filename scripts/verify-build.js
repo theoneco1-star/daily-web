@@ -151,6 +151,19 @@ assert(!generatedDxf.match(/\d+\.\d+e[+-]?\d+/i), 'All coordinates use fixed-poi
 // 5. Verify Clean EOF Termination
 assert(generatedDxf.trim().endsWith('0\nENDSEC\n0\nEOF'), 'DXF terminates strictly with 0 \\n ENDSEC \\n 0 \\n EOF');
 
+console.log('\n=== Step 4: Checking Vercel Configuration ===');
+const vercelConfigPath = path.resolve(__dirname, '..', 'vercel.json');
+try {
+  const vercelRaw = fs.readFileSync(vercelConfigPath, 'utf8');
+  const vercelConfig = JSON.parse(vercelRaw);
+  assert(true, 'vercel.json is valid JSON');
+  assert(vercelConfig.outputDirectory === '.', 'vercel.json outputDirectory is set to "." (root) for static site');
+  assert(vercelConfig.cleanUrls === true, 'vercel.json cleanUrls is enabled');
+  assert(vercelConfig.trailingSlash === false, 'vercel.json trailingSlash is false');
+} catch (err) {
+  assert(false, `vercel.json check error: ${err.message}`);
+}
+
 console.log('\n=== Summary ===');
 if (errors === 0) {
   console.log('🎉 ALL VERIFICATION CHECKS PASSED SUCCESSFULLY!\n');
