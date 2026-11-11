@@ -37,7 +37,8 @@
         } else {
           document.documentElement.classList.add('dark');
         }
-        var savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        var urlParams = new URLSearchParams(window.location.search);
+        var savedLang = urlParams.get('lang') || localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
         if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
           document.documentElement.lang = 'en';
         }
@@ -216,7 +217,7 @@
               <div class="flex items-center gap-2 text-xs text-slate-400 mt-0.5">
                 <span id="file-size">0 KB</span>
                 <span>•</span>
-                <span id="file-pages">1 페이지</span>
+                <span id="file-pages" data-i18n="defaultPages">1 페이지</span>
               </div>
             </div>
           </div>
@@ -305,7 +306,7 @@
                 <span>✅</span>
                 <span data-i18n="conversionSuccess">CAD(DXF) 변환이 성공적으로 완료되었습니다!</span>
               </div>
-              <span id="result-dxf-size" class="text-xs font-mono text-slate-400">DXF 크기: 0 KB</span>
+              <span id="result-dxf-size" class="text-xs font-mono text-slate-400" data-i18n="defaultDxfSize">DXF 크기: 0 KB</span>
             </div>
 
             <!-- Stats Grid -->
@@ -450,7 +451,7 @@
   <footer class="bg-slate-950 border-t border-slate-800 py-8 px-4 text-center text-xs text-slate-500">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
-        <span class="font-bold text-slate-400">Daily Helper (일상의도움)</span>
+        <span class="font-bold text-slate-400" data-i18n="footerBrand">Daily Helper (일상의도움)</span>
         <span>•</span>
         <span data-i18n="footerSlogan">스마트한 일상의 도구 모음</span>
       </div>
@@ -534,6 +535,9 @@
           faq3Q: "Q. 여러 페이지 PDF 중 원하는 페이지만 변환할 수 있나요?",
           faq3A: "A. 네! PDF 파일을 업로드하면 썸네일 미리보기와 함께 페이지 선택 창이 표시됩니다. 원하는 페이지만 클릭하여 단일 DXF로 변환하거나 전체 페이지를 선택할 수 있습니다.",
           footerSlogan: "스마트한 일상의 도구 모음",
+          footerBrand: "Daily Helper (일상의도움)",
+          defaultPages: "1 페이지",
+          defaultDxfSize: "DXF 크기: 0 KB",
           navHome: "홈",
           navPdfConverter: "PDF ↔ 이미지 변환",
           navCompressor: "파일 용량 압축",
@@ -596,6 +600,9 @@
           faq3Q: "Q. Can I convert a specific page from a multi-page PDF?",
           faq3A: "A. Yes! Use our interactive page thumbnail selector to pick individual pages or convert all pages together.",
           footerSlogan: "Smart Tools for Everyday Life",
+          footerBrand: "Daily Helper",
+          defaultPages: "1 Page",
+          defaultDxfSize: "DXF Size: 0 KB",
           navHome: "Home",
           navPdfConverter: "PDF ↔ Image Converter",
           navCompressor: "File Compressor",
@@ -644,6 +651,12 @@
           pageSpan.textContent = totalPages + (currentLang === 'ko' ? ' 페이지' : ' Page(s)');
         }
 
+        // Update Dynamic DXF size if active
+        const dxfSizeSpan = document.getElementById('result-dxf-size');
+        if (dxfSizeSpan && lastDxfSizeFormatted) {
+          dxfSizeSpan.textContent = (currentLang === 'ko' ? 'DXF 크기: ' : 'DXF Size: ') + lastDxfSizeFormatted;
+        }
+
         // Update Page Title
         document.title = currentLang === 'ko'
           ? "PDF 도면 ➔ CAD(DXF) 변환기 | 무료 무설치 CAD 변환 - Daily Helper Hub"
@@ -657,6 +670,7 @@
       let totalPages = 1;
       let lastDxfString = null;
       let lastDxfFileName = '';
+      let lastDxfSizeFormatted = '';
 
       function showToast(msg) {
         const toast = document.getElementById('toast');
@@ -897,7 +911,8 @@
           document.getElementById('stat-texts').textContent = result.stats.totalTexts.toLocaleString();
 
           const dxfBlob = new Blob([lastDxfString], { type: 'application/dxf;charset=utf-8' });
-          document.getElementById('result-dxf-size').textContent = `DXF: ${formatBytes(dxfBlob.size)}`;
+          lastDxfSizeFormatted = formatBytes(dxfBlob.size);
+          document.getElementById('result-dxf-size').textContent = (currentLang === 'ko' ? 'DXF 크기: ' : 'DXF Size: ') + lastDxfSizeFormatted;
 
           // Automatic download trigger
           converter.downloadDxf(lastDxfString, lastDxfFileName);
@@ -929,7 +944,8 @@
 
       // ── Initial Setup ────────────────────────────────────────
       document.addEventListener('DOMContentLoaded', () => {
-        const savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        const urlParams = new URLSearchParams(window.location.search);
+        const savedLang = urlParams.get('lang') || localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
         if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
           window.switchLanguage('en');
         } else {

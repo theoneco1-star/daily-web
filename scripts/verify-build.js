@@ -124,44 +124,32 @@ const testEntities = [
 
 const generatedDxf = converter.buildDxf(testEntities, [1]);
 
-// 1. Verify Header
-assert(generatedDxf.startsWith('  0\nSECTION\n  2\nHEADER\n'), 'DXF starts with SECTION: HEADER');
-assert(generatedDxf.includes('  9\n$ACADVER\n  1\nAC1009\n'), 'DXF declares $ACADVER = AC1009 (AutoCAD R12)');
-assert(generatedDxf.includes('  9\n$INSUNITS\n 70\n4\n'), 'DXF sets metric unit millimeters');
-assert(generatedDxf.includes('  9\n$MEASUREMENT\n 70\n1\n'), 'DXF sets measurement standard to metric');
-
-// 2. Verify Tables
-assert(generatedDxf.includes('  0\nSECTION\n  2\nTABLES\n'), 'DXF contains SECTION: TABLES');
-assert(generatedDxf.includes('  2\nVPORT\n'), 'TABLES defines VPORT table');
-assert(generatedDxf.includes('  2\nLTYPE\n'), 'TABLES defines LTYPE table');
-assert(generatedDxf.includes('  2\nLAYER\n'), 'TABLES defines LAYER table');
-assert(generatedDxf.includes('  2\nSTYLE\n'), 'TABLES defines STYLE table');
-assert(generatedDxf.includes('  2\nSTANDARD\n'), 'STYLE defines STANDARD text style');
-
-// 3. Verify Blocks
-assert(generatedDxf.includes('  0\nSECTION\n  2\nBLOCKS\n  0\nENDSEC\n'), 'DXF contains valid BLOCKS section');
-
-// 4. Verify Entities
-assert(generatedDxf.includes('  0\nSECTION\n  2\nENTITIES\n'), 'DXF contains SECTION: ENTITIES');
-assert(generatedDxf.includes('  0\nLINE\n'), 'ENTITIES contains LINE entity');
-assert(generatedDxf.includes('  0\nPOLYLINE\n'), 'ENTITIES contains POLYLINE entity');
-assert(generatedDxf.includes('  0\nVERTEX\n'), 'ENTITIES contains VERTEX entity');
-assert(generatedDxf.includes('  0\nSEQEND\n'), 'ENTITIES contains SEQEND terminator');
-assert(generatedDxf.includes('  0\nSOLID\n'), 'ENTITIES contains SOLID entity');
-assert(generatedDxf.includes('  0\nTEXT\n'), 'ENTITIES contains TEXT entity');
-
-// 5. Verify R12 Strict Rules
-assert(!generatedDxf.includes('LWPOLYLINE'), 'DXF contains NO illegal LWPOLYLINE entities for R12');
-assert(!generatedDxf.includes('AcDb'), 'DXF contains NO modern subclass markers (AcDb)');
+// 1. Verify Structure: Pure ENTITIES-only R12 format
+assert(generatedDxf.startsWith('0\nSECTION\n2\nENTITIES\n'), 'DXF starts immediately with pure SECTION: ENTITIES');
+assert(!generatedDxf.includes('HEADER'), 'DXF contains NO error-prone HEADER section');
+assert(!generatedDxf.includes('TABLES'), 'DXF contains NO error-prone TABLES section (fixes line 130 parsing error)');
+assert(!generatedDxf.includes('BLOCKS'), 'DXF contains NO BLOCKS section');
 assert(!generatedDxf.includes('CLASSES'), 'DXF contains NO CLASSES section');
 assert(!generatedDxf.includes('OBJECTS'), 'DXF contains NO OBJECTS section');
+
+// 2. Verify Entities
+assert(generatedDxf.includes('0\nLINE\n'), 'ENTITIES contains LINE entity');
+assert(generatedDxf.includes('0\nPOLYLINE\n'), 'ENTITIES contains POLYLINE entity');
+assert(generatedDxf.includes('0\nVERTEX\n'), 'ENTITIES contains VERTEX entity');
+assert(generatedDxf.includes('0\nSEQEND\n'), 'ENTITIES contains SEQEND terminator');
+assert(generatedDxf.includes('0\nSOLID\n'), 'ENTITIES contains SOLID entity');
+assert(generatedDxf.includes('0\nTEXT\n'), 'ENTITIES contains TEXT entity');
+
+// 3. Verify R12 Strict Rules
+assert(!generatedDxf.includes('LWPOLYLINE'), 'DXF contains NO illegal LWPOLYLINE entities for R12');
+assert(!generatedDxf.includes('AcDb'), 'DXF contains NO modern subclass markers (AcDb)');
 assert(!generatedDxf.match(/\n\s*5\n[0-9A-F]+/i), 'DXF contains NO entity handles (group 5) in R12');
 
-// 6. Verify Coordinate Formatting (No Scientific Notation)
+// 4. Verify Coordinate Formatting (No Scientific Notation)
 assert(!generatedDxf.match(/\d+\.\d+e[+-]?\d+/i), 'All coordinates use fixed-point notation (no scientific notation)');
 
-// 7. Verify EOF
-assert(generatedDxf.trim().endsWith('0\nEOF'), 'DXF terminates strictly with 0 \\n EOF');
+// 5. Verify Clean EOF Termination
+assert(generatedDxf.trim().endsWith('0\nENDSEC\n0\nEOF'), 'DXF terminates strictly with 0 \\n ENDSEC \\n 0 \\n EOF');
 
 console.log('\n=== Summary ===');
 if (errors === 0) {

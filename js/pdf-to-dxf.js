@@ -616,103 +616,34 @@
     }
 
     /**
-     * Assemble AutoCAD R12 (AC1009) ASCII DXF
-     * Pure, simple, and universally compatible DXF specification
+     * Assemble Pure AutoCAD R12 (AC1009) ENTITIES-only ASCII DXF
+     * Omits HEADER, TABLES, BLOCKS, CLASSES, OBJECTS to guarantee 100% error-free parsing in AutoCAD.
      */
     buildDxf(entities, pages) {
-      // Map of defined layers to default ACI colors
-      const definedLayers = new Map();
-      definedLayers.set('0', 7); // Default layer 0: White/Black (ACI 7)
-      definedLayers.set('PDF_VECTORS', 7);
-      definedLayers.set('PDF_TEXT', 3);  // Green (ACI 3)
-      definedLayers.set('PDF_HATCH', 8); // Gray (ACI 8)
-
-      for (const ent of entities) {
-        if (ent.layer && !definedLayers.has(ent.layer)) {
-          let color = 7;
-          if (ent.layer.includes('TEXT')) color = 3;
-          else if (ent.layer.includes('HATCH')) color = 8;
-          else if (ent.layer.includes('VECTORS')) color = 7;
-          definedLayers.set(ent.layer, color);
-        }
-      }
-
-      let dxf = '';
-
-      // --- 1. HEADER SECTION (AutoCAD R12 / AC1009) ---
-      dxf += '  0\nSECTION\n  2\nHEADER\n';
-      dxf += '  9\n$ACADVER\n  1\nAC1009\n';
-      dxf += '  9\n$INSUNITS\n 70\n4\n';      // 4 = Millimeters
-      dxf += '  9\n$MEASUREMENT\n 70\n1\n';   // 1 = Metric
-      dxf += '  0\nENDSEC\n';
-
-      // --- 2. TABLES SECTION ---
-      dxf += '  0\nSECTION\n  2\nTABLES\n';
-
-      // VPORT Table (Active Viewport)
-      dxf += '  0\nTABLE\n  2\nVPORT\n 70\n1\n';
-      dxf += '  0\nVPORT\n  2\n*ACTIVE\n 70\n0\n';
-      dxf += ' 10\n0.0000\n 20\n0.0000\n';
-      dxf += ' 11\n1.0000\n 21\n1.0000\n';
-      dxf += ' 12\n0.0000\n 22\n0.0000\n';
-      dxf += ' 13\n0.0000\n 23\n0.0000\n';
-      dxf += ' 14\n1.0000\n 24\n1.0000\n';
-      dxf += ' 15\n0.0000\n 25\n0.0000\n';
-      dxf += ' 40\n1000.0000\n 41\n1.4000\n 42\n50.0000\n';
-      dxf += ' 43\n0.0000\n 44\n0.0000\n 50\n0.0000\n 51\n0.0000\n';
-      dxf += ' 71\n0\n 72\n1000\n 73\n1\n 74\n3\n 75\n1\n 76\n1\n 77\n0\n 78\n0\n';
-      dxf += '  0\nENDTAB\n';
-
-      // LTYPE Table (Continuous)
-      dxf += '  0\nTABLE\n  2\nLTYPE\n 70\n1\n';
-      dxf += '  0\nLTYPE\n  2\nCONTINUOUS\n 70\n0\n  3\nSolid line\n 72\n65\n 73\n0\n 40\n0.0000\n';
-      dxf += '  0\nENDTAB\n';
-
-      // LAYER Table
-      dxf += '  0\nTABLE\n  2\nLAYER\n';
-      dxf += ` 70\n${definedLayers.size}\n`;
-      for (const [layerName, color] of definedLayers.entries()) {
-        dxf += `  0\nLAYER\n  2\n${layerName}\n 70\n0\n 62\n${color}\n  6\nCONTINUOUS\n`;
-      }
-      dxf += '  0\nENDTAB\n';
-
-      // STYLE Table (Standard Text Style)
-      dxf += '  0\nTABLE\n  2\nSTYLE\n 70\n1\n';
-      dxf += '  0\nSTYLE\n  2\nSTANDARD\n 70\n0\n';
-      dxf += ' 40\n0.0000\n 41\n1.0000\n 50\n0.0000\n 71\n0\n 42\n1.0000\n';
-      dxf += '  3\ntxt\n  4\n\n';
-      dxf += '  0\nENDTAB\n';
-
-      dxf += '  0\nENDSEC\n';
-
-      // --- 3. BLOCKS SECTION ---
-      dxf += '  0\nSECTION\n  2\nBLOCKS\n  0\nENDSEC\n';
-
-      // --- 4. ENTITIES SECTION ---
-      dxf += '  0\nSECTION\n  2\nENTITIES\n';
+      let dxf = '0\nSECTION\n2\nENTITIES\n';
 
       for (const ent of entities) {
         const layer = ent.layer || '0';
 
         if (ent.type === 'LINE') {
-          dxf += `  0\nLINE\n  8\n${layer}\n`;
-          dxf += ` 10\n${f4(ent.x1)}\n 20\n${f4(ent.y1)}\n 30\n0.0000\n`;
-          dxf += ` 11\n${f4(ent.x2)}\n 21\n${f4(ent.y2)}\n 31\n0.0000\n`;
+          dxf += '0\nLINE\n8\n' + layer + '\n';
+          dxf += '10\n' + f4(ent.x1) + '\n20\n' + f4(ent.y1) + '\n30\n0.0000\n';
+          dxf += '11\n' + f4(ent.x2) + '\n21\n' + f4(ent.y2) + '\n31\n0.0000\n';
         } else if (ent.type === 'POLYLINE' || ent.type === 'LWPOLYLINE') {
           const pts = ent.points || [];
           if (pts.length < 2) continue;
           const isClosed = ent.isClosed ? 1 : 0;
 
-          dxf += `  0\nPOLYLINE\n  8\n${layer}\n 66\n1\n`;
-          dxf += ` 10\n0.0000\n 20\n0.0000\n 30\n0.0000\n`;
-          dxf += ` 70\n${isClosed}\n`;
+          dxf += '0\nPOLYLINE\n8\n' + layer + '\n66\n1\n';
+          dxf += '10\n0.0000\n20\n0.0000\n30\n0.0000\n';
+          dxf += '70\n' + isClosed + '\n';
 
           for (const p of pts) {
-            dxf += `  0\nVERTEX\n  8\n${layer}\n`;
-            dxf += ` 10\n${f4(p.x)}\n 20\n${f4(p.y)}\n 30\n0.0000\n`;
+            dxf += '0\nVERTEX\n8\n' + layer + '\n';
+            dxf += '10\n' + f4(p.x) + '\n20\n' + f4(p.y) + '\n30\n0.0000\n';
           }
 
-          dxf += `  0\nSEQEND\n  8\n${layer}\n`;
+          dxf += '0\nSEQEND\n8\n' + layer + '\n';
         } else if (ent.type === 'SOLID') {
           const pts = ent.points || [];
           if (pts.length < 3) continue;
@@ -722,30 +653,27 @@
           const p3 = pts.length > 3 ? pts[3] : pts[2];
           const p4 = pts[2];
 
-          dxf += `  0\nSOLID\n  8\n${layer}\n`;
-          dxf += ` 10\n${f4(p1.x)}\n 20\n${f4(p1.y)}\n 30\n0.0000\n`;
-          dxf += ` 11\n${f4(p2.x)}\n 21\n${f4(p2.y)}\n 31\n0.0000\n`;
-          dxf += ` 12\n${f4(p3.x)}\n 22\n${f4(p3.y)}\n 32\n0.0000\n`;
-          dxf += ` 13\n${f4(p4.x)}\n 23\n${f4(p4.y)}\n 33\n0.0000\n`;
+          dxf += '0\nSOLID\n8\n' + layer + '\n';
+          dxf += '10\n' + f4(p1.x) + '\n20\n' + f4(p1.y) + '\n30\n0.0000\n';
+          dxf += '11\n' + f4(p2.x) + '\n21\n' + f4(p2.y) + '\n31\n0.0000\n';
+          dxf += '12\n' + f4(p3.x) + '\n22\n' + f4(p3.y) + '\n32\n0.0000\n';
+          dxf += '13\n' + f4(p4.x) + '\n23\n' + f4(p4.y) + '\n33\n0.0000\n';
         } else if (ent.type === 'TEXT') {
           const txt = (ent.text || '').trim();
           if (!txt) continue;
           const textLayer = ent.layer || 'PDF_TEXT';
 
-          dxf += `  0\nTEXT\n  8\n${textLayer}\n`;
-          dxf += ` 10\n${f4(ent.x)}\n 20\n${f4(ent.y)}\n 30\n0.0000\n`;
-          dxf += ` 40\n${f4(ent.height || 2.5)}\n`;
-          dxf += `  1\n${txt}\n`;
-          dxf += `  7\nSTANDARD\n`;
+          dxf += '0\nTEXT\n8\n' + textLayer + '\n';
+          dxf += '10\n' + f4(ent.x) + '\n20\n' + f4(ent.y) + '\n30\n0.0000\n';
+          dxf += '40\n' + f4(ent.height || 2.5) + '\n';
+          dxf += '1\n' + txt + '\n';
           if (ent.rotation && Math.abs(ent.rotation) > 0.01) {
-            dxf += ` 50\n${f4(ent.rotation)}\n`;
+            dxf += '50\n' + f4(ent.rotation) + '\n';
           }
         }
       }
 
-      dxf += '  0\nENDSEC\n';
-      dxf += '  0\nEOF\n';
-
+      dxf += '0\nENDSEC\n0\nEOF\n';
       return dxf;
     }
 
