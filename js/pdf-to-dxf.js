@@ -6,8 +6,8 @@
 (function (global) {
   'use strict';
 
-  // Ensure PDF.js worker is properly configured if available
-  if (typeof window !== 'undefined' && window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions && !window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+  // Ensure PDF.js worker is properly configured if available in browser
+  if (typeof window !== 'undefined' && typeof document !== 'undefined' && window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions && !window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc =
       'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   }

@@ -14,6 +14,8 @@
     "daily-helper"
   ],
   "author": "Daily Helper",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pdfjs-dist": "^3.11.174"
+  }
 }
-
