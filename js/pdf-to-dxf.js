@@ -617,56 +617,68 @@
 
     /**
      * Assemble Pure AutoCAD R12 (AC1009) ENTITIES-only ASCII DXF
-     * Omits HEADER, TABLES, BLOCKS, CLASSES, OBJECTS to guarantee 100% error-free parsing in AutoCAD.
+     * Omits HEADER, TABLES, BLOCKS, CLASSES, OBJECTS to guarantee 100% error-free parsing.
+     * Explodes ALL vector paths, polylines, and polygons into pure LINE entities (layer 0, no handle).
      */
     buildDxf(entities, pages) {
       let dxf = '0\nSECTION\n2\nENTITIES\n';
 
+      function writeLine(x1, y1, x2, y2) {
+        if (typeof x1 !== 'number' || typeof y1 !== 'number' || typeof x2 !== 'number' || typeof y2 !== 'number') {
+          return '';
+        }
+        if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) return '';
+        // Skip zero-length or degenerate lines
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        if (dx * dx + dy * dy < 1e-8) return '';
+
+        return '0\nLINE\n' +
+               '8\n0\n' +
+               '10\n' + f4(x1) + '\n' +
+               '20\n' + f4(y1) + '\n' +
+               '30\n0.0\n' +
+               '11\n' + f4(x2) + '\n' +
+               '21\n' + f4(y2) + '\n' +
+               '31\n0.0\n';
+      }
+
       for (const ent of entities) {
-        const layer = ent.layer || '0';
+        if (!ent) continue;
 
         if (ent.type === 'LINE') {
-          dxf += '0\nLINE\n8\n' + layer + '\n';
-          dxf += '10\n' + f4(ent.x1) + '\n20\n' + f4(ent.y1) + '\n30\n0.0000\n';
-          dxf += '11\n' + f4(ent.x2) + '\n21\n' + f4(ent.y2) + '\n31\n0.0000\n';
-        } else if (ent.type === 'POLYLINE' || ent.type === 'LWPOLYLINE') {
+          dxf += writeLine(ent.x1, ent.y1, ent.x2, ent.y2);
+        } else if (ent.type === 'POLYLINE' || ent.type === 'LWPOLYLINE' || ent.points) {
+          // Explode all polylines and curves into individual pure LINE entities
           const pts = ent.points || [];
-          if (pts.length < 2) continue;
-          const isClosed = ent.isClosed ? 1 : 0;
-
-          dxf += '0\nPOLYLINE\n8\n' + layer + '\n66\n1\n';
-          dxf += '10\n0.0000\n20\n0.0000\n30\n0.0000\n';
-          dxf += '70\n' + isClosed + '\n';
-
-          for (const p of pts) {
-            dxf += '0\nVERTEX\n8\n' + layer + '\n';
-            dxf += '10\n' + f4(p.x) + '\n20\n' + f4(p.y) + '\n30\n0.0000\n';
+          if (pts.length >= 2) {
+            for (let i = 0; i < pts.length - 1; i++) {
+              dxf += writeLine(pts[i].x, pts[i].y, pts[i + 1].x, pts[i + 1].y);
+            }
+            if (ent.isClosed && pts.length > 2) {
+              dxf += writeLine(pts[pts.length - 1].x, pts[pts.length - 1].y, pts[0].x, pts[0].y);
+            }
           }
-
-          dxf += '0\nSEQEND\n8\n' + layer + '\n';
         } else if (ent.type === 'SOLID') {
+          // Explode polygon/solid fills into perimeter LINE entities
           const pts = ent.points || [];
-          if (pts.length < 3) continue;
-          const p1 = pts[0];
-          const p2 = pts[1];
-          // DXF SOLID expects vertices in cross-over order: 1, 2, 4, 3
-          const p3 = pts.length > 3 ? pts[3] : pts[2];
-          const p4 = pts[2];
-
-          dxf += '0\nSOLID\n8\n' + layer + '\n';
-          dxf += '10\n' + f4(p1.x) + '\n20\n' + f4(p1.y) + '\n30\n0.0000\n';
-          dxf += '11\n' + f4(p2.x) + '\n21\n' + f4(p2.y) + '\n31\n0.0000\n';
-          dxf += '12\n' + f4(p3.x) + '\n22\n' + f4(p3.y) + '\n32\n0.0000\n';
-          dxf += '13\n' + f4(p4.x) + '\n23\n' + f4(p4.y) + '\n33\n0.0000\n';
+          if (pts.length >= 3) {
+            for (let i = 0; i < pts.length; i++) {
+              const nextIdx = (i + 1) % pts.length;
+              dxf += writeLine(pts[i].x, pts[i].y, pts[nextIdx].x, pts[nextIdx].y);
+            }
+          }
         } else if (ent.type === 'TEXT') {
           const txt = (ent.text || '').trim();
           if (!txt) continue;
-          const textLayer = ent.layer || 'PDF_TEXT';
 
-          dxf += '0\nTEXT\n8\n' + textLayer + '\n';
-          dxf += '10\n' + f4(ent.x) + '\n20\n' + f4(ent.y) + '\n30\n0.0000\n';
-          dxf += '40\n' + f4(ent.height || 2.5) + '\n';
-          dxf += '1\n' + txt + '\n';
+          dxf += '0\nTEXT\n' +
+                 '8\n0\n' +
+                 '10\n' + f4(ent.x) + '\n' +
+                 '20\n' + f4(ent.y) + '\n' +
+                 '30\n0.0\n' +
+                 '40\n' + f4(ent.height || 2.5) + '\n' +
+                 '1\n' + txt + '\n';
           if (ent.rotation && Math.abs(ent.rotation) > 0.01) {
             dxf += '50\n' + f4(ent.rotation) + '\n';
           }

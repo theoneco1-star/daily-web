@@ -132,18 +132,21 @@ assert(!generatedDxf.includes('BLOCKS'), 'DXF contains NO BLOCKS section');
 assert(!generatedDxf.includes('CLASSES'), 'DXF contains NO CLASSES section');
 assert(!generatedDxf.includes('OBJECTS'), 'DXF contains NO OBJECTS section');
 
-// 2. Verify Entities
-assert(generatedDxf.includes('0\nLINE\n'), 'ENTITIES contains LINE entity');
-assert(generatedDxf.includes('0\nPOLYLINE\n'), 'ENTITIES contains POLYLINE entity');
-assert(generatedDxf.includes('0\nVERTEX\n'), 'ENTITIES contains VERTEX entity');
-assert(generatedDxf.includes('0\nSEQEND\n'), 'ENTITIES contains SEQEND terminator');
-assert(generatedDxf.includes('0\nSOLID\n'), 'ENTITIES contains SOLID entity');
+// 2. Verify Pure Exploded LINE Entities (AutoCAD Compatibility)
+assert(generatedDxf.includes('0\nLINE\n'), 'ENTITIES contains pure LINE entity');
+assert(!generatedDxf.includes('0\nPOLYLINE\n'), 'DXF explodes polylines: contains NO error-prone 0\\nPOLYLINE');
+assert(!generatedDxf.includes('0\nVERTEX\n'), 'DXF explodes polylines: contains NO 0\\nVERTEX');
+assert(!generatedDxf.includes('0\nSEQEND\n'), 'DXF explodes polylines: contains NO 0\\nSEQEND');
+assert(!generatedDxf.includes('0\nSOLID\n'), 'DXF explodes solids: contains NO 0\\nSOLID');
 assert(generatedDxf.includes('0\nTEXT\n'), 'ENTITIES contains TEXT entity');
 
-// 3. Verify R12 Strict Rules
+// 3. Verify R12 Strict Rules & Layer 0 Enforcement
 assert(!generatedDxf.includes('LWPOLYLINE'), 'DXF contains NO illegal LWPOLYLINE entities for R12');
 assert(!generatedDxf.includes('AcDb'), 'DXF contains NO modern subclass markers (AcDb)');
 assert(!generatedDxf.match(/\n\s*5\n[0-9A-F]+/i), 'DXF contains NO entity handles (group 5) in R12');
+assert(generatedDxf.includes('8\n0\n'), 'LINE entities strictly assigned to layer 0 for guaranteed visibility');
+assert(generatedDxf.includes('30\n0.0\n'), 'LINE entities include Z0=0.0 coordinate');
+assert(generatedDxf.includes('31\n0.0\n'), 'LINE entities include Z1=0.0 coordinate');
 
 // 4. Verify Coordinate Formatting (No Scientific Notation)
 assert(!generatedDxf.match(/\d+\.\d+e[+-]?\d+/i), 'All coordinates use fixed-point notation (no scientific notation)');
