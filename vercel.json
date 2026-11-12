@@ -3,46 +3,53 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/guide/",
+      "destination": "/guide",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/guide",
-      "destination": "/guide"
+      "destination": "/guide/index.html"
     },
     {
-      "source": "/guide/",
-      "destination": "/guide"
-    },
-    {
-      "source": "/guide/(.*)",
-      "destination": "/"
+      "source": "/guide/:slug",
+      "destination": "/index.html"
     },
     {
       "source": "/privacy",
-      "destination": "/"
+      "destination": "/privacy.html"
     },
     {
       "source": "/terms",
-      "destination": "/"
+      "destination": "/terms.html"
     },
     {
       "source": "/contact",
-      "destination": "/"
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
     },
     {
       "source": "/tools",
-      "destination": "/"
+      "destination": "/index.html"
     },
     {
       "source": "/web-tools",
-      "destination": "/"
+      "destination": "/index.html"
     },
     {
       "source": "/apps",
-      "destination": "/"
+      "destination": "/index.html"
     },
     {
       "source": "/mobile-apps",
-      "destination": "/"
+      "destination": "/index.html"
     }
   ],
   "headers": [

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>문의하기 (Contact Us) | 일상의도움 (Daily Helper)</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="일상의도움(Daily Helper) 고객 지원 및 제휴 문의 페이지입니다. 앱 및 웹 도구 버그 제보, 기능 개선 건의, 신규 앱 추천 등 문의사항을 남겨주시면 영업일 기준 1~2일 내 신속히 답변드립니다." />
+  <meta name="keywords" content="문의하기, Contact Us, 일상의도움, Daily Helper, 버그 제보, 고객 지원, 앱 제안, 제휴 문의" />
+  <meta name="author" content="Daily Helper" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.dailyhelperhub.com/contact" />
+
+  <!-- Open Graph / SNS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dailyhelperhub.com/contact" />
+  <meta property="og:title" content="문의하기 (Contact Us) — 일상의도움 (Daily Helper)" />
+  <meta property="og:description" content="버그 제보, 기능 제안 및 협업 문의를 환영합니다. 영업일 기준 1~2일 내 친절히 답변드립니다." />
+  <meta property="og:image" content="https://www.dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.dailyhelperhub.com/contact" />
+  <meta name="twitter:title" content="문의하기 (Contact Us) — 일상의도움" />
+  <meta name="twitter:description" content="버그 제보, 기능 제안 및 협업 문의를 환영합니다." />
+  <meta name="twitter:image" content="https://www.dailyhelperhub.com/images/og-image.png" />
+
+  <!-- Early Theme & Language Sync to prevent FOUC -->
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('dh_dark');
+        if (savedTheme === 'false') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+        var savedLang = localStorage.getItem('site_lang') || localStorage.getItem('dh_lang') || localStorage.getItem('lang') || localStorage.getItem('selectedLang');
+        if (savedLang && String(savedLang).toLowerCase().trim() === 'en') {
+          document.documentElement.lang = 'en';
+        }
+      } catch (_) { }
+    })();
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6278124637694502" crossorigin="anonymous"></script>
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4f46e5',
+            primaryLight: '#818cf8',
+            accent: '#06b6d4',
+            surfaceDark: '#0b0f19',
+            cardDark: '#131b2e'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts & Favicon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/custom.css?v=4.5" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "문의하기 (Contact Us)",
+    "url": "https://www.dailyhelperhub.com/contact",
+    "description": "일상의도움(Daily Helper) 고객 지원 및 제휴 문의 페이지",
+    "publisher": {
+      "@type": "Organization",
+      "name": "일상의도움 (Daily Helper)",
+      "url": "https://www.dailyhelperhub.com",
+      "email": "theoneco1@gmail.com"
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-['Noto_Sans_KR',sans-serif] antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+      <!-- Left: Logo & Breadcrumb -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 text-slate-900 dark:text-white hover:opacity-90 transition-opacity">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/20">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              <path d="M5 3v4"/>
+              <path d="M19 17v4"/>
+              <path d="M3 5h4"/>
+              <path d="M17 19h4"/>
+            </svg>
+          </div>
+          <span class="font-extrabold text-base sm:text-lg tracking-tight" data-i18n="brand">일상의도움</span>
+        </a>
+        <span class="text-slate-300 dark:text-slate-700">/</span>
+        <span class="text-xs sm:text-sm font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+          <span>✉️</span>
+          <span data-i18n="contact.title">문의하기</span>
+        </span>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Dark Mode Toggle Button -->
+        <button type="button" id="theme-toggle-btn" onclick="toggleDarkMode()"
+          class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors"
+          aria-label="화면 모드 전환" title="다크/라이트 모드 전환">
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.73 0-.71-.71M6.34 6.34l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg id="theme-icon-moon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+
+        <!-- Main Hub Link -->
+        <a href="/" class="px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-indigo-700 dark:text-slate-200 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5">
+          <span>←</span>
+          <span data-i18n="nav.backToHome">홈으로</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 sm:py-12">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-xl">
+      <div class="mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight" data-i18n="contact.title">
+          문의하기 (Contact Us)
+        </h1>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2" data-i18n="contact.subtitle">
+          궁금한 점이 있으시면 언제든지 연락해 주세요
+        </p>
+        <p class="text-xs text-slate-400 mt-1" data-i18n="contact.lastUpdated">최종 확인: 2026년 11월 12일</p>
+      </div>
+
+      <!-- Contact Options Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <!-- Card 1: Email Support -->
+        <div class="p-6 rounded-2xl bg-indigo-50/50 dark:bg-slate-800/50 border border-indigo-100 dark:border-slate-700 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-xl">✉️</div>
+              <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white" data-i18n="contact.emailLabel">
+                이메일 문의 &amp; 버그 제보
+              </h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="contact.emailDesc">
+              서비스 이용 중 오류나 버그가 발생했거나 기술적인 문의, 파트너십 협업 제안 등 모든 문의를 환영합니다.
+            </p>
+          </div>
+          <div>
+            <a href="mailto:theoneco1@gmail.com?subject=%5B%EC%9D%BC%EC%83%81%EC%9D%98%EB%8F%84%EC%9B%80%5D%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B0%8F%20%EC%95%B1%20%EB%AC%B8%EC%9D%98" 
+               class="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md transition-all">
+              <span>✉️</span>
+              <span data-i18n="contact.emailBtn">이메일 보내기 (theoneco1@gmail.com)</span>
+            </a>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-2 text-center" data-i18n="contact.responseTime">
+              영업일 기준 1~2일 내 친절히 답변 드립니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: App & Tool Suggestions -->
+        <div class="p-6 rounded-2xl bg-emerald-50/50 dark:bg-slate-800/50 border border-emerald-100 dark:border-slate-700 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-xl">💡</div>
+              <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white" data-i18n="contact.appRequest">
+                앱 &amp; 도구 추가 요청
+              </h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="contact.appRequestDesc">
+              업무나 일상에서 필요로 하시는 새로운 무설치 웹 유틸리티 기능이나 추천하고 싶으신 안드로이드 앱이 있다면 자유롭게 아이디어를 남겨주세요!
+            </p>
+          </div>
+          <div>
+            <a href="mailto:theoneco1@gmail.com?subject=%5B%EC%9D%BC%EC%83%81%EC%9D%98%EB%8F%84%EC%9B%80%5D%20%EC%8B%A0%EA%B7%9C%20%EC%95%B1%2F%EB%8F%84%EA%B5%AC%20%EC%B6%94%EA%B0%80%20%EC%A0%9C%EC%95%88" 
+               class="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all">
+              <span>📱</span>
+              <span>아이디어 &amp; 기능 제안하기</span>
+            </a>
+            <p class="text-xs text-slate-400 dark:text-slate-500 mt-2 text-center">
+              보내주신 제안은 개발팀에서 적극 검토하여 반영합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+          <span>❓</span> <span>자주 묻는 질문 (FAQ)</span>
+        </h3>
+        <div class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-1">Q. 웹 도구 이용 시 도면이나 개인 파일 유출 우려는 없나요?</h4>
+            <p class="mb-0">일상의도움의 모든 웹 도구(PDF to DXF, 압축, 이미지 변환 등)는 100% 클라이언트 브라우저 로컬 메모리에서만 동작합니다. 어떤 파일도 외부 서버로 전송되지 않으므로 회사 대외비 문서나 개인 도면도 안심하고 사용하실 수 있습니다.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+            <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-1">Q. 모든 도구를 영구적으로 무료로 이용할 수 있나요?</h4>
+            <p class="mb-0">네, 회원가입이나 유료 결제 없이 영구 무료로 제공됩니다. 본 서비스는 Google AdSense 광고를 통해 운영 비용을 충당하고 있습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between flex-wrap gap-4">
+        <a href="/" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold transition-colors">
+          ← 홈으로 가기
+        </a>
+        <a href="/guide" class="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+          서비스 가이드 둘러보기 →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer bg-slate-950 border-t border-slate-800 text-slate-400 py-10 mt-12">
+    <div class="footer-container max-w-6xl mx-auto px-4">
+      <div class="footer-grid grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="logo-text text-white text-lg mb-2 font-bold" data-i18n="brand">일상의도움</div>
+          <p class="text-sm text-slate-400 mb-3" data-i18n="footer.tagline">당신의 일상을 더 풍요롭게</p>
+          <p class="text-xs text-slate-500 leading-relaxed" data-i18n="footer.desc">
+            Google AdSense 및 글로벌 웹 표준을 준수하는 무설치 클라이언트 웹 유틸리티 &amp; 모바일 라이프스타일 앱 포털
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.links">빠른 링크</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="/" class="hover:text-white transition-colors" data-i18n="nav.home">홈</a></li>
+            <li><a href="/guide" class="hover:text-white transition-colors" data-i18n="nav.guide">가이드</a></li>
+            <li><a href="/about" class="hover:text-white transition-colors" data-i18n="nav.about">소개</a></li>
+            <li><a href="/contact" class="text-indigo-400 font-semibold hover:underline" data-i18n="nav.contact">문의하기</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.toolsTitle">주요 도구 바로가기</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="/pdf-to-dxf" class="hover:text-sky-400 transition-colors">📐 PDF 도면 ➔ CAD(DXF) 변환기</a></li>
+            <li><a href="/pdf-image-converter" class="hover:text-indigo-400 transition-colors">🔄 PDF ↔ 이미지 변환기</a></li>
+            <li><a href="/file-compressor" class="hover:text-indigo-400 transition-colors">🗜️ PDF &amp; 이미지 용량 줄이기</a></li>
+            <li><a href="/color-picker" class="hover:text-indigo-400 transition-colors">🎨 이미지 &amp; PDF 색상 추출기</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm" data-i18n="footer.legal">법적 고지</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="/privacy" class="hover:text-white transition-colors" data-i18n="nav.privacy">개인정보처리방침</a></li>
+            <li><a href="/terms" class="hover:text-white transition-colors" data-i18n="nav.terms">이용약관</a></li>
+            <li class="pt-2 text-xs text-slate-500">
+              문의 이메일: <a href="mailto:theoneco1@gmail.com" class="text-indigo-400 hover:underline">theoneco1@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+        <p data-i18n="footer.copyright">© 2026 일상의도움 (Daily Helper). All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    (function () {
+      'use strict';
+      window.toggleDarkMode = function () {
+        var isDark = document.documentElement.classList.toggle('dark');
+        try {
+          localStorage.setItem('dh_dark', isDark ? 'true' : 'false');
+        } catch (_) { }
+        updateDarkToggleIcon(isDark);
+      };
+
+      function updateDarkToggleIcon(isDark) {
+        var iconSun = document.getElementById('theme-icon-sun');
+        var iconMoon = document.getElementById('theme-icon-moon');
+        if (!iconSun || !iconMoon) return;
+        if (isDark) {
+          iconSun.classList.remove('hidden');
+          iconMoon.classList.add('hidden');
+        } else {
+          iconSun.classList.add('hidden');
+          iconMoon.classList.remove('hidden');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var isDark = document.documentElement.classList.contains('dark');
+        updateDarkToggleIcon(isDark);
+      });
+    })();
+  </script>
+  <script src="/js/i18n.js?v=3.6"></script>
+</body>
+</html>

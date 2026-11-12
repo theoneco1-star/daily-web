@@ -54,8 +54,8 @@
       "ctaTextKo": "바로 사용하기",
       "ctaTextEn": "Use Tool Now",
       "actionType": "link",
-      "targetUrl": "/pdf-to-dxf.html",
-      "deepLink": "/pdf-to-dxf.html"
+      "targetUrl": "/pdf-to-dxf",
+      "deepLink": "/pdf-to-dxf"
     },
     {
       "id": "pdf-image-converter",
@@ -93,8 +93,8 @@
       "ctaTextKo": "바로 사용하기",
       "ctaTextEn": "Use Tool Now",
       "actionType": "link",
-      "targetUrl": "/pdf-image-converter.html",
-      "deepLink": "/pdf-image-converter.html"
+      "targetUrl": "/pdf-image-converter",
+      "deepLink": "/pdf-image-converter"
     },
     {
       "id": "file-compressor",
@@ -132,8 +132,8 @@
       "ctaTextKo": "바로 사용하기",
       "ctaTextEn": "Use Tool Now",
       "actionType": "link",
-      "targetUrl": "/file-compressor.html",
-      "deepLink": "/file-compressor.html"
+      "targetUrl": "/file-compressor",
+      "deepLink": "/file-compressor"
     },
     {
       "id": "color-picker",
@@ -173,8 +173,8 @@
       "ctaTextKo": "바로 사용하기",
       "ctaTextEn": "Use Tool Now",
       "actionType": "link",
-      "targetUrl": "/color-picker.html",
-      "deepLink": "/color-picker.html"
+      "targetUrl": "/color-picker",
+      "deepLink": "/color-picker"
     },
     {
       "id": "pdf-checker",

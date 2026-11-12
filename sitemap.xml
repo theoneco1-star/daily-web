@@ -3,54 +3,57 @@
   <!-- Main Home -->
   <url>
     <loc>https://www.dailyhelperhub.com/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Guide Index -->
+
+  <!-- Guide Index (Clean URL without trailing slash) -->
   <url>
-    <loc>https://www.dailyhelperhub.com/guide/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://www.dailyhelperhub.com/guide</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <!-- App Guides -->
+
+  <!-- Mobile App Guides -->
   <url>
     <loc>https://www.dailyhelperhub.com/guide/bake-merge</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/timekeeper</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/daycount</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/bookspot</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/clipflow-mate</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/zoodoku</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <!-- Web Tool Guides -->
   <url>
     <loc>https://www.dailyhelperhub.com/guide/pdf-to-dxf</loc>
@@ -78,89 +81,92 @@
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/pdf-checker</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/salary-calculator</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/excel-converter</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/annual-leave-calculator</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/guide/char-byte-counter</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- HR & Legal Articles -->
+
+  <!-- Legal & HR Articles -->
   <url>
-    <loc>https://dailyhelperhub.com/article-leave-guide.html</loc>
-    <lastmod>2026-11-02</lastmod>
+    <loc>https://www.dailyhelperhub.com/article-leave-guide</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Dedicated Web Tools -->
+
+  <!-- Dedicated Web Tools (Clean URLs) -->
   <url>
-    <loc>https://dailyhelperhub.com/pdf-to-dxf.html</loc>
-    <lastmod>2026-11-11</lastmod>
+    <loc>https://www.dailyhelperhub.com/pdf-to-dxf</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dailyhelperhub.com/pdf-image-converter.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <loc>https://www.dailyhelperhub.com/pdf-image-converter</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dailyhelperhub.com/file-compressor.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <loc>https://www.dailyhelperhub.com/file-compressor</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dailyhelperhub.com/color-picker.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <loc>https://www.dailyhelperhub.com/color-picker</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Information Pages -->
+
+  <!-- Information Pages (Clean URLs) -->
   <url>
-    <loc>https://dailyhelperhub.com/about.html</loc>
-    <lastmod>2026-11-02</lastmod>
+    <loc>https://www.dailyhelperhub.com/about</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/privacy</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/terms</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.dailyhelperhub.com/contact</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>
