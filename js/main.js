@@ -25,7 +25,7 @@ const categorySection = document.getElementById("category-section");
 
 // ── State & Routing ───────────────────────────────────────
 let currentView = "main"; // "main" | "guide" | "about" | "privacy" | "terms" | "contact"
-let currentMainTab = "apps"; // "apps" | "tools"
+let currentMainTab = "tools"; // "apps" | "tools" (Default landing tab: Web Tools)
 let isAppGridLoaded = false;
 
 function toAbsoluteUrl(url) {
@@ -347,9 +347,9 @@ function resolveCurrentRoute() {
     if (hash === "terms") return { view: "terms" };
     if (hash === "contact") return { view: "contact" };
 
-    return { view: "main", mainTab: "apps" };
+    return { view: "main", mainTab: "tools" };
   } catch (_) {
-    return { view: "main", mainTab: "apps" };
+    return { view: "main", mainTab: "tools" };
   }
 }
 
@@ -1628,6 +1628,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderApps();
   if (typeof renderWebTools === "function") {
     renderWebTools();
+  }
+  if (currentView === "main") {
+    switchMainTab(currentMainTab);
   }
   if (currentView === "guide") {
     renderGuideSubtabs();

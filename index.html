@@ -475,9 +475,9 @@
       <nav class="desktop-gnb-nav" aria-label="주요 서비스 탐색" role="tablist">
         <button type="button"
                 id="tab-btn-apps"
-                class="gnb-tab-btn tab-btn-apps active"
+                class="gnb-tab-btn tab-btn-apps"
                 role="tab"
-                aria-selected="true"
+                aria-selected="false"
                 aria-controls="apps-container"
                 onclick="switchMainTab('apps')">
           <span class="gnb-tab-icon">📱</span>
@@ -486,9 +486,9 @@
         </button>
         <button type="button"
                 id="tab-btn-tools"
-                class="gnb-tab-btn tab-btn-tools"
+                class="gnb-tab-btn tab-btn-tools active"
                 role="tab"
-                aria-selected="false"
+                aria-selected="true"
                 aria-controls="web-tools-section"
                 onclick="switchMainTab('tools')">
           <span class="gnb-tab-icon">⚡</span>
@@ -515,9 +515,9 @@
   <nav class="mobile-subnav-bar" aria-label="모바일 주요 서비스 탐색" role="tablist">
     <div class="mobile-subnav-inner">
       <button type="button"
-              class="mobile-subnav-btn tab-btn-apps active"
+              class="mobile-subnav-btn tab-btn-apps"
               role="tab"
-              aria-selected="true"
+              aria-selected="false"
               aria-controls="apps-container"
               onclick="switchMainTab('apps')">
         <span class="subnav-icon">📱</span>
@@ -525,9 +525,9 @@
         <span class="subnav-badge badge-apps-count">4</span>
       </button>
       <button type="button"
-              class="mobile-subnav-btn tab-btn-tools"
+              class="mobile-subnav-btn tab-btn-tools active"
               role="tab"
-              aria-selected="false"
+              aria-selected="true"
               aria-controls="web-tools-section"
               onclick="switchMainTab('tools')">
         <span class="subnav-icon">⚡</span>
@@ -583,7 +583,7 @@
   <main class="container pt-2.5 pb-10">
 
     <!-- 1) Mobile Apps Section Area (모바일 앱 탭 전용) -->
-    <div id="apps-container">
+    <div id="apps-container" class="hidden">
       <!-- Category Filter & List Count Bar -->
       <div class="category-header-wrap" id="category-section">
         <div id="category-filters"></div>
@@ -744,7 +744,7 @@
     </div>
 
     <!-- 2) Web Tools Grid (웹 도구 섹션 - 대분류 웹 도구 선택 시 표시) -->
-    <section id="web-tools-section" class="hidden" aria-label="Web Tools Section">
+    <section id="web-tools-section" aria-label="Web Tools Section">
       <div class="web-tools-header-wrap mb-3 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
         <div class="text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
           <span>⚡</span>
@@ -2484,6 +2484,10 @@
           <li><a href="/guide/bookspot" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/bookspot')">📚 <span data-i18n="footer.linkBookspot">BookSpot (북스팟)</span></a></li>
           <li><a href="/guide/clipflow-mate" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/clipflow-mate')">📋 <span data-i18n="footer.linkClipflow">ClipFlow Mate (클립플로우 메이트)</span></a></li>
           <li><a href="/guide/zoodoku" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/zoodoku')">🦁 <span data-i18n="footer.linkZoodoku">ZooDoku (주도쿠)</span></a></li>
+          <li><a href="/guide/pdf-to-dxf" class="footer-sub-link text-xs text-slate-400 hover:text-sky-400 block transition-colors" onclick="navigateRoute(event, '/guide/pdf-to-dxf')">📐 <span data-i18n="footer.linkPdfToDxfGuide">PDF to CAD 변환 가이드</span></a></li>
+          <li><a href="/guide/pdf-image-converter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/pdf-image-converter')">🔄 <span data-i18n="footer.linkPdfConverterGuide">PDF ↔ 이미지 변환 가이드</span></a></li>
+          <li><a href="/guide/file-compressor" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/file-compressor')">🗜️ <span data-i18n="footer.linkCompressorGuide">PDF &amp; 이미지 압축 가이드</span></a></li>
+          <li><a href="/guide/color-picker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/color-picker')">🎨 <span data-i18n="footer.linkPickerGuide">색상 추출기 가이드</span></a></li>
           <li><a href="/guide/pdf-checker" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/pdf-checker')">📐 <span data-i18n="footer.linkPdfChecker">무설치 PDF/도면 체커</span></a></li>
           <li><a href="/guide/salary-calculator" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/salary-calculator')">🧮 <span data-i18n="footer.linkWageCalc">실수령액·주휴수당 계산기</span></a></li>
           <li><a href="/guide/excel-converter" class="footer-sub-link text-xs text-slate-400 hover:text-indigo-400 block transition-colors" onclick="navigateRoute(event, '/guide/excel-converter')">📊 <span data-i18n="footer.linkExcelConverter">엑셀 구분자 변환기</span></a></li>

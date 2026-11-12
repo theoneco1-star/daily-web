@@ -201,7 +201,7 @@
         <div class="inline-flex p-1 rounded-2xl bg-slate-200/80 dark:bg-slate-900 border border-slate-300/80 dark:border-slate-800 self-start sm:self-auto" role="tablist">
           <button type="button" onclick="setCategoryFilter('all')" id="filter-btn-all" class="filter-tab-btn active px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all text-white bg-indigo-600 shadow-sm" role="tab">
             <span data-i18n="filter.all">전체보기</span>
-            <span class="ml-1 text-[11px] opacity-80">(14)</span>
+            <span class="ml-1 text-[11px] opacity-80">(15)</span>
           </button>
           <button type="button" onclick="setCategoryFilter('app')" id="filter-btn-app" class="filter-tab-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" role="tab">
             <span>📱</span>
@@ -211,7 +211,7 @@
           <button type="button" onclick="setCategoryFilter('tool')" id="filter-btn-tool" class="filter-tab-btn px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white" role="tab">
             <span>⚡</span>
             <span data-i18n="filter.tools">실무 웹 도구</span>
-            <span class="ml-1 text-[11px] opacity-80">(8)</span>
+            <span class="ml-1 text-[11px] opacity-80">(9)</span>
           </button>
         </div>
 
@@ -754,50 +754,50 @@
       </article>
 
       <!-- ══════════════════════════════════════════
-           CARD: PDF 도면 ➔ CAD(DXF) 변환기
+           CARD: PDF 도면 ➔ CAD(DXF) 완벽 변환 가이드
       ════════════════════════════════════════════ -->
-      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-sky-400 dark:hover:border-sky-500 transition-all duration-200" data-category="tool" data-search="pdf cad dxf 도면 변환기 오토캐드 벡터 추출 캐드변환 autocad">
+      <article class="guide-item-card group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-sky-400 dark:hover:border-sky-500 transition-all duration-200" data-category="tool" data-search="pdf cad dxf 도면 변환기 오토캐드 벡터 추출 캐드변환 autocad zoom extents 라인 분해">
         <div>
           <div class="flex items-center justify-between gap-2 mb-3">
             <div class="flex items-center gap-2.5">
               <span class="text-3xl p-2 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800/50">📐</span>
               <div>
-                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
-                  PDF 도면 ➔ CAD(DXF) 변환기
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors" data-i18n="guideCard.pdfCadTitle">
+                  PDF 도면 ➔ CAD(DXF) 완벽 변환 가이드
                 </h2>
-                <span class="text-xs text-slate-500 dark:text-slate-400">벡터 PDF ➔ AutoCAD DXF 즉시 추출</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400" data-i18n="guideCard.pdfCadSub">순수 LINE 변환 &amp; Zoom Extents 꿀팁</span>
               </div>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50">웹 도구</span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 dark:bg-sky-950 dark:text-sky-300 border border-sky-200 dark:border-sky-800/50" data-i18n="badge.webTool">웹 도구</span>
           </div>
 
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-            서버 업로드 없이 브라우저에서 벡터 PDF 도면을 CAD 호환 파일(DXF)로 즉시 변환합니다. 선, 곡선, 치수선 추출 지원.
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" data-i18n="guideCard.pdfCadDesc">
+            설치 없이 PDF 도면을 순수 LINE 엔티티로 변환하는 실무 팁과 AutoCAD에서 도면이 안 보일 때 'Zoom Extents (Z -> E)' 해결법 안내.
           </p>
 
           <ul class="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 mb-5 border-t border-slate-100 dark:border-slate-800/80 pt-3">
             <li class="flex items-center gap-2">
               <span class="text-sky-500 font-bold">✓</span>
-              <span>LINE, CURVE, POLYLINE 등 CAD 표준 엔티티 정밀 추출</span>
+              <span data-i18n="guideCard.pdfCadPoint1">100% 순수 LINE 엔티티 분해로 구형/최신 CAD 행 130 파싱 오류 완전 해결</span>
             </li>
             <li class="flex items-center gap-2">
               <span class="text-sky-500 font-bold">✓</span>
-              <span>도면 형상과 텍스트 레이어(PDF_TEXT) 자동 분리</span>
+              <span data-i18n="guideCard.pdfCadPoint2">AutoCAD 도면 오픈 후 'Zoom -> Extents (Z Enter E Enter)' 즉시 화면 맞춤</span>
             </li>
             <li class="flex items-center gap-2">
               <span class="text-sky-500 font-bold">✓</span>
-              <span>100% 브라우저 메모리 로컬 처리로 설계 도면 보안 보장</span>
+              <span data-i18n="guideCard.pdfCadPoint3">외부 서버 전송 없는 100% 브라우저 메모리 로컬 보안 처리</span>
             </li>
           </ul>
         </div>
 
         <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
-          <a href="/pdf-to-dxf.html" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-sky-600 hover:bg-sky-700 transition-colors shadow-sm" style="text-decoration:none;">
-            <span>도구 바로 사용하기</span>
+          <a href="/guide/pdf-to-dxf" class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-sky-600 hover:bg-sky-700 transition-colors shadow-sm" style="text-decoration:none;">
+            <span data-i18n="btn.viewGuide">가이드 보기</span>
             <span>→</span>
           </a>
           <a href="/pdf-to-dxf.html" class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" title="도구 실행하기">
-            <span>도구 열기 ↗</span>
+            <span data-i18n="btn.openTool">도구 열기 ↗</span>
           </a>
         </div>
       </article>
@@ -999,6 +999,7 @@
           <ul class="space-y-1.5 text-xs">
             <li><a href="/" class="text-slate-400 hover:text-indigo-400 transition-colors" data-i18n="breadcrumb.home">홈으로 가기</a></li>
             <li><a href="/guide/" class="text-indigo-400 font-semibold" data-i18n="guide.mainTitle">서비스 이용 가이드</a></li>
+            <li><a href="/guide/pdf-to-dxf" class="text-slate-400 hover:text-indigo-400 transition-colors">📐 PDF to CAD 변환 가이드</a></li>
             <li><a href="/about.html" class="text-slate-400 hover:text-indigo-400 transition-colors" data-i18n="footer.about">서비스 소개 (About Us)</a></li>
             <li><a href="/article-leave-guide.html" class="text-slate-400 hover:text-indigo-400 transition-colors">근로기준법 연차 완벽 가이드</a></li>
           </ul>
@@ -1163,7 +1164,14 @@
           'guideCard.colorDesc': '사진이나 디자인 시안, PDF 문서의 픽셀을 스포이트로 찍어 HEX, RGB, HSL 코드를 1초 만에 클립보드에 복사하고 팔레트를 만듭니다.',
           'guideCard.colorPoint1': '고배율 확대 돋보기로 정밀 픽셀 스포이트 샘플링',
           'guideCard.colorPoint2': 'HEX, RGB, HSL 원터치 복사 및 최근 추출 색상 히스토리',
-          'guideCard.colorPoint3': '대표 5대 주요 색상 팔레트 자동 분석 및 내보내기'
+          'guideCard.colorPoint3': '대표 5대 주요 색상 팔레트 자동 분석 및 내보내기',
+
+          'guideCard.pdfCadTitle': 'PDF 도면 ➔ CAD(DXF) 완벽 변환 가이드',
+          'guideCard.pdfCadSub': '순수 LINE 변환 & Zoom Extents 꿀팁',
+          'guideCard.pdfCadDesc': '설치 없이 PDF 도면을 순수 LINE 엔티티로 변환하는 실무 팁과 AutoCAD에서 도면이 안 보일 때 \'Zoom Extents (Z -> E)\' 해결법 안내.',
+          'guideCard.pdfCadPoint1': '100% 순수 LINE 엔티티 분해로 구형/최신 CAD 행 130 파싱 오류 완전 해결',
+          'guideCard.pdfCadPoint2': 'AutoCAD 도면 오픈 후 \'Zoom -> Extents (Z Enter E Enter)\' 즉시 화면 맞춤',
+          'guideCard.pdfCadPoint3': '외부 서버 전송 없는 100% 브라우저 메모리 로컬 보안 처리'
         },
         en: {
           'breadcrumb.home': 'Home',
@@ -1281,7 +1289,14 @@
           'guideCard.colorDesc': 'Sample exact pixel colors from photos, design mockups, and PDFs to copy HEX, RGB, and HSL codes and create color palettes.',
           'guideCard.colorPoint1': 'High-power zoom loupe for single-pixel precision sampling',
           'guideCard.colorPoint2': 'One-click copy for HEX, RGB, HSL codes with history logging',
-          'guideCard.colorPoint3': 'Auto-extract dominant 5-color harmony palettes for UI design'
+          'guideCard.colorPoint3': 'Auto-extract dominant 5-color harmony palettes for UI design',
+
+          'guideCard.pdfCadTitle': 'PDF to CAD (DXF) Conversion Guide & Tips',
+          'guideCard.pdfCadSub': 'Pure LINE Conversion & Zoom Extents Guide',
+          'guideCard.pdfCadDesc': 'Practical guide on converting PDF drawings into universal LINE entities, plus the Zoom Extents (Z -> E) viewing tip.',
+          'guideCard.pdfCadPoint1': 'Explodes all geometry into pure LINE entities for 100% AutoCAD compatibility',
+          'guideCard.pdfCadPoint2': 'Use \'Zoom -> Extents (Z Enter E Enter)\' to instantly fit drawings to view',
+          'guideCard.pdfCadPoint3': '100% in-browser memory execution with zero server transmission'
         }
       };
 
